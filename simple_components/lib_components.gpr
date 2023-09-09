@@ -1,0 +1,99 @@
+library project Lib_Components is
+
+   for Library_Kind use "static";
+   for Library_Name use "components";
+   for Object_Dir   use "obj";
+   for Library_Dir  use "lib";
+   for Create_Missing_Dirs use "True";
+   for Languages use ("Ada", "C");
+
+   type Legacy_Type is ("Ada95", "Ada2005", "Ada2012");
+   Legacy : Legacy_Type := external ("Legacy", "Ada2012");
+
+   type Development_Type is ("Debug", "Release", "Profile");
+   Development : Development_Type := external ("Development", "Debug");
+
+   type OS_Type is
+        (  "Windows", "Windows_NT",
+           "Linux",
+           "UNIX",
+           "OSX",
+           "FreeBSD",
+           "auto"
+        );
+   Target_OS : OS_Type := external ("Target_OS", "Windows");
+
+   case Target_OS is
+      when "Windows" | "Windows_NT" =>
+         for Source_Dirs use ("src", "os/windows");
+      when "Linux" | "UNIX" | "auto" =>
+         for Source_Dirs use ("src", "os/linux");
+      when "OSX" | "FreeBSD" =>
+         for Source_Dirs use ("src", "os/pthreads");
+   end case;   
+
+   GNAT_XX := "";
+
+   case Legacy is
+      when "Ada95" =>
+         GNAT_XX := "-gnat95";
+      when "Ada2005" =>
+         GNAT_XX := "-gnat2005";
+      when "Ada2012" =>
+         GNAT_XX := "-gnat2012";
+   end case;
+
+   package Compiler is
+      case Development is
+         when "Debug" =>
+            for Default_Switches ("ada") use
+                (  "-gnatwcikmoprvz.c.p.t.w.x",
+                   "-gnato",
+                   "-gnatVaep",
+                   "-gnatf",
+                   "-gnatU",
+                   "-g",
+                   "-fstack-check",
+                   "-Wall"
+                )  & GNAT_XX;
+         when "Release" =>
+            for Default_Switches ("ada") use
+                (  "-gnatwcikmoprvz.c.p.t.w.x",
+                   "-gnatp",
+                   "-gnatVaep",
+                   "-gnatf",
+                   "-gnatU",
+                   "-O2",
+                   "-gnatn"
+                )  & GNAT_XX;
+         when "Profile" =>
+            for Default_Switches ("ada") use
+                (  "-g",
+                   "-pg"
+                )  & GNAT_XX;
+      end case;
+   end Compiler;
+
+   package Binder is
+      case Development is
+         when "Debug" =>
+            for Default_Switches ("ada") use ("-Es");
+         when "Release" =>
+            for Default_Switches ("ada") use ();
+         when others =>
+            null;
+      end case;
+   end Binder;
+
+   package Builder is
+      case Development is
+         when "Debug" =>
+            for Default_Switches ("ada") use ("-g");
+         when "Release" =>
+            for Default_Switches ("ada") use ("-s");
+         when others =>
+            null;
+      end case;
+   end Builder;
+
+end Lib_Components;
