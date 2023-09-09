@@ -1,0 +1,33 @@
+with "simple_components/lib_components.gpr";
+with "uxstrings/lib_uxstrings.gpr";
+
+project QtAda6_Tests is
+   for Languages use ("Ada");
+   for Source_Dirs use ("gen/qtcore", "src", "tests");
+   for Object_Dir use "obj";
+   for Exec_Dir use "bin";
+   for main use ("test_01.adb", "test_02.adb");
+
+   package Compiler is
+      for Switches ("ada") use ("-gnatW8", "-gnatU", "-gnatf", "-gnatVaep", "-gnatw.eDH.Y.N",
+         "-fstack-check", "-g", "-gnato", "-gnata",
+         "-gnateE", "-gnateF", "-gnateV", "-Wall");
+      for Local_Configuration_Pragmas use "pragma_debug.adc";
+   end Compiler;
+
+   package Binder is
+      for Default_Switches ("ada") use ("-Es");
+   end Binder;
+
+   package Builder is
+      for Default_Switches ("ada") use ("-s");
+   end Builder;
+
+   package Linker is
+      for Default_Switches ("ada") use ("-g") & external ("QTADA6_LINKER_FLAGS", "");
+   end Linker;
+
+   package Pretty_Printer is
+      for Default_Switches ("ada") use ("-M120", "-W8", "--comments-unchanged");
+   end Pretty_Printer;
+end QtAda6_Tests;

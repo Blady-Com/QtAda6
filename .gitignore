@@ -5,3 +5,4 @@
 /uxstrings/lib/
 /uxstrings/obj/
 .clang-format
+/env/
