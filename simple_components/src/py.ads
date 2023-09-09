@@ -3,7 +3,7 @@
 --  Interface                                      Luebeck            --
 --                                                 Winter, 2018       --
 --                                                                    --
---                                Last revision :  08:30 04 Aug 2022  --
+--                                Last revision :  12:51 09 Sep 2023  --
 --                                                                    --
 --  This  library  is  free software; you can redistribute it and/or  --
 --  modify it under the terms of the GNU General Public  License  as  --
@@ -458,6 +458,11 @@ package Py is
    procedure List_Sort (List : Handle);
    function List_Size (Object : Handle) return ssize_t;
    function List_Type return Handle;
+------------------------------------------------------------------------
+-- Booleans
+--
+   function To_Ada (Value : Handle) return Boolean;
+   function To_Python (Value : Boolean) return Handle;
 ------------------------------------------------------------------------
 -- Integers
 --
@@ -1507,6 +1512,11 @@ private
         )  return int;
    pragma Convention (C, AddPendingCall_Ptr);
 
+   type Bool_FromLLong_Ptr is access function
+        (  Value : long
+        )  return Object;
+   pragma Convention (C, Bool_FromLLong_Ptr);
+
    type ByteArray_AsString_Ptr is access function
         (  Reference : Object
         )  return Char_Ptrs.Pointer;
@@ -2440,6 +2450,7 @@ private
 
    package Links is
       AddPendingCall              : AddPendingCall_Ptr;
+      Bool_FromLong               : Bool_FromLLong_Ptr;
       ByteArray_AsString          : ByteArray_AsString_Ptr;
       ByteArray_FromStringAndSize : ByteArray_FromStringAndSize_Ptr;
       ByteArray_Size              : ByteArray_Size_Ptr;

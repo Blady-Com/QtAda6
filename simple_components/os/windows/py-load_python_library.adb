@@ -3,7 +3,7 @@
 --  Implementation                                 Luebeck            --
 --                                                 Winter, 2018       --
 --                                                                    --
---                                Last revision :  08:31 04 Aug 2022  --
+--                                Last revision :  12:51 09 Sep 2023  --
 --                                                                    --
 --  This  library  is  free software; you can redistribute it and/or  --
 --  modify it under the terms of the GNU General Public  License  as  --
@@ -221,6 +221,10 @@ package body Py.Load_Python_Library is
             (  Module : Address;
                Name   : char_array := "Py_AddPendingCall" & Nul
             )  return AddPendingCall_Ptr;
+   function GetProcAddress
+            (  Module : Address;
+               Name   : char_array := "PyBool_FromLong" & Nul
+            )  return Bool_FromLLong_Ptr;
    function GetProcAddress
             (  Module : Address;
                Name   : char_array := "PyByteArray_AsString" & Nul
@@ -1179,6 +1183,7 @@ package body Py.Load_Python_Library is
                );
             end if;
          end if;
+         Links.Bool_FromLong               := GetProcAddress (Library);
          Links.ByteArray_AsString          := GetProcAddress (Library);
          Links.ByteArray_FromStringAndSize := GetProcAddress (Library);
          Links.ByteArray_Size              := GetProcAddress (Library);

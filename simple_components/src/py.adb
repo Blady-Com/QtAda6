@@ -3,7 +3,7 @@
 --  Implementation                                 Luebeck            --
 --                                                 Winter, 2018       --
 --                                                                    --
---                                Last revision :  09:15 26 Nov 2022  --
+--                                Last revision :  12:51 09 Sep 2023  --
 --                                                                    --
 --  This  library  is  free software; you can redistribute it and/or  --
 --  modify it under the terms of the GNU General Public  License  as  --
@@ -160,6 +160,8 @@ package body Py is
    begin
       if Links.AddPendingCall = null then
          Error ("Py_AddPendingCall");
+      elsif Links.Bool_FromLong = null then
+         Error ("PyBool_FromLong");
       elsif Links.ByteArray_AsString = null then
          Error ("PyByteArray_AsString");
       elsif Links.ByteArray_FromStringAndSize = null then
@@ -2848,6 +2850,21 @@ package body Py is
       Links.Err_SetString (Links.Exc_ValueError.all, To_C (Message));
    end Throw_ValueError;
 
+   function To_Ada (Value : Handle) return Boolean is
+   begin
+      Check_Handle (Value);
+      if Value = To_Python (True) then
+         return True;
+      elsif Value = To_Python (False) then
+         return False;
+      else
+         Raise_Exception
+         (  Data_Error'Identity,
+            "Not a Boolean"
+         );
+      end if;
+   end To_Ada;
+
    function To_Ada (Value : Object) return Time is
       Date : constant String := Object_Str (Value);
    begin
@@ -2874,6 +2891,17 @@ package body Py is
    begin
       return To_Ada (Value.Ptr);
    end To_Ada;
+
+   function To_Python (Value : Boolean) return Handle is
+   begin
+      if Value then
+         return
+            (Ada.Finalization.Controlled with Links.Bool_FromLong (1));
+      else
+         return
+            (Ada.Finalization.Controlled with Links.Bool_FromLong (0));
+      end if;
+   end To_Python;
 
    function To_Python (Value : Time) return Handle is
       use Ada.Calendar.Formatting;

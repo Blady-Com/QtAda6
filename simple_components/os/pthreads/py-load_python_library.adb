@@ -3,7 +3,7 @@
 --  Implementation                                 Luebeck            --
 --                                                 Winter, 2018       --
 --                                                                    --
---                                Last revision :  09:15 26 Nov 2022  --
+--                                Last revision :  15:09 09 Sep 2023  --
 --                                                                    --
 --  This  library  is  free software; you can redistribute it and/or  --
 --  modify it under the terms of the GNU General Public  License  as  --
@@ -66,6 +66,10 @@ package body Py.Load_Python_Library is
             (  Module : Address;
                Name   : char_array := "Py_AddPendingCall" & Nul
             )  return AddPendingCall_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array := "PyBool_FromLong" & Nul
+            )  return Bool_FromLLong_Ptr;
    function dlsym
             (  Module : Address;
                Name   : char_array := "PyByteArray_AsString" & Nul
@@ -842,6 +846,7 @@ package body Py.Load_Python_Library is
             end if;
          end if;
          Links.AddPendingCall              := dlsym (Library);
+         Links.Bool_FromLong               := dlsym (Library);
          Links.ByteArray_AsString          := dlsym (Library);
          Links.ByteArray_FromStringAndSize := dlsym (Library);
          Links.ByteArray_Size              := dlsym (Library);
