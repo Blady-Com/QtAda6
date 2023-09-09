@@ -1,0 +1,7 @@
+/bin/
+/obj/
+/simple_components/lib/
+/simple_components/obj/
+/uxstrings/lib/
+/uxstrings/obj/
+.clang-format
