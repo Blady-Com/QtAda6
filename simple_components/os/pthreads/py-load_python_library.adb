@@ -3,7 +3,7 @@
 --  Implementation                                 Luebeck            --
 --                                                 Winter, 2018       --
 --                                                                    --
---                                Last revision :  15:09 09 Sep 2023  --
+--                                Last revision :  11:44 11 Sep 2023  --
 --                                                                    --
 --  This  library  is  free software; you can redistribute it and/or  --
 --  modify it under the terms of the GNU General Public  License  as  --
@@ -715,26 +715,54 @@ package body Py.Load_Python_Library is
    Library : Address := Null_Address;
    Loaded  : Boolean := False;
 
-   function Get_Default_Name (Major : Natural := 7) return String is
-      use Ada.Directories;
-      Prefix : constant String := "libpython3.";
+   type Found (Name_Length, Path_Length : Natural) is record
+      Major : Integer;
+      Name  : String (1..Name_Length);
+      Path  : String (1..Path_Length);
+   end record;
+   type Found_Ptr is access Found;
+   procedure Free is
+      new Ada.Unchecked_Deallocation (Found, Found_Ptr);
 
-      type Found (Length : Natural) is record
-         Major : Integer;
-         Name  : String (1..Length);
-      end record;
-      type Found_Ptr is access Found;
-      procedure Free is
-         new Ada.Unchecked_Deallocation (Found, Found_Ptr);
+   function "<" (Left : Found_Ptr; Right : Integer) return Boolean is
+   begin
+      return Left = null or else Left.Major < Right;
+   end "<";
 
-      function "<" (Left : Found_Ptr; Right : Integer) return Boolean is
+   Searched : Boolean := False;
+   Most     : Found_Ptr;
+
+   procedure Search (Major : Natural) is
+      procedure Set_Newly_Found (Path : String; Version : Integer) is
       begin
-         return Left = null or else Left.Major < Right;
-      end "<";
-
-      Most : Found_Ptr;
+          Free (Most);
+          for Index in reverse Path'Range loop
+             if Path (Index) = '/' then
+                Most :=
+                   new Found'
+                       (  Name_Length => Path'Last - Index,
+                          Path_Length => Index - Path'First + 1,
+                          Major       => Version,
+                          Name        => Path (Index + 1..Path'Last),
+                          Path        => Path (Path'First..Index)
+                       );
+                return;
+             end if;
+          end loop;
+          Most :=
+             new Found'
+                 (  Name_Length => Path'Length,
+                    Path_Length => 0,
+                    Major       => Version,
+                    Name        => Path,
+                    Path        => ""
+                 );
+      end Set_Newly_Found;
 
       procedure Scan (Path : String; Descend : Boolean := True) is
+         Prefix : constant String := "libpython3.";
+
+         use Ada.Directories;
          Items : Search_Type;
          This  : Directory_Entry_Type;
       begin
@@ -758,15 +786,13 @@ package body Py.Load_Python_Library is
                             exit when Name (Pointer) = '.';
                             Pointer := Pointer + 1;
                          end loop;
-                         if (  Is_Prefix (".so", Name, Pointer)
+                         if (  Is_Prefix (".dylib", Name, Pointer)
                             and then
                                Version >= Major
                             and then
                                Most < Version
                             )  then
-                            Free (Most);
-                            Most :=
-                               new Found'(Name'Length, Version, Name);
+                            Set_Newly_Found (Full_Name (This), Version);
                          end if;
                       end if;
                    exception
@@ -774,8 +800,11 @@ package body Py.Load_Python_Library is
                          null;
                    end;
                 when Directory =>
-                   if Descend then
-                      Scan (Full_Name (This), False);
+                   if (  Descend
+                      and then
+                         not Is_Prefix (".", Simple_Name (This))
+                      )  then
+                      Scan (Full_Name (This), True);
                    end if;
                 when Special_File =>
                    null;
@@ -787,27 +816,33 @@ package body Py.Load_Python_Library is
             null;
       end Scan;
    begin
-      Scan ("/usr/lib", True);
-      if System.Address'Size >= 64 then
-         Scan ("/usr/lib64", False);
-      else
-         Scan ("/usr/lib32", False);
+      if not Searched then
+         Searched := True;
+         -- Search in Command Line Tools install
+         Scan ("/Library/Frameworks/Python.framework/Versions", True);
+         -- Search in Xcode install
+         Scan
+         (  (  "/Applications/Xcode.app/Contents/Developer/"
+            &  "Library/Frameworks/Python3.framework/Versions"
+            ),
+            True
+         );
       end if;
+   end Search;
+
+   function Get_Default_Name (Major : Natural := 7) return String is
+   begin
+      Search (Major);
       if Most = null then
-         return "libpython3.so";
+         return "libpython3.11.dylib";
       else
-         declare
-            Result : constant String := Most.Name;
-         begin
-            Free (Most);
-            return Result;
-         end;
+         return Most.Name;
       end if;
    end Get_Default_Name;
 
    function Get_Extension return String is
    begin
-      return "*.so.*";
+      return "*.dylib";
    end Get_Extension;
 
    function Is_Loaded return Boolean is
@@ -817,14 +852,19 @@ package body Py.Load_Python_Library is
 
    function Get_Python_Path (Major : Natural := 7) return String is
    begin
-      return ""; -- Should be installed under the standard library path
+      Search (Major);
+      if Most = null then
+         return ""; -- Should be installed under the standard library path
+      else
+         return Most.Path;
+      end if;
    end Get_Python_Path;
 
    procedure Load (Name : String := "") is
       function Get_Library_Path return String is
       begin
          if Name'Length = 0 then
-            return Get_Default_Name;
+            return Get_Python_Path & Get_Default_Name;
          else
             return Trim (Name);
          end if;

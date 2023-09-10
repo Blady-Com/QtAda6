@@ -3,7 +3,7 @@
 --  Implementation                                 Luebeck            --
 --                                                 Winter, 2018       --
 --                                                                    --
---                                Last revision :  15:09 09 Sep 2023  --
+--                                Last revision :  11:44 11 Sep 2023  --
 --                                                                    --
 --  This  library  is  free software; you can redistribute it and/or  --
 --  modify it under the terms of the GNU General Public  License  as  --
@@ -824,7 +824,7 @@ package body Py.Load_Python_Library is
       function Get_Library_Path return String is
       begin
          if Name'Length = 0 then
-            return Get_Default_Name;
+            return Get_Python_Path & Get_Default_Name;
          else
             return Trim (Name);
          end if;
