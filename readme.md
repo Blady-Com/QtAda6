@@ -66,7 +66,8 @@ Today: 10
 Current folder: /Users/me/Documents/Programmation/Qt/QtAda6
 Current machine: MicMac
 HOME: /Users/me
-Exiting```
+Exiting
+```
 
 This program also shows the way of programing with QtAda6:
 
