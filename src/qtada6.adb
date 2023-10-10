@@ -60,6 +60,7 @@ package body QtAda6 is
    begin
       QtAda6_PySide_Python_Proxy := Py.Import_ImportModule ("PySide6");
       QtAda6_QtCore_Python_Proxy := Py.Import_ImportModule ("PySide6.QtCore");
+      QtAda6_QtGui_Python_Proxy  := Py.Import_ImportModule ("PySide6.QtGui");
    end Initialize;
 
    --------------
@@ -70,6 +71,7 @@ package body QtAda6 is
    begin
       Py.Invalidate (QtAda6_PySide_Python_Proxy);
       Py.Invalidate (QtAda6_QtCore_Python_Proxy);
+      Py.Invalidate (QtAda6_QtGui_Python_Proxy);
    end Finalize;
 
 end QtAda6;
