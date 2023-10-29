@@ -6,3 +6,4 @@
 /uxstrings/obj/
 .clang-format
 /env/
+/tests/__pycache__/
