@@ -80,16 +80,36 @@ This program also shows the way of programing with QtAda6:
 7. finalize QtAda6
 8. finalize Python interpreter
 
+### Test_03: QtGui
+
+It tests few QtGui API:
+
+```
+% cd $HOME
+% cd QtAda6
+% gprbuild -P qtada6_tests.gpr -XTarget_OS=OSX test_03
+% PYTHONPATH=$HOME/env/lib/python3.9/site-packages:$PWD/tests bin/test_03
+PySide version: 6.5.0
+QtCore version: 6.5.0
+0
+Exiting
+```
+
+A GUI app with a graphic clock is launched.
+
 ## Limitations
 
 This is the very first release whose goal is mostly to get feedbacks on how it is usable or if the class hierarchy is as user friendly as C++ version.
 
 Known limitations are :
 
-- Only QtCore is provided
+- Only QtCore and QtGui are provided
 - Union, Dict, List and so on are not translated
 - Enumerates are not translated
 - Signals are not translated
+- Class inheritance is not available on Ada side
+- Optional parameters are not translated
+- No memory management
 
 ## Get involved
 
@@ -98,11 +118,11 @@ Post your feedbacks on [QtAda6](https://github.com/Blady-Com/QtAda6) GitHub issu
 ## Authors
 
 - Simple Components are written by Dmitry A. Kazakov ([www.dmitry-kazakov.de/ada/components.htm](https://www.dmitry-kazakov.de/ada/components.htm)). Licence: GPLv2 with generics exception.
-- UXStrings are written by Pascal Pignard ([github.com/Blady-Com/UXStrings](https://github.com/Blady-Com/UXStrings)). Licence: CeCILL V2.1. 
+- UXStrings are written by Pascal Pignard ([github.com/Blady-Com/UXStrings](https://github.com/Blady-Com/UXStrings)). Licence: CeCILL-C. 
 - QtAda6 bindings have been generated from Qt for Python ([www.qt.io/qt-for-python](https://www.qt.io/qt-for-python)). Licence: LGPLv3/GPLv3.
 
 ## Licence
 
-QtAda6 is free software released under [CeCILL](http://www.cecill.info) V2.1.
+QtAda6 is free software released under [CeCILL-C](http://www.cecill.info) V2.1.
 
-Pascal Pignard, September 2023.
+Pascal Pignard, September-October 2023.
