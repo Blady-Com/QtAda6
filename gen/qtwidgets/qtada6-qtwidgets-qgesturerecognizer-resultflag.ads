@@ -1,0 +1,26 @@
+-------------------------------------------------------------------------------
+-- NAME (spec)                  : qtada6-qtwidgets-qgesturerecognizer-resultflag.ads
+-- AUTHOR                       : Pascal Pignard
+-- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
+-- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
+--
+-- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- LICENCE                      : CeCILL V2.1 (https://cecill.info)
+-- CONTACT                      : http://blady.pagesperso-orange.fr
+-------------------------------------------------------------------------------
+with Enum.Flag;
+package QtAda6.QtWidgets.QGestureRecognizer.ResultFlag is
+   type Inst;
+   type Inst_Access is access all Inst;
+   type Class is access all Inst'Class;
+   type Inst is new Enum.Flag.Inst with null record;
+   procedure Finalize (Self : in out Class);
+   Ignore           : QGestureRecognizer.ResultFlag.Class;-- 0x1
+   MayBeGesture     : QGestureRecognizer.ResultFlag.Class;-- 0x2
+   TriggerGesture   : QGestureRecognizer.ResultFlag.Class;-- 0x4
+   FinishGesture    : QGestureRecognizer.ResultFlag.Class;-- 0x8
+   CancelGesture    : QGestureRecognizer.ResultFlag.Class;-- 0x10
+   ResultState_Mask : QGestureRecognizer.ResultFlag.Class;-- 0xff
+   ConsumeEventHint : QGestureRecognizer.ResultFlag.Class;-- 0x100
+   ResultHint_Mask  : QGestureRecognizer.ResultFlag.Class;-- 0xff00
+end QtAda6.QtWidgets.QGestureRecognizer.ResultFlag;
