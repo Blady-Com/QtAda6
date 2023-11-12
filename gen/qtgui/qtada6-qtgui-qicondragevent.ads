@@ -10,12 +10,12 @@
 -------------------------------------------------------------------------------
 with QtAda6.QtCore.QEvent;
 package QtAda6.QtGui.QIconDragEvent is
-type Inst;
-type Inst_Access is access all Inst;
-type Class is access all Inst'Class;
-type Inst is new QtAda6.QtCore.QEvent.Inst with null record;
-procedure Finalize (Self : in out Class);
-function Create return Class;
-function Create(arg_1_P : access QtAda6.QtGui.QIconDragEvent.Inst'Class) return Class;
-function clone(self : access Inst) return access QtAda6.QtGui.QIconDragEvent.Inst'Class;
+   type Inst;
+   type Inst_Access is access all Inst;
+   type Class is access all Inst'Class;
+   type Inst is new QtAda6.QtCore.QEvent.Inst with null record;
+   procedure Finalize (Self : in out Class);
+   function Create return Class;
+   function Create (arg_1_P : access QtAda6.QtGui.QIconDragEvent.Inst'Class) return Class;
+   function clone (self : access Inst) return access QtAda6.QtGui.QIconDragEvent.Inst'Class;
 end QtAda6.QtGui.QIconDragEvent;

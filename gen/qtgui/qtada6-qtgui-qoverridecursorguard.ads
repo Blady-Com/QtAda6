@@ -9,13 +9,13 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 package QtAda6.QtGui.QOverrideCursorGuard is
-type Inst;
-type Inst_Access is access all Inst;
-type Class is access all Inst'Class;
-type Inst is new Shiboken.Object with null record;
-procedure Finalize (Self : in out Class);
-function Create return Class;
-function U_enter_U(self : access Inst) return access QtAda6.QtGui.QOverrideCursorGuard.Inst'Class;
-procedure U_exit_U(self : access Inst;arg_1_P : object;arg_2_P : object;arg_3_P : object);
-procedure restoreOverrideCursor(self : access Inst);
+   type Inst;
+   type Inst_Access is access all Inst;
+   type Class is access all Inst'Class;
+   type Inst is new Shiboken.Object with null record;
+   procedure Finalize (Self : in out Class);
+   function Create return Class;
+   function U_enter_U (self : access Inst) return access QtAda6.QtGui.QOverrideCursorGuard.Inst'Class;
+   procedure U_exit_U (self : access Inst; arg_1_P : Object; arg_2_P : Object; arg_3_P : Object);
+   procedure restoreOverrideCursor (self : access Inst);
 end QtAda6.QtGui.QOverrideCursorGuard;

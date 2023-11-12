@@ -12,14 +12,17 @@ limited with QtAda6.QtGui.QAccessibleInterface;
 limited with QtAda6.QtCore.QObject;
 with QtAda6.QtGui.QAccessibleTextCursorEvent;
 package QtAda6.QtGui.QAccessibleTextUpdateEvent is
-type Inst;
-type Inst_Access is access all Inst;
-type Class is access all Inst'Class;
-type Inst is new QtAda6.QtGui.QAccessibleTextCursorEvent.Inst with null record;
-procedure Finalize (Self : in out Class);
-function Create(iface_P : access QtAda6.QtGui.QAccessibleInterface.Inst'Class;position_P : int;oldText_P : str;text_P : str) return Class;
-function Create(obj_P : access QtAda6.QtCore.QObject.Inst'Class;position_P : int;oldText_P : str;text_P : str) return Class;
-function changePosition(self : access Inst) return int;
-function textInserted(self : access Inst) return str;
-function textRemoved(self : access Inst) return str;
+   type Inst;
+   type Inst_Access is access all Inst;
+   type Class is access all Inst'Class;
+   type Inst is new QtAda6.QtGui.QAccessibleTextCursorEvent.Inst with null record;
+   procedure Finalize (Self : in out Class);
+   function Create
+     (iface_P : access QtAda6.QtGui.QAccessibleInterface.Inst'Class; position_P : int; oldText_P : str; text_P : str)
+      return Class;
+   function Create
+     (obj_P : access QtAda6.QtCore.QObject.Inst'Class; position_P : int; oldText_P : str; text_P : str) return Class;
+   function changePosition (self : access Inst) return int;
+   function textInserted (self : access Inst) return str;
+   function textRemoved (self : access Inst) return str;
 end QtAda6.QtGui.QAccessibleTextUpdateEvent;

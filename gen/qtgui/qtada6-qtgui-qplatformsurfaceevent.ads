@@ -11,12 +11,13 @@
 limited with QtAda6.QtGui.QPlatformSurfaceEvent.SurfaceEventType;
 with QtAda6.QtCore.QEvent;
 package QtAda6.QtGui.QPlatformSurfaceEvent is
-type Inst;
-type Inst_Access is access all Inst;
-type Class is access all Inst'Class;
-type Inst is new QtAda6.QtCore.QEvent.Inst with null record;
-procedure Finalize (Self : in out Class);
-function Create(arg_1_P : access QtAda6.QtGui.QPlatformSurfaceEvent.Inst'Class) return Class;
-function clone(self : access Inst) return access QtAda6.QtGui.QPlatformSurfaceEvent.Inst'Class;
-function surfaceEventType_F(self : access Inst) return access QtAda6.QtGui.QPlatformSurfaceEvent.SurfaceEventType.Inst'Class;
+   type Inst;
+   type Inst_Access is access all Inst;
+   type Class is access all Inst'Class;
+   type Inst is new QtAda6.QtCore.QEvent.Inst with null record;
+   procedure Finalize (Self : in out Class);
+   function Create (arg_1_P : access QtAda6.QtGui.QPlatformSurfaceEvent.Inst'Class) return Class;
+   function clone (self : access Inst) return access QtAda6.QtGui.QPlatformSurfaceEvent.Inst'Class;
+   function surfaceEventType_F
+     (self : access Inst) return access QtAda6.QtGui.QPlatformSurfaceEvent.SurfaceEventType.Inst'Class;
 end QtAda6.QtGui.QPlatformSurfaceEvent;

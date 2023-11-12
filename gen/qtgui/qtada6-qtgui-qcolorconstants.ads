@@ -9,9 +9,9 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 package QtAda6.QtGui.QColorConstants is
-type Inst;
-type Inst_Access is access all Inst;
-type Class is access all Inst'Class;
-type Inst is new Shiboken.Object with null record;
-procedure Finalize (Self : in out Class);
+   type Inst;
+   type Inst_Access is access all Inst;
+   type Class is access all Inst'Class;
+   type Inst is new Shiboken.Object with null record;
+   procedure Finalize (Self : in out Class);
 end QtAda6.QtGui.QColorConstants;

@@ -10,13 +10,13 @@
 -------------------------------------------------------------------------------
 with QtAda6.QtCore.QEvent;
 package QtAda6.QtGui.QWhatsThisClickedEvent is
-type Inst;
-type Inst_Access is access all Inst;
-type Class is access all Inst'Class;
-type Inst is new QtAda6.QtCore.QEvent.Inst with null record;
-procedure Finalize (Self : in out Class);
-function Create(arg_1_P : access QtAda6.QtGui.QWhatsThisClickedEvent.Inst'Class) return Class;
-function Create(href_P : str) return Class;
-function clone(self : access Inst) return access QtAda6.QtGui.QWhatsThisClickedEvent.Inst'Class;
-function href(self : access Inst) return str;
+   type Inst;
+   type Inst_Access is access all Inst;
+   type Class is access all Inst'Class;
+   type Inst is new QtAda6.QtCore.QEvent.Inst with null record;
+   procedure Finalize (Self : in out Class);
+   function Create (arg_1_P : access QtAda6.QtGui.QWhatsThisClickedEvent.Inst'Class) return Class;
+   function Create (href_P : str) return Class;
+   function clone (self : access Inst) return access QtAda6.QtGui.QWhatsThisClickedEvent.Inst'Class;
+   function href (self : access Inst) return str;
 end QtAda6.QtGui.QWhatsThisClickedEvent;

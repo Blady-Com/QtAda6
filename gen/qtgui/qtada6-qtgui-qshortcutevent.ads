@@ -14,18 +14,23 @@ limited with QtAda6.QtGui.QKeySequence.StandardKey;
 limited with QtAda6.QtGui.QShortcut;
 with QtAda6.QtCore.QEvent;
 package QtAda6.QtGui.QShortcutEvent is
-type Union_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int is access Any;
-type Optional_QtAda6_QtGui_QShortcut is access Any;
-type Inst;
-type Inst_Access is access all Inst;
-type Class is access all Inst'Class;
-type Inst is new QtAda6.QtCore.QEvent.Inst with null record;
-procedure Finalize (Self : in out Class);
-function Create(arg_1_P : access QtAda6.QtGui.QShortcutEvent.Inst'Class) return Class;
-function Create(key_P : Union_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;id_P : int;ambiguous_P : bool) return Class;
-function Create(key_P : Union_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;shortcut_P : Optional_QtAda6_QtGui_QShortcut;ambiguous_P : bool) return Class;
-function clone(self : access Inst) return access QtAda6.QtGui.QShortcutEvent.Inst'Class;
-function isAmbiguous(self : access Inst) return bool;
-function key(self : access Inst) return access QtAda6.QtGui.QKeySequence.Inst'Class;
-function shortcutId(self : access Inst) return int;
+   type Union_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int is
+     access Any;
+   type Optional_QtAda6_QtGui_QShortcut is access Any;
+   type Inst;
+   type Inst_Access is access all Inst;
+   type Class is access all Inst'Class;
+   type Inst is new QtAda6.QtCore.QEvent.Inst with null record;
+   procedure Finalize (Self : in out Class);
+   function Create (arg_1_P : access QtAda6.QtGui.QShortcutEvent.Inst'Class) return Class;
+   function Create
+     (key_P : Union_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
+      id_P  : int; ambiguous_P : bool) return Class;
+   function Create
+     (key_P : Union_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
+      shortcut_P : Optional_QtAda6_QtGui_QShortcut; ambiguous_P : bool) return Class;
+   function clone (self : access Inst) return access QtAda6.QtGui.QShortcutEvent.Inst'Class;
+   function isAmbiguous (self : access Inst) return bool;
+   function key (self : access Inst) return access QtAda6.QtGui.QKeySequence.Inst'Class;
+   function shortcutId (self : access Inst) return int;
 end QtAda6.QtGui.QShortcutEvent;

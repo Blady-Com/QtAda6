@@ -8,7 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with py; use py;
+with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QEvent;
 with QtAda6.QtCore.QPointF;
@@ -16,68 +16,72 @@ with QtAda6.QtCore.QPoint;
 with QtAda6.QtGui.QPainterPath.Element;
 with QtAda6.QtGui.QScrollEvent.ScrollState;
 package body QtAda6.QtGui.QScrollEvent is
-procedure Finalize (Self : in out Class) is
-  procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
-  begin
-    Py.Invalidate (Self.Python_Proxy);
-    Free (Inst_Access (Self));
-  end;
-function Create(arg_1_P : access QtAda6.QtGui.QScrollEvent.Inst'Class) return Class is
-  Class, Args : Handle;
-begin
-  Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QScrollEvent");
-  Args   := Tuple_New ( 1);
-  Tuple_SetItem (Args, 0,arg_1_P.Python_Proxy);
-  return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
-end;
-function Create(contentPos_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;overshoot_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;scrollState_P : access QtAda6.QtGui.QScrollEvent.ScrollState.Inst'Class) return Class is
-  Class, Args : Handle;
-begin
-  Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QScrollEvent");
-  Args   := Tuple_New ( 3);
-  Tuple_SetItem (Args, 0,No_Value);
-  Tuple_SetItem (Args, 1,No_Value);
-  Tuple_SetItem (Args, 2,scrollState_P.Python_Proxy);
-  return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
-end;
-function clone(self : access Inst) return access QtAda6.QtGui.QScrollEvent.Inst'Class is
-  Method, Args, Result : Handle;
-  Ret : constant QtAda6.QtGui.QScrollEvent.Class := new QtAda6.QtGui.QScrollEvent.Inst;
-begin
-  Method := Object_GetAttrString (self.Python_Proxy, "clone");
-  Args   := Tuple_New ( 0);
-  Result := Object_CallObject (Method, Args, True);
-  Ret.Python_Proxy := Result;
-  return Ret;
-end;
-function contentPos(self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-  Method, Args, Result : Handle;
-  Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
-begin
-  Method := Object_GetAttrString (self.Python_Proxy, "contentPos");
-  Args   := Tuple_New ( 0);
-  Result := Object_CallObject (Method, Args, True);
-  Ret.Python_Proxy := Result;
-  return Ret;
-end;
-function overshootDistance(self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-  Method, Args, Result : Handle;
-  Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
-begin
-  Method := Object_GetAttrString (self.Python_Proxy, "overshootDistance");
-  Args   := Tuple_New ( 0);
-  Result := Object_CallObject (Method, Args, True);
-  Ret.Python_Proxy := Result;
-  return Ret;
-end;
-function scrollState_F(self : access Inst) return access QtAda6.QtGui.QScrollEvent.ScrollState.Inst'Class is
-  Method, Args, Result : Handle;
-  Ret : constant QtAda6.QtGui.QScrollEvent.ScrollState.Class := new QtAda6.QtGui.QScrollEvent.ScrollState.Inst;
-begin
-  Method := Object_GetAttrString (self.Python_Proxy, "scrollState");
-  Args   := Tuple_New ( 0);
-  Result := Object_CallObject (Method, Args, True);
-  Ret.Python_Proxy := Result;
-  return Ret;
-end;
+   procedure Finalize (Self : in out Class) is
+      procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
+   begin
+      Py.Invalidate (Self.Python_Proxy);
+      Free (Inst_Access (Self));
+   end Finalize;
+   function Create (arg_1_P : access QtAda6.QtGui.QScrollEvent.Inst'Class) return Class is
+      Class, Args : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QScrollEvent");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, arg_1_P.Python_Proxy);
+      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+   end Create;
+   function Create
+     (contentPos_P  : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
+      overshoot_P   : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
+      scrollState_P : access QtAda6.QtGui.QScrollEvent.ScrollState.Inst'Class) return Class
+   is
+      Class, Args : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QScrollEvent");
+      Args  := Tuple_New (3);
+      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 2, scrollState_P.Python_Proxy);
+      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+   end Create;
+   function clone (self : access Inst) return access QtAda6.QtGui.QScrollEvent.Inst'Class is
+      Method, Args, Result : Handle;
+      Ret                  : constant QtAda6.QtGui.QScrollEvent.Class := new QtAda6.QtGui.QScrollEvent.Inst;
+   begin
+      Method           := Object_GetAttrString (self.Python_Proxy, "clone");
+      Args             := Tuple_New (0);
+      Result           := Object_CallObject (Method, Args, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end clone;
+   function contentPos (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
+      Method, Args, Result : Handle;
+      Ret                  : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+   begin
+      Method           := Object_GetAttrString (self.Python_Proxy, "contentPos");
+      Args             := Tuple_New (0);
+      Result           := Object_CallObject (Method, Args, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end contentPos;
+   function overshootDistance (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
+      Method, Args, Result : Handle;
+      Ret                  : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+   begin
+      Method           := Object_GetAttrString (self.Python_Proxy, "overshootDistance");
+      Args             := Tuple_New (0);
+      Result           := Object_CallObject (Method, Args, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end overshootDistance;
+   function scrollState_F (self : access Inst) return access QtAda6.QtGui.QScrollEvent.ScrollState.Inst'Class is
+      Method, Args, Result : Handle;
+      Ret : constant QtAda6.QtGui.QScrollEvent.ScrollState.Class := new QtAda6.QtGui.QScrollEvent.ScrollState.Inst;
+   begin
+      Method           := Object_GetAttrString (self.Python_Proxy, "scrollState");
+      Args             := Tuple_New (0);
+      Result           := Object_CallObject (Method, Args, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end scrollState_F;
 end QtAda6.QtGui.QScrollEvent;

@@ -13,12 +13,16 @@ limited with QtAda6.QtGui.QAccessible.State;
 limited with QtAda6.QtCore.QObject;
 with QtAda6.QtGui.QAccessibleEvent;
 package QtAda6.QtGui.QAccessibleStateChangeEvent is
-type Inst;
-type Inst_Access is access all Inst;
-type Class is access all Inst'Class;
-type Inst is new QtAda6.QtGui.QAccessibleEvent.Inst with null record;
-procedure Finalize (Self : in out Class);
-function Create(iface_P : access QtAda6.QtGui.QAccessibleInterface.Inst'Class;state_P : access QtAda6.QtGui.QAccessible.State.Inst'Class) return Class;
-function Create(obj_P : access QtAda6.QtCore.QObject.Inst'Class;state_P : access QtAda6.QtGui.QAccessible.State.Inst'Class) return Class;
-function changedStates(self : access Inst) return access QtAda6.QtGui.QAccessible.State.Inst'Class;
+   type Inst;
+   type Inst_Access is access all Inst;
+   type Class is access all Inst'Class;
+   type Inst is new QtAda6.QtGui.QAccessibleEvent.Inst with null record;
+   procedure Finalize (Self : in out Class);
+   function Create
+     (iface_P : access QtAda6.QtGui.QAccessibleInterface.Inst'Class;
+      state_P : access QtAda6.QtGui.QAccessible.State.Inst'Class) return Class;
+   function Create
+     (obj_P : access QtAda6.QtCore.QObject.Inst'Class; state_P : access QtAda6.QtGui.QAccessible.State.Inst'Class)
+      return Class;
+   function changedStates (self : access Inst) return access QtAda6.QtGui.QAccessible.State.Inst'Class;
 end QtAda6.QtGui.QAccessibleStateChangeEvent;

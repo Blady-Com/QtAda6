@@ -9,12 +9,12 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 package QtAda6.QtGui.QAbstractTextDocumentLayout.Selection is
-type Inst;
-type Inst_Access is access all Inst;
-type Class is access all Inst'Class;
-type Inst is new Shiboken.Object with null record;
-procedure Finalize (Self : in out Class);
-function Create return Class;
-function Create(Selection_P : access QtAda6.QtGui.QAbstractTextDocumentLayout.Selection.Inst'Class) return Class;
-procedure U_copy_U;
+   type Inst;
+   type Inst_Access is access all Inst;
+   type Class is access all Inst'Class;
+   type Inst is new Shiboken.Object with null record;
+   procedure Finalize (Self : in out Class);
+   function Create return Class;
+   function Create (Selection_P : access QtAda6.QtGui.QAbstractTextDocumentLayout.Selection.Inst'Class) return Class;
+   procedure U_copy_U;
 end QtAda6.QtGui.QAbstractTextDocumentLayout.Selection;

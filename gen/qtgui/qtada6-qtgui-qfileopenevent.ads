@@ -11,16 +11,16 @@
 limited with QtAda6.QtCore.QUrl;
 with QtAda6.QtCore.QEvent;
 package QtAda6.QtGui.QFileOpenEvent is
-type Union_QtAda6_QtCore_QUrl_str is access Any;
-type Inst;
-type Inst_Access is access all Inst;
-type Class is access all Inst'Class;
-type Inst is new QtAda6.QtCore.QEvent.Inst with null record;
-procedure Finalize (Self : in out Class);
-function Create(arg_1_P : access QtAda6.QtGui.QFileOpenEvent.Inst'Class) return Class;
-function Create(file_P : str) return Class;
-function Create(url_P : Union_QtAda6_QtCore_QUrl_str) return Class;
-function clone(self : access Inst) return access QtAda6.QtGui.QFileOpenEvent.Inst'Class;
-function file(self : access Inst) return str;
-function url(self : access Inst) return access QtAda6.QtCore.QUrl.Inst'Class;
+   type Union_QtAda6_QtCore_QUrl_str is access Any;
+   type Inst;
+   type Inst_Access is access all Inst;
+   type Class is access all Inst'Class;
+   type Inst is new QtAda6.QtCore.QEvent.Inst with null record;
+   procedure Finalize (Self : in out Class);
+   function Create (arg_1_P : access QtAda6.QtGui.QFileOpenEvent.Inst'Class) return Class;
+   function Create (file_P : str) return Class;
+   function Create (url_P : Union_QtAda6_QtCore_QUrl_str) return Class;
+   function clone (self : access Inst) return access QtAda6.QtGui.QFileOpenEvent.Inst'Class;
+   function file (self : access Inst) return str;
+   function url (self : access Inst) return access QtAda6.QtCore.QUrl.Inst'Class;
 end QtAda6.QtGui.QFileOpenEvent;

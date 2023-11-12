@@ -8,15 +8,15 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with enum.Enum;
+with Enum.Enum;
 package QtAda6.QtGui.QImageWriter.ImageWriterError is
-type Inst;
-type Inst_Access is access all Inst;
-type Class is access all Inst'Class;
-type Inst is new enum.Enum.Inst with null record;
-procedure Finalize (Self : in out Class);
-UnknownError:QImageWriter.ImageWriterError.Class;-- 0x0
-DeviceError:QImageWriter.ImageWriterError.Class;-- 0x1
-UnsupportedFormatError:QImageWriter.ImageWriterError.Class;-- 0x2
-InvalidImageError:QImageWriter.ImageWriterError.Class;-- 0x3
+   type Inst;
+   type Inst_Access is access all Inst;
+   type Class is access all Inst'Class;
+   type Inst is new Enum.Enum.Inst with null record;
+   procedure Finalize (Self : in out Class);
+   UnknownError           : QImageWriter.ImageWriterError.Class;-- 0x0
+   DeviceError            : QImageWriter.ImageWriterError.Class;-- 0x1
+   UnsupportedFormatError : QImageWriter.ImageWriterError.Class;-- 0x2
+   InvalidImageError      : QImageWriter.ImageWriterError.Class;-- 0x3
 end QtAda6.QtGui.QImageWriter.ImageWriterError;
