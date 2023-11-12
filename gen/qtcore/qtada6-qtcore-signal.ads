@@ -9,7 +9,7 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QObject;
-limited with QtAda6.QtCore.SignalInstance;
+with QtAda6.QtCore.SignalInstance;
 package QtAda6.QtCore.Signal is
    type Optional_str is access Any;
    type Optional_Any is access Any;
@@ -24,4 +24,5 @@ package QtAda6.QtCore.Signal is
    function U_get_U
      (self : access Inst; instance_P : access QtAda6.QtCore.QObject.Inst'Class; owner_P : Optional_Any)
       return access QtAda6.QtCore.SignalInstance.Inst'Class;
+   function U_get_U (self : access Inst) return access QtAda6.QtCore.SignalInstance.Inst'Class;
 end QtAda6.QtCore.Signal;

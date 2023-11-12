@@ -16,7 +16,7 @@ package QtAda6.QtCore.SignalInstance is
    type Class is access all Inst'Class;
    type Inst is new Object with null record;
    procedure Finalize (Self : in out Class);
-   procedure connect (self : access Inst; slot_P : Object; type_K_P : Optional_type_K);
+   procedure connect (self : access Inst; slot_P : Object; type_K_P : Optional_type_K := null);
    procedure disconnect (self : access Inst; slot_P : Optional_object);
    procedure emit (self : access Inst; args_P : Any);
 end QtAda6.QtCore.SignalInstance;

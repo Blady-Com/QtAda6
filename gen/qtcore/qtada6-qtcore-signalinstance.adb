@@ -17,13 +17,18 @@ package body QtAda6.QtCore.SignalInstance is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   procedure connect (self : access Inst; slot_P : Object; type_K_P : Optional_type_K) is
+   procedure connect (self : access Inst; slot_P : Object; type_K_P : Optional_type_K := null) is
       Method, Args, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "connect");
-      Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, slot_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
+      if type_K_P /= null then
+         Args := Tuple_New (2);
+         Tuple_SetItem (Args, 0, slot_P.Python_Proxy);
+         Tuple_SetItem (Args, 1, No_Value);
+      else
+         Args := Tuple_New (1);
+         Tuple_SetItem (Args, 0, slot_P.Python_Proxy);
+      end if;
       Result := Object_CallObject (Method, Args, True);
    end connect;
    procedure disconnect (self : access Inst; slot_P : Optional_object) is
