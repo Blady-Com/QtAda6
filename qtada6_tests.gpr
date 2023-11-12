@@ -11,7 +11,7 @@ project QtAda6_Tests is
    package Compiler is
       for Switches ("ada") use ("-gnatW8", "-gnatU", "-gnatf", "-gnatVaep", "-gnatw.eDH.Y.N",
          "-fstack-check", "-g", "-gnato", "-gnata",
-         "-gnateE", "-gnateF", "-gnateV", "-Wall");
+         "-gnateE", "-gnateF", "-gnateV", "-Wall", "-gnat2022");
       for Local_Configuration_Pragmas use "pragma_debug.adc";
    end Compiler;
 

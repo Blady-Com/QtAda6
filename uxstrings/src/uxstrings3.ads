@@ -7,7 +7,11 @@ with Ada.Characters.Wide_Latin_1;
 private with Ada.Strings.Wide_Wide_Unbounded;
 private with Ada.Streams;
 
+limited with UXStrings.Lists;
+
 package UXStrings is
+
+   type Case_Sensitivity is (Insensitive, Sensitive);
 
    type Encoding_Scheme is (ASCII_7, Latin_1, UTF_8, UTF_16BE, UTF_16LE);
    -- Supported encoding schemes
@@ -16,7 +20,7 @@ package UXStrings is
 
    subtype ASCII_Character is Ada.Characters.Handling.ISO_646;
    subtype ASCII_Character_Array is String with
-        Dynamic_Predicate => (for all Item of ASCII_Character_Array => Item in ASCII_Character);
+       Dynamic_Predicate => (for all Item of ASCII_Character_Array => Item in ASCII_Character);
    -- Characters in ISO/IEC 646
 
    subtype Latin_1_Character is Character;
@@ -38,9 +42,9 @@ package UXStrings is
    -- Array of 8 bits values representing UTF encodings (UTF-8, UTF-16BE, or UTF-16LE)
 
    type UXString is tagged private with
-      Constant_Indexing => Element,
-      Iterable          => (First => First, Next => Next, Has_Element => Has_Element, Element => Element),
-      String_Literal    => From_Unicode;
+     Constant_Indexing => Element,
+     Iterable          => (First => First, Next => Next, Has_Element => Has_Element, Element => Element),
+     String_Literal    => From_Unicode;
    -- Container type of Unicode characters with dynamic size usually named string
 
    Null_UXString : constant UXString;
@@ -338,11 +342,85 @@ package UXStrings is
    -- Returns the letter corresponding to Item but with no diacritical mark,
    -- if Item is a letter but not a basic letter; returns Item otherwise.
 
+   -----------------------------------
+   -- String additional Subprograms --
+   -----------------------------------
+
+   function Contains
+     (Source : UXString; Pattern : UXString; Sensitivity : Case_Sensitivity := Sensitive) return Boolean;
+   -- Return True if Source contains Pattern with respect case of sensitivity
+
+   function Ends_With
+     (Source : UXString; Pattern : UXString; Sensitivity : Case_Sensitivity := Sensitive) return Boolean;
+   -- Return True if Source ends with pattern with respect case of sensitivity
+
+   function Starts_With
+     (Source : UXString; Pattern : UXString; Sensitivity : Case_Sensitivity := Sensitive) return Boolean;
+   -- Return True if Source starts with Pattern with respect case of sensitivity
+
+   function Is_Lower (Source : UXString) return Boolean;
+   -- Return True if Source is lowercase
+
+   function Is_Upper (Source : UXString) return Boolean;
+   -- Return True if Source is uppercase
+
+   function Is_Basic (Source : UXString) return Boolean;
+   -- Return True if source is basic (with no diacritical mark)
+
+   function Is_Empty (Source : UXString) return Boolean;
+   -- Return True is Source is empty (equal to Null_UXString)
+
+   function Remove
+     (Source : UXString; Pattern : Unicode_Character; Sensitivity : Case_Sensitivity := Sensitive) return UXString;
+   -- Return Source where every occurrence of Pattern have been removed with respect of case sensitivity
+   procedure Remove
+     (Source : in out UXString; Pattern : Unicode_Character; Sensitivity : Case_Sensitivity := Sensitive);
+   -- Update Source where every occurrence of Pattern have been removed with respect of case sensitivity
+
+   function Remove (Source : UXString; Pattern : UXString; Sensitivity : Case_Sensitivity := Sensitive) return UXString;
+   -- Return Source where every occurrence of Pattern have been removed with respect of case sensitivity
+   procedure Remove (Source : in out UXString; Pattern : UXString; Sensitivity : Case_Sensitivity := Sensitive);
+   -- Update Source where every occurrence of Pattern have been removed with respect of case sensitivity
+
+   function Replace
+     (Source : UXString; Before, After : Unicode_Character; Sensitivity : Case_Sensitivity := Sensitive)
+      return UXString;
+   -- Return a string which has had the before character replaced with the after character
+   -- wherever the before character is found with respect of sensitivity
+   procedure Replace
+     (Source : in out UXString; Before, After : Unicode_Character; Sensitivity : Case_Sensitivity := Sensitive);
+   -- Update Source which has had the before character replaced with the after character
+   -- wherever the before character is found with respect of sensitivity
+   function Replace
+     (Source : UXString; Before, After : UXString; Sensitivity : Case_Sensitivity := Sensitive) return UXString;
+   -- Return a string which has had the before text replaced with the after text
+   -- wherever the before text is found with respect of sensitivity
+   procedure Replace (Source : in out UXString; Before, After : UXString; Sensitivity : Case_Sensitivity := Sensitive);
+   -- Update Source which has had the before text replaced with the after text
+   -- wherever the before text is found with respect of case sensitivity
+
+   ------------------------------
+   -- String split Subprograms --
+   ------------------------------
+
+   function Split
+     (Source : UXString; Separator : Unicode_Character; Sensitivity : Case_Sensitivity := Sensitive)
+      return UXStrings.Lists.UXString_List;
+   -- Return a string list resulting in spliting Source into substrings wherever Separator occurs
+   function Split
+     (Source : UXString; Separator : UXString; Sensitivity : Case_Sensitivity := Sensitive)
+      return UXStrings.Lists.UXString_List;
+   -- Return a string list resulting in spliting Source into substrings wherever Separator occurs
+   function Split
+     (Source : UXString; Separator : Wide_Wide_Character_Set; Test : Membership := Inside)
+      return UXStrings.Lists.UXString_List;
+   -- Return a string list resulting in spliting Source into substrings wherever Separator occurs with respect of Test membership
+
 private
 
    type UTF_8_Characters_Access is access UTF_8_Character_Array;
    type UXString is tagged record
-      Chars     : Ada.Strings.Wide_Wide_Unbounded.Unbounded_Wide_Wide_String;
+      Chars : Ada.Strings.Wide_Wide_Unbounded.Unbounded_Wide_Wide_String;
    end record;
 
    procedure Bounded_Move (Source : in out UXString; Target : out UXString; Max : Natural; Last : out Natural);
