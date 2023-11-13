@@ -4,7 +4,7 @@
 
 We should have installed first:
 
-- GNAT Ada compiler version FSF 12.1
+- GNAT Ada compiler version GPL 2021 or FSF 12.1
 - Python version 3.7 or newer
 
 ## Install Qt for Python
@@ -97,13 +97,29 @@ Exiting
 
 A GUI app with a graphic clock is launched.
 
+### Test_04: QtWidgets
+
+It tests few QtWidgets API:
+
+```
+% cd $HOME
+% cd QtAda6
+% gprbuild -P qtada6_tests.gpr -XTarget_OS=OSX test_04
+% PYTHONPATH=$HOME/env/lib/python3.9/site-packages bin/test_04
+PySide version: 6.5.0
+0
+Exiting
+```
+
+A GUI app with widgets label and button is launched.
+
 ## Limitations
 
 This is the very first release whose goal is mostly to get feedbacks on how it is usable or if the class hierarchy is as user friendly as C++ version.
 
 Known limitations are :
 
-- Only QtCore and QtGui are provided
+- Only QtCore, QtGui and QtWidgets are provided
 - Union, Dict, List and so on are not translated
 - Enumerates are not translated
 - Signals are not translated
@@ -125,4 +141,4 @@ Post your feedbacks on [QtAda6](https://github.com/Blady-Com/QtAda6) GitHub issu
 
 QtAda6 is free software released under [CeCILL-C](http://www.cecill.info) V2.1.
 
-Pascal Pignard, September-October 2023.
+Pascal Pignard, September-November 2023.
