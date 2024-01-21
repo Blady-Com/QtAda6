@@ -15,20 +15,6 @@ with UXStrings.Conversions;
 
 package QtAda6 is
 
-   type type_K_T is tagged record
-      Python_Proxy : Py.Handle;
-   end record;
-   type Property is tagged record
-      Python_Proxy : Py.Handle;
-   end record;
-   type Callable is null record;
-   type Any is tagged record
-      Python_Proxy : Py.Handle;
-   end record;
-   type None is null record;
-   type Iterable is null record;
-   type Tuple is null record;
-
    subtype bool is Boolean;
    function Image is new UXStrings.Conversions.Scalar_Image (bool);
    subtype int is Interfaces.C.long;
@@ -47,15 +33,25 @@ package QtAda6 is
      (Py.Unicode_FromString (UXStrings.To_UTF_8 (Value)));
 
    package Shiboken is
-      type Enum is tagged record
-         Python_Proxy : Py.Handle;
-      end record;
       type Object is tagged record
          Python_Proxy : Py.Handle;
       end record;
+      type Enum is new Object with null record;
    end Shiboken;
 
    type Object is new Shiboken.Object with null record;
+   type Any is access all Object'Class;
+   type Type_K_T is new Any;
+   type Iterable is new Any;
+   type Property is new Any;
+   type None is new Any;
+
+   package Enum is
+     type Enum is new Shiboken.Object with null record;
+     type Flag is new Shiboken.Object with null record;
+     type IntEnum is new Shiboken.Object with null record;
+     type IntFlag is new Shiboken.Object with null record;
+   end Enum;
 
    package shibokensupport is
       package signature is
@@ -66,16 +62,7 @@ package QtAda6 is
       end signature;
    end shibokensupport;
 
-   type_K_T_conv_P2A_is_not_supported : type_K_T;
-   Tuple_conv_P2A_is_not_supported    : constant Tuple    := (null record);
-   Any_conv_P2A_is_not_supported      : Any;
-   Iterable_conv_P2A_is_not_supported : constant Iterable := (null record);
-
-   Any_conv_A2P_is_not_supported      : Py.Handle;
-   type_K_T_conv_A2P_is_not_supported : Py.Handle;
-   Callable_conv_A2P_is_not_supported : Py.Handle;
    None_conv_A2P_is_not_supported     : Py.Handle;
-   Iterable_conv_A2P_is_not_supported : Py.Handle;
 
    function QtCore_Python_Proxy return Py.Handle;
    function QtGui_Python_Proxy return Py.Handle;
