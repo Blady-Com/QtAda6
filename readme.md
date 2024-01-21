@@ -36,13 +36,14 @@ It tests if PySide is correctly installed:
 % cd $HOME
 % cd QtAda6
 % gprbuild -P qtada6_tests.gpr -XTarget_OS=OSX test_01
-% PYTHONPATH=$HOME/env/lib/python3.9/site-packages bin/test_01
+% PYTHONPATH=$HOME/env/lib/python3.9/site-packages:$PWD/tests bin/test_01
 /Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/Current/lib/
 libpython3.9.dylib
 .dylib
 Python version: 3.9.6 (default, May  7 2023, 23:32:45) 
 [Clang 14.0.3 (clang-1403.0.22.14.1)]
 Python CWD: /Users/me/Documents/Programmation/Qt/QtAda6
+Python Enum:  2
 PySide6 version: 6.5.2
 Exiting
 ```
