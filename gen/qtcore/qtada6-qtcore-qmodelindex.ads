@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qmodelindex.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -12,18 +12,19 @@ limited with QtAda6.QtCore.QPersistentModelIndex;
 limited with QtAda6.QtCore.Qt.ItemFlag;
 limited with QtAda6.QtCore.QAbstractItemModel;
 package QtAda6.QtCore.QModelIndex is
-   type Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (QModelIndex_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return Class;
+   function Create (QModelIndex_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return Class;
    procedure U_copy_U;
    function column (self : access Inst) return int;
    function constInternalPointer (self : access Inst) return int;
-   function data (self : access Inst; role_P : int) return Any;
+   function data (self : access Inst; role_P : int := 0) return Any;
    function flags (self : access Inst) return access QtAda6.QtCore.Qt.ItemFlag.Inst'Class;
    function internalId (self : access Inst) return int;
    function internalPointer (self : access Inst) return int;

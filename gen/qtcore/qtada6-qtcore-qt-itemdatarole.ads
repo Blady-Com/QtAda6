@@ -1,39 +1,39 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qt-itemdatarole.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with Enum.IntEnum;
 package QtAda6.QtCore.Qt.ItemDataRole is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
-   type Inst is new Enum.IntEnum.Inst with null record;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
+   type Inst is new Enum.IntEnum with null record;
    procedure Finalize (Self : in out Class);
-   DisplayRole               : Qt.ItemDataRole.Class;-- 0x0
-   DecorationRole            : Qt.ItemDataRole.Class;-- 0x1
-   EditRole                  : Qt.ItemDataRole.Class;-- 0x2
-   ToolTipRole               : Qt.ItemDataRole.Class;-- 0x3
-   StatusTipRole             : Qt.ItemDataRole.Class;-- 0x4
-   WhatsThisRole             : Qt.ItemDataRole.Class;-- 0x5
-   FontRole                  : Qt.ItemDataRole.Class;-- 0x6
-   TextAlignmentRole         : Qt.ItemDataRole.Class;-- 0x7
-   BackgroundRole            : Qt.ItemDataRole.Class;-- 0x8
-   ForegroundRole            : Qt.ItemDataRole.Class;-- 0x9
-   CheckStateRole            : Qt.ItemDataRole.Class;-- 0xa
-   AccessibleTextRole        : Qt.ItemDataRole.Class;-- 0xb
-   AccessibleDescriptionRole : Qt.ItemDataRole.Class;-- 0xc
-   SizeHintRole              : Qt.ItemDataRole.Class;-- 0xd
-   InitialSortOrderRole      : Qt.ItemDataRole.Class;-- 0xe
-   DisplayPropertyRole       : Qt.ItemDataRole.Class;-- 0x1b
-   DecorationPropertyRole    : Qt.ItemDataRole.Class;-- 0x1c
-   ToolTipPropertyRole       : Qt.ItemDataRole.Class;-- 0x1d
-   StatusTipPropertyRole     : Qt.ItemDataRole.Class;-- 0x1e
-   WhatsThisPropertyRole     : Qt.ItemDataRole.Class;-- 0x1f
-   UserRole                  : Qt.ItemDataRole.Class;-- 0x100
+   function DisplayRole return Class;-- 0x0
+   function DecorationRole return Class;-- 0x1
+   function EditRole return Class;-- 0x2
+   function ToolTipRole return Class;-- 0x3
+   function StatusTipRole return Class;-- 0x4
+   function WhatsThisRole return Class;-- 0x5
+   function FontRole return Class;-- 0x6
+   function TextAlignmentRole return Class;-- 0x7
+   function BackgroundRole return Class;-- 0x8
+   function ForegroundRole return Class;-- 0x9
+   function CheckStateRole return Class;-- 0xa
+   function AccessibleTextRole return Class;-- 0xb
+   function AccessibleDescriptionRole return Class;-- 0xc
+   function SizeHintRole return Class;-- 0xd
+   function InitialSortOrderRole return Class;-- 0xe
+   function DisplayPropertyRole return Class;-- 0x1b
+   function DecorationPropertyRole return Class;-- 0x1c
+   function ToolTipPropertyRole return Class;-- 0x1d
+   function StatusTipPropertyRole return Class;-- 0x1e
+   function WhatsThisPropertyRole return Class;-- 0x1f
+   function UserRole return Class;-- 0x100
 end QtAda6.QtCore.Qt.ItemDataRole;

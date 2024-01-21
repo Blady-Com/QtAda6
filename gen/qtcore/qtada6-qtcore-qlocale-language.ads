@@ -1,375 +1,375 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qlocale-language.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with Enum.Enum;
 package QtAda6.QtCore.QLocale.Language is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
-   type Inst is new Enum.Enum.Inst with null record;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
+   type Inst is new Enum.Enum with null record;
    procedure Finalize (Self : in out Class);
-   AnyLanguage               : QLocale.Language.Class;-- 0x0
-   C                         : QLocale.Language.Class;-- 0x1
-   Abkhazian                 : QLocale.Language.Class;-- 0x2
-   Afar                      : QLocale.Language.Class;-- 0x3
-   Afrikaans                 : QLocale.Language.Class;-- 0x4
-   Aghem                     : QLocale.Language.Class;-- 0x5
-   Akan                      : QLocale.Language.Class;-- 0x6
-   Akkadian                  : QLocale.Language.Class;-- 0x7
-   Akoose                    : QLocale.Language.Class;-- 0x8
-   Albanian                  : QLocale.Language.Class;-- 0x9
-   AmericanSignLanguage      : QLocale.Language.Class;-- 0xa
-   Amharic                   : QLocale.Language.Class;-- 0xb
-   AncientEgyptian           : QLocale.Language.Class;-- 0xc
-   AncientGreek              : QLocale.Language.Class;-- 0xd
-   Arabic                    : QLocale.Language.Class;-- 0xe
-   Aragonese                 : QLocale.Language.Class;-- 0xf
-   Aramaic                   : QLocale.Language.Class;-- 0x10
-   Armenian                  : QLocale.Language.Class;-- 0x11
-   Assamese                  : QLocale.Language.Class;-- 0x12
-   Asturian                  : QLocale.Language.Class;-- 0x13
-   Asu                       : QLocale.Language.Class;-- 0x14
-   Atsam                     : QLocale.Language.Class;-- 0x15
-   Avaric                    : QLocale.Language.Class;-- 0x16
-   Avestan                   : QLocale.Language.Class;-- 0x17
-   Aymara                    : QLocale.Language.Class;-- 0x18
-   Azerbaijani               : QLocale.Language.Class;-- 0x19
-   Bafia                     : QLocale.Language.Class;-- 0x1a
-   Balinese                  : QLocale.Language.Class;-- 0x1b
-   Bambara                   : QLocale.Language.Class;-- 0x1c
-   Bamun                     : QLocale.Language.Class;-- 0x1d
-   Bangla                    : QLocale.Language.Class;-- 0x1e
-   Bengali                   : QLocale.Language.Class;-- 0x1e
-   Basaa                     : QLocale.Language.Class;-- 0x1f
-   Bashkir                   : QLocale.Language.Class;-- 0x20
-   Basque                    : QLocale.Language.Class;-- 0x21
-   BatakToba                 : QLocale.Language.Class;-- 0x22
-   Belarusian                : QLocale.Language.Class;-- 0x23
-   Byelorussian              : QLocale.Language.Class;-- 0x23
-   Bemba                     : QLocale.Language.Class;-- 0x24
-   Bena                      : QLocale.Language.Class;-- 0x25
-   Bhojpuri                  : QLocale.Language.Class;-- 0x26
-   Bislama                   : QLocale.Language.Class;-- 0x27
-   Blin                      : QLocale.Language.Class;-- 0x28
-   Bodo                      : QLocale.Language.Class;-- 0x29
-   Bosnian                   : QLocale.Language.Class;-- 0x2a
-   Breton                    : QLocale.Language.Class;-- 0x2b
-   Buginese                  : QLocale.Language.Class;-- 0x2c
-   Bulgarian                 : QLocale.Language.Class;-- 0x2d
-   Burmese                   : QLocale.Language.Class;-- 0x2e
-   Cantonese                 : QLocale.Language.Class;-- 0x2f
-   Catalan                   : QLocale.Language.Class;-- 0x30
-   Cebuano                   : QLocale.Language.Class;-- 0x31
-   CentralAtlasTamazight     : QLocale.Language.Class;-- 0x32
-   CentralMoroccoTamazight   : QLocale.Language.Class;-- 0x32
-   CentralKurdish            : QLocale.Language.Class;-- 0x33
-   Chakma                    : QLocale.Language.Class;-- 0x34
-   Chamorro                  : QLocale.Language.Class;-- 0x35
-   Chechen                   : QLocale.Language.Class;-- 0x36
-   Cherokee                  : QLocale.Language.Class;-- 0x37
-   Chickasaw                 : QLocale.Language.Class;-- 0x38
-   Chiga                     : QLocale.Language.Class;-- 0x39
-   Chinese                   : QLocale.Language.Class;-- 0x3a
-   Church                    : QLocale.Language.Class;-- 0x3b
-   Chuvash                   : QLocale.Language.Class;-- 0x3c
-   Colognian                 : QLocale.Language.Class;-- 0x3d
-   Coptic                    : QLocale.Language.Class;-- 0x3e
-   Cornish                   : QLocale.Language.Class;-- 0x3f
-   Corsican                  : QLocale.Language.Class;-- 0x40
-   Cree                      : QLocale.Language.Class;-- 0x41
-   Croatian                  : QLocale.Language.Class;-- 0x42
-   Czech                     : QLocale.Language.Class;-- 0x43
-   Danish                    : QLocale.Language.Class;-- 0x44
-   Divehi                    : QLocale.Language.Class;-- 0x45
-   Dogri                     : QLocale.Language.Class;-- 0x46
-   Duala                     : QLocale.Language.Class;-- 0x47
-   Dutch                     : QLocale.Language.Class;-- 0x48
-   Bhutani                   : QLocale.Language.Class;-- 0x49
-   Dzongkha                  : QLocale.Language.Class;-- 0x49
-   Embu                      : QLocale.Language.Class;-- 0x4a
-   English                   : QLocale.Language.Class;-- 0x4b
-   Erzya                     : QLocale.Language.Class;-- 0x4c
-   Esperanto                 : QLocale.Language.Class;-- 0x4d
-   Estonian                  : QLocale.Language.Class;-- 0x4e
-   Ewe                       : QLocale.Language.Class;-- 0x4f
-   Ewondo                    : QLocale.Language.Class;-- 0x50
-   Faroese                   : QLocale.Language.Class;-- 0x51
-   Fijian                    : QLocale.Language.Class;-- 0x52
-   Filipino                  : QLocale.Language.Class;-- 0x53
-   Finnish                   : QLocale.Language.Class;-- 0x54
-   French                    : QLocale.Language.Class;-- 0x55
-   Friulian                  : QLocale.Language.Class;-- 0x56
-   Fulah                     : QLocale.Language.Class;-- 0x57
-   Gaelic                    : QLocale.Language.Class;-- 0x58
-   Ga                        : QLocale.Language.Class;-- 0x59
-   Galician                  : QLocale.Language.Class;-- 0x5a
-   Ganda                     : QLocale.Language.Class;-- 0x5b
-   Geez                      : QLocale.Language.Class;-- 0x5c
-   Georgian                  : QLocale.Language.Class;-- 0x5d
-   German                    : QLocale.Language.Class;-- 0x5e
-   Gothic                    : QLocale.Language.Class;-- 0x5f
-   Greek                     : QLocale.Language.Class;-- 0x60
-   Guarani                   : QLocale.Language.Class;-- 0x61
-   Gujarati                  : QLocale.Language.Class;-- 0x62
-   Gusii                     : QLocale.Language.Class;-- 0x63
-   Haitian                   : QLocale.Language.Class;-- 0x64
-   Hausa                     : QLocale.Language.Class;-- 0x65
-   Hawaiian                  : QLocale.Language.Class;-- 0x66
-   Hebrew                    : QLocale.Language.Class;-- 0x67
-   Herero                    : QLocale.Language.Class;-- 0x68
-   Hindi                     : QLocale.Language.Class;-- 0x69
-   HiriMotu                  : QLocale.Language.Class;-- 0x6a
-   Hungarian                 : QLocale.Language.Class;-- 0x6b
-   Icelandic                 : QLocale.Language.Class;-- 0x6c
-   Ido                       : QLocale.Language.Class;-- 0x6d
-   Igbo                      : QLocale.Language.Class;-- 0x6e
-   InariSami                 : QLocale.Language.Class;-- 0x6f
-   Indonesian                : QLocale.Language.Class;-- 0x70
-   Ingush                    : QLocale.Language.Class;-- 0x71
-   Interlingua               : QLocale.Language.Class;-- 0x72
-   Interlingue               : QLocale.Language.Class;-- 0x73
-   Inuktitut                 : QLocale.Language.Class;-- 0x74
-   Inupiak                   : QLocale.Language.Class;-- 0x75
-   Inupiaq                   : QLocale.Language.Class;-- 0x75
-   Irish                     : QLocale.Language.Class;-- 0x76
-   Italian                   : QLocale.Language.Class;-- 0x77
-   Japanese                  : QLocale.Language.Class;-- 0x78
-   Javanese                  : QLocale.Language.Class;-- 0x79
-   Jju                       : QLocale.Language.Class;-- 0x7a
-   JolaFonyi                 : QLocale.Language.Class;-- 0x7b
-   Kabuverdianu              : QLocale.Language.Class;-- 0x7c
-   Kabyle                    : QLocale.Language.Class;-- 0x7d
-   Kako                      : QLocale.Language.Class;-- 0x7e
-   Greenlandic               : QLocale.Language.Class;-- 0x7f
-   Kalaallisut               : QLocale.Language.Class;-- 0x7f
-   Kalenjin                  : QLocale.Language.Class;-- 0x80
-   Kamba                     : QLocale.Language.Class;-- 0x81
-   Kannada                   : QLocale.Language.Class;-- 0x82
-   Kanuri                    : QLocale.Language.Class;-- 0x83
-   Kashmiri                  : QLocale.Language.Class;-- 0x84
-   Kazakh                    : QLocale.Language.Class;-- 0x85
-   Kenyang                   : QLocale.Language.Class;-- 0x86
-   Cambodian                 : QLocale.Language.Class;-- 0x87
-   Khmer                     : QLocale.Language.Class;-- 0x87
-   Kiche                     : QLocale.Language.Class;-- 0x88
-   Kikuyu                    : QLocale.Language.Class;-- 0x89
-   Kinyarwanda               : QLocale.Language.Class;-- 0x8a
-   Komi                      : QLocale.Language.Class;-- 0x8b
-   Kongo                     : QLocale.Language.Class;-- 0x8c
-   Konkani                   : QLocale.Language.Class;-- 0x8d
-   Korean                    : QLocale.Language.Class;-- 0x8e
-   Koro                      : QLocale.Language.Class;-- 0x8f
-   KoyraboroSenni            : QLocale.Language.Class;-- 0x90
-   KoyraChiini               : QLocale.Language.Class;-- 0x91
-   Kpelle                    : QLocale.Language.Class;-- 0x92
-   Kuanyama                  : QLocale.Language.Class;-- 0x93
-   Kwanyama                  : QLocale.Language.Class;-- 0x93
-   Kurdish                   : QLocale.Language.Class;-- 0x94
-   Kwasio                    : QLocale.Language.Class;-- 0x95
-   Kirghiz                   : QLocale.Language.Class;-- 0x96
-   Kyrgyz                    : QLocale.Language.Class;-- 0x96
-   Lakota                    : QLocale.Language.Class;-- 0x97
-   Langi                     : QLocale.Language.Class;-- 0x98
-   Lao                       : QLocale.Language.Class;-- 0x99
-   Latin                     : QLocale.Language.Class;-- 0x9a
-   Latvian                   : QLocale.Language.Class;-- 0x9b
-   Lezghian                  : QLocale.Language.Class;-- 0x9c
-   Limburgish                : QLocale.Language.Class;-- 0x9d
-   Lingala                   : QLocale.Language.Class;-- 0x9e
-   LiteraryChinese           : QLocale.Language.Class;-- 0x9f
-   Lithuanian                : QLocale.Language.Class;-- 0xa0
-   Lojban                    : QLocale.Language.Class;-- 0xa1
-   LowerSorbian              : QLocale.Language.Class;-- 0xa2
-   LowGerman                 : QLocale.Language.Class;-- 0xa3
-   LubaKatanga               : QLocale.Language.Class;-- 0xa4
-   LuleSami                  : QLocale.Language.Class;-- 0xa5
-   Luo                       : QLocale.Language.Class;-- 0xa6
-   Luxembourgish             : QLocale.Language.Class;-- 0xa7
-   Luyia                     : QLocale.Language.Class;-- 0xa8
-   Macedonian                : QLocale.Language.Class;-- 0xa9
-   Machame                   : QLocale.Language.Class;-- 0xaa
-   Maithili                  : QLocale.Language.Class;-- 0xab
-   MakhuwaMeetto             : QLocale.Language.Class;-- 0xac
-   Makonde                   : QLocale.Language.Class;-- 0xad
-   Malagasy                  : QLocale.Language.Class;-- 0xae
-   Malayalam                 : QLocale.Language.Class;-- 0xaf
-   Malay                     : QLocale.Language.Class;-- 0xb0
-   Maltese                   : QLocale.Language.Class;-- 0xb1
-   Mandingo                  : QLocale.Language.Class;-- 0xb2
-   Manipuri                  : QLocale.Language.Class;-- 0xb3
-   Manx                      : QLocale.Language.Class;-- 0xb4
-   Maori                     : QLocale.Language.Class;-- 0xb5
-   Mapuche                   : QLocale.Language.Class;-- 0xb6
-   Marathi                   : QLocale.Language.Class;-- 0xb7
-   Marshallese               : QLocale.Language.Class;-- 0xb8
-   Masai                     : QLocale.Language.Class;-- 0xb9
-   Mazanderani               : QLocale.Language.Class;-- 0xba
-   Mende                     : QLocale.Language.Class;-- 0xbb
-   Meru                      : QLocale.Language.Class;-- 0xbc
-   Meta                      : QLocale.Language.Class;-- 0xbd
-   Mohawk                    : QLocale.Language.Class;-- 0xbe
-   Mongolian                 : QLocale.Language.Class;-- 0xbf
-   Morisyen                  : QLocale.Language.Class;-- 0xc0
-   Mundang                   : QLocale.Language.Class;-- 0xc1
-   Muscogee                  : QLocale.Language.Class;-- 0xc2
-   Nama                      : QLocale.Language.Class;-- 0xc3
-   NauruLanguage             : QLocale.Language.Class;-- 0xc4
-   Navaho                    : QLocale.Language.Class;-- 0xc5
-   Navajo                    : QLocale.Language.Class;-- 0xc5
-   Ndonga                    : QLocale.Language.Class;-- 0xc6
-   Nepali                    : QLocale.Language.Class;-- 0xc7
-   Newari                    : QLocale.Language.Class;-- 0xc8
-   Ngiemboon                 : QLocale.Language.Class;-- 0xc9
-   Ngomba                    : QLocale.Language.Class;-- 0xca
-   NigerianPidgin            : QLocale.Language.Class;-- 0xcb
-   Nko                       : QLocale.Language.Class;-- 0xcc
-   NorthernLuri              : QLocale.Language.Class;-- 0xcd
-   NorthernSami              : QLocale.Language.Class;-- 0xce
-   NorthernSotho             : QLocale.Language.Class;-- 0xcf
-   NorthNdebele              : QLocale.Language.Class;-- 0xd0
-   NorwegianBokmal           : QLocale.Language.Class;-- 0xd1
-   NorwegianNynorsk          : QLocale.Language.Class;-- 0xd2
-   Nuer                      : QLocale.Language.Class;-- 0xd3
-   Chewa                     : QLocale.Language.Class;-- 0xd4
-   Nyanja                    : QLocale.Language.Class;-- 0xd4
-   Nyankole                  : QLocale.Language.Class;-- 0xd5
-   Occitan                   : QLocale.Language.Class;-- 0xd6
-   Odia                      : QLocale.Language.Class;-- 0xd7
-   Oriya                     : QLocale.Language.Class;-- 0xd7
-   Ojibwa                    : QLocale.Language.Class;-- 0xd8
-   OldIrish                  : QLocale.Language.Class;-- 0xd9
-   OldNorse                  : QLocale.Language.Class;-- 0xda
-   OldPersian                : QLocale.Language.Class;-- 0xdb
-   Afan                      : QLocale.Language.Class;-- 0xdc
-   Oromo                     : QLocale.Language.Class;-- 0xdc
-   Osage                     : QLocale.Language.Class;-- 0xdd
-   Ossetic                   : QLocale.Language.Class;-- 0xde
-   Pahlavi                   : QLocale.Language.Class;-- 0xdf
-   Palauan                   : QLocale.Language.Class;-- 0xe0
-   Pali                      : QLocale.Language.Class;-- 0xe1
-   Papiamento                : QLocale.Language.Class;-- 0xe2
-   Pashto                    : QLocale.Language.Class;-- 0xe3
-   Persian                   : QLocale.Language.Class;-- 0xe4
-   Phoenician                : QLocale.Language.Class;-- 0xe5
-   Polish                    : QLocale.Language.Class;-- 0xe6
-   Portuguese                : QLocale.Language.Class;-- 0xe7
-   Prussian                  : QLocale.Language.Class;-- 0xe8
-   Punjabi                   : QLocale.Language.Class;-- 0xe9
-   Quechua                   : QLocale.Language.Class;-- 0xea
-   Romanian                  : QLocale.Language.Class;-- 0xeb
-   RhaetoRomance             : QLocale.Language.Class;-- 0xec
-   Romansh                   : QLocale.Language.Class;-- 0xec
-   Rombo                     : QLocale.Language.Class;-- 0xed
-   Kurundi                   : QLocale.Language.Class;-- 0xee
-   Rundi                     : QLocale.Language.Class;-- 0xee
-   Russian                   : QLocale.Language.Class;-- 0xef
-   Rwa                       : QLocale.Language.Class;-- 0xf0
-   Saho                      : QLocale.Language.Class;-- 0xf1
-   Sakha                     : QLocale.Language.Class;-- 0xf2
-   Samburu                   : QLocale.Language.Class;-- 0xf3
-   Samoan                    : QLocale.Language.Class;-- 0xf4
-   Sango                     : QLocale.Language.Class;-- 0xf5
-   Sangu                     : QLocale.Language.Class;-- 0xf6
-   Sanskrit                  : QLocale.Language.Class;-- 0xf7
-   Santali                   : QLocale.Language.Class;-- 0xf8
-   Sardinian                 : QLocale.Language.Class;-- 0xf9
-   Saurashtra                : QLocale.Language.Class;-- 0xfa
-   Sena                      : QLocale.Language.Class;-- 0xfb
-   Serbian                   : QLocale.Language.Class;-- 0xfc
-   Shambala                  : QLocale.Language.Class;-- 0xfd
-   Shona                     : QLocale.Language.Class;-- 0xfe
-   SichuanYi                 : QLocale.Language.Class;-- 0xff
-   Sicilian                  : QLocale.Language.Class;-- 0x100
-   Sidamo                    : QLocale.Language.Class;-- 0x101
-   Silesian                  : QLocale.Language.Class;-- 0x102
-   Sindhi                    : QLocale.Language.Class;-- 0x103
-   Sinhala                   : QLocale.Language.Class;-- 0x104
-   SkoltSami                 : QLocale.Language.Class;-- 0x105
-   Slovak                    : QLocale.Language.Class;-- 0x106
-   Slovenian                 : QLocale.Language.Class;-- 0x107
-   Soga                      : QLocale.Language.Class;-- 0x108
-   Somali                    : QLocale.Language.Class;-- 0x109
-   SouthernKurdish           : QLocale.Language.Class;-- 0x10a
-   SouthernSami              : QLocale.Language.Class;-- 0x10b
-   SouthernSotho             : QLocale.Language.Class;-- 0x10c
-   SouthNdebele              : QLocale.Language.Class;-- 0x10d
-   Spanish                   : QLocale.Language.Class;-- 0x10e
-   StandardMoroccanTamazight : QLocale.Language.Class;-- 0x10f
-   Sundanese                 : QLocale.Language.Class;-- 0x110
-   Swahili                   : QLocale.Language.Class;-- 0x111
-   Swati                     : QLocale.Language.Class;-- 0x112
-   Swedish                   : QLocale.Language.Class;-- 0x113
-   SwissGerman               : QLocale.Language.Class;-- 0x114
-   Syriac                    : QLocale.Language.Class;-- 0x115
-   Tachelhit                 : QLocale.Language.Class;-- 0x116
-   Tahitian                  : QLocale.Language.Class;-- 0x117
-   TaiDam                    : QLocale.Language.Class;-- 0x118
-   Taita                     : QLocale.Language.Class;-- 0x119
-   Tajik                     : QLocale.Language.Class;-- 0x11a
-   Tamil                     : QLocale.Language.Class;-- 0x11b
-   Taroko                    : QLocale.Language.Class;-- 0x11c
-   Tasawaq                   : QLocale.Language.Class;-- 0x11d
-   Tatar                     : QLocale.Language.Class;-- 0x11e
-   Telugu                    : QLocale.Language.Class;-- 0x11f
-   Teso                      : QLocale.Language.Class;-- 0x120
-   Thai                      : QLocale.Language.Class;-- 0x121
-   Tibetan                   : QLocale.Language.Class;-- 0x122
-   Tigre                     : QLocale.Language.Class;-- 0x123
-   Tigrinya                  : QLocale.Language.Class;-- 0x124
-   TokelauLanguage           : QLocale.Language.Class;-- 0x125
-   TokPisin                  : QLocale.Language.Class;-- 0x126
-   Tongan                    : QLocale.Language.Class;-- 0x127
-   Tsonga                    : QLocale.Language.Class;-- 0x128
-   Tswana                    : QLocale.Language.Class;-- 0x129
-   Turkish                   : QLocale.Language.Class;-- 0x12a
-   Turkmen                   : QLocale.Language.Class;-- 0x12b
-   TuvaluLanguage            : QLocale.Language.Class;-- 0x12c
-   Tyap                      : QLocale.Language.Class;-- 0x12d
-   Ugaritic                  : QLocale.Language.Class;-- 0x12e
-   Ukrainian                 : QLocale.Language.Class;-- 0x12f
-   UpperSorbian              : QLocale.Language.Class;-- 0x130
-   Urdu                      : QLocale.Language.Class;-- 0x131
-   Uighur                    : QLocale.Language.Class;-- 0x132
-   Uigur                     : QLocale.Language.Class;-- 0x132
-   Uyghur                    : QLocale.Language.Class;-- 0x132
-   Uzbek                     : QLocale.Language.Class;-- 0x133
-   Vai                       : QLocale.Language.Class;-- 0x134
-   Venda                     : QLocale.Language.Class;-- 0x135
-   Vietnamese                : QLocale.Language.Class;-- 0x136
-   Volapuk                   : QLocale.Language.Class;-- 0x137
-   Vunjo                     : QLocale.Language.Class;-- 0x138
-   Walloon                   : QLocale.Language.Class;-- 0x139
-   Walser                    : QLocale.Language.Class;-- 0x13a
-   Warlpiri                  : QLocale.Language.Class;-- 0x13b
-   Welsh                     : QLocale.Language.Class;-- 0x13c
-   WesternBalochi            : QLocale.Language.Class;-- 0x13d
-   Frisian                   : QLocale.Language.Class;-- 0x13e
-   WesternFrisian            : QLocale.Language.Class;-- 0x13e
-   Walamo                    : QLocale.Language.Class;-- 0x13f
-   Wolaytta                  : QLocale.Language.Class;-- 0x13f
-   Wolof                     : QLocale.Language.Class;-- 0x140
-   Xhosa                     : QLocale.Language.Class;-- 0x141
-   Yangben                   : QLocale.Language.Class;-- 0x142
-   Yiddish                   : QLocale.Language.Class;-- 0x143
-   Yoruba                    : QLocale.Language.Class;-- 0x144
-   Zarma                     : QLocale.Language.Class;-- 0x145
-   Zhuang                    : QLocale.Language.Class;-- 0x146
-   Zulu                      : QLocale.Language.Class;-- 0x147
-   Kaingang                  : QLocale.Language.Class;-- 0x148
-   Nheengatu                 : QLocale.Language.Class;-- 0x149
-   Haryanvi                  : QLocale.Language.Class;-- 0x14a
-   NorthernFrisian           : QLocale.Language.Class;-- 0x14b
-   Rajasthani                : QLocale.Language.Class;-- 0x14c
-   Moksha                    : QLocale.Language.Class;-- 0x14d
-   TokiPona                  : QLocale.Language.Class;-- 0x14e
-   Pijin                     : QLocale.Language.Class;-- 0x14f
-   LastLanguage              : QLocale.Language.Class;-- 0x150
-   Obolo                     : QLocale.Language.Class;-- 0x150
+   function AnyLanguage return Class;-- 0x0
+   function C return Class;-- 0x1
+   function Abkhazian return Class;-- 0x2
+   function Afar return Class;-- 0x3
+   function Afrikaans return Class;-- 0x4
+   function Aghem return Class;-- 0x5
+   function Akan return Class;-- 0x6
+   function Akkadian return Class;-- 0x7
+   function Akoose return Class;-- 0x8
+   function Albanian return Class;-- 0x9
+   function AmericanSignLanguage return Class;-- 0xa
+   function Amharic return Class;-- 0xb
+   function AncientEgyptian return Class;-- 0xc
+   function AncientGreek return Class;-- 0xd
+   function Arabic return Class;-- 0xe
+   function Aragonese return Class;-- 0xf
+   function Aramaic return Class;-- 0x10
+   function Armenian return Class;-- 0x11
+   function Assamese return Class;-- 0x12
+   function Asturian return Class;-- 0x13
+   function Asu return Class;-- 0x14
+   function Atsam return Class;-- 0x15
+   function Avaric return Class;-- 0x16
+   function Avestan return Class;-- 0x17
+   function Aymara return Class;-- 0x18
+   function Azerbaijani return Class;-- 0x19
+   function Bafia return Class;-- 0x1a
+   function Balinese return Class;-- 0x1b
+   function Bambara return Class;-- 0x1c
+   function Bamun return Class;-- 0x1d
+   function Bangla return Class;-- 0x1e
+   function Bengali return Class;-- 0x1e
+   function Basaa return Class;-- 0x1f
+   function Bashkir return Class;-- 0x20
+   function Basque return Class;-- 0x21
+   function BatakToba return Class;-- 0x22
+   function Belarusian return Class;-- 0x23
+   function Byelorussian return Class;-- 0x23
+   function Bemba return Class;-- 0x24
+   function Bena return Class;-- 0x25
+   function Bhojpuri return Class;-- 0x26
+   function Bislama return Class;-- 0x27
+   function Blin return Class;-- 0x28
+   function Bodo return Class;-- 0x29
+   function Bosnian return Class;-- 0x2a
+   function Breton return Class;-- 0x2b
+   function Buginese return Class;-- 0x2c
+   function Bulgarian return Class;-- 0x2d
+   function Burmese return Class;-- 0x2e
+   function Cantonese return Class;-- 0x2f
+   function Catalan return Class;-- 0x30
+   function Cebuano return Class;-- 0x31
+   function CentralAtlasTamazight return Class;-- 0x32
+   function CentralMoroccoTamazight return Class;-- 0x32
+   function CentralKurdish return Class;-- 0x33
+   function Chakma return Class;-- 0x34
+   function Chamorro return Class;-- 0x35
+   function Chechen return Class;-- 0x36
+   function Cherokee return Class;-- 0x37
+   function Chickasaw return Class;-- 0x38
+   function Chiga return Class;-- 0x39
+   function Chinese return Class;-- 0x3a
+   function Church return Class;-- 0x3b
+   function Chuvash return Class;-- 0x3c
+   function Colognian return Class;-- 0x3d
+   function Coptic return Class;-- 0x3e
+   function Cornish return Class;-- 0x3f
+   function Corsican return Class;-- 0x40
+   function Cree return Class;-- 0x41
+   function Croatian return Class;-- 0x42
+   function Czech return Class;-- 0x43
+   function Danish return Class;-- 0x44
+   function Divehi return Class;-- 0x45
+   function Dogri return Class;-- 0x46
+   function Duala return Class;-- 0x47
+   function Dutch return Class;-- 0x48
+   function Bhutani return Class;-- 0x49
+   function Dzongkha return Class;-- 0x49
+   function Embu return Class;-- 0x4a
+   function English return Class;-- 0x4b
+   function Erzya return Class;-- 0x4c
+   function Esperanto return Class;-- 0x4d
+   function Estonian return Class;-- 0x4e
+   function Ewe return Class;-- 0x4f
+   function Ewondo return Class;-- 0x50
+   function Faroese return Class;-- 0x51
+   function Fijian return Class;-- 0x52
+   function Filipino return Class;-- 0x53
+   function Finnish return Class;-- 0x54
+   function French return Class;-- 0x55
+   function Friulian return Class;-- 0x56
+   function Fulah return Class;-- 0x57
+   function Gaelic return Class;-- 0x58
+   function Ga return Class;-- 0x59
+   function Galician return Class;-- 0x5a
+   function Ganda return Class;-- 0x5b
+   function Geez return Class;-- 0x5c
+   function Georgian return Class;-- 0x5d
+   function German return Class;-- 0x5e
+   function Gothic return Class;-- 0x5f
+   function Greek return Class;-- 0x60
+   function Guarani return Class;-- 0x61
+   function Gujarati return Class;-- 0x62
+   function Gusii return Class;-- 0x63
+   function Haitian return Class;-- 0x64
+   function Hausa return Class;-- 0x65
+   function Hawaiian return Class;-- 0x66
+   function Hebrew return Class;-- 0x67
+   function Herero return Class;-- 0x68
+   function Hindi return Class;-- 0x69
+   function HiriMotu return Class;-- 0x6a
+   function Hungarian return Class;-- 0x6b
+   function Icelandic return Class;-- 0x6c
+   function Ido return Class;-- 0x6d
+   function Igbo return Class;-- 0x6e
+   function InariSami return Class;-- 0x6f
+   function Indonesian return Class;-- 0x70
+   function Ingush return Class;-- 0x71
+   function Interlingua return Class;-- 0x72
+   function Interlingue return Class;-- 0x73
+   function Inuktitut return Class;-- 0x74
+   function Inupiak return Class;-- 0x75
+   function Inupiaq return Class;-- 0x75
+   function Irish return Class;-- 0x76
+   function Italian return Class;-- 0x77
+   function Japanese return Class;-- 0x78
+   function Javanese return Class;-- 0x79
+   function Jju return Class;-- 0x7a
+   function JolaFonyi return Class;-- 0x7b
+   function Kabuverdianu return Class;-- 0x7c
+   function Kabyle return Class;-- 0x7d
+   function Kako return Class;-- 0x7e
+   function Greenlandic return Class;-- 0x7f
+   function Kalaallisut return Class;-- 0x7f
+   function Kalenjin return Class;-- 0x80
+   function Kamba return Class;-- 0x81
+   function Kannada return Class;-- 0x82
+   function Kanuri return Class;-- 0x83
+   function Kashmiri return Class;-- 0x84
+   function Kazakh return Class;-- 0x85
+   function Kenyang return Class;-- 0x86
+   function Cambodian return Class;-- 0x87
+   function Khmer return Class;-- 0x87
+   function Kiche return Class;-- 0x88
+   function Kikuyu return Class;-- 0x89
+   function Kinyarwanda return Class;-- 0x8a
+   function Komi return Class;-- 0x8b
+   function Kongo return Class;-- 0x8c
+   function Konkani return Class;-- 0x8d
+   function Korean return Class;-- 0x8e
+   function Koro return Class;-- 0x8f
+   function KoyraboroSenni return Class;-- 0x90
+   function KoyraChiini return Class;-- 0x91
+   function Kpelle return Class;-- 0x92
+   function Kuanyama return Class;-- 0x93
+   function Kwanyama return Class;-- 0x93
+   function Kurdish return Class;-- 0x94
+   function Kwasio return Class;-- 0x95
+   function Kirghiz return Class;-- 0x96
+   function Kyrgyz return Class;-- 0x96
+   function Lakota return Class;-- 0x97
+   function Langi return Class;-- 0x98
+   function Lao return Class;-- 0x99
+   function Latin return Class;-- 0x9a
+   function Latvian return Class;-- 0x9b
+   function Lezghian return Class;-- 0x9c
+   function Limburgish return Class;-- 0x9d
+   function Lingala return Class;-- 0x9e
+   function LiteraryChinese return Class;-- 0x9f
+   function Lithuanian return Class;-- 0xa0
+   function Lojban return Class;-- 0xa1
+   function LowerSorbian return Class;-- 0xa2
+   function LowGerman return Class;-- 0xa3
+   function LubaKatanga return Class;-- 0xa4
+   function LuleSami return Class;-- 0xa5
+   function Luo return Class;-- 0xa6
+   function Luxembourgish return Class;-- 0xa7
+   function Luyia return Class;-- 0xa8
+   function Macedonian return Class;-- 0xa9
+   function Machame return Class;-- 0xaa
+   function Maithili return Class;-- 0xab
+   function MakhuwaMeetto return Class;-- 0xac
+   function Makonde return Class;-- 0xad
+   function Malagasy return Class;-- 0xae
+   function Malayalam return Class;-- 0xaf
+   function Malay return Class;-- 0xb0
+   function Maltese return Class;-- 0xb1
+   function Mandingo return Class;-- 0xb2
+   function Manipuri return Class;-- 0xb3
+   function Manx return Class;-- 0xb4
+   function Maori return Class;-- 0xb5
+   function Mapuche return Class;-- 0xb6
+   function Marathi return Class;-- 0xb7
+   function Marshallese return Class;-- 0xb8
+   function Masai return Class;-- 0xb9
+   function Mazanderani return Class;-- 0xba
+   function Mende return Class;-- 0xbb
+   function Meru return Class;-- 0xbc
+   function Meta return Class;-- 0xbd
+   function Mohawk return Class;-- 0xbe
+   function Mongolian return Class;-- 0xbf
+   function Morisyen return Class;-- 0xc0
+   function Mundang return Class;-- 0xc1
+   function Muscogee return Class;-- 0xc2
+   function Nama return Class;-- 0xc3
+   function NauruLanguage return Class;-- 0xc4
+   function Navaho return Class;-- 0xc5
+   function Navajo return Class;-- 0xc5
+   function Ndonga return Class;-- 0xc6
+   function Nepali return Class;-- 0xc7
+   function Newari return Class;-- 0xc8
+   function Ngiemboon return Class;-- 0xc9
+   function Ngomba return Class;-- 0xca
+   function NigerianPidgin return Class;-- 0xcb
+   function Nko return Class;-- 0xcc
+   function NorthernLuri return Class;-- 0xcd
+   function NorthernSami return Class;-- 0xce
+   function NorthernSotho return Class;-- 0xcf
+   function NorthNdebele return Class;-- 0xd0
+   function NorwegianBokmal return Class;-- 0xd1
+   function NorwegianNynorsk return Class;-- 0xd2
+   function Nuer return Class;-- 0xd3
+   function Chewa return Class;-- 0xd4
+   function Nyanja return Class;-- 0xd4
+   function Nyankole return Class;-- 0xd5
+   function Occitan return Class;-- 0xd6
+   function Odia return Class;-- 0xd7
+   function Oriya return Class;-- 0xd7
+   function Ojibwa return Class;-- 0xd8
+   function OldIrish return Class;-- 0xd9
+   function OldNorse return Class;-- 0xda
+   function OldPersian return Class;-- 0xdb
+   function Afan return Class;-- 0xdc
+   function Oromo return Class;-- 0xdc
+   function Osage return Class;-- 0xdd
+   function Ossetic return Class;-- 0xde
+   function Pahlavi return Class;-- 0xdf
+   function Palauan return Class;-- 0xe0
+   function Pali return Class;-- 0xe1
+   function Papiamento return Class;-- 0xe2
+   function Pashto return Class;-- 0xe3
+   function Persian return Class;-- 0xe4
+   function Phoenician return Class;-- 0xe5
+   function Polish return Class;-- 0xe6
+   function Portuguese return Class;-- 0xe7
+   function Prussian return Class;-- 0xe8
+   function Punjabi return Class;-- 0xe9
+   function Quechua return Class;-- 0xea
+   function Romanian return Class;-- 0xeb
+   function RhaetoRomance return Class;-- 0xec
+   function Romansh return Class;-- 0xec
+   function Rombo return Class;-- 0xed
+   function Kurundi return Class;-- 0xee
+   function Rundi return Class;-- 0xee
+   function Russian return Class;-- 0xef
+   function Rwa return Class;-- 0xf0
+   function Saho return Class;-- 0xf1
+   function Sakha return Class;-- 0xf2
+   function Samburu return Class;-- 0xf3
+   function Samoan return Class;-- 0xf4
+   function Sango return Class;-- 0xf5
+   function Sangu return Class;-- 0xf6
+   function Sanskrit return Class;-- 0xf7
+   function Santali return Class;-- 0xf8
+   function Sardinian return Class;-- 0xf9
+   function Saurashtra return Class;-- 0xfa
+   function Sena return Class;-- 0xfb
+   function Serbian return Class;-- 0xfc
+   function Shambala return Class;-- 0xfd
+   function Shona return Class;-- 0xfe
+   function SichuanYi return Class;-- 0xff
+   function Sicilian return Class;-- 0x100
+   function Sidamo return Class;-- 0x101
+   function Silesian return Class;-- 0x102
+   function Sindhi return Class;-- 0x103
+   function Sinhala return Class;-- 0x104
+   function SkoltSami return Class;-- 0x105
+   function Slovak return Class;-- 0x106
+   function Slovenian return Class;-- 0x107
+   function Soga return Class;-- 0x108
+   function Somali return Class;-- 0x109
+   function SouthernKurdish return Class;-- 0x10a
+   function SouthernSami return Class;-- 0x10b
+   function SouthernSotho return Class;-- 0x10c
+   function SouthNdebele return Class;-- 0x10d
+   function Spanish return Class;-- 0x10e
+   function StandardMoroccanTamazight return Class;-- 0x10f
+   function Sundanese return Class;-- 0x110
+   function Swahili return Class;-- 0x111
+   function Swati return Class;-- 0x112
+   function Swedish return Class;-- 0x113
+   function SwissGerman return Class;-- 0x114
+   function Syriac return Class;-- 0x115
+   function Tachelhit return Class;-- 0x116
+   function Tahitian return Class;-- 0x117
+   function TaiDam return Class;-- 0x118
+   function Taita return Class;-- 0x119
+   function Tajik return Class;-- 0x11a
+   function Tamil return Class;-- 0x11b
+   function Taroko return Class;-- 0x11c
+   function Tasawaq return Class;-- 0x11d
+   function Tatar return Class;-- 0x11e
+   function Telugu return Class;-- 0x11f
+   function Teso return Class;-- 0x120
+   function Thai return Class;-- 0x121
+   function Tibetan return Class;-- 0x122
+   function Tigre return Class;-- 0x123
+   function Tigrinya return Class;-- 0x124
+   function TokelauLanguage return Class;-- 0x125
+   function TokPisin return Class;-- 0x126
+   function Tongan return Class;-- 0x127
+   function Tsonga return Class;-- 0x128
+   function Tswana return Class;-- 0x129
+   function Turkish return Class;-- 0x12a
+   function Turkmen return Class;-- 0x12b
+   function TuvaluLanguage return Class;-- 0x12c
+   function Tyap return Class;-- 0x12d
+   function Ugaritic return Class;-- 0x12e
+   function Ukrainian return Class;-- 0x12f
+   function UpperSorbian return Class;-- 0x130
+   function Urdu return Class;-- 0x131
+   function Uighur return Class;-- 0x132
+   function Uigur return Class;-- 0x132
+   function Uyghur return Class;-- 0x132
+   function Uzbek return Class;-- 0x133
+   function Vai return Class;-- 0x134
+   function Venda return Class;-- 0x135
+   function Vietnamese return Class;-- 0x136
+   function Volapuk return Class;-- 0x137
+   function Vunjo return Class;-- 0x138
+   function Walloon return Class;-- 0x139
+   function Walser return Class;-- 0x13a
+   function Warlpiri return Class;-- 0x13b
+   function Welsh return Class;-- 0x13c
+   function WesternBalochi return Class;-- 0x13d
+   function Frisian return Class;-- 0x13e
+   function WesternFrisian return Class;-- 0x13e
+   function Walamo return Class;-- 0x13f
+   function Wolaytta return Class;-- 0x13f
+   function Wolof return Class;-- 0x140
+   function Xhosa return Class;-- 0x141
+   function Yangben return Class;-- 0x142
+   function Yiddish return Class;-- 0x143
+   function Yoruba return Class;-- 0x144
+   function Zarma return Class;-- 0x145
+   function Zhuang return Class;-- 0x146
+   function Zulu return Class;-- 0x147
+   function Kaingang return Class;-- 0x148
+   function Nheengatu return Class;-- 0x149
+   function Haryanvi return Class;-- 0x14a
+   function NorthernFrisian return Class;-- 0x14b
+   function Rajasthani return Class;-- 0x14c
+   function Moksha return Class;-- 0x14d
+   function TokiPona return Class;-- 0x14e
+   function Pijin return Class;-- 0x14f
+   function LastLanguage return Class;-- 0x150
+   function Obolo return Class;-- 0x150
 end QtAda6.QtCore.QLocale.Language;

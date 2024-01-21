@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qabstractanimation.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -14,19 +14,22 @@ limited with QtAda6.QtCore.QAnimationGroup;
 limited with QtAda6.QtCore.QAbstractAnimation.DeletionPolicy;
 limited with QtAda6.QtCore.QAbstractAnimation.State;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QAbstractAnimation is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtCore_QObject is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   currentLoopChanged : ClassVar_Signal;-- currentLoopChanged(int)
-   directionChanged   : ClassVar_Signal;-- directionChanged(QAbstractAnimation::Direction)
-   finished           : ClassVar_Signal;-- finished()
-   stateChanged       : ClassVar_Signal;-- stateChanged(QAbstractAnimation::State,QAbstractAnimation::State)
-   function Create (parent_P : Optional_QtAda6_QtCore_QObject) return Class;
+   function currentLoopChanged (self : access Inst) return CLASSVAR_Signal;-- currentLoopChanged(int)
+   function directionChanged
+     (self : access Inst) return CLASSVAR_Signal;-- directionChanged(QAbstractAnimation::Direction)
+   function finished (self : access Inst) return CLASSVAR_Signal;-- finished()
+   function stateChanged
+     (self : access Inst) return CLASSVAR_Signal;-- stateChanged(QAbstractAnimation::State,QAbstractAnimation::State)
+   function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function currentLoop (self : access Inst) return int;
    function currentLoopTime (self : access Inst) return int;
    function currentTime (self : access Inst) return int;
@@ -42,7 +45,8 @@ package QtAda6.QtCore.QAbstractAnimation is
      (self : access Inst; direction_P : access QtAda6.QtCore.QAbstractAnimation.Direction.Inst'Class);
    procedure setLoopCount (self : access Inst; loopCount_P : int);
    procedure setPaused (self : access Inst; arg_1_P : bool);
-   procedure start (self : access Inst; policy_P : access QtAda6.QtCore.QAbstractAnimation.DeletionPolicy.Inst'Class);
+   procedure start
+     (self : access Inst; policy_P : access QtAda6.QtCore.QAbstractAnimation.DeletionPolicy.Inst'Class := null);
    function state_F (self : access Inst) return access QtAda6.QtCore.QAbstractAnimation.State.Inst'Class;
    procedure stop (self : access Inst);
    function totalDuration (self : access Inst) return int;

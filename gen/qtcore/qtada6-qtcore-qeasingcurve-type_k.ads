@@ -1,67 +1,67 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qeasingcurve-type_k.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with Enum.Enum;
 package QtAda6.QtCore.QEasingCurve.Type_K is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
-   type Inst is new Enum.Enum.Inst with null record;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
+   type Inst is new Enum.Enum with null record;
    procedure Finalize (Self : in out Class);
-   Linear       : QEasingCurve.Type_K.Class;-- 0x0
-   InQuad       : QEasingCurve.Type_K.Class;-- 0x1
-   OutQuad      : QEasingCurve.Type_K.Class;-- 0x2
-   InOutQuad    : QEasingCurve.Type_K.Class;-- 0x3
-   OutInQuad    : QEasingCurve.Type_K.Class;-- 0x4
-   InCubic      : QEasingCurve.Type_K.Class;-- 0x5
-   OutCubic     : QEasingCurve.Type_K.Class;-- 0x6
-   InOutCubic   : QEasingCurve.Type_K.Class;-- 0x7
-   OutInCubic   : QEasingCurve.Type_K.Class;-- 0x8
-   InQuart      : QEasingCurve.Type_K.Class;-- 0x9
-   OutQuart     : QEasingCurve.Type_K.Class;-- 0xa
-   InOutQuart   : QEasingCurve.Type_K.Class;-- 0xb
-   OutInQuart   : QEasingCurve.Type_K.Class;-- 0xc
-   InQuint      : QEasingCurve.Type_K.Class;-- 0xd
-   OutQuint     : QEasingCurve.Type_K.Class;-- 0xe
-   InOutQuint   : QEasingCurve.Type_K.Class;-- 0xf
-   OutInQuint   : QEasingCurve.Type_K.Class;-- 0x10
-   InSine       : QEasingCurve.Type_K.Class;-- 0x11
-   OutSine      : QEasingCurve.Type_K.Class;-- 0x12
-   InOutSine    : QEasingCurve.Type_K.Class;-- 0x13
-   OutInSine    : QEasingCurve.Type_K.Class;-- 0x14
-   InExpo       : QEasingCurve.Type_K.Class;-- 0x15
-   OutExpo      : QEasingCurve.Type_K.Class;-- 0x16
-   InOutExpo    : QEasingCurve.Type_K.Class;-- 0x17
-   OutInExpo    : QEasingCurve.Type_K.Class;-- 0x18
-   InCirc       : QEasingCurve.Type_K.Class;-- 0x19
-   OutCirc      : QEasingCurve.Type_K.Class;-- 0x1a
-   InOutCirc    : QEasingCurve.Type_K.Class;-- 0x1b
-   OutInCirc    : QEasingCurve.Type_K.Class;-- 0x1c
-   InElastic    : QEasingCurve.Type_K.Class;-- 0x1d
-   OutElastic   : QEasingCurve.Type_K.Class;-- 0x1e
-   InOutElastic : QEasingCurve.Type_K.Class;-- 0x1f
-   OutInElastic : QEasingCurve.Type_K.Class;-- 0x20
-   InBack       : QEasingCurve.Type_K.Class;-- 0x21
-   OutBack      : QEasingCurve.Type_K.Class;-- 0x22
-   InOutBack    : QEasingCurve.Type_K.Class;-- 0x23
-   OutInBack    : QEasingCurve.Type_K.Class;-- 0x24
-   InBounce     : QEasingCurve.Type_K.Class;-- 0x25
-   OutBounce    : QEasingCurve.Type_K.Class;-- 0x26
-   InOutBounce  : QEasingCurve.Type_K.Class;-- 0x27
-   OutInBounce  : QEasingCurve.Type_K.Class;-- 0x28
-   InCurve      : QEasingCurve.Type_K.Class;-- 0x29
-   OutCurve     : QEasingCurve.Type_K.Class;-- 0x2a
-   SineCurve    : QEasingCurve.Type_K.Class;-- 0x2b
-   CosineCurve  : QEasingCurve.Type_K.Class;-- 0x2c
-   BezierSpline : QEasingCurve.Type_K.Class;-- 0x2d
-   TCBSpline    : QEasingCurve.Type_K.Class;-- 0x2e
-   Custom       : QEasingCurve.Type_K.Class;-- 0x2f
-   NCurveTypes  : QEasingCurve.Type_K.Class;-- 0x30
+   function Linear return Class;-- 0x0
+   function InQuad return Class;-- 0x1
+   function OutQuad return Class;-- 0x2
+   function InOutQuad return Class;-- 0x3
+   function OutInQuad return Class;-- 0x4
+   function InCubic return Class;-- 0x5
+   function OutCubic return Class;-- 0x6
+   function InOutCubic return Class;-- 0x7
+   function OutInCubic return Class;-- 0x8
+   function InQuart return Class;-- 0x9
+   function OutQuart return Class;-- 0xa
+   function InOutQuart return Class;-- 0xb
+   function OutInQuart return Class;-- 0xc
+   function InQuint return Class;-- 0xd
+   function OutQuint return Class;-- 0xe
+   function InOutQuint return Class;-- 0xf
+   function OutInQuint return Class;-- 0x10
+   function InSine return Class;-- 0x11
+   function OutSine return Class;-- 0x12
+   function InOutSine return Class;-- 0x13
+   function OutInSine return Class;-- 0x14
+   function InExpo return Class;-- 0x15
+   function OutExpo return Class;-- 0x16
+   function InOutExpo return Class;-- 0x17
+   function OutInExpo return Class;-- 0x18
+   function InCirc return Class;-- 0x19
+   function OutCirc return Class;-- 0x1a
+   function InOutCirc return Class;-- 0x1b
+   function OutInCirc return Class;-- 0x1c
+   function InElastic return Class;-- 0x1d
+   function OutElastic return Class;-- 0x1e
+   function InOutElastic return Class;-- 0x1f
+   function OutInElastic return Class;-- 0x20
+   function InBack return Class;-- 0x21
+   function OutBack return Class;-- 0x22
+   function InOutBack return Class;-- 0x23
+   function OutInBack return Class;-- 0x24
+   function InBounce return Class;-- 0x25
+   function OutBounce return Class;-- 0x26
+   function InOutBounce return Class;-- 0x27
+   function OutInBounce return Class;-- 0x28
+   function InCurve return Class;-- 0x29
+   function OutCurve return Class;-- 0x2a
+   function SineCurve return Class;-- 0x2b
+   function CosineCurve return Class;-- 0x2c
+   function BezierSpline return Class;-- 0x2d
+   function TCBSpline return Class;-- 0x2e
+   function Custom return Class;-- 0x2f
+   function NCurveTypes return Class;-- 0x30
 end QtAda6.QtCore.QEasingCurve.Type_K;

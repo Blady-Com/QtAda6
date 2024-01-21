@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (body)                  : qtada6-qtcore-qresource.adb
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -22,33 +22,35 @@ package body QtAda6.QtCore.QResource is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function Create (file_P : str; locale_P : Union_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language) return Class is
-      Class, Args : Handle;
+   function Create
+     (file_P : str := ""; locale_P : UNION_QtAda6_QtCore_QLocaleQtAda6_QtCore_QLocale_Language := null) return Class
+   is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QResource");
       Args  := Tuple_New (2);
       Tuple_SetItem (Args, 0, Unicode_FromString (file_P));
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 1, (if locale_P /= null then locale_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function absoluteFilePath (self : access Inst) return str is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "absoluteFilePath");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
       return As_String (Result);
    end absoluteFilePath;
-   function children (self : access Inst) return List_str is
-      Method, Args, Result : Handle;
+   function children (self : access Inst) return LIST_str is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "children");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end children;
    function compressionAlgorithm (self : access Inst) return access QtAda6.QtCore.QResource.Compression.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtCore.QResource.Compression.Class := new QtAda6.QtCore.QResource.Compression.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "compressionAlgorithm");
@@ -57,16 +59,16 @@ package body QtAda6.QtCore.QResource is
       Ret.Python_Proxy := Result;
       return Ret;
    end compressionAlgorithm;
-   function data (self : access Inst) return Object is
-      Method, Args, Result : Handle;
+   function data (self : access Inst) return access Object'Class is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "data");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return (Python_Proxy => Result);
+      return null;
    end data;
    function fileName (self : access Inst) return str is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fileName");
       Args   := Tuple_New (0);
@@ -74,7 +76,7 @@ package body QtAda6.QtCore.QResource is
       return As_String (Result);
    end fileName;
    function isDir (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isDir");
       Args   := Tuple_New (0);
@@ -82,7 +84,7 @@ package body QtAda6.QtCore.QResource is
       return To_Ada (Result);
    end isDir;
    function isFile (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isFile");
       Args   := Tuple_New (0);
@@ -90,7 +92,7 @@ package body QtAda6.QtCore.QResource is
       return To_Ada (Result);
    end isFile;
    function isValid (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -98,8 +100,8 @@ package body QtAda6.QtCore.QResource is
       return To_Ada (Result);
    end isValid;
    function lastModified (self : access Inst) return access QtAda6.QtCore.QDateTime.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "lastModified");
       Args             := Tuple_New (0);
@@ -108,8 +110,8 @@ package body QtAda6.QtCore.QResource is
       return Ret;
    end lastModified;
    function locale (self : access Inst) return access QtAda6.QtCore.QLocale.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QLocale.Class := new QtAda6.QtCore.QLocale.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QLocale.Class := new QtAda6.QtCore.QLocale.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "locale");
       Args             := Tuple_New (0);
@@ -117,8 +119,8 @@ package body QtAda6.QtCore.QResource is
       Ret.Python_Proxy := Result;
       return Ret;
    end locale;
-   function registerResource (rccFilename_P : str; resourceRoot_P : str) return bool is
-      Class, Method, Args, Result : Handle;
+   function registerResource (rccFilename_P : str; resourceRoot_P : str := "") return bool is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QResource");
       Method := Object_GetAttrString (Class, "registerResource");
@@ -128,8 +130,8 @@ package body QtAda6.QtCore.QResource is
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end registerResource;
-   function registerResourceData (rccData_P : bytes; resourceRoot_P : str) return bool is
-      Class, Method, Args, Result : Handle;
+   function registerResourceData (rccData_P : bytes; resourceRoot_P : str := "") return bool is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QResource");
       Method := Object_GetAttrString (Class, "registerResourceData");
@@ -140,23 +142,23 @@ package body QtAda6.QtCore.QResource is
       return To_Ada (Result);
    end registerResourceData;
    procedure setFileName (self : access Inst; file_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFileName");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (file_P));
       Result := Object_CallObject (Method, Args, True);
    end setFileName;
-   procedure setLocale (self : access Inst; locale_P : Union_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language) is
-      Method, Args, Result : Handle;
+   procedure setLocale (self : access Inst; locale_P : UNION_QtAda6_QtCore_QLocaleQtAda6_QtCore_QLocale_Language) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setLocale");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if locale_P /= null then locale_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setLocale;
    function size (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "size");
       Args   := Tuple_New (0);
@@ -164,8 +166,8 @@ package body QtAda6.QtCore.QResource is
       return Long_AsLong (Result);
    end size;
    function uncompressedData (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "uncompressedData");
       Args             := Tuple_New (0);
@@ -174,15 +176,15 @@ package body QtAda6.QtCore.QResource is
       return Ret;
    end uncompressedData;
    function uncompressedSize (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "uncompressedSize");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end uncompressedSize;
-   function unregisterResource (rccFilename_P : str; resourceRoot_P : str) return bool is
-      Class, Method, Args, Result : Handle;
+   function unregisterResource (rccFilename_P : str; resourceRoot_P : str := "") return bool is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QResource");
       Method := Object_GetAttrString (Class, "unregisterResource");
@@ -192,8 +194,8 @@ package body QtAda6.QtCore.QResource is
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end unregisterResource;
-   function unregisterResourceData (rccData_P : bytes; resourceRoot_P : str) return bool is
-      Class, Method, Args, Result : Handle;
+   function unregisterResourceData (rccData_P : bytes; resourceRoot_P : str := "") return bool is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QResource");
       Method := Object_GetAttrString (Class, "unregisterResourceData");

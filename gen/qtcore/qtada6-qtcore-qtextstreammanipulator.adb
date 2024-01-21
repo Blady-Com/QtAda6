@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (body)                  : qtada6-qtcore-qtextstreammanipulator.adb
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ package body QtAda6.QtCore.QTextStreamManipulator is
       Free (Inst_Access (Self));
    end Finalize;
    procedure U_copy_U is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextStreamManipulator");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -27,19 +27,19 @@ package body QtAda6.QtCore.QTextStreamManipulator is
       Result := Object_CallObject (Method, Args, True);
    end U_copy_U;
    procedure exec (self : access Inst; s_P : access QtAda6.QtCore.QTextStream.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end exec;
    procedure exec_U (self : access Inst; arg_1_P : access QtAda6.QtCore.QTextStream.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec_");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, arg_1_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end exec_U;
 end QtAda6.QtCore.QTextStreamManipulator;

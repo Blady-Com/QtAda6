@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qcborvalue.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -28,65 +28,67 @@ limited with QtAda6.QtCore.QCborValue.EncodingOption;
 limited with QtAda6.QtCore.QCborStreamWriter;
 limited with QtAda6.QtCore.QCborValue.DiagnosticNotationOption;
 package QtAda6.QtCore.QCborValue is
-   type Union_QtAda6_QtCore_QByteArray_bytes is access Any;
-   type Union_QtAda6_QtCore_QCborValue_QtAda6_QtCore_QCborKnownTags_QtAda6_QtCore_QCborSimpleType_QtAda6_QtCore_QCborTag_QtAda6_QtCore_QCborValue_Type_K_str_bool_QtAda6_QtCore_QByteArray_QtAda6_QtCore_QCborArray_QtAda6_QtCore_QCborMap_bytes_float_int is
-     access Any;
-   type Union_QtAda6_QtCore_QRegularExpression_str is access Any;
-   type Union_QtAda6_QtCore_QUrl_str is access Any;
-   type Optional_QtAda6_QtCore_QCborParserError is access Any;
-   type Union_QtAda6_QtCore_QJsonValue_QtAda6_QtCore_QJsonValue_Type_K_bool_QtAda6_QtCore_QJsonArray_Dict_str_QtAda6_QtCore_QJsonValue_str_bytes_float_int is
-     access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type UNION_QtAda6_QtCore_QCborValueQtAda6_QtCore_QCborKnownTagsQtAda6_QtCore_QCborSimpleTypeQtAda6_QtCore_QCborTagQtAda6_QtCore_QCborValue_Type_KstrboolQtAda6_QtCore_QByteArrayQtAda6_QtCore_QCborArrayQtAda6_QtCore_QCborMapbytesfloatint is
+     new Any;
+   type UNION_QtAda6_QtCore_QRegularExpressionstr is new Any;
+   type UNION_QtAda6_QtCore_QUrlstr is new Any;
+   type UNION_QtAda6_QtCore_QJsonValueQtAda6_QtCore_QJsonValue_Type_KboolQtAda6_QtCore_QJsonArrayDICT_strQtAda6_QtCore_QJsonValuestrbytesfloatint is
+     new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (a_P : access QtAda6.QtCore.QCborArray.Inst'Class) return Class;
    function Create (b_U_P : bool) return Class;
-   function Create (ba_P : Union_QtAda6_QtCore_QByteArray_bytes) return Class;
+   function Create (ba_P : UNION_QtAda6_QtCore_QByteArraybytes) return Class;
    function Create (dt_P : access QtAda6.QtCore.QDateTime.Inst'Class) return Class;
    function Create (i_P : int) return Class;
 -- function Create(i_P : int) return Class;
    function Create (m_P : access QtAda6.QtCore.QCborMap.Inst'Class) return Class;
    function Create
-     (other_P : Union_QtAda6_QtCore_QCborValue_QtAda6_QtCore_QCborKnownTags_QtAda6_QtCore_QCborSimpleType_QtAda6_QtCore_QCborTag_QtAda6_QtCore_QCborValue_Type_K_str_bool_QtAda6_QtCore_QByteArray_QtAda6_QtCore_QCborArray_QtAda6_QtCore_QCborMap_bytes_float_int)
+     (other_P : UNION_QtAda6_QtCore_QCborValueQtAda6_QtCore_QCborKnownTagsQtAda6_QtCore_QCborSimpleTypeQtAda6_QtCore_QCborTagQtAda6_QtCore_QCborValue_Type_KstrboolQtAda6_QtCore_QByteArrayQtAda6_QtCore_QCborArrayQtAda6_QtCore_QCborMapbytesfloatint)
       return Class;
-   function Create (rx_P : Union_QtAda6_QtCore_QRegularExpression_str) return Class;
+   function Create (rx_P : UNION_QtAda6_QtCore_QRegularExpressionstr) return Class;
    function Create (s_P : str) return Class;
    function Create (s_P : bytes) return Class;
    function Create (st_P : access QtAda6.QtCore.QCborSimpleType.Inst'Class) return Class;
    function Create
      (t_U_P : access QtAda6.QtCore.QCborKnownTags.Inst'Class;
-      tv_P : Union_QtAda6_QtCore_QCborValue_QtAda6_QtCore_QCborKnownTags_QtAda6_QtCore_QCborSimpleType_QtAda6_QtCore_QCborTag_QtAda6_QtCore_QCborValue_Type_K_str_bool_QtAda6_QtCore_QByteArray_QtAda6_QtCore_QCborArray_QtAda6_QtCore_QCborMap_bytes_float_int)
+      tv_P : UNION_QtAda6_QtCore_QCborValueQtAda6_QtCore_QCborKnownTagsQtAda6_QtCore_QCborSimpleTypeQtAda6_QtCore_QCborTagQtAda6_QtCore_QCborValue_Type_KstrboolQtAda6_QtCore_QByteArrayQtAda6_QtCore_QCborArrayQtAda6_QtCore_QCborMapbytesfloatint :=
+        null)
       return Class;
    function Create (t_U_P : access QtAda6.QtCore.QCborValue.Type_K.Inst'Class) return Class;
    function Create
      (tag_P         : access QtAda6.QtCore.QCborTag.Inst'Class;
-      taggedValue_P : Union_QtAda6_QtCore_QCborValue_QtAda6_QtCore_QCborKnownTags_QtAda6_QtCore_QCborSimpleType_QtAda6_QtCore_QCborTag_QtAda6_QtCore_QCborValue_Type_K_str_bool_QtAda6_QtCore_QByteArray_QtAda6_QtCore_QCborArray_QtAda6_QtCore_QCborMap_bytes_float_int)
+      taggedValue_P : UNION_QtAda6_QtCore_QCborValueQtAda6_QtCore_QCborKnownTagsQtAda6_QtCore_QCborSimpleTypeQtAda6_QtCore_QCborTagQtAda6_QtCore_QCborValue_Type_KstrboolQtAda6_QtCore_QByteArrayQtAda6_QtCore_QCborArrayQtAda6_QtCore_QCborMapbytesfloatint :=
+        null)
       return Class;
 -- function Create(u_P : int) return Class;
-   function Create (url_P : Union_QtAda6_QtCore_QUrl_str) return Class;
+   function Create (url_P : UNION_QtAda6_QtCore_QUrlstr) return Class;
    function Create (uuid_P : access QtAda6.QtCore.QUuid.Inst'Class) return Class;
    function Create (v_P : float) return Class;
    procedure U_copy_U;
    function compare
      (self    : access Inst;
-      other_P : Union_QtAda6_QtCore_QCborValue_QtAda6_QtCore_QCborKnownTags_QtAda6_QtCore_QCborSimpleType_QtAda6_QtCore_QCborTag_QtAda6_QtCore_QCborValue_Type_K_str_bool_QtAda6_QtCore_QByteArray_QtAda6_QtCore_QCborArray_QtAda6_QtCore_QCborMap_bytes_float_int)
+      other_P : UNION_QtAda6_QtCore_QCborValueQtAda6_QtCore_QCborKnownTagsQtAda6_QtCore_QCborSimpleTypeQtAda6_QtCore_QCborTagQtAda6_QtCore_QCborValue_Type_KstrboolQtAda6_QtCore_QByteArrayQtAda6_QtCore_QCborArrayQtAda6_QtCore_QCborMapbytesfloatint)
       return int;
    function fromCbor
-     (ba_P : Union_QtAda6_QtCore_QByteArray_bytes; error_P : Optional_QtAda6_QtCore_QCborParserError)
+     (ba_P : UNION_QtAda6_QtCore_QByteArraybytes; error_P : access QtAda6.QtCore.QCborParserError.Inst'Class := null)
       return access QtAda6.QtCore.QCborValue.Inst'Class;
    function fromCbor
-     (data_P : bytes; len_P : int; error_P : Optional_QtAda6_QtCore_QCborParserError)
+     (data_P : bytes; len_P : int; error_P : access QtAda6.QtCore.QCborParserError.Inst'Class := null)
       return access QtAda6.QtCore.QCborValue.Inst'Class;
    function fromCbor
-     (data_P : bytearray; len_P : int; error_P : Optional_QtAda6_QtCore_QCborParserError)
+     (data_P : bytearray; len_P : int; error_P : access QtAda6.QtCore.QCborParserError.Inst'Class := null)
       return access QtAda6.QtCore.QCborValue.Inst'Class;
    function fromCbor
      (reader_P : access QtAda6.QtCore.QCborStreamReader.Inst'Class) return access QtAda6.QtCore.QCborValue.Inst'Class;
    function fromJsonValue
-     (v_P : Union_QtAda6_QtCore_QJsonValue_QtAda6_QtCore_QJsonValue_Type_K_bool_QtAda6_QtCore_QJsonArray_Dict_str_QtAda6_QtCore_QJsonValue_str_bytes_float_int)
+     (v_P : UNION_QtAda6_QtCore_QJsonValueQtAda6_QtCore_QJsonValue_Type_KboolQtAda6_QtCore_QJsonArrayDICT_strQtAda6_QtCore_QJsonValuestrbytesfloatint)
       return access QtAda6.QtCore.QCborValue.Inst'Class;
    function fromVariant (variant_P : Any) return access QtAda6.QtCore.QCborValue.Inst'Class;
    function isArray (self : access Inst) return bool;
@@ -111,51 +113,54 @@ package QtAda6.QtCore.QCborValue is
    function isUuid (self : access Inst) return bool;
    procedure swap
      (self    : access Inst;
-      other_P : Union_QtAda6_QtCore_QCborValue_QtAda6_QtCore_QCborKnownTags_QtAda6_QtCore_QCborSimpleType_QtAda6_QtCore_QCborTag_QtAda6_QtCore_QCborValue_Type_K_str_bool_QtAda6_QtCore_QByteArray_QtAda6_QtCore_QCborArray_QtAda6_QtCore_QCborMap_bytes_float_int);
+      other_P : UNION_QtAda6_QtCore_QCborValueQtAda6_QtCore_QCborKnownTagsQtAda6_QtCore_QCborSimpleTypeQtAda6_QtCore_QCborTagQtAda6_QtCore_QCborValue_Type_KstrboolQtAda6_QtCore_QByteArrayQtAda6_QtCore_QCborArrayQtAda6_QtCore_QCborMapbytesfloatint);
    function tag
-     (self : access Inst; defaultValue_P : access QtAda6.QtCore.QCborTag.Inst'Class)
+     (self : access Inst; defaultValue_P : access QtAda6.QtCore.QCborTag.Inst'Class := null)
       return access QtAda6.QtCore.QCborTag.Inst'Class;
    function taggedValue
      (self           : access Inst;
-      defaultValue_P : Union_QtAda6_QtCore_QCborValue_QtAda6_QtCore_QCborKnownTags_QtAda6_QtCore_QCborSimpleType_QtAda6_QtCore_QCborTag_QtAda6_QtCore_QCborValue_Type_K_str_bool_QtAda6_QtCore_QByteArray_QtAda6_QtCore_QCborArray_QtAda6_QtCore_QCborMap_bytes_float_int)
+      defaultValue_P : UNION_QtAda6_QtCore_QCborValueQtAda6_QtCore_QCborKnownTagsQtAda6_QtCore_QCborSimpleTypeQtAda6_QtCore_QCborTagQtAda6_QtCore_QCborValue_Type_KstrboolQtAda6_QtCore_QByteArrayQtAda6_QtCore_QCborArrayQtAda6_QtCore_QCborMapbytesfloatint :=
+        null)
       return access QtAda6.QtCore.QCborValue.Inst'Class;
    function toArray (self : access Inst) return access QtAda6.QtCore.QCborArray.Inst'Class;
    function toArray
      (self : access Inst; defaultValue_P : access QtAda6.QtCore.QCborArray.Inst'Class)
       return access QtAda6.QtCore.QCborArray.Inst'Class;
-   function toBool (self : access Inst; defaultValue_P : bool) return bool;
+   function toBool (self : access Inst; defaultValue_P : bool := False) return bool;
    function toByteArray
-     (self : access Inst; defaultValue_P : Union_QtAda6_QtCore_QByteArray_bytes)
+     (self : access Inst; defaultValue_P : UNION_QtAda6_QtCore_QByteArraybytes := null)
       return access QtAda6.QtCore.QByteArray.Inst'Class;
    function toCbor
-     (self : access Inst; opt_P : access QtAda6.QtCore.QCborValue.EncodingOption.Inst'Class)
+     (self : access Inst; opt_P : access QtAda6.QtCore.QCborValue.EncodingOption.Inst'Class := null)
       return access QtAda6.QtCore.QByteArray.Inst'Class;
    procedure toCbor
      (self  : access Inst; writer_P : access QtAda6.QtCore.QCborStreamWriter.Inst'Class;
-      opt_P : access QtAda6.QtCore.QCborValue.EncodingOption.Inst'Class);
+      opt_P : access QtAda6.QtCore.QCborValue.EncodingOption.Inst'Class := null);
    function toDateTime
-     (self : access Inst; defaultValue_P : access QtAda6.QtCore.QDateTime.Inst'Class)
+     (self : access Inst; defaultValue_P : access QtAda6.QtCore.QDateTime.Inst'Class := null)
       return access QtAda6.QtCore.QDateTime.Inst'Class;
    function toDiagnosticNotation
-     (self : access Inst; opts_P : access QtAda6.QtCore.QCborValue.DiagnosticNotationOption.Inst'Class) return str;
-   function toDouble (self : access Inst; defaultValue_P : float) return float;
-   function toInteger (self : access Inst; defaultValue_P : int) return int;
+     (self : access Inst; opts_P : access QtAda6.QtCore.QCborValue.DiagnosticNotationOption.Inst'Class := null)
+      return str;
+   function toDouble (self : access Inst; defaultValue_P : float := 0.0) return float;
+   function toInteger (self : access Inst; defaultValue_P : int := 0) return int;
    function toJsonValue (self : access Inst) return access QtAda6.QtCore.QJsonValue.Inst'Class;
    function toMap (self : access Inst) return access QtAda6.QtCore.QCborMap.Inst'Class;
    function toMap
      (self : access Inst; defaultValue_P : access QtAda6.QtCore.QCborMap.Inst'Class)
       return access QtAda6.QtCore.QCborMap.Inst'Class;
    function toRegularExpression
-     (self : access Inst; defaultValue_P : Union_QtAda6_QtCore_QRegularExpression_str)
+     (self : access Inst; defaultValue_P : UNION_QtAda6_QtCore_QRegularExpressionstr := null)
       return access QtAda6.QtCore.QRegularExpression.Inst'Class;
    function toSimpleType
-     (self : access Inst; defaultValue_P : access QtAda6.QtCore.QCborSimpleType.Inst'Class)
+     (self : access Inst; defaultValue_P : access QtAda6.QtCore.QCborSimpleType.Inst'Class := null)
       return access QtAda6.QtCore.QCborSimpleType.Inst'Class;
-   function toString (self : access Inst; defaultValue_P : str) return str;
+   function toString (self : access Inst; defaultValue_P : str := "") return str;
    function toUrl
-     (self : access Inst; defaultValue_P : Union_QtAda6_QtCore_QUrl_str) return access QtAda6.QtCore.QUrl.Inst'Class;
+     (self : access Inst; defaultValue_P : UNION_QtAda6_QtCore_QUrlstr := null)
+      return access QtAda6.QtCore.QUrl.Inst'Class;
    function toUuid
-     (self : access Inst; defaultValue_P : access QtAda6.QtCore.QUuid.Inst'Class)
+     (self : access Inst; defaultValue_P : access QtAda6.QtCore.QUuid.Inst'Class := null)
       return access QtAda6.QtCore.QUuid.Inst'Class;
    function toVariant (self : access Inst) return Any;
    function type_K_F (self : access Inst) return access QtAda6.QtCore.QCborValue.Type_K.Inst'Class;

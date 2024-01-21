@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qpersistentmodelindex.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -12,20 +12,21 @@ limited with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtCore.Qt.ItemFlag;
 limited with QtAda6.QtCore.QAbstractItemModel;
 package QtAda6.QtCore.QPersistentModelIndex is
-   type Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is access Any;
-   type Union_QtAda6_QtCore_QPersistentModelIndex_QtAda6_QtCore_QModelIndex is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex is new Any;
+   type UNION_QtAda6_QtCore_QPersistentModelIndexQtAda6_QtCore_QModelIndex is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return Class;
-   function Create (other_P : Union_QtAda6_QtCore_QPersistentModelIndex_QtAda6_QtCore_QModelIndex) return Class;
+   function Create (index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return Class;
+   function Create (other_P : UNION_QtAda6_QtCore_QPersistentModelIndexQtAda6_QtCore_QModelIndex) return Class;
    procedure U_copy_U;
    function column (self : access Inst) return int;
    function constInternalPointer (self : access Inst) return int;
-   function data (self : access Inst; role_P : int) return Any;
+   function data (self : access Inst; role_P : int := 0) return Any;
    function flags (self : access Inst) return access QtAda6.QtCore.Qt.ItemFlag.Inst'Class;
    function internalId (self : access Inst) return int;
    function internalPointer (self : access Inst) return int;
@@ -35,5 +36,5 @@ package QtAda6.QtCore.QPersistentModelIndex is
    function row (self : access Inst) return int;
    function sibling
      (self : access Inst; row_P : int; column_P : int) return access QtAda6.QtCore.QModelIndex.Inst'Class;
-   procedure swap (self : access Inst; other_P : Union_QtAda6_QtCore_QPersistentModelIndex_QtAda6_QtCore_QModelIndex);
+   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QPersistentModelIndexQtAda6_QtCore_QModelIndex);
 end QtAda6.QtCore.QPersistentModelIndex;

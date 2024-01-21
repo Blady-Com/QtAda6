@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qmetaobject.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -24,10 +24,11 @@ package QtAda6.QtCore.QMetaObject is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function U_repr_U (self : access Inst) return Object;
+   function U_repr_U (self : access Inst) return access Object'Class;
    function cast
      (self : access Inst; obj_P : access QtAda6.QtCore.QObject.Inst'Class)
       return access QtAda6.QtCore.QObject.Inst'Class;
@@ -63,93 +64,93 @@ package QtAda6.QtCore.QMetaObject is
      (obj_P   : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       arg_3_P : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class;
       ret_P   : access QtAda6.QtCore.QGenericReturnArgument.Inst'Class;
-      val0_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val1_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val2_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val3_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val4_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val5_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val6_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val7_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val8_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val9_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class) return bool;
+      val0_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val1_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val2_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val3_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val4_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val5_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val6_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val7_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val8_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val9_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class := null) return bool;
    function invokeMethod
      (obj_P  : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       ret_P  : access QtAda6.QtCore.QGenericReturnArgument.Inst'Class;
-      val0_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val1_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val2_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val3_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val4_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val5_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val6_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val7_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val8_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val9_P : access QtAda6.QtCore.QGenericArgument.Inst'Class) return bool;
+      val0_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val1_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val2_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val3_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val4_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val5_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val6_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val7_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val8_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val9_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null) return bool;
    function invokeMethod
      (obj_P    : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       type_K_P : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class;
       val0_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val1_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val2_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val3_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val4_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val5_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val6_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val7_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val8_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val9_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class) return bool;
+      val1_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val2_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val3_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val4_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val5_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val6_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val7_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val8_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val9_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class := null) return bool;
    function invokeMethod
      (obj_P  : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       val0_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val1_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val2_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val3_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val4_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val5_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val6_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val7_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val8_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val9_P : access QtAda6.QtCore.QGenericArgument.Inst'Class) return bool;
+      val1_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val2_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val3_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val4_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val5_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val6_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val7_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val8_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val9_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null) return bool;
    function invokeMethod
      (object_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       ret_P    : access QtAda6.QtCore.QGenericReturnArgumentHolder.Inst'Class;
-      val0_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class;
-      val1_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class;
-      val2_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class) return Object;
+      val0_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null;
+      val1_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null;
+      val2_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null) return access Object'Class;
    function invokeMethod
      (object_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       type_K_P : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class;
       ret_P    : access QtAda6.QtCore.QGenericReturnArgumentHolder.Inst'Class;
-      val0_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class;
-      val1_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class;
-      val2_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class) return Object;
+      val0_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null;
+      val1_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null;
+      val2_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null) return access Object'Class;
    function invokeMethod
      (object_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       type_K_P : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class;
-      val0_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class;
-      val1_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class;
-      val2_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class) return bool;
+      val0_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null;
+      val1_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null;
+      val2_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null) return bool;
    function invokeMethod
      (object_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
-      val0_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class;
-      val1_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class;
-      val2_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class) return bool;
+      val0_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null;
+      val1_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null;
+      val2_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null) return bool;
    function metaType (self : access Inst) return access QtAda6.QtCore.QMetaType.Inst'Class;
    function method (self : access Inst; index_P : int) return access QtAda6.QtCore.QMetaMethod.Inst'Class;
    function methodCount (self : access Inst) return int;
    function methodOffset (self : access Inst) return int;
    function newInstance
      (self   : access Inst; val0_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val1_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val2_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val3_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val4_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val5_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val6_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val7_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val8_P : access QtAda6.QtCore.QGenericArgument.Inst'Class;
-      val9_P : access QtAda6.QtCore.QGenericArgument.Inst'Class) return access QtAda6.QtCore.QObject.Inst'Class;
+      val1_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val2_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val3_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val4_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val5_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val6_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val7_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val8_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
+      val9_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null) return access QtAda6.QtCore.QObject.Inst'Class;
    function normalizedSignature (method_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function normalizedType (type_K_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function property (self : access Inst; index_P : int) return access QtAda6.QtCore.QMetaProperty.Inst'Class;

@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (body)                  : qtada6-qtcore-qsysinfo.adb
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -19,15 +19,15 @@ package body QtAda6.QtCore.QSysInfo is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSysInfo");
       Args  := Tuple_New (0);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function bootUniqueId return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret                               : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSysInfo");
       Method           := Object_GetAttrString (Class, "bootUniqueId");
@@ -37,7 +37,7 @@ package body QtAda6.QtCore.QSysInfo is
       return Ret;
    end bootUniqueId;
    function buildAbi return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSysInfo");
       Method := Object_GetAttrString (Class, "buildAbi");
@@ -46,7 +46,7 @@ package body QtAda6.QtCore.QSysInfo is
       return As_String (Result);
    end buildAbi;
    function buildCpuArchitecture return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSysInfo");
       Method := Object_GetAttrString (Class, "buildCpuArchitecture");
@@ -55,7 +55,7 @@ package body QtAda6.QtCore.QSysInfo is
       return As_String (Result);
    end buildCpuArchitecture;
    function currentCpuArchitecture return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSysInfo");
       Method := Object_GetAttrString (Class, "currentCpuArchitecture");
@@ -64,7 +64,7 @@ package body QtAda6.QtCore.QSysInfo is
       return As_String (Result);
    end currentCpuArchitecture;
    function kernelType return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSysInfo");
       Method := Object_GetAttrString (Class, "kernelType");
@@ -73,7 +73,7 @@ package body QtAda6.QtCore.QSysInfo is
       return As_String (Result);
    end kernelType;
    function kernelVersion return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSysInfo");
       Method := Object_GetAttrString (Class, "kernelVersion");
@@ -82,7 +82,7 @@ package body QtAda6.QtCore.QSysInfo is
       return As_String (Result);
    end kernelVersion;
    function machineHostName return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSysInfo");
       Method := Object_GetAttrString (Class, "machineHostName");
@@ -91,8 +91,8 @@ package body QtAda6.QtCore.QSysInfo is
       return As_String (Result);
    end machineHostName;
    function machineUniqueId return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret                               : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSysInfo");
       Method           := Object_GetAttrString (Class, "machineUniqueId");
@@ -102,7 +102,7 @@ package body QtAda6.QtCore.QSysInfo is
       return Ret;
    end machineUniqueId;
    function prettyProductName return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSysInfo");
       Method := Object_GetAttrString (Class, "prettyProductName");
@@ -111,7 +111,7 @@ package body QtAda6.QtCore.QSysInfo is
       return As_String (Result);
    end prettyProductName;
    function productType return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSysInfo");
       Method := Object_GetAttrString (Class, "productType");
@@ -120,7 +120,7 @@ package body QtAda6.QtCore.QSysInfo is
       return As_String (Result);
    end productType;
    function productVersion return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSysInfo");
       Method := Object_GetAttrString (Class, "productVersion");

@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qabstracteventdispatcher.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -14,30 +14,32 @@ limited with QtAda6.QtCore.QThread;
 limited with QtAda6.QtCore.QEventLoop.ProcessEventsFlag;
 limited with QtAda6.QtCore.QSocketNotifier;
 limited with QtAda6.QtCore.Qt.TimerType;
-limited with QtAda6.QtCore.QAbstractEventDispatcher.TimerInfo;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
+with QtAda6.QtCore.QAbstractEventDispatcher.TimerInfo;
 package QtAda6.QtCore.QAbstractEventDispatcher is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtCore_QObject is access Any;
-   type Union_QtAda6_QtCore_QByteArray_bytes is access Any;
-   type Tuple_bool_int is access Any;
-   type Optional_QtAda6_QtCore_QThread is access Any;
-   type List_QtAda6_QtCore_QAbstractEventDispatcher_TimerInfo is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type TUPLE_boolint is new Any;
+   subtype LIST_QtAda6_QtCore_QAbstractEventDispatcher_TimerInfo is
+     QtAda6.QtCore.QAbstractEventDispatcher.TimerInfo.Class_Array;
    procedure Finalize (Self : in out Class);
-   aboutToBlock : ClassVar_Signal;-- aboutToBlock()
-   awake        : ClassVar_Signal;-- awake()
-   function Create (parent_P : Optional_QtAda6_QtCore_QObject) return Class;
+   function aboutToBlock (self : access Inst) return CLASSVAR_Signal;-- aboutToBlock()
+   function awake (self : access Inst) return CLASSVAR_Signal;-- awake()
+   function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    procedure closingDown (self : access Inst);
    function filterNativeEvent
-     (self : access Inst; eventType_P : Union_QtAda6_QtCore_QByteArray_bytes; message_P : int) return Tuple_bool_int;
+     (self : access Inst; eventType_P : UNION_QtAda6_QtCore_QByteArraybytes; message_P : int) return TUPLE_boolint;
    procedure installNativeEventFilter
      (self : access Inst; filterObj_P : access QtAda6.QtCore.QAbstractNativeEventFilter.Inst'Class);
    function instance
-     (thread_P : Optional_QtAda6_QtCore_QThread) return access QtAda6.QtCore.QAbstractEventDispatcher.Inst'Class;
+     (thread_P : access QtAda6.QtCore.QThread.Inst'Class := null)
+      return access QtAda6.QtCore.QAbstractEventDispatcher.Inst'Class;
    procedure interrupt (self : access Inst);
    function processEvents
      (self : access Inst; flags_P : access QtAda6.QtCore.QEventLoop.ProcessEventsFlag.Inst'Class) return bool;
@@ -50,7 +52,7 @@ package QtAda6.QtCore.QAbstractEventDispatcher is
       object_P : access QtAda6.QtCore.QObject.Inst'Class);
    function registeredTimers
      (self : access Inst; object_P : access QtAda6.QtCore.QObject.Inst'Class)
-      return List_QtAda6_QtCore_QAbstractEventDispatcher_TimerInfo;
+      return LIST_QtAda6_QtCore_QAbstractEventDispatcher_TimerInfo;
    function remainingTime (self : access Inst; timerId_P : int) return int;
    procedure removeNativeEventFilter
      (self : access Inst; filterObj_P : access QtAda6.QtCore.QAbstractNativeEventFilter.Inst'Class);

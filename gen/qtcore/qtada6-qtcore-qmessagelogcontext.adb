@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (body)                  : qtada6-qtcore-qmessagelogcontext.adb
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ package body QtAda6.QtCore.QMessageLogContext is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMessageLogContext");
       Args  := Tuple_New (0);
@@ -26,7 +26,7 @@ package body QtAda6.QtCore.QMessageLogContext is
    end Create;
    function Create (fileName_P : bytes; lineNumber_P : int; functionName_P : bytes; categoryName_P : bytes) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMessageLogContext");
       Args  := Tuple_New (4);

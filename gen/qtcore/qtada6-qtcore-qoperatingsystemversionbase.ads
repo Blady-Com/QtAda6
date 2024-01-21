@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qoperatingsystemversionbase.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -14,14 +14,15 @@ package QtAda6.QtCore.QOperatingSystemVersionBase is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create
      (QOperatingSystemVersionBase_P : access QtAda6.QtCore.QOperatingSystemVersionBase.Inst'Class) return Class;
    function Create
-     (osType_P : access QtAda6.QtCore.QOperatingSystemVersionBase.OSType.Inst'Class; vmajor_P : int; vminor_P : int;
-      vmicro_P : int) return Class;
+     (osType_P : access QtAda6.QtCore.QOperatingSystemVersionBase.OSType.Inst'Class; vmajor_P : int;
+      vminor_P : int := 0; vmicro_P : int := 0) return Class;
    procedure U_copy_U;
    function compare
      (v1_P : access QtAda6.QtCore.QOperatingSystemVersionBase.Inst'Class;

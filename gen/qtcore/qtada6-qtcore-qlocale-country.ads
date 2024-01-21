@@ -1,306 +1,306 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qlocale-country.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with Enum.Enum;
 package QtAda6.QtCore.QLocale.Country is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
-   type Inst is new Enum.Enum.Inst with null record;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
+   type Inst is new Enum.Enum with null record;
    procedure Finalize (Self : in out Class);
-   AnyCountry                             : QLocale.Country.Class;-- 0x0
-   AnyTerritory                           : QLocale.Country.Class;-- 0x0
-   Afghanistan                            : QLocale.Country.Class;-- 0x1
-   AlandIslands                           : QLocale.Country.Class;-- 0x2
-   Albania                                : QLocale.Country.Class;-- 0x3
-   Algeria                                : QLocale.Country.Class;-- 0x4
-   AmericanSamoa                          : QLocale.Country.Class;-- 0x5
-   Andorra                                : QLocale.Country.Class;-- 0x6
-   Angola                                 : QLocale.Country.Class;-- 0x7
-   Anguilla                               : QLocale.Country.Class;-- 0x8
-   Antarctica                             : QLocale.Country.Class;-- 0x9
-   AntiguaAndBarbuda                      : QLocale.Country.Class;-- 0xa
-   Argentina                              : QLocale.Country.Class;-- 0xb
-   Armenia                                : QLocale.Country.Class;-- 0xc
-   Aruba                                  : QLocale.Country.Class;-- 0xd
-   AscensionIsland                        : QLocale.Country.Class;-- 0xe
-   Australia                              : QLocale.Country.Class;-- 0xf
-   Austria                                : QLocale.Country.Class;-- 0x10
-   Azerbaijan                             : QLocale.Country.Class;-- 0x11
-   Bahamas                                : QLocale.Country.Class;-- 0x12
-   Bahrain                                : QLocale.Country.Class;-- 0x13
-   Bangladesh                             : QLocale.Country.Class;-- 0x14
-   Barbados                               : QLocale.Country.Class;-- 0x15
-   Belarus                                : QLocale.Country.Class;-- 0x16
-   Belgium                                : QLocale.Country.Class;-- 0x17
-   Belize                                 : QLocale.Country.Class;-- 0x18
-   Benin                                  : QLocale.Country.Class;-- 0x19
-   Bermuda                                : QLocale.Country.Class;-- 0x1a
-   Bhutan                                 : QLocale.Country.Class;-- 0x1b
-   Bolivia                                : QLocale.Country.Class;-- 0x1c
-   BosniaAndHerzegovina                   : QLocale.Country.Class;-- 0x1d
-   BosniaAndHerzegowina                   : QLocale.Country.Class;-- 0x1d
-   Botswana                               : QLocale.Country.Class;-- 0x1e
-   BouvetIsland                           : QLocale.Country.Class;-- 0x1f
-   Brazil                                 : QLocale.Country.Class;-- 0x20
-   BritishIndianOceanTerritory            : QLocale.Country.Class;-- 0x21
-   BritishVirginIslands                   : QLocale.Country.Class;-- 0x22
-   Brunei                                 : QLocale.Country.Class;-- 0x23
-   Bulgaria                               : QLocale.Country.Class;-- 0x24
-   BurkinaFaso                            : QLocale.Country.Class;-- 0x25
-   Burundi                                : QLocale.Country.Class;-- 0x26
-   Cambodia                               : QLocale.Country.Class;-- 0x27
-   Cameroon                               : QLocale.Country.Class;-- 0x28
-   Canada                                 : QLocale.Country.Class;-- 0x29
-   CanaryIslands                          : QLocale.Country.Class;-- 0x2a
-   CapeVerde                              : QLocale.Country.Class;-- 0x2b
-   Bonaire                                : QLocale.Country.Class;-- 0x2c
-   CaribbeanNetherlands                   : QLocale.Country.Class;-- 0x2c
-   CaymanIslands                          : QLocale.Country.Class;-- 0x2d
-   CentralAfricanRepublic                 : QLocale.Country.Class;-- 0x2e
-   CeutaAndMelilla                        : QLocale.Country.Class;-- 0x2f
-   Chad                                   : QLocale.Country.Class;-- 0x30
-   Chile                                  : QLocale.Country.Class;-- 0x31
-   China                                  : QLocale.Country.Class;-- 0x32
-   ChristmasIsland                        : QLocale.Country.Class;-- 0x33
-   ClippertonIsland                       : QLocale.Country.Class;-- 0x34
-   CocosIslands                           : QLocale.Country.Class;-- 0x35
-   Colombia                               : QLocale.Country.Class;-- 0x36
-   Comoros                                : QLocale.Country.Class;-- 0x37
-   CongoBrazzaville                       : QLocale.Country.Class;-- 0x38
-   PeoplesRepublicOfCongo                 : QLocale.Country.Class;-- 0x38
-   CongoKinshasa                          : QLocale.Country.Class;-- 0x39
-   DemocraticRepublicOfCongo              : QLocale.Country.Class;-- 0x39
-   CookIslands                            : QLocale.Country.Class;-- 0x3a
-   CostaRica                              : QLocale.Country.Class;-- 0x3b
-   Croatia                                : QLocale.Country.Class;-- 0x3c
-   Cuba                                   : QLocale.Country.Class;-- 0x3d
-   CuraSao                                : QLocale.Country.Class;-- 0x3e
-   Curacao                                : QLocale.Country.Class;-- 0x3e
-   Cyprus                                 : QLocale.Country.Class;-- 0x3f
-   CzechRepublic                          : QLocale.Country.Class;-- 0x40
-   Czechia                                : QLocale.Country.Class;-- 0x40
-   Denmark                                : QLocale.Country.Class;-- 0x41
-   DiegoGarcia                            : QLocale.Country.Class;-- 0x42
-   Djibouti                               : QLocale.Country.Class;-- 0x43
-   Dominica                               : QLocale.Country.Class;-- 0x44
-   DominicanRepublic                      : QLocale.Country.Class;-- 0x45
-   Ecuador                                : QLocale.Country.Class;-- 0x46
-   Egypt                                  : QLocale.Country.Class;-- 0x47
-   ElSalvador                             : QLocale.Country.Class;-- 0x48
-   EquatorialGuinea                       : QLocale.Country.Class;-- 0x49
-   Eritrea                                : QLocale.Country.Class;-- 0x4a
-   Estonia                                : QLocale.Country.Class;-- 0x4b
-   Eswatini                               : QLocale.Country.Class;-- 0x4c
-   Swaziland                              : QLocale.Country.Class;-- 0x4c
-   Ethiopia                               : QLocale.Country.Class;-- 0x4d
-   Europe                                 : QLocale.Country.Class;-- 0x4e
-   EuropeanUnion                          : QLocale.Country.Class;-- 0x4f
-   FalklandIslands                        : QLocale.Country.Class;-- 0x50
-   FaroeIslands                           : QLocale.Country.Class;-- 0x51
-   Fiji                                   : QLocale.Country.Class;-- 0x52
-   Finland                                : QLocale.Country.Class;-- 0x53
-   France                                 : QLocale.Country.Class;-- 0x54
-   FrenchGuiana                           : QLocale.Country.Class;-- 0x55
-   FrenchPolynesia                        : QLocale.Country.Class;-- 0x56
-   FrenchSouthernTerritories              : QLocale.Country.Class;-- 0x57
-   Gabon                                  : QLocale.Country.Class;-- 0x58
-   Gambia                                 : QLocale.Country.Class;-- 0x59
-   Georgia                                : QLocale.Country.Class;-- 0x5a
-   Germany                                : QLocale.Country.Class;-- 0x5b
-   Ghana                                  : QLocale.Country.Class;-- 0x5c
-   Gibraltar                              : QLocale.Country.Class;-- 0x5d
-   Greece                                 : QLocale.Country.Class;-- 0x5e
-   Greenland                              : QLocale.Country.Class;-- 0x5f
-   Grenada                                : QLocale.Country.Class;-- 0x60
-   Guadeloupe                             : QLocale.Country.Class;-- 0x61
-   Guam                                   : QLocale.Country.Class;-- 0x62
-   Guatemala                              : QLocale.Country.Class;-- 0x63
-   Guernsey                               : QLocale.Country.Class;-- 0x64
-   GuineaBissau                           : QLocale.Country.Class;-- 0x65
-   Guinea                                 : QLocale.Country.Class;-- 0x66
-   Guyana                                 : QLocale.Country.Class;-- 0x67
-   Haiti                                  : QLocale.Country.Class;-- 0x68
-   HeardAndMcDonaldIslands                : QLocale.Country.Class;-- 0x69
-   Honduras                               : QLocale.Country.Class;-- 0x6a
-   HongKong                               : QLocale.Country.Class;-- 0x6b
-   Hungary                                : QLocale.Country.Class;-- 0x6c
-   Iceland                                : QLocale.Country.Class;-- 0x6d
-   India                                  : QLocale.Country.Class;-- 0x6e
-   Indonesia                              : QLocale.Country.Class;-- 0x6f
-   Iran                                   : QLocale.Country.Class;-- 0x70
-   Iraq                                   : QLocale.Country.Class;-- 0x71
-   Ireland                                : QLocale.Country.Class;-- 0x72
-   IsleOfMan                              : QLocale.Country.Class;-- 0x73
-   Israel                                 : QLocale.Country.Class;-- 0x74
-   Italy                                  : QLocale.Country.Class;-- 0x75
-   IvoryCoast                             : QLocale.Country.Class;-- 0x76
-   Jamaica                                : QLocale.Country.Class;-- 0x77
-   Japan                                  : QLocale.Country.Class;-- 0x78
-   Jersey                                 : QLocale.Country.Class;-- 0x79
-   Jordan                                 : QLocale.Country.Class;-- 0x7a
-   Kazakhstan                             : QLocale.Country.Class;-- 0x7b
-   Kenya                                  : QLocale.Country.Class;-- 0x7c
-   Kiribati                               : QLocale.Country.Class;-- 0x7d
-   Kosovo                                 : QLocale.Country.Class;-- 0x7e
-   Kuwait                                 : QLocale.Country.Class;-- 0x7f
-   Kyrgyzstan                             : QLocale.Country.Class;-- 0x80
-   Laos                                   : QLocale.Country.Class;-- 0x81
-   LatinAmerica                           : QLocale.Country.Class;-- 0x82
-   LatinAmericaAndTheCaribbean            : QLocale.Country.Class;-- 0x82
-   Latvia                                 : QLocale.Country.Class;-- 0x83
-   Lebanon                                : QLocale.Country.Class;-- 0x84
-   Lesotho                                : QLocale.Country.Class;-- 0x85
-   Liberia                                : QLocale.Country.Class;-- 0x86
-   Libya                                  : QLocale.Country.Class;-- 0x87
-   Liechtenstein                          : QLocale.Country.Class;-- 0x88
-   Lithuania                              : QLocale.Country.Class;-- 0x89
-   Luxembourg                             : QLocale.Country.Class;-- 0x8a
-   Macao                                  : QLocale.Country.Class;-- 0x8b
-   Macau                                  : QLocale.Country.Class;-- 0x8b
-   Macedonia                              : QLocale.Country.Class;-- 0x8c
-   Madagascar                             : QLocale.Country.Class;-- 0x8d
-   Malawi                                 : QLocale.Country.Class;-- 0x8e
-   Malaysia                               : QLocale.Country.Class;-- 0x8f
-   Maldives                               : QLocale.Country.Class;-- 0x90
-   Mali                                   : QLocale.Country.Class;-- 0x91
-   Malta                                  : QLocale.Country.Class;-- 0x92
-   MarshallIslands                        : QLocale.Country.Class;-- 0x93
-   Martinique                             : QLocale.Country.Class;-- 0x94
-   Mauritania                             : QLocale.Country.Class;-- 0x95
-   Mauritius                              : QLocale.Country.Class;-- 0x96
-   Mayotte                                : QLocale.Country.Class;-- 0x97
-   Mexico                                 : QLocale.Country.Class;-- 0x98
-   Micronesia                             : QLocale.Country.Class;-- 0x99
-   Moldova                                : QLocale.Country.Class;-- 0x9a
-   Monaco                                 : QLocale.Country.Class;-- 0x9b
-   Mongolia                               : QLocale.Country.Class;-- 0x9c
-   Montenegro                             : QLocale.Country.Class;-- 0x9d
-   Montserrat                             : QLocale.Country.Class;-- 0x9e
-   Morocco                                : QLocale.Country.Class;-- 0x9f
-   Mozambique                             : QLocale.Country.Class;-- 0xa0
-   Myanmar                                : QLocale.Country.Class;-- 0xa1
-   Namibia                                : QLocale.Country.Class;-- 0xa2
-   NauruCountry                           : QLocale.Country.Class;-- 0xa3
-   NauruTerritory                         : QLocale.Country.Class;-- 0xa3
-   Nepal                                  : QLocale.Country.Class;-- 0xa4
-   Netherlands                            : QLocale.Country.Class;-- 0xa5
-   NewCaledonia                           : QLocale.Country.Class;-- 0xa6
-   NewZealand                             : QLocale.Country.Class;-- 0xa7
-   Nicaragua                              : QLocale.Country.Class;-- 0xa8
-   Nigeria                                : QLocale.Country.Class;-- 0xa9
-   Niger                                  : QLocale.Country.Class;-- 0xaa
-   Niue                                   : QLocale.Country.Class;-- 0xab
-   NorfolkIsland                          : QLocale.Country.Class;-- 0xac
-   NorthernMarianaIslands                 : QLocale.Country.Class;-- 0xad
-   DemocraticRepublicOfKorea              : QLocale.Country.Class;-- 0xae
-   NorthKorea                             : QLocale.Country.Class;-- 0xae
-   Norway                                 : QLocale.Country.Class;-- 0xaf
-   Oman                                   : QLocale.Country.Class;-- 0xb0
-   OutlyingOceania                        : QLocale.Country.Class;-- 0xb1
-   Pakistan                               : QLocale.Country.Class;-- 0xb2
-   Palau                                  : QLocale.Country.Class;-- 0xb3
-   PalestinianTerritories                 : QLocale.Country.Class;-- 0xb4
-   Panama                                 : QLocale.Country.Class;-- 0xb5
-   PapuaNewGuinea                         : QLocale.Country.Class;-- 0xb6
-   Paraguay                               : QLocale.Country.Class;-- 0xb7
-   Peru                                   : QLocale.Country.Class;-- 0xb8
-   Philippines                            : QLocale.Country.Class;-- 0xb9
-   Pitcairn                               : QLocale.Country.Class;-- 0xba
-   Poland                                 : QLocale.Country.Class;-- 0xbb
-   Portugal                               : QLocale.Country.Class;-- 0xbc
-   PuertoRico                             : QLocale.Country.Class;-- 0xbd
-   Qatar                                  : QLocale.Country.Class;-- 0xbe
-   Reunion                                : QLocale.Country.Class;-- 0xbf
-   Romania                                : QLocale.Country.Class;-- 0xc0
-   Russia                                 : QLocale.Country.Class;-- 0xc1
-   RussianFederation                      : QLocale.Country.Class;-- 0xc1
-   Rwanda                                 : QLocale.Country.Class;-- 0xc2
-   SaintBarthelemy                        : QLocale.Country.Class;-- 0xc3
-   SaintHelena                            : QLocale.Country.Class;-- 0xc4
-   SaintKittsAndNevis                     : QLocale.Country.Class;-- 0xc5
-   SaintLucia                             : QLocale.Country.Class;-- 0xc6
-   SaintMartin                            : QLocale.Country.Class;-- 0xc7
-   SaintPierreAndMiquelon                 : QLocale.Country.Class;-- 0xc8
-   SaintVincentAndGrenadines              : QLocale.Country.Class;-- 0xc9
-   SaintVincentAndTheGrenadines           : QLocale.Country.Class;-- 0xc9
-   Samoa                                  : QLocale.Country.Class;-- 0xca
-   SanMarino                              : QLocale.Country.Class;-- 0xcb
-   SaoTomeAndPrincipe                     : QLocale.Country.Class;-- 0xcc
-   SaudiArabia                            : QLocale.Country.Class;-- 0xcd
-   Senegal                                : QLocale.Country.Class;-- 0xce
-   Serbia                                 : QLocale.Country.Class;-- 0xcf
-   Seychelles                             : QLocale.Country.Class;-- 0xd0
-   SierraLeone                            : QLocale.Country.Class;-- 0xd1
-   Singapore                              : QLocale.Country.Class;-- 0xd2
-   SintMaarten                            : QLocale.Country.Class;-- 0xd3
-   Slovakia                               : QLocale.Country.Class;-- 0xd4
-   Slovenia                               : QLocale.Country.Class;-- 0xd5
-   SolomonIslands                         : QLocale.Country.Class;-- 0xd6
-   Somalia                                : QLocale.Country.Class;-- 0xd7
-   SouthAfrica                            : QLocale.Country.Class;-- 0xd8
-   SouthGeorgiaAndSouthSandwichIslands    : QLocale.Country.Class;-- 0xd9
-   SouthGeorgiaAndTheSouthSandwichIslands : QLocale.Country.Class;-- 0xd9
-   RepublicOfKorea                        : QLocale.Country.Class;-- 0xda
-   SouthKorea                             : QLocale.Country.Class;-- 0xda
-   SouthSudan                             : QLocale.Country.Class;-- 0xdb
-   Spain                                  : QLocale.Country.Class;-- 0xdc
-   SriLanka                               : QLocale.Country.Class;-- 0xdd
-   Sudan                                  : QLocale.Country.Class;-- 0xde
-   Suriname                               : QLocale.Country.Class;-- 0xdf
-   SvalbardAndJanMayen                    : QLocale.Country.Class;-- 0xe0
-   SvalbardAndJanMayenIslands             : QLocale.Country.Class;-- 0xe0
-   Sweden                                 : QLocale.Country.Class;-- 0xe1
-   Switzerland                            : QLocale.Country.Class;-- 0xe2
-   Syria                                  : QLocale.Country.Class;-- 0xe3
-   SyrianArabRepublic                     : QLocale.Country.Class;-- 0xe3
-   Taiwan                                 : QLocale.Country.Class;-- 0xe4
-   Tajikistan                             : QLocale.Country.Class;-- 0xe5
-   Tanzania                               : QLocale.Country.Class;-- 0xe6
-   Thailand                               : QLocale.Country.Class;-- 0xe7
-   EastTimor                              : QLocale.Country.Class;-- 0xe8
-   TimorLeste                             : QLocale.Country.Class;-- 0xe8
-   Togo                                   : QLocale.Country.Class;-- 0xe9
-   TokelauCountry                         : QLocale.Country.Class;-- 0xea
-   TokelauTerritory                       : QLocale.Country.Class;-- 0xea
-   Tonga                                  : QLocale.Country.Class;-- 0xeb
-   TrinidadAndTobago                      : QLocale.Country.Class;-- 0xec
-   TristanDaCunha                         : QLocale.Country.Class;-- 0xed
-   Tunisia                                : QLocale.Country.Class;-- 0xee
-   Turkey                                 : QLocale.Country.Class;-- 0xef
-   Turkmenistan                           : QLocale.Country.Class;-- 0xf0
-   TurksAndCaicosIslands                  : QLocale.Country.Class;-- 0xf1
-   TuvaluCountry                          : QLocale.Country.Class;-- 0xf2
-   TuvaluTerritory                        : QLocale.Country.Class;-- 0xf2
-   Uganda                                 : QLocale.Country.Class;-- 0xf3
-   Ukraine                                : QLocale.Country.Class;-- 0xf4
-   UnitedArabEmirates                     : QLocale.Country.Class;-- 0xf5
-   UnitedKingdom                          : QLocale.Country.Class;-- 0xf6
-   UnitedStatesMinorOutlyingIslands       : QLocale.Country.Class;-- 0xf7
-   UnitedStatesOutlyingIslands            : QLocale.Country.Class;-- 0xf7
-   UnitedStates                           : QLocale.Country.Class;-- 0xf8
-   UnitedStatesVirginIslands              : QLocale.Country.Class;-- 0xf9
-   Uruguay                                : QLocale.Country.Class;-- 0xfa
-   Uzbekistan                             : QLocale.Country.Class;-- 0xfb
-   Vanuatu                                : QLocale.Country.Class;-- 0xfc
-   VaticanCity                            : QLocale.Country.Class;-- 0xfd
-   VaticanCityState                       : QLocale.Country.Class;-- 0xfd
-   Venezuela                              : QLocale.Country.Class;-- 0xfe
-   Vietnam                                : QLocale.Country.Class;-- 0xff
-   WallisAndFutuna                        : QLocale.Country.Class;-- 0x100
-   WallisAndFutunaIslands                 : QLocale.Country.Class;-- 0x100
-   WesternSahara                          : QLocale.Country.Class;-- 0x101
-   World                                  : QLocale.Country.Class;-- 0x102
-   Yemen                                  : QLocale.Country.Class;-- 0x103
-   Zambia                                 : QLocale.Country.Class;-- 0x104
-   LastCountry                            : QLocale.Country.Class;-- 0x105
-   LastTerritory                          : QLocale.Country.Class;-- 0x105
-   Zimbabwe                               : QLocale.Country.Class;-- 0x105
+   function AnyCountry return Class;-- 0x0
+   function AnyTerritory return Class;-- 0x0
+   function Afghanistan return Class;-- 0x1
+   function AlandIslands return Class;-- 0x2
+   function Albania return Class;-- 0x3
+   function Algeria return Class;-- 0x4
+   function AmericanSamoa return Class;-- 0x5
+   function Andorra return Class;-- 0x6
+   function Angola return Class;-- 0x7
+   function Anguilla return Class;-- 0x8
+   function Antarctica return Class;-- 0x9
+   function AntiguaAndBarbuda return Class;-- 0xa
+   function Argentina return Class;-- 0xb
+   function Armenia return Class;-- 0xc
+   function Aruba return Class;-- 0xd
+   function AscensionIsland return Class;-- 0xe
+   function Australia return Class;-- 0xf
+   function Austria return Class;-- 0x10
+   function Azerbaijan return Class;-- 0x11
+   function Bahamas return Class;-- 0x12
+   function Bahrain return Class;-- 0x13
+   function Bangladesh return Class;-- 0x14
+   function Barbados return Class;-- 0x15
+   function Belarus return Class;-- 0x16
+   function Belgium return Class;-- 0x17
+   function Belize return Class;-- 0x18
+   function Benin return Class;-- 0x19
+   function Bermuda return Class;-- 0x1a
+   function Bhutan return Class;-- 0x1b
+   function Bolivia return Class;-- 0x1c
+   function BosniaAndHerzegovina return Class;-- 0x1d
+   function BosniaAndHerzegowina return Class;-- 0x1d
+   function Botswana return Class;-- 0x1e
+   function BouvetIsland return Class;-- 0x1f
+   function Brazil return Class;-- 0x20
+   function BritishIndianOceanTerritory return Class;-- 0x21
+   function BritishVirginIslands return Class;-- 0x22
+   function Brunei return Class;-- 0x23
+   function Bulgaria return Class;-- 0x24
+   function BurkinaFaso return Class;-- 0x25
+   function Burundi return Class;-- 0x26
+   function Cambodia return Class;-- 0x27
+   function Cameroon return Class;-- 0x28
+   function Canada return Class;-- 0x29
+   function CanaryIslands return Class;-- 0x2a
+   function CapeVerde return Class;-- 0x2b
+   function Bonaire return Class;-- 0x2c
+   function CaribbeanNetherlands return Class;-- 0x2c
+   function CaymanIslands return Class;-- 0x2d
+   function CentralAfricanRepublic return Class;-- 0x2e
+   function CeutaAndMelilla return Class;-- 0x2f
+   function Chad return Class;-- 0x30
+   function Chile return Class;-- 0x31
+   function China return Class;-- 0x32
+   function ChristmasIsland return Class;-- 0x33
+   function ClippertonIsland return Class;-- 0x34
+   function CocosIslands return Class;-- 0x35
+   function Colombia return Class;-- 0x36
+   function Comoros return Class;-- 0x37
+   function CongoBrazzaville return Class;-- 0x38
+   function PeoplesRepublicOfCongo return Class;-- 0x38
+   function CongoKinshasa return Class;-- 0x39
+   function DemocraticRepublicOfCongo return Class;-- 0x39
+   function CookIslands return Class;-- 0x3a
+   function CostaRica return Class;-- 0x3b
+   function Croatia return Class;-- 0x3c
+   function Cuba return Class;-- 0x3d
+   function CuraSao return Class;-- 0x3e
+   function Curacao return Class;-- 0x3e
+   function Cyprus return Class;-- 0x3f
+   function CzechRepublic return Class;-- 0x40
+   function Czechia return Class;-- 0x40
+   function Denmark return Class;-- 0x41
+   function DiegoGarcia return Class;-- 0x42
+   function Djibouti return Class;-- 0x43
+   function Dominica return Class;-- 0x44
+   function DominicanRepublic return Class;-- 0x45
+   function Ecuador return Class;-- 0x46
+   function Egypt return Class;-- 0x47
+   function ElSalvador return Class;-- 0x48
+   function EquatorialGuinea return Class;-- 0x49
+   function Eritrea return Class;-- 0x4a
+   function Estonia return Class;-- 0x4b
+   function Eswatini return Class;-- 0x4c
+   function Swaziland return Class;-- 0x4c
+   function Ethiopia return Class;-- 0x4d
+   function Europe return Class;-- 0x4e
+   function EuropeanUnion return Class;-- 0x4f
+   function FalklandIslands return Class;-- 0x50
+   function FaroeIslands return Class;-- 0x51
+   function Fiji return Class;-- 0x52
+   function Finland return Class;-- 0x53
+   function France return Class;-- 0x54
+   function FrenchGuiana return Class;-- 0x55
+   function FrenchPolynesia return Class;-- 0x56
+   function FrenchSouthernTerritories return Class;-- 0x57
+   function Gabon return Class;-- 0x58
+   function Gambia return Class;-- 0x59
+   function Georgia return Class;-- 0x5a
+   function Germany return Class;-- 0x5b
+   function Ghana return Class;-- 0x5c
+   function Gibraltar return Class;-- 0x5d
+   function Greece return Class;-- 0x5e
+   function Greenland return Class;-- 0x5f
+   function Grenada return Class;-- 0x60
+   function Guadeloupe return Class;-- 0x61
+   function Guam return Class;-- 0x62
+   function Guatemala return Class;-- 0x63
+   function Guernsey return Class;-- 0x64
+   function GuineaBissau return Class;-- 0x65
+   function Guinea return Class;-- 0x66
+   function Guyana return Class;-- 0x67
+   function Haiti return Class;-- 0x68
+   function HeardAndMcDonaldIslands return Class;-- 0x69
+   function Honduras return Class;-- 0x6a
+   function HongKong return Class;-- 0x6b
+   function Hungary return Class;-- 0x6c
+   function Iceland return Class;-- 0x6d
+   function India return Class;-- 0x6e
+   function Indonesia return Class;-- 0x6f
+   function Iran return Class;-- 0x70
+   function Iraq return Class;-- 0x71
+   function Ireland return Class;-- 0x72
+   function IsleOfMan return Class;-- 0x73
+   function Israel return Class;-- 0x74
+   function Italy return Class;-- 0x75
+   function IvoryCoast return Class;-- 0x76
+   function Jamaica return Class;-- 0x77
+   function Japan return Class;-- 0x78
+   function Jersey return Class;-- 0x79
+   function Jordan return Class;-- 0x7a
+   function Kazakhstan return Class;-- 0x7b
+   function Kenya return Class;-- 0x7c
+   function Kiribati return Class;-- 0x7d
+   function Kosovo return Class;-- 0x7e
+   function Kuwait return Class;-- 0x7f
+   function Kyrgyzstan return Class;-- 0x80
+   function Laos return Class;-- 0x81
+   function LatinAmerica return Class;-- 0x82
+   function LatinAmericaAndTheCaribbean return Class;-- 0x82
+   function Latvia return Class;-- 0x83
+   function Lebanon return Class;-- 0x84
+   function Lesotho return Class;-- 0x85
+   function Liberia return Class;-- 0x86
+   function Libya return Class;-- 0x87
+   function Liechtenstein return Class;-- 0x88
+   function Lithuania return Class;-- 0x89
+   function Luxembourg return Class;-- 0x8a
+   function Macao return Class;-- 0x8b
+   function Macau return Class;-- 0x8b
+   function Macedonia return Class;-- 0x8c
+   function Madagascar return Class;-- 0x8d
+   function Malawi return Class;-- 0x8e
+   function Malaysia return Class;-- 0x8f
+   function Maldives return Class;-- 0x90
+   function Mali return Class;-- 0x91
+   function Malta return Class;-- 0x92
+   function MarshallIslands return Class;-- 0x93
+   function Martinique return Class;-- 0x94
+   function Mauritania return Class;-- 0x95
+   function Mauritius return Class;-- 0x96
+   function Mayotte return Class;-- 0x97
+   function Mexico return Class;-- 0x98
+   function Micronesia return Class;-- 0x99
+   function Moldova return Class;-- 0x9a
+   function Monaco return Class;-- 0x9b
+   function Mongolia return Class;-- 0x9c
+   function Montenegro return Class;-- 0x9d
+   function Montserrat return Class;-- 0x9e
+   function Morocco return Class;-- 0x9f
+   function Mozambique return Class;-- 0xa0
+   function Myanmar return Class;-- 0xa1
+   function Namibia return Class;-- 0xa2
+   function NauruCountry return Class;-- 0xa3
+   function NauruTerritory return Class;-- 0xa3
+   function Nepal return Class;-- 0xa4
+   function Netherlands return Class;-- 0xa5
+   function NewCaledonia return Class;-- 0xa6
+   function NewZealand return Class;-- 0xa7
+   function Nicaragua return Class;-- 0xa8
+   function Nigeria return Class;-- 0xa9
+   function Niger return Class;-- 0xaa
+   function Niue return Class;-- 0xab
+   function NorfolkIsland return Class;-- 0xac
+   function NorthernMarianaIslands return Class;-- 0xad
+   function DemocraticRepublicOfKorea return Class;-- 0xae
+   function NorthKorea return Class;-- 0xae
+   function Norway return Class;-- 0xaf
+   function Oman return Class;-- 0xb0
+   function OutlyingOceania return Class;-- 0xb1
+   function Pakistan return Class;-- 0xb2
+   function Palau return Class;-- 0xb3
+   function PalestinianTerritories return Class;-- 0xb4
+   function Panama return Class;-- 0xb5
+   function PapuaNewGuinea return Class;-- 0xb6
+   function Paraguay return Class;-- 0xb7
+   function Peru return Class;-- 0xb8
+   function Philippines return Class;-- 0xb9
+   function Pitcairn return Class;-- 0xba
+   function Poland return Class;-- 0xbb
+   function Portugal return Class;-- 0xbc
+   function PuertoRico return Class;-- 0xbd
+   function Qatar return Class;-- 0xbe
+   function Reunion return Class;-- 0xbf
+   function Romania return Class;-- 0xc0
+   function Russia return Class;-- 0xc1
+   function RussianFederation return Class;-- 0xc1
+   function Rwanda return Class;-- 0xc2
+   function SaintBarthelemy return Class;-- 0xc3
+   function SaintHelena return Class;-- 0xc4
+   function SaintKittsAndNevis return Class;-- 0xc5
+   function SaintLucia return Class;-- 0xc6
+   function SaintMartin return Class;-- 0xc7
+   function SaintPierreAndMiquelon return Class;-- 0xc8
+   function SaintVincentAndGrenadines return Class;-- 0xc9
+   function SaintVincentAndTheGrenadines return Class;-- 0xc9
+   function Samoa return Class;-- 0xca
+   function SanMarino return Class;-- 0xcb
+   function SaoTomeAndPrincipe return Class;-- 0xcc
+   function SaudiArabia return Class;-- 0xcd
+   function Senegal return Class;-- 0xce
+   function Serbia return Class;-- 0xcf
+   function Seychelles return Class;-- 0xd0
+   function SierraLeone return Class;-- 0xd1
+   function Singapore return Class;-- 0xd2
+   function SintMaarten return Class;-- 0xd3
+   function Slovakia return Class;-- 0xd4
+   function Slovenia return Class;-- 0xd5
+   function SolomonIslands return Class;-- 0xd6
+   function Somalia return Class;-- 0xd7
+   function SouthAfrica return Class;-- 0xd8
+   function SouthGeorgiaAndSouthSandwichIslands return Class;-- 0xd9
+   function SouthGeorgiaAndTheSouthSandwichIslands return Class;-- 0xd9
+   function RepublicOfKorea return Class;-- 0xda
+   function SouthKorea return Class;-- 0xda
+   function SouthSudan return Class;-- 0xdb
+   function Spain return Class;-- 0xdc
+   function SriLanka return Class;-- 0xdd
+   function Sudan return Class;-- 0xde
+   function Suriname return Class;-- 0xdf
+   function SvalbardAndJanMayen return Class;-- 0xe0
+   function SvalbardAndJanMayenIslands return Class;-- 0xe0
+   function Sweden return Class;-- 0xe1
+   function Switzerland return Class;-- 0xe2
+   function Syria return Class;-- 0xe3
+   function SyrianArabRepublic return Class;-- 0xe3
+   function Taiwan return Class;-- 0xe4
+   function Tajikistan return Class;-- 0xe5
+   function Tanzania return Class;-- 0xe6
+   function Thailand return Class;-- 0xe7
+   function EastTimor return Class;-- 0xe8
+   function TimorLeste return Class;-- 0xe8
+   function Togo return Class;-- 0xe9
+   function TokelauCountry return Class;-- 0xea
+   function TokelauTerritory return Class;-- 0xea
+   function Tonga return Class;-- 0xeb
+   function TrinidadAndTobago return Class;-- 0xec
+   function TristanDaCunha return Class;-- 0xed
+   function Tunisia return Class;-- 0xee
+   function Turkey return Class;-- 0xef
+   function Turkmenistan return Class;-- 0xf0
+   function TurksAndCaicosIslands return Class;-- 0xf1
+   function TuvaluCountry return Class;-- 0xf2
+   function TuvaluTerritory return Class;-- 0xf2
+   function Uganda return Class;-- 0xf3
+   function Ukraine return Class;-- 0xf4
+   function UnitedArabEmirates return Class;-- 0xf5
+   function UnitedKingdom return Class;-- 0xf6
+   function UnitedStatesMinorOutlyingIslands return Class;-- 0xf7
+   function UnitedStatesOutlyingIslands return Class;-- 0xf7
+   function UnitedStates return Class;-- 0xf8
+   function UnitedStatesVirginIslands return Class;-- 0xf9
+   function Uruguay return Class;-- 0xfa
+   function Uzbekistan return Class;-- 0xfb
+   function Vanuatu return Class;-- 0xfc
+   function VaticanCity return Class;-- 0xfd
+   function VaticanCityState return Class;-- 0xfd
+   function Venezuela return Class;-- 0xfe
+   function Vietnam return Class;-- 0xff
+   function WallisAndFutuna return Class;-- 0x100
+   function WallisAndFutunaIslands return Class;-- 0x100
+   function WesternSahara return Class;-- 0x101
+   function World return Class;-- 0x102
+   function Yemen return Class;-- 0x103
+   function Zambia return Class;-- 0x104
+   function LastCountry return Class;-- 0x105
+   function LastTerritory return Class;-- 0x105
+   function Zimbabwe return Class;-- 0x105
 end QtAda6.QtCore.QLocale.Country;

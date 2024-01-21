@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qfiledevice.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -19,6 +19,7 @@ package QtAda6.QtCore.QFileDevice is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QIODevice.Inst with null record;
    procedure Finalize (Self : in out Class);
    function Create return Class;
@@ -35,11 +36,11 @@ package QtAda6.QtCore.QFileDevice is
    function isSequential (self : access Inst) return bool;
    function map_F
      (self    : access Inst; offset_P : int; size_P : int;
-      flags_P : access QtAda6.QtCore.QFileDevice.MemoryMapFlag.Inst'Class) return Object;
+      flags_P : access QtAda6.QtCore.QFileDevice.MemoryMapFlag.Inst'Class := null) return access Object'Class;
    function permissions (self : access Inst) return access QtAda6.QtCore.QFileDevice.Permission.Inst'Class;
    function pos (self : access Inst) return int;
-   function readData (self : access Inst; maxlen_P : int) return Object;
-   function readLineData (self : access Inst; maxlen_P : int) return Object;
+   function readData (self : access Inst; maxlen_P : int) return access Object'Class;
+   function readLineData (self : access Inst; maxlen_P : int) return access Object'Class;
    function resize (self : access Inst; sz_P : int) return bool;
    function seek (self : access Inst; offset_P : int) return bool;
    function setFileTime

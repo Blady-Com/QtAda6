@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qdatetime.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -18,6 +18,7 @@ package QtAda6.QtCore.QDateTime is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
    procedure Finalize (Self : in out Class);
    function Create return Class;
@@ -25,22 +26,22 @@ package QtAda6.QtCore.QDateTime is
      (arg_1_P : int; arg_2_P : int; arg_3_P : int; arg_4_P : int; arg_5_P : int; arg_6_P : int) return Class;
    function Create
      (arg_1_P : int; arg_2_P : int; arg_3_P : int; arg_4_P : int; arg_5_P : int; arg_6_P : int; arg_7_P : int;
-      arg_8_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class) return Class;
+      arg_8_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class := null) return Class;
    function Create
      (arg_1_P : int; arg_2_P : int; arg_3_P : int; arg_4_P : int; arg_5_P : int; arg_6_P : int; arg_7_P : int;
-      arg_8_P : int) return Class;
+      arg_8_P : int := 0) return Class;
    function Create
      (date_P : access QtAda6.QtCore.QDate.Inst'Class; time_P : access QtAda6.QtCore.QTime.Inst'Class) return Class;
    function Create
      (date_P : access QtAda6.QtCore.QDate.Inst'Class; time_P : access QtAda6.QtCore.QTime.Inst'Class;
-      spec_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class; offsetSeconds_P : int) return Class;
+      spec_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class; offsetSeconds_P : int := 0) return Class;
    function Create
      (date_P     : access QtAda6.QtCore.QDate.Inst'Class; time_P : access QtAda6.QtCore.QTime.Inst'Class;
       timeZone_P : access QtAda6.QtCore.QTimeZone.Inst'Class) return Class;
    function Create (other_P : access QtAda6.QtCore.QDateTime.Inst'Class) return Class;
    procedure U_copy_U;
-   function U_reduce_U (self : access Inst) return Object;
-   function U_repr_U (self : access Inst) return Object;
+   function U_reduce_U (self : access Inst) return access Object'Class;
+   function U_repr_U (self : access Inst) return access Object'Class;
    function addDays (self : access Inst; days_P : int) return access QtAda6.QtCore.QDateTime.Inst'Class;
    function addMSecs (self : access Inst; msecs_P : int) return access QtAda6.QtCore.QDateTime.Inst'Class;
    function addMonths (self : access Inst; months_P : int) return access QtAda6.QtCore.QDateTime.Inst'Class;
@@ -56,23 +57,23 @@ package QtAda6.QtCore.QDateTime is
    function daysTo (self : access Inst; arg_1_P : access QtAda6.QtCore.QDateTime.Inst'Class) return int;
    function fromMSecsSinceEpoch (msecs_P : int) return access QtAda6.QtCore.QDateTime.Inst'Class;
    function fromMSecsSinceEpoch
-     (msecs_P : int; spec_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class; offsetFromUtc_P : int)
+     (msecs_P : int; spec_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class; offsetFromUtc_P : int := 0)
       return access QtAda6.QtCore.QDateTime.Inst'Class;
    function fromMSecsSinceEpoch
      (msecs_P : int; timeZone_P : access QtAda6.QtCore.QTimeZone.Inst'Class)
       return access QtAda6.QtCore.QDateTime.Inst'Class;
    function fromSecsSinceEpoch (secs_P : int) return access QtAda6.QtCore.QDateTime.Inst'Class;
    function fromSecsSinceEpoch
-     (secs_P : int; spec_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class; offsetFromUtc_P : int)
+     (secs_P : int; spec_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class; offsetFromUtc_P : int := 0)
       return access QtAda6.QtCore.QDateTime.Inst'Class;
    function fromSecsSinceEpoch
      (secs_P : int; timeZone_P : access QtAda6.QtCore.QTimeZone.Inst'Class)
       return access QtAda6.QtCore.QDateTime.Inst'Class;
    function fromString
-     (string_P : str; format_P : access QtAda6.QtCore.Qt.DateFormat.Inst'Class)
+     (string_P : str; format_P : access QtAda6.QtCore.Qt.DateFormat.Inst'Class := null)
       return access QtAda6.QtCore.QDateTime.Inst'Class;
    function fromString
-     (string_P : str; format_P : str; cal_P : access QtAda6.QtCore.QCalendar.Inst'Class)
+     (string_P : str; format_P : str; cal_P : access QtAda6.QtCore.QCalendar.Inst'Class := null)
       return access QtAda6.QtCore.QDateTime.Inst'Class;
    function isDaylightTime (self : access Inst) return bool;
    function isNull (self : access Inst) return bool;
@@ -97,10 +98,11 @@ package QtAda6.QtCore.QDateTime is
    function toMSecsSinceEpoch (self : access Inst) return int;
    function toOffsetFromUtc
      (self : access Inst; offsetSeconds_P : int) return access QtAda6.QtCore.QDateTime.Inst'Class;
-   function toPython (self : access Inst) return Object;
+   function toPython (self : access Inst) return access Object'Class;
    function toSecsSinceEpoch (self : access Inst) return int;
-   function toString (self : access Inst; format_P : access QtAda6.QtCore.Qt.DateFormat.Inst'Class) return str;
-   function toString (self : access Inst; format_P : str; cal_P : access QtAda6.QtCore.QCalendar.Inst'Class) return str;
+   function toString (self : access Inst; format_P : access QtAda6.QtCore.Qt.DateFormat.Inst'Class := null) return str;
+   function toString
+     (self : access Inst; format_P : str; cal_P : access QtAda6.QtCore.QCalendar.Inst'Class := null) return str;
    function toTimeSpec
      (self : access Inst; spec_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class)
       return access QtAda6.QtCore.QDateTime.Inst'Class;

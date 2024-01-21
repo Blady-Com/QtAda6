@@ -1,31 +1,34 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qxmlstreamreader.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QIODevice;
-limited with QtAda6.QtCore.QXmlStreamNamespaceDeclaration;
 limited with QtAda6.QtCore.QXmlStreamAttributes;
-limited with QtAda6.QtCore.QXmlStreamEntityDeclaration;
 limited with QtAda6.QtCore.QXmlStreamEntityResolver;
 limited with QtAda6.QtCore.QXmlStreamReader.Error;
-limited with QtAda6.QtCore.QXmlStreamNotationDeclaration;
 limited with QtAda6.QtCore.QXmlStreamReader.ReadElementTextBehaviour;
 limited with QtAda6.QtCore.QXmlStreamReader.TokenType;
+with QtAda6.QtCore.QXmlStreamNamespaceDeclaration;
+with QtAda6.QtCore.QXmlStreamEntityDeclaration;
+with QtAda6.QtCore.QXmlStreamNotationDeclaration;
 package QtAda6.QtCore.QXmlStreamReader is
-   type Sequence_QtAda6_QtCore_QXmlStreamNamespaceDeclaration is access Any;
-   type List_QtAda6_QtCore_QXmlStreamEntityDeclaration is access Any;
-   type List_QtAda6_QtCore_QXmlStreamNamespaceDeclaration is access Any;
-   type List_QtAda6_QtCore_QXmlStreamNotationDeclaration is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   subtype SEQUENCE_QtAda6_QtCore_QXmlStreamNamespaceDeclaration is
+     QtAda6.QtCore.QXmlStreamNamespaceDeclaration.Class_Array;
+   subtype LIST_QtAda6_QtCore_QXmlStreamEntityDeclaration is QtAda6.QtCore.QXmlStreamEntityDeclaration.Class_Array;
+   subtype LIST_QtAda6_QtCore_QXmlStreamNamespaceDeclaration is
+     QtAda6.QtCore.QXmlStreamNamespaceDeclaration.Class_Array;
+   subtype LIST_QtAda6_QtCore_QXmlStreamNotationDeclaration is QtAda6.QtCore.QXmlStreamNotationDeclaration.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (data_P : str) return Class;
@@ -35,7 +38,7 @@ package QtAda6.QtCore.QXmlStreamReader is
      (self                         : access Inst;
       extraNamespaceDeclaraction_P : access QtAda6.QtCore.QXmlStreamNamespaceDeclaration.Inst'Class);
    procedure addExtraNamespaceDeclarations
-     (self : access Inst; extraNamespaceDeclaractions_P : Sequence_QtAda6_QtCore_QXmlStreamNamespaceDeclaration);
+     (self : access Inst; extraNamespaceDeclaractions_P : SEQUENCE_QtAda6_QtCore_QXmlStreamNamespaceDeclaration);
    function atEnd (self : access Inst) return bool;
    function attributes (self : access Inst) return access QtAda6.QtCore.QXmlStreamAttributes.Inst'Class;
    function characterOffset (self : access Inst) return int;
@@ -47,7 +50,7 @@ package QtAda6.QtCore.QXmlStreamReader is
    function dtdName (self : access Inst) return str;
    function dtdPublicId (self : access Inst) return str;
    function dtdSystemId (self : access Inst) return str;
-   function entityDeclarations (self : access Inst) return List_QtAda6_QtCore_QXmlStreamEntityDeclaration;
+   function entityDeclarations (self : access Inst) return LIST_QtAda6_QtCore_QXmlStreamEntityDeclaration;
    function entityExpansionLimit (self : access Inst) return int;
    function entityResolver (self : access Inst) return access QtAda6.QtCore.QXmlStreamEntityResolver.Inst'Class;
    function error_F (self : access Inst) return access QtAda6.QtCore.QXmlStreamReader.Error.Inst'Class;
@@ -67,18 +70,18 @@ package QtAda6.QtCore.QXmlStreamReader is
    function isWhitespace (self : access Inst) return bool;
    function lineNumber (self : access Inst) return int;
    function name (self : access Inst) return str;
-   function namespaceDeclarations (self : access Inst) return List_QtAda6_QtCore_QXmlStreamNamespaceDeclaration;
+   function namespaceDeclarations (self : access Inst) return LIST_QtAda6_QtCore_QXmlStreamNamespaceDeclaration;
    function namespaceProcessing (self : access Inst) return bool;
    function namespaceUri (self : access Inst) return str;
-   function notationDeclarations (self : access Inst) return List_QtAda6_QtCore_QXmlStreamNotationDeclaration;
+   function notationDeclarations (self : access Inst) return LIST_QtAda6_QtCore_QXmlStreamNotationDeclaration;
    function prefix (self : access Inst) return str;
    function processingInstructionData (self : access Inst) return str;
    function processingInstructionTarget (self : access Inst) return str;
    function qualifiedName (self : access Inst) return str;
-   procedure raiseError (self : access Inst; message_P : str);
+   procedure raiseError (self : access Inst; message_P : str := "");
    function readElementText_F
-     (self : access Inst; behaviour_P : access QtAda6.QtCore.QXmlStreamReader.ReadElementTextBehaviour.Inst'Class)
-      return str;
+     (self        : access Inst;
+      behaviour_P : access QtAda6.QtCore.QXmlStreamReader.ReadElementTextBehaviour.Inst'Class := null) return str;
    function readNext (self : access Inst) return access QtAda6.QtCore.QXmlStreamReader.TokenType.Inst'Class;
    function readNextStartElement (self : access Inst) return bool;
    procedure setDevice (self : access Inst; device_P : access QtAda6.QtCore.QIODevice.Inst'Class);

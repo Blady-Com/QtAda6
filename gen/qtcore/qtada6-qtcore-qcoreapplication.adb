@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (body)                  : qtada6-qtcore-qcoreapplication.adb
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -26,23 +26,55 @@ package body QtAda6.QtCore.QCoreApplication is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
+   function aboutToQuit (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "aboutToQuit"));
+   end aboutToQuit;
+   function applicationNameChanged (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return
+        new QtAda6.QtCore.Signal.Inst'
+          (Python_Proxy => Object_GetAttrString (self.Python_Proxy, "applicationNameChanged"));
+   end applicationNameChanged;
+   function applicationVersionChanged (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return
+        new QtAda6.QtCore.Signal.Inst'
+          (Python_Proxy => Object_GetAttrString (self.Python_Proxy, "applicationVersionChanged"));
+   end applicationVersionChanged;
+   function organizationDomainChanged (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return
+        new QtAda6.QtCore.Signal.Inst'
+          (Python_Proxy => Object_GetAttrString (self.Python_Proxy, "organizationDomainChanged"));
+   end organizationDomainChanged;
+   function organizationNameChanged (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return
+        new QtAda6.QtCore.Signal.Inst'
+          (Python_Proxy => Object_GetAttrString (self.Python_Proxy, "organizationNameChanged"));
+   end organizationNameChanged;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Args  := Tuple_New (0);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (arg_1_P : Sequence_str) return Class is
-      Class, Args : Handle;
+   function Create (arg_1_P : SEQUENCE_str) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
-      Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      List  := List_New (arg_1_P'Length);
+      for ind in arg_1_P'Range loop
+         List_SetItem (List, ssize_t (ind - arg_1_P'First), Unicode_FromString (arg_1_P (ind)));
+      end loop;
+      Args := Tuple_New (1);
+      Tuple_SetItem (Args, 0, List);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure addLibraryPath (arg_1_P : str) is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "addLibraryPath");
@@ -51,7 +83,7 @@ package body QtAda6.QtCore.QCoreApplication is
       Result := Object_CallObject (Method, Args, True);
    end addLibraryPath;
    function applicationDirPath return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "applicationDirPath");
@@ -60,7 +92,7 @@ package body QtAda6.QtCore.QCoreApplication is
       return As_String (Result);
    end applicationDirPath;
    function applicationFilePath return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "applicationFilePath");
@@ -69,7 +101,7 @@ package body QtAda6.QtCore.QCoreApplication is
       return As_String (Result);
    end applicationFilePath;
    function applicationName return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "applicationName");
@@ -78,7 +110,7 @@ package body QtAda6.QtCore.QCoreApplication is
       return As_String (Result);
    end applicationName;
    function applicationPid return int is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "applicationPid");
@@ -87,7 +119,7 @@ package body QtAda6.QtCore.QCoreApplication is
       return Long_AsLong (Result);
    end applicationPid;
    function applicationVersion return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "applicationVersion");
@@ -95,31 +127,31 @@ package body QtAda6.QtCore.QCoreApplication is
       Result := Object_CallObject (Method, Args, True);
       return As_String (Result);
    end applicationVersion;
-   function arguments return List_str is
-      Class, Method, Args, Result : Handle;
+   function arguments return LIST_str is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "arguments");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end arguments;
    function checkPermission
      (self : access Inst; permission_P : access QtAda6.QtCore.QPermission.Inst'Class)
       return access QtAda6.QtCore.Qt.PermissionStatus.Inst'Class
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.PermissionStatus.Class := new QtAda6.QtCore.Qt.PermissionStatus.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "checkPermission");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, permission_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if permission_P /= null then permission_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end checkPermission;
    function closingDown return bool is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "closingDown");
@@ -128,16 +160,16 @@ package body QtAda6.QtCore.QCoreApplication is
       return To_Ada (Result);
    end closingDown;
    function event (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, arg_1_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end event;
    function eventDispatcher return access QtAda6.QtCore.QAbstractEventDispatcher.Inst'Class is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtCore.QAbstractEventDispatcher.Class := new QtAda6.QtCore.QAbstractEventDispatcher.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
@@ -148,7 +180,7 @@ package body QtAda6.QtCore.QCoreApplication is
       return Ret;
    end eventDispatcher;
    function exec return int is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "exec");
@@ -157,15 +189,15 @@ package body QtAda6.QtCore.QCoreApplication is
       return Long_AsLong (Result);
    end exec;
    function exec_U (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec_");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end exec_U;
-   procedure exit_K (retcode_P : int) is
-      Class, Method, Args, Result : Handle;
+   procedure exit_K (retcode_P : int := 0) is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "exit");
@@ -176,34 +208,36 @@ package body QtAda6.QtCore.QCoreApplication is
    procedure installNativeEventFilter
      (self : access Inst; filterObj_P : access QtAda6.QtCore.QAbstractNativeEventFilter.Inst'Class)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "installNativeEventFilter");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, filterObj_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if filterObj_P /= null then filterObj_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end installNativeEventFilter;
    function installTranslator (messageFile_P : access QtAda6.QtCore.QTranslator.Inst'Class) return bool is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "installTranslator");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, messageFile_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if messageFile_P /= null then messageFile_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end installTranslator;
-   function instance return Optional_QtAda6_QtCore_QCoreApplication is
-      Class, Method, Args, Result : Handle;
+   function instance return access QtAda6.QtCore.QCoreApplication.Inst'Class is
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QCoreApplication.Class := new QtAda6.QtCore.QCoreApplication.Inst;
    begin
-      Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
-      Method := Object_GetAttrString (Class, "instance");
-      Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
-      return null;
+      Class            := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
+      Method           := Object_GetAttrString (Class, "instance");
+      Args             := Tuple_New (0);
+      Result           := Object_CallObject (Method, Args, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
    end instance;
    function isQuitLockEnabled return bool is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "isQuitLockEnabled");
@@ -212,7 +246,7 @@ package body QtAda6.QtCore.QCoreApplication is
       return To_Ada (Result);
    end isQuitLockEnabled;
    function isSetuidAllowed return bool is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "isSetuidAllowed");
@@ -220,30 +254,30 @@ package body QtAda6.QtCore.QCoreApplication is
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end isSetuidAllowed;
-   function libraryPaths return List_str is
-      Class, Method, Args, Result : Handle;
+   function libraryPaths return LIST_str is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "libraryPaths");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end libraryPaths;
    function notify
      (self    : access Inst; arg_1_P : access QtAda6.QtCore.QObject.Inst'Class;
       arg_2_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "notify");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, arg_1_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, arg_2_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if arg_2_P /= null then arg_2_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end notify;
    function organizationDomain return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "organizationDomain");
@@ -252,7 +286,7 @@ package body QtAda6.QtCore.QCoreApplication is
       return As_String (Result);
    end organizationDomain;
    function organizationName return str is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "organizationName");
@@ -262,39 +296,39 @@ package body QtAda6.QtCore.QCoreApplication is
    end organizationName;
    procedure postEvent
      (receiver_P : access QtAda6.QtCore.QObject.Inst'Class; event_P : access QtAda6.QtCore.QEvent.Inst'Class;
-      priority_P : int)
+      priority_P : int := 0)
    is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "postEvent");
       Args   := Tuple_New (3);
-      Tuple_SetItem (Args, 0, receiver_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, event_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if receiver_P /= null then receiver_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if event_P /= null then event_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 2, Long_FromLong (priority_P));
       Result := Object_CallObject (Method, Args, True);
    end postEvent;
    procedure processEvents (flags_P : access QtAda6.QtCore.QEventLoop.ProcessEventsFlag.Inst'Class; maxtime_P : int) is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "processEvents");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, flags_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if flags_P /= null then flags_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Long_FromLong (maxtime_P));
       Result := Object_CallObject (Method, Args, True);
    end processEvents;
-   procedure processEvents (flags_P : access QtAda6.QtCore.QEventLoop.ProcessEventsFlag.Inst'Class) is
-      Class, Method, Args, Result : Handle;
+   procedure processEvents (flags_P : access QtAda6.QtCore.QEventLoop.ProcessEventsFlag.Inst'Class := null) is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "processEvents");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, flags_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if flags_P /= null then flags_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end processEvents;
    procedure quit is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "quit");
@@ -302,7 +336,7 @@ package body QtAda6.QtCore.QCoreApplication is
       Result := Object_CallObject (Method, Args, True);
    end quit;
    procedure removeLibraryPath (arg_1_P : str) is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "removeLibraryPath");
@@ -313,35 +347,35 @@ package body QtAda6.QtCore.QCoreApplication is
    procedure removeNativeEventFilter
      (self : access Inst; filterObj_P : access QtAda6.QtCore.QAbstractNativeEventFilter.Inst'Class)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeNativeEventFilter");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, filterObj_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if filterObj_P /= null then filterObj_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end removeNativeEventFilter;
-   procedure removePostedEvents (receiver_P : access QtAda6.QtCore.QObject.Inst'Class; eventType_P : int) is
-      Class, Method, Args, Result : Handle;
+   procedure removePostedEvents (receiver_P : access QtAda6.QtCore.QObject.Inst'Class; eventType_P : int := 0) is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "removePostedEvents");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, receiver_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if receiver_P /= null then receiver_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Long_FromLong (eventType_P));
       Result := Object_CallObject (Method, Args, True);
    end removePostedEvents;
    function removeTranslator (messageFile_P : access QtAda6.QtCore.QTranslator.Inst'Class) return bool is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "removeTranslator");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, messageFile_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if messageFile_P /= null then messageFile_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end removeTranslator;
    function resolveInterface (self : access Inst; name_P : bytes; revision_P : int) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resolveInterface");
       Args   := Tuple_New (2);
@@ -354,28 +388,28 @@ package body QtAda6.QtCore.QCoreApplication is
      (receiver_P : access QtAda6.QtCore.QObject.Inst'Class; event_P : access QtAda6.QtCore.QEvent.Inst'Class)
       return bool
    is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "sendEvent");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, receiver_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, event_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if receiver_P /= null then receiver_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if event_P /= null then event_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end sendEvent;
-   procedure sendPostedEvents (receiver_P : Optional_QtAda6_QtCore_QObject; event_type_P : int) is
-      Class, Method, Args, Result : Handle;
+   procedure sendPostedEvents (receiver_P : access QtAda6.QtCore.QObject.Inst'Class := null; event_type_P : int := 0) is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "sendPostedEvents");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if receiver_P /= null then receiver_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Long_FromLong (event_type_P));
       Result := Object_CallObject (Method, Args, True);
    end sendPostedEvents;
    procedure setApplicationName (application_P : str) is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "setApplicationName");
@@ -384,7 +418,7 @@ package body QtAda6.QtCore.QCoreApplication is
       Result := Object_CallObject (Method, Args, True);
    end setApplicationName;
    procedure setApplicationVersion (version_P : str) is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "setApplicationVersion");
@@ -392,36 +426,41 @@ package body QtAda6.QtCore.QCoreApplication is
       Tuple_SetItem (Args, 0, Unicode_FromString (version_P));
       Result := Object_CallObject (Method, Args, True);
    end setApplicationVersion;
-   procedure setAttribute (attribute_P : access QtAda6.QtCore.Qt.ApplicationAttribute.Inst'Class; on_P : bool) is
-      Class, Method, Args, Result : Handle;
+   procedure setAttribute (attribute_P : access QtAda6.QtCore.Qt.ApplicationAttribute.Inst'Class; on_P : bool := False)
+   is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "setAttribute");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, attribute_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if attribute_P /= null then attribute_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, To_Python (on_P));
       Result := Object_CallObject (Method, Args, True);
    end setAttribute;
    procedure setEventDispatcher (eventDispatcher_P : access QtAda6.QtCore.QAbstractEventDispatcher.Inst'Class) is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "setEventDispatcher");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, eventDispatcher_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if eventDispatcher_P /= null then eventDispatcher_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setEventDispatcher;
-   procedure setLibraryPaths (arg_1_P : Sequence_str) is
-      Class, Method, Args, Result : Handle;
+   procedure setLibraryPaths (arg_1_P : SEQUENCE_str) is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "setLibraryPaths");
-      Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      List   := List_New (arg_1_P'Length);
+      for ind in arg_1_P'Range loop
+         List_SetItem (List, ssize_t (ind - arg_1_P'First), Unicode_FromString (arg_1_P (ind)));
+      end loop;
+      Args := Tuple_New (1);
+      Tuple_SetItem (Args, 0, List);
       Result := Object_CallObject (Method, Args, True);
    end setLibraryPaths;
    procedure setOrganizationDomain (orgDomain_P : str) is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "setOrganizationDomain");
@@ -430,7 +469,7 @@ package body QtAda6.QtCore.QCoreApplication is
       Result := Object_CallObject (Method, Args, True);
    end setOrganizationDomain;
    procedure setOrganizationName (orgName_P : str) is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "setOrganizationName");
@@ -439,7 +478,7 @@ package body QtAda6.QtCore.QCoreApplication is
       Result := Object_CallObject (Method, Args, True);
    end setOrganizationName;
    procedure setQuitLockEnabled (enabled_P : bool) is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "setQuitLockEnabled");
@@ -448,7 +487,7 @@ package body QtAda6.QtCore.QCoreApplication is
       Result := Object_CallObject (Method, Args, True);
    end setQuitLockEnabled;
    procedure setSetuidAllowed (allow_P : bool) is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "setSetuidAllowed");
@@ -457,14 +496,14 @@ package body QtAda6.QtCore.QCoreApplication is
       Result := Object_CallObject (Method, Args, True);
    end setSetuidAllowed;
    procedure shutdown (self : access Inst) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "shutdown");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
    end shutdown;
    function startingUp return bool is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "startingUp");
@@ -473,24 +512,24 @@ package body QtAda6.QtCore.QCoreApplication is
       return To_Ada (Result);
    end startingUp;
    function testAttribute (attribute_P : access QtAda6.QtCore.Qt.ApplicationAttribute.Inst'Class) return bool is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "testAttribute");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, attribute_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if attribute_P /= null then attribute_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end testAttribute;
-   function translate (context_P : bytes; key_P : bytes; disambiguation_P : Optional_bytes; n_P : int) return str is
-      Class, Method, Args, Result : Handle;
+   function translate (context_P : bytes; key_P : bytes; disambiguation_P : bytes := ""; n_P : int := 0) return str is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCoreApplication");
       Method := Object_GetAttrString (Class, "translate");
       Args   := Tuple_New (4);
       Tuple_SetItem (Args, 0, Bytes_FromString (String (context_P)));
       Tuple_SetItem (Args, 1, Bytes_FromString (String (key_P)));
-      Tuple_SetItem (Args, 2, No_Value);
+      Tuple_SetItem (Args, 2, Bytes_FromString (String (disambiguation_P)));
       Tuple_SetItem (Args, 3, Long_FromLong (n_P));
       Result := Object_CallObject (Method, Args, True);
       return As_String (Result);

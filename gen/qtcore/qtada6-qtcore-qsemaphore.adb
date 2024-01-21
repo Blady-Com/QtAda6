@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (body)                  : qtada6-qtcore-qsemaphore.adb
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -17,16 +17,16 @@ package body QtAda6.QtCore.QSemaphore is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function Create (n_P : int) return Class is
-      Class, Args : Handle;
+   function Create (n_P : int := 0) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSemaphore");
       Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, Long_FromLong (n_P));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   procedure acquire (self : access Inst; n_P : int) is
-      Method, Args, Result : Handle;
+   procedure acquire (self : access Inst; n_P : int := 0) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "acquire");
       Args   := Tuple_New (1);
@@ -34,15 +34,15 @@ package body QtAda6.QtCore.QSemaphore is
       Result := Object_CallObject (Method, Args, True);
    end acquire;
    function available (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "available");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end available;
-   procedure release (self : access Inst; n_P : int) is
-      Method, Args, Result : Handle;
+   procedure release (self : access Inst; n_P : int := 0) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "release");
       Args   := Tuple_New (1);
@@ -50,7 +50,7 @@ package body QtAda6.QtCore.QSemaphore is
       Result := Object_CallObject (Method, Args, True);
    end release;
    function tryAcquire (self : access Inst; n_P : int; timeout_P : int) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tryAcquire");
       Args   := Tuple_New (2);
@@ -59,8 +59,8 @@ package body QtAda6.QtCore.QSemaphore is
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end tryAcquire;
-   function tryAcquire (self : access Inst; n_P : int) return bool is
-      Method, Args, Result : Handle;
+   function tryAcquire (self : access Inst; n_P : int := 0) return bool is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tryAcquire");
       Args   := Tuple_New (1);
@@ -69,7 +69,7 @@ package body QtAda6.QtCore.QSemaphore is
       return To_Ada (Result);
    end tryAcquire;
    function try_acquire (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "try_acquire");
       Args   := Tuple_New (0);

@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (body)                  : qtada6-qtcore-qtimerevent.adb
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -19,15 +19,15 @@ package body QtAda6.QtCore.QTimerEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtCore.QTimerEvent.Inst'Class) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimerEvent");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, arg_1_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (timerId_P : int) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimerEvent");
       Args  := Tuple_New (1);
@@ -35,8 +35,8 @@ package body QtAda6.QtCore.QTimerEvent is
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function clone (self : access Inst) return access QtAda6.QtCore.QTimerEvent.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QTimerEvent.Class := new QtAda6.QtCore.QTimerEvent.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QTimerEvent.Class := new QtAda6.QtCore.QTimerEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
       Args             := Tuple_New (0);
@@ -45,7 +45,7 @@ package body QtAda6.QtCore.QTimerEvent is
       return Ret;
    end clone;
    function timerId (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "timerId");
       Args   := Tuple_New (0);

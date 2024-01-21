@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (body)                  : qtada6-qtcore-metasignal.adb
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -17,12 +17,12 @@ package body QtAda6.QtCore.MetaSignal is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function U_instancecheck_U (self : access Inst; object_P : Object) return bool is
-      Method, Args, Result : Handle;
+   function U_instancecheck_U (self : access Inst; object_P : access Object'Class) return bool is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__instancecheck__");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, object_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if object_P /= null then object_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end U_instancecheck_U;

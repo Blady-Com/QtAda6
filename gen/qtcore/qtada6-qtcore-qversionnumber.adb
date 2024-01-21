@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (body)                  : qtada6-qtcore-qversionnumber.adb
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -18,14 +18,14 @@ package body QtAda6.QtCore.QVersionNumber is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QVersionNumber");
       Args  := Tuple_New (0);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (maj_P : int) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QVersionNumber");
       Args  := Tuple_New (1);
@@ -33,7 +33,7 @@ package body QtAda6.QtCore.QVersionNumber is
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (maj_P : int; min_P : int) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QVersionNumber");
       Args  := Tuple_New (2);
@@ -42,7 +42,7 @@ package body QtAda6.QtCore.QVersionNumber is
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (maj_P : int; min_P : int; mic_P : int) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QVersionNumber");
       Args  := Tuple_New (3);
@@ -51,16 +51,20 @@ package body QtAda6.QtCore.QVersionNumber is
       Tuple_SetItem (Args, 2, Long_FromLong (mic_P));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (seg_P : Sequence_int) return Class is
-      Class, Args : Handle;
+   function Create (seg_P : SEQUENCE_int) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QVersionNumber");
-      Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      List  := List_New (seg_P'Length);
+      for ind in seg_P'Range loop
+         List_SetItem (List, ssize_t (ind - seg_P'First), Long_FromLong (seg_P (ind)));
+      end loop;
+      Args := Tuple_New (1);
+      Tuple_SetItem (Args, 0, List);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QVersionNumber");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -71,14 +75,14 @@ package body QtAda6.QtCore.QVersionNumber is
      (v1_P : access QtAda6.QtCore.QVersionNumber.Inst'Class; v2_P : access QtAda6.QtCore.QVersionNumber.Inst'Class)
       return access QtAda6.QtCore.QVersionNumber.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtCore.QVersionNumber.Class := new QtAda6.QtCore.QVersionNumber.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QVersionNumber");
       Method := Object_GetAttrString (Class, "commonPrefix");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, v1_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, v2_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if v1_P /= null then v1_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if v2_P /= null then v2_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -87,18 +91,18 @@ package body QtAda6.QtCore.QVersionNumber is
      (v1_P : access QtAda6.QtCore.QVersionNumber.Inst'Class; v2_P : access QtAda6.QtCore.QVersionNumber.Inst'Class)
       return int
    is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QVersionNumber");
       Method := Object_GetAttrString (Class, "compare");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, v1_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, v2_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if v1_P /= null then v1_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if v2_P /= null then v2_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end compare;
    function fromString (string_P : str) return access QtAda6.QtCore.QVersionNumber.Inst'Class is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtCore.QVersionNumber.Class := new QtAda6.QtCore.QVersionNumber.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QVersionNumber");
@@ -110,7 +114,7 @@ package body QtAda6.QtCore.QVersionNumber is
       return Ret;
    end fromString;
    function isNormalized (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isNormalized");
       Args   := Tuple_New (0);
@@ -118,7 +122,7 @@ package body QtAda6.QtCore.QVersionNumber is
       return To_Ada (Result);
    end isNormalized;
    function isNull (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isNull");
       Args   := Tuple_New (0);
@@ -126,16 +130,16 @@ package body QtAda6.QtCore.QVersionNumber is
       return To_Ada (Result);
    end isNull;
    function isPrefixOf (self : access Inst; other_P : access QtAda6.QtCore.QVersionNumber.Inst'Class) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isPrefixOf");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, other_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end isPrefixOf;
    function majorVersion (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "majorVersion");
       Args   := Tuple_New (0);
@@ -143,7 +147,7 @@ package body QtAda6.QtCore.QVersionNumber is
       return Long_AsLong (Result);
    end majorVersion;
    function microVersion (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "microVersion");
       Args   := Tuple_New (0);
@@ -151,7 +155,7 @@ package body QtAda6.QtCore.QVersionNumber is
       return Long_AsLong (Result);
    end microVersion;
    function minorVersion (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "minorVersion");
       Args   := Tuple_New (0);
@@ -159,8 +163,8 @@ package body QtAda6.QtCore.QVersionNumber is
       return Long_AsLong (Result);
    end minorVersion;
    function normalized (self : access Inst) return access QtAda6.QtCore.QVersionNumber.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QVersionNumber.Class := new QtAda6.QtCore.QVersionNumber.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QVersionNumber.Class := new QtAda6.QtCore.QVersionNumber.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "normalized");
       Args             := Tuple_New (0);
@@ -169,7 +173,7 @@ package body QtAda6.QtCore.QVersionNumber is
       return Ret;
    end normalized;
    function segmentAt (self : access Inst; index_P : int) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "segmentAt");
       Args   := Tuple_New (1);
@@ -178,23 +182,23 @@ package body QtAda6.QtCore.QVersionNumber is
       return Long_AsLong (Result);
    end segmentAt;
    function segmentCount (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "segmentCount");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end segmentCount;
-   function segments (self : access Inst) return List_int is
-      Method, Args, Result : Handle;
+   function segments (self : access Inst) return LIST_int is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "segments");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end segments;
    function toString (self : access Inst) return str is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toString");
       Args   := Tuple_New (0);

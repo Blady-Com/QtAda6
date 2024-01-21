@@ -1,23 +1,23 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qt-modifier.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with Enum.Flag;
 package QtAda6.QtCore.Qt.Modifier is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
-   type Inst is new Enum.Flag.Inst with null record;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
+   type Inst is new Enum.Flag with null record;
    procedure Finalize (Self : in out Class);
-   SHIFT         : Qt.Modifier.Class;-- 0x2000000
-   CTRL          : Qt.Modifier.Class;-- 0x4000000
-   ALT           : Qt.Modifier.Class;-- 0x8000000
-   META          : Qt.Modifier.Class;-- 0x10000000
-   MODIFIER_MASK : Qt.Modifier.Class;-- 0xfe000000
+   function SHIFT return Class;-- 0x2000000
+   function CTRL return Class;-- 0x4000000
+   function ALT return Class;-- 0x8000000
+   function META return Class;-- 0x10000000
+   function MODIFIER_MASK return Class;-- 0xfe000000
 end QtAda6.QtCore.Qt.Modifier;

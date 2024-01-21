@@ -1,26 +1,27 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qsignalmapper.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QSignalMapper is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtCore_QObject is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   mappedInt    : ClassVar_Signal;-- mappedInt(int)
-   mappedObject : ClassVar_Signal;-- mappedObject(QObject*)
-   mappedString : ClassVar_Signal;-- mappedString(QString)
-   function Create (parent_P : Optional_QtAda6_QtCore_QObject) return Class;
+   function mappedInt (self : access Inst) return CLASSVAR_Signal;-- mappedInt(int)
+   function mappedObject (self : access Inst) return CLASSVAR_Signal;-- mappedObject(QObject*)
+   function mappedString (self : access Inst) return CLASSVAR_Signal;-- mappedString(QString)
+   function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    procedure map (self : access Inst);
    procedure map (self : access Inst; sender_P : access QtAda6.QtCore.QObject.Inst'Class);
    function mapping (self : access Inst; id_P : int) return access QtAda6.QtCore.QObject.Inst'Class;

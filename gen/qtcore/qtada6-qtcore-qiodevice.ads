@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qiodevice.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -12,22 +12,24 @@ limited with QtAda6.QtCore.QIODeviceBase.OpenModeFlag;
 limited with QtAda6.QtCore.QByteArray;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.QIODeviceBase;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QIODevice is
-   type ClassVar_Signal is access Any;
-   type Union_QtAda6_QtCore_QByteArray_bytes is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst
 --  and QtAda6.QtCore.QIODeviceBase.Inst
    with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
    procedure Finalize (Self : in out Class);
-   aboutToClose        : ClassVar_Signal;-- aboutToClose()
-   bytesWritten        : ClassVar_Signal;-- bytesWritten(qlonglong)
-   channelBytesWritten : ClassVar_Signal;-- channelBytesWritten(int,qlonglong)
-   channelReadyRead    : ClassVar_Signal;-- channelReadyRead(int)
-   readChannelFinished : ClassVar_Signal;-- readChannelFinished()
-   readyRead           : ClassVar_Signal;-- readyRead()
+   function aboutToClose (self : access Inst) return CLASSVAR_Signal;-- aboutToClose()
+   function bytesWritten (self : access Inst) return CLASSVAR_Signal;-- bytesWritten(qlonglong)
+   function channelBytesWritten (self : access Inst) return CLASSVAR_Signal;-- channelBytesWritten(int,qlonglong)
+   function channelReadyRead (self : access Inst) return CLASSVAR_Signal;-- channelReadyRead(int)
+   function readChannelFinished (self : access Inst) return CLASSVAR_Signal;-- readChannelFinished()
+   function readyRead (self : access Inst) return CLASSVAR_Signal;-- readyRead()
    function Create return Class;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class) return Class;
    function atEnd (self : access Inst) return bool;
@@ -54,9 +56,9 @@ package QtAda6.QtCore.QIODevice is
    function read (self : access Inst; maxlen_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function readAll (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function readChannelCount (self : access Inst) return int;
-   function readData (self : access Inst; maxlen_P : int) return Object;
-   function readLine (self : access Inst; maxlen_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
-   function readLineData (self : access Inst; maxlen_P : int) return Object;
+   function readData (self : access Inst; maxlen_P : int) return access Object'Class;
+   function readLine (self : access Inst; maxlen_P : int := 0) return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function readLineData (self : access Inst; maxlen_P : int) return access Object'Class;
    function reset (self : access Inst) return bool;
    procedure rollbackTransaction (self : access Inst);
    function seek (self : access Inst; pos_P : int) return bool;
@@ -72,7 +74,7 @@ package QtAda6.QtCore.QIODevice is
    procedure ungetChar (self : access Inst; c_P : int);
    function waitForBytesWritten (self : access Inst; msecs_P : int) return bool;
    function waitForReadyRead (self : access Inst; msecs_P : int) return bool;
-   function write (self : access Inst; data_P : Union_QtAda6_QtCore_QByteArray_bytes) return int;
+   function write (self : access Inst; data_P : UNION_QtAda6_QtCore_QByteArraybytes) return int;
    function writeChannelCount (self : access Inst) return int;
    function writeData (self : access Inst; data_P : bytes; len_P : int) return int;
 end QtAda6.QtCore.QIODevice;

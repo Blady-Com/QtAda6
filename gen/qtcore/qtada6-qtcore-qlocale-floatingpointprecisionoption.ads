@@ -1,19 +1,19 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qlocale-floatingpointprecisionoption.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with Enum.IntEnum;
 package QtAda6.QtCore.QLocale.FloatingPointPrecisionOption is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
-   type Inst is new Enum.IntEnum.Inst with null record;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
+   type Inst is new Enum.IntEnum with null record;
    procedure Finalize (Self : in out Class);
-   FloatingPointShortest : QLocale.FloatingPointPrecisionOption.Class;-- -0x80
+   function FloatingPointShortest return Class;-- -0x80
 end QtAda6.QtCore.QLocale.FloatingPointPrecisionOption;

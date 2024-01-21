@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (body)                  : qtada6-qtcore-qdynamicpropertychangeevent.adb
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -20,24 +20,24 @@ package body QtAda6.QtCore.QDynamicPropertyChangeEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtCore.QDynamicPropertyChangeEvent.Inst'Class) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDynamicPropertyChangeEvent");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, arg_1_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (name_P : Union_QtAda6_QtCore_QByteArray_bytes) return Class is
-      Class, Args : Handle;
+   function Create (name_P : UNION_QtAda6_QtCore_QByteArraybytes) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDynamicPropertyChangeEvent");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if name_P /= null then name_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function clone (self : access Inst) return access QtAda6.QtCore.QDynamicPropertyChangeEvent.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QDynamicPropertyChangeEvent.Class :=
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QDynamicPropertyChangeEvent.Class :=
         new QtAda6.QtCore.QDynamicPropertyChangeEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
@@ -47,8 +47,8 @@ package body QtAda6.QtCore.QDynamicPropertyChangeEvent is
       return Ret;
    end clone;
    function propertyName (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "propertyName");
       Args             := Tuple_New (0);

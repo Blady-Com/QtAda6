@@ -1,487 +1,487 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qt-key.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with Enum.IntEnum;
 package QtAda6.QtCore.Qt.Key is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
-   type Inst is new Enum.IntEnum.Inst with null record;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
+   type Inst is new Enum.IntEnum with null record;
    procedure Finalize (Self : in out Class);
-   Key_Any                     : Qt.Key.Class;-- 0x20
-   Key_Space                   : Qt.Key.Class;-- 0x20
-   Key_Exclam                  : Qt.Key.Class;-- 0x21
-   Key_QuoteDbl                : Qt.Key.Class;-- 0x22
-   Key_NumberSign              : Qt.Key.Class;-- 0x23
-   Key_Dollar                  : Qt.Key.Class;-- 0x24
-   Key_Percent                 : Qt.Key.Class;-- 0x25
-   Key_Ampersand               : Qt.Key.Class;-- 0x26
-   Key_Apostrophe              : Qt.Key.Class;-- 0x27
-   Key_ParenLeft               : Qt.Key.Class;-- 0x28
-   Key_ParenRight              : Qt.Key.Class;-- 0x29
-   Key_Asterisk                : Qt.Key.Class;-- 0x2a
-   Key_Plus                    : Qt.Key.Class;-- 0x2b
-   Key_Comma                   : Qt.Key.Class;-- 0x2c
-   Key_Minus                   : Qt.Key.Class;-- 0x2d
-   Key_Period                  : Qt.Key.Class;-- 0x2e
-   Key_Slash                   : Qt.Key.Class;-- 0x2f
-   Key_0                       : Qt.Key.Class;-- 0x30
-   Key_1                       : Qt.Key.Class;-- 0x31
-   Key_2                       : Qt.Key.Class;-- 0x32
-   Key_3                       : Qt.Key.Class;-- 0x33
-   Key_4                       : Qt.Key.Class;-- 0x34
-   Key_5                       : Qt.Key.Class;-- 0x35
-   Key_6                       : Qt.Key.Class;-- 0x36
-   Key_7                       : Qt.Key.Class;-- 0x37
-   Key_8                       : Qt.Key.Class;-- 0x38
-   Key_9                       : Qt.Key.Class;-- 0x39
-   Key_Colon                   : Qt.Key.Class;-- 0x3a
-   Key_Semicolon               : Qt.Key.Class;-- 0x3b
-   Key_Less                    : Qt.Key.Class;-- 0x3c
-   Key_Equal                   : Qt.Key.Class;-- 0x3d
-   Key_Greater                 : Qt.Key.Class;-- 0x3e
-   Key_Question                : Qt.Key.Class;-- 0x3f
-   Key_At                      : Qt.Key.Class;-- 0x40
-   Key_A                       : Qt.Key.Class;-- 0x41
-   Key_B                       : Qt.Key.Class;-- 0x42
-   Key_C                       : Qt.Key.Class;-- 0x43
-   Key_D                       : Qt.Key.Class;-- 0x44
-   Key_E                       : Qt.Key.Class;-- 0x45
-   Key_F                       : Qt.Key.Class;-- 0x46
-   Key_G                       : Qt.Key.Class;-- 0x47
-   Key_H                       : Qt.Key.Class;-- 0x48
-   Key_I                       : Qt.Key.Class;-- 0x49
-   Key_J                       : Qt.Key.Class;-- 0x4a
-   Key_K                       : Qt.Key.Class;-- 0x4b
-   Key_L                       : Qt.Key.Class;-- 0x4c
-   Key_M                       : Qt.Key.Class;-- 0x4d
-   Key_N                       : Qt.Key.Class;-- 0x4e
-   Key_O                       : Qt.Key.Class;-- 0x4f
-   Key_P                       : Qt.Key.Class;-- 0x50
-   Key_Q                       : Qt.Key.Class;-- 0x51
-   Key_R                       : Qt.Key.Class;-- 0x52
-   Key_S                       : Qt.Key.Class;-- 0x53
-   Key_T                       : Qt.Key.Class;-- 0x54
-   Key_U                       : Qt.Key.Class;-- 0x55
-   Key_V                       : Qt.Key.Class;-- 0x56
-   Key_W                       : Qt.Key.Class;-- 0x57
-   Key_X                       : Qt.Key.Class;-- 0x58
-   Key_Y                       : Qt.Key.Class;-- 0x59
-   Key_Z                       : Qt.Key.Class;-- 0x5a
-   Key_BracketLeft             : Qt.Key.Class;-- 0x5b
-   Key_Backslash               : Qt.Key.Class;-- 0x5c
-   Key_BracketRight            : Qt.Key.Class;-- 0x5d
-   Key_AsciiCircum             : Qt.Key.Class;-- 0x5e
-   Key_Underscore              : Qt.Key.Class;-- 0x5f
-   Key_QuoteLeft               : Qt.Key.Class;-- 0x60
-   Key_BraceLeft               : Qt.Key.Class;-- 0x7b
-   Key_Bar                     : Qt.Key.Class;-- 0x7c
-   Key_BraceRight              : Qt.Key.Class;-- 0x7d
-   Key_AsciiTilde              : Qt.Key.Class;-- 0x7e
-   Key_nobreakspace            : Qt.Key.Class;-- 0xa0
-   Key_exclamdown              : Qt.Key.Class;-- 0xa1
-   Key_cent                    : Qt.Key.Class;-- 0xa2
-   Key_sterling                : Qt.Key.Class;-- 0xa3
-   Key_currency                : Qt.Key.Class;-- 0xa4
-   Key_yen                     : Qt.Key.Class;-- 0xa5
-   Key_brokenbar               : Qt.Key.Class;-- 0xa6
-   Key_section                 : Qt.Key.Class;-- 0xa7
-   Key_diaeresis               : Qt.Key.Class;-- 0xa8
-   Key_copyright               : Qt.Key.Class;-- 0xa9
-   Key_ordfeminine             : Qt.Key.Class;-- 0xaa
-   Key_guillemotleft           : Qt.Key.Class;-- 0xab
-   Key_notsign                 : Qt.Key.Class;-- 0xac
-   Key_hyphen                  : Qt.Key.Class;-- 0xad
-   Key_registered              : Qt.Key.Class;-- 0xae
-   Key_macron                  : Qt.Key.Class;-- 0xaf
-   Key_degree                  : Qt.Key.Class;-- 0xb0
-   Key_plusminus               : Qt.Key.Class;-- 0xb1
-   Key_twosuperior             : Qt.Key.Class;-- 0xb2
-   Key_threesuperior           : Qt.Key.Class;-- 0xb3
-   Key_acute                   : Qt.Key.Class;-- 0xb4
-   Key_mu                      : Qt.Key.Class;-- 0xb5
-   Key_paragraph               : Qt.Key.Class;-- 0xb6
-   Key_periodcentered          : Qt.Key.Class;-- 0xb7
-   Key_cedilla                 : Qt.Key.Class;-- 0xb8
-   Key_onesuperior             : Qt.Key.Class;-- 0xb9
-   Key_masculine               : Qt.Key.Class;-- 0xba
-   Key_guillemotright          : Qt.Key.Class;-- 0xbb
-   Key_onequarter              : Qt.Key.Class;-- 0xbc
-   Key_onehalf                 : Qt.Key.Class;-- 0xbd
-   Key_threequarters           : Qt.Key.Class;-- 0xbe
-   Key_questiondown            : Qt.Key.Class;-- 0xbf
-   Key_Agrave                  : Qt.Key.Class;-- 0xc0
-   Key_Aacute                  : Qt.Key.Class;-- 0xc1
-   Key_Acircumflex             : Qt.Key.Class;-- 0xc2
-   Key_Atilde                  : Qt.Key.Class;-- 0xc3
-   Key_Adiaeresis              : Qt.Key.Class;-- 0xc4
-   Key_Aring                   : Qt.Key.Class;-- 0xc5
-   Key_AE                      : Qt.Key.Class;-- 0xc6
-   Key_Ccedilla                : Qt.Key.Class;-- 0xc7
-   Key_Egrave                  : Qt.Key.Class;-- 0xc8
-   Key_Eacute                  : Qt.Key.Class;-- 0xc9
-   Key_Ecircumflex             : Qt.Key.Class;-- 0xca
-   Key_Ediaeresis              : Qt.Key.Class;-- 0xcb
-   Key_Igrave                  : Qt.Key.Class;-- 0xcc
-   Key_Iacute                  : Qt.Key.Class;-- 0xcd
-   Key_Icircumflex             : Qt.Key.Class;-- 0xce
-   Key_Idiaeresis              : Qt.Key.Class;-- 0xcf
-   Key_ETH                     : Qt.Key.Class;-- 0xd0
-   Key_Ntilde                  : Qt.Key.Class;-- 0xd1
-   Key_Ograve                  : Qt.Key.Class;-- 0xd2
-   Key_Oacute                  : Qt.Key.Class;-- 0xd3
-   Key_Ocircumflex             : Qt.Key.Class;-- 0xd4
-   Key_Otilde                  : Qt.Key.Class;-- 0xd5
-   Key_Odiaeresis              : Qt.Key.Class;-- 0xd6
-   Key_multiply                : Qt.Key.Class;-- 0xd7
-   Key_Ooblique                : Qt.Key.Class;-- 0xd8
-   Key_Ugrave                  : Qt.Key.Class;-- 0xd9
-   Key_Uacute                  : Qt.Key.Class;-- 0xda
-   Key_Ucircumflex             : Qt.Key.Class;-- 0xdb
-   Key_Udiaeresis              : Qt.Key.Class;-- 0xdc
-   Key_Yacute                  : Qt.Key.Class;-- 0xdd
-   Key_THORN                   : Qt.Key.Class;-- 0xde
-   Key_ssharp                  : Qt.Key.Class;-- 0xdf
-   Key_division                : Qt.Key.Class;-- 0xf7
-   Key_ydiaeresis              : Qt.Key.Class;-- 0xff
-   Key_Escape                  : Qt.Key.Class;-- 0x1000000
-   Key_Tab                     : Qt.Key.Class;-- 0x1000001
-   Key_Backtab                 : Qt.Key.Class;-- 0x1000002
-   Key_Backspace               : Qt.Key.Class;-- 0x1000003
-   Key_Return                  : Qt.Key.Class;-- 0x1000004
-   Key_Enter                   : Qt.Key.Class;-- 0x1000005
-   Key_Insert                  : Qt.Key.Class;-- 0x1000006
-   Key_Delete                  : Qt.Key.Class;-- 0x1000007
-   Key_Pause                   : Qt.Key.Class;-- 0x1000008
-   Key_Print                   : Qt.Key.Class;-- 0x1000009
-   Key_SysReq                  : Qt.Key.Class;-- 0x100000a
-   Key_Clear                   : Qt.Key.Class;-- 0x100000b
-   Key_Home                    : Qt.Key.Class;-- 0x1000010
-   Key_End                     : Qt.Key.Class;-- 0x1000011
-   Key_Left                    : Qt.Key.Class;-- 0x1000012
-   Key_Up                      : Qt.Key.Class;-- 0x1000013
-   Key_Right                   : Qt.Key.Class;-- 0x1000014
-   Key_Down                    : Qt.Key.Class;-- 0x1000015
-   Key_PageUp                  : Qt.Key.Class;-- 0x1000016
-   Key_PageDown                : Qt.Key.Class;-- 0x1000017
-   Key_Shift                   : Qt.Key.Class;-- 0x1000020
-   Key_Control                 : Qt.Key.Class;-- 0x1000021
-   Key_Meta                    : Qt.Key.Class;-- 0x1000022
-   Key_Alt                     : Qt.Key.Class;-- 0x1000023
-   Key_CapsLock                : Qt.Key.Class;-- 0x1000024
-   Key_NumLock                 : Qt.Key.Class;-- 0x1000025
-   Key_ScrollLock              : Qt.Key.Class;-- 0x1000026
-   Key_F1                      : Qt.Key.Class;-- 0x1000030
-   Key_F2                      : Qt.Key.Class;-- 0x1000031
-   Key_F3                      : Qt.Key.Class;-- 0x1000032
-   Key_F4                      : Qt.Key.Class;-- 0x1000033
-   Key_F5                      : Qt.Key.Class;-- 0x1000034
-   Key_F6                      : Qt.Key.Class;-- 0x1000035
-   Key_F7                      : Qt.Key.Class;-- 0x1000036
-   Key_F8                      : Qt.Key.Class;-- 0x1000037
-   Key_F9                      : Qt.Key.Class;-- 0x1000038
-   Key_F10                     : Qt.Key.Class;-- 0x1000039
-   Key_F11                     : Qt.Key.Class;-- 0x100003a
-   Key_F12                     : Qt.Key.Class;-- 0x100003b
-   Key_F13                     : Qt.Key.Class;-- 0x100003c
-   Key_F14                     : Qt.Key.Class;-- 0x100003d
-   Key_F15                     : Qt.Key.Class;-- 0x100003e
-   Key_F16                     : Qt.Key.Class;-- 0x100003f
-   Key_F17                     : Qt.Key.Class;-- 0x1000040
-   Key_F18                     : Qt.Key.Class;-- 0x1000041
-   Key_F19                     : Qt.Key.Class;-- 0x1000042
-   Key_F20                     : Qt.Key.Class;-- 0x1000043
-   Key_F21                     : Qt.Key.Class;-- 0x1000044
-   Key_F22                     : Qt.Key.Class;-- 0x1000045
-   Key_F23                     : Qt.Key.Class;-- 0x1000046
-   Key_F24                     : Qt.Key.Class;-- 0x1000047
-   Key_F25                     : Qt.Key.Class;-- 0x1000048
-   Key_F26                     : Qt.Key.Class;-- 0x1000049
-   Key_F27                     : Qt.Key.Class;-- 0x100004a
-   Key_F28                     : Qt.Key.Class;-- 0x100004b
-   Key_F29                     : Qt.Key.Class;-- 0x100004c
-   Key_F30                     : Qt.Key.Class;-- 0x100004d
-   Key_F31                     : Qt.Key.Class;-- 0x100004e
-   Key_F32                     : Qt.Key.Class;-- 0x100004f
-   Key_F33                     : Qt.Key.Class;-- 0x1000050
-   Key_F34                     : Qt.Key.Class;-- 0x1000051
-   Key_F35                     : Qt.Key.Class;-- 0x1000052
-   Key_Super_L                 : Qt.Key.Class;-- 0x1000053
-   Key_Super_R                 : Qt.Key.Class;-- 0x1000054
-   Key_Menu                    : Qt.Key.Class;-- 0x1000055
-   Key_Hyper_L                 : Qt.Key.Class;-- 0x1000056
-   Key_Hyper_R                 : Qt.Key.Class;-- 0x1000057
-   Key_Help                    : Qt.Key.Class;-- 0x1000058
-   Key_Direction_L             : Qt.Key.Class;-- 0x1000059
-   Key_Direction_R             : Qt.Key.Class;-- 0x1000060
-   Key_Back                    : Qt.Key.Class;-- 0x1000061
-   Key_Forward                 : Qt.Key.Class;-- 0x1000062
-   Key_Stop                    : Qt.Key.Class;-- 0x1000063
-   Key_Refresh                 : Qt.Key.Class;-- 0x1000064
-   Key_VolumeDown              : Qt.Key.Class;-- 0x1000070
-   Key_VolumeMute              : Qt.Key.Class;-- 0x1000071
-   Key_VolumeUp                : Qt.Key.Class;-- 0x1000072
-   Key_BassBoost               : Qt.Key.Class;-- 0x1000073
-   Key_BassUp                  : Qt.Key.Class;-- 0x1000074
-   Key_BassDown                : Qt.Key.Class;-- 0x1000075
-   Key_TrebleUp                : Qt.Key.Class;-- 0x1000076
-   Key_TrebleDown              : Qt.Key.Class;-- 0x1000077
-   Key_MediaPlay               : Qt.Key.Class;-- 0x1000080
-   Key_MediaStop               : Qt.Key.Class;-- 0x1000081
-   Key_MediaPrevious           : Qt.Key.Class;-- 0x1000082
-   Key_MediaNext               : Qt.Key.Class;-- 0x1000083
-   Key_MediaRecord             : Qt.Key.Class;-- 0x1000084
-   Key_MediaPause              : Qt.Key.Class;-- 0x1000085
-   Key_MediaTogglePlayPause    : Qt.Key.Class;-- 0x1000086
-   Key_HomePage                : Qt.Key.Class;-- 0x1000090
-   Key_Favorites               : Qt.Key.Class;-- 0x1000091
-   Key_Search                  : Qt.Key.Class;-- 0x1000092
-   Key_Standby                 : Qt.Key.Class;-- 0x1000093
-   Key_OpenUrl                 : Qt.Key.Class;-- 0x1000094
-   Key_LaunchMail              : Qt.Key.Class;-- 0x10000a0
-   Key_LaunchMedia             : Qt.Key.Class;-- 0x10000a1
-   Key_Launch0                 : Qt.Key.Class;-- 0x10000a2
-   Key_Launch1                 : Qt.Key.Class;-- 0x10000a3
-   Key_Launch2                 : Qt.Key.Class;-- 0x10000a4
-   Key_Launch3                 : Qt.Key.Class;-- 0x10000a5
-   Key_Launch4                 : Qt.Key.Class;-- 0x10000a6
-   Key_Launch5                 : Qt.Key.Class;-- 0x10000a7
-   Key_Launch6                 : Qt.Key.Class;-- 0x10000a8
-   Key_Launch7                 : Qt.Key.Class;-- 0x10000a9
-   Key_Launch8                 : Qt.Key.Class;-- 0x10000aa
-   Key_Launch9                 : Qt.Key.Class;-- 0x10000ab
-   Key_LaunchA                 : Qt.Key.Class;-- 0x10000ac
-   Key_LaunchB                 : Qt.Key.Class;-- 0x10000ad
-   Key_LaunchC                 : Qt.Key.Class;-- 0x10000ae
-   Key_LaunchD                 : Qt.Key.Class;-- 0x10000af
-   Key_LaunchE                 : Qt.Key.Class;-- 0x10000b0
-   Key_LaunchF                 : Qt.Key.Class;-- 0x10000b1
-   Key_MonBrightnessUp         : Qt.Key.Class;-- 0x10000b2
-   Key_MonBrightnessDown       : Qt.Key.Class;-- 0x10000b3
-   Key_KeyboardLightOnOff      : Qt.Key.Class;-- 0x10000b4
-   Key_KeyboardBrightnessUp    : Qt.Key.Class;-- 0x10000b5
-   Key_KeyboardBrightnessDown  : Qt.Key.Class;-- 0x10000b6
-   Key_PowerOff                : Qt.Key.Class;-- 0x10000b7
-   Key_WakeUp                  : Qt.Key.Class;-- 0x10000b8
-   Key_Eject                   : Qt.Key.Class;-- 0x10000b9
-   Key_ScreenSaver             : Qt.Key.Class;-- 0x10000ba
-   Key_WWW                     : Qt.Key.Class;-- 0x10000bb
-   Key_Memo                    : Qt.Key.Class;-- 0x10000bc
-   Key_LightBulb               : Qt.Key.Class;-- 0x10000bd
-   Key_Shop                    : Qt.Key.Class;-- 0x10000be
-   Key_History                 : Qt.Key.Class;-- 0x10000bf
-   Key_AddFavorite             : Qt.Key.Class;-- 0x10000c0
-   Key_HotLinks                : Qt.Key.Class;-- 0x10000c1
-   Key_BrightnessAdjust        : Qt.Key.Class;-- 0x10000c2
-   Key_Finance                 : Qt.Key.Class;-- 0x10000c3
-   Key_Community               : Qt.Key.Class;-- 0x10000c4
-   Key_AudioRewind             : Qt.Key.Class;-- 0x10000c5
-   Key_BackForward             : Qt.Key.Class;-- 0x10000c6
-   Key_ApplicationLeft         : Qt.Key.Class;-- 0x10000c7
-   Key_ApplicationRight        : Qt.Key.Class;-- 0x10000c8
-   Key_Book                    : Qt.Key.Class;-- 0x10000c9
-   Key_CD                      : Qt.Key.Class;-- 0x10000ca
-   Key_Calculator              : Qt.Key.Class;-- 0x10000cb
-   Key_ToDoList                : Qt.Key.Class;-- 0x10000cc
-   Key_ClearGrab               : Qt.Key.Class;-- 0x10000cd
-   Key_Close                   : Qt.Key.Class;-- 0x10000ce
-   Key_Copy                    : Qt.Key.Class;-- 0x10000cf
-   Key_Cut                     : Qt.Key.Class;-- 0x10000d0
-   Key_Display                 : Qt.Key.Class;-- 0x10000d1
-   Key_DOS                     : Qt.Key.Class;-- 0x10000d2
-   Key_Documents               : Qt.Key.Class;-- 0x10000d3
-   Key_Excel                   : Qt.Key.Class;-- 0x10000d4
-   Key_Explorer                : Qt.Key.Class;-- 0x10000d5
-   Key_Game                    : Qt.Key.Class;-- 0x10000d6
-   Key_Go                      : Qt.Key.Class;-- 0x10000d7
-   Key_iTouch                  : Qt.Key.Class;-- 0x10000d8
-   Key_LogOff                  : Qt.Key.Class;-- 0x10000d9
-   Key_Market                  : Qt.Key.Class;-- 0x10000da
-   Key_Meeting                 : Qt.Key.Class;-- 0x10000db
-   Key_MenuKB                  : Qt.Key.Class;-- 0x10000dc
-   Key_MenuPB                  : Qt.Key.Class;-- 0x10000dd
-   Key_MySites                 : Qt.Key.Class;-- 0x10000de
-   Key_News                    : Qt.Key.Class;-- 0x10000df
-   Key_OfficeHome              : Qt.Key.Class;-- 0x10000e0
-   Key_Option                  : Qt.Key.Class;-- 0x10000e1
-   Key_Paste                   : Qt.Key.Class;-- 0x10000e2
-   Key_Phone                   : Qt.Key.Class;-- 0x10000e3
-   Key_Calendar                : Qt.Key.Class;-- 0x10000e4
-   Key_Reply                   : Qt.Key.Class;-- 0x10000e5
-   Key_Reload                  : Qt.Key.Class;-- 0x10000e6
-   Key_RotateWindows           : Qt.Key.Class;-- 0x10000e7
-   Key_RotationPB              : Qt.Key.Class;-- 0x10000e8
-   Key_RotationKB              : Qt.Key.Class;-- 0x10000e9
-   Key_Save                    : Qt.Key.Class;-- 0x10000ea
-   Key_Send                    : Qt.Key.Class;-- 0x10000eb
-   Key_Spell                   : Qt.Key.Class;-- 0x10000ec
-   Key_SplitScreen             : Qt.Key.Class;-- 0x10000ed
-   Key_Support                 : Qt.Key.Class;-- 0x10000ee
-   Key_TaskPane                : Qt.Key.Class;-- 0x10000ef
-   Key_Terminal                : Qt.Key.Class;-- 0x10000f0
-   Key_Tools                   : Qt.Key.Class;-- 0x10000f1
-   Key_Travel                  : Qt.Key.Class;-- 0x10000f2
-   Key_Video                   : Qt.Key.Class;-- 0x10000f3
-   Key_Word                    : Qt.Key.Class;-- 0x10000f4
-   Key_Xfer                    : Qt.Key.Class;-- 0x10000f5
-   Key_ZoomIn                  : Qt.Key.Class;-- 0x10000f6
-   Key_ZoomOut                 : Qt.Key.Class;-- 0x10000f7
-   Key_Away                    : Qt.Key.Class;-- 0x10000f8
-   Key_Messenger               : Qt.Key.Class;-- 0x10000f9
-   Key_WebCam                  : Qt.Key.Class;-- 0x10000fa
-   Key_MailForward             : Qt.Key.Class;-- 0x10000fb
-   Key_Pictures                : Qt.Key.Class;-- 0x10000fc
-   Key_Music                   : Qt.Key.Class;-- 0x10000fd
-   Key_Battery                 : Qt.Key.Class;-- 0x10000fe
-   Key_Bluetooth               : Qt.Key.Class;-- 0x10000ff
-   Key_WLAN                    : Qt.Key.Class;-- 0x1000100
-   Key_UWB                     : Qt.Key.Class;-- 0x1000101
-   Key_AudioForward            : Qt.Key.Class;-- 0x1000102
-   Key_AudioRepeat             : Qt.Key.Class;-- 0x1000103
-   Key_AudioRandomPlay         : Qt.Key.Class;-- 0x1000104
-   Key_Subtitle                : Qt.Key.Class;-- 0x1000105
-   Key_AudioCycleTrack         : Qt.Key.Class;-- 0x1000106
-   Key_Time                    : Qt.Key.Class;-- 0x1000107
-   Key_Hibernate               : Qt.Key.Class;-- 0x1000108
-   Key_View                    : Qt.Key.Class;-- 0x1000109
-   Key_TopMenu                 : Qt.Key.Class;-- 0x100010a
-   Key_PowerDown               : Qt.Key.Class;-- 0x100010b
-   Key_Suspend                 : Qt.Key.Class;-- 0x100010c
-   Key_ContrastAdjust          : Qt.Key.Class;-- 0x100010d
-   Key_LaunchG                 : Qt.Key.Class;-- 0x100010e
-   Key_LaunchH                 : Qt.Key.Class;-- 0x100010f
-   Key_TouchpadToggle          : Qt.Key.Class;-- 0x1000110
-   Key_TouchpadOn              : Qt.Key.Class;-- 0x1000111
-   Key_TouchpadOff             : Qt.Key.Class;-- 0x1000112
-   Key_MicMute                 : Qt.Key.Class;-- 0x1000113
-   Key_Red                     : Qt.Key.Class;-- 0x1000114
-   Key_Green                   : Qt.Key.Class;-- 0x1000115
-   Key_Yellow                  : Qt.Key.Class;-- 0x1000116
-   Key_Blue                    : Qt.Key.Class;-- 0x1000117
-   Key_ChannelUp               : Qt.Key.Class;-- 0x1000118
-   Key_ChannelDown             : Qt.Key.Class;-- 0x1000119
-   Key_Guide                   : Qt.Key.Class;-- 0x100011a
-   Key_Info                    : Qt.Key.Class;-- 0x100011b
-   Key_Settings                : Qt.Key.Class;-- 0x100011c
-   Key_MicVolumeUp             : Qt.Key.Class;-- 0x100011d
-   Key_MicVolumeDown           : Qt.Key.Class;-- 0x100011e
-   Key_New                     : Qt.Key.Class;-- 0x1000120
-   Key_Open                    : Qt.Key.Class;-- 0x1000121
-   Key_Find                    : Qt.Key.Class;-- 0x1000122
-   Key_Undo                    : Qt.Key.Class;-- 0x1000123
-   Key_Redo                    : Qt.Key.Class;-- 0x1000124
-   Key_AltGr                   : Qt.Key.Class;-- 0x1001103
-   Key_Multi_key               : Qt.Key.Class;-- 0x1001120
-   Key_Kanji                   : Qt.Key.Class;-- 0x1001121
-   Key_Muhenkan                : Qt.Key.Class;-- 0x1001122
-   Key_Henkan                  : Qt.Key.Class;-- 0x1001123
-   Key_Romaji                  : Qt.Key.Class;-- 0x1001124
-   Key_Hiragana                : Qt.Key.Class;-- 0x1001125
-   Key_Katakana                : Qt.Key.Class;-- 0x1001126
-   Key_Hiragana_Katakana       : Qt.Key.Class;-- 0x1001127
-   Key_Zenkaku                 : Qt.Key.Class;-- 0x1001128
-   Key_Hankaku                 : Qt.Key.Class;-- 0x1001129
-   Key_Zenkaku_Hankaku         : Qt.Key.Class;-- 0x100112a
-   Key_Touroku                 : Qt.Key.Class;-- 0x100112b
-   Key_Massyo                  : Qt.Key.Class;-- 0x100112c
-   Key_Kana_Lock               : Qt.Key.Class;-- 0x100112d
-   Key_Kana_Shift              : Qt.Key.Class;-- 0x100112e
-   Key_Eisu_Shift              : Qt.Key.Class;-- 0x100112f
-   Key_Eisu_toggle             : Qt.Key.Class;-- 0x1001130
-   Key_Hangul                  : Qt.Key.Class;-- 0x1001131
-   Key_Hangul_Start            : Qt.Key.Class;-- 0x1001132
-   Key_Hangul_End              : Qt.Key.Class;-- 0x1001133
-   Key_Hangul_Hanja            : Qt.Key.Class;-- 0x1001134
-   Key_Hangul_Jamo             : Qt.Key.Class;-- 0x1001135
-   Key_Hangul_Romaja           : Qt.Key.Class;-- 0x1001136
-   Key_Codeinput               : Qt.Key.Class;-- 0x1001137
-   Key_Hangul_Jeonja           : Qt.Key.Class;-- 0x1001138
-   Key_Hangul_Banja            : Qt.Key.Class;-- 0x1001139
-   Key_Hangul_PreHanja         : Qt.Key.Class;-- 0x100113a
-   Key_Hangul_PostHanja        : Qt.Key.Class;-- 0x100113b
-   Key_SingleCandidate         : Qt.Key.Class;-- 0x100113c
-   Key_MultipleCandidate       : Qt.Key.Class;-- 0x100113d
-   Key_PreviousCandidate       : Qt.Key.Class;-- 0x100113e
-   Key_Hangul_Special          : Qt.Key.Class;-- 0x100113f
-   Key_Mode_switch             : Qt.Key.Class;-- 0x100117e
-   Key_Dead_Grave              : Qt.Key.Class;-- 0x1001250
-   Key_Dead_Acute              : Qt.Key.Class;-- 0x1001251
-   Key_Dead_Circumflex         : Qt.Key.Class;-- 0x1001252
-   Key_Dead_Tilde              : Qt.Key.Class;-- 0x1001253
-   Key_Dead_Macron             : Qt.Key.Class;-- 0x1001254
-   Key_Dead_Breve              : Qt.Key.Class;-- 0x1001255
-   Key_Dead_Abovedot           : Qt.Key.Class;-- 0x1001256
-   Key_Dead_Diaeresis          : Qt.Key.Class;-- 0x1001257
-   Key_Dead_Abovering          : Qt.Key.Class;-- 0x1001258
-   Key_Dead_Doubleacute        : Qt.Key.Class;-- 0x1001259
-   Key_Dead_Caron              : Qt.Key.Class;-- 0x100125a
-   Key_Dead_Cedilla            : Qt.Key.Class;-- 0x100125b
-   Key_Dead_Ogonek             : Qt.Key.Class;-- 0x100125c
-   Key_Dead_Iota               : Qt.Key.Class;-- 0x100125d
-   Key_Dead_Voiced_Sound       : Qt.Key.Class;-- 0x100125e
-   Key_Dead_Semivoiced_Sound   : Qt.Key.Class;-- 0x100125f
-   Key_Dead_Belowdot           : Qt.Key.Class;-- 0x1001260
-   Key_Dead_Hook               : Qt.Key.Class;-- 0x1001261
-   Key_Dead_Horn               : Qt.Key.Class;-- 0x1001262
-   Key_Dead_Stroke             : Qt.Key.Class;-- 0x1001263
-   Key_Dead_Abovecomma         : Qt.Key.Class;-- 0x1001264
-   Key_Dead_Abovereversedcomma : Qt.Key.Class;-- 0x1001265
-   Key_Dead_Doublegrave        : Qt.Key.Class;-- 0x1001266
-   Key_Dead_Belowring          : Qt.Key.Class;-- 0x1001267
-   Key_Dead_Belowmacron        : Qt.Key.Class;-- 0x1001268
-   Key_Dead_Belowcircumflex    : Qt.Key.Class;-- 0x1001269
-   Key_Dead_Belowtilde         : Qt.Key.Class;-- 0x100126a
-   Key_Dead_Belowbreve         : Qt.Key.Class;-- 0x100126b
-   Key_Dead_Belowdiaeresis     : Qt.Key.Class;-- 0x100126c
-   Key_Dead_Invertedbreve      : Qt.Key.Class;-- 0x100126d
-   Key_Dead_Belowcomma         : Qt.Key.Class;-- 0x100126e
-   Key_Dead_Currency           : Qt.Key.Class;-- 0x100126f
-   Key_Dead_a                  : Qt.Key.Class;-- 0x1001280
-   Key_Dead_A_K                : Qt.Key.Class;-- 0x1001281
-   Key_Dead_e                  : Qt.Key.Class;-- 0x1001282
-   Key_Dead_E_K                : Qt.Key.Class;-- 0x1001283
-   Key_Dead_i                  : Qt.Key.Class;-- 0x1001284
-   Key_Dead_I_K                : Qt.Key.Class;-- 0x1001285
-   Key_Dead_o                  : Qt.Key.Class;-- 0x1001286
-   Key_Dead_O_K                : Qt.Key.Class;-- 0x1001287
-   Key_Dead_u                  : Qt.Key.Class;-- 0x1001288
-   Key_Dead_U_K                : Qt.Key.Class;-- 0x1001289
-   Key_Dead_Small_Schwa        : Qt.Key.Class;-- 0x100128a
-   Key_Dead_Capital_Schwa      : Qt.Key.Class;-- 0x100128b
-   Key_Dead_Greek              : Qt.Key.Class;-- 0x100128c
-   Key_Dead_Lowline            : Qt.Key.Class;-- 0x1001290
-   Key_Dead_Aboveverticalline  : Qt.Key.Class;-- 0x1001291
-   Key_Dead_Belowverticalline  : Qt.Key.Class;-- 0x1001292
-   Key_Dead_Longsolidusoverlay : Qt.Key.Class;-- 0x1001293
-   Key_MediaLast               : Qt.Key.Class;-- 0x100ffff
-   Key_Select                  : Qt.Key.Class;-- 0x1010000
-   Key_Yes                     : Qt.Key.Class;-- 0x1010001
-   Key_No                      : Qt.Key.Class;-- 0x1010002
-   Key_Cancel                  : Qt.Key.Class;-- 0x1020001
-   Key_Printer                 : Qt.Key.Class;-- 0x1020002
-   Key_Execute                 : Qt.Key.Class;-- 0x1020003
-   Key_Sleep                   : Qt.Key.Class;-- 0x1020004
-   Key_Play                    : Qt.Key.Class;-- 0x1020005
-   Key_Zoom                    : Qt.Key.Class;-- 0x1020006
-   Key_Exit                    : Qt.Key.Class;-- 0x102000a
-   Key_Context1                : Qt.Key.Class;-- 0x1100000
-   Key_Context2                : Qt.Key.Class;-- 0x1100001
-   Key_Context3                : Qt.Key.Class;-- 0x1100002
-   Key_Context4                : Qt.Key.Class;-- 0x1100003
-   Key_Call                    : Qt.Key.Class;-- 0x1100004
-   Key_Hangup                  : Qt.Key.Class;-- 0x1100005
-   Key_Flip                    : Qt.Key.Class;-- 0x1100006
-   Key_ToggleCallHangup        : Qt.Key.Class;-- 0x1100007
-   Key_VoiceDial               : Qt.Key.Class;-- 0x1100008
-   Key_LastNumberRedial        : Qt.Key.Class;-- 0x1100009
-   Key_Camera                  : Qt.Key.Class;-- 0x1100020
-   Key_CameraFocus             : Qt.Key.Class;-- 0x1100021
-   Key_unknown                 : Qt.Key.Class;-- 0x1ffffff
+   function Key_Any return Class;-- 0x20
+   function Key_Space return Class;-- 0x20
+   function Key_Exclam return Class;-- 0x21
+   function Key_QuoteDbl return Class;-- 0x22
+   function Key_NumberSign return Class;-- 0x23
+   function Key_Dollar return Class;-- 0x24
+   function Key_Percent return Class;-- 0x25
+   function Key_Ampersand return Class;-- 0x26
+   function Key_Apostrophe return Class;-- 0x27
+   function Key_ParenLeft return Class;-- 0x28
+   function Key_ParenRight return Class;-- 0x29
+   function Key_Asterisk return Class;-- 0x2a
+   function Key_Plus return Class;-- 0x2b
+   function Key_Comma return Class;-- 0x2c
+   function Key_Minus return Class;-- 0x2d
+   function Key_Period return Class;-- 0x2e
+   function Key_Slash return Class;-- 0x2f
+   function Key_0 return Class;-- 0x30
+   function Key_1 return Class;-- 0x31
+   function Key_2 return Class;-- 0x32
+   function Key_3 return Class;-- 0x33
+   function Key_4 return Class;-- 0x34
+   function Key_5 return Class;-- 0x35
+   function Key_6 return Class;-- 0x36
+   function Key_7 return Class;-- 0x37
+   function Key_8 return Class;-- 0x38
+   function Key_9 return Class;-- 0x39
+   function Key_Colon return Class;-- 0x3a
+   function Key_Semicolon return Class;-- 0x3b
+   function Key_Less return Class;-- 0x3c
+   function Key_Equal return Class;-- 0x3d
+   function Key_Greater return Class;-- 0x3e
+   function Key_Question return Class;-- 0x3f
+   function Key_At return Class;-- 0x40
+   function Key_A return Class;-- 0x41
+   function Key_B return Class;-- 0x42
+   function Key_C return Class;-- 0x43
+   function Key_D return Class;-- 0x44
+   function Key_E return Class;-- 0x45
+   function Key_F return Class;-- 0x46
+   function Key_G return Class;-- 0x47
+   function Key_H return Class;-- 0x48
+   function Key_I return Class;-- 0x49
+   function Key_J return Class;-- 0x4a
+   function Key_K return Class;-- 0x4b
+   function Key_L return Class;-- 0x4c
+   function Key_M return Class;-- 0x4d
+   function Key_N return Class;-- 0x4e
+   function Key_O return Class;-- 0x4f
+   function Key_P return Class;-- 0x50
+   function Key_Q return Class;-- 0x51
+   function Key_R return Class;-- 0x52
+   function Key_S return Class;-- 0x53
+   function Key_T return Class;-- 0x54
+   function Key_U return Class;-- 0x55
+   function Key_V return Class;-- 0x56
+   function Key_W return Class;-- 0x57
+   function Key_X return Class;-- 0x58
+   function Key_Y return Class;-- 0x59
+   function Key_Z return Class;-- 0x5a
+   function Key_BracketLeft return Class;-- 0x5b
+   function Key_Backslash return Class;-- 0x5c
+   function Key_BracketRight return Class;-- 0x5d
+   function Key_AsciiCircum return Class;-- 0x5e
+   function Key_Underscore return Class;-- 0x5f
+   function Key_QuoteLeft return Class;-- 0x60
+   function Key_BraceLeft return Class;-- 0x7b
+   function Key_Bar return Class;-- 0x7c
+   function Key_BraceRight return Class;-- 0x7d
+   function Key_AsciiTilde return Class;-- 0x7e
+   function Key_nobreakspace return Class;-- 0xa0
+   function Key_exclamdown return Class;-- 0xa1
+   function Key_cent return Class;-- 0xa2
+   function Key_sterling return Class;-- 0xa3
+   function Key_currency return Class;-- 0xa4
+   function Key_yen return Class;-- 0xa5
+   function Key_brokenbar return Class;-- 0xa6
+   function Key_section return Class;-- 0xa7
+   function Key_diaeresis return Class;-- 0xa8
+   function Key_copyright return Class;-- 0xa9
+   function Key_ordfeminine return Class;-- 0xaa
+   function Key_guillemotleft return Class;-- 0xab
+   function Key_notsign return Class;-- 0xac
+   function Key_hyphen return Class;-- 0xad
+   function Key_registered return Class;-- 0xae
+   function Key_macron return Class;-- 0xaf
+   function Key_degree return Class;-- 0xb0
+   function Key_plusminus return Class;-- 0xb1
+   function Key_twosuperior return Class;-- 0xb2
+   function Key_threesuperior return Class;-- 0xb3
+   function Key_acute return Class;-- 0xb4
+   function Key_mu return Class;-- 0xb5
+   function Key_paragraph return Class;-- 0xb6
+   function Key_periodcentered return Class;-- 0xb7
+   function Key_cedilla return Class;-- 0xb8
+   function Key_onesuperior return Class;-- 0xb9
+   function Key_masculine return Class;-- 0xba
+   function Key_guillemotright return Class;-- 0xbb
+   function Key_onequarter return Class;-- 0xbc
+   function Key_onehalf return Class;-- 0xbd
+   function Key_threequarters return Class;-- 0xbe
+   function Key_questiondown return Class;-- 0xbf
+   function Key_Agrave return Class;-- 0xc0
+   function Key_Aacute return Class;-- 0xc1
+   function Key_Acircumflex return Class;-- 0xc2
+   function Key_Atilde return Class;-- 0xc3
+   function Key_Adiaeresis return Class;-- 0xc4
+   function Key_Aring return Class;-- 0xc5
+   function Key_AE return Class;-- 0xc6
+   function Key_Ccedilla return Class;-- 0xc7
+   function Key_Egrave return Class;-- 0xc8
+   function Key_Eacute return Class;-- 0xc9
+   function Key_Ecircumflex return Class;-- 0xca
+   function Key_Ediaeresis return Class;-- 0xcb
+   function Key_Igrave return Class;-- 0xcc
+   function Key_Iacute return Class;-- 0xcd
+   function Key_Icircumflex return Class;-- 0xce
+   function Key_Idiaeresis return Class;-- 0xcf
+   function Key_ETH return Class;-- 0xd0
+   function Key_Ntilde return Class;-- 0xd1
+   function Key_Ograve return Class;-- 0xd2
+   function Key_Oacute return Class;-- 0xd3
+   function Key_Ocircumflex return Class;-- 0xd4
+   function Key_Otilde return Class;-- 0xd5
+   function Key_Odiaeresis return Class;-- 0xd6
+   function Key_multiply return Class;-- 0xd7
+   function Key_Ooblique return Class;-- 0xd8
+   function Key_Ugrave return Class;-- 0xd9
+   function Key_Uacute return Class;-- 0xda
+   function Key_Ucircumflex return Class;-- 0xdb
+   function Key_Udiaeresis return Class;-- 0xdc
+   function Key_Yacute return Class;-- 0xdd
+   function Key_THORN return Class;-- 0xde
+   function Key_ssharp return Class;-- 0xdf
+   function Key_division return Class;-- 0xf7
+   function Key_ydiaeresis return Class;-- 0xff
+   function Key_Escape return Class;-- 0x1000000
+   function Key_Tab return Class;-- 0x1000001
+   function Key_Backtab return Class;-- 0x1000002
+   function Key_Backspace return Class;-- 0x1000003
+   function Key_Return return Class;-- 0x1000004
+   function Key_Enter return Class;-- 0x1000005
+   function Key_Insert return Class;-- 0x1000006
+   function Key_Delete return Class;-- 0x1000007
+   function Key_Pause return Class;-- 0x1000008
+   function Key_Print return Class;-- 0x1000009
+   function Key_SysReq return Class;-- 0x100000a
+   function Key_Clear return Class;-- 0x100000b
+   function Key_Home return Class;-- 0x1000010
+   function Key_End return Class;-- 0x1000011
+   function Key_Left return Class;-- 0x1000012
+   function Key_Up return Class;-- 0x1000013
+   function Key_Right return Class;-- 0x1000014
+   function Key_Down return Class;-- 0x1000015
+   function Key_PageUp return Class;-- 0x1000016
+   function Key_PageDown return Class;-- 0x1000017
+   function Key_Shift return Class;-- 0x1000020
+   function Key_Control return Class;-- 0x1000021
+   function Key_Meta return Class;-- 0x1000022
+   function Key_Alt return Class;-- 0x1000023
+   function Key_CapsLock return Class;-- 0x1000024
+   function Key_NumLock return Class;-- 0x1000025
+   function Key_ScrollLock return Class;-- 0x1000026
+   function Key_F1 return Class;-- 0x1000030
+   function Key_F2 return Class;-- 0x1000031
+   function Key_F3 return Class;-- 0x1000032
+   function Key_F4 return Class;-- 0x1000033
+   function Key_F5 return Class;-- 0x1000034
+   function Key_F6 return Class;-- 0x1000035
+   function Key_F7 return Class;-- 0x1000036
+   function Key_F8 return Class;-- 0x1000037
+   function Key_F9 return Class;-- 0x1000038
+   function Key_F10 return Class;-- 0x1000039
+   function Key_F11 return Class;-- 0x100003a
+   function Key_F12 return Class;-- 0x100003b
+   function Key_F13 return Class;-- 0x100003c
+   function Key_F14 return Class;-- 0x100003d
+   function Key_F15 return Class;-- 0x100003e
+   function Key_F16 return Class;-- 0x100003f
+   function Key_F17 return Class;-- 0x1000040
+   function Key_F18 return Class;-- 0x1000041
+   function Key_F19 return Class;-- 0x1000042
+   function Key_F20 return Class;-- 0x1000043
+   function Key_F21 return Class;-- 0x1000044
+   function Key_F22 return Class;-- 0x1000045
+   function Key_F23 return Class;-- 0x1000046
+   function Key_F24 return Class;-- 0x1000047
+   function Key_F25 return Class;-- 0x1000048
+   function Key_F26 return Class;-- 0x1000049
+   function Key_F27 return Class;-- 0x100004a
+   function Key_F28 return Class;-- 0x100004b
+   function Key_F29 return Class;-- 0x100004c
+   function Key_F30 return Class;-- 0x100004d
+   function Key_F31 return Class;-- 0x100004e
+   function Key_F32 return Class;-- 0x100004f
+   function Key_F33 return Class;-- 0x1000050
+   function Key_F34 return Class;-- 0x1000051
+   function Key_F35 return Class;-- 0x1000052
+   function Key_Super_L return Class;-- 0x1000053
+   function Key_Super_R return Class;-- 0x1000054
+   function Key_Menu return Class;-- 0x1000055
+   function Key_Hyper_L return Class;-- 0x1000056
+   function Key_Hyper_R return Class;-- 0x1000057
+   function Key_Help return Class;-- 0x1000058
+   function Key_Direction_L return Class;-- 0x1000059
+   function Key_Direction_R return Class;-- 0x1000060
+   function Key_Back return Class;-- 0x1000061
+   function Key_Forward return Class;-- 0x1000062
+   function Key_Stop return Class;-- 0x1000063
+   function Key_Refresh return Class;-- 0x1000064
+   function Key_VolumeDown return Class;-- 0x1000070
+   function Key_VolumeMute return Class;-- 0x1000071
+   function Key_VolumeUp return Class;-- 0x1000072
+   function Key_BassBoost return Class;-- 0x1000073
+   function Key_BassUp return Class;-- 0x1000074
+   function Key_BassDown return Class;-- 0x1000075
+   function Key_TrebleUp return Class;-- 0x1000076
+   function Key_TrebleDown return Class;-- 0x1000077
+   function Key_MediaPlay return Class;-- 0x1000080
+   function Key_MediaStop return Class;-- 0x1000081
+   function Key_MediaPrevious return Class;-- 0x1000082
+   function Key_MediaNext return Class;-- 0x1000083
+   function Key_MediaRecord return Class;-- 0x1000084
+   function Key_MediaPause return Class;-- 0x1000085
+   function Key_MediaTogglePlayPause return Class;-- 0x1000086
+   function Key_HomePage return Class;-- 0x1000090
+   function Key_Favorites return Class;-- 0x1000091
+   function Key_Search return Class;-- 0x1000092
+   function Key_Standby return Class;-- 0x1000093
+   function Key_OpenUrl return Class;-- 0x1000094
+   function Key_LaunchMail return Class;-- 0x10000a0
+   function Key_LaunchMedia return Class;-- 0x10000a1
+   function Key_Launch0 return Class;-- 0x10000a2
+   function Key_Launch1 return Class;-- 0x10000a3
+   function Key_Launch2 return Class;-- 0x10000a4
+   function Key_Launch3 return Class;-- 0x10000a5
+   function Key_Launch4 return Class;-- 0x10000a6
+   function Key_Launch5 return Class;-- 0x10000a7
+   function Key_Launch6 return Class;-- 0x10000a8
+   function Key_Launch7 return Class;-- 0x10000a9
+   function Key_Launch8 return Class;-- 0x10000aa
+   function Key_Launch9 return Class;-- 0x10000ab
+   function Key_LaunchA return Class;-- 0x10000ac
+   function Key_LaunchB return Class;-- 0x10000ad
+   function Key_LaunchC return Class;-- 0x10000ae
+   function Key_LaunchD return Class;-- 0x10000af
+   function Key_LaunchE return Class;-- 0x10000b0
+   function Key_LaunchF return Class;-- 0x10000b1
+   function Key_MonBrightnessUp return Class;-- 0x10000b2
+   function Key_MonBrightnessDown return Class;-- 0x10000b3
+   function Key_KeyboardLightOnOff return Class;-- 0x10000b4
+   function Key_KeyboardBrightnessUp return Class;-- 0x10000b5
+   function Key_KeyboardBrightnessDown return Class;-- 0x10000b6
+   function Key_PowerOff return Class;-- 0x10000b7
+   function Key_WakeUp return Class;-- 0x10000b8
+   function Key_Eject return Class;-- 0x10000b9
+   function Key_ScreenSaver return Class;-- 0x10000ba
+   function Key_WWW return Class;-- 0x10000bb
+   function Key_Memo return Class;-- 0x10000bc
+   function Key_LightBulb return Class;-- 0x10000bd
+   function Key_Shop return Class;-- 0x10000be
+   function Key_History return Class;-- 0x10000bf
+   function Key_AddFavorite return Class;-- 0x10000c0
+   function Key_HotLinks return Class;-- 0x10000c1
+   function Key_BrightnessAdjust return Class;-- 0x10000c2
+   function Key_Finance return Class;-- 0x10000c3
+   function Key_Community return Class;-- 0x10000c4
+   function Key_AudioRewind return Class;-- 0x10000c5
+   function Key_BackForward return Class;-- 0x10000c6
+   function Key_ApplicationLeft return Class;-- 0x10000c7
+   function Key_ApplicationRight return Class;-- 0x10000c8
+   function Key_Book return Class;-- 0x10000c9
+   function Key_CD return Class;-- 0x10000ca
+   function Key_Calculator return Class;-- 0x10000cb
+   function Key_ToDoList return Class;-- 0x10000cc
+   function Key_ClearGrab return Class;-- 0x10000cd
+   function Key_Close return Class;-- 0x10000ce
+   function Key_Copy return Class;-- 0x10000cf
+   function Key_Cut return Class;-- 0x10000d0
+   function Key_Display return Class;-- 0x10000d1
+   function Key_DOS return Class;-- 0x10000d2
+   function Key_Documents return Class;-- 0x10000d3
+   function Key_Excel return Class;-- 0x10000d4
+   function Key_Explorer return Class;-- 0x10000d5
+   function Key_Game return Class;-- 0x10000d6
+   function Key_Go return Class;-- 0x10000d7
+   function Key_iTouch return Class;-- 0x10000d8
+   function Key_LogOff return Class;-- 0x10000d9
+   function Key_Market return Class;-- 0x10000da
+   function Key_Meeting return Class;-- 0x10000db
+   function Key_MenuKB return Class;-- 0x10000dc
+   function Key_MenuPB return Class;-- 0x10000dd
+   function Key_MySites return Class;-- 0x10000de
+   function Key_News return Class;-- 0x10000df
+   function Key_OfficeHome return Class;-- 0x10000e0
+   function Key_Option return Class;-- 0x10000e1
+   function Key_Paste return Class;-- 0x10000e2
+   function Key_Phone return Class;-- 0x10000e3
+   function Key_Calendar return Class;-- 0x10000e4
+   function Key_Reply return Class;-- 0x10000e5
+   function Key_Reload return Class;-- 0x10000e6
+   function Key_RotateWindows return Class;-- 0x10000e7
+   function Key_RotationPB return Class;-- 0x10000e8
+   function Key_RotationKB return Class;-- 0x10000e9
+   function Key_Save return Class;-- 0x10000ea
+   function Key_Send return Class;-- 0x10000eb
+   function Key_Spell return Class;-- 0x10000ec
+   function Key_SplitScreen return Class;-- 0x10000ed
+   function Key_Support return Class;-- 0x10000ee
+   function Key_TaskPane return Class;-- 0x10000ef
+   function Key_Terminal return Class;-- 0x10000f0
+   function Key_Tools return Class;-- 0x10000f1
+   function Key_Travel return Class;-- 0x10000f2
+   function Key_Video return Class;-- 0x10000f3
+   function Key_Word return Class;-- 0x10000f4
+   function Key_Xfer return Class;-- 0x10000f5
+   function Key_ZoomIn return Class;-- 0x10000f6
+   function Key_ZoomOut return Class;-- 0x10000f7
+   function Key_Away return Class;-- 0x10000f8
+   function Key_Messenger return Class;-- 0x10000f9
+   function Key_WebCam return Class;-- 0x10000fa
+   function Key_MailForward return Class;-- 0x10000fb
+   function Key_Pictures return Class;-- 0x10000fc
+   function Key_Music return Class;-- 0x10000fd
+   function Key_Battery return Class;-- 0x10000fe
+   function Key_Bluetooth return Class;-- 0x10000ff
+   function Key_WLAN return Class;-- 0x1000100
+   function Key_UWB return Class;-- 0x1000101
+   function Key_AudioForward return Class;-- 0x1000102
+   function Key_AudioRepeat return Class;-- 0x1000103
+   function Key_AudioRandomPlay return Class;-- 0x1000104
+   function Key_Subtitle return Class;-- 0x1000105
+   function Key_AudioCycleTrack return Class;-- 0x1000106
+   function Key_Time return Class;-- 0x1000107
+   function Key_Hibernate return Class;-- 0x1000108
+   function Key_View return Class;-- 0x1000109
+   function Key_TopMenu return Class;-- 0x100010a
+   function Key_PowerDown return Class;-- 0x100010b
+   function Key_Suspend return Class;-- 0x100010c
+   function Key_ContrastAdjust return Class;-- 0x100010d
+   function Key_LaunchG return Class;-- 0x100010e
+   function Key_LaunchH return Class;-- 0x100010f
+   function Key_TouchpadToggle return Class;-- 0x1000110
+   function Key_TouchpadOn return Class;-- 0x1000111
+   function Key_TouchpadOff return Class;-- 0x1000112
+   function Key_MicMute return Class;-- 0x1000113
+   function Key_Red return Class;-- 0x1000114
+   function Key_Green return Class;-- 0x1000115
+   function Key_Yellow return Class;-- 0x1000116
+   function Key_Blue return Class;-- 0x1000117
+   function Key_ChannelUp return Class;-- 0x1000118
+   function Key_ChannelDown return Class;-- 0x1000119
+   function Key_Guide return Class;-- 0x100011a
+   function Key_Info return Class;-- 0x100011b
+   function Key_Settings return Class;-- 0x100011c
+   function Key_MicVolumeUp return Class;-- 0x100011d
+   function Key_MicVolumeDown return Class;-- 0x100011e
+   function Key_New return Class;-- 0x1000120
+   function Key_Open return Class;-- 0x1000121
+   function Key_Find return Class;-- 0x1000122
+   function Key_Undo return Class;-- 0x1000123
+   function Key_Redo return Class;-- 0x1000124
+   function Key_AltGr return Class;-- 0x1001103
+   function Key_Multi_key return Class;-- 0x1001120
+   function Key_Kanji return Class;-- 0x1001121
+   function Key_Muhenkan return Class;-- 0x1001122
+   function Key_Henkan return Class;-- 0x1001123
+   function Key_Romaji return Class;-- 0x1001124
+   function Key_Hiragana return Class;-- 0x1001125
+   function Key_Katakana return Class;-- 0x1001126
+   function Key_Hiragana_Katakana return Class;-- 0x1001127
+   function Key_Zenkaku return Class;-- 0x1001128
+   function Key_Hankaku return Class;-- 0x1001129
+   function Key_Zenkaku_Hankaku return Class;-- 0x100112a
+   function Key_Touroku return Class;-- 0x100112b
+   function Key_Massyo return Class;-- 0x100112c
+   function Key_Kana_Lock return Class;-- 0x100112d
+   function Key_Kana_Shift return Class;-- 0x100112e
+   function Key_Eisu_Shift return Class;-- 0x100112f
+   function Key_Eisu_toggle return Class;-- 0x1001130
+   function Key_Hangul return Class;-- 0x1001131
+   function Key_Hangul_Start return Class;-- 0x1001132
+   function Key_Hangul_End return Class;-- 0x1001133
+   function Key_Hangul_Hanja return Class;-- 0x1001134
+   function Key_Hangul_Jamo return Class;-- 0x1001135
+   function Key_Hangul_Romaja return Class;-- 0x1001136
+   function Key_Codeinput return Class;-- 0x1001137
+   function Key_Hangul_Jeonja return Class;-- 0x1001138
+   function Key_Hangul_Banja return Class;-- 0x1001139
+   function Key_Hangul_PreHanja return Class;-- 0x100113a
+   function Key_Hangul_PostHanja return Class;-- 0x100113b
+   function Key_SingleCandidate return Class;-- 0x100113c
+   function Key_MultipleCandidate return Class;-- 0x100113d
+   function Key_PreviousCandidate return Class;-- 0x100113e
+   function Key_Hangul_Special return Class;-- 0x100113f
+   function Key_Mode_switch return Class;-- 0x100117e
+   function Key_Dead_Grave return Class;-- 0x1001250
+   function Key_Dead_Acute return Class;-- 0x1001251
+   function Key_Dead_Circumflex return Class;-- 0x1001252
+   function Key_Dead_Tilde return Class;-- 0x1001253
+   function Key_Dead_Macron return Class;-- 0x1001254
+   function Key_Dead_Breve return Class;-- 0x1001255
+   function Key_Dead_Abovedot return Class;-- 0x1001256
+   function Key_Dead_Diaeresis return Class;-- 0x1001257
+   function Key_Dead_Abovering return Class;-- 0x1001258
+   function Key_Dead_Doubleacute return Class;-- 0x1001259
+   function Key_Dead_Caron return Class;-- 0x100125a
+   function Key_Dead_Cedilla return Class;-- 0x100125b
+   function Key_Dead_Ogonek return Class;-- 0x100125c
+   function Key_Dead_Iota return Class;-- 0x100125d
+   function Key_Dead_Voiced_Sound return Class;-- 0x100125e
+   function Key_Dead_Semivoiced_Sound return Class;-- 0x100125f
+   function Key_Dead_Belowdot return Class;-- 0x1001260
+   function Key_Dead_Hook return Class;-- 0x1001261
+   function Key_Dead_Horn return Class;-- 0x1001262
+   function Key_Dead_Stroke return Class;-- 0x1001263
+   function Key_Dead_Abovecomma return Class;-- 0x1001264
+   function Key_Dead_Abovereversedcomma return Class;-- 0x1001265
+   function Key_Dead_Doublegrave return Class;-- 0x1001266
+   function Key_Dead_Belowring return Class;-- 0x1001267
+   function Key_Dead_Belowmacron return Class;-- 0x1001268
+   function Key_Dead_Belowcircumflex return Class;-- 0x1001269
+   function Key_Dead_Belowtilde return Class;-- 0x100126a
+   function Key_Dead_Belowbreve return Class;-- 0x100126b
+   function Key_Dead_Belowdiaeresis return Class;-- 0x100126c
+   function Key_Dead_Invertedbreve return Class;-- 0x100126d
+   function Key_Dead_Belowcomma return Class;-- 0x100126e
+   function Key_Dead_Currency return Class;-- 0x100126f
+   function Key_Dead_a return Class;-- 0x1001280
+   function Key_Dead_A_E return Class;-- 0x1001281
+   function Key_Dead_e return Class;-- 0x1001282
+   function Key_Dead_E_E return Class;-- 0x1001283
+   function Key_Dead_i return Class;-- 0x1001284
+   function Key_Dead_I_E return Class;-- 0x1001285
+   function Key_Dead_o return Class;-- 0x1001286
+   function Key_Dead_O_E return Class;-- 0x1001287
+   function Key_Dead_u return Class;-- 0x1001288
+   function Key_Dead_U_E return Class;-- 0x1001289
+   function Key_Dead_Small_Schwa return Class;-- 0x100128a
+   function Key_Dead_Capital_Schwa return Class;-- 0x100128b
+   function Key_Dead_Greek return Class;-- 0x100128c
+   function Key_Dead_Lowline return Class;-- 0x1001290
+   function Key_Dead_Aboveverticalline return Class;-- 0x1001291
+   function Key_Dead_Belowverticalline return Class;-- 0x1001292
+   function Key_Dead_Longsolidusoverlay return Class;-- 0x1001293
+   function Key_MediaLast return Class;-- 0x100ffff
+   function Key_Select return Class;-- 0x1010000
+   function Key_Yes return Class;-- 0x1010001
+   function Key_No return Class;-- 0x1010002
+   function Key_Cancel return Class;-- 0x1020001
+   function Key_Printer return Class;-- 0x1020002
+   function Key_Execute return Class;-- 0x1020003
+   function Key_Sleep return Class;-- 0x1020004
+   function Key_Play return Class;-- 0x1020005
+   function Key_Zoom return Class;-- 0x1020006
+   function Key_Exit return Class;-- 0x102000a
+   function Key_Context1 return Class;-- 0x1100000
+   function Key_Context2 return Class;-- 0x1100001
+   function Key_Context3 return Class;-- 0x1100002
+   function Key_Context4 return Class;-- 0x1100003
+   function Key_Call return Class;-- 0x1100004
+   function Key_Hangup return Class;-- 0x1100005
+   function Key_Flip return Class;-- 0x1100006
+   function Key_ToggleCallHangup return Class;-- 0x1100007
+   function Key_VoiceDial return Class;-- 0x1100008
+   function Key_LastNumberRedial return Class;-- 0x1100009
+   function Key_Camera return Class;-- 0x1100020
+   function Key_CameraFocus return Class;-- 0x1100021
+   function Key_unknown return Class;-- 0x1ffffff
 end QtAda6.QtCore.Qt.Key;

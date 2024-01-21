@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qsize.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -15,6 +15,7 @@ package QtAda6.QtCore.QSize is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
    procedure Finalize (Self : in out Class);
    function Create return Class;
@@ -29,8 +30,8 @@ package QtAda6.QtCore.QSize is
    function U_isub_U
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QSize.Inst'Class) return access QtAda6.QtCore.QSize.Inst'Class;
    function U_mul_U (self : access Inst; c_P : float) return access QtAda6.QtCore.QSize.Inst'Class;
-   function U_reduce_U (self : access Inst) return Object;
-   function U_repr_U (self : access Inst) return Object;
+   function U_reduce_U (self : access Inst) return access Object'Class;
+   function U_repr_U (self : access Inst) return access Object'Class;
    function U_sub_U
      (self : access Inst; s2_P : access QtAda6.QtCore.QSize.Inst'Class) return access QtAda6.QtCore.QSize.Inst'Class;
    function boundedTo
@@ -59,7 +60,7 @@ package QtAda6.QtCore.QSize is
    function shrunkBy
      (self : access Inst; m_P : access QtAda6.QtCore.QMargins.Inst'Class) return access QtAda6.QtCore.QSize.Inst'Class;
    function toSizeF (self : access Inst) return access QtAda6.QtCore.QSizeF.Inst'Class;
-   function toTuple (self : access Inst) return Object;
+   function toTuple (self : access Inst) return access Object'Class;
    procedure transpose (self : access Inst);
    function transposed (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class;
    function width (self : access Inst) return int;

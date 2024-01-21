@@ -1,39 +1,40 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qdir.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with OS.PathLike;
 limited with QtAda6.QtCore.QDir.SortFlag;
 limited with QtAda6.QtCore.QDir.Filter;
-limited with QtAda6.QtCore.QFileInfo;
+with QtAda6.QtCore.QFileInfo;
 package QtAda6.QtCore.QDir is
-   type Union_QtAda6_QtCore_QDir_str is access Any;
-   type Union_str_bytes_os_PathLike_NoneType is access Any;
-   type Union_str_bytes_os_PathLike is access Any;
-   type List_QtAda6_QtCore_QFileInfo is access Any;
-   type Sequence_str is access Any;
-   type List_str is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type UNION_QtAda6_QtCore_QDirstr is new Any;
+   type UNION_strbytesos_PathLikeNoneType is new Any;
+   type UNION_strbytesos_PathLike is new Any;
+   subtype LIST_QtAda6_QtCore_QFileInfo is QtAda6.QtCore.QFileInfo.Class_Array;
+   type SEQUENCE_str is array (Positive range <>) of str;
+   type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
-   function Create (arg_1_P : Union_QtAda6_QtCore_QDir_str) return Class;
-   function Create (path_P : Union_str_bytes_os_PathLike_NoneType) return Class;
+   function Create (arg_1_P : UNION_QtAda6_QtCore_QDirstr) return Class;
+   function Create (path_P : UNION_strbytesos_PathLikeNoneType) return Class;
    function Create
-     (path_P : Union_str_bytes_os_PathLike; nameFilter_P : str; sort_P : access QtAda6.QtCore.QDir.SortFlag.Inst'Class;
-      filter_P : access QtAda6.QtCore.QDir.Filter.Inst'Class) return Class;
+     (path_P   : UNION_strbytesos_PathLike; nameFilter_P : str;
+      sort_P   : access QtAda6.QtCore.QDir.SortFlag.Inst'Class := null;
+      filter_P : access QtAda6.QtCore.QDir.Filter.Inst'Class   := null) return Class;
    procedure U_copy_U;
-   function U_reduce_U (self : access Inst) return Object;
+   function U_reduce_U (self : access Inst) return access Object'Class;
    function absoluteFilePath (self : access Inst; fileName_P : str) return str;
    function absolutePath (self : access Inst) return str;
-   procedure addSearchPath (prefix_P : str; path_P : Union_str_bytes_os_PathLike);
+   procedure addSearchPath (prefix_P : str; path_P : UNION_strbytesos_PathLike);
    function canonicalPath (self : access Inst) return str;
    function cd (self : access Inst; dirName_P : str) return bool;
    function cdUp (self : access Inst) return bool;
@@ -41,19 +42,19 @@ package QtAda6.QtCore.QDir is
    function current return access QtAda6.QtCore.QDir.Inst'Class;
    function currentPath return str;
    function dirName (self : access Inst) return str;
-   function drives return List_QtAda6_QtCore_QFileInfo;
+   function drives return LIST_QtAda6_QtCore_QFileInfo;
    function entryInfoList
-     (self   : access Inst; filters_P : access QtAda6.QtCore.QDir.Filter.Inst'Class;
-      sort_P : access QtAda6.QtCore.QDir.SortFlag.Inst'Class) return List_QtAda6_QtCore_QFileInfo;
+     (self   : access Inst; filters_P : access QtAda6.QtCore.QDir.Filter.Inst'Class := null;
+      sort_P : access QtAda6.QtCore.QDir.SortFlag.Inst'Class := null) return LIST_QtAda6_QtCore_QFileInfo;
    function entryInfoList
-     (self   : access Inst; nameFilters_P : Sequence_str; filters_P : access QtAda6.QtCore.QDir.Filter.Inst'Class;
-      sort_P : access QtAda6.QtCore.QDir.SortFlag.Inst'Class) return List_QtAda6_QtCore_QFileInfo;
+     (self : access Inst; nameFilters_P : SEQUENCE_str; filters_P : access QtAda6.QtCore.QDir.Filter.Inst'Class := null;
+      sort_P : access QtAda6.QtCore.QDir.SortFlag.Inst'Class := null) return LIST_QtAda6_QtCore_QFileInfo;
    function entryList
-     (self   : access Inst; filters_P : access QtAda6.QtCore.QDir.Filter.Inst'Class;
-      sort_P : access QtAda6.QtCore.QDir.SortFlag.Inst'Class) return List_str;
+     (self   : access Inst; filters_P : access QtAda6.QtCore.QDir.Filter.Inst'Class := null;
+      sort_P : access QtAda6.QtCore.QDir.SortFlag.Inst'Class := null) return LIST_str;
    function entryList
-     (self   : access Inst; nameFilters_P : Sequence_str; filters_P : access QtAda6.QtCore.QDir.Filter.Inst'Class;
-      sort_P : access QtAda6.QtCore.QDir.SortFlag.Inst'Class) return List_str;
+     (self : access Inst; nameFilters_P : SEQUENCE_str; filters_P : access QtAda6.QtCore.QDir.Filter.Inst'Class := null;
+      sort_P : access QtAda6.QtCore.QDir.SortFlag.Inst'Class := null) return LIST_str;
    function exists (self : access Inst) return bool;
    function exists (self : access Inst; name_P : str) return bool;
    function filePath (self : access Inst; fileName_P : str) return str;
@@ -63,7 +64,7 @@ package QtAda6.QtCore.QDir is
    function homePath return str;
    function isAbsolute (self : access Inst) return bool;
    function isAbsolutePath (path_P : str) return bool;
-   function isEmpty (self : access Inst; filters_P : access QtAda6.QtCore.QDir.Filter.Inst'Class) return bool;
+   function isEmpty (self : access Inst; filters_P : access QtAda6.QtCore.QDir.Filter.Inst'Class := null) return bool;
    function isReadable (self : access Inst) return bool;
    function isRelative (self : access Inst) return bool;
    function isRelativePath (path_P : str) return bool;
@@ -71,11 +72,11 @@ package QtAda6.QtCore.QDir is
    function listSeparator return str;
    function makeAbsolute (self : access Inst) return bool;
    function match (filter_P : str; fileName_P : str) return bool;
-   function match (filters_P : Sequence_str; fileName_P : str) return bool;
+   function match (filters_P : SEQUENCE_str; fileName_P : str) return bool;
    function mkdir (self : access Inst; dirName_P : str) return bool;
    function mkpath (self : access Inst; dirPath_P : str) return bool;
-   function nameFilters (self : access Inst) return List_str;
-   function nameFiltersFromString (nameFilter_P : str) return List_str;
+   function nameFilters (self : access Inst) return LIST_str;
+   function nameFiltersFromString (nameFilter_P : str) return LIST_str;
    function path (self : access Inst) return str;
    procedure refresh (self : access Inst);
    function relativeFilePath (self : access Inst; fileName_P : str) return str;
@@ -86,16 +87,16 @@ package QtAda6.QtCore.QDir is
    function rmpath (self : access Inst; dirPath_P : str) return bool;
    function root return access QtAda6.QtCore.QDir.Inst'Class;
    function rootPath return str;
-   function searchPaths (prefix_P : str) return List_str;
+   function searchPaths (prefix_P : str) return LIST_str;
    function separator return str;
    function setCurrent (path_P : str) return bool;
    procedure setFilter (self : access Inst; filter_P : access QtAda6.QtCore.QDir.Filter.Inst'Class);
-   procedure setNameFilters (self : access Inst; nameFilters_P : Sequence_str);
-   procedure setPath (self : access Inst; path_P : Union_str_bytes_os_PathLike);
-   procedure setSearchPaths (prefix_P : str; searchPaths_P : Sequence_str);
+   procedure setNameFilters (self : access Inst; nameFilters_P : SEQUENCE_str);
+   procedure setPath (self : access Inst; path_P : UNION_strbytesos_PathLike);
+   procedure setSearchPaths (prefix_P : str; searchPaths_P : SEQUENCE_str);
    procedure setSorting (self : access Inst; sort_P : access QtAda6.QtCore.QDir.SortFlag.Inst'Class);
    function sorting (self : access Inst) return access QtAda6.QtCore.QDir.SortFlag.Inst'Class;
-   procedure swap (self : access Inst; other_P : Union_QtAda6_QtCore_QDir_str);
+   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QDirstr);
    function temp return access QtAda6.QtCore.QDir.Inst'Class;
    function tempPath return str;
    function toNativeSeparators (pathName_P : str) return str;

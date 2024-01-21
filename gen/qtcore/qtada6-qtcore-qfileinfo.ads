@@ -1,32 +1,32 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qfileinfo.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QDir;
-limited with OS.PathLike;
 limited with QtAda6.QtCore.QFileDevice;
 limited with QtAda6.QtCore.QDateTime;
 package QtAda6.QtCore.QFileInfo is
-   type Union_QtAda6_QtCore_QDir_str is access Any;
-   type Union_str_bytes_os_PathLike is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type UNION_QtAda6_QtCore_QDirstr is new Any;
+   type UNION_strbytesos_PathLike is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (dir_P : Union_QtAda6_QtCore_QDir_str; file_P : Union_str_bytes_os_PathLike) return Class;
-   function Create (file_P : Union_str_bytes_os_PathLike) return Class;
+   function Create (dir_P : UNION_QtAda6_QtCore_QDirstr; file_P : UNION_strbytesos_PathLike) return Class;
+   function Create (file_P : UNION_strbytesos_PathLike) return Class;
    function Create (file_P : access QtAda6.QtCore.QFileDevice.Inst'Class) return Class;
    function Create (fileinfo_P : access QtAda6.QtCore.QFileInfo.Inst'Class) return Class;
    procedure U_copy_U;
-   function U_reduce_U (self : access Inst) return Object;
+   function U_reduce_U (self : access Inst) return access Object'Class;
    function absoluteDir (self : access Inst) return access QtAda6.QtCore.QDir.Inst'Class;
    function absoluteFilePath (self : access Inst) return str;
    function absolutePath (self : access Inst) return str;
@@ -71,8 +71,8 @@ package QtAda6.QtCore.QFileInfo is
    function path (self : access Inst) return str;
    procedure refresh (self : access Inst);
    procedure setCaching (self : access Inst; on_P : bool);
-   procedure setFile (self : access Inst; dir_P : Union_QtAda6_QtCore_QDir_str; file_P : str);
-   procedure setFile (self : access Inst; file_P : Union_str_bytes_os_PathLike);
+   procedure setFile (self : access Inst; dir_P : UNION_QtAda6_QtCore_QDirstr; file_P : str);
+   procedure setFile (self : access Inst; file_P : UNION_strbytesos_PathLike);
    procedure setFile (self : access Inst; file_P : access QtAda6.QtCore.QFileDevice.Inst'Class);
    function size (self : access Inst) return int;
    procedure stat (self : access Inst);

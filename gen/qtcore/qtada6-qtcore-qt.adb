@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (body)                  : qtada6-qtcore-qt.adb
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ package body QtAda6.QtCore.Qt is
       Free (Inst_Access (Self));
    end Finalize;
    procedure beginPropertyUpdateGroup is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "beginPropertyUpdateGroup");
@@ -28,26 +28,26 @@ package body QtAda6.QtCore.Qt is
    end beginPropertyUpdateGroup;
    function bin (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "bin");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end bin;
    function bom (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "bom");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -55,32 +55,32 @@ package body QtAda6.QtCore.Qt is
    function center
      (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "center");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end center;
    function dec (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "dec");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end dec;
    procedure endPropertyUpdateGroup is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "endPropertyUpdateGroup");
@@ -89,39 +89,39 @@ package body QtAda6.QtCore.Qt is
    end endPropertyUpdateGroup;
    function endl (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "endl");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end endl;
    function fixed (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "fixed");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end fixed;
    function flush (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "flush");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -129,13 +129,13 @@ package body QtAda6.QtCore.Qt is
    function forcepoint
      (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "forcepoint");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -143,39 +143,39 @@ package body QtAda6.QtCore.Qt is
    function forcesign
      (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "forcesign");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end forcesign;
    function hex (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "hex");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end hex;
    function left (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "left");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -183,13 +183,13 @@ package body QtAda6.QtCore.Qt is
    function lowercasebase
      (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "lowercasebase");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -197,13 +197,13 @@ package body QtAda6.QtCore.Qt is
    function lowercasedigits
      (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "lowercasedigits");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -211,13 +211,13 @@ package body QtAda6.QtCore.Qt is
    function noforcepoint
      (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "noforcepoint");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -225,13 +225,13 @@ package body QtAda6.QtCore.Qt is
    function noforcesign
      (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "noforcesign");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -239,52 +239,52 @@ package body QtAda6.QtCore.Qt is
    function noshowbase
      (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "noshowbase");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end noshowbase;
    function oct (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "oct");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end oct;
    function reset (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "reset");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end reset;
    function right (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "right");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -292,13 +292,13 @@ package body QtAda6.QtCore.Qt is
    function scientific
      (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "scientific");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -306,13 +306,13 @@ package body QtAda6.QtCore.Qt is
    function showbase
      (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "showbase");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -320,13 +320,13 @@ package body QtAda6.QtCore.Qt is
    function uppercasebase
      (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "uppercasebase");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -334,26 +334,26 @@ package body QtAda6.QtCore.Qt is
    function uppercasedigits
      (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "uppercasedigits");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end uppercasedigits;
    function ws_F (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "ws");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, s_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if s_P /= null then s_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;

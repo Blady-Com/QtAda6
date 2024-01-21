@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 -- NAME (spec)                  : qtada6-qtcore-qxmlstreamwriter.ads
 -- AUTHOR                       : Pascal Pignard
--- ROLE                         : QtAda6 Core module provides non-GUI functionality
+-- ROLE                         : Qt Core module provides non-GUI functionality
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -14,14 +14,15 @@ limited with QtAda6.QtCore.QXmlStreamAttribute;
 limited with QtAda6.QtCore.QXmlStreamAttributes;
 limited with QtAda6.QtCore.QXmlStreamReader;
 package QtAda6.QtCore.QXmlStreamWriter is
-   type Union_QtAda6_QtCore_QByteArray_bytes is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (array_K_P : Union_QtAda6_QtCore_QByteArray_bytes) return Class;
+   function Create (array_K_P : UNION_QtAda6_QtCore_QByteArraybytes) return Class;
    function Create (device_P : access QtAda6.QtCore.QIODevice.Inst'Class) return Class;
    function autoFormatting (self : access Inst) return bool;
    function autoFormattingIndent (self : access Inst) return int;
@@ -45,8 +46,8 @@ package QtAda6.QtCore.QXmlStreamWriter is
    procedure writeEndDocument (self : access Inst);
    procedure writeEndElement (self : access Inst);
    procedure writeEntityReference (self : access Inst; name_P : str);
-   procedure writeNamespace (self : access Inst; namespaceUri_P : str; prefix_P : str);
-   procedure writeProcessingInstruction (self : access Inst; target_P : str; data_P : str);
+   procedure writeNamespace (self : access Inst; namespaceUri_P : str; prefix_P : str := "");
+   procedure writeProcessingInstruction (self : access Inst; target_P : str; data_P : str := "");
    procedure writeStartDocument (self : access Inst);
    procedure writeStartDocument (self : access Inst; version_P : str);
    procedure writeStartDocument (self : access Inst; version_P : str; standalone_P : bool);
