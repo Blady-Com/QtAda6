@@ -4,40 +4,40 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with Enum.Enum;
 package QtAda6.QtGui.QTextCursor.MoveOperation is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
-   type Inst is new Enum.Enum.Inst with null record;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
+   type Inst is new Enum.Enum with null record;
    procedure Finalize (Self : in out Class);
-   NoMove            : QTextCursor.MoveOperation.Class;-- 0x0
-   Start             : QTextCursor.MoveOperation.Class;-- 0x1
-   Up                : QTextCursor.MoveOperation.Class;-- 0x2
-   StartOfLine       : QTextCursor.MoveOperation.Class;-- 0x3
-   StartOfBlock      : QTextCursor.MoveOperation.Class;-- 0x4
-   StartOfWord       : QTextCursor.MoveOperation.Class;-- 0x5
-   PreviousBlock     : QTextCursor.MoveOperation.Class;-- 0x6
-   PreviousCharacter : QTextCursor.MoveOperation.Class;-- 0x7
-   PreviousWord      : QTextCursor.MoveOperation.Class;-- 0x8
-   Left              : QTextCursor.MoveOperation.Class;-- 0x9
-   WordLeft          : QTextCursor.MoveOperation.Class;-- 0xa
-   End_K             : QTextCursor.MoveOperation.Class;-- 0xb
-   Down              : QTextCursor.MoveOperation.Class;-- 0xc
-   EndOfLine         : QTextCursor.MoveOperation.Class;-- 0xd
-   EndOfWord         : QTextCursor.MoveOperation.Class;-- 0xe
-   EndOfBlock        : QTextCursor.MoveOperation.Class;-- 0xf
-   NextBlock         : QTextCursor.MoveOperation.Class;-- 0x10
-   NextCharacter     : QTextCursor.MoveOperation.Class;-- 0x11
-   NextWord          : QTextCursor.MoveOperation.Class;-- 0x12
-   Right             : QTextCursor.MoveOperation.Class;-- 0x13
-   WordRight         : QTextCursor.MoveOperation.Class;-- 0x14
-   NextCell          : QTextCursor.MoveOperation.Class;-- 0x15
-   PreviousCell      : QTextCursor.MoveOperation.Class;-- 0x16
-   NextRow           : QTextCursor.MoveOperation.Class;-- 0x17
-   PreviousRow       : QTextCursor.MoveOperation.Class;-- 0x18
+   function NoMove return Class;-- 0x0
+   function Start return Class;-- 0x1
+   function Up return Class;-- 0x2
+   function StartOfLine return Class;-- 0x3
+   function StartOfBlock return Class;-- 0x4
+   function StartOfWord return Class;-- 0x5
+   function PreviousBlock return Class;-- 0x6
+   function PreviousCharacter return Class;-- 0x7
+   function PreviousWord return Class;-- 0x8
+   function Left return Class;-- 0x9
+   function WordLeft return Class;-- 0xa
+   function End_K return Class;-- 0xb
+   function Down return Class;-- 0xc
+   function EndOfLine return Class;-- 0xd
+   function EndOfWord return Class;-- 0xe
+   function EndOfBlock return Class;-- 0xf
+   function NextBlock return Class;-- 0x10
+   function NextCharacter return Class;-- 0x11
+   function NextWord return Class;-- 0x12
+   function Right return Class;-- 0x13
+   function WordRight return Class;-- 0x14
+   function NextCell return Class;-- 0x15
+   function PreviousCell return Class;-- 0x16
+   function NextRow return Class;-- 0x17
+   function PreviousRow return Class;-- 0x18
 end QtAda6.QtGui.QTextCursor.MoveOperation;

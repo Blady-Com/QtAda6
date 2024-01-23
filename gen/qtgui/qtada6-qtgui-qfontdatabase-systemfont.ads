@@ -4,19 +4,19 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with Enum.Enum;
 package QtAda6.QtGui.QFontDatabase.SystemFont is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
-   type Inst is new Enum.Enum.Inst with null record;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
+   type Inst is new Enum.Enum with null record;
    procedure Finalize (Self : in out Class);
-   GeneralFont          : QFontDatabase.SystemFont.Class;-- 0x0
-   FixedFont            : QFontDatabase.SystemFont.Class;-- 0x1
-   TitleFont            : QFontDatabase.SystemFont.Class;-- 0x2
-   SmallestReadableFont : QFontDatabase.SystemFont.Class;-- 0x3
+   function GeneralFont return Class;-- 0x0
+   function FixedFont return Class;-- 0x1
+   function TitleFont return Class;-- 0x2
+   function SmallestReadableFont return Class;-- 0x3
 end QtAda6.QtGui.QFontDatabase.SystemFont;

@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -18,30 +18,30 @@ package body QtAda6.QtGui.QMatrix2x2 is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QMatrix2x2");
       Args  := Tuple_New (0);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (QMatrix2x2_P : access QtAda6.QtGui.QMatrix2x2.Inst'Class) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QMatrix2x2");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, QMatrix2x2_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if QMatrix2x2_P /= null then QMatrix2x2_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (arg_1_P : Iterable) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QMatrix2x2");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Iterable_conv_A2P_is_not_supported);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function U_call_U (self : access Inst; row_P : int; column_P : int) return float is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__call__");
       Args   := Tuple_New (2);
@@ -51,7 +51,7 @@ package body QtAda6.QtGui.QMatrix2x2 is
       return Float_AsDouble (Result);
    end U_call_U;
    procedure U_copy_U is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QMatrix2x2");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -62,19 +62,19 @@ package body QtAda6.QtGui.QMatrix2x2 is
      (self : access Inst; other_P : access QtAda6.QtGui.QMatrix2x2.Inst'Class)
       return access QtAda6.QtGui.QMatrix2x2.Inst'Class
    is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QMatrix2x2.Class := new QtAda6.QtGui.QMatrix2x2.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QMatrix2x2.Class := new QtAda6.QtGui.QMatrix2x2.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__iadd__");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, other_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end U_iadd_U;
    function U_imul_U (self : access Inst; factor_P : float) return access QtAda6.QtGui.QMatrix2x2.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QMatrix2x2.Class := new QtAda6.QtGui.QMatrix2x2.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QMatrix2x2.Class := new QtAda6.QtGui.QMatrix2x2.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__imul__");
       Args   := Tuple_New (1);
@@ -87,34 +87,34 @@ package body QtAda6.QtGui.QMatrix2x2 is
      (self : access Inst; other_P : access QtAda6.QtGui.QMatrix2x2.Inst'Class)
       return access QtAda6.QtGui.QMatrix2x2.Inst'Class
    is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QMatrix2x2.Class := new QtAda6.QtGui.QMatrix2x2.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QMatrix2x2.Class := new QtAda6.QtGui.QMatrix2x2.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__isub__");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, other_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end U_isub_U;
-   function U_reduce_U (self : access Inst) return Object is
-      Method, Args, Result : Handle;
+   function U_reduce_U (self : access Inst) return access Object'Class is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__reduce__");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return (Python_Proxy => Result);
+      return null;
    end U_reduce_U;
-   function U_repr_U (self : access Inst) return Object is
-      Method, Args, Result : Handle;
+   function U_repr_U (self : access Inst) return access Object'Class is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return (Python_Proxy => Result);
+      return null;
    end U_repr_U;
    function data (self : access Inst) return float is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "data");
       Args   := Tuple_New (0);
@@ -122,7 +122,7 @@ package body QtAda6.QtGui.QMatrix2x2 is
       return Float_AsDouble (Result);
    end data;
    procedure fill (self : access Inst; value_P : float) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fill");
       Args   := Tuple_New (1);
@@ -130,7 +130,7 @@ package body QtAda6.QtGui.QMatrix2x2 is
       Result := Object_CallObject (Method, Args, True);
    end fill;
    function isIdentity (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isIdentity");
       Args   := Tuple_New (0);
@@ -138,15 +138,15 @@ package body QtAda6.QtGui.QMatrix2x2 is
       return To_Ada (Result);
    end isIdentity;
    procedure setToIdentity (self : access Inst) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setToIdentity");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
    end setToIdentity;
    function transposed (self : access Inst) return access QtAda6.QtGui.QMatrix2x2.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QMatrix2x2.Class := new QtAda6.QtGui.QMatrix2x2.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QMatrix2x2.Class := new QtAda6.QtGui.QMatrix2x2.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "transposed");
       Args             := Tuple_New (0);

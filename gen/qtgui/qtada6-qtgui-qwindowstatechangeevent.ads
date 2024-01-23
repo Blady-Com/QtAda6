@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -14,11 +14,13 @@ package QtAda6.QtGui.QWindowStateChangeEvent is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QEvent.Inst with null record;
    procedure Finalize (Self : in out Class);
    function Create (arg_1_P : access QtAda6.QtGui.QWindowStateChangeEvent.Inst'Class) return Class;
-   function Create (oldState_P : access QtAda6.QtCore.Qt.WindowState.Inst'Class; isOverride_P : bool) return Class;
-   function U_repr_U (self : access Inst) return Object;
+   function Create
+     (oldState_P : access QtAda6.QtCore.Qt.WindowState.Inst'Class; isOverride_P : bool := False) return Class;
+   function U_repr_U (self : access Inst) return access Object'Class;
    function clone (self : access Inst) return access QtAda6.QtGui.QWindowStateChangeEvent.Inst'Class;
    function isOverride (self : access Inst) return bool;
    function oldState (self : access Inst) return access QtAda6.QtCore.Qt.WindowState.Inst'Class;

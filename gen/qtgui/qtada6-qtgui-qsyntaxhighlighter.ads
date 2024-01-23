@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -18,12 +18,13 @@ limited with QtAda6.QtCore.Qt.GlobalColor;
 limited with QtAda6.QtGui.QFont;
 with QtAda6.QtCore.QObject;
 package QtAda6.QtGui.QSyntaxHighlighter is
-   type Union_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is access Any;
-   type Union_QtAda6_QtGui_QFont_str_Sequence_str is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
+   type UNION_QtAda6_QtGui_QColorQtAda6_QtGui_QRgba64AnyQtAda6_QtCore_Qt_GlobalColorstrint is new Any;
+   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
    procedure Finalize (Self : in out Class);
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class) return Class;
    function Create (parent_P : access QtAda6.QtGui.QTextDocument.Inst'Class) return Class;
@@ -41,9 +42,9 @@ package QtAda6.QtGui.QSyntaxHighlighter is
    procedure setDocument (self : access Inst; doc_P : access QtAda6.QtGui.QTextDocument.Inst'Class);
    procedure setFormat
      (self    : access Inst; start_P : int; count_P : int;
-      color_P : Union_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
+      color_P : UNION_QtAda6_QtGui_QColorQtAda6_QtGui_QRgba64AnyQtAda6_QtCore_Qt_GlobalColorstrint);
    procedure setFormat
-     (self : access Inst; start_P : int; count_P : int; font_P : Union_QtAda6_QtGui_QFont_str_Sequence_str);
+     (self : access Inst; start_P : int; count_P : int; font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str);
    procedure setFormat
      (self : access Inst; start_P : int; count_P : int; format_P : access QtAda6.QtGui.QTextCharFormat.Inst'Class);
 end QtAda6.QtGui.QSyntaxHighlighter;

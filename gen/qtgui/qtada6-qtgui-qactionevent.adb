@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -20,29 +20,29 @@ package body QtAda6.QtGui.QActionEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QActionEvent.Inst'Class) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QActionEvent");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, arg_1_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create
-     (type_K_P : int; action_P : access QtAda6.QtGui.QAction.Inst'Class; before_P : Optional_QtAda6_QtGui_QAction)
-      return Class
+     (type_K_P : int; action_P : access QtAda6.QtGui.QAction.Inst'Class;
+      before_P : access QtAda6.QtGui.QAction.Inst'Class := null) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QActionEvent");
       Args  := Tuple_New (3);
       Tuple_SetItem (Args, 0, Long_FromLong (type_K_P));
-      Tuple_SetItem (Args, 1, action_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, No_Value);
+      Tuple_SetItem (Args, 1, (if action_P /= null then action_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if before_P /= null then before_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function action (self : access Inst) return access QtAda6.QtGui.QAction.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "action");
       Args             := Tuple_New (0);
@@ -51,8 +51,8 @@ package body QtAda6.QtGui.QActionEvent is
       return Ret;
    end action;
    function before (self : access Inst) return access QtAda6.QtGui.QAction.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "before");
       Args             := Tuple_New (0);
@@ -61,8 +61,8 @@ package body QtAda6.QtGui.QActionEvent is
       return Ret;
    end before;
    function clone (self : access Inst) return access QtAda6.QtGui.QActionEvent.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QActionEvent.Class := new QtAda6.QtGui.QActionEvent.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QActionEvent.Class := new QtAda6.QtGui.QActionEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
       Args             := Tuple_New (0);

@@ -4,12 +4,11 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QIODevice;
-limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtGui.QImageReader.ImageReaderError;
@@ -20,21 +19,23 @@ limited with QtAda6.QtGui.QRgba64;
 limited with QtAda6.QtCore.Qt.GlobalColor;
 limited with QtAda6.QtGui.QImageIOHandler.ImageOption;
 limited with QtAda6.QtGui.QImageIOHandler.Transformation;
+with QtAda6.QtCore.QByteArray;
 package QtAda6.QtGui.QImageReader is
-   type Union_QtAda6_QtCore_QByteArray_bytes is access Any;
-   type List_QtAda6_QtCore_QByteArray is access Any;
-   type Union_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is access Any;
-   type List_str is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   subtype LIST_QtAda6_QtCore_QByteArray is QtAda6.QtCore.QByteArray.Class_Array;
+   type UNION_QtAda6_QtGui_QColorQtAda6_QtGui_QRgba64AnyQtAda6_QtCore_Qt_GlobalColorstrint is new Any;
+   type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create
-     (device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : Union_QtAda6_QtCore_QByteArray_bytes)
+     (device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : UNION_QtAda6_QtCore_QByteArraybytes := null)
       return Class;
-   function Create (fileName_P : str; format_P : Union_QtAda6_QtCore_QByteArray_bytes) return Class;
+   function Create (fileName_P : str; format_P : UNION_QtAda6_QtCore_QByteArraybytes := null) return Class;
    function allocationLimit return int;
    function autoDetectImageFormat (self : access Inst) return bool;
    function autoTransform (self : access Inst) return bool;
@@ -55,7 +56,7 @@ package QtAda6.QtGui.QImageReader is
    function imageFormat (fileName_P : str) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function imageFormat (self : access Inst) return access QtAda6.QtGui.QImage.Format.Inst'Class;
    function imageFormatsForMimeType
-     (mimeType_P : Union_QtAda6_QtCore_QByteArray_bytes) return List_QtAda6_QtCore_QByteArray;
+     (mimeType_P : UNION_QtAda6_QtCore_QByteArraybytes) return LIST_QtAda6_QtCore_QByteArray;
    function jumpToImage (self : access Inst; imageNumber_P : int) return bool;
    function jumpToNextImage (self : access Inst) return bool;
    function loopCount (self : access Inst) return int;
@@ -68,25 +69,24 @@ package QtAda6.QtGui.QImageReader is
    procedure setAutoDetectImageFormat (self : access Inst; enabled_P : bool);
    procedure setAutoTransform (self : access Inst; enabled_P : bool);
    procedure setBackgroundColor
-     (self    : access Inst;
-      color_P : Union_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
+     (self : access Inst; color_P : UNION_QtAda6_QtGui_QColorQtAda6_QtGui_QRgba64AnyQtAda6_QtCore_Qt_GlobalColorstrint);
    procedure setClipRect (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class);
    procedure setDecideFormatFromContent (self : access Inst; ignored_P : bool);
    procedure setDevice (self : access Inst; device_P : access QtAda6.QtCore.QIODevice.Inst'Class);
    procedure setFileName (self : access Inst; fileName_P : str);
-   procedure setFormat (self : access Inst; format_P : Union_QtAda6_QtCore_QByteArray_bytes);
+   procedure setFormat (self : access Inst; format_P : UNION_QtAda6_QtCore_QByteArraybytes);
    procedure setQuality (self : access Inst; quality_P : int);
    procedure setScaledClipRect (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class);
    procedure setScaledSize (self : access Inst; size_P : access QtAda6.QtCore.QSize.Inst'Class);
    function size (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class;
    function subType_K (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class;
-   function supportedImageFormats return List_QtAda6_QtCore_QByteArray;
-   function supportedMimeTypes return List_QtAda6_QtCore_QByteArray;
-   function supportedSubTypes (self : access Inst) return List_QtAda6_QtCore_QByteArray;
+   function supportedImageFormats return LIST_QtAda6_QtCore_QByteArray;
+   function supportedMimeTypes return LIST_QtAda6_QtCore_QByteArray;
+   function supportedSubTypes (self : access Inst) return LIST_QtAda6_QtCore_QByteArray;
    function supportsAnimation (self : access Inst) return bool;
    function supportsOption
      (self : access Inst; option_P : access QtAda6.QtGui.QImageIOHandler.ImageOption.Inst'Class) return bool;
    function text (self : access Inst; key_P : str) return str;
-   function textKeys (self : access Inst) return List_str;
+   function textKeys (self : access Inst) return LIST_str;
    function transformation (self : access Inst) return access QtAda6.QtGui.QImageIOHandler.Transformation.Inst'Class;
 end QtAda6.QtGui.QImageReader;

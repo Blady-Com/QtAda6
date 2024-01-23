@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -16,23 +16,26 @@ limited with QtAda6.QtCore.QSizeF;
 limited with QtAda6.QtGui.QTransform;
 limited with QtAda6.QtCore.QPoint;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QScreen is
-   type ClassVar_Signal is access Any;
-   type List_QtAda6_QtGui_QScreen is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   subtype LIST_QtAda6_QtGui_QScreen is QtAda6.QtGui.QScreen.Class_Array;
    procedure Finalize (Self : in out Class);
-   availableGeometryChanged   : ClassVar_Signal;-- availableGeometryChanged(QRect)
-   geometryChanged            : ClassVar_Signal;-- geometryChanged(QRect)
-   logicalDotsPerInchChanged  : ClassVar_Signal;-- logicalDotsPerInchChanged(double)
-   orientationChanged         : ClassVar_Signal;-- orientationChanged(Qt::ScreenOrientation)
-   physicalDotsPerInchChanged : ClassVar_Signal;-- physicalDotsPerInchChanged(double)
-   physicalSizeChanged        : ClassVar_Signal;-- physicalSizeChanged(QSizeF)
-   primaryOrientationChanged  : ClassVar_Signal;-- primaryOrientationChanged(Qt::ScreenOrientation)
-   refreshRateChanged         : ClassVar_Signal;-- refreshRateChanged(double)
-   virtualGeometryChanged     : ClassVar_Signal;-- virtualGeometryChanged(QRect)
+   function availableGeometryChanged (self : access Inst) return CLASSVAR_Signal;-- availableGeometryChanged(QRect)
+   function geometryChanged (self : access Inst) return CLASSVAR_Signal;-- geometryChanged(QRect)
+   function logicalDotsPerInchChanged (self : access Inst) return CLASSVAR_Signal;-- logicalDotsPerInchChanged(double)
+   function orientationChanged (self : access Inst) return CLASSVAR_Signal;-- orientationChanged(Qt::ScreenOrientation)
+   function physicalDotsPerInchChanged (self : access Inst) return CLASSVAR_Signal;-- physicalDotsPerInchChanged(double)
+   function physicalSizeChanged (self : access Inst) return CLASSVAR_Signal;-- physicalSizeChanged(QSizeF)
+   function primaryOrientationChanged
+     (self : access Inst) return CLASSVAR_Signal;-- primaryOrientationChanged(Qt::ScreenOrientation)
+   function refreshRateChanged (self : access Inst) return CLASSVAR_Signal;-- refreshRateChanged(double)
+   function virtualGeometryChanged (self : access Inst) return CLASSVAR_Signal;-- virtualGeometryChanged(QRect)
    function angleBetween
      (self : access Inst; a_P : access QtAda6.QtCore.Qt.ScreenOrientation.Inst'Class;
       b_P  : access QtAda6.QtCore.Qt.ScreenOrientation.Inst'Class) return int;
@@ -44,7 +47,7 @@ package QtAda6.QtGui.QScreen is
    function devicePixelRatio (self : access Inst) return float;
    function geometry (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class;
    function grabWindow
-     (self : access Inst; window_P : int; x_P : int; y_P : int; w_P : int; h_P : int)
+     (self : access Inst; window_P : int; x_P : int := 0; y_P : int := 0; w_P : int := 0; h_P : int := 0)
       return access QtAda6.QtGui.QPixmap.Inst'Class;
    function isLandscape
      (self : access Inst; orientation_P : access QtAda6.QtCore.Qt.ScreenOrientation.Inst'Class) return bool;
@@ -79,6 +82,6 @@ package QtAda6.QtGui.QScreen is
    function virtualSiblingAt
      (self : access Inst; point_P : access QtAda6.QtCore.QPoint.Inst'Class)
       return access QtAda6.QtGui.QScreen.Inst'Class;
-   function virtualSiblings (self : access Inst) return List_QtAda6_QtGui_QScreen;
+   function virtualSiblings (self : access Inst) return LIST_QtAda6_QtGui_QScreen;
    function virtualSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class;
 end QtAda6.QtGui.QScreen;

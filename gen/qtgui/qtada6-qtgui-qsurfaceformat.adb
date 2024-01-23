@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -25,31 +25,30 @@ package body QtAda6.QtGui.QSurfaceFormat is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
       Args  := Tuple_New (0);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (options_P : access QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst'Class) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, options_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if options_P /= null then options_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (other_P : Union_QtAda6_QtGui_QSurfaceFormat_QtAda6_QtGui_QSurfaceFormat_FormatOption) return Class
-   is
-      Class, Args : Handle;
+   function Create (other_P : UNION_QtAda6_QtGui_QSurfaceFormatQtAda6_QtGui_QSurfaceFormat_FormatOption) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -57,7 +56,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       Result := Object_CallObject (Method, Args, True);
    end U_copy_U;
    function alphaBufferSize (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "alphaBufferSize");
       Args   := Tuple_New (0);
@@ -65,7 +64,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Long_AsLong (Result);
    end alphaBufferSize;
    function blueBufferSize (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "blueBufferSize");
       Args   := Tuple_New (0);
@@ -73,8 +72,8 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Long_AsLong (Result);
    end blueBufferSize;
    function colorSpace_F (self : access Inst) return access QtAda6.QtGui.QColorSpace.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QColorSpace.Class := new QtAda6.QtGui.QColorSpace.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QColorSpace.Class := new QtAda6.QtGui.QColorSpace.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "colorSpace");
       Args             := Tuple_New (0);
@@ -83,8 +82,8 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Ret;
    end colorSpace_F;
    function defaultFormat return access QtAda6.QtGui.QSurfaceFormat.Inst'Class is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtGui.QSurfaceFormat.Class := new QtAda6.QtGui.QSurfaceFormat.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtGui.QSurfaceFormat.Class := new QtAda6.QtGui.QSurfaceFormat.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
       Method           := Object_GetAttrString (Class, "defaultFormat");
@@ -94,7 +93,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Ret;
    end defaultFormat;
    function depthBufferSize (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "depthBufferSize");
       Args   := Tuple_New (0);
@@ -102,7 +101,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Long_AsLong (Result);
    end depthBufferSize;
    function greenBufferSize (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "greenBufferSize");
       Args   := Tuple_New (0);
@@ -110,7 +109,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Long_AsLong (Result);
    end greenBufferSize;
    function hasAlpha (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasAlpha");
       Args   := Tuple_New (0);
@@ -118,7 +117,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return To_Ada (Result);
    end hasAlpha;
    function majorVersion (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "majorVersion");
       Args   := Tuple_New (0);
@@ -126,7 +125,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Long_AsLong (Result);
    end majorVersion;
    function minorVersion (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "minorVersion");
       Args   := Tuple_New (0);
@@ -134,8 +133,8 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Long_AsLong (Result);
    end minorVersion;
    function options (self : access Inst) return access QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QSurfaceFormat.FormatOption.Class :=
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QSurfaceFormat.FormatOption.Class :=
         new QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "options");
@@ -145,8 +144,8 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Ret;
    end options;
    function profile_F (self : access Inst) return access QtAda6.QtGui.QSurfaceFormat.OpenGLContextProfile.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QSurfaceFormat.OpenGLContextProfile.Class :=
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QSurfaceFormat.OpenGLContextProfile.Class :=
         new QtAda6.QtGui.QSurfaceFormat.OpenGLContextProfile.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "profile");
@@ -156,7 +155,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Ret;
    end profile_F;
    function redBufferSize (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "redBufferSize");
       Args   := Tuple_New (0);
@@ -164,8 +163,8 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Long_AsLong (Result);
    end redBufferSize;
    function renderableType_F (self : access Inst) return access QtAda6.QtGui.QSurfaceFormat.RenderableType.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QSurfaceFormat.RenderableType.Class :=
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QSurfaceFormat.RenderableType.Class :=
         new QtAda6.QtGui.QSurfaceFormat.RenderableType.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "renderableType");
@@ -175,7 +174,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Ret;
    end renderableType_F;
    function samples (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "samples");
       Args   := Tuple_New (0);
@@ -183,7 +182,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Long_AsLong (Result);
    end samples;
    procedure setAlphaBufferSize (self : access Inst; size_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAlphaBufferSize");
       Args   := Tuple_New (1);
@@ -191,7 +190,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       Result := Object_CallObject (Method, Args, True);
    end setAlphaBufferSize;
    procedure setBlueBufferSize (self : access Inst; size_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBlueBufferSize");
       Args   := Tuple_New (1);
@@ -200,34 +199,34 @@ package body QtAda6.QtGui.QSurfaceFormat is
    end setBlueBufferSize;
    procedure setColorSpace (self : access Inst; colorSpace_P : access QtAda6.QtGui.QSurfaceFormat.ColorSpace.Inst'Class)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setColorSpace");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, colorSpace_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if colorSpace_P /= null then colorSpace_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setColorSpace;
    procedure setColorSpace
-     (self : access Inst; colorSpace_P : Union_QtAda6_QtGui_QColorSpace_QtAda6_QtGui_QColorSpace_NamedColorSpace)
+     (self : access Inst; colorSpace_P : UNION_QtAda6_QtGui_QColorSpaceQtAda6_QtGui_QColorSpace_NamedColorSpace)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setColorSpace");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if colorSpace_P /= null then colorSpace_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setColorSpace;
-   procedure setDefaultFormat (format_P : Union_QtAda6_QtGui_QSurfaceFormat_QtAda6_QtGui_QSurfaceFormat_FormatOption) is
-      Class, Method, Args, Result : Handle;
+   procedure setDefaultFormat (format_P : UNION_QtAda6_QtGui_QSurfaceFormatQtAda6_QtGui_QSurfaceFormat_FormatOption) is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
       Method := Object_GetAttrString (Class, "setDefaultFormat");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if format_P /= null then format_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setDefaultFormat;
    procedure setDepthBufferSize (self : access Inst; size_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDepthBufferSize");
       Args   := Tuple_New (1);
@@ -235,7 +234,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       Result := Object_CallObject (Method, Args, True);
    end setDepthBufferSize;
    procedure setGreenBufferSize (self : access Inst; size_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setGreenBufferSize");
       Args   := Tuple_New (1);
@@ -243,7 +242,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       Result := Object_CallObject (Method, Args, True);
    end setGreenBufferSize;
    procedure setMajorVersion (self : access Inst; majorVersion_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMajorVersion");
       Args   := Tuple_New (1);
@@ -251,7 +250,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       Result := Object_CallObject (Method, Args, True);
    end setMajorVersion;
    procedure setMinorVersion (self : access Inst; minorVersion_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMinorVersion");
       Args   := Tuple_New (1);
@@ -259,36 +258,36 @@ package body QtAda6.QtGui.QSurfaceFormat is
       Result := Object_CallObject (Method, Args, True);
    end setMinorVersion;
    procedure setOption
-     (self : access Inst; option_P : access QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst'Class; on_P : bool)
+     (self : access Inst; option_P : access QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst'Class; on_P : bool := False)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOption");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, option_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if option_P /= null then option_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, To_Python (on_P));
       Result := Object_CallObject (Method, Args, True);
    end setOption;
    procedure setOptions (self : access Inst; options_P : access QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOptions");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, options_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if options_P /= null then options_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setOptions;
    procedure setProfile
      (self : access Inst; profile_P : access QtAda6.QtGui.QSurfaceFormat.OpenGLContextProfile.Inst'Class)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setProfile");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, profile_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if profile_P /= null then profile_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setProfile;
    procedure setRedBufferSize (self : access Inst; size_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRedBufferSize");
       Args   := Tuple_New (1);
@@ -298,15 +297,15 @@ package body QtAda6.QtGui.QSurfaceFormat is
    procedure setRenderableType
      (self : access Inst; type_K_P : access QtAda6.QtGui.QSurfaceFormat.RenderableType.Inst'Class)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRenderableType");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, type_K_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setRenderableType;
    procedure setSamples (self : access Inst; numSamples_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSamples");
       Args   := Tuple_New (1);
@@ -314,7 +313,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       Result := Object_CallObject (Method, Args, True);
    end setSamples;
    procedure setStencilBufferSize (self : access Inst; size_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStencilBufferSize");
       Args   := Tuple_New (1);
@@ -322,7 +321,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       Result := Object_CallObject (Method, Args, True);
    end setStencilBufferSize;
    procedure setStereo (self : access Inst; enable_P : bool) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStereo");
       Args   := Tuple_New (1);
@@ -332,15 +331,15 @@ package body QtAda6.QtGui.QSurfaceFormat is
    procedure setSwapBehavior
      (self : access Inst; behavior_P : access QtAda6.QtGui.QSurfaceFormat.SwapBehavior.Inst'Class)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSwapBehavior");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, behavior_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if behavior_P /= null then behavior_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setSwapBehavior;
    procedure setSwapInterval (self : access Inst; interval_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSwapInterval");
       Args   := Tuple_New (1);
@@ -348,7 +347,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       Result := Object_CallObject (Method, Args, True);
    end setSwapInterval;
    procedure setVersion (self : access Inst; major_P : int; minor_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVersion");
       Args   := Tuple_New (2);
@@ -357,7 +356,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       Result := Object_CallObject (Method, Args, True);
    end setVersion;
    function stencilBufferSize (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "stencilBufferSize");
       Args   := Tuple_New (0);
@@ -365,7 +364,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Long_AsLong (Result);
    end stencilBufferSize;
    function stereo (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "stereo");
       Args   := Tuple_New (0);
@@ -373,8 +372,8 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return To_Ada (Result);
    end stereo;
    function swapBehavior_F (self : access Inst) return access QtAda6.QtGui.QSurfaceFormat.SwapBehavior.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QSurfaceFormat.SwapBehavior.Class :=
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QSurfaceFormat.SwapBehavior.Class :=
         new QtAda6.QtGui.QSurfaceFormat.SwapBehavior.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "swapBehavior");
@@ -384,7 +383,7 @@ package body QtAda6.QtGui.QSurfaceFormat is
       return Ret;
    end swapBehavior_F;
    function swapInterval (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swapInterval");
       Args   := Tuple_New (0);
@@ -394,16 +393,16 @@ package body QtAda6.QtGui.QSurfaceFormat is
    function testOption
      (self : access Inst; option_P : access QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst'Class) return bool
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "testOption");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, option_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if option_P /= null then option_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end testOption;
-   function version (self : access Inst) return Tuple_int_int is
-      Method, Args, Result : Handle;
+   function version (self : access Inst) return TUPLE_intint is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "version");
       Args   := Tuple_New (0);

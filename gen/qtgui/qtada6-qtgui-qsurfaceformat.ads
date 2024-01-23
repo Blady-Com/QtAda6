@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -16,17 +16,18 @@ limited with QtAda6.QtGui.QSurfaceFormat.ColorSpace;
 limited with QtAda6.QtGui.QColorSpace.NamedColorSpace;
 limited with QtAda6.QtGui.QSurfaceFormat.SwapBehavior;
 package QtAda6.QtGui.QSurfaceFormat is
-   type Union_QtAda6_QtGui_QSurfaceFormat_QtAda6_QtGui_QSurfaceFormat_FormatOption is access Any;
-   type Union_QtAda6_QtGui_QColorSpace_QtAda6_QtGui_QColorSpace_NamedColorSpace is access Any;
-   type Tuple_int_int is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type UNION_QtAda6_QtGui_QSurfaceFormatQtAda6_QtGui_QSurfaceFormat_FormatOption is new Any;
+   type UNION_QtAda6_QtGui_QColorSpaceQtAda6_QtGui_QColorSpace_NamedColorSpace is new Any;
+   type TUPLE_intint is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (options_P : access QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst'Class) return Class;
-   function Create (other_P : Union_QtAda6_QtGui_QSurfaceFormat_QtAda6_QtGui_QSurfaceFormat_FormatOption) return Class;
+   function Create (other_P : UNION_QtAda6_QtGui_QSurfaceFormatQtAda6_QtGui_QSurfaceFormat_FormatOption) return Class;
    procedure U_copy_U;
    function alphaBufferSize (self : access Inst) return int;
    function blueBufferSize (self : access Inst) return int;
@@ -47,14 +48,14 @@ package QtAda6.QtGui.QSurfaceFormat is
    procedure setColorSpace
      (self : access Inst; colorSpace_P : access QtAda6.QtGui.QSurfaceFormat.ColorSpace.Inst'Class);
    procedure setColorSpace
-     (self : access Inst; colorSpace_P : Union_QtAda6_QtGui_QColorSpace_QtAda6_QtGui_QColorSpace_NamedColorSpace);
-   procedure setDefaultFormat (format_P : Union_QtAda6_QtGui_QSurfaceFormat_QtAda6_QtGui_QSurfaceFormat_FormatOption);
+     (self : access Inst; colorSpace_P : UNION_QtAda6_QtGui_QColorSpaceQtAda6_QtGui_QColorSpace_NamedColorSpace);
+   procedure setDefaultFormat (format_P : UNION_QtAda6_QtGui_QSurfaceFormatQtAda6_QtGui_QSurfaceFormat_FormatOption);
    procedure setDepthBufferSize (self : access Inst; size_P : int);
    procedure setGreenBufferSize (self : access Inst; size_P : int);
    procedure setMajorVersion (self : access Inst; majorVersion_P : int);
    procedure setMinorVersion (self : access Inst; minorVersion_P : int);
    procedure setOption
-     (self : access Inst; option_P : access QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst'Class; on_P : bool);
+     (self : access Inst; option_P : access QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst'Class; on_P : bool := False);
    procedure setOptions (self : access Inst; options_P : access QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst'Class);
    procedure setProfile
      (self : access Inst; profile_P : access QtAda6.QtGui.QSurfaceFormat.OpenGLContextProfile.Inst'Class);
@@ -74,5 +75,5 @@ package QtAda6.QtGui.QSurfaceFormat is
    function swapInterval (self : access Inst) return int;
    function testOption
      (self : access Inst; option_P : access QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst'Class) return bool;
-   function version (self : access Inst) return Tuple_int_int;
+   function version (self : access Inst) return TUPLE_intint;
 end QtAda6.QtGui.QSurfaceFormat;

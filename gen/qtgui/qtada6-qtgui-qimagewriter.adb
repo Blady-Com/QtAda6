@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -24,35 +24,34 @@ package body QtAda6.QtGui.QImageWriter is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageWriter");
       Args  := Tuple_New (0);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create
-     (device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : Union_QtAda6_QtCore_QByteArray_bytes)
-      return Class
+     (device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : UNION_QtAda6_QtCore_QByteArraybytes) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageWriter");
       Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, device_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 0, (if device_P /= null then device_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if format_P /= null then format_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (fileName_P : str; format_P : Union_QtAda6_QtCore_QByteArray_bytes) return Class is
-      Class, Args : Handle;
+   function Create (fileName_P : str; format_P : UNION_QtAda6_QtCore_QByteArraybytes := null) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageWriter");
       Args  := Tuple_New (2);
       Tuple_SetItem (Args, 0, Unicode_FromString (fileName_P));
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 1, (if format_P /= null then format_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function canWrite (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "canWrite");
       Args   := Tuple_New (0);
@@ -60,7 +59,7 @@ package body QtAda6.QtGui.QImageWriter is
       return To_Ada (Result);
    end canWrite;
    function compression (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "compression");
       Args   := Tuple_New (0);
@@ -68,8 +67,8 @@ package body QtAda6.QtGui.QImageWriter is
       return Long_AsLong (Result);
    end compression;
    function device (self : access Inst) return access QtAda6.QtCore.QIODevice.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QIODevice.Class := new QtAda6.QtCore.QIODevice.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QIODevice.Class := new QtAda6.QtCore.QIODevice.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "device");
       Args             := Tuple_New (0);
@@ -78,8 +77,8 @@ package body QtAda6.QtGui.QImageWriter is
       return Ret;
    end device;
    function error_F (self : access Inst) return access QtAda6.QtGui.QImageWriter.ImageWriterError.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QImageWriter.ImageWriterError.Class :=
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QImageWriter.ImageWriterError.Class :=
         new QtAda6.QtGui.QImageWriter.ImageWriterError.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "error");
@@ -89,7 +88,7 @@ package body QtAda6.QtGui.QImageWriter is
       return Ret;
    end error_F;
    function errorString (self : access Inst) return str is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "errorString");
       Args   := Tuple_New (0);
@@ -97,7 +96,7 @@ package body QtAda6.QtGui.QImageWriter is
       return As_String (Result);
    end errorString;
    function fileName (self : access Inst) return str is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fileName");
       Args   := Tuple_New (0);
@@ -105,8 +104,8 @@ package body QtAda6.QtGui.QImageWriter is
       return As_String (Result);
    end fileName;
    function format (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "format");
       Args             := Tuple_New (0);
@@ -115,19 +114,19 @@ package body QtAda6.QtGui.QImageWriter is
       return Ret;
    end format;
    function imageFormatsForMimeType
-     (mimeType_P : Union_QtAda6_QtCore_QByteArray_bytes) return List_QtAda6_QtCore_QByteArray
+     (mimeType_P : UNION_QtAda6_QtCore_QByteArraybytes) return LIST_QtAda6_QtCore_QByteArray
    is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageWriter");
       Method := Object_GetAttrString (Class, "imageFormatsForMimeType");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if mimeType_P /= null then mimeType_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end imageFormatsForMimeType;
    function optimizedWrite (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "optimizedWrite");
       Args   := Tuple_New (0);
@@ -135,7 +134,7 @@ package body QtAda6.QtGui.QImageWriter is
       return To_Ada (Result);
    end optimizedWrite;
    function progressiveScanWrite (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "progressiveScanWrite");
       Args   := Tuple_New (0);
@@ -143,7 +142,7 @@ package body QtAda6.QtGui.QImageWriter is
       return To_Ada (Result);
    end progressiveScanWrite;
    function quality (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "quality");
       Args   := Tuple_New (0);
@@ -151,7 +150,7 @@ package body QtAda6.QtGui.QImageWriter is
       return Long_AsLong (Result);
    end quality;
    procedure setCompression (self : access Inst; compression_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCompression");
       Args   := Tuple_New (1);
@@ -159,31 +158,31 @@ package body QtAda6.QtGui.QImageWriter is
       Result := Object_CallObject (Method, Args, True);
    end setCompression;
    procedure setDevice (self : access Inst; device_P : access QtAda6.QtCore.QIODevice.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDevice");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, device_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if device_P /= null then device_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setDevice;
    procedure setFileName (self : access Inst; fileName_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFileName");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (fileName_P));
       Result := Object_CallObject (Method, Args, True);
    end setFileName;
-   procedure setFormat (self : access Inst; format_P : Union_QtAda6_QtCore_QByteArray_bytes) is
-      Method, Args, Result : Handle;
+   procedure setFormat (self : access Inst; format_P : UNION_QtAda6_QtCore_QByteArraybytes) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if format_P /= null then format_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setFormat;
    procedure setOptimizedWrite (self : access Inst; optimize_P : bool) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOptimizedWrite");
       Args   := Tuple_New (1);
@@ -191,7 +190,7 @@ package body QtAda6.QtGui.QImageWriter is
       Result := Object_CallObject (Method, Args, True);
    end setOptimizedWrite;
    procedure setProgressiveScanWrite (self : access Inst; progressive_P : bool) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setProgressiveScanWrite");
       Args   := Tuple_New (1);
@@ -199,23 +198,23 @@ package body QtAda6.QtGui.QImageWriter is
       Result := Object_CallObject (Method, Args, True);
    end setProgressiveScanWrite;
    procedure setQuality (self : access Inst; quality_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setQuality");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Long_FromLong (quality_P));
       Result := Object_CallObject (Method, Args, True);
    end setQuality;
-   procedure setSubType (self : access Inst; type_K_P : Union_QtAda6_QtCore_QByteArray_bytes) is
-      Method, Args, Result : Handle;
+   procedure setSubType (self : access Inst; type_K_P : UNION_QtAda6_QtCore_QByteArraybytes) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSubType");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setSubType;
    procedure setText (self : access Inst; key_P : str; text_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setText");
       Args   := Tuple_New (2);
@@ -226,16 +225,16 @@ package body QtAda6.QtGui.QImageWriter is
    procedure setTransformation
      (self : access Inst; orientation_P : access QtAda6.QtGui.QImageIOHandler.Transformation.Inst'Class)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTransformation");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, orientation_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if orientation_P /= null then orientation_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setTransformation;
    function subType_K (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "subType");
       Args             := Tuple_New (0);
@@ -243,46 +242,46 @@ package body QtAda6.QtGui.QImageWriter is
       Ret.Python_Proxy := Result;
       return Ret;
    end subType_K;
-   function supportedImageFormats return List_QtAda6_QtCore_QByteArray is
-      Class, Method, Args, Result : Handle;
+   function supportedImageFormats return LIST_QtAda6_QtCore_QByteArray is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageWriter");
       Method := Object_GetAttrString (Class, "supportedImageFormats");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end supportedImageFormats;
-   function supportedMimeTypes return List_QtAda6_QtCore_QByteArray is
-      Class, Method, Args, Result : Handle;
+   function supportedMimeTypes return LIST_QtAda6_QtCore_QByteArray is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageWriter");
       Method := Object_GetAttrString (Class, "supportedMimeTypes");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end supportedMimeTypes;
-   function supportedSubTypes (self : access Inst) return List_QtAda6_QtCore_QByteArray is
-      Method, Args, Result : Handle;
+   function supportedSubTypes (self : access Inst) return LIST_QtAda6_QtCore_QByteArray is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "supportedSubTypes");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end supportedSubTypes;
    function supportsOption
      (self : access Inst; option_P : access QtAda6.QtGui.QImageIOHandler.ImageOption.Inst'Class) return bool
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "supportsOption");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, option_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if option_P /= null then option_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end supportsOption;
    function transformation (self : access Inst) return access QtAda6.QtGui.QImageIOHandler.Transformation.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QImageIOHandler.Transformation.Class :=
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QImageIOHandler.Transformation.Class :=
         new QtAda6.QtGui.QImageIOHandler.Transformation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "transformation");
@@ -291,12 +290,12 @@ package body QtAda6.QtGui.QImageWriter is
       Ret.Python_Proxy := Result;
       return Ret;
    end transformation;
-   function write_F (self : access Inst; image_P : Union_QtAda6_QtGui_QImage_str) return bool is
-      Method, Args, Result : Handle;
+   function write_F (self : access Inst; image_P : UNION_QtAda6_QtGui_QImagestr) return bool is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "write");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if image_P /= null then image_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end write_F;

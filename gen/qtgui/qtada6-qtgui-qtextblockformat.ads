@@ -4,22 +4,23 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtGui.QTextBlockFormat.MarkerType;
 limited with QtAda6.QtGui.QTextFormat.PageBreakFlag;
-limited with QtAda6.QtGui.QTextOption.Tab;
 with QtAda6.QtGui.QTextFormat;
+with QtAda6.QtGui.QTextOption.Tab;
 package QtAda6.QtGui.QTextBlockFormat is
-   type Sequence_QtAda6_QtGui_QTextOption_Tab is access Any;
-   type List_QtAda6_QtGui_QTextOption_Tab is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QTextFormat.Inst with null record;
+   subtype SEQUENCE_QtAda6_QtGui_QTextOption_Tab is QtAda6.QtGui.QTextOption.Tab.Class_Array;
+   subtype LIST_QtAda6_QtGui_QTextOption_Tab is QtAda6.QtGui.QTextOption.Tab.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (QTextBlockFormat_P : access QtAda6.QtGui.QTextBlockFormat.Inst'Class) return Class;
@@ -49,10 +50,10 @@ package QtAda6.QtGui.QTextBlockFormat is
    procedure setPageBreakPolicy
      (self : access Inst; flags_P : access QtAda6.QtGui.QTextFormat.PageBreakFlag.Inst'Class);
    procedure setRightMargin (self : access Inst; margin_P : float);
-   procedure setTabPositions (self : access Inst; tabs_P : Sequence_QtAda6_QtGui_QTextOption_Tab);
+   procedure setTabPositions (self : access Inst; tabs_P : SEQUENCE_QtAda6_QtGui_QTextOption_Tab);
    procedure setTextIndent (self : access Inst; aindent_P : float);
    procedure setTopMargin (self : access Inst; margin_P : float);
-   function tabPositions (self : access Inst) return List_QtAda6_QtGui_QTextOption_Tab;
+   function tabPositions (self : access Inst) return LIST_QtAda6_QtGui_QTextOption_Tab;
    function textIndent (self : access Inst) return float;
    function topMargin (self : access Inst) return float;
 end QtAda6.QtGui.QTextBlockFormat;

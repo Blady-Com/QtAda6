@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -27,30 +27,35 @@ package body QtAda6.QtGui.QOpenGLContext is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function Create (parent_P : Optional_QtAda6_QtCore_QObject) return Class is
-      Class, Args : Handle;
+   function aboutToBeDestroyed (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return
+        new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "aboutToBeDestroyed"));
+   end aboutToBeDestroyed;
+   function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLContext");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function areSharing
      (first_P : access QtAda6.QtGui.QOpenGLContext.Inst'Class; second_P : access QtAda6.QtGui.QOpenGLContext.Inst'Class)
       return bool
    is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLContext");
       Method := Object_GetAttrString (Class, "areSharing");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, first_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, second_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if first_P /= null then first_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if second_P /= null then second_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end areSharing;
    function create (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "create");
       Args   := Tuple_New (0);
@@ -58,8 +63,8 @@ package body QtAda6.QtGui.QOpenGLContext is
       return To_Ada (Result);
    end create;
    function currentContext return access QtAda6.QtGui.QOpenGLContext.Inst'Class is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtGui.QOpenGLContext.Class := new QtAda6.QtGui.QOpenGLContext.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtGui.QOpenGLContext.Class := new QtAda6.QtGui.QOpenGLContext.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLContext");
       Method           := Object_GetAttrString (Class, "currentContext");
@@ -69,7 +74,7 @@ package body QtAda6.QtGui.QOpenGLContext is
       return Ret;
    end currentContext;
    function defaultFramebufferObject (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "defaultFramebufferObject");
       Args   := Tuple_New (0);
@@ -77,22 +82,22 @@ package body QtAda6.QtGui.QOpenGLContext is
       return Long_AsLong (Result);
    end defaultFramebufferObject;
    procedure doneCurrent (self : access Inst) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "doneCurrent");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
    end doneCurrent;
-   function extensions (self : access Inst) return Set_QtAda6_QtCore_QByteArray is
-      Method, Args, Result : Handle;
+   function extensions (self : access Inst) return SET_QtAda6_QtCore_QByteArray is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "extensions");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end extensions;
    function extraFunctions (self : access Inst) return access QtAda6.QtGui.QOpenGLExtraFunctions.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtGui.QOpenGLExtraFunctions.Class := new QtAda6.QtGui.QOpenGLExtraFunctions.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "extraFunctions");
@@ -102,8 +107,8 @@ package body QtAda6.QtGui.QOpenGLContext is
       return Ret;
    end extraFunctions;
    function format (self : access Inst) return access QtAda6.QtGui.QSurfaceFormat.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QSurfaceFormat.Class := new QtAda6.QtGui.QSurfaceFormat.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QSurfaceFormat.Class := new QtAda6.QtGui.QSurfaceFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "format");
       Args             := Tuple_New (0);
@@ -112,8 +117,8 @@ package body QtAda6.QtGui.QOpenGLContext is
       return Ret;
    end format;
    function functions (self : access Inst) return access QtAda6.QtGui.QOpenGLFunctions.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QOpenGLFunctions.Class := new QtAda6.QtGui.QOpenGLFunctions.Inst;
+      Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtGui.QOpenGLFunctions.Class := new QtAda6.QtGui.QOpenGLFunctions.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "functions");
       Args             := Tuple_New (0);
@@ -122,7 +127,7 @@ package body QtAda6.QtGui.QOpenGLContext is
       return Ret;
    end functions;
    function getProcAddress (self : access Inst; procName_P : bytes) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "getProcAddress");
       Args   := Tuple_New (1);
@@ -130,18 +135,18 @@ package body QtAda6.QtGui.QOpenGLContext is
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end getProcAddress;
-   function getProcAddress (self : access Inst; procName_P : Union_QtAda6_QtCore_QByteArray_bytes) return int is
-      Method, Args, Result : Handle;
+   function getProcAddress (self : access Inst; procName_P : UNION_QtAda6_QtCore_QByteArraybytes) return int is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "getProcAddress");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if procName_P /= null then procName_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end getProcAddress;
    function globalShareContext return access QtAda6.QtGui.QOpenGLContext.Inst'Class is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtGui.QOpenGLContext.Class := new QtAda6.QtGui.QOpenGLContext.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtGui.QOpenGLContext.Class := new QtAda6.QtGui.QOpenGLContext.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLContext");
       Method           := Object_GetAttrString (Class, "globalShareContext");
@@ -150,17 +155,17 @@ package body QtAda6.QtGui.QOpenGLContext is
       Ret.Python_Proxy := Result;
       return Ret;
    end globalShareContext;
-   function hasExtension (self : access Inst; extension_P : Union_QtAda6_QtCore_QByteArray_bytes) return bool is
-      Method, Args, Result : Handle;
+   function hasExtension (self : access Inst; extension_P : UNION_QtAda6_QtCore_QByteArraybytes) return bool is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasExtension");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if extension_P /= null then extension_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end hasExtension;
    function isOpenGLES (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isOpenGLES");
       Args   := Tuple_New (0);
@@ -168,7 +173,7 @@ package body QtAda6.QtGui.QOpenGLContext is
       return To_Ada (Result);
    end isOpenGLES;
    function isValid (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -176,17 +181,17 @@ package body QtAda6.QtGui.QOpenGLContext is
       return To_Ada (Result);
    end isValid;
    function makeCurrent (self : access Inst; surface_P : access QtAda6.QtGui.QSurface.Inst'Class) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "makeCurrent");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, surface_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if surface_P /= null then surface_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end makeCurrent;
    function openGLModuleType_F return access QtAda6.QtGui.QOpenGLContext.OpenGLModuleType.Inst'Class is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtGui.QOpenGLContext.OpenGLModuleType.Class :=
+      Class, Method, Args, List, Result : Handle;
+      Ret                               : constant QtAda6.QtGui.QOpenGLContext.OpenGLModuleType.Class :=
         new QtAda6.QtGui.QOpenGLContext.OpenGLModuleType.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLContext");
@@ -197,7 +202,7 @@ package body QtAda6.QtGui.QOpenGLContext is
       return Ret;
    end openGLModuleType_F;
    function resolveInterface (self : access Inst; name_P : bytes; revision_P : int) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resolveInterface");
       Args   := Tuple_New (2);
@@ -207,8 +212,8 @@ package body QtAda6.QtGui.QOpenGLContext is
       return Long_AsLong (Result);
    end resolveInterface;
    function screen (self : access Inst) return access QtAda6.QtGui.QScreen.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QScreen.Class := new QtAda6.QtGui.QScreen.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QScreen.Class := new QtAda6.QtGui.QScreen.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "screen");
       Args             := Tuple_New (0);
@@ -217,34 +222,34 @@ package body QtAda6.QtGui.QOpenGLContext is
       return Ret;
    end screen;
    procedure setFormat
-     (self : access Inst; format_P : Union_QtAda6_QtGui_QSurfaceFormat_QtAda6_QtGui_QSurfaceFormat_FormatOption)
+     (self : access Inst; format_P : UNION_QtAda6_QtGui_QSurfaceFormatQtAda6_QtGui_QSurfaceFormat_FormatOption)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if format_P /= null then format_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setFormat;
    procedure setScreen (self : access Inst; screen_P : access QtAda6.QtGui.QScreen.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setScreen");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, screen_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if screen_P /= null then screen_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setScreen;
    procedure setShareContext (self : access Inst; shareContext_P : access QtAda6.QtGui.QOpenGLContext.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setShareContext");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, shareContext_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if shareContext_P /= null then shareContext_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setShareContext;
    function shareContext (self : access Inst) return access QtAda6.QtGui.QOpenGLContext.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QOpenGLContext.Class := new QtAda6.QtGui.QOpenGLContext.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QOpenGLContext.Class := new QtAda6.QtGui.QOpenGLContext.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "shareContext");
       Args             := Tuple_New (0);
@@ -253,7 +258,7 @@ package body QtAda6.QtGui.QOpenGLContext is
       return Ret;
    end shareContext;
    function shareGroup (self : access Inst) return access QtAda6.QtGui.QOpenGLContextGroup.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtGui.QOpenGLContextGroup.Class := new QtAda6.QtGui.QOpenGLContextGroup.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "shareGroup");
@@ -263,7 +268,7 @@ package body QtAda6.QtGui.QOpenGLContext is
       return Ret;
    end shareGroup;
    function supportsThreadedOpenGL return bool is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLContext");
       Method := Object_GetAttrString (Class, "supportsThreadedOpenGL");
@@ -272,8 +277,8 @@ package body QtAda6.QtGui.QOpenGLContext is
       return To_Ada (Result);
    end supportsThreadedOpenGL;
    function surface (self : access Inst) return access QtAda6.QtGui.QSurface.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QSurface.Class := new QtAda6.QtGui.QSurface.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QSurface.Class := new QtAda6.QtGui.QSurface.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "surface");
       Args             := Tuple_New (0);
@@ -282,11 +287,11 @@ package body QtAda6.QtGui.QOpenGLContext is
       return Ret;
    end surface;
    procedure swapBuffers (self : access Inst; surface_P : access QtAda6.QtGui.QSurface.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swapBuffers");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, surface_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if surface_P /= null then surface_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end swapBuffers;
 end QtAda6.QtGui.QOpenGLContext;

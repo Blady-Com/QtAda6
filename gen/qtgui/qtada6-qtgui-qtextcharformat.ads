@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -24,22 +24,23 @@ limited with QtAda6.QtGui.QTextCharFormat.UnderlineStyle;
 limited with QtAda6.QtGui.QTextCharFormat.VerticalAlignment;
 with QtAda6.QtGui.QTextFormat;
 package QtAda6.QtGui.QTextCharFormat is
-   type List_str is access Any;
-   type Sequence_str is access Any;
-   type Union_QtAda6_QtGui_QFont_str_Sequence_str is access Any;
-   type Union_QtAda6_QtGui_QPen_QtAda6_QtCore_Qt_PenStyle_QtAda6_QtGui_QColor is access Any;
-   type Union_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QTextFormat.Inst with null record;
+   type LIST_str is array (Positive range <>) of str;
+   type SEQUENCE_str is array (Positive range <>) of str;
+   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
+   type UNION_QtAda6_QtGui_QPenQtAda6_QtCore_Qt_PenStyleQtAda6_QtGui_QColor is new Any;
+   type UNION_QtAda6_QtGui_QColorQtAda6_QtGui_QRgba64AnyQtAda6_QtCore_Qt_GlobalColorstrint is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (QTextCharFormat_P : access QtAda6.QtGui.QTextCharFormat.Inst'Class) return Class;
    function Create (fmt_P : access QtAda6.QtGui.QTextFormat.Inst'Class) return Class;
    procedure U_copy_U;
    function anchorHref (self : access Inst) return str;
-   function anchorNames (self : access Inst) return List_str;
+   function anchorNames (self : access Inst) return LIST_str;
    function baselineOffset (self : access Inst) return float;
    function font_F (self : access Inst) return access QtAda6.QtGui.QFont.Inst'Class;
    function fontCapitalization (self : access Inst) return access QtAda6.QtGui.QFont.Capitalization.Inst'Class;
@@ -65,14 +66,14 @@ package QtAda6.QtGui.QTextCharFormat is
    function isValid (self : access Inst) return bool;
    procedure setAnchor (self : access Inst; anchor_P : bool);
    procedure setAnchorHref (self : access Inst; value_P : str);
-   procedure setAnchorNames (self : access Inst; names_P : Sequence_str);
+   procedure setAnchorNames (self : access Inst; names_P : SEQUENCE_str);
    procedure setBaselineOffset (self : access Inst; baseline_P : float);
    procedure setFont
-     (self       : access Inst; font_P : Union_QtAda6_QtGui_QFont_str_Sequence_str;
-      behavior_P : access QtAda6.QtGui.QTextCharFormat.FontPropertiesInheritanceBehavior.Inst'Class);
+     (self       : access Inst; font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str;
+      behavior_P : access QtAda6.QtGui.QTextCharFormat.FontPropertiesInheritanceBehavior.Inst'Class := null);
    procedure setFontCapitalization
      (self : access Inst; capitalization_P : access QtAda6.QtGui.QFont.Capitalization.Inst'Class);
-   procedure setFontFamilies (self : access Inst; families_P : Sequence_str);
+   procedure setFontFamilies (self : access Inst; families_P : SEQUENCE_str);
    procedure setFontFamily (self : access Inst; family_P : str);
    procedure setFontFixedPitch (self : access Inst; fixedPitch_P : bool);
    procedure setFontHintingPreference
@@ -88,7 +89,7 @@ package QtAda6.QtGui.QTextCharFormat is
    procedure setFontStrikeOut (self : access Inst; strikeOut_P : bool);
    procedure setFontStyleHint
      (self       : access Inst; hint_P : access QtAda6.QtGui.QFont.StyleHint.Inst'Class;
-      strategy_P : access QtAda6.QtGui.QFont.StyleStrategy.Inst'Class);
+      strategy_P : access QtAda6.QtGui.QFont.StyleStrategy.Inst'Class := null);
    procedure setFontStyleName (self : access Inst; styleName_P : str);
    procedure setFontStyleStrategy (self : access Inst; strategy_P : access QtAda6.QtGui.QFont.StyleStrategy.Inst'Class);
    procedure setFontUnderline (self : access Inst; underline_P : bool);
@@ -99,11 +100,10 @@ package QtAda6.QtGui.QTextCharFormat is
    procedure setTableCellColumnSpan (self : access Inst; tableCellColumnSpan_P : int);
    procedure setTableCellRowSpan (self : access Inst; tableCellRowSpan_P : int);
    procedure setTextOutline
-     (self : access Inst; pen_P : Union_QtAda6_QtGui_QPen_QtAda6_QtCore_Qt_PenStyle_QtAda6_QtGui_QColor);
+     (self : access Inst; pen_P : UNION_QtAda6_QtGui_QPenQtAda6_QtCore_Qt_PenStyleQtAda6_QtGui_QColor);
    procedure setToolTip (self : access Inst; tip_P : str);
    procedure setUnderlineColor
-     (self    : access Inst;
-      color_P : Union_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
+     (self : access Inst; color_P : UNION_QtAda6_QtGui_QColorQtAda6_QtGui_QRgba64AnyQtAda6_QtCore_Qt_GlobalColorstrint);
    procedure setUnderlineStyle
      (self : access Inst; style_P : access QtAda6.QtGui.QTextCharFormat.UnderlineStyle.Inst'Class);
    procedure setVerticalAlignment

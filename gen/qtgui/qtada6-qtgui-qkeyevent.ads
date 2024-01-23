@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -18,19 +18,20 @@ package QtAda6.QtGui.QKeyEvent is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QInputEvent.Inst with null record;
    procedure Finalize (Self : in out Class);
    function Create (arg_1_P : access QtAda6.QtGui.QKeyEvent.Inst'Class) return Class;
    function Create
      (type_K_P           : access QtAda6.QtCore.QEvent.Type_K.Inst'Class; key_P : int;
       modifiers_P        : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class; nativeScanCode_P : int;
-      nativeVirtualKey_P : int; nativeModifiers_P : int; text_P : str; autorep_P : bool; count_P : int;
-      device_P           : access QtAda6.QtGui.QInputDevice.Inst'Class) return Class;
+      nativeVirtualKey_P : int; nativeModifiers_P : int; text_P : str := ""; autorep_P : bool := False;
+      count_P            : int := 0; device_P : access QtAda6.QtGui.QInputDevice.Inst'Class := null) return Class;
    function Create
      (type_K_P    : access QtAda6.QtCore.QEvent.Type_K.Inst'Class; key_P : int;
-      modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class; text_P : str; autorep_P : bool; count_P : int)
-      return Class;
-   function U_repr_U (self : access Inst) return Object;
+      modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class; text_P : str := ""; autorep_P : bool := False;
+      count_P     : int := 0) return Class;
+   function U_repr_U (self : access Inst) return access Object'Class;
    function clone (self : access Inst) return access QtAda6.QtGui.QKeyEvent.Inst'Class;
    function count (self : access Inst) return int;
    function isAutoRepeat (self : access Inst) return bool;

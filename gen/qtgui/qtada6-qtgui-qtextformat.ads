@@ -4,14 +4,13 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtGui.QBrush;
 limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtCore.Qt.LayoutDirection;
-limited with QtAda6.QtGui.QTextLength;
 limited with QtAda6.QtGui.QPen;
 limited with QtAda6.QtCore.Qt.BrushStyle;
 limited with QtAda6.QtCore.Qt.GlobalColor;
@@ -25,16 +24,18 @@ limited with QtAda6.QtGui.QTextImageFormat;
 limited with QtAda6.QtGui.QTextListFormat;
 limited with QtAda6.QtGui.QTextTableCellFormat;
 limited with QtAda6.QtGui.QTextTableFormat;
+with QtAda6.QtGui.QTextLength;
 package QtAda6.QtGui.QTextFormat is
-   type List_QtAda6_QtGui_QTextLength is access Any;
-   type Dict_int_Any is access Any;
-   type Union_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap is
-     access Any;
-   type Sequence_QtAda6_QtGui_QTextLength is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   subtype LIST_QtAda6_QtGui_QTextLength is QtAda6.QtGui.QTextLength.Class_Array;
+   type DICT_intAny is new Any;
+   type UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap is
+     new Any;
+   subtype SEQUENCE_QtAda6_QtGui_QTextLength is QtAda6.QtGui.QTextLength.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (rhs_P : access QtAda6.QtGui.QTextFormat.Inst'Class) return Class;
@@ -62,24 +63,24 @@ package QtAda6.QtGui.QTextFormat is
    function isValid (self : access Inst) return bool;
    function layoutDirection (self : access Inst) return access QtAda6.QtCore.Qt.LayoutDirection.Inst'Class;
    function lengthProperty (self : access Inst; propertyId_P : int) return access QtAda6.QtGui.QTextLength.Inst'Class;
-   function lengthVectorProperty (self : access Inst; propertyId_P : int) return List_QtAda6_QtGui_QTextLength;
+   function lengthVectorProperty (self : access Inst; propertyId_P : int) return LIST_QtAda6_QtGui_QTextLength;
    procedure merge (self : access Inst; other_P : access QtAda6.QtGui.QTextFormat.Inst'Class);
    function objectIndex (self : access Inst) return int;
    function objectType_F (self : access Inst) return int;
    function penProperty (self : access Inst; propertyId_P : int) return access QtAda6.QtGui.QPen.Inst'Class;
-   function properties (self : access Inst) return Dict_int_Any;
+   function properties (self : access Inst) return DICT_intAny;
    function property_F (self : access Inst; propertyId_P : int) return Any;
    function propertyCount (self : access Inst) return int;
    procedure setBackground
      (self    : access Inst;
-      brush_P : Union_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
+      brush_P : UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap);
    procedure setForeground
      (self    : access Inst;
-      brush_P : Union_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
+      brush_P : UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap);
    procedure setLayoutDirection (self : access Inst; direction_P : access QtAda6.QtCore.Qt.LayoutDirection.Inst'Class);
    procedure setObjectIndex (self : access Inst; object_P : int);
    procedure setObjectType (self : access Inst; type_K_P : int);
-   procedure setProperty (self : access Inst; propertyId_P : int; lengths_P : Sequence_QtAda6_QtGui_QTextLength);
+   procedure setProperty (self : access Inst; propertyId_P : int; lengths_P : SEQUENCE_QtAda6_QtGui_QTextLength);
    procedure setProperty (self : access Inst; propertyId_P : int; value_P : Any);
    function stringProperty (self : access Inst; propertyId_P : int) return str;
    procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QTextFormat.Inst'Class);

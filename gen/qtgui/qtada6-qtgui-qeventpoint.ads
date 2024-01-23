@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -17,20 +17,19 @@ limited with QtAda6.QtCore.QSizeF;
 limited with QtAda6.QtGui.QPointingDeviceUniqueId;
 limited with QtAda6.QtGui.QVector2D;
 package QtAda6.QtGui.QEventPoint is
-   type Optional_QtAda6_QtGui_QPointingDevice is access Any;
-   type Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
-   function Create (id_P : int; device_P : Optional_QtAda6_QtGui_QPointingDevice) return Class;
+   function Create (id_P : int := 0; device_P : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
    function Create (other_P : access QtAda6.QtGui.QEventPoint.Inst'Class) return Class;
    function Create
      (pointId_P        : int; state_P : access QtAda6.QtGui.QEventPoint.State.Inst'Class;
-      scenePosition_P  : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
-      globalPosition_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-      return Class;
+      scenePosition_P  : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element;
+      globalPosition_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element) return Class;
    procedure U_copy_U;
    function device (self : access Inst) return access QtAda6.QtGui.QPointingDevice.Inst'Class;
    function ellipseDiameters (self : access Inst) return access QtAda6.QtCore.QSizeF.Inst'Class;
@@ -61,7 +60,7 @@ package QtAda6.QtGui.QEventPoint is
    function scenePosition (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class;
    function scenePressPosition (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class;
    function screenPos (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class;
-   procedure setAccepted (self : access Inst; accepted_P : bool);
+   procedure setAccepted (self : access Inst; accepted_P : bool := False);
    function startNormalizedPos (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class;
    function startPos (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class;
    function startScenePos (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class;

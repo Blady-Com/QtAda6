@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -20,35 +20,35 @@ package body QtAda6.QtGui.QMoveEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QMoveEvent.Inst'Class) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QMoveEvent");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, arg_1_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create
      (pos_P : access QtAda6.QtCore.QPoint.Inst'Class; oldPos_P : access QtAda6.QtCore.QPoint.Inst'Class) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QMoveEvent");
       Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, pos_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, oldPos_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if oldPos_P /= null then oldPos_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function U_repr_U (self : access Inst) return Object is
-      Method, Args, Result : Handle;
+   function U_repr_U (self : access Inst) return access Object'Class is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return (Python_Proxy => Result);
+      return null;
    end U_repr_U;
    function clone (self : access Inst) return access QtAda6.QtGui.QMoveEvent.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QMoveEvent.Class := new QtAda6.QtGui.QMoveEvent.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QMoveEvent.Class := new QtAda6.QtGui.QMoveEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
       Args             := Tuple_New (0);
@@ -57,8 +57,8 @@ package body QtAda6.QtGui.QMoveEvent is
       return Ret;
    end clone;
    function oldPos (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "oldPos");
       Args             := Tuple_New (0);
@@ -67,8 +67,8 @@ package body QtAda6.QtGui.QMoveEvent is
       return Ret;
    end oldPos;
    function pos (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "pos");
       Args             := Tuple_New (0);

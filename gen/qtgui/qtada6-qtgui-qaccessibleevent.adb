@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -24,28 +24,28 @@ package body QtAda6.QtGui.QAccessibleEvent is
      (iface_P : access QtAda6.QtGui.QAccessibleInterface.Inst'Class;
       typ_P   : access QtAda6.QtGui.QAccessible.Event.Inst'Class) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleEvent");
       Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, iface_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, typ_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if iface_P /= null then iface_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if typ_P /= null then typ_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create
      (obj_P : access QtAda6.QtCore.QObject.Inst'Class; typ_P : access QtAda6.QtGui.QAccessible.Event.Inst'Class)
       return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleEvent");
       Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, obj_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, typ_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if obj_P /= null then obj_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if typ_P /= null then typ_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function accessibleInterface (self : access Inst) return access QtAda6.QtGui.QAccessibleInterface.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleInterface.Class := new QtAda6.QtGui.QAccessibleInterface.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "accessibleInterface");
@@ -55,7 +55,7 @@ package body QtAda6.QtGui.QAccessibleEvent is
       return Ret;
    end accessibleInterface;
    function child (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "child");
       Args   := Tuple_New (0);
@@ -63,8 +63,8 @@ package body QtAda6.QtGui.QAccessibleEvent is
       return Long_AsLong (Result);
    end child;
    function object (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "object");
       Args             := Tuple_New (0);
@@ -73,7 +73,7 @@ package body QtAda6.QtGui.QAccessibleEvent is
       return Ret;
    end object;
    procedure setChild (self : access Inst; chld_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setChild");
       Args   := Tuple_New (1);
@@ -81,8 +81,8 @@ package body QtAda6.QtGui.QAccessibleEvent is
       Result := Object_CallObject (Method, Args, True);
    end setChild;
    function type_K (self : access Inst) return access QtAda6.QtGui.QAccessible.Event.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QAccessible.Event.Class := new QtAda6.QtGui.QAccessible.Event.Inst;
+      Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAccessible.Event.Class := new QtAda6.QtGui.QAccessible.Event.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "type");
       Args             := Tuple_New (0);
@@ -91,7 +91,7 @@ package body QtAda6.QtGui.QAccessibleEvent is
       return Ret;
    end type_K;
    function uniqueId (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "uniqueId");
       Args   := Tuple_New (0);

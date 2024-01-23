@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -23,30 +23,30 @@ package body QtAda6.QtGui.QTextOption is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextOption");
       Args  := Tuple_New (0);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextOption");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, alignment_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if alignment_P /= null then alignment_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (o_P : Union_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag) return Class is
-      Class, Args : Handle;
+   function Create (o_P : UNION_QtAda6_QtGui_QTextOptionQtAda6_QtCore_Qt_AlignmentFlag) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextOption");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if o_P /= null then o_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextOption");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -54,8 +54,8 @@ package body QtAda6.QtGui.QTextOption is
       Result := Object_CallObject (Method, Args, True);
    end U_copy_U;
    function alignment (self : access Inst) return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.Qt.AlignmentFlag.Class := new QtAda6.QtCore.Qt.AlignmentFlag.Inst;
+      Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtCore.Qt.AlignmentFlag.Class := new QtAda6.QtCore.Qt.AlignmentFlag.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "alignment");
       Args             := Tuple_New (0);
@@ -64,8 +64,8 @@ package body QtAda6.QtGui.QTextOption is
       return Ret;
    end alignment;
    function flags (self : access Inst) return access QtAda6.QtGui.QTextOption.Flag.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QTextOption.Flag.Class := new QtAda6.QtGui.QTextOption.Flag.Inst;
+      Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtGui.QTextOption.Flag.Class := new QtAda6.QtGui.QTextOption.Flag.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "flags");
       Args             := Tuple_New (0);
@@ -74,55 +74,65 @@ package body QtAda6.QtGui.QTextOption is
       return Ret;
    end flags;
    procedure setAlignment (self : access Inst; alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAlignment");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, alignment_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if alignment_P /= null then alignment_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setAlignment;
    procedure setFlags (self : access Inst; flags_P : access QtAda6.QtGui.QTextOption.Flag.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFlags");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, flags_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if flags_P /= null then flags_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setFlags;
-   procedure setTabArray (self : access Inst; tabStops_P : Sequence_float) is
-      Method, Args, Result : Handle;
+   procedure setTabArray (self : access Inst; tabStops_P : SEQUENCE_float) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabArray");
-      Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      List   := List_New (tabStops_P'Length);
+      for ind in tabStops_P'Range loop
+         List_SetItem (List, ssize_t (ind - tabStops_P'First), Float_FromDouble (tabStops_P (ind)));
+      end loop;
+      Args := Tuple_New (1);
+      Tuple_SetItem (Args, 0, List);
       Result := Object_CallObject (Method, Args, True);
    end setTabArray;
    procedure setTabStopDistance (self : access Inst; tabStopDistance_P : float) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabStopDistance");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Float_FromDouble (tabStopDistance_P));
       Result := Object_CallObject (Method, Args, True);
    end setTabStopDistance;
-   procedure setTabs (self : access Inst; tabStops_P : Sequence_QtAda6_QtGui_QTextOption_Tab) is
-      Method, Args, Result : Handle;
+   procedure setTabs (self : access Inst; tabStops_P : SEQUENCE_QtAda6_QtGui_QTextOption_Tab) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabs");
-      Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      List   := List_New (tabStops_P'Length);
+      for ind in tabStops_P'Range loop
+         List_SetItem
+           (List, ssize_t (ind - tabStops_P'First),
+            (if tabStops_P (ind) /= null then tabStops_P (ind).Python_Proxy else No_Value));
+      end loop;
+      Args := Tuple_New (1);
+      Tuple_SetItem (Args, 0, List);
       Result := Object_CallObject (Method, Args, True);
    end setTabs;
    procedure setTextDirection (self : access Inst; aDirection_P : access QtAda6.QtCore.Qt.LayoutDirection.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTextDirection");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, aDirection_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if aDirection_P /= null then aDirection_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setTextDirection;
    procedure setUseDesignMetrics (self : access Inst; b_P : bool) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setUseDesignMetrics");
       Args   := Tuple_New (1);
@@ -130,39 +140,39 @@ package body QtAda6.QtGui.QTextOption is
       Result := Object_CallObject (Method, Args, True);
    end setUseDesignMetrics;
    procedure setWrapMode (self : access Inst; wrap_P : access QtAda6.QtGui.QTextOption.WrapMode.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setWrapMode");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, wrap_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if wrap_P /= null then wrap_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setWrapMode;
-   function tabArray (self : access Inst) return List_float is
-      Method, Args, Result : Handle;
+   function tabArray (self : access Inst) return LIST_float is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabArray");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end tabArray;
    function tabStopDistance (self : access Inst) return float is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabStopDistance");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
       return Float_AsDouble (Result);
    end tabStopDistance;
-   function tabs (self : access Inst) return List_QtAda6_QtGui_QTextOption_Tab is
-      Method, Args, Result : Handle;
+   function tabs (self : access Inst) return LIST_QtAda6_QtGui_QTextOption_Tab is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabs");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end tabs;
    function textDirection (self : access Inst) return access QtAda6.QtCore.Qt.LayoutDirection.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.LayoutDirection.Class := new QtAda6.QtCore.Qt.LayoutDirection.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "textDirection");
@@ -172,7 +182,7 @@ package body QtAda6.QtGui.QTextOption is
       return Ret;
    end textDirection;
    function useDesignMetrics (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "useDesignMetrics");
       Args   := Tuple_New (0);
@@ -180,7 +190,7 @@ package body QtAda6.QtGui.QTextOption is
       return To_Ada (Result);
    end useDesignMetrics;
    function wrapMode_F (self : access Inst) return access QtAda6.QtGui.QTextOption.WrapMode.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextOption.WrapMode.Class := new QtAda6.QtGui.QTextOption.WrapMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "wrapMode");

@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -28,11 +28,12 @@ limited with QtAda6.QtGui.QTextCursor.MoveOperation;
 limited with QtAda6.QtGui.QTextCursor.MoveMode;
 limited with QtAda6.QtGui.QTextCursor.SelectionType;
 package QtAda6.QtGui.QTextCursor is
-   type Union_QtAda6_QtGui_QImage_str is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type UNION_QtAda6_QtGui_QImagestr is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (block_P : access QtAda6.QtGui.QTextBlock.Inst'Class) return Class;
@@ -82,7 +83,7 @@ package QtAda6.QtGui.QTextCursor is
    procedure insertImage
      (self        : access Inst; format_P : access QtAda6.QtGui.QTextImageFormat.Inst'Class;
       alignment_P : access QtAda6.QtGui.QTextFrameFormat.Position.Inst'Class);
-   procedure insertImage (self : access Inst; image_P : Union_QtAda6_QtGui_QImage_str; name_P : str);
+   procedure insertImage (self : access Inst; image_P : UNION_QtAda6_QtGui_QImagestr; name_P : str := "");
    procedure insertImage (self : access Inst; name_P : str);
    function insertList
      (self : access Inst; format_P : access QtAda6.QtGui.QTextListFormat.Inst'Class)
@@ -91,7 +92,8 @@ package QtAda6.QtGui.QTextCursor is
      (self : access Inst; style_P : access QtAda6.QtGui.QTextListFormat.Style.Inst'Class)
       return access QtAda6.QtGui.QTextList.Inst'Class;
    procedure insertMarkdown
-     (self : access Inst; markdown_P : str; features_P : access QtAda6.QtGui.QTextDocument.MarkdownFeature.Inst'Class);
+     (self       : access Inst; markdown_P : str;
+      features_P : access QtAda6.QtGui.QTextDocument.MarkdownFeature.Inst'Class := null);
    function insertTable
      (self : access Inst; rows_P : int; cols_P : int) return access QtAda6.QtGui.QTextTable.Inst'Class;
    function insertTable
@@ -108,12 +110,12 @@ package QtAda6.QtGui.QTextCursor is
    procedure mergeCharFormat (self : access Inst; modifier_P : access QtAda6.QtGui.QTextCharFormat.Inst'Class);
    function movePosition
      (self    : access Inst; op_P : access QtAda6.QtGui.QTextCursor.MoveOperation.Inst'Class;
-      arg_2_P : access QtAda6.QtGui.QTextCursor.MoveMode.Inst'Class; n_P : int) return bool;
+      arg_2_P : access QtAda6.QtGui.QTextCursor.MoveMode.Inst'Class := null; n_P : int := 0) return bool;
    function position (self : access Inst) return int;
    function positionInBlock (self : access Inst) return int;
    procedure removeSelectedText (self : access Inst);
    procedure select_K (self : access Inst; selection_P : access QtAda6.QtGui.QTextCursor.SelectionType.Inst'Class);
-   function selectedTableCells (self : access Inst) return Object;
+   function selectedTableCells (self : access Inst) return access Object'Class;
    function selectedText (self : access Inst) return str;
    function selection_F (self : access Inst) return access QtAda6.QtGui.QTextDocumentFragment.Inst'Class;
    function selectionEnd (self : access Inst) return int;
@@ -123,7 +125,7 @@ package QtAda6.QtGui.QTextCursor is
    procedure setCharFormat (self : access Inst; format_P : access QtAda6.QtGui.QTextCharFormat.Inst'Class);
    procedure setKeepPositionOnInsert (self : access Inst; b_P : bool);
    procedure setPosition
-     (self : access Inst; pos_P : int; mode_P : access QtAda6.QtGui.QTextCursor.MoveMode.Inst'Class);
+     (self : access Inst; pos_P : int; mode_P : access QtAda6.QtGui.QTextCursor.MoveMode.Inst'Class := null);
    procedure setVerticalMovementX (self : access Inst; x_P : int);
    procedure setVisualNavigation (self : access Inst; b_P : bool);
    procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QTextCursor.Inst'Class);

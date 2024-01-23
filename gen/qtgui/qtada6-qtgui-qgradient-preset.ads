@@ -4,184 +4,184 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with Enum.Enum;
 package QtAda6.QtGui.QGradient.Preset is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
-   type Inst is new Enum.Enum.Inst with null record;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
+   type Inst is new Enum.Enum with null record;
    procedure Finalize (Self : in out Class);
-   WarmFlame        : QGradient.Preset.Class;-- 0x1
-   NightFade        : QGradient.Preset.Class;-- 0x2
-   SpringWarmth     : QGradient.Preset.Class;-- 0x3
-   JuicyPeach       : QGradient.Preset.Class;-- 0x4
-   YoungPassion     : QGradient.Preset.Class;-- 0x5
-   LadyLips         : QGradient.Preset.Class;-- 0x6
-   SunnyMorning     : QGradient.Preset.Class;-- 0x7
-   RainyAshville    : QGradient.Preset.Class;-- 0x8
-   FrozenDreams     : QGradient.Preset.Class;-- 0x9
-   WinterNeva       : QGradient.Preset.Class;-- 0xa
-   DustyGrass       : QGradient.Preset.Class;-- 0xb
-   TemptingAzure    : QGradient.Preset.Class;-- 0xc
-   HeavyRain        : QGradient.Preset.Class;-- 0xd
-   AmyCrisp         : QGradient.Preset.Class;-- 0xe
-   MeanFruit        : QGradient.Preset.Class;-- 0xf
-   DeepBlue         : QGradient.Preset.Class;-- 0x10
-   RipeMalinka      : QGradient.Preset.Class;-- 0x11
-   CloudyKnoxville  : QGradient.Preset.Class;-- 0x12
-   MalibuBeach      : QGradient.Preset.Class;-- 0x13
-   NewLife          : QGradient.Preset.Class;-- 0x14
-   TrueSunset       : QGradient.Preset.Class;-- 0x15
-   MorpheusDen      : QGradient.Preset.Class;-- 0x16
-   RareWind         : QGradient.Preset.Class;-- 0x17
-   NearMoon         : QGradient.Preset.Class;-- 0x18
-   WildApple        : QGradient.Preset.Class;-- 0x19
-   SaintPetersburg  : QGradient.Preset.Class;-- 0x1a
-   PlumPlate        : QGradient.Preset.Class;-- 0x1c
-   EverlastingSky   : QGradient.Preset.Class;-- 0x1d
-   HappyFisher      : QGradient.Preset.Class;-- 0x1e
-   Blessing         : QGradient.Preset.Class;-- 0x1f
-   SharpeyeEagle    : QGradient.Preset.Class;-- 0x20
-   LadogaBottom     : QGradient.Preset.Class;-- 0x21
-   LemonGate        : QGradient.Preset.Class;-- 0x22
-   ItmeoBranding    : QGradient.Preset.Class;-- 0x23
-   ZeusMiracle      : QGradient.Preset.Class;-- 0x24
-   OldHat           : QGradient.Preset.Class;-- 0x25
-   StarWine         : QGradient.Preset.Class;-- 0x26
-   HappyAcid        : QGradient.Preset.Class;-- 0x29
-   AwesomePine      : QGradient.Preset.Class;-- 0x2a
-   NewYork          : QGradient.Preset.Class;-- 0x2b
-   ShyRainbow       : QGradient.Preset.Class;-- 0x2c
-   MixedHopes       : QGradient.Preset.Class;-- 0x2e
-   FlyHigh          : QGradient.Preset.Class;-- 0x2f
-   StrongBliss      : QGradient.Preset.Class;-- 0x30
-   FreshMilk        : QGradient.Preset.Class;-- 0x31
-   SnowAgain        : QGradient.Preset.Class;-- 0x32
-   FebruaryInk      : QGradient.Preset.Class;-- 0x33
-   KindSteel        : QGradient.Preset.Class;-- 0x34
-   SoftGrass        : QGradient.Preset.Class;-- 0x35
-   GrownEarly       : QGradient.Preset.Class;-- 0x36
-   SharpBlues       : QGradient.Preset.Class;-- 0x37
-   ShadyWater       : QGradient.Preset.Class;-- 0x38
-   DirtyBeauty      : QGradient.Preset.Class;-- 0x39
-   GreatWhale       : QGradient.Preset.Class;-- 0x3a
-   TeenNotebook     : QGradient.Preset.Class;-- 0x3b
-   PoliteRumors     : QGradient.Preset.Class;-- 0x3c
-   SweetPeriod      : QGradient.Preset.Class;-- 0x3d
-   WideMatrix       : QGradient.Preset.Class;-- 0x3e
-   SoftCherish      : QGradient.Preset.Class;-- 0x3f
-   RedSalvation     : QGradient.Preset.Class;-- 0x40
-   BurningSpring    : QGradient.Preset.Class;-- 0x41
-   NightParty       : QGradient.Preset.Class;-- 0x42
-   SkyGlider        : QGradient.Preset.Class;-- 0x43
-   HeavenPeach      : QGradient.Preset.Class;-- 0x44
-   PurpleDivision   : QGradient.Preset.Class;-- 0x45
-   AquaSplash       : QGradient.Preset.Class;-- 0x46
-   SpikyNaga        : QGradient.Preset.Class;-- 0x48
-   LoveKiss         : QGradient.Preset.Class;-- 0x49
-   CleanMirror      : QGradient.Preset.Class;-- 0x4b
-   PremiumDark      : QGradient.Preset.Class;-- 0x4c
-   ColdEvening      : QGradient.Preset.Class;-- 0x4d
-   CochitiLake      : QGradient.Preset.Class;-- 0x4e
-   SummerGames      : QGradient.Preset.Class;-- 0x4f
-   PassionateBed    : QGradient.Preset.Class;-- 0x50
-   MountainRock     : QGradient.Preset.Class;-- 0x51
-   DesertHump       : QGradient.Preset.Class;-- 0x52
-   JungleDay        : QGradient.Preset.Class;-- 0x53
-   PhoenixStart     : QGradient.Preset.Class;-- 0x54
-   OctoberSilence   : QGradient.Preset.Class;-- 0x55
-   FarawayRiver     : QGradient.Preset.Class;-- 0x56
-   AlchemistLab     : QGradient.Preset.Class;-- 0x57
-   OverSun          : QGradient.Preset.Class;-- 0x58
-   PremiumWhite     : QGradient.Preset.Class;-- 0x59
-   MarsParty        : QGradient.Preset.Class;-- 0x5a
-   EternalConstance : QGradient.Preset.Class;-- 0x5b
-   JapanBlush       : QGradient.Preset.Class;-- 0x5c
-   SmilingRain      : QGradient.Preset.Class;-- 0x5d
-   CloudyApple      : QGradient.Preset.Class;-- 0x5e
-   BigMango         : QGradient.Preset.Class;-- 0x5f
-   HealthyWater     : QGradient.Preset.Class;-- 0x60
-   AmourAmour       : QGradient.Preset.Class;-- 0x61
-   RiskyConcrete    : QGradient.Preset.Class;-- 0x62
-   StrongStick      : QGradient.Preset.Class;-- 0x63
-   ViciousStance    : QGradient.Preset.Class;-- 0x64
-   PaloAlto         : QGradient.Preset.Class;-- 0x65
-   HappyMemories    : QGradient.Preset.Class;-- 0x66
-   MidnightBloom    : QGradient.Preset.Class;-- 0x67
-   Crystalline      : QGradient.Preset.Class;-- 0x68
-   PartyBliss       : QGradient.Preset.Class;-- 0x6a
-   ConfidentCloud   : QGradient.Preset.Class;-- 0x6b
-   LeCocktail       : QGradient.Preset.Class;-- 0x6c
-   RiverCity        : QGradient.Preset.Class;-- 0x6d
-   FrozenBerry      : QGradient.Preset.Class;-- 0x6e
-   ChildCare        : QGradient.Preset.Class;-- 0x70
-   FlyingLemon      : QGradient.Preset.Class;-- 0x71
-   NewRetrowave     : QGradient.Preset.Class;-- 0x72
-   HiddenJaguar     : QGradient.Preset.Class;-- 0x73
-   AboveTheSky      : QGradient.Preset.Class;-- 0x74
-   Nega             : QGradient.Preset.Class;-- 0x75
-   DenseWater       : QGradient.Preset.Class;-- 0x76
-   Seashore         : QGradient.Preset.Class;-- 0x78
-   MarbleWall       : QGradient.Preset.Class;-- 0x79
-   CheerfulCaramel  : QGradient.Preset.Class;-- 0x7a
-   NightSky         : QGradient.Preset.Class;-- 0x7b
-   MagicLake        : QGradient.Preset.Class;-- 0x7c
-   YoungGrass       : QGradient.Preset.Class;-- 0x7d
-   ColorfulPeach    : QGradient.Preset.Class;-- 0x7e
-   GentleCare       : QGradient.Preset.Class;-- 0x7f
-   PlumBath         : QGradient.Preset.Class;-- 0x80
-   HappyUnicorn     : QGradient.Preset.Class;-- 0x81
-   AfricanField     : QGradient.Preset.Class;-- 0x83
-   SolidStone       : QGradient.Preset.Class;-- 0x84
-   OrangeJuice      : QGradient.Preset.Class;-- 0x85
-   GlassWater       : QGradient.Preset.Class;-- 0x86
-   NorthMiracle     : QGradient.Preset.Class;-- 0x88
-   FruitBlend       : QGradient.Preset.Class;-- 0x89
-   MillenniumPine   : QGradient.Preset.Class;-- 0x8a
-   HighFlight       : QGradient.Preset.Class;-- 0x8b
-   MoleHall         : QGradient.Preset.Class;-- 0x8c
-   SpaceShift       : QGradient.Preset.Class;-- 0x8e
-   ForestInei       : QGradient.Preset.Class;-- 0x8f
-   RoyalGarden      : QGradient.Preset.Class;-- 0x90
-   RichMetal        : QGradient.Preset.Class;-- 0x91
-   JuicyCake        : QGradient.Preset.Class;-- 0x92
-   SmartIndigo      : QGradient.Preset.Class;-- 0x93
-   SandStrike       : QGradient.Preset.Class;-- 0x94
-   NorseBeauty      : QGradient.Preset.Class;-- 0x95
-   AquaGuidance     : QGradient.Preset.Class;-- 0x96
-   SunVeggie        : QGradient.Preset.Class;-- 0x97
-   SeaLord          : QGradient.Preset.Class;-- 0x98
-   BlackSea         : QGradient.Preset.Class;-- 0x99
-   GrassShampoo     : QGradient.Preset.Class;-- 0x9a
-   LandingAircraft  : QGradient.Preset.Class;-- 0x9b
-   WitchDance       : QGradient.Preset.Class;-- 0x9c
-   SleeplessNight   : QGradient.Preset.Class;-- 0x9d
-   AngelCare        : QGradient.Preset.Class;-- 0x9e
-   CrystalRiver     : QGradient.Preset.Class;-- 0x9f
-   SoftLipstick     : QGradient.Preset.Class;-- 0xa0
-   SaltMountain     : QGradient.Preset.Class;-- 0xa1
-   PerfectWhite     : QGradient.Preset.Class;-- 0xa2
-   FreshOasis       : QGradient.Preset.Class;-- 0xa3
-   StrictNovember   : QGradient.Preset.Class;-- 0xa4
-   MorningSalad     : QGradient.Preset.Class;-- 0xa5
-   DeepRelief       : QGradient.Preset.Class;-- 0xa6
-   SeaStrike        : QGradient.Preset.Class;-- 0xa7
-   NightCall        : QGradient.Preset.Class;-- 0xa8
-   SupremeSky       : QGradient.Preset.Class;-- 0xa9
-   LightBlue        : QGradient.Preset.Class;-- 0xaa
-   MindCrawl        : QGradient.Preset.Class;-- 0xab
-   LilyMeadow       : QGradient.Preset.Class;-- 0xac
-   SugarLollipop    : QGradient.Preset.Class;-- 0xad
-   SweetDessert     : QGradient.Preset.Class;-- 0xae
-   MagicRay         : QGradient.Preset.Class;-- 0xaf
-   TeenParty        : QGradient.Preset.Class;-- 0xb0
-   FrozenHeat       : QGradient.Preset.Class;-- 0xb1
-   GagarinView      : QGradient.Preset.Class;-- 0xb2
-   FabledSunset     : QGradient.Preset.Class;-- 0xb3
-   PerfectBlue      : QGradient.Preset.Class;-- 0xb4
-   NumPresets       : QGradient.Preset.Class;-- 0xb5
+   function WarmFlame return Class;-- 0x1
+   function NightFade return Class;-- 0x2
+   function SpringWarmth return Class;-- 0x3
+   function JuicyPeach return Class;-- 0x4
+   function YoungPassion return Class;-- 0x5
+   function LadyLips return Class;-- 0x6
+   function SunnyMorning return Class;-- 0x7
+   function RainyAshville return Class;-- 0x8
+   function FrozenDreams return Class;-- 0x9
+   function WinterNeva return Class;-- 0xa
+   function DustyGrass return Class;-- 0xb
+   function TemptingAzure return Class;-- 0xc
+   function HeavyRain return Class;-- 0xd
+   function AmyCrisp return Class;-- 0xe
+   function MeanFruit return Class;-- 0xf
+   function DeepBlue return Class;-- 0x10
+   function RipeMalinka return Class;-- 0x11
+   function CloudyKnoxville return Class;-- 0x12
+   function MalibuBeach return Class;-- 0x13
+   function NewLife return Class;-- 0x14
+   function TrueSunset return Class;-- 0x15
+   function MorpheusDen return Class;-- 0x16
+   function RareWind return Class;-- 0x17
+   function NearMoon return Class;-- 0x18
+   function WildApple return Class;-- 0x19
+   function SaintPetersburg return Class;-- 0x1a
+   function PlumPlate return Class;-- 0x1c
+   function EverlastingSky return Class;-- 0x1d
+   function HappyFisher return Class;-- 0x1e
+   function Blessing return Class;-- 0x1f
+   function SharpeyeEagle return Class;-- 0x20
+   function LadogaBottom return Class;-- 0x21
+   function LemonGate return Class;-- 0x22
+   function ItmeoBranding return Class;-- 0x23
+   function ZeusMiracle return Class;-- 0x24
+   function OldHat return Class;-- 0x25
+   function StarWine return Class;-- 0x26
+   function HappyAcid return Class;-- 0x29
+   function AwesomePine return Class;-- 0x2a
+   function NewYork return Class;-- 0x2b
+   function ShyRainbow return Class;-- 0x2c
+   function MixedHopes return Class;-- 0x2e
+   function FlyHigh return Class;-- 0x2f
+   function StrongBliss return Class;-- 0x30
+   function FreshMilk return Class;-- 0x31
+   function SnowAgain return Class;-- 0x32
+   function FebruaryInk return Class;-- 0x33
+   function KindSteel return Class;-- 0x34
+   function SoftGrass return Class;-- 0x35
+   function GrownEarly return Class;-- 0x36
+   function SharpBlues return Class;-- 0x37
+   function ShadyWater return Class;-- 0x38
+   function DirtyBeauty return Class;-- 0x39
+   function GreatWhale return Class;-- 0x3a
+   function TeenNotebook return Class;-- 0x3b
+   function PoliteRumors return Class;-- 0x3c
+   function SweetPeriod return Class;-- 0x3d
+   function WideMatrix return Class;-- 0x3e
+   function SoftCherish return Class;-- 0x3f
+   function RedSalvation return Class;-- 0x40
+   function BurningSpring return Class;-- 0x41
+   function NightParty return Class;-- 0x42
+   function SkyGlider return Class;-- 0x43
+   function HeavenPeach return Class;-- 0x44
+   function PurpleDivision return Class;-- 0x45
+   function AquaSplash return Class;-- 0x46
+   function SpikyNaga return Class;-- 0x48
+   function LoveKiss return Class;-- 0x49
+   function CleanMirror return Class;-- 0x4b
+   function PremiumDark return Class;-- 0x4c
+   function ColdEvening return Class;-- 0x4d
+   function CochitiLake return Class;-- 0x4e
+   function SummerGames return Class;-- 0x4f
+   function PassionateBed return Class;-- 0x50
+   function MountainRock return Class;-- 0x51
+   function DesertHump return Class;-- 0x52
+   function JungleDay return Class;-- 0x53
+   function PhoenixStart return Class;-- 0x54
+   function OctoberSilence return Class;-- 0x55
+   function FarawayRiver return Class;-- 0x56
+   function AlchemistLab return Class;-- 0x57
+   function OverSun return Class;-- 0x58
+   function PremiumWhite return Class;-- 0x59
+   function MarsParty return Class;-- 0x5a
+   function EternalConstance return Class;-- 0x5b
+   function JapanBlush return Class;-- 0x5c
+   function SmilingRain return Class;-- 0x5d
+   function CloudyApple return Class;-- 0x5e
+   function BigMango return Class;-- 0x5f
+   function HealthyWater return Class;-- 0x60
+   function AmourAmour return Class;-- 0x61
+   function RiskyConcrete return Class;-- 0x62
+   function StrongStick return Class;-- 0x63
+   function ViciousStance return Class;-- 0x64
+   function PaloAlto return Class;-- 0x65
+   function HappyMemories return Class;-- 0x66
+   function MidnightBloom return Class;-- 0x67
+   function Crystalline return Class;-- 0x68
+   function PartyBliss return Class;-- 0x6a
+   function ConfidentCloud return Class;-- 0x6b
+   function LeCocktail return Class;-- 0x6c
+   function RiverCity return Class;-- 0x6d
+   function FrozenBerry return Class;-- 0x6e
+   function ChildCare return Class;-- 0x70
+   function FlyingLemon return Class;-- 0x71
+   function NewRetrowave return Class;-- 0x72
+   function HiddenJaguar return Class;-- 0x73
+   function AboveTheSky return Class;-- 0x74
+   function Nega return Class;-- 0x75
+   function DenseWater return Class;-- 0x76
+   function Seashore return Class;-- 0x78
+   function MarbleWall return Class;-- 0x79
+   function CheerfulCaramel return Class;-- 0x7a
+   function NightSky return Class;-- 0x7b
+   function MagicLake return Class;-- 0x7c
+   function YoungGrass return Class;-- 0x7d
+   function ColorfulPeach return Class;-- 0x7e
+   function GentleCare return Class;-- 0x7f
+   function PlumBath return Class;-- 0x80
+   function HappyUnicorn return Class;-- 0x81
+   function AfricanField return Class;-- 0x83
+   function SolidStone return Class;-- 0x84
+   function OrangeJuice return Class;-- 0x85
+   function GlassWater return Class;-- 0x86
+   function NorthMiracle return Class;-- 0x88
+   function FruitBlend return Class;-- 0x89
+   function MillenniumPine return Class;-- 0x8a
+   function HighFlight return Class;-- 0x8b
+   function MoleHall return Class;-- 0x8c
+   function SpaceShift return Class;-- 0x8e
+   function ForestInei return Class;-- 0x8f
+   function RoyalGarden return Class;-- 0x90
+   function RichMetal return Class;-- 0x91
+   function JuicyCake return Class;-- 0x92
+   function SmartIndigo return Class;-- 0x93
+   function SandStrike return Class;-- 0x94
+   function NorseBeauty return Class;-- 0x95
+   function AquaGuidance return Class;-- 0x96
+   function SunVeggie return Class;-- 0x97
+   function SeaLord return Class;-- 0x98
+   function BlackSea return Class;-- 0x99
+   function GrassShampoo return Class;-- 0x9a
+   function LandingAircraft return Class;-- 0x9b
+   function WitchDance return Class;-- 0x9c
+   function SleeplessNight return Class;-- 0x9d
+   function AngelCare return Class;-- 0x9e
+   function CrystalRiver return Class;-- 0x9f
+   function SoftLipstick return Class;-- 0xa0
+   function SaltMountain return Class;-- 0xa1
+   function PerfectWhite return Class;-- 0xa2
+   function FreshOasis return Class;-- 0xa3
+   function StrictNovember return Class;-- 0xa4
+   function MorningSalad return Class;-- 0xa5
+   function DeepRelief return Class;-- 0xa6
+   function SeaStrike return Class;-- 0xa7
+   function NightCall return Class;-- 0xa8
+   function SupremeSky return Class;-- 0xa9
+   function LightBlue return Class;-- 0xaa
+   function MindCrawl return Class;-- 0xab
+   function LilyMeadow return Class;-- 0xac
+   function SugarLollipop return Class;-- 0xad
+   function SweetDessert return Class;-- 0xae
+   function MagicRay return Class;-- 0xaf
+   function TeenParty return Class;-- 0xb0
+   function FrozenHeat return Class;-- 0xb1
+   function GagarinView return Class;-- 0xb2
+   function FabledSunset return Class;-- 0xb3
+   function PerfectBlue return Class;-- 0xb4
+   function NumPresets return Class;-- 0xb5
 end QtAda6.QtGui.QGradient.Preset;

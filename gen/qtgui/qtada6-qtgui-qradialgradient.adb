@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -22,66 +22,66 @@ package body QtAda6.QtGui.QRadialGradient is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QRadialGradient");
       Args  := Tuple_New (0);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (QRadialGradient_P : access QtAda6.QtGui.QRadialGradient.Inst'Class) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QRadialGradient");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, QRadialGradient_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if QRadialGradient_P /= null then QRadialGradient_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create
-     (center_P       : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
+     (center_P       : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element;
       centerRadius_P : float;
-      focalPoint_P   : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
+      focalPoint_P   : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element;
       focalRadius_P  : float) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QRadialGradient");
       Args  := Tuple_New (4);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if center_P /= null then center_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Float_FromDouble (centerRadius_P));
-      Tuple_SetItem (Args, 2, No_Value);
+      Tuple_SetItem (Args, 2, (if focalPoint_P /= null then focalPoint_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 3, Float_FromDouble (focalRadius_P));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create
-     (center_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element; radius_P : float)
+     (center_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element; radius_P : float)
       return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QRadialGradient");
       Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if center_P /= null then center_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Float_FromDouble (radius_P));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create
-     (center_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element; radius_P : float;
-      focalPoint_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element) return Class
+     (center_P     : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element; radius_P : float;
+      focalPoint_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QRadialGradient");
       Args  := Tuple_New (3);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if center_P /= null then center_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Float_FromDouble (radius_P));
-      Tuple_SetItem (Args, 2, No_Value);
+      Tuple_SetItem (Args, 2, (if focalPoint_P /= null then focalPoint_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create
      (cx_P : float; cy_P : float; centerRadius_P : float; fx_P : float; fy_P : float; focalRadius_P : float)
       return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QRadialGradient");
       Args  := Tuple_New (6);
@@ -94,7 +94,7 @@ package body QtAda6.QtGui.QRadialGradient is
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (cx_P : float; cy_P : float; radius_P : float) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QRadialGradient");
       Args  := Tuple_New (3);
@@ -104,7 +104,7 @@ package body QtAda6.QtGui.QRadialGradient is
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (cx_P : float; cy_P : float; radius_P : float; fx_P : float; fy_P : float) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QRadialGradient");
       Args  := Tuple_New (5);
@@ -116,7 +116,7 @@ package body QtAda6.QtGui.QRadialGradient is
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QRadialGradient");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -124,8 +124,8 @@ package body QtAda6.QtGui.QRadialGradient is
       Result := Object_CallObject (Method, Args, True);
    end U_copy_U;
    function center (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "center");
       Args             := Tuple_New (0);
@@ -134,7 +134,7 @@ package body QtAda6.QtGui.QRadialGradient is
       return Ret;
    end center;
    function centerRadius (self : access Inst) return float is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "centerRadius");
       Args   := Tuple_New (0);
@@ -142,8 +142,8 @@ package body QtAda6.QtGui.QRadialGradient is
       return Float_AsDouble (Result);
    end centerRadius;
    function focalPoint (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "focalPoint");
       Args             := Tuple_New (0);
@@ -152,7 +152,7 @@ package body QtAda6.QtGui.QRadialGradient is
       return Ret;
    end focalPoint;
    function focalRadius (self : access Inst) return float is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "focalRadius");
       Args   := Tuple_New (0);
@@ -160,7 +160,7 @@ package body QtAda6.QtGui.QRadialGradient is
       return Float_AsDouble (Result);
    end focalRadius;
    function radius (self : access Inst) return float is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "radius");
       Args   := Tuple_New (0);
@@ -168,17 +168,17 @@ package body QtAda6.QtGui.QRadialGradient is
       return Float_AsDouble (Result);
    end radius;
    procedure setCenter
-     (self : access Inst; center_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; center_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCenter");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if center_P /= null then center_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setCenter;
    procedure setCenter (self : access Inst; x_P : float; y_P : float) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCenter");
       Args   := Tuple_New (2);
@@ -187,7 +187,7 @@ package body QtAda6.QtGui.QRadialGradient is
       Result := Object_CallObject (Method, Args, True);
    end setCenter;
    procedure setCenterRadius (self : access Inst; radius_P : float) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCenterRadius");
       Args   := Tuple_New (1);
@@ -196,17 +196,17 @@ package body QtAda6.QtGui.QRadialGradient is
    end setCenterRadius;
    procedure setFocalPoint
      (self         : access Inst;
-      focalPoint_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+      focalPoint_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFocalPoint");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if focalPoint_P /= null then focalPoint_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setFocalPoint;
    procedure setFocalPoint (self : access Inst; x_P : float; y_P : float) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFocalPoint");
       Args   := Tuple_New (2);
@@ -215,7 +215,7 @@ package body QtAda6.QtGui.QRadialGradient is
       Result := Object_CallObject (Method, Args, True);
    end setFocalPoint;
    procedure setFocalRadius (self : access Inst; radius_P : float) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFocalRadius");
       Args   := Tuple_New (1);
@@ -223,7 +223,7 @@ package body QtAda6.QtGui.QRadialGradient is
       Result := Object_CallObject (Method, Args, True);
    end setFocalRadius;
    procedure setRadius (self : access Inst; radius_P : float) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRadius");
       Args   := Tuple_New (1);

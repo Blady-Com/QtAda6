@@ -4,23 +4,24 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 package QtAda6.QtGui.QAccessibleActionInterface is
-   type List_str is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function actionNames (self : access Inst) return List_str;
+   function actionNames (self : access Inst) return LIST_str;
    function decreaseAction return str;
    procedure doAction (self : access Inst; actionName_P : str);
    function increaseAction return str;
-   function keyBindingsForAction (self : access Inst; actionName_P : str) return List_str;
+   function keyBindingsForAction (self : access Inst; actionName_P : str) return LIST_str;
    function localizedActionDescription (self : access Inst; name_P : str) return str;
    function localizedActionName (self : access Inst; name_P : str) return str;
    function nextPageAction return str;

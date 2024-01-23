@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -35,22 +35,22 @@ package body QtAda6.QtGui.QTextFormat is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
       Args  := Tuple_New (0);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (rhs_P : access QtAda6.QtGui.QTextFormat.Inst'Class) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, rhs_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if rhs_P /= null then rhs_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (type_K_P : int) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
       Args  := Tuple_New (1);
@@ -58,7 +58,7 @@ package body QtAda6.QtGui.QTextFormat is
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -66,8 +66,8 @@ package body QtAda6.QtGui.QTextFormat is
       Result := Object_CallObject (Method, Args, True);
    end U_copy_U;
    function background (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "background");
       Args             := Tuple_New (0);
@@ -76,7 +76,7 @@ package body QtAda6.QtGui.QTextFormat is
       return Ret;
    end background;
    function boolProperty (self : access Inst; propertyId_P : int) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "boolProperty");
       Args   := Tuple_New (1);
@@ -85,8 +85,8 @@ package body QtAda6.QtGui.QTextFormat is
       return To_Ada (Result);
    end boolProperty;
    function brushProperty (self : access Inst; propertyId_P : int) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "brushProperty");
       Args   := Tuple_New (1);
@@ -96,21 +96,21 @@ package body QtAda6.QtGui.QTextFormat is
       return Ret;
    end brushProperty;
    procedure clearBackground (self : access Inst) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clearBackground");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
    end clearBackground;
    procedure clearForeground (self : access Inst) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clearForeground");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
    end clearForeground;
    procedure clearProperty (self : access Inst; propertyId_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clearProperty");
       Args   := Tuple_New (1);
@@ -118,8 +118,8 @@ package body QtAda6.QtGui.QTextFormat is
       Result := Object_CallObject (Method, Args, True);
    end clearProperty;
    function colorProperty (self : access Inst; propertyId_P : int) return access QtAda6.QtGui.QColor.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "colorProperty");
       Args   := Tuple_New (1);
@@ -129,7 +129,7 @@ package body QtAda6.QtGui.QTextFormat is
       return Ret;
    end colorProperty;
    function doubleProperty (self : access Inst; propertyId_P : int) return float is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "doubleProperty");
       Args   := Tuple_New (1);
@@ -138,8 +138,8 @@ package body QtAda6.QtGui.QTextFormat is
       return Float_AsDouble (Result);
    end doubleProperty;
    function foreground (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "foreground");
       Args             := Tuple_New (0);
@@ -148,7 +148,7 @@ package body QtAda6.QtGui.QTextFormat is
       return Ret;
    end foreground;
    function hasProperty (self : access Inst; propertyId_P : int) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasProperty");
       Args   := Tuple_New (1);
@@ -157,7 +157,7 @@ package body QtAda6.QtGui.QTextFormat is
       return To_Ada (Result);
    end hasProperty;
    function intProperty (self : access Inst; propertyId_P : int) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "intProperty");
       Args   := Tuple_New (1);
@@ -166,7 +166,7 @@ package body QtAda6.QtGui.QTextFormat is
       return Long_AsLong (Result);
    end intProperty;
    function isBlockFormat (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isBlockFormat");
       Args   := Tuple_New (0);
@@ -174,7 +174,7 @@ package body QtAda6.QtGui.QTextFormat is
       return To_Ada (Result);
    end isBlockFormat;
    function isCharFormat (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isCharFormat");
       Args   := Tuple_New (0);
@@ -182,7 +182,7 @@ package body QtAda6.QtGui.QTextFormat is
       return To_Ada (Result);
    end isCharFormat;
    function isEmpty (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEmpty");
       Args   := Tuple_New (0);
@@ -190,7 +190,7 @@ package body QtAda6.QtGui.QTextFormat is
       return To_Ada (Result);
    end isEmpty;
    function isFrameFormat (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isFrameFormat");
       Args   := Tuple_New (0);
@@ -198,7 +198,7 @@ package body QtAda6.QtGui.QTextFormat is
       return To_Ada (Result);
    end isFrameFormat;
    function isImageFormat (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isImageFormat");
       Args   := Tuple_New (0);
@@ -206,7 +206,7 @@ package body QtAda6.QtGui.QTextFormat is
       return To_Ada (Result);
    end isImageFormat;
    function isListFormat (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isListFormat");
       Args   := Tuple_New (0);
@@ -214,7 +214,7 @@ package body QtAda6.QtGui.QTextFormat is
       return To_Ada (Result);
    end isListFormat;
    function isTableCellFormat (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isTableCellFormat");
       Args   := Tuple_New (0);
@@ -222,7 +222,7 @@ package body QtAda6.QtGui.QTextFormat is
       return To_Ada (Result);
    end isTableCellFormat;
    function isTableFormat (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isTableFormat");
       Args   := Tuple_New (0);
@@ -230,7 +230,7 @@ package body QtAda6.QtGui.QTextFormat is
       return To_Ada (Result);
    end isTableFormat;
    function isValid (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -238,7 +238,7 @@ package body QtAda6.QtGui.QTextFormat is
       return To_Ada (Result);
    end isValid;
    function layoutDirection (self : access Inst) return access QtAda6.QtCore.Qt.LayoutDirection.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.LayoutDirection.Class := new QtAda6.QtCore.Qt.LayoutDirection.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "layoutDirection");
@@ -248,8 +248,8 @@ package body QtAda6.QtGui.QTextFormat is
       return Ret;
    end layoutDirection;
    function lengthProperty (self : access Inst; propertyId_P : int) return access QtAda6.QtGui.QTextLength.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QTextLength.Class := new QtAda6.QtGui.QTextLength.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QTextLength.Class := new QtAda6.QtGui.QTextLength.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lengthProperty");
       Args   := Tuple_New (1);
@@ -258,25 +258,25 @@ package body QtAda6.QtGui.QTextFormat is
       Ret.Python_Proxy := Result;
       return Ret;
    end lengthProperty;
-   function lengthVectorProperty (self : access Inst; propertyId_P : int) return List_QtAda6_QtGui_QTextLength is
-      Method, Args, Result : Handle;
+   function lengthVectorProperty (self : access Inst; propertyId_P : int) return LIST_QtAda6_QtGui_QTextLength is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lengthVectorProperty");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Long_FromLong (propertyId_P));
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end lengthVectorProperty;
    procedure merge (self : access Inst; other_P : access QtAda6.QtGui.QTextFormat.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "merge");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, other_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end merge;
    function objectIndex (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "objectIndex");
       Args   := Tuple_New (0);
@@ -284,7 +284,7 @@ package body QtAda6.QtGui.QTextFormat is
       return Long_AsLong (Result);
    end objectIndex;
    function objectType_F (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "objectType");
       Args   := Tuple_New (0);
@@ -292,8 +292,8 @@ package body QtAda6.QtGui.QTextFormat is
       return Long_AsLong (Result);
    end objectType_F;
    function penProperty (self : access Inst; propertyId_P : int) return access QtAda6.QtGui.QPen.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QPen.Class := new QtAda6.QtGui.QPen.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QPen.Class := new QtAda6.QtGui.QPen.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "penProperty");
       Args   := Tuple_New (1);
@@ -302,8 +302,8 @@ package body QtAda6.QtGui.QTextFormat is
       Ret.Python_Proxy := Result;
       return Ret;
    end penProperty;
-   function properties (self : access Inst) return Dict_int_Any is
-      Method, Args, Result : Handle;
+   function properties (self : access Inst) return DICT_intAny is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "properties");
       Args   := Tuple_New (0);
@@ -311,16 +311,16 @@ package body QtAda6.QtGui.QTextFormat is
       return null;
    end properties;
    function property_F (self : access Inst; propertyId_P : int) return Any is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "property");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Long_FromLong (propertyId_P));
       Result := Object_CallObject (Method, Args, True);
-      return Any_conv_P2A_is_not_supported;
+      return null;
    end property_F;
    function propertyCount (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "propertyCount");
       Args   := Tuple_New (0);
@@ -329,37 +329,37 @@ package body QtAda6.QtGui.QTextFormat is
    end propertyCount;
    procedure setBackground
      (self    : access Inst;
-      brush_P : Union_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
+      brush_P : UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBackground");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setBackground;
    procedure setForeground
      (self    : access Inst;
-      brush_P : Union_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
+      brush_P : UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setForeground");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setForeground;
    procedure setLayoutDirection (self : access Inst; direction_P : access QtAda6.QtCore.Qt.LayoutDirection.Inst'Class)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setLayoutDirection");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, direction_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if direction_P /= null then direction_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setLayoutDirection;
    procedure setObjectIndex (self : access Inst; object_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setObjectIndex");
       Args   := Tuple_New (1);
@@ -367,33 +367,39 @@ package body QtAda6.QtGui.QTextFormat is
       Result := Object_CallObject (Method, Args, True);
    end setObjectIndex;
    procedure setObjectType (self : access Inst; type_K_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setObjectType");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Long_FromLong (type_K_P));
       Result := Object_CallObject (Method, Args, True);
    end setObjectType;
-   procedure setProperty (self : access Inst; propertyId_P : int; lengths_P : Sequence_QtAda6_QtGui_QTextLength) is
-      Method, Args, Result : Handle;
+   procedure setProperty (self : access Inst; propertyId_P : int; lengths_P : SEQUENCE_QtAda6_QtGui_QTextLength) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setProperty");
-      Args   := Tuple_New (2);
+      List   := List_New (lengths_P'Length);
+      for ind in lengths_P'Range loop
+         List_SetItem
+           (List, ssize_t (ind - lengths_P'First),
+            (if lengths_P (ind) /= null then lengths_P (ind).Python_Proxy else No_Value));
+      end loop;
+      Args := Tuple_New (2);
       Tuple_SetItem (Args, 0, Long_FromLong (propertyId_P));
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 1, List);
       Result := Object_CallObject (Method, Args, True);
    end setProperty;
    procedure setProperty (self : access Inst; propertyId_P : int; value_P : Any) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setProperty");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, Long_FromLong (propertyId_P));
-      Tuple_SetItem (Args, 1, Any_conv_A2P_is_not_supported);
+      Tuple_SetItem (Args, 1, (if value_P /= null then value_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setProperty;
    function stringProperty (self : access Inst; propertyId_P : int) return str is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "stringProperty");
       Args   := Tuple_New (1);
@@ -402,16 +408,16 @@ package body QtAda6.QtGui.QTextFormat is
       return As_String (Result);
    end stringProperty;
    procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QTextFormat.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, other_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end swap;
    function toBlockFormat (self : access Inst) return access QtAda6.QtGui.QTextBlockFormat.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QTextBlockFormat.Class := new QtAda6.QtGui.QTextBlockFormat.Inst;
+      Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtGui.QTextBlockFormat.Class := new QtAda6.QtGui.QTextBlockFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toBlockFormat");
       Args             := Tuple_New (0);
@@ -420,8 +426,8 @@ package body QtAda6.QtGui.QTextFormat is
       return Ret;
    end toBlockFormat;
    function toCharFormat (self : access Inst) return access QtAda6.QtGui.QTextCharFormat.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QTextCharFormat.Class := new QtAda6.QtGui.QTextCharFormat.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QTextCharFormat.Class := new QtAda6.QtGui.QTextCharFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toCharFormat");
       Args             := Tuple_New (0);
@@ -430,8 +436,8 @@ package body QtAda6.QtGui.QTextFormat is
       return Ret;
    end toCharFormat;
    function toFrameFormat (self : access Inst) return access QtAda6.QtGui.QTextFrameFormat.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QTextFrameFormat.Class := new QtAda6.QtGui.QTextFrameFormat.Inst;
+      Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtGui.QTextFrameFormat.Class := new QtAda6.QtGui.QTextFrameFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toFrameFormat");
       Args             := Tuple_New (0);
@@ -440,8 +446,8 @@ package body QtAda6.QtGui.QTextFormat is
       return Ret;
    end toFrameFormat;
    function toImageFormat (self : access Inst) return access QtAda6.QtGui.QTextImageFormat.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QTextImageFormat.Class := new QtAda6.QtGui.QTextImageFormat.Inst;
+      Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtGui.QTextImageFormat.Class := new QtAda6.QtGui.QTextImageFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toImageFormat");
       Args             := Tuple_New (0);
@@ -450,8 +456,8 @@ package body QtAda6.QtGui.QTextFormat is
       return Ret;
    end toImageFormat;
    function toListFormat (self : access Inst) return access QtAda6.QtGui.QTextListFormat.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QTextListFormat.Class := new QtAda6.QtGui.QTextListFormat.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QTextListFormat.Class := new QtAda6.QtGui.QTextListFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toListFormat");
       Args             := Tuple_New (0);
@@ -460,7 +466,7 @@ package body QtAda6.QtGui.QTextFormat is
       return Ret;
    end toListFormat;
    function toTableCellFormat (self : access Inst) return access QtAda6.QtGui.QTextTableCellFormat.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextTableCellFormat.Class := new QtAda6.QtGui.QTextTableCellFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toTableCellFormat");
@@ -470,8 +476,8 @@ package body QtAda6.QtGui.QTextFormat is
       return Ret;
    end toTableCellFormat;
    function toTableFormat (self : access Inst) return access QtAda6.QtGui.QTextTableFormat.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QTextTableFormat.Class := new QtAda6.QtGui.QTextTableFormat.Inst;
+      Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtGui.QTextTableFormat.Class := new QtAda6.QtGui.QTextTableFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toTableFormat");
       Args             := Tuple_New (0);
@@ -480,7 +486,7 @@ package body QtAda6.QtGui.QTextFormat is
       return Ret;
    end toTableFormat;
    function type_K (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "type");
       Args   := Tuple_New (0);

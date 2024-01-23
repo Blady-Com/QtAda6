@@ -4,32 +4,40 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.Qt.ColorScheme;
 limited with QtAda6.QtCore.Qt.TabFocusBehavior;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QStyleHints is
-   type ClassVar_Signal is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   colorSchemeChanged                  : ClassVar_Signal;-- colorSchemeChanged(Qt::ColorScheme)
-   cursorFlashTimeChanged              : ClassVar_Signal;-- cursorFlashTimeChanged(int)
-   keyboardInputIntervalChanged        : ClassVar_Signal;-- keyboardInputIntervalChanged(int)
-   mouseDoubleClickIntervalChanged     : ClassVar_Signal;-- mouseDoubleClickIntervalChanged(int)
-   mousePressAndHoldIntervalChanged    : ClassVar_Signal;-- mousePressAndHoldIntervalChanged(int)
-   mouseQuickSelectionThresholdChanged : ClassVar_Signal;-- mouseQuickSelectionThresholdChanged(int)
-   showShortcutsInContextMenusChanged  : ClassVar_Signal;-- showShortcutsInContextMenusChanged(bool)
-   startDragDistanceChanged            : ClassVar_Signal;-- startDragDistanceChanged(int)
-   startDragTimeChanged                : ClassVar_Signal;-- startDragTimeChanged(int)
-   tabFocusBehaviorChanged             : ClassVar_Signal;-- tabFocusBehaviorChanged(Qt::TabFocusBehavior)
-   useHoverEffectsChanged              : ClassVar_Signal;-- useHoverEffectsChanged(bool)
-   wheelScrollLinesChanged             : ClassVar_Signal;-- wheelScrollLinesChanged(int)
+   function colorSchemeChanged (self : access Inst) return CLASSVAR_Signal;-- colorSchemeChanged(Qt::ColorScheme)
+   function cursorFlashTimeChanged (self : access Inst) return CLASSVAR_Signal;-- cursorFlashTimeChanged(int)
+   function keyboardInputIntervalChanged
+     (self : access Inst) return CLASSVAR_Signal;-- keyboardInputIntervalChanged(int)
+   function mouseDoubleClickIntervalChanged
+     (self : access Inst) return CLASSVAR_Signal;-- mouseDoubleClickIntervalChanged(int)
+   function mousePressAndHoldIntervalChanged
+     (self : access Inst) return CLASSVAR_Signal;-- mousePressAndHoldIntervalChanged(int)
+   function mouseQuickSelectionThresholdChanged
+     (self : access Inst) return CLASSVAR_Signal;-- mouseQuickSelectionThresholdChanged(int)
+   function showShortcutsInContextMenusChanged
+     (self : access Inst) return CLASSVAR_Signal;-- showShortcutsInContextMenusChanged(bool)
+   function startDragDistanceChanged (self : access Inst) return CLASSVAR_Signal;-- startDragDistanceChanged(int)
+   function startDragTimeChanged (self : access Inst) return CLASSVAR_Signal;-- startDragTimeChanged(int)
+   function tabFocusBehaviorChanged
+     (self : access Inst) return CLASSVAR_Signal;-- tabFocusBehaviorChanged(Qt::TabFocusBehavior)
+   function useHoverEffectsChanged (self : access Inst) return CLASSVAR_Signal;-- useHoverEffectsChanged(bool)
+   function wheelScrollLinesChanged (self : access Inst) return CLASSVAR_Signal;-- wheelScrollLinesChanged(int)
    function colorScheme (self : access Inst) return access QtAda6.QtCore.Qt.ColorScheme.Inst'Class;
    function cursorFlashTime (self : access Inst) return int;
    function fontSmoothingGamma (self : access Inst) return float;

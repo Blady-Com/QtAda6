@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ package body QtAda6.QtGui.QAbstractTextDocumentLayout.PaintContext is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "PaintContext");
       Args  := Tuple_New (0);
@@ -27,15 +27,15 @@ package body QtAda6.QtGui.QAbstractTextDocumentLayout.PaintContext is
    function Create
      (PaintContext_P : access QtAda6.QtGui.QAbstractTextDocumentLayout.PaintContext.Inst'Class) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "PaintContext");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, PaintContext_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if PaintContext_P /= null then PaintContext_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "PaintContext");
       Method := Object_GetAttrString (Class, "__copy__");

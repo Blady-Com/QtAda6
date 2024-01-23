@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -17,22 +17,22 @@ limited with QtAda6.QtCore.Qt.ReturnByValueConstant;
 limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtGui.QScreen;
 package QtAda6.QtGui.QCursor is
-   type Union_QtAda6_QtGui_QBitmap_str is access Any;
-   type Union_QtAda6_QtGui_QCursor_QtAda6_QtCore_Qt_CursorShape_QtAda6_QtGui_QPixmap is access Any;
-   type Union_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type UNION_QtAda6_QtGui_QBitmapstr is new Any;
+   type UNION_QtAda6_QtGui_QCursorQtAda6_QtCore_Qt_CursorShapeQtAda6_QtGui_QPixmap is new Any;
+   type UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create
-     (bitmap_P : Union_QtAda6_QtGui_QBitmap_str; mask_P : Union_QtAda6_QtGui_QBitmap_str; hotX_P : int; hotY_P : int)
-      return Class;
+     (bitmap_P : UNION_QtAda6_QtGui_QBitmapstr; mask_P : UNION_QtAda6_QtGui_QBitmapstr; hotX_P : int := 0;
+      hotY_P   : int := 0) return Class;
+   function Create (cursor_P : UNION_QtAda6_QtGui_QCursorQtAda6_QtCore_Qt_CursorShapeQtAda6_QtGui_QPixmap) return Class;
    function Create
-     (cursor_P : Union_QtAda6_QtGui_QCursor_QtAda6_QtCore_Qt_CursorShape_QtAda6_QtGui_QPixmap) return Class;
-   function Create
-     (pixmap_P : Union_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str; hotX_P : int; hotY_P : int) return Class;
+     (pixmap_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr; hotX_P : int := 0; hotY_P : int := 0) return Class;
    function Create (shape_P : access QtAda6.QtCore.Qt.CursorShape.Inst'Class) return Class;
    procedure U_copy_U;
    function U_lshift_U
@@ -60,5 +60,5 @@ package QtAda6.QtGui.QCursor is
    procedure setShape (self : access Inst; newShape_P : access QtAda6.QtCore.Qt.CursorShape.Inst'Class);
    function shape (self : access Inst) return access QtAda6.QtCore.Qt.CursorShape.Inst'Class;
    procedure swap
-     (self : access Inst; other_P : Union_QtAda6_QtGui_QCursor_QtAda6_QtCore_Qt_CursorShape_QtAda6_QtGui_QPixmap);
+     (self : access Inst; other_P : UNION_QtAda6_QtGui_QCursorQtAda6_QtCore_Qt_CursorShapeQtAda6_QtGui_QPixmap);
 end QtAda6.QtGui.QCursor;

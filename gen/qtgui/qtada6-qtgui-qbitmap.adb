@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -24,47 +24,47 @@ package body QtAda6.QtGui.QBitmap is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QBitmap");
       Args  := Tuple_New (0);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (QBitmap_P : Union_QtAda6_QtGui_QBitmap_str) return Class is
-      Class, Args : Handle;
+   function Create (QBitmap_P : UNION_QtAda6_QtGui_QBitmapstr) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QBitmap");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if QBitmap_P /= null then QBitmap_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (arg_1_P : access QtAda6.QtCore.QSize.Inst'Class) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QBitmap");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, arg_1_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (arg_1_P : Union_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str) return Class is
-      Class, Args : Handle;
+   function Create (arg_1_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QBitmap");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (fileName_P : str; format_P : Optional_bytes) return Class is
-      Class, Args : Handle;
+   function Create (fileName_P : str; format_P : bytes := "") return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QBitmap");
       Args  := Tuple_New (2);
       Tuple_SetItem (Args, 0, Unicode_FromString (fileName_P));
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 1, Bytes_FromString (String (format_P)));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (w_P : int; h_P : int) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QBitmap");
       Args  := Tuple_New (2);
@@ -73,7 +73,7 @@ package body QtAda6.QtGui.QBitmap is
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QBitmap");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -81,7 +81,7 @@ package body QtAda6.QtGui.QBitmap is
       Result := Object_CallObject (Method, Args, True);
    end U_copy_U;
    procedure clear (self : access Inst) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clear");
       Args   := Tuple_New (0);
@@ -89,69 +89,69 @@ package body QtAda6.QtGui.QBitmap is
    end clear;
    function fromData
      (size_P       : access QtAda6.QtCore.QSize.Inst'Class; bits_P : bytes;
-      monoFormat_P : access QtAda6.QtGui.QImage.Format.Inst'Class) return access QtAda6.QtGui.QBitmap.Inst'Class
+      monoFormat_P : access QtAda6.QtGui.QImage.Format.Inst'Class := null) return access QtAda6.QtGui.QBitmap.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret                               : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QBitmap");
       Method := Object_GetAttrString (Class, "fromData");
       Args   := Tuple_New (3);
-      Tuple_SetItem (Args, 0, size_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if size_P /= null then size_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Bytes_FromString (String (bits_P)));
-      Tuple_SetItem (Args, 2, monoFormat_P.Python_Proxy);
+      Tuple_SetItem (Args, 2, (if monoFormat_P /= null then monoFormat_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end fromData;
    function fromImage
-     (image_P : Union_QtAda6_QtGui_QImage_str; flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class)
+     (image_P : UNION_QtAda6_QtGui_QImagestr; flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null)
       return access QtAda6.QtGui.QBitmap.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret                               : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QBitmap");
       Method := Object_GetAttrString (Class, "fromImage");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, No_Value);
-      Tuple_SetItem (Args, 1, flags_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if image_P /= null then image_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if flags_P /= null then flags_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end fromImage;
    function fromPixmap
-     (pixmap_P : Union_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str) return access QtAda6.QtGui.QBitmap.Inst'Class
+     (pixmap_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr) return access QtAda6.QtGui.QBitmap.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret                               : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QBitmap");
       Method := Object_GetAttrString (Class, "fromPixmap");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if pixmap_P /= null then pixmap_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end fromPixmap;
-   procedure swap (self : access Inst; other_P : Union_QtAda6_QtGui_QBitmap_str) is
-      Method, Args, Result : Handle;
+   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtGui_QBitmapstr) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end swap;
    function transformed
      (self : access Inst; matrix_P : access QtAda6.QtGui.QTransform.Inst'Class)
       return access QtAda6.QtGui.QBitmap.Inst'Class
    is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "transformed");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, matrix_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if matrix_P /= null then matrix_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;

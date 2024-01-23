@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -17,22 +17,23 @@ limited with QtAda6.QtCore.Qt.KeyboardModifier;
 limited with QtAda6.QtCore.Qt.MouseButton;
 with QtAda6.QtGui.QSinglePointEvent;
 package QtAda6.QtGui.QTabletEvent is
-   type Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QSinglePointEvent.Inst with null record;
+   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create (arg_1_P : access QtAda6.QtGui.QTabletEvent.Inst'Class) return Class;
    function Create
      (t_P : access QtAda6.QtCore.QEvent.Type_K.Inst'Class; device_P : access QtAda6.QtGui.QPointingDevice.Inst'Class;
-      pos_P       : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
-      globalPos_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
+      pos_P       : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element;
+      globalPos_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element;
       pressure_P  : float; xTilt_P : float; yTilt_P : float; tangentialPressure_P : float; rotation_P : float;
       z_P         : float; keyState_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
       button_P    : access QtAda6.QtCore.Qt.MouseButton.Inst'Class;
       buttons_P   : access QtAda6.QtCore.Qt.MouseButton.Inst'Class) return Class;
-   function U_repr_U (self : access Inst) return Object;
+   function U_repr_U (self : access Inst) return access Object'Class;
    function clone (self : access Inst) return access QtAda6.QtGui.QTabletEvent.Inst'Class;
    function globalPos (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class;
    function globalPosF (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class;

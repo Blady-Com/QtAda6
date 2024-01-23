@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -16,42 +16,43 @@ limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtCore.Qt.TextElideMode;
 limited with QtAda6.QtCore.QSize;
 package QtAda6.QtGui.QFontMetrics is
-   type Union_QtAda6_QtGui_QFont_str_Sequence_str is access Any;
-   type Union_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
+   type UNION_QtAda6_QtGui_QTextOptionQtAda6_QtCore_Qt_AlignmentFlag is new Any;
    procedure Finalize (Self : in out Class);
    function Create (arg_1_P : access QtAda6.QtGui.QFontMetrics.Inst'Class) return Class;
-   function Create (arg_1_P : Union_QtAda6_QtGui_QFont_str_Sequence_str) return Class;
+   function Create (arg_1_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str) return Class;
    function Create
-     (font_P : Union_QtAda6_QtGui_QFont_str_Sequence_str; pd_P : access QtAda6.QtGui.QPaintDevice.Inst'Class)
+     (font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str; pd_P : access QtAda6.QtGui.QPaintDevice.Inst'Class)
       return Class;
    procedure U_copy_U;
    function ascent (self : access Inst) return int;
    function averageCharWidth (self : access Inst) return int;
    function boundingRect
      (self : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int; text_P : str; tabstops_P : int;
-      tabarray_P : Object) return access QtAda6.QtCore.QRect.Inst'Class;
+      tabarray_P : access Object'Class := null) return access QtAda6.QtCore.QRect.Inst'Class;
    function boundingRect (self : access Inst; text_P : str) return access QtAda6.QtCore.QRect.Inst'Class;
    function boundingRect
-     (self : access Inst; text_P : str; textOption_P : Union_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag)
+     (self : access Inst; text_P : str; textOption_P : UNION_QtAda6_QtGui_QTextOptionQtAda6_QtCore_Qt_AlignmentFlag)
       return access QtAda6.QtCore.QRect.Inst'Class;
    function boundingRect
      (self : access Inst; x_P : int; y_P : int; w_P : int; h_P : int; flags_P : int; text_P : str; tabstops_P : int;
-      tabarray_P : Object) return access QtAda6.QtCore.QRect.Inst'Class;
+      tabarray_P : access Object'Class := null) return access QtAda6.QtCore.QRect.Inst'Class;
    function boundingRectChar (self : access Inst; arg_1_P : int) return access QtAda6.QtCore.QRect.Inst'Class;
    function capHeight (self : access Inst) return int;
    function descent (self : access Inst) return int;
    function elidedText
      (self    : access Inst; text_P : str; mode_P : access QtAda6.QtCore.Qt.TextElideMode.Inst'Class; width_P : int;
-      flags_P : int) return str;
+      flags_P : int := 0) return str;
    function fontDpi (self : access Inst) return float;
    function height (self : access Inst) return int;
-   function horizontalAdvance (self : access Inst; arg_1_P : str; len_P : int) return int;
+   function horizontalAdvance (self : access Inst; arg_1_P : str; len_P : int := 0) return int;
    function horizontalAdvance
-     (self : access Inst; arg_1_P : str; textOption_P : Union_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag)
+     (self : access Inst; arg_1_P : str; textOption_P : UNION_QtAda6_QtGui_QTextOptionQtAda6_QtCore_Qt_AlignmentFlag)
       return int;
    function horizontalAdvanceChar (self : access Inst; arg_1_P : int) return int;
    function inFont (self : access Inst; arg_1_P : str) return bool;
@@ -66,13 +67,13 @@ package QtAda6.QtGui.QFontMetrics is
    function overlinePos (self : access Inst) return int;
    function rightBearing (self : access Inst; arg_1_P : str) return int;
    function size
-     (self : access Inst; flags_P : int; str_P : str; tabstops_P : int; tabarray_P : Object)
+     (self : access Inst; flags_P : int; str_P : str; tabstops_P : int; tabarray_P : access Object'Class := null)
       return access QtAda6.QtCore.QSize.Inst'Class;
    function strikeOutPos (self : access Inst) return int;
    procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QFontMetrics.Inst'Class);
    function tightBoundingRect (self : access Inst; text_P : str) return access QtAda6.QtCore.QRect.Inst'Class;
    function tightBoundingRect
-     (self : access Inst; text_P : str; textOption_P : Union_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag)
+     (self : access Inst; text_P : str; textOption_P : UNION_QtAda6_QtGui_QTextOptionQtAda6_QtCore_Qt_AlignmentFlag)
       return access QtAda6.QtCore.QRect.Inst'Class;
    function underlinePos (self : access Inst) return int;
    function xHeight (self : access Inst) return int;

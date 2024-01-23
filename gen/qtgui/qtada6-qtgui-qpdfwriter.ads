@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -16,18 +16,19 @@ limited with QtAda6.QtGui.QPagedPaintDevice.PdfVersion;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtGui.QPagedPaintDevice;
 package QtAda6.QtGui.QPdfWriter is
-   type Union_QtAda6_QtCore_QByteArray_bytes is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst
 --  and QtAda6.QtGui.QPagedPaintDevice.Inst
    with null record;
+   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
    procedure Finalize (Self : in out Class);
    function Create (device_P : access QtAda6.QtCore.QIODevice.Inst'Class) return Class;
    function Create (filename_P : str) return Class;
    procedure addFileAttachment
-     (self : access Inst; fileName_P : str; data_P : Union_QtAda6_QtCore_QByteArray_bytes; mimeType_P : str);
+     (self : access Inst; fileName_P : str; data_P : UNION_QtAda6_QtCore_QByteArraybytes; mimeType_P : str := "");
    function creator (self : access Inst) return str;
    function documentXmpMetadata (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function metric
@@ -37,7 +38,7 @@ package QtAda6.QtGui.QPdfWriter is
    function pdfVersion (self : access Inst) return access QtAda6.QtGui.QPagedPaintDevice.PdfVersion.Inst'Class;
    function resolution (self : access Inst) return int;
    procedure setCreator (self : access Inst; creator_P : str);
-   procedure setDocumentXmpMetadata (self : access Inst; xmpMetadata_P : Union_QtAda6_QtCore_QByteArray_bytes);
+   procedure setDocumentXmpMetadata (self : access Inst; xmpMetadata_P : UNION_QtAda6_QtCore_QByteArraybytes);
    procedure setPdfVersion
      (self : access Inst; version_P : access QtAda6.QtGui.QPagedPaintDevice.PdfVersion.Inst'Class);
    procedure setResolution (self : access Inst; resolution_P : int);

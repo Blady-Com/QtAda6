@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -18,14 +18,14 @@ package body QtAda6.QtGui.QAccessibleEditableTextInterface is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleEditableTextInterface");
       Args  := Tuple_New (0);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure deleteText (self : access Inst; startOffset_P : int; endOffset_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "deleteText");
       Args   := Tuple_New (2);
@@ -34,7 +34,7 @@ package body QtAda6.QtGui.QAccessibleEditableTextInterface is
       Result := Object_CallObject (Method, Args, True);
    end deleteText;
    procedure insertText (self : access Inst; offset_P : int; text_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertText");
       Args   := Tuple_New (2);
@@ -43,7 +43,7 @@ package body QtAda6.QtGui.QAccessibleEditableTextInterface is
       Result := Object_CallObject (Method, Args, True);
    end insertText;
    procedure replaceText (self : access Inst; startOffset_P : int; endOffset_P : int; text_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "replaceText");
       Args   := Tuple_New (3);

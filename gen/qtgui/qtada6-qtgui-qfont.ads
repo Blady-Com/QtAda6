@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -18,20 +18,22 @@ limited with QtAda6.QtGui.QFont.StyleHint;
 limited with QtAda6.QtGui.QFont.StyleStrategy;
 limited with QtAda6.QtGui.QFont.Weight;
 package QtAda6.QtGui.QFont is
-   type Sequence_str is access Any;
-   type Union_QtAda6_QtGui_QFont_str_Sequence_str is access Any;
-   type List_str is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type SEQUENCE_str is array (Positive range <>) of str;
+   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
+   type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (families_P : Sequence_str; pointSize_P : int; weight_P : int; italic_P : bool) return Class;
-   function Create (family_P : str; pointSize_P : int; weight_P : int; italic_P : bool) return Class;
-   function Create (font_P : Union_QtAda6_QtGui_QFont_str_Sequence_str) return Class;
    function Create
-     (font_P : Union_QtAda6_QtGui_QFont_str_Sequence_str; pd_P : access QtAda6.QtGui.QPaintDevice.Inst'Class)
+     (families_P : SEQUENCE_str; pointSize_P : int := 0; weight_P : int := 0; italic_P : bool := False) return Class;
+   function Create (family_P : str; pointSize_P : int := 0; weight_P : int := 0; italic_P : bool := False) return Class;
+   function Create (font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str) return Class;
+   function Create
+     (font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str; pd_P : access QtAda6.QtGui.QPaintDevice.Inst'Class)
       return Class;
    procedure U_copy_U;
    function U_lshift_U
@@ -46,15 +48,15 @@ package QtAda6.QtGui.QFont is
    procedure cleanup;
    function defaultFamily (self : access Inst) return str;
    function exactMatch (self : access Inst) return bool;
-   function families (self : access Inst) return List_str;
+   function families (self : access Inst) return LIST_str;
    function family (self : access Inst) return str;
    function fixedPitch (self : access Inst) return bool;
    function fromString (self : access Inst; arg_1_P : str) return bool;
    function hintingPreference_F (self : access Inst) return access QtAda6.QtGui.QFont.HintingPreference.Inst'Class;
    procedure initialize;
    procedure insertSubstitution (arg_1_P : str; arg_2_P : str);
-   procedure insertSubstitutions (arg_1_P : str; arg_2_P : Sequence_str);
-   function isCopyOf (self : access Inst; arg_1_P : Union_QtAda6_QtGui_QFont_str_Sequence_str) return bool;
+   procedure insertSubstitutions (arg_1_P : str; arg_2_P : SEQUENCE_str);
+   function isCopyOf (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str) return bool;
    function italic (self : access Inst) return bool;
    function kerning (self : access Inst) return bool;
    function key (self : access Inst) return str;
@@ -67,12 +69,12 @@ package QtAda6.QtGui.QFont is
    function pointSizeF (self : access Inst) return float;
    procedure removeSubstitutions (arg_1_P : str);
    function resolve
-     (self : access Inst; arg_1_P : Union_QtAda6_QtGui_QFont_str_Sequence_str)
+     (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str)
       return access QtAda6.QtGui.QFont.Inst'Class;
    function resolveMask (self : access Inst) return int;
    procedure setBold (self : access Inst; arg_1_P : bool);
    procedure setCapitalization (self : access Inst; arg_1_P : access QtAda6.QtGui.QFont.Capitalization.Inst'Class);
-   procedure setFamilies (self : access Inst; arg_1_P : Sequence_str);
+   procedure setFamilies (self : access Inst; arg_1_P : SEQUENCE_str);
    procedure setFamily (self : access Inst; arg_1_P : str);
    procedure setFixedPitch (self : access Inst; arg_1_P : bool);
    procedure setHintingPreference
@@ -92,7 +94,7 @@ package QtAda6.QtGui.QFont is
    procedure setStyle (self : access Inst; style_P : access QtAda6.QtGui.QFont.Style.Inst'Class);
    procedure setStyleHint
      (self       : access Inst; arg_1_P : access QtAda6.QtGui.QFont.StyleHint.Inst'Class;
-      strategy_P : access QtAda6.QtGui.QFont.StyleStrategy.Inst'Class);
+      strategy_P : access QtAda6.QtGui.QFont.StyleStrategy.Inst'Class := null);
    procedure setStyleName (self : access Inst; arg_1_P : str);
    procedure setStyleStrategy (self : access Inst; s_P : access QtAda6.QtGui.QFont.StyleStrategy.Inst'Class);
    procedure setUnderline (self : access Inst; arg_1_P : bool);
@@ -105,9 +107,9 @@ package QtAda6.QtGui.QFont is
    function styleName (self : access Inst) return str;
    function styleStrategy_F (self : access Inst) return access QtAda6.QtGui.QFont.StyleStrategy.Inst'Class;
    function substitute (arg_1_P : str) return str;
-   function substitutes (arg_1_P : str) return List_str;
-   function substitutions return List_str;
-   procedure swap (self : access Inst; other_P : Union_QtAda6_QtGui_QFont_str_Sequence_str);
+   function substitutes (arg_1_P : str) return LIST_str;
+   function substitutions return LIST_str;
+   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str);
    function toString (self : access Inst) return str;
    function underline (self : access Inst) return bool;
    function weight_F (self : access Inst) return access QtAda6.QtGui.QFont.Weight.Inst'Class;

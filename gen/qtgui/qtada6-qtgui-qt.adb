@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -19,20 +19,21 @@ package body QtAda6.QtGui.Qt is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function convertFromPlainText (plain_P : str; mode_P : access QtAda6.QtCore.Qt.WhiteSpaceMode.Inst'Class) return str
+   function convertFromPlainText
+     (plain_P : str; mode_P : access QtAda6.QtCore.Qt.WhiteSpaceMode.Inst'Class := null) return str
    is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "convertFromPlainText");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, Unicode_FromString (plain_P));
-      Tuple_SetItem (Args, 1, mode_P.Python_Proxy);
+      Tuple_SetItem (Args, 1, (if mode_P /= null then mode_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return As_String (Result);
    end convertFromPlainText;
    function mightBeRichText (arg_1_P : str) return bool is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "mightBeRichText");

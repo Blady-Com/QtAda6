@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -12,10 +12,10 @@ limited with QtAda6.QtGui.QTextDocument;
 limited with QtAda6.QtGui.QTextCursor;
 limited with QtAda6.QtGui.QTextDocument.MarkdownFeature;
 package QtAda6.QtGui.QTextDocumentFragment is
-   type Optional_QtAda6_QtGui_QTextDocument is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
    procedure Finalize (Self : in out Class);
    function Create return Class;
@@ -24,16 +24,16 @@ package QtAda6.QtGui.QTextDocumentFragment is
    function Create (rhs_P : access QtAda6.QtGui.QTextDocumentFragment.Inst'Class) return Class;
    procedure U_copy_U;
    function fromHtml
-     (html_P : str; resourceProvider_P : Optional_QtAda6_QtGui_QTextDocument)
+     (html_P : str; resourceProvider_P : access QtAda6.QtGui.QTextDocument.Inst'Class := null)
       return access QtAda6.QtGui.QTextDocumentFragment.Inst'Class;
    function fromMarkdown
-     (markdown_P : str; features_P : access QtAda6.QtGui.QTextDocument.MarkdownFeature.Inst'Class)
+     (markdown_P : str; features_P : access QtAda6.QtGui.QTextDocument.MarkdownFeature.Inst'Class := null)
       return access QtAda6.QtGui.QTextDocumentFragment.Inst'Class;
    function fromPlainText (plainText_P : str) return access QtAda6.QtGui.QTextDocumentFragment.Inst'Class;
    function isEmpty (self : access Inst) return bool;
    function toHtml (self : access Inst) return str;
    function toMarkdown
-     (self : access Inst; features_P : access QtAda6.QtGui.QTextDocument.MarkdownFeature.Inst'Class) return str;
+     (self : access Inst; features_P : access QtAda6.QtGui.QTextDocument.MarkdownFeature.Inst'Class := null) return str;
    function toPlainText (self : access Inst) return str;
    function toRawText (self : access Inst) return str;
 end QtAda6.QtGui.QTextDocumentFragment;

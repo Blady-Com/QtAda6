@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -13,12 +13,13 @@ limited with QtAda6.QtGui.QVector4D;
 limited with QtAda6.QtCore.QDataStream;
 limited with QtAda6.QtGui.QMatrix3x3;
 package QtAda6.QtGui.QQuaternion is
-   type Tuple_float_float_float_float is access Any;
-   type Tuple_float_float_float is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type TUPLE_floatfloatfloatfloat is new Any;
+   type TUPLE_floatfloatfloat is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (scalar_P : float; vector_P : access QtAda6.QtGui.QVector3D.Inst'Class) return Class;
@@ -46,8 +47,8 @@ package QtAda6.QtGui.QQuaternion is
      (self : access Inst; q2_P : access QtAda6.QtGui.QQuaternion.Inst'Class)
       return access QtAda6.QtGui.QQuaternion.Inst'Class;
    function U_neg_U (self : access Inst) return access QtAda6.QtGui.QQuaternion.Inst'Class;
-   function U_reduce_U (self : access Inst) return Object;
-   function U_repr_U (self : access Inst) return Object;
+   function U_reduce_U (self : access Inst) return access Object'Class;
+   function U_repr_U (self : access Inst) return access Object'Class;
    function U_rshift_U
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
@@ -79,8 +80,8 @@ package QtAda6.QtGui.QQuaternion is
      (self    : access Inst; xAxis_P : access QtAda6.QtGui.QVector3D.Inst'Class;
       yAxis_P : access QtAda6.QtGui.QVector3D.Inst'Class; zAxis_P : access QtAda6.QtGui.QVector3D.Inst'Class);
    function getAxisAndAngle (self : access Inst; axis_P : access QtAda6.QtGui.QVector3D.Inst'Class) return float;
-   function getAxisAndAngle (self : access Inst) return Tuple_float_float_float_float;
-   function getEulerAngles (self : access Inst) return Tuple_float_float_float;
+   function getAxisAndAngle (self : access Inst) return TUPLE_floatfloatfloatfloat;
+   function getEulerAngles (self : access Inst) return TUPLE_floatfloatfloat;
    function inverted (self : access Inst) return access QtAda6.QtGui.QQuaternion.Inst'Class;
    function isIdentity (self : access Inst) return bool;
    function isNull (self : access Inst) return bool;

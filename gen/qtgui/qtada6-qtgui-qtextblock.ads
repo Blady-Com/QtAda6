@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -15,19 +15,20 @@ limited with QtAda6.QtGui.QTextDocument;
 limited with QtAda6.QtGui.QTextLayout;
 limited with QtAda6.QtGui.QTextBlockUserData;
 limited with QtAda6.QtCore.Qt.LayoutDirection;
-limited with QtAda6.QtGui.QTextLayout.FormatRange;
 limited with QtAda6.QtGui.QTextList;
+with QtAda6.QtGui.QTextLayout.FormatRange;
 package QtAda6.QtGui.QTextBlock is
-   type List_QtAda6_QtGui_QTextLayout_FormatRange is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   subtype LIST_QtAda6_QtGui_QTextLayout_FormatRange is QtAda6.QtGui.QTextLayout.FormatRange.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (o_P : access QtAda6.QtGui.QTextBlock.Inst'Class) return Class;
    procedure U_copy_U;
-   function U_iter_U (self : access Inst) return Object;
+   function U_iter_U (self : access Inst) return access Object'Class;
    function begin_K (self : access Inst) return access QtAda6.QtGui.QTextBlock.iterator.Inst'Class;
    function blockFormat (self : access Inst) return access QtAda6.QtGui.QTextBlockFormat.Inst'Class;
    function blockFormatIndex (self : access Inst) return int;
@@ -56,7 +57,7 @@ package QtAda6.QtGui.QTextBlock is
    procedure setVisible (self : access Inst; visible_P : bool);
    function text (self : access Inst) return str;
    function textDirection (self : access Inst) return access QtAda6.QtCore.Qt.LayoutDirection.Inst'Class;
-   function textFormats (self : access Inst) return List_QtAda6_QtGui_QTextLayout_FormatRange;
+   function textFormats (self : access Inst) return LIST_QtAda6_QtGui_QTextLayout_FormatRange;
    function textList (self : access Inst) return access QtAda6.QtGui.QTextList.Inst'Class;
    function userData (self : access Inst) return access QtAda6.QtGui.QTextBlockUserData.Inst'Class;
    function userState (self : access Inst) return int;

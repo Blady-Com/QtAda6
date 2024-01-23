@@ -4,7 +4,7 @@
 -- ROLE                         : Qt GUI module provides basic GUI functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -21,14 +21,14 @@ package body QtAda6.QtGui.QAccessibleTextInterface is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTextInterface");
       Args  := Tuple_New (0);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure addSelection (self : access Inst; startOffset_P : int; endOffset_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addSelection");
       Args   := Tuple_New (2);
@@ -36,8 +36,8 @@ package body QtAda6.QtGui.QAccessibleTextInterface is
       Tuple_SetItem (Args, 1, Long_FromLong (endOffset_P));
       Result := Object_CallObject (Method, Args, True);
    end addSelection;
-   function attributes (self : access Inst; offset_P : int) return Tuple_str_int_int is
-      Method, Args, Result : Handle;
+   function attributes (self : access Inst; offset_P : int) return TUPLE_strintint is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "attributes");
       Args   := Tuple_New (1);
@@ -46,7 +46,7 @@ package body QtAda6.QtGui.QAccessibleTextInterface is
       return null;
    end attributes;
    function characterCount (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "characterCount");
       Args   := Tuple_New (0);
@@ -54,8 +54,8 @@ package body QtAda6.QtGui.QAccessibleTextInterface is
       return Long_AsLong (Result);
    end characterCount;
    function characterRect (self : access Inst; offset_P : int) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "characterRect");
       Args   := Tuple_New (1);
@@ -65,7 +65,7 @@ package body QtAda6.QtGui.QAccessibleTextInterface is
       return Ret;
    end characterRect;
    function cursorPosition (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cursorPosition");
       Args   := Tuple_New (0);
@@ -73,16 +73,16 @@ package body QtAda6.QtGui.QAccessibleTextInterface is
       return Long_AsLong (Result);
    end cursorPosition;
    function offsetAtPoint (self : access Inst; point_P : access QtAda6.QtCore.QPoint.Inst'Class) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "offsetAtPoint");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, point_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if point_P /= null then point_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end offsetAtPoint;
    procedure removeSelection (self : access Inst; selectionIndex_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeSelection");
       Args   := Tuple_New (1);
@@ -90,7 +90,7 @@ package body QtAda6.QtGui.QAccessibleTextInterface is
       Result := Object_CallObject (Method, Args, True);
    end removeSelection;
    procedure scrollToSubstring (self : access Inst; startIndex_P : int; endIndex_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "scrollToSubstring");
       Args   := Tuple_New (2);
@@ -98,8 +98,8 @@ package body QtAda6.QtGui.QAccessibleTextInterface is
       Tuple_SetItem (Args, 1, Long_FromLong (endIndex_P));
       Result := Object_CallObject (Method, Args, True);
    end scrollToSubstring;
-   function selection (self : access Inst; selectionIndex_P : int) return Tuple_int_int is
-      Method, Args, Result : Handle;
+   function selection (self : access Inst; selectionIndex_P : int) return TUPLE_intint is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "selection");
       Args   := Tuple_New (1);
@@ -108,7 +108,7 @@ package body QtAda6.QtGui.QAccessibleTextInterface is
       return null;
    end selection;
    function selectionCount (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "selectionCount");
       Args   := Tuple_New (0);
@@ -116,7 +116,7 @@ package body QtAda6.QtGui.QAccessibleTextInterface is
       return Long_AsLong (Result);
    end selectionCount;
    procedure setCursorPosition (self : access Inst; position_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCursorPosition");
       Args   := Tuple_New (1);
@@ -124,7 +124,7 @@ package body QtAda6.QtGui.QAccessibleTextInterface is
       Result := Object_CallObject (Method, Args, True);
    end setCursorPosition;
    procedure setSelection (self : access Inst; selectionIndex_P : int; startOffset_P : int; endOffset_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSelection");
       Args   := Tuple_New (3);
@@ -134,7 +134,7 @@ package body QtAda6.QtGui.QAccessibleTextInterface is
       Result := Object_CallObject (Method, Args, True);
    end setSelection;
    function text (self : access Inst; startOffset_P : int; endOffset_P : int) return str is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "text");
       Args   := Tuple_New (2);
@@ -145,40 +145,40 @@ package body QtAda6.QtGui.QAccessibleTextInterface is
    end text;
    function textAfterOffset
      (self : access Inst; offset_P : int; boundaryType_P : access QtAda6.QtGui.QAccessible.TextBoundaryType.Inst'Class)
-      return Tuple_str_int_int
+      return TUPLE_strintint
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "textAfterOffset");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, Long_FromLong (offset_P));
-      Tuple_SetItem (Args, 1, boundaryType_P.Python_Proxy);
+      Tuple_SetItem (Args, 1, (if boundaryType_P /= null then boundaryType_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return null;
    end textAfterOffset;
    function textAtOffset
      (self : access Inst; offset_P : int; boundaryType_P : access QtAda6.QtGui.QAccessible.TextBoundaryType.Inst'Class)
-      return Tuple_str_int_int
+      return TUPLE_strintint
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "textAtOffset");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, Long_FromLong (offset_P));
-      Tuple_SetItem (Args, 1, boundaryType_P.Python_Proxy);
+      Tuple_SetItem (Args, 1, (if boundaryType_P /= null then boundaryType_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return null;
    end textAtOffset;
    function textBeforeOffset
      (self : access Inst; offset_P : int; boundaryType_P : access QtAda6.QtGui.QAccessible.TextBoundaryType.Inst'Class)
-      return Tuple_str_int_int
+      return TUPLE_strintint
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "textBeforeOffset");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, Long_FromLong (offset_P));
-      Tuple_SetItem (Args, 1, boundaryType_P.Python_Proxy);
+      Tuple_SetItem (Args, 1, (if boundaryType_P /= null then boundaryType_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return null;
    end textBeforeOffset;
