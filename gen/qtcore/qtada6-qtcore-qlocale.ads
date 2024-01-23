@@ -22,7 +22,7 @@ limited with QtAda6.QtCore.QCalendar;
 limited with QtAda6.QtCore.QDate;
 limited with QtAda6.QtCore.QDateTime;
 limited with QtAda6.QtCore.QTime;
-with QtAda6.QtCore.QLocale.Country;
+limited with QtAda6.QtCore.QLocale.Country;
 with QtAda6.QtCore.Qt.DayOfWeek;
 package QtAda6.QtCore.QLocale is
    type Inst;

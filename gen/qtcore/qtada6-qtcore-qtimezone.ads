@@ -16,7 +16,7 @@ limited with QtAda6.QtCore.QLocale.Language;
 limited with QtAda6.QtCore.QTimeZone.TimeType;
 limited with QtAda6.QtCore.Qt.TimeSpec;
 with QtAda6.QtCore.QByteArray;
-with QtAda6.QtCore.QTimeZone.OffsetData;
+limited with QtAda6.QtCore.QTimeZone.OffsetData;
 package QtAda6.QtCore.QTimeZone is
    type Inst;
    type Inst_Access is access all Inst;

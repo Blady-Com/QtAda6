@@ -16,7 +16,7 @@ limited with QtAda6.QtCore.QSocketNotifier;
 limited with QtAda6.QtCore.Qt.TimerType;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.Signal;
-with QtAda6.QtCore.QAbstractEventDispatcher.TimerInfo;
+limited with QtAda6.QtCore.QAbstractEventDispatcher.TimerInfo;
 package QtAda6.QtCore.QAbstractEventDispatcher is
    type Inst;
    type Inst_Access is access all Inst;
