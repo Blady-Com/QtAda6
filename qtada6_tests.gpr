@@ -20,7 +20,7 @@ project QtAda6_Tests is
    end Binder;
 
    package Builder is
-      for Default_Switches ("ada") use ("-s");
+      for Default_Switches ("ada") use ("-s", "-k", "-j0");
    end Builder;
 
    package Linker is
