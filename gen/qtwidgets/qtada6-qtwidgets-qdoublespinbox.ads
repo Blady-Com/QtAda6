@@ -4,24 +4,25 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtWidgets.QAbstractSpinBox.StepType;
 with QtAda6.QtWidgets.QAbstractSpinBox;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QDoubleSpinBox is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractSpinBox.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   textChanged  : ClassVar_Signal;-- textChanged(QString)
-   valueChanged : ClassVar_Signal;-- valueChanged(double)
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+   function textChanged (self : access Inst) return CLASSVAR_Signal;-- textChanged(QString)
+   function valueChanged (self : access Inst) return CLASSVAR_Signal;-- valueChanged(double)
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function cleanText (self : access Inst) return str;
    function decimals (self : access Inst) return int;
    function fixup (self : access Inst; str_P : str) return str;
@@ -42,7 +43,7 @@ package QtAda6.QtWidgets.QDoubleSpinBox is
    function stepType (self : access Inst) return access QtAda6.QtWidgets.QAbstractSpinBox.StepType.Inst'Class;
    function suffix (self : access Inst) return str;
    function textFromValue (self : access Inst; val_P : float) return str;
-   function validate (self : access Inst; input_P : str; pos_P : int) return Object;
+   function validate (self : access Inst; input_P : str; pos_P : int) return access Object'Class;
    function value (self : access Inst) return float;
    function valueFromText (self : access Inst; text_P : str) return float;
 end QtAda6.QtWidgets.QDoubleSpinBox;

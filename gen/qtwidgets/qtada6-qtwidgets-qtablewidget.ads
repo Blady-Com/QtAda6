@@ -4,12 +4,11 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtWidgets.QWidget;
-limited with QtAda6.QtWidgets.QTableWidgetItem;
 limited with QtAda6.QtGui.QDropEvent;
 limited with QtAda6.QtCore.QMimeData;
 limited with QtAda6.QtCore.Qt.DropAction;
@@ -19,43 +18,47 @@ limited with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtCore.QPersistentModelIndex;
 limited with QtAda6.QtWidgets.QAbstractItemView.ScrollHint;
-limited with QtAda6.QtWidgets.QTableWidgetSelectionRange;
 limited with QtAda6.QtCore.QItemSelectionModel.SelectionFlag;
 limited with QtAda6.QtCore.QAbstractItemModel;
 limited with QtAda6.QtCore.Qt.SortOrder;
 limited with QtAda6.QtCore.QRect;
 with QtAda6.QtWidgets.QTableView;
+with QtAda6.QtCore.Signal;
+with QtAda6.QtWidgets.QTableWidgetItem;
+with QtAda6.QtWidgets.QTableWidgetSelectionRange;
 package QtAda6.QtWidgets.QTableWidget is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
-   type List_QtAda6_QtWidgets_QTableWidgetItem is access Any;
-   type Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is access Any;
-   type Sequence_QtAda6_QtWidgets_QTableWidgetItem is access Any;
-   type List_str is access Any;
-   type List_QtAda6_QtWidgets_QTableWidgetSelectionRange is access Any;
-   type Sequence_str is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QTableView.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   subtype LIST_QtAda6_QtWidgets_QTableWidgetItem is QtAda6.QtWidgets.QTableWidgetItem.Class_Array;
+   type UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex is new Any;
+   subtype SEQUENCE_QtAda6_QtWidgets_QTableWidgetItem is QtAda6.QtWidgets.QTableWidgetItem.Class_Array;
+   type LIST_str is array (Positive range <>) of str;
+   subtype LIST_QtAda6_QtWidgets_QTableWidgetSelectionRange is QtAda6.QtWidgets.QTableWidgetSelectionRange.Class_Array;
+   type SEQUENCE_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
-   cellActivated        : ClassVar_Signal;-- cellActivated(int,int)
-   cellChanged          : ClassVar_Signal;-- cellChanged(int,int)
-   cellClicked          : ClassVar_Signal;-- cellClicked(int,int)
-   cellDoubleClicked    : ClassVar_Signal;-- cellDoubleClicked(int,int)
-   cellEntered          : ClassVar_Signal;-- cellEntered(int,int)
-   cellPressed          : ClassVar_Signal;-- cellPressed(int,int)
-   currentCellChanged   : ClassVar_Signal;-- currentCellChanged(int,int,int,int)
-   currentItemChanged   : ClassVar_Signal;-- currentItemChanged(QTableWidgetItem*,QTableWidgetItem*)
-   itemActivated        : ClassVar_Signal;-- itemActivated(QTableWidgetItem*)
-   itemChanged          : ClassVar_Signal;-- itemChanged(QTableWidgetItem*)
-   itemClicked          : ClassVar_Signal;-- itemClicked(QTableWidgetItem*)
-   itemDoubleClicked    : ClassVar_Signal;-- itemDoubleClicked(QTableWidgetItem*)
-   itemEntered          : ClassVar_Signal;-- itemEntered(QTableWidgetItem*)
-   itemPressed          : ClassVar_Signal;-- itemPressed(QTableWidgetItem*)
-   itemSelectionChanged : ClassVar_Signal;-- itemSelectionChanged()
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
-   function Create (rows_P : int; columns_P : int; parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+   function cellActivated (self : access Inst) return CLASSVAR_Signal;-- cellActivated(int,int)
+   function cellChanged (self : access Inst) return CLASSVAR_Signal;-- cellChanged(int,int)
+   function cellClicked (self : access Inst) return CLASSVAR_Signal;-- cellClicked(int,int)
+   function cellDoubleClicked (self : access Inst) return CLASSVAR_Signal;-- cellDoubleClicked(int,int)
+   function cellEntered (self : access Inst) return CLASSVAR_Signal;-- cellEntered(int,int)
+   function cellPressed (self : access Inst) return CLASSVAR_Signal;-- cellPressed(int,int)
+   function currentCellChanged (self : access Inst) return CLASSVAR_Signal;-- currentCellChanged(int,int,int,int)
+   function currentItemChanged
+     (self : access Inst) return CLASSVAR_Signal;-- currentItemChanged(QTableWidgetItem*,QTableWidgetItem*)
+   function itemActivated (self : access Inst) return CLASSVAR_Signal;-- itemActivated(QTableWidgetItem*)
+   function itemChanged (self : access Inst) return CLASSVAR_Signal;-- itemChanged(QTableWidgetItem*)
+   function itemClicked (self : access Inst) return CLASSVAR_Signal;-- itemClicked(QTableWidgetItem*)
+   function itemDoubleClicked (self : access Inst) return CLASSVAR_Signal;-- itemDoubleClicked(QTableWidgetItem*)
+   function itemEntered (self : access Inst) return CLASSVAR_Signal;-- itemEntered(QTableWidgetItem*)
+   function itemPressed (self : access Inst) return CLASSVAR_Signal;-- itemPressed(QTableWidgetItem*)
+   function itemSelectionChanged (self : access Inst) return CLASSVAR_Signal;-- itemSelectionChanged()
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
+   function Create
+     (rows_P : int; columns_P : int; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function cellWidget
      (self : access Inst; row_P : int; column_P : int) return access QtAda6.QtWidgets.QWidget.Inst'Class;
    procedure clear (self : access Inst);
@@ -74,7 +77,7 @@ package QtAda6.QtWidgets.QTableWidget is
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
    function findItems
      (self : access Inst; text_P : str; flags_P : access QtAda6.QtCore.Qt.MatchFlag.Inst'Class)
-      return List_QtAda6_QtWidgets_QTableWidgetItem;
+      return LIST_QtAda6_QtWidgets_QTableWidgetItem;
    function horizontalHeaderItem
      (self : access Inst; column_P : int) return access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class;
    function indexFromItem
@@ -93,16 +96,16 @@ package QtAda6.QtWidgets.QTableWidget is
    function itemAt
      (self : access Inst; x_P : int; y_P : int) return access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class;
    function itemFromIndex
-     (self : access Inst; index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
       return access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class;
    function itemPrototype (self : access Inst) return access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class;
    function items
      (self : access Inst; data_P : access QtAda6.QtCore.QMimeData.Inst'Class)
-      return List_QtAda6_QtWidgets_QTableWidgetItem;
+      return LIST_QtAda6_QtWidgets_QTableWidgetItem;
    function mimeData
-     (self : access Inst; items_P : Sequence_QtAda6_QtWidgets_QTableWidgetItem)
+     (self : access Inst; items_P : SEQUENCE_QtAda6_QtWidgets_QTableWidgetItem)
       return access QtAda6.QtCore.QMimeData.Inst'Class;
-   function mimeTypes (self : access Inst) return List_str;
+   function mimeTypes (self : access Inst) return LIST_str;
    procedure openPersistentEditor (self : access Inst; item_P : access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class);
    procedure removeCellWidget (self : access Inst; row_P : int; column_P : int);
    procedure removeColumn (self : access Inst; column_P : int);
@@ -111,9 +114,9 @@ package QtAda6.QtWidgets.QTableWidget is
    function rowCount (self : access Inst) return int;
    procedure scrollToItem
      (self   : access Inst; item_P : access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class;
-      hint_P : access QtAda6.QtWidgets.QAbstractItemView.ScrollHint.Inst'Class);
-   function selectedItems (self : access Inst) return List_QtAda6_QtWidgets_QTableWidgetItem;
-   function selectedRanges (self : access Inst) return List_QtAda6_QtWidgets_QTableWidgetSelectionRange;
+      hint_P : access QtAda6.QtWidgets.QAbstractItemView.ScrollHint.Inst'Class := null);
+   function selectedItems (self : access Inst) return LIST_QtAda6_QtWidgets_QTableWidgetItem;
+   function selectedRanges (self : access Inst) return LIST_QtAda6_QtWidgets_QTableWidgetSelectionRange;
    procedure setCellWidget
      (self : access Inst; row_P : int; column_P : int; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    procedure setColumnCount (self : access Inst; columns_P : int);
@@ -127,7 +130,7 @@ package QtAda6.QtWidgets.QTableWidget is
       command_P : access QtAda6.QtCore.QItemSelectionModel.SelectionFlag.Inst'Class);
    procedure setHorizontalHeaderItem
      (self : access Inst; column_P : int; item_P : access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class);
-   procedure setHorizontalHeaderLabels (self : access Inst; labels_P : Sequence_str);
+   procedure setHorizontalHeaderLabels (self : access Inst; labels_P : SEQUENCE_str);
    procedure setItem
      (self : access Inst; row_P : int; column_P : int; item_P : access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class);
    procedure setItemPrototype (self : access Inst; item_P : access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class);
@@ -138,8 +141,9 @@ package QtAda6.QtWidgets.QTableWidget is
    procedure setSortingEnabled (self : access Inst; enable_P : bool);
    procedure setVerticalHeaderItem
      (self : access Inst; row_P : int; item_P : access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class);
-   procedure setVerticalHeaderLabels (self : access Inst; labels_P : Sequence_str);
-   procedure sortItems (self : access Inst; column_P : int; order_P : access QtAda6.QtCore.Qt.SortOrder.Inst'Class);
+   procedure setVerticalHeaderLabels (self : access Inst; labels_P : SEQUENCE_str);
+   procedure sortItems
+     (self : access Inst; column_P : int; order_P : access QtAda6.QtCore.Qt.SortOrder.Inst'Class := null);
    function supportedDropActions (self : access Inst) return access QtAda6.QtCore.Qt.DropAction.Inst'Class;
    function takeHorizontalHeaderItem
      (self : access Inst; column_P : int) return access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class;

@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -17,29 +17,30 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtCore.Qt.Corner;
 with QtAda6.QtWidgets.QLayout;
 package QtAda6.QtWidgets.QGridLayout is
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QLayout.Inst with null record;
    procedure Finalize (Self : in out Class);
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    procedure addItem (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QLayoutItem.Inst'Class);
    procedure addItem
-     (self      : access Inst; item_P : access QtAda6.QtWidgets.QLayoutItem.Inst'Class; row_P : int; column_P : int;
-      rowSpan_P : int; columnSpan_P : int; alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class);
+     (self        : access Inst; item_P : access QtAda6.QtWidgets.QLayoutItem.Inst'Class; row_P : int; column_P : int;
+      rowSpan_P   : int                                              := 0; columnSpan_P : int := 0;
+      alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class := null);
    procedure addLayout
      (self        : access Inst; arg_1_P : access QtAda6.QtWidgets.QLayout.Inst'Class; row_P : int; column_P : int;
-      alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class);
+      alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class := null);
    procedure addLayout
      (self      : access Inst; arg_1_P : access QtAda6.QtWidgets.QLayout.Inst'Class; row_P : int; column_P : int;
-      rowSpan_P : int; columnSpan_P : int; alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class);
+      rowSpan_P : int; columnSpan_P : int; alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class := null);
    procedure addWidget
      (self        : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class; row_P : int; column_P : int;
-      alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class);
+      alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class := null);
    procedure addWidget
      (self      : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class; row_P : int; column_P : int;
-      rowSpan_P : int; columnSpan_P : int; alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class);
+      rowSpan_P : int; columnSpan_P : int; alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class := null);
    procedure addWidget (self : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    function cellRect (self : access Inst; row_P : int; column_P : int) return access QtAda6.QtCore.QRect.Inst'Class;
    function columnCount (self : access Inst) return int;
@@ -47,7 +48,7 @@ package QtAda6.QtWidgets.QGridLayout is
    function columnStretch (self : access Inst; column_P : int) return int;
    function count (self : access Inst) return int;
    function expandingDirections (self : access Inst) return access QtAda6.QtCore.Qt.Orientation.Inst'Class;
-   function getItemPosition (self : access Inst; idx_P : int) return Object;
+   function getItemPosition (self : access Inst; idx_P : int) return access Object'Class;
    function hasHeightForWidth (self : access Inst) return bool;
    function heightForWidth (self : access Inst; arg_1_P : int) return int;
    function horizontalSpacing (self : access Inst) return int;

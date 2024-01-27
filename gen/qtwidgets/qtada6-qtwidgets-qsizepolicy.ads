@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -16,13 +16,14 @@ package QtAda6.QtWidgets.QSizePolicy is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create
      (horizontal_P : access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class;
       vertical_P   : access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class;
-      type_K_P     : access QtAda6.QtWidgets.QSizePolicy.ControlType.Inst'Class) return Class;
+      type_K_P     : access QtAda6.QtWidgets.QSizePolicy.ControlType.Inst'Class := null) return Class;
    procedure U_copy_U;
    function U_lshift_U
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)

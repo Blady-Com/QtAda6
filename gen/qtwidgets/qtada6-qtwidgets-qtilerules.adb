@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -18,36 +18,36 @@ package body QtAda6.QtWidgets.QTileRules is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function Create (QTileRules_P : Union_QtAda6_QtWidgets_QTileRules_QtAda6_QtCore_Qt_TileRule) return Class is
-      Class, Args : Handle;
+   function Create (QTileRules_P : UNION_QtAda6_QtWidgets_QTileRulesQtAda6_QtCore_Qt_TileRule) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTileRules");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if QTileRules_P /= null then QTileRules_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create
      (horizontalRule_P : access QtAda6.QtCore.Qt.TileRule.Inst'Class;
       verticalRule_P   : access QtAda6.QtCore.Qt.TileRule.Inst'Class) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTileRules");
       Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, horizontalRule_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, verticalRule_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if horizontalRule_P /= null then horizontalRule_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if verticalRule_P /= null then verticalRule_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (rule_P : access QtAda6.QtCore.Qt.TileRule.Inst'Class) return Class is
-      Class, Args : Handle;
+   function Create (rule_P : access QtAda6.QtCore.Qt.TileRule.Inst'Class := null) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTileRules");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, rule_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if rule_P /= null then rule_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTileRules");
       Method := Object_GetAttrString (Class, "__copy__");

@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -23,24 +23,24 @@ limited with QtAda6.QtGui.QKeySequence;
 limited with QtAda6.QtCore.QKeyCombination;
 limited with QtAda6.QtGui.QKeySequence.StandardKey;
 limited with QtAda6.QtCore.QTimerEvent;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QAbstractButton is
-   subtype ClassVar_Signal is QtAda6.QtCore.Signal.Class;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
-   type Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is access Any;
-   type Union_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int is
-     access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   type UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap is new Any;
+   type UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint is
+     new Any;
    procedure Finalize (Self : in out Class);
-   function clicked (self : access Inst) return ClassVar_Signal;-- clicked()
---  pressed:ClassVar_Signal;-- pressed()
---  released:ClassVar_Signal;-- released()
---  toggled:ClassVar_Signal;-- toggled(bool)
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+   function clicked (self : access Inst) return CLASSVAR_Signal;-- clicked()
+   function pressed (self : access Inst) return CLASSVAR_Signal;-- pressed()
+   function released (self : access Inst) return CLASSVAR_Signal;-- released()
+   function toggled (self : access Inst) return CLASSVAR_Signal;-- toggled(bool)
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    procedure animateClick (self : access Inst);
    function autoExclusive (self : access Inst) return bool;
    function autoRepeat (self : access Inst) return bool;
@@ -73,12 +73,12 @@ package QtAda6.QtWidgets.QAbstractButton is
    procedure setCheckable (self : access Inst; arg_1_P : bool);
    procedure setChecked (self : access Inst; arg_1_P : bool);
    procedure setDown (self : access Inst; arg_1_P : bool);
-   procedure setIcon (self : access Inst; icon_P : Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
+   procedure setIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap);
    procedure setIconSize (self : access Inst; size_P : access QtAda6.QtCore.QSize.Inst'Class);
    procedure setShortcut (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.Key.Inst'Class);
    procedure setShortcut
      (self  : access Inst;
-      key_P : Union_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int);
+      key_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint);
    procedure setText (self : access Inst; text_P : str);
    function shortcut (self : access Inst) return access QtAda6.QtGui.QKeySequence.Inst'Class;
    function text (self : access Inst) return str;

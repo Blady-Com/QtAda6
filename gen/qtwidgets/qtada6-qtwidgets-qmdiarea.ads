@@ -4,13 +4,12 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtWidgets.QMdiArea.WindowOrder;
-limited with QtAda6.QtWidgets.QMdiSubWindow;
 limited with QtAda6.QtCore.Qt.WindowType;
 limited with QtAda6.QtGui.QBrush;
 limited with QtAda6.QtCore.QChildEvent;
@@ -32,26 +31,29 @@ limited with QtAda6.QtWidgets.QMdiArea.ViewMode;
 limited with QtAda6.QtGui.QShowEvent;
 limited with QtAda6.QtCore.QTimerEvent;
 with QtAda6.QtWidgets.QAbstractScrollArea;
+with QtAda6.QtCore.Signal;
+with QtAda6.QtWidgets.QMdiSubWindow;
 package QtAda6.QtWidgets.QMdiArea is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
-   type Union_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap is
-     access Any;
-   type List_QtAda6_QtWidgets_QMdiSubWindow is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractScrollArea.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   type UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap is
+     new Any;
+   subtype LIST_QtAda6_QtWidgets_QMdiSubWindow is QtAda6.QtWidgets.QMdiSubWindow.Class_Array;
    procedure Finalize (Self : in out Class);
-   subWindowActivated : ClassVar_Signal;-- subWindowActivated(QMdiSubWindow*)
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+   function subWindowActivated (self : access Inst) return CLASSVAR_Signal;-- subWindowActivated(QMdiSubWindow*)
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    procedure activateNextSubWindow (self : access Inst);
    procedure activatePreviousSubWindow (self : access Inst);
    function activationOrder (self : access Inst) return access QtAda6.QtWidgets.QMdiArea.WindowOrder.Inst'Class;
    function activeSubWindow (self : access Inst) return access QtAda6.QtWidgets.QMdiSubWindow.Inst'Class;
    function addSubWindow
      (self    : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
-      flags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class) return access QtAda6.QtWidgets.QMdiSubWindow.Inst'Class;
+      flags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null)
+      return access QtAda6.QtWidgets.QMdiSubWindow.Inst'Class;
    function background (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class;
    procedure cascadeSubWindows (self : access Inst);
    procedure childEvent (self : access Inst; childEvent_P : access QtAda6.QtCore.QChildEvent.Inst'Class);
@@ -72,10 +74,10 @@ package QtAda6.QtWidgets.QMdiArea is
    procedure setActiveSubWindow (self : access Inst; window_P : access QtAda6.QtWidgets.QMdiSubWindow.Inst'Class);
    procedure setBackground
      (self         : access Inst;
-      background_P : Union_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
+      background_P : UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap);
    procedure setDocumentMode (self : access Inst; enabled_P : bool);
    procedure setOption
-     (self : access Inst; option_P : access QtAda6.QtWidgets.QMdiArea.AreaOption.Inst'Class; on_P : bool);
+     (self : access Inst; option_P : access QtAda6.QtWidgets.QMdiArea.AreaOption.Inst'Class; on_P : bool := False);
    procedure setTabPosition
      (self : access Inst; position_P : access QtAda6.QtWidgets.QTabWidget.TabPosition.Inst'Class);
    procedure setTabShape (self : access Inst; shape_P : access QtAda6.QtWidgets.QTabWidget.TabShape.Inst'Class);
@@ -86,8 +88,8 @@ package QtAda6.QtWidgets.QMdiArea is
    procedure showEvent (self : access Inst; showEvent_P : access QtAda6.QtGui.QShowEvent.Inst'Class);
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class;
    function subWindowList
-     (self : access Inst; order_P : access QtAda6.QtWidgets.QMdiArea.WindowOrder.Inst'Class)
-      return List_QtAda6_QtWidgets_QMdiSubWindow;
+     (self : access Inst; order_P : access QtAda6.QtWidgets.QMdiArea.WindowOrder.Inst'Class := null)
+      return LIST_QtAda6_QtWidgets_QMdiSubWindow;
    function tabPosition (self : access Inst) return access QtAda6.QtWidgets.QTabWidget.TabPosition.Inst'Class;
    function tabShape (self : access Inst) return access QtAda6.QtWidgets.QTabWidget.TabShape.Inst'Class;
    function tabsClosable (self : access Inst) return bool;

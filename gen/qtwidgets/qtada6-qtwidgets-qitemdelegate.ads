@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -28,21 +28,21 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtGui.QFont;
 with QtAda6.QtWidgets.QAbstractItemDelegate;
 package QtAda6.QtWidgets.QItemDelegate is
-   type Optional_QtAda6_QtCore_QObject is access Any;
-   type Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is access Any;
-   type Union_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is access Any;
-   type Union_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor is access Any;
-   type Union_QtAda6_QtGui_QFont_str_Sequence_str is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractItemDelegate.Inst with null record;
+   type UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex is new Any;
+   type UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr is new Any;
+   type UNION_QtAda6_QtGui_QPaletteQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColor is new Any;
+   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
    procedure Finalize (Self : in out Class);
-   function Create (parent_P : Optional_QtAda6_QtCore_QObject) return Class;
+   function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function createEditor
      (self     : access Inst; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
-      index_P  : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+      index_P  : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
       return access QtAda6.QtWidgets.QWidget.Inst'Class;
    function decoration
      (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class; variant_P : Any)
@@ -53,7 +53,7 @@ package QtAda6.QtWidgets.QItemDelegate is
    procedure drawBackground
      (self     : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
-      index_P  : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
+      index_P  : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
    procedure drawCheck
      (self     : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
@@ -61,7 +61,7 @@ package QtAda6.QtWidgets.QItemDelegate is
    procedure drawDecoration
      (self     : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
-      rect_P   : access QtAda6.QtCore.QRect.Inst'Class; pixmap_P : Union_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str);
+      rect_P   : access QtAda6.QtCore.QRect.Inst'Class; pixmap_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr);
    procedure drawDisplay
      (self     : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
@@ -74,7 +74,7 @@ package QtAda6.QtWidgets.QItemDelegate is
      (self     : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class;
       model_P  : access QtAda6.QtCore.QAbstractItemModel.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
-      index_P  : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool;
+      index_P  : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return bool;
    function eventFilter
      (self    : access Inst; object_P : access QtAda6.QtCore.QObject.Inst'Class;
       event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
@@ -83,39 +83,39 @@ package QtAda6.QtWidgets.QItemDelegate is
    procedure paint
      (self     : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
-      index_P  : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
+      index_P  : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
    function rect
      (self    : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
-      index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex; role_P : int)
+      index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex; role_P : int)
       return access QtAda6.QtCore.QRect.Inst'Class;
    function selectedPixmap
-     (pixmap_P  : Union_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str;
-      palette_P : Union_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor; enabled_P : bool)
+     (pixmap_P  : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr;
+      palette_P : UNION_QtAda6_QtGui_QPaletteQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColor; enabled_P : bool)
       return access QtAda6.QtGui.QPixmap.Inst'Class;
    procedure setClipping (self : access Inst; clip_P : bool);
    procedure setEditorData
      (self    : access Inst; editor_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
-      index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
+      index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
    procedure setItemEditorFactory
      (self : access Inst; factory_P : access QtAda6.QtWidgets.QItemEditorFactory.Inst'Class);
    procedure setModelData
      (self    : access Inst; editor_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
       model_P : access QtAda6.QtCore.QAbstractItemModel.Inst'Class;
-      index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
+      index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
    function setOptions
-     (self     : access Inst; index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
+     (self     : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
       option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class)
       return access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
    function sizeHint
      (self    : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
-      index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+      index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
       return access QtAda6.QtCore.QSize.Inst'Class;
    function textRectangle
      (self   : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
-      rect_P : access QtAda6.QtCore.QRect.Inst'Class; font_P : Union_QtAda6_QtGui_QFont_str_Sequence_str; text_P : str)
+      rect_P : access QtAda6.QtCore.QRect.Inst'Class; font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str; text_P : str)
       return access QtAda6.QtCore.QRect.Inst'Class;
    procedure updateEditorGeometry
      (self     : access Inst; editor_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
-      index_P  : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
+      index_P  : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
 end QtAda6.QtWidgets.QItemDelegate;

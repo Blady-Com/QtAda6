@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -20,13 +20,13 @@ limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtWidgets.QFormLayout.TakeRowResult;
 with QtAda6.QtWidgets.QLayout;
 package QtAda6.QtWidgets.QFormLayout is
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QLayout.Inst with null record;
    procedure Finalize (Self : in out Class);
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    procedure addItem (self : access Inst; item_P : access QtAda6.QtWidgets.QLayoutItem.Inst'Class);
    procedure addRow
      (self    : access Inst; label_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
@@ -43,9 +43,11 @@ package QtAda6.QtWidgets.QFormLayout is
    function fieldGrowthPolicy_F
      (self : access Inst) return access QtAda6.QtWidgets.QFormLayout.FieldGrowthPolicy.Inst'Class;
    function formAlignment (self : access Inst) return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class;
-   function getItemPosition (self : access Inst; index_P : int) return Object;
-   function getLayoutPosition (self : access Inst; layout_P : access QtAda6.QtWidgets.QLayout.Inst'Class) return Object;
-   function getWidgetPosition (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return Object;
+   function getItemPosition (self : access Inst; index_P : int) return access Object'Class;
+   function getLayoutPosition
+     (self : access Inst; layout_P : access QtAda6.QtWidgets.QLayout.Inst'Class) return access Object'Class;
+   function getWidgetPosition
+     (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return access Object'Class;
    function hasHeightForWidth (self : access Inst) return bool;
    function heightForWidth (self : access Inst; width_P : int) return int;
    function horizontalSpacing (self : access Inst) return int;

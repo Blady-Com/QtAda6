@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -24,23 +24,24 @@ limited with QtAda6.QtGui.QResizeEvent;
 limited with QtAda6.QtWidgets.QCalendarWidget.SelectionMode;
 limited with QtAda6.QtWidgets.QCalendarWidget.VerticalHeaderFormat;
 with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QCalendarWidget is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
-   type Dict_QtAda6_QtCore_QDate_QtAda6_QtGui_QTextCharFormat is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   type DICT_QtAda6_QtCore_QDateQtAda6_QtGui_QTextCharFormat is new Any;
    procedure Finalize (Self : in out Class);
-   activated          : ClassVar_Signal;-- activated(QDate)
-   clicked            : ClassVar_Signal;-- clicked(QDate)
-   currentPageChanged : ClassVar_Signal;-- currentPageChanged(int,int)
-   selectionChanged   : ClassVar_Signal;-- selectionChanged()
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+   function activated (self : access Inst) return CLASSVAR_Signal;-- activated(QDate)
+   function clicked (self : access Inst) return CLASSVAR_Signal;-- clicked(QDate)
+   function currentPageChanged (self : access Inst) return CLASSVAR_Signal;-- currentPageChanged(int,int)
+   function selectionChanged (self : access Inst) return CLASSVAR_Signal;-- selectionChanged()
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function calendar (self : access Inst) return access QtAda6.QtCore.QCalendar.Inst'Class;
    function dateEditAcceptDelay (self : access Inst) return int;
-   function dateTextFormat (self : access Inst) return Dict_QtAda6_QtCore_QDate_QtAda6_QtGui_QTextCharFormat;
+   function dateTextFormat (self : access Inst) return DICT_QtAda6_QtCore_QDateQtAda6_QtGui_QTextCharFormat;
    function dateTextFormat
      (self : access Inst; date_P : access QtAda6.QtCore.QDate.Inst'Class)
       return access QtAda6.QtGui.QTextCharFormat.Inst'Class;

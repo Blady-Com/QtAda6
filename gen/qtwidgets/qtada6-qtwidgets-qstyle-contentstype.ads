@@ -4,39 +4,39 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with Enum.IntEnum;
 package QtAda6.QtWidgets.QStyle.ContentsType is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
-   type Inst is new Enum.IntEnum.Inst with null record;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
+   type Inst is new Enum.IntEnum with null record;
    procedure Finalize (Self : in out Class);
-   CT_PushButton    : QStyle.ContentsType.Class;-- 0x0
-   CT_CheckBox      : QStyle.ContentsType.Class;-- 0x1
-   CT_RadioButton   : QStyle.ContentsType.Class;-- 0x2
-   CT_ToolButton    : QStyle.ContentsType.Class;-- 0x3
-   CT_ComboBox      : QStyle.ContentsType.Class;-- 0x4
-   CT_Splitter      : QStyle.ContentsType.Class;-- 0x5
-   CT_ProgressBar   : QStyle.ContentsType.Class;-- 0x6
-   CT_MenuItem      : QStyle.ContentsType.Class;-- 0x7
-   CT_MenuBarItem   : QStyle.ContentsType.Class;-- 0x8
-   CT_MenuBar       : QStyle.ContentsType.Class;-- 0x9
-   CT_Menu          : QStyle.ContentsType.Class;-- 0xa
-   CT_TabBarTab     : QStyle.ContentsType.Class;-- 0xb
-   CT_Slider        : QStyle.ContentsType.Class;-- 0xc
-   CT_ScrollBar     : QStyle.ContentsType.Class;-- 0xd
-   CT_LineEdit      : QStyle.ContentsType.Class;-- 0xe
-   CT_SpinBox       : QStyle.ContentsType.Class;-- 0xf
-   CT_SizeGrip      : QStyle.ContentsType.Class;-- 0x10
-   CT_TabWidget     : QStyle.ContentsType.Class;-- 0x11
-   CT_DialogButtons : QStyle.ContentsType.Class;-- 0x12
-   CT_HeaderSection : QStyle.ContentsType.Class;-- 0x13
-   CT_GroupBox      : QStyle.ContentsType.Class;-- 0x14
-   CT_MdiControls   : QStyle.ContentsType.Class;-- 0x15
-   CT_ItemViewItem  : QStyle.ContentsType.Class;-- 0x16
-   CT_CustomBase    : QStyle.ContentsType.Class;-- 0xf0000000
+   function CT_PushButton return Class;-- 0x0
+   function CT_CheckBox return Class;-- 0x1
+   function CT_RadioButton return Class;-- 0x2
+   function CT_ToolButton return Class;-- 0x3
+   function CT_ComboBox return Class;-- 0x4
+   function CT_Splitter return Class;-- 0x5
+   function CT_ProgressBar return Class;-- 0x6
+   function CT_MenuItem return Class;-- 0x7
+   function CT_MenuBarItem return Class;-- 0x8
+   function CT_MenuBar return Class;-- 0x9
+   function CT_Menu return Class;-- 0xa
+   function CT_TabBarTab return Class;-- 0xb
+   function CT_Slider return Class;-- 0xc
+   function CT_ScrollBar return Class;-- 0xd
+   function CT_LineEdit return Class;-- 0xe
+   function CT_SpinBox return Class;-- 0xf
+   function CT_SizeGrip return Class;-- 0x10
+   function CT_TabWidget return Class;-- 0x11
+   function CT_DialogButtons return Class;-- 0x12
+   function CT_HeaderSection return Class;-- 0x13
+   function CT_GroupBox return Class;-- 0x14
+   function CT_MdiControls return Class;-- 0x15
+   function CT_ItemViewItem return Class;-- 0x16
+   function CT_CustomBase return Class;-- 0xf0000000
 end QtAda6.QtWidgets.QStyle.ContentsType;

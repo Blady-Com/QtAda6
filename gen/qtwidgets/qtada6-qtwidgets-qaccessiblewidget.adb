@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -31,28 +31,28 @@ package body QtAda6.QtWidgets.QAccessibleWidget is
       Free (Inst_Access (Self));
    end Finalize;
    function Create
-     (o_P    : access QtAda6.QtWidgets.QWidget.Inst'Class; r_P : access QtAda6.QtGui.QAccessible.Role.Inst'Class;
-      name_P : str) return Class
+     (o_P : access QtAda6.QtWidgets.QWidget.Inst'Class; r_P : access QtAda6.QtGui.QAccessible.Role.Inst'Class := null;
+      name_P : str := "") return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAccessibleWidget");
       Args  := Tuple_New (3);
-      Tuple_SetItem (Args, 0, o_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, r_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if o_P /= null then o_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if r_P /= null then r_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 2, Unicode_FromString (name_P));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function actionNames (self : access Inst) return List_str is
-      Method, Args, Result : Handle;
+   function actionNames (self : access Inst) return LIST_str is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "actionNames");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end actionNames;
    procedure addControllingSignal (self : access Inst; signal_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addControllingSignal");
       Args   := Tuple_New (1);
@@ -60,8 +60,8 @@ package body QtAda6.QtWidgets.QAccessibleWidget is
       Result := Object_CallObject (Method, Args, True);
    end addControllingSignal;
    function backgroundColor (self : access Inst) return access QtAda6.QtGui.QColor.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "backgroundColor");
       Args             := Tuple_New (0);
@@ -70,7 +70,7 @@ package body QtAda6.QtWidgets.QAccessibleWidget is
       return Ret;
    end backgroundColor;
    function child (self : access Inst; index_P : int) return access QtAda6.QtGui.QAccessibleInterface.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleInterface.Class := new QtAda6.QtGui.QAccessibleInterface.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "child");
@@ -81,7 +81,7 @@ package body QtAda6.QtWidgets.QAccessibleWidget is
       return Ret;
    end child;
    function childCount (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "childCount");
       Args   := Tuple_New (0);
@@ -89,7 +89,7 @@ package body QtAda6.QtWidgets.QAccessibleWidget is
       return Long_AsLong (Result);
    end childCount;
    procedure doAction (self : access Inst; actionName_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "doAction");
       Args   := Tuple_New (1);
@@ -97,7 +97,7 @@ package body QtAda6.QtWidgets.QAccessibleWidget is
       Result := Object_CallObject (Method, Args, True);
    end doAction;
    function focusChild (self : access Inst) return access QtAda6.QtGui.QAccessibleInterface.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleInterface.Class := new QtAda6.QtGui.QAccessibleInterface.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "focusChild");
@@ -107,8 +107,8 @@ package body QtAda6.QtWidgets.QAccessibleWidget is
       return Ret;
    end focusChild;
    function foregroundColor (self : access Inst) return access QtAda6.QtGui.QColor.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "foregroundColor");
       Args             := Tuple_New (0);
@@ -118,44 +118,44 @@ package body QtAda6.QtWidgets.QAccessibleWidget is
    end foregroundColor;
    function indexOfChild (self : access Inst; child_P : access QtAda6.QtGui.QAccessibleInterface.Inst'Class) return int
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOfChild");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, child_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if child_P /= null then child_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end indexOfChild;
    function interface_cast
      (self : access Inst; t_P : access QtAda6.QtGui.QAccessible.InterfaceType.Inst'Class) return int
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "interface_cast");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, t_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if t_P /= null then t_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end interface_cast;
    function isValid (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end isValid;
-   function keyBindingsForAction (self : access Inst; actionName_P : str) return List_str is
-      Method, Args, Result : Handle;
+   function keyBindingsForAction (self : access Inst; actionName_P : str) return LIST_str is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "keyBindingsForAction");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (actionName_P));
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end keyBindingsForAction;
    function parent (self : access Inst) return access QtAda6.QtGui.QAccessibleInterface.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleInterface.Class := new QtAda6.QtGui.QAccessibleInterface.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "parent");
@@ -165,8 +165,8 @@ package body QtAda6.QtWidgets.QAccessibleWidget is
       return Ret;
    end parent;
    function parentObject (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "parentObject");
       Args             := Tuple_New (0);
@@ -175,8 +175,8 @@ package body QtAda6.QtWidgets.QAccessibleWidget is
       return Ret;
    end parentObject;
    function rect (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "rect");
       Args             := Tuple_New (0);
@@ -185,20 +185,20 @@ package body QtAda6.QtWidgets.QAccessibleWidget is
       return Ret;
    end rect;
    function relations
-     (self : access Inst; match_P : access QtAda6.QtGui.QAccessible.RelationFlag.Inst'Class)
-      return List_Tuple_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag
+     (self : access Inst; match_P : access QtAda6.QtGui.QAccessible.RelationFlag.Inst'Class := null)
+      return LIST_TUPLE_QtAda6_QtGui_QAccessibleInterfaceQtAda6_QtGui_QAccessible_RelationFlag
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "relations");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, match_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if match_P /= null then match_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end relations;
    function role (self : access Inst) return access QtAda6.QtGui.QAccessible.Role.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QAccessible.Role.Class := new QtAda6.QtGui.QAccessible.Role.Inst;
+      Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAccessible.Role.Class := new QtAda6.QtGui.QAccessible.Role.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "role");
       Args             := Tuple_New (0);
@@ -207,8 +207,8 @@ package body QtAda6.QtWidgets.QAccessibleWidget is
       return Ret;
    end role;
    function state (self : access Inst) return access QtAda6.QtGui.QAccessible.State.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QAccessible.State.Class := new QtAda6.QtGui.QAccessible.State.Inst;
+      Method, Args, List, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAccessible.State.Class := new QtAda6.QtGui.QAccessible.State.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "state");
       Args             := Tuple_New (0);
@@ -217,17 +217,17 @@ package body QtAda6.QtWidgets.QAccessibleWidget is
       return Ret;
    end state;
    function text (self : access Inst; t_P : access QtAda6.QtGui.QAccessible.Text.Inst'Class) return str is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "text");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, t_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if t_P /= null then t_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return As_String (Result);
    end text;
    function widget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "widget");
       Args             := Tuple_New (0);
@@ -236,8 +236,8 @@ package body QtAda6.QtWidgets.QAccessibleWidget is
       return Ret;
    end widget;
    function window (self : access Inst) return access QtAda6.QtGui.QWindow.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QWindow.Class := new QtAda6.QtGui.QWindow.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QWindow.Class := new QtAda6.QtGui.QWindow.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "window");
       Args             := Tuple_New (0);

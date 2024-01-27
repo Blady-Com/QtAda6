@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -19,15 +19,15 @@ package body QtAda6.QtWidgets.QStyleOption is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (other_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOption");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, other_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (version_P : int; type_K_P : int) return Class is
-      Class, Args : Handle;
+   function Create (version_P : int := 0; type_K_P : int := 0) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOption");
       Args  := Tuple_New (2);
@@ -36,11 +36,11 @@ package body QtAda6.QtWidgets.QStyleOption is
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure initFrom (self : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "initFrom");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, w_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if w_P /= null then w_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end initFrom;
 end QtAda6.QtWidgets.QStyleOption;

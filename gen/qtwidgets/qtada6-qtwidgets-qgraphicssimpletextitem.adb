@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -28,26 +28,26 @@ package body QtAda6.QtWidgets.QGraphicsSimpleTextItem is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QGraphicsItem) return Class is
-      Class, Args : Handle;
+   function Create (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsSimpleTextItem");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (text_P : str; parent_P : Optional_QtAda6_QtWidgets_QGraphicsItem) return Class is
-      Class, Args : Handle;
+   function Create (text_P : str; parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsSimpleTextItem");
       Args  := Tuple_New (2);
       Tuple_SetItem (Args, 0, Unicode_FromString (text_P));
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 1, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function boundingRect (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "boundingRect");
       Args             := Tuple_New (0);
@@ -56,29 +56,29 @@ package body QtAda6.QtWidgets.QGraphicsSimpleTextItem is
       return Ret;
    end boundingRect;
    function contains
-     (self : access Inst; point_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
       return bool
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "contains");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if point_P /= null then point_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end contains;
    function extension (self : access Inst; variant_P : Any) return Any is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "extension");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Any_conv_A2P_is_not_supported);
+      Tuple_SetItem (Args, 0, (if variant_P /= null then variant_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
-      return Any_conv_P2A_is_not_supported;
+      return null;
    end extension;
    function font (self : access Inst) return access QtAda6.QtGui.QFont.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "font");
       Args             := Tuple_New (0);
@@ -87,17 +87,17 @@ package body QtAda6.QtWidgets.QGraphicsSimpleTextItem is
       return Ret;
    end font;
    function isObscuredBy (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isObscuredBy");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, item_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if item_P /= null then item_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end isObscuredBy;
    function opaqueArea (self : access Inst) return access QtAda6.QtGui.QPainterPath.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QPainterPath.Class := new QtAda6.QtGui.QPainterPath.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QPainterPath.Class := new QtAda6.QtGui.QPainterPath.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "opaqueArea");
       Args             := Tuple_New (0);
@@ -110,25 +110,25 @@ package body QtAda6.QtWidgets.QGraphicsSimpleTextItem is
       option_P : access QtAda6.QtWidgets.QStyleOptionGraphicsItem.Inst'Class;
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paint");
       Args   := Tuple_New (3);
-      Tuple_SetItem (Args, 0, painter_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, option_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, widget_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if painter_P /= null then painter_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if option_P /= null then option_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end paint;
-   procedure setFont (self : access Inst; font_P : Union_QtAda6_QtGui_QFont_str_Sequence_str) is
-      Method, Args, Result : Handle;
+   procedure setFont (self : access Inst; font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFont");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if font_P /= null then font_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setFont;
    procedure setText (self : access Inst; text_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setText");
       Args   := Tuple_New (1);
@@ -136,8 +136,8 @@ package body QtAda6.QtWidgets.QGraphicsSimpleTextItem is
       Result := Object_CallObject (Method, Args, True);
    end setText;
    function shape (self : access Inst) return access QtAda6.QtGui.QPainterPath.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QPainterPath.Class := new QtAda6.QtGui.QPainterPath.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QPainterPath.Class := new QtAda6.QtGui.QPainterPath.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "shape");
       Args             := Tuple_New (0);
@@ -146,7 +146,7 @@ package body QtAda6.QtWidgets.QGraphicsSimpleTextItem is
       return Ret;
    end shape;
    function text (self : access Inst) return str is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "text");
       Args   := Tuple_New (0);
@@ -154,7 +154,7 @@ package body QtAda6.QtWidgets.QGraphicsSimpleTextItem is
       return As_String (Result);
    end text;
    function type_K (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "type");
       Args   := Tuple_New (0);

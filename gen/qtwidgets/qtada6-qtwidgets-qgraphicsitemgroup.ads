@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -15,14 +15,13 @@ limited with QtAda6.QtWidgets.QStyleOptionGraphicsItem;
 limited with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtWidgets.QGraphicsItem;
 package QtAda6.QtWidgets.QGraphicsItemGroup is
-   type Optional_QtAda6_QtWidgets_QGraphicsItem is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QGraphicsItem.Inst with null record;
    procedure Finalize (Self : in out Class);
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QGraphicsItem) return Class;
+   function Create (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class;
    procedure addToGroup (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class);
    function boundingRect (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class;
    function isObscuredBy (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class) return bool;
@@ -30,7 +29,7 @@ package QtAda6.QtWidgets.QGraphicsItemGroup is
    procedure paint
      (self     : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionGraphicsItem.Inst'Class;
-      widget_P : Optional_QtAda6_QtWidgets_QWidget);
+      widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null);
    procedure removeFromGroup (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class);
    function type_K (self : access Inst) return int;
 end QtAda6.QtWidgets.QGraphicsItemGroup;

@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ package body QtAda6.QtWidgets.QCommonStyle is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QCommonStyle");
       Args  := Tuple_New (0);
@@ -55,61 +55,61 @@ package body QtAda6.QtWidgets.QCommonStyle is
    procedure drawComplexControl
      (self  : access Inst; cc_P : access QtAda6.QtWidgets.QStyle.ComplexControl.Inst'Class;
       opt_P : access QtAda6.QtWidgets.QStyleOptionComplex.Inst'Class; p_P : access QtAda6.QtGui.QPainter.Inst'Class;
-      w_P   : Optional_QtAda6_QtWidgets_QWidget)
+      w_P   : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "drawComplexControl");
       Args   := Tuple_New (4);
-      Tuple_SetItem (Args, 0, cc_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, opt_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, p_P.Python_Proxy);
-      Tuple_SetItem (Args, 3, No_Value);
+      Tuple_SetItem (Args, 0, (if cc_P /= null then cc_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if opt_P /= null then opt_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if p_P /= null then p_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, (if w_P /= null then w_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end drawComplexControl;
    procedure drawControl
      (self  : access Inst; element_P : access QtAda6.QtWidgets.QStyle.ControlElement.Inst'Class;
       opt_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class; p_P : access QtAda6.QtGui.QPainter.Inst'Class;
-      w_P   : Optional_QtAda6_QtWidgets_QWidget)
+      w_P   : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "drawControl");
       Args   := Tuple_New (4);
-      Tuple_SetItem (Args, 0, element_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, opt_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, p_P.Python_Proxy);
-      Tuple_SetItem (Args, 3, No_Value);
+      Tuple_SetItem (Args, 0, (if element_P /= null then element_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if opt_P /= null then opt_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if p_P /= null then p_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, (if w_P /= null then w_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end drawControl;
    procedure drawPrimitive
      (self  : access Inst; pe_P : access QtAda6.QtWidgets.QStyle.PrimitiveElement.Inst'Class;
       opt_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class; p_P : access QtAda6.QtGui.QPainter.Inst'Class;
-      w_P   : Optional_QtAda6_QtWidgets_QWidget)
+      w_P   : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "drawPrimitive");
       Args   := Tuple_New (4);
-      Tuple_SetItem (Args, 0, pe_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, opt_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, p_P.Python_Proxy);
-      Tuple_SetItem (Args, 3, No_Value);
+      Tuple_SetItem (Args, 0, (if pe_P /= null then pe_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if opt_P /= null then opt_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if p_P /= null then p_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, (if w_P /= null then w_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end drawPrimitive;
    function generatedIconPixmap
      (self     : access Inst; iconMode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class;
-      pixmap_P : Union_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str;
+      pixmap_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr;
       opt_P    : access QtAda6.QtWidgets.QStyleOption.Inst'Class) return access QtAda6.QtGui.QPixmap.Inst'Class
    is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "generatedIconPixmap");
       Args   := Tuple_New (3);
-      Tuple_SetItem (Args, 0, iconMode_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
-      Tuple_SetItem (Args, 2, opt_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if iconMode_P /= null then iconMode_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if pixmap_P /= null then pixmap_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if opt_P /= null then opt_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -117,17 +117,18 @@ package body QtAda6.QtWidgets.QCommonStyle is
    function hitTestComplexControl
      (self  : access Inst; cc_P : access QtAda6.QtWidgets.QStyle.ComplexControl.Inst'Class;
       opt_P : access QtAda6.QtWidgets.QStyleOptionComplex.Inst'Class; pt_P : access QtAda6.QtCore.QPoint.Inst'Class;
-      w_P   : Optional_QtAda6_QtWidgets_QWidget) return access QtAda6.QtWidgets.QStyle.SubControl.Inst'Class
+      w_P   : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
+      return access QtAda6.QtWidgets.QStyle.SubControl.Inst'Class
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QStyle.SubControl.Class := new QtAda6.QtWidgets.QStyle.SubControl.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hitTestComplexControl");
       Args   := Tuple_New (4);
-      Tuple_SetItem (Args, 0, cc_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, opt_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, pt_P.Python_Proxy);
-      Tuple_SetItem (Args, 3, No_Value);
+      Tuple_SetItem (Args, 0, (if cc_P /= null then cc_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if opt_P /= null then opt_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if pt_P /= null then pt_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, (if w_P /= null then w_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -135,179 +136,182 @@ package body QtAda6.QtWidgets.QCommonStyle is
    function layoutSpacing
      (self          : access Inst; control1_P : access QtAda6.QtWidgets.QSizePolicy.ControlType.Inst'Class;
       control2_P    : access QtAda6.QtWidgets.QSizePolicy.ControlType.Inst'Class;
-      orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class; option_P : Optional_QtAda6_QtWidgets_QStyleOption;
-      widget_P      : Optional_QtAda6_QtWidgets_QWidget) return int
+      orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class;
+      option_P      : access QtAda6.QtWidgets.QStyleOption.Inst'Class := null;
+      widget_P      : access QtAda6.QtWidgets.QWidget.Inst'Class      := null) return int
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "layoutSpacing");
       Args   := Tuple_New (5);
-      Tuple_SetItem (Args, 0, control1_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, control2_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, orientation_P.Python_Proxy);
-      Tuple_SetItem (Args, 3, No_Value);
-      Tuple_SetItem (Args, 4, No_Value);
+      Tuple_SetItem (Args, 0, (if control1_P /= null then control1_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if control2_P /= null then control2_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if orientation_P /= null then orientation_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, (if option_P /= null then option_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 4, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end layoutSpacing;
    function pixelMetric
-     (self  : access Inst; m_P : access QtAda6.QtWidgets.QStyle.PixelMetric.Inst'Class;
-      opt_P : Optional_QtAda6_QtWidgets_QStyleOption; widget_P : Optional_QtAda6_QtWidgets_QWidget) return int
+     (self     : access Inst; m_P : access QtAda6.QtWidgets.QStyle.PixelMetric.Inst'Class;
+      opt_P    : access QtAda6.QtWidgets.QStyleOption.Inst'Class := null;
+      widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class      := null) return int
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "pixelMetric");
       Args   := Tuple_New (3);
-      Tuple_SetItem (Args, 0, m_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
-      Tuple_SetItem (Args, 2, No_Value);
+      Tuple_SetItem (Args, 0, (if m_P /= null then m_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if opt_P /= null then opt_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end pixelMetric;
    procedure polish (self : access Inst; app_P : access QtAda6.QtWidgets.QApplication.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "polish");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, app_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if app_P /= null then app_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end polish;
    procedure polish
-     (self : access Inst; arg_1_P : Union_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor)
+     (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QPaletteQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColor)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "polish");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end polish;
    procedure polish (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "polish");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, widget_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end polish;
    function sizeFromContents
      (self     : access Inst; ct_P : access QtAda6.QtWidgets.QStyle.ContentsType.Inst'Class;
       opt_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class; contentsSize_P : access QtAda6.QtCore.QSize.Inst'Class;
-      widget_P : Optional_QtAda6_QtWidgets_QWidget) return access QtAda6.QtCore.QSize.Inst'Class
+      widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return access QtAda6.QtCore.QSize.Inst'Class
    is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sizeFromContents");
       Args   := Tuple_New (4);
-      Tuple_SetItem (Args, 0, ct_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, opt_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, contentsSize_P.Python_Proxy);
-      Tuple_SetItem (Args, 3, No_Value);
+      Tuple_SetItem (Args, 0, (if ct_P /= null then ct_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if opt_P /= null then opt_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if contentsSize_P /= null then contentsSize_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end sizeFromContents;
    function standardIcon
-     (self  : access Inst; standardIcon_P : access QtAda6.QtWidgets.QStyle.StandardPixmap.Inst'Class;
-      opt_P : Optional_QtAda6_QtWidgets_QStyleOption; widget_P : Optional_QtAda6_QtWidgets_QWidget)
-      return access QtAda6.QtGui.QIcon.Inst'Class
+     (self     : access Inst; standardIcon_P : access QtAda6.QtWidgets.QStyle.StandardPixmap.Inst'Class;
+      opt_P    : access QtAda6.QtWidgets.QStyleOption.Inst'Class := null;
+      widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class      := null) return access QtAda6.QtGui.QIcon.Inst'Class
    is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "standardIcon");
       Args   := Tuple_New (3);
-      Tuple_SetItem (Args, 0, standardIcon_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
-      Tuple_SetItem (Args, 2, No_Value);
+      Tuple_SetItem (Args, 0, (if standardIcon_P /= null then standardIcon_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if opt_P /= null then opt_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end standardIcon;
    function standardPixmap
-     (self  : access Inst; sp_P : access QtAda6.QtWidgets.QStyle.StandardPixmap.Inst'Class;
-      opt_P : Optional_QtAda6_QtWidgets_QStyleOption; widget_P : Optional_QtAda6_QtWidgets_QWidget)
-      return access QtAda6.QtGui.QPixmap.Inst'Class
+     (self     : access Inst; sp_P : access QtAda6.QtWidgets.QStyle.StandardPixmap.Inst'Class;
+      opt_P    : access QtAda6.QtWidgets.QStyleOption.Inst'Class := null;
+      widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class      := null) return access QtAda6.QtGui.QPixmap.Inst'Class
    is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "standardPixmap");
       Args   := Tuple_New (3);
-      Tuple_SetItem (Args, 0, sp_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
-      Tuple_SetItem (Args, 2, No_Value);
+      Tuple_SetItem (Args, 0, (if sp_P /= null then sp_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if opt_P /= null then opt_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end standardPixmap;
    function styleHint
      (self    : access Inst; sh_P : access QtAda6.QtWidgets.QStyle.StyleHint.Inst'Class;
-      opt_P   : Optional_QtAda6_QtWidgets_QStyleOption; w_P : Optional_QtAda6_QtWidgets_QWidget;
-      shret_P : Optional_QtAda6_QtWidgets_QStyleHintReturn) return int
+      opt_P   : access QtAda6.QtWidgets.QStyleOption.Inst'Class     := null;
+      w_P     : access QtAda6.QtWidgets.QWidget.Inst'Class          := null;
+      shret_P : access QtAda6.QtWidgets.QStyleHintReturn.Inst'Class := null) return int
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "styleHint");
       Args   := Tuple_New (4);
-      Tuple_SetItem (Args, 0, sh_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
-      Tuple_SetItem (Args, 2, No_Value);
-      Tuple_SetItem (Args, 3, No_Value);
+      Tuple_SetItem (Args, 0, (if sh_P /= null then sh_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if opt_P /= null then opt_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if w_P /= null then w_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, (if shret_P /= null then shret_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end styleHint;
    function subControlRect
      (self  : access Inst; cc_P : access QtAda6.QtWidgets.QStyle.ComplexControl.Inst'Class;
       opt_P : access QtAda6.QtWidgets.QStyleOptionComplex.Inst'Class;
-      sc_P  : access QtAda6.QtWidgets.QStyle.SubControl.Inst'Class; w_P : Optional_QtAda6_QtWidgets_QWidget)
-      return access QtAda6.QtCore.QRect.Inst'Class
+      sc_P  : access QtAda6.QtWidgets.QStyle.SubControl.Inst'Class;
+      w_P   : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return access QtAda6.QtCore.QRect.Inst'Class
    is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "subControlRect");
       Args   := Tuple_New (4);
-      Tuple_SetItem (Args, 0, cc_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, opt_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, sc_P.Python_Proxy);
-      Tuple_SetItem (Args, 3, No_Value);
+      Tuple_SetItem (Args, 0, (if cc_P /= null then cc_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if opt_P /= null then opt_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if sc_P /= null then sc_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, (if w_P /= null then w_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end subControlRect;
    function subElementRect
-     (self  : access Inst; r_P : access QtAda6.QtWidgets.QStyle.SubElement.Inst'Class;
-      opt_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class; widget_P : Optional_QtAda6_QtWidgets_QWidget)
-      return access QtAda6.QtCore.QRect.Inst'Class
+     (self     : access Inst; r_P : access QtAda6.QtWidgets.QStyle.SubElement.Inst'Class;
+      opt_P    : access QtAda6.QtWidgets.QStyleOption.Inst'Class;
+      widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return access QtAda6.QtCore.QRect.Inst'Class
    is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "subElementRect");
       Args   := Tuple_New (3);
-      Tuple_SetItem (Args, 0, r_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, opt_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, No_Value);
+      Tuple_SetItem (Args, 0, (if r_P /= null then r_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if opt_P /= null then opt_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end subElementRect;
    procedure unpolish (self : access Inst; application_P : access QtAda6.QtWidgets.QApplication.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "unpolish");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, application_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if application_P /= null then application_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end unpolish;
    procedure unpolish (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "unpolish");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, widget_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end unpolish;
 end QtAda6.QtWidgets.QCommonStyle;

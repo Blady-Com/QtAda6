@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -34,40 +34,80 @@ package body QtAda6.QtWidgets.QFileDialog is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
+   function currentChanged (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "currentChanged"));
+   end currentChanged;
+   function currentUrlChanged (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return
+        new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "currentUrlChanged"));
+   end currentUrlChanged;
+   function directoryEntered (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return
+        new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "directoryEntered"));
+   end directoryEntered;
+   function directoryUrlEntered (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return
+        new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "directoryUrlEntered"));
+   end directoryUrlEntered;
+   function fileSelected (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "fileSelected"));
+   end fileSelected;
+   function filesSelected (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "filesSelected"));
+   end filesSelected;
+   function filterSelected (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "filterSelected"));
+   end filterSelected;
+   function urlSelected (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "urlSelected"));
+   end urlSelected;
+   function urlsSelected (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "urlsSelected"));
+   end urlsSelected;
    function Create
      (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class; f_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class)
       return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
       Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, parent_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, f_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if f_P /= null then f_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create
-     (parent_P : Optional_QtAda6_QtWidgets_QWidget; caption_P : str; directory_P : str; filter_P : str) return Class
+     (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null; caption_P : str := ""; directory_P : str := "";
+      filter_P : str                                        := "") return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
       Args  := Tuple_New (4);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Unicode_FromString (caption_P));
       Tuple_SetItem (Args, 2, Unicode_FromString (directory_P));
       Tuple_SetItem (Args, 3, Unicode_FromString (filter_P));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure accept_K (self : access Inst) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "accept");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
    end accept_K;
    function acceptMode_F (self : access Inst) return access QtAda6.QtWidgets.QFileDialog.AcceptMode.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QFileDialog.AcceptMode.Class := new QtAda6.QtWidgets.QFileDialog.AcceptMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "acceptMode");
@@ -77,15 +117,15 @@ package body QtAda6.QtWidgets.QFileDialog is
       return Ret;
    end acceptMode_F;
    procedure changeEvent (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changeEvent");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, e_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if e_P /= null then e_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end changeEvent;
    function defaultSuffix (self : access Inst) return str is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "defaultSuffix");
       Args   := Tuple_New (0);
@@ -93,8 +133,8 @@ package body QtAda6.QtWidgets.QFileDialog is
       return As_String (Result);
    end defaultSuffix;
    function directory (self : access Inst) return access QtAda6.QtCore.QDir.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QDir.Class := new QtAda6.QtCore.QDir.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QDir.Class := new QtAda6.QtCore.QDir.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "directory");
       Args             := Tuple_New (0);
@@ -103,8 +143,8 @@ package body QtAda6.QtWidgets.QFileDialog is
       return Ret;
    end directory;
    function directoryUrl (self : access Inst) return access QtAda6.QtCore.QUrl.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QUrl.Class := new QtAda6.QtCore.QUrl.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QUrl.Class := new QtAda6.QtCore.QUrl.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "directoryUrl");
       Args             := Tuple_New (0);
@@ -113,7 +153,7 @@ package body QtAda6.QtWidgets.QFileDialog is
       return Ret;
    end directoryUrl;
    procedure done (self : access Inst; result_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "done");
       Args   := Tuple_New (1);
@@ -121,7 +161,7 @@ package body QtAda6.QtWidgets.QFileDialog is
       Result := Object_CallObject (Method, Args, True);
    end done;
    function fileMode_F (self : access Inst) return access QtAda6.QtWidgets.QFileDialog.FileMode.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QFileDialog.FileMode.Class := new QtAda6.QtWidgets.QFileDialog.FileMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "fileMode");
@@ -131,8 +171,8 @@ package body QtAda6.QtWidgets.QFileDialog is
       return Ret;
    end fileMode_F;
    function filter (self : access Inst) return access QtAda6.QtCore.QDir.Filter.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QDir.Filter.Class := new QtAda6.QtCore.QDir.Filter.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QDir.Filter.Class := new QtAda6.QtCore.QDir.Filter.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "filter");
       Args             := Tuple_New (0);
@@ -141,165 +181,188 @@ package body QtAda6.QtWidgets.QFileDialog is
       return Ret;
    end filter;
    function getExistingDirectory
-     (parent_P  : Optional_QtAda6_QtWidgets_QWidget; caption_P : str; dir_P : str;
-      options_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class) return str
+     (parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class := null; caption_P : str := ""; dir_P : str := "";
+      options_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class := null) return str
    is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
       Method := Object_GetAttrString (Class, "getExistingDirectory");
       Args   := Tuple_New (4);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Unicode_FromString (caption_P));
       Tuple_SetItem (Args, 2, Unicode_FromString (dir_P));
-      Tuple_SetItem (Args, 3, options_P.Python_Proxy);
+      Tuple_SetItem (Args, 3, (if options_P /= null then options_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return As_String (Result);
    end getExistingDirectory;
    function getExistingDirectoryUrl
-     (parent_P  : Optional_QtAda6_QtWidgets_QWidget; caption_P : str; dir_P : Union_QtAda6_QtCore_QUrl_str;
-      options_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class; supportedSchemes_P : Sequence_str)
-      return access QtAda6.QtCore.QUrl.Inst'Class
+     (parent_P           : access QtAda6.QtWidgets.QWidget.Inst'Class            := null; caption_P : str := "";
+      dir_P              : UNION_QtAda6_QtCore_QUrlstr                           := null;
+      options_P          : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class := null;
+      supportedSchemes_P : SEQUENCE_str := (2 .. 1 => <>)) return access QtAda6.QtCore.QUrl.Inst'Class
    is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtCore.QUrl.Class := new QtAda6.QtCore.QUrl.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret                               : constant QtAda6.QtCore.QUrl.Class := new QtAda6.QtCore.QUrl.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
       Method := Object_GetAttrString (Class, "getExistingDirectoryUrl");
-      Args   := Tuple_New (5);
-      Tuple_SetItem (Args, 0, No_Value);
+      List   := List_New (supportedSchemes_P'Length);
+      for ind in supportedSchemes_P'Range loop
+         List_SetItem (List, ssize_t (ind - supportedSchemes_P'First), Unicode_FromString (supportedSchemes_P (ind)));
+      end loop;
+      Args := Tuple_New (5);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Unicode_FromString (caption_P));
-      Tuple_SetItem (Args, 2, No_Value);
-      Tuple_SetItem (Args, 3, options_P.Python_Proxy);
-      Tuple_SetItem (Args, 4, No_Value);
+      Tuple_SetItem (Args, 2, (if dir_P /= null then dir_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, (if options_P /= null then options_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 4, List);
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end getExistingDirectoryUrl;
    function getOpenFileName
-     (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class; caption_P : Optional_str; dir_P : str; filter_P : str;
-      selectedFilter_P : str; options_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class) return Tuple
+     (parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class; caption_P : str := ""; dir_P : str := "";
+      filter_P  : str                                                   := ""; selectedFilter_P : str := "";
+      options_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class := null) return TUPLE
    is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
       Method := Object_GetAttrString (Class, "getOpenFileName");
       Args   := Tuple_New (6);
-      Tuple_SetItem (Args, 0, parent_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (caption_P));
       Tuple_SetItem (Args, 2, Unicode_FromString (dir_P));
       Tuple_SetItem (Args, 3, Unicode_FromString (filter_P));
       Tuple_SetItem (Args, 4, Unicode_FromString (selectedFilter_P));
-      Tuple_SetItem (Args, 5, options_P.Python_Proxy);
+      Tuple_SetItem (Args, 5, (if options_P /= null then options_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
-      return Tuple_conv_P2A_is_not_supported;
+      return null;
    end getOpenFileName;
    function getOpenFileNames
-     (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class; caption_P : Optional_str; dir_P : str; filter_P : str;
-      selectedFilter_P : str; options_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class) return Tuple
+     (parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class; caption_P : str := ""; dir_P : str := "";
+      filter_P  : str                                                   := ""; selectedFilter_P : str := "";
+      options_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class := null) return TUPLE
    is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
       Method := Object_GetAttrString (Class, "getOpenFileNames");
       Args   := Tuple_New (6);
-      Tuple_SetItem (Args, 0, parent_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (caption_P));
       Tuple_SetItem (Args, 2, Unicode_FromString (dir_P));
       Tuple_SetItem (Args, 3, Unicode_FromString (filter_P));
       Tuple_SetItem (Args, 4, Unicode_FromString (selectedFilter_P));
-      Tuple_SetItem (Args, 5, options_P.Python_Proxy);
+      Tuple_SetItem (Args, 5, (if options_P /= null then options_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
-      return Tuple_conv_P2A_is_not_supported;
+      return null;
    end getOpenFileNames;
    function getOpenFileUrl
-     (parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class; caption_P : Optional_str;
-      dir_P     : Union_QtAda6_QtCore_QUrl_str; filter_P : str; selectedFilter_P : str;
-      options_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class; supportedSchemes_P : Sequence_str) return Tuple
+     (parent_P           : access QtAda6.QtWidgets.QWidget.Inst'Class; caption_P : str := "";
+      dir_P              : UNION_QtAda6_QtCore_QUrlstr := null; filter_P : str := ""; selectedFilter_P : str := "";
+      options_P          : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class := null;
+      supportedSchemes_P : SEQUENCE_str                                          := (2 .. 1 => <>)) return TUPLE
    is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
       Method := Object_GetAttrString (Class, "getOpenFileUrl");
-      Args   := Tuple_New (7);
-      Tuple_SetItem (Args, 0, parent_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
-      Tuple_SetItem (Args, 2, No_Value);
+      List   := List_New (supportedSchemes_P'Length);
+      for ind in supportedSchemes_P'Range loop
+         List_SetItem (List, ssize_t (ind - supportedSchemes_P'First), Unicode_FromString (supportedSchemes_P (ind)));
+      end loop;
+      Args := Tuple_New (7);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (caption_P));
+      Tuple_SetItem (Args, 2, (if dir_P /= null then dir_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 3, Unicode_FromString (filter_P));
       Tuple_SetItem (Args, 4, Unicode_FromString (selectedFilter_P));
-      Tuple_SetItem (Args, 5, options_P.Python_Proxy);
-      Tuple_SetItem (Args, 6, No_Value);
+      Tuple_SetItem (Args, 5, (if options_P /= null then options_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 6, List);
       Result := Object_CallObject (Method, Args, True);
-      return Tuple_conv_P2A_is_not_supported;
+      return null;
    end getOpenFileUrl;
    function getOpenFileUrls
-     (parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class; caption_P : Optional_str;
-      dir_P     : Union_QtAda6_QtCore_QUrl_str; filter_P : str; selectedFilter_P : str;
-      options_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class; supportedSchemes_P : Sequence_str) return Tuple
+     (parent_P           : access QtAda6.QtWidgets.QWidget.Inst'Class; caption_P : str := "";
+      dir_P              : UNION_QtAda6_QtCore_QUrlstr := null; filter_P : str := ""; selectedFilter_P : str := "";
+      options_P          : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class := null;
+      supportedSchemes_P : SEQUENCE_str                                          := (2 .. 1 => <>)) return TUPLE
    is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
       Method := Object_GetAttrString (Class, "getOpenFileUrls");
-      Args   := Tuple_New (7);
-      Tuple_SetItem (Args, 0, parent_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
-      Tuple_SetItem (Args, 2, No_Value);
+      List   := List_New (supportedSchemes_P'Length);
+      for ind in supportedSchemes_P'Range loop
+         List_SetItem (List, ssize_t (ind - supportedSchemes_P'First), Unicode_FromString (supportedSchemes_P (ind)));
+      end loop;
+      Args := Tuple_New (7);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (caption_P));
+      Tuple_SetItem (Args, 2, (if dir_P /= null then dir_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 3, Unicode_FromString (filter_P));
       Tuple_SetItem (Args, 4, Unicode_FromString (selectedFilter_P));
-      Tuple_SetItem (Args, 5, options_P.Python_Proxy);
-      Tuple_SetItem (Args, 6, No_Value);
+      Tuple_SetItem (Args, 5, (if options_P /= null then options_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 6, List);
       Result := Object_CallObject (Method, Args, True);
-      return Tuple_conv_P2A_is_not_supported;
+      return null;
    end getOpenFileUrls;
    function getSaveFileName
-     (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class; caption_P : Optional_str; dir_P : str; filter_P : str;
-      selectedFilter_P : str; options_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class) return Tuple
+     (parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class; caption_P : str := ""; dir_P : str := "";
+      filter_P  : str                                                   := ""; selectedFilter_P : str := "";
+      options_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class := null) return TUPLE
    is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
       Method := Object_GetAttrString (Class, "getSaveFileName");
       Args   := Tuple_New (6);
-      Tuple_SetItem (Args, 0, parent_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (caption_P));
       Tuple_SetItem (Args, 2, Unicode_FromString (dir_P));
       Tuple_SetItem (Args, 3, Unicode_FromString (filter_P));
       Tuple_SetItem (Args, 4, Unicode_FromString (selectedFilter_P));
-      Tuple_SetItem (Args, 5, options_P.Python_Proxy);
+      Tuple_SetItem (Args, 5, (if options_P /= null then options_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
-      return Tuple_conv_P2A_is_not_supported;
+      return null;
    end getSaveFileName;
    function getSaveFileUrl
-     (parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class; caption_P : Optional_str;
-      dir_P     : Union_QtAda6_QtCore_QUrl_str; filter_P : str; selectedFilter_P : str;
-      options_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class; supportedSchemes_P : Sequence_str) return Tuple
+     (parent_P           : access QtAda6.QtWidgets.QWidget.Inst'Class; caption_P : str := "";
+      dir_P              : UNION_QtAda6_QtCore_QUrlstr := null; filter_P : str := ""; selectedFilter_P : str := "";
+      options_P          : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class := null;
+      supportedSchemes_P : SEQUENCE_str                                          := (2 .. 1 => <>)) return TUPLE
    is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
       Method := Object_GetAttrString (Class, "getSaveFileUrl");
-      Args   := Tuple_New (7);
-      Tuple_SetItem (Args, 0, parent_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
-      Tuple_SetItem (Args, 2, No_Value);
+      List   := List_New (supportedSchemes_P'Length);
+      for ind in supportedSchemes_P'Range loop
+         List_SetItem (List, ssize_t (ind - supportedSchemes_P'First), Unicode_FromString (supportedSchemes_P (ind)));
+      end loop;
+      Args := Tuple_New (7);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (caption_P));
+      Tuple_SetItem (Args, 2, (if dir_P /= null then dir_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 3, Unicode_FromString (filter_P));
       Tuple_SetItem (Args, 4, Unicode_FromString (selectedFilter_P));
-      Tuple_SetItem (Args, 5, options_P.Python_Proxy);
-      Tuple_SetItem (Args, 6, No_Value);
+      Tuple_SetItem (Args, 5, (if options_P /= null then options_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 6, List);
       Result := Object_CallObject (Method, Args, True);
-      return Tuple_conv_P2A_is_not_supported;
+      return null;
    end getSaveFileUrl;
-   function history (self : access Inst) return List_str is
-      Method, Args, Result : Handle;
+   function history (self : access Inst) return LIST_str is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "history");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end history;
    function iconProvider (self : access Inst) return access QtAda6.QtGui.QAbstractFileIconProvider.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtGui.QAbstractFileIconProvider.Class := new QtAda6.QtGui.QAbstractFileIconProvider.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "iconProvider");
@@ -309,7 +372,7 @@ package body QtAda6.QtWidgets.QFileDialog is
       return Ret;
    end iconProvider;
    function itemDelegate (self : access Inst) return access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QAbstractItemDelegate.Class := new QtAda6.QtWidgets.QAbstractItemDelegate.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "itemDelegate");
@@ -321,48 +384,48 @@ package body QtAda6.QtWidgets.QFileDialog is
    function labelText
      (self : access Inst; label_P : access QtAda6.QtWidgets.QFileDialog.DialogLabel.Inst'Class) return str
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "labelText");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, label_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if label_P /= null then label_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return As_String (Result);
    end labelText;
-   function mimeTypeFilters (self : access Inst) return List_str is
-      Method, Args, Result : Handle;
+   function mimeTypeFilters (self : access Inst) return LIST_str is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mimeTypeFilters");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end mimeTypeFilters;
-   function nameFilters (self : access Inst) return List_str is
-      Method, Args, Result : Handle;
+   function nameFilters (self : access Inst) return LIST_str is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "nameFilters");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end nameFilters;
    procedure open (self : access Inst) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
    end open;
    procedure open (self : access Inst; receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, receiver_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if receiver_P /= null then receiver_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Bytes_FromString (String (member_P)));
       Result := Object_CallObject (Method, Args, True);
    end open;
    function options (self : access Inst) return access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QFileDialog.Option.Class := new QtAda6.QtWidgets.QFileDialog.Option.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "options");
@@ -372,7 +435,7 @@ package body QtAda6.QtWidgets.QFileDialog is
       return Ret;
    end options;
    function proxyModel (self : access Inst) return access QtAda6.QtCore.QAbstractProxyModel.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtCore.QAbstractProxyModel.Class := new QtAda6.QtCore.QAbstractProxyModel.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "proxyModel");
@@ -381,28 +444,28 @@ package body QtAda6.QtWidgets.QFileDialog is
       Ret.Python_Proxy := Result;
       return Ret;
    end proxyModel;
-   function restoreState (self : access Inst; state_P : Union_QtAda6_QtCore_QByteArray_bytes) return bool is
-      Method, Args, Result : Handle;
+   function restoreState (self : access Inst; state_P : UNION_QtAda6_QtCore_QByteArraybytes) return bool is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "restoreState");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if state_P /= null then state_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end restoreState;
-   procedure saveFileContent (fileContent_P : Union_QtAda6_QtCore_QByteArray_bytes; fileNameHint_P : str) is
-      Class, Method, Args, Result : Handle;
+   procedure saveFileContent (fileContent_P : UNION_QtAda6_QtCore_QByteArraybytes; fileNameHint_P : str := "") is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
       Method := Object_GetAttrString (Class, "saveFileContent");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if fileContent_P /= null then fileContent_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Unicode_FromString (fileNameHint_P));
       Result := Object_CallObject (Method, Args, True);
    end saveFileContent;
    function saveState (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "saveState");
       Args             := Tuple_New (0);
@@ -411,7 +474,7 @@ package body QtAda6.QtWidgets.QFileDialog is
       return Ret;
    end saveState;
    procedure selectFile (self : access Inst; filename_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "selectFile");
       Args   := Tuple_New (1);
@@ -419,7 +482,7 @@ package body QtAda6.QtWidgets.QFileDialog is
       Result := Object_CallObject (Method, Args, True);
    end selectFile;
    procedure selectMimeTypeFilter (self : access Inst; filter_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "selectMimeTypeFilter");
       Args   := Tuple_New (1);
@@ -427,31 +490,31 @@ package body QtAda6.QtWidgets.QFileDialog is
       Result := Object_CallObject (Method, Args, True);
    end selectMimeTypeFilter;
    procedure selectNameFilter (self : access Inst; filter_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "selectNameFilter");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (filter_P));
       Result := Object_CallObject (Method, Args, True);
    end selectNameFilter;
-   procedure selectUrl (self : access Inst; url_P : Union_QtAda6_QtCore_QUrl_str) is
-      Method, Args, Result : Handle;
+   procedure selectUrl (self : access Inst; url_P : UNION_QtAda6_QtCore_QUrlstr) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "selectUrl");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if url_P /= null then url_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end selectUrl;
-   function selectedFiles (self : access Inst) return List_str is
-      Method, Args, Result : Handle;
+   function selectedFiles (self : access Inst) return LIST_str is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "selectedFiles");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end selectedFiles;
    function selectedMimeTypeFilter (self : access Inst) return str is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "selectedMimeTypeFilter");
       Args   := Tuple_New (0);
@@ -459,31 +522,31 @@ package body QtAda6.QtWidgets.QFileDialog is
       return As_String (Result);
    end selectedMimeTypeFilter;
    function selectedNameFilter (self : access Inst) return str is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "selectedNameFilter");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
       return As_String (Result);
    end selectedNameFilter;
-   function selectedUrls (self : access Inst) return List_QtAda6_QtCore_QUrl is
-      Method, Args, Result : Handle;
+   function selectedUrls (self : access Inst) return LIST_QtAda6_QtCore_QUrl is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "selectedUrls");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end selectedUrls;
    procedure setAcceptMode (self : access Inst; mode_P : access QtAda6.QtWidgets.QFileDialog.AcceptMode.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAcceptMode");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, mode_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if mode_P /= null then mode_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setAcceptMode;
    procedure setDefaultSuffix (self : access Inst; suffix_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDefaultSuffix");
       Args   := Tuple_New (1);
@@ -491,194 +554,215 @@ package body QtAda6.QtWidgets.QFileDialog is
       Result := Object_CallObject (Method, Args, True);
    end setDefaultSuffix;
    procedure setDirectory (self : access Inst; directory_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDirectory");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (directory_P));
       Result := Object_CallObject (Method, Args, True);
    end setDirectory;
-   procedure setDirectory (self : access Inst; directory_P : Union_QtAda6_QtCore_QDir_str) is
-      Method, Args, Result : Handle;
+   procedure setDirectory (self : access Inst; directory_P : UNION_QtAda6_QtCore_QDirstr) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDirectory");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if directory_P /= null then directory_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setDirectory;
-   procedure setDirectoryUrl (self : access Inst; directory_P : Union_QtAda6_QtCore_QUrl_str) is
-      Method, Args, Result : Handle;
+   procedure setDirectoryUrl (self : access Inst; directory_P : UNION_QtAda6_QtCore_QUrlstr) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDirectoryUrl");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if directory_P /= null then directory_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setDirectoryUrl;
    procedure setFileMode (self : access Inst; mode_P : access QtAda6.QtWidgets.QFileDialog.FileMode.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFileMode");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, mode_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if mode_P /= null then mode_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setFileMode;
    procedure setFilter (self : access Inst; filters_P : access QtAda6.QtCore.QDir.Filter.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFilter");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, filters_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if filters_P /= null then filters_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setFilter;
-   procedure setHistory (self : access Inst; paths_P : Sequence_str) is
-      Method, Args, Result : Handle;
+   procedure setHistory (self : access Inst; paths_P : SEQUENCE_str) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHistory");
-      Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      List   := List_New (paths_P'Length);
+      for ind in paths_P'Range loop
+         List_SetItem (List, ssize_t (ind - paths_P'First), Unicode_FromString (paths_P (ind)));
+      end loop;
+      Args := Tuple_New (1);
+      Tuple_SetItem (Args, 0, List);
       Result := Object_CallObject (Method, Args, True);
    end setHistory;
    procedure setIconProvider (self : access Inst; provider_P : access QtAda6.QtGui.QAbstractFileIconProvider.Inst'Class)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setIconProvider");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, provider_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if provider_P /= null then provider_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setIconProvider;
    procedure setItemDelegate (self : access Inst; delegate_P : access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setItemDelegate");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, delegate_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if delegate_P /= null then delegate_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setItemDelegate;
    procedure setLabelText
      (self : access Inst; label_P : access QtAda6.QtWidgets.QFileDialog.DialogLabel.Inst'Class; text_P : str)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setLabelText");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, label_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if label_P /= null then label_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Unicode_FromString (text_P));
       Result := Object_CallObject (Method, Args, True);
    end setLabelText;
-   procedure setMimeTypeFilters (self : access Inst; filters_P : Sequence_str) is
-      Method, Args, Result : Handle;
+   procedure setMimeTypeFilters (self : access Inst; filters_P : SEQUENCE_str) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMimeTypeFilters");
-      Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      List   := List_New (filters_P'Length);
+      for ind in filters_P'Range loop
+         List_SetItem (List, ssize_t (ind - filters_P'First), Unicode_FromString (filters_P (ind)));
+      end loop;
+      Args := Tuple_New (1);
+      Tuple_SetItem (Args, 0, List);
       Result := Object_CallObject (Method, Args, True);
    end setMimeTypeFilters;
    procedure setNameFilter (self : access Inst; filter_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setNameFilter");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (filter_P));
       Result := Object_CallObject (Method, Args, True);
    end setNameFilter;
-   procedure setNameFilters (self : access Inst; filters_P : Sequence_str) is
-      Method, Args, Result : Handle;
+   procedure setNameFilters (self : access Inst; filters_P : SEQUENCE_str) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setNameFilters");
-      Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      List   := List_New (filters_P'Length);
+      for ind in filters_P'Range loop
+         List_SetItem (List, ssize_t (ind - filters_P'First), Unicode_FromString (filters_P (ind)));
+      end loop;
+      Args := Tuple_New (1);
+      Tuple_SetItem (Args, 0, List);
       Result := Object_CallObject (Method, Args, True);
    end setNameFilters;
    procedure setOption
-     (self : access Inst; option_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class; on_P : bool)
+     (self : access Inst; option_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class; on_P : bool := False)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOption");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, option_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if option_P /= null then option_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, To_Python (on_P));
       Result := Object_CallObject (Method, Args, True);
    end setOption;
    procedure setOptions (self : access Inst; options_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOptions");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, options_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if options_P /= null then options_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setOptions;
    procedure setProxyModel (self : access Inst; model_P : access QtAda6.QtCore.QAbstractProxyModel.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setProxyModel");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, model_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if model_P /= null then model_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setProxyModel;
-   procedure setSidebarUrls (self : access Inst; urls_P : Sequence_QtAda6_QtCore_QUrl) is
-      Method, Args, Result : Handle;
+   procedure setSidebarUrls (self : access Inst; urls_P : SEQUENCE_QtAda6_QtCore_QUrl) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSidebarUrls");
-      Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      List   := List_New (urls_P'Length);
+      for ind in urls_P'Range loop
+         List_SetItem
+           (List, ssize_t (ind - urls_P'First), (if urls_P (ind) /= null then urls_P (ind).Python_Proxy else No_Value));
+      end loop;
+      Args := Tuple_New (1);
+      Tuple_SetItem (Args, 0, List);
       Result := Object_CallObject (Method, Args, True);
    end setSidebarUrls;
-   procedure setSupportedSchemes (self : access Inst; schemes_P : Sequence_str) is
-      Method, Args, Result : Handle;
+   procedure setSupportedSchemes (self : access Inst; schemes_P : SEQUENCE_str) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSupportedSchemes");
-      Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      List   := List_New (schemes_P'Length);
+      for ind in schemes_P'Range loop
+         List_SetItem (List, ssize_t (ind - schemes_P'First), Unicode_FromString (schemes_P (ind)));
+      end loop;
+      Args := Tuple_New (1);
+      Tuple_SetItem (Args, 0, List);
       Result := Object_CallObject (Method, Args, True);
    end setSupportedSchemes;
    procedure setViewMode (self : access Inst; mode_P : access QtAda6.QtWidgets.QFileDialog.ViewMode.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setViewMode");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, mode_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if mode_P /= null then mode_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setViewMode;
    procedure setVisible (self : access Inst; visible_P : bool) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVisible");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, To_Python (visible_P));
       Result := Object_CallObject (Method, Args, True);
    end setVisible;
-   function sidebarUrls (self : access Inst) return List_QtAda6_QtCore_QUrl is
-      Method, Args, Result : Handle;
+   function sidebarUrls (self : access Inst) return LIST_QtAda6_QtCore_QUrl is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sidebarUrls");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end sidebarUrls;
-   function supportedSchemes (self : access Inst) return List_str is
-      Method, Args, Result : Handle;
+   function supportedSchemes (self : access Inst) return LIST_str is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "supportedSchemes");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end supportedSchemes;
    function testOption
      (self : access Inst; option_P : access QtAda6.QtWidgets.QFileDialog.Option.Inst'Class) return bool
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "testOption");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, option_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if option_P /= null then option_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end testOption;
    function viewMode_F (self : access Inst) return access QtAda6.QtWidgets.QFileDialog.ViewMode.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QFileDialog.ViewMode.Class := new QtAda6.QtWidgets.QFileDialog.ViewMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "viewMode");

@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -26,35 +26,36 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtCore.Qt.SortOrder;
 package QtAda6.QtWidgets.QTreeWidgetItem is
-   type Sequence_str is access Any;
-   type Sequence_QtAda6_QtWidgets_QTreeWidgetItem is access Any;
-   type Union_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap is
-     access Any;
-   type Union_QtAda6_QtGui_QFont_str_Sequence_str is access Any;
-   type Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is access Any;
-   type List_QtAda6_QtWidgets_QTreeWidgetItem is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type SEQUENCE_str is array (Positive range <>) of str;
+   subtype SEQUENCE_QtAda6_QtWidgets_QTreeWidgetItem is QtAda6.QtWidgets.QTreeWidgetItem.Class_Array;
+   type UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap is
+     new Any;
+   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
+   type UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap is new Any;
+   subtype LIST_QtAda6_QtWidgets_QTreeWidgetItem is QtAda6.QtWidgets.QTreeWidgetItem.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create (other_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class) return Class;
    function Create
      (parent_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class;
-      after_P  : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; type_K_P : int) return Class;
+      after_P  : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; type_K_P : int := 0) return Class;
    function Create
-     (parent_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; strings_P : Sequence_str; type_K_P : int)
+     (parent_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; strings_P : SEQUENCE_str; type_K_P : int := 0)
       return Class;
-   function Create (parent_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; type_K_P : int) return Class;
-   function Create (strings_P : Sequence_str; type_K_P : int) return Class;
+   function Create (parent_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; type_K_P : int := 0) return Class;
+   function Create (strings_P : SEQUENCE_str; type_K_P : int := 0) return Class;
    function Create
      (treeview_P : access QtAda6.QtWidgets.QTreeWidget.Inst'Class;
-      after_P    : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; type_K_P : int) return Class;
+      after_P    : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; type_K_P : int := 0) return Class;
    function Create
-     (treeview_P : access QtAda6.QtWidgets.QTreeWidget.Inst'Class; strings_P : Sequence_str; type_K_P : int)
+     (treeview_P : access QtAda6.QtWidgets.QTreeWidget.Inst'Class; strings_P : SEQUENCE_str; type_K_P : int := 0)
       return Class;
-   function Create (treeview_P : access QtAda6.QtWidgets.QTreeWidget.Inst'Class; type_K_P : int) return Class;
-   function Create (type_K_P : int) return Class;
+   function Create (treeview_P : access QtAda6.QtWidgets.QTreeWidget.Inst'Class; type_K_P : int := 0) return Class;
+   function Create (type_K_P : int := 0) return Class;
    function U_lshift_U
      (self : access Inst; out_K_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
@@ -62,7 +63,7 @@ package QtAda6.QtWidgets.QTreeWidgetItem is
      (self : access Inst; in_U_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    procedure addChild (self : access Inst; child_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class);
-   procedure addChildren (self : access Inst; children_P : Sequence_QtAda6_QtWidgets_QTreeWidgetItem);
+   procedure addChildren (self : access Inst; children_P : SEQUENCE_QtAda6_QtWidgets_QTreeWidgetItem);
    function background (self : access Inst; column_P : int) return access QtAda6.QtGui.QBrush.Inst'Class;
    function checkState (self : access Inst; column_P : int) return access QtAda6.QtCore.Qt.CheckState.Inst'Class;
    function child_F (self : access Inst; index_P : int) return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class;
@@ -80,7 +81,7 @@ package QtAda6.QtWidgets.QTreeWidgetItem is
    function indexOfChild (self : access Inst; child_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class) return int;
    procedure insertChild
      (self : access Inst; index_P : int; child_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class);
-   procedure insertChildren (self : access Inst; index_P : int; children_P : Sequence_QtAda6_QtWidgets_QTreeWidgetItem);
+   procedure insertChildren (self : access Inst; index_P : int; children_P : SEQUENCE_QtAda6_QtWidgets_QTreeWidgetItem);
    function isDisabled (self : access Inst) return bool;
    function isExpanded (self : access Inst) return bool;
    function isFirstColumnSpanned (self : access Inst) return bool;
@@ -91,7 +92,7 @@ package QtAda6.QtWidgets.QTreeWidgetItem is
    procedure removeChild (self : access Inst; child_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class);
    procedure setBackground
      (self    : access Inst; column_P : int;
-      brush_P : Union_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
+      brush_P : UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap);
    procedure setCheckState
      (self : access Inst; column_P : int; state_P : access QtAda6.QtCore.Qt.CheckState.Inst'Class);
    procedure setChildIndicatorPolicy
@@ -101,12 +102,12 @@ package QtAda6.QtWidgets.QTreeWidgetItem is
    procedure setExpanded (self : access Inst; expand_P : bool);
    procedure setFirstColumnSpanned (self : access Inst; span_P : bool);
    procedure setFlags (self : access Inst; flags_P : access QtAda6.QtCore.Qt.ItemFlag.Inst'Class);
-   procedure setFont (self : access Inst; column_P : int; font_P : Union_QtAda6_QtGui_QFont_str_Sequence_str);
+   procedure setFont (self : access Inst; column_P : int; font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str);
    procedure setForeground
      (self    : access Inst; column_P : int;
-      brush_P : Union_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
+      brush_P : UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap);
    procedure setHidden (self : access Inst; hide_P : bool);
-   procedure setIcon (self : access Inst; column_P : int; icon_P : Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
+   procedure setIcon (self : access Inst; column_P : int; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap);
    procedure setSelected (self : access Inst; select_K_P : bool);
    procedure setSizeHint (self : access Inst; column_P : int; size_P : access QtAda6.QtCore.QSize.Inst'Class);
    procedure setStatusTip (self : access Inst; column_P : int; statusTip_P : str);
@@ -121,7 +122,7 @@ package QtAda6.QtWidgets.QTreeWidgetItem is
    procedure sortChildren (self : access Inst; column_P : int; order_P : access QtAda6.QtCore.Qt.SortOrder.Inst'Class);
    function statusTip (self : access Inst; column_P : int) return str;
    function takeChild (self : access Inst; index_P : int) return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class;
-   function takeChildren (self : access Inst) return List_QtAda6_QtWidgets_QTreeWidgetItem;
+   function takeChildren (self : access Inst) return LIST_QtAda6_QtWidgets_QTreeWidgetItem;
    function text (self : access Inst; column_P : int) return str;
    function textAlignment (self : access Inst; column_P : int) return int;
    function toolTip (self : access Inst; column_P : int) return str;

@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -22,25 +22,45 @@ package body QtAda6.QtWidgets.QGraphicsScale is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function Create (parent_P : Optional_QtAda6_QtCore_QObject) return Class is
-      Class, Args : Handle;
+   function originChanged (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "originChanged"));
+   end originChanged;
+   function scaleChanged (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "scaleChanged"));
+   end scaleChanged;
+   function xScaleChanged (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "xScaleChanged"));
+   end xScaleChanged;
+   function yScaleChanged (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "yScaleChanged"));
+   end yScaleChanged;
+   function zScaleChanged (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "zScaleChanged"));
+   end zScaleChanged;
+   function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsScale");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   procedure applyTo (self : access Inst; matrix_P : Union_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform) is
-      Method, Args, Result : Handle;
+   procedure applyTo (self : access Inst; matrix_P : UNION_QtAda6_QtGui_QMatrix4x4QtAda6_QtGui_QTransform) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "applyTo");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if matrix_P /= null then matrix_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end applyTo;
    function origin (self : access Inst) return access QtAda6.QtGui.QVector3D.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QVector3D.Class := new QtAda6.QtGui.QVector3D.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QVector3D.Class := new QtAda6.QtGui.QVector3D.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "origin");
       Args             := Tuple_New (0);
@@ -49,15 +69,15 @@ package body QtAda6.QtWidgets.QGraphicsScale is
       return Ret;
    end origin;
    procedure setOrigin (self : access Inst; point_P : access QtAda6.QtGui.QVector3D.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOrigin");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, point_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if point_P /= null then point_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setOrigin;
    procedure setXScale (self : access Inst; arg_1_P : float) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setXScale");
       Args   := Tuple_New (1);
@@ -65,7 +85,7 @@ package body QtAda6.QtWidgets.QGraphicsScale is
       Result := Object_CallObject (Method, Args, True);
    end setXScale;
    procedure setYScale (self : access Inst; arg_1_P : float) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setYScale");
       Args   := Tuple_New (1);
@@ -73,7 +93,7 @@ package body QtAda6.QtWidgets.QGraphicsScale is
       Result := Object_CallObject (Method, Args, True);
    end setYScale;
    procedure setZScale (self : access Inst; arg_1_P : float) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setZScale");
       Args   := Tuple_New (1);
@@ -81,7 +101,7 @@ package body QtAda6.QtWidgets.QGraphicsScale is
       Result := Object_CallObject (Method, Args, True);
    end setZScale;
    function xScale (self : access Inst) return float is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "xScale");
       Args   := Tuple_New (0);
@@ -89,7 +109,7 @@ package body QtAda6.QtWidgets.QGraphicsScale is
       return Float_AsDouble (Result);
    end xScale;
    function yScale (self : access Inst) return float is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "yScale");
       Args   := Tuple_New (0);
@@ -97,7 +117,7 @@ package body QtAda6.QtWidgets.QGraphicsScale is
       return Float_AsDouble (Result);
    end yScale;
    function zScale (self : access Inst) return float is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "zScale");
       Args   := Tuple_New (0);

@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -20,15 +20,15 @@ limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtGui.QShowEvent;
 with QtAda6.QtWidgets.QWidget;
 package QtAda6.QtWidgets.QRubberBand is
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
    procedure Finalize (Self : in out Class);
    function Create
-     (arg_1_P : access QtAda6.QtWidgets.QRubberBand.Shape.Inst'Class; parent_P : Optional_QtAda6_QtWidgets_QWidget)
-      return Class;
+     (arg_1_P  : access QtAda6.QtWidgets.QRubberBand.Shape.Inst'Class;
+      parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    procedure changeEvent (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class);
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
    procedure initStyleOption (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionRubberBand.Inst'Class);

@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -22,15 +22,15 @@ limited with QtAda6.QtCore.QEvent;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtWidgets.QLayoutItem;
 package QtAda6.QtWidgets.QLayout is
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst
 --  and QtAda6.QtWidgets.QLayoutItem.Inst
    with null record;
    procedure Finalize (Self : in out Class);
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function activate (self : access Inst) return bool;
    procedure addChildLayout (self : access Inst; l_P : access QtAda6.QtWidgets.QLayout.Inst'Class);
    procedure addChildWidget (self : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
@@ -49,7 +49,7 @@ package QtAda6.QtWidgets.QLayout is
    function count (self : access Inst) return int;
    function expandingDirections (self : access Inst) return access QtAda6.QtCore.Qt.Orientation.Inst'Class;
    function geometry (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class;
-   function getContentsMargins (self : access Inst) return Object;
+   function getContentsMargins (self : access Inst) return access Object'Class;
    function indexOf (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QLayoutItem.Inst'Class) return int;
    function indexOf (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return int;
    procedure invalidate (self : access Inst);
@@ -64,8 +64,9 @@ package QtAda6.QtWidgets.QLayout is
    procedure removeItem (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QLayoutItem.Inst'Class);
    procedure removeWidget (self : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    function replaceWidget
-     (self : access Inst; from_U_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
-      to_P : access QtAda6.QtWidgets.QWidget.Inst'Class; options_P : access QtAda6.QtCore.Qt.FindChildOption.Inst'Class)
+     (self      : access Inst; from_U_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
+      to_P      : access QtAda6.QtWidgets.QWidget.Inst'Class;
+      options_P : access QtAda6.QtCore.Qt.FindChildOption.Inst'Class := null)
       return access QtAda6.QtWidgets.QLayoutItem.Inst'Class;
    procedure setAlignment (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class);
    function setAlignment

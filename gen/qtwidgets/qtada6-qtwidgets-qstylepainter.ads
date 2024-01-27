@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -25,12 +25,13 @@ limited with QtAda6.QtWidgets.QStyle.PrimitiveElement;
 limited with QtAda6.QtWidgets.QStyle;
 with QtAda6.QtGui.QPainter;
 package QtAda6.QtWidgets.QStylePainter is
-   type Union_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is access Any;
-   type Union_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QPainter.Inst with null record;
+   type UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr is new Any;
+   type UNION_QtAda6_QtGui_QPaletteQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColor is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create
@@ -49,11 +50,11 @@ package QtAda6.QtWidgets.QStylePainter is
       opt_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class);
    procedure drawItemPixmap
      (self     : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int;
-      pixmap_P : Union_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str);
+      pixmap_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr);
    procedure drawItemText
      (self   : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int;
-      pal_P  : Union_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor; enabled_P : bool;
-      text_P : str; textRole_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class);
+      pal_P  : UNION_QtAda6_QtGui_QPaletteQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColor; enabled_P : bool;
+      text_P : str; textRole_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class := null);
    procedure drawPrimitive
      (self  : access Inst; pe_P : access QtAda6.QtWidgets.QStyle.PrimitiveElement.Inst'Class;
       opt_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class);

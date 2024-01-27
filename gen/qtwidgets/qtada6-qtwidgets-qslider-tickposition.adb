@@ -4,13 +4,12 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with Enum.Enum;
 package body QtAda6.QtWidgets.QSlider.TickPosition is
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
@@ -18,4 +17,46 @@ package body QtAda6.QtWidgets.QSlider.TickPosition is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
+   function NoTicks return Class is
+      Parent_Class, Enum_Class : Handle;
+   begin
+      Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSlider");
+      Enum_Class   := Object_GetAttrString (Parent_Class, "TickPosition");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoTicks"));
+   end NoTicks;
+   function TicksAbove return Class is
+      Parent_Class, Enum_Class : Handle;
+   begin
+      Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSlider");
+      Enum_Class   := Object_GetAttrString (Parent_Class, "TickPosition");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TicksAbove"));
+   end TicksAbove;
+   function TicksLeft return Class is
+      Parent_Class, Enum_Class : Handle;
+   begin
+      Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSlider");
+      Enum_Class   := Object_GetAttrString (Parent_Class, "TickPosition");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TicksLeft"));
+   end TicksLeft;
+   function TicksBelow return Class is
+      Parent_Class, Enum_Class : Handle;
+   begin
+      Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSlider");
+      Enum_Class   := Object_GetAttrString (Parent_Class, "TickPosition");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TicksBelow"));
+   end TicksBelow;
+   function TicksRight return Class is
+      Parent_Class, Enum_Class : Handle;
+   begin
+      Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSlider");
+      Enum_Class   := Object_GetAttrString (Parent_Class, "TickPosition");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TicksRight"));
+   end TicksRight;
+   function TicksBothSides return Class is
+      Parent_Class, Enum_Class : Handle;
+   begin
+      Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSlider");
+      Enum_Class   := Object_GetAttrString (Parent_Class, "TickPosition");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TicksBothSides"));
+   end TicksBothSides;
 end QtAda6.QtWidgets.QSlider.TickPosition;

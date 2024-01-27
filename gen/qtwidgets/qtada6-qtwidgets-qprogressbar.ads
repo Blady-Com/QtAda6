@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -16,16 +16,17 @@ limited with QtAda6.QtCore.Qt.Orientation;
 limited with QtAda6.QtGui.QPaintEvent;
 limited with QtAda6.QtWidgets.QProgressBar.Direction;
 with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QProgressBar is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   valueChanged : ClassVar_Signal;-- valueChanged(int)
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+   function valueChanged (self : access Inst) return CLASSVAR_Signal;-- valueChanged(int)
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function alignment (self : access Inst) return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class;
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
    function format (self : access Inst) return str;

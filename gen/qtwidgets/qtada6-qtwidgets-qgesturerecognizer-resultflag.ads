@@ -4,23 +4,23 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with Enum.Flag;
 package QtAda6.QtWidgets.QGestureRecognizer.ResultFlag is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
-   type Inst is new Enum.Flag.Inst with null record;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
+   type Inst is new Enum.Flag with null record;
    procedure Finalize (Self : in out Class);
-   Ignore           : QGestureRecognizer.ResultFlag.Class;-- 0x1
-   MayBeGesture     : QGestureRecognizer.ResultFlag.Class;-- 0x2
-   TriggerGesture   : QGestureRecognizer.ResultFlag.Class;-- 0x4
-   FinishGesture    : QGestureRecognizer.ResultFlag.Class;-- 0x8
-   CancelGesture    : QGestureRecognizer.ResultFlag.Class;-- 0x10
-   ResultState_Mask : QGestureRecognizer.ResultFlag.Class;-- 0xff
-   ConsumeEventHint : QGestureRecognizer.ResultFlag.Class;-- 0x100
-   ResultHint_Mask  : QGestureRecognizer.ResultFlag.Class;-- 0xff00
+   function Ignore return Class;-- 0x1
+   function MayBeGesture return Class;-- 0x2
+   function TriggerGesture return Class;-- 0x4
+   function FinishGesture return Class;-- 0x8
+   function CancelGesture return Class;-- 0x10
+   function ResultState_Mask return Class;-- 0xff
+   function ConsumeEventHint return Class;-- 0x100
+   function ResultHint_Mask return Class;-- 0xff00
 end QtAda6.QtWidgets.QGestureRecognizer.ResultFlag;

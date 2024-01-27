@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -21,15 +21,15 @@ package body QtAda6.QtWidgets.QGraphicsSceneEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (type_K_P : access QtAda6.QtCore.QEvent.Type_K.Inst'Class) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsSceneEvent");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, type_K_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure setTimestamp (self : access Inst; ts_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTimestamp");
       Args   := Tuple_New (1);
@@ -37,7 +37,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneEvent is
       Result := Object_CallObject (Method, Args, True);
    end setTimestamp;
    function timestamp (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "timestamp");
       Args   := Tuple_New (0);
@@ -45,8 +45,8 @@ package body QtAda6.QtWidgets.QGraphicsSceneEvent is
       return Long_AsLong (Result);
    end timestamp;
    function widget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "widget");
       Args             := Tuple_New (0);

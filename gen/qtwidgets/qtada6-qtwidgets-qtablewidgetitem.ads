@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -24,19 +24,21 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtWidgets.QTableWidget;
 package QtAda6.QtWidgets.QTableWidgetItem is
-   type Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is access Any;
-   type Union_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap is
-     access Any;
-   type Union_QtAda6_QtGui_QFont_str_Sequence_str is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap is new Any;
+   type UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap is
+     new Any;
+   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
    procedure Finalize (Self : in out Class);
-   function Create (icon_P : Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str; type_K_P : int) return Class;
+   function Create
+     (icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str; type_K_P : int := 0) return Class;
    function Create (other_P : access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class) return Class;
-   function Create (text_P : str; type_K_P : int) return Class;
-   function Create (type_K_P : int) return Class;
+   function Create (text_P : str; type_K_P : int := 0) return Class;
+   function Create (type_K_P : int := 0) return Class;
    function U_lshift_U
      (self : access Inst; out_K_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
@@ -57,15 +59,15 @@ package QtAda6.QtWidgets.QTableWidgetItem is
    function row (self : access Inst) return int;
    procedure setBackground
      (self    : access Inst;
-      brush_P : Union_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
+      brush_P : UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap);
    procedure setCheckState (self : access Inst; state_P : access QtAda6.QtCore.Qt.CheckState.Inst'Class);
    procedure setData (self : access Inst; role_P : int; value_P : Any);
    procedure setFlags (self : access Inst; flags_P : access QtAda6.QtCore.Qt.ItemFlag.Inst'Class);
-   procedure setFont (self : access Inst; font_P : Union_QtAda6_QtGui_QFont_str_Sequence_str);
+   procedure setFont (self : access Inst; font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str);
    procedure setForeground
      (self    : access Inst;
-      brush_P : Union_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
-   procedure setIcon (self : access Inst; icon_P : Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
+      brush_P : UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap);
+   procedure setIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap);
    procedure setSelected (self : access Inst; select_K_P : bool);
    procedure setSizeHint (self : access Inst; size_P : access QtAda6.QtCore.QSize.Inst'Class);
    procedure setStatusTip (self : access Inst; statusTip_P : str);

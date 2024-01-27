@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -25,22 +25,24 @@ limited with QtAda6.QtGui.QImage;
 limited with QtAda6.QtCore.Qt.TextFormat;
 limited with QtAda6.QtCore.Qt.TextInteractionFlag;
 with QtAda6.QtWidgets.QFrame;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QLabel is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
-   type Union_QtAda6_QtGui_QPicture_int is access Any;
-   type Union_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QFrame.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   type UNION_QtAda6_QtGui_QPictureint is new Any;
+   type UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr is new Any;
    procedure Finalize (Self : in out Class);
-   linkActivated : ClassVar_Signal;-- linkActivated(QString)
-   linkHovered   : ClassVar_Signal;-- linkHovered(QString)
+   function linkActivated (self : access Inst) return CLASSVAR_Signal;-- linkActivated(QString)
+   function linkHovered (self : access Inst) return CLASSVAR_Signal;-- linkHovered(QString)
    function Create
-     (parent_P : Optional_QtAda6_QtWidgets_QWidget; f_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class) return Class;
+     (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
+      f_P      : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class;
    function Create
-     (text_P : str; parent_P : Optional_QtAda6_QtWidgets_QWidget := null;
+     (text_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null;
       f_P    : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class;
    function alignment (self : access Inst) return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class;
    function buddy (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class;
@@ -76,8 +78,8 @@ package QtAda6.QtWidgets.QLabel is
    procedure setNum (self : access Inst; arg_1_P : float);
    procedure setNum (self : access Inst; arg_1_P : int);
    procedure setOpenExternalLinks (self : access Inst; open_P : bool);
-   procedure setPicture (self : access Inst; arg_1_P : Union_QtAda6_QtGui_QPicture_int);
-   procedure setPixmap (self : access Inst; arg_1_P : Union_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str);
+   procedure setPicture (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QPictureint);
+   procedure setPixmap (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr);
    procedure setScaledContents (self : access Inst; arg_1_P : bool);
    procedure setSelection (self : access Inst; arg_1_P : int; arg_2_P : int);
    procedure setText (self : access Inst; arg_1_P : str);

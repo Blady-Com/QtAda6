@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -21,11 +21,12 @@ limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtCore.Qt.HitTestAccuracy;
 with QtAda6.QtGui.QAbstractTextDocumentLayout;
 package QtAda6.QtWidgets.QPlainTextDocumentLayout is
-   type Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QAbstractTextDocumentLayout.Inst with null record;
+   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create (document_P : access QtAda6.QtGui.QTextDocument.Inst'Class) return Class;
    function blockBoundingRect
@@ -42,7 +43,7 @@ package QtAda6.QtWidgets.QPlainTextDocumentLayout is
      (self : access Inst; arg_1_P : access QtAda6.QtGui.QTextFrame.Inst'Class)
       return access QtAda6.QtCore.QRectF.Inst'Class;
    function hitTest
-     (self : access Inst; arg_1_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
+     (self    : access Inst; arg_1_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element;
       arg_2_P : access QtAda6.QtCore.Qt.HitTestAccuracy.Inst'Class) return int;
    function pageCount (self : access Inst) return int;
    procedure requestUpdate (self : access Inst);

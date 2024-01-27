@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -28,58 +28,71 @@ package body QtAda6.QtWidgets.QAbstractItemDelegate is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function Create (parent_P : Optional_QtAda6_QtCore_QObject) return Class is
-      Class, Args : Handle;
+   function closeEditor (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "closeEditor"));
+   end closeEditor;
+   function commitData (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "commitData"));
+   end commitData;
+   function sizeHintChanged (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return
+        new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "sizeHintChanged"));
+   end sizeHintChanged;
+   function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemDelegate");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function createEditor
      (self     : access Inst; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
-      index_P  : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+      index_P  : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
       return access QtAda6.QtWidgets.QWidget.Inst'Class
    is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "createEditor");
       Args   := Tuple_New (3);
-      Tuple_SetItem (Args, 0, parent_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, option_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, No_Value);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if option_P /= null then option_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if index_P /= null then index_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end createEditor;
    procedure destroyEditor
      (self    : access Inst; editor_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
-      index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+      index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "destroyEditor");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, editor_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 0, (if editor_P /= null then editor_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if index_P /= null then index_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end destroyEditor;
    function editorEvent
      (self     : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class;
       model_P  : access QtAda6.QtCore.QAbstractItemModel.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
-      index_P  : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool
+      index_P  : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return bool
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "editorEvent");
       Args   := Tuple_New (4);
-      Tuple_SetItem (Args, 0, event_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, model_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, option_P.Python_Proxy);
-      Tuple_SetItem (Args, 3, No_Value);
+      Tuple_SetItem (Args, 0, (if event_P /= null then event_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if model_P /= null then model_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if option_P /= null then option_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, (if index_P /= null then index_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end editorEvent;
@@ -87,79 +100,79 @@ package body QtAda6.QtWidgets.QAbstractItemDelegate is
      (self     : access Inst; event_P : access QtAda6.QtGui.QHelpEvent.Inst'Class;
       view_P   : access QtAda6.QtWidgets.QAbstractItemView.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
-      index_P  : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool
+      index_P  : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return bool
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "helpEvent");
       Args   := Tuple_New (4);
-      Tuple_SetItem (Args, 0, event_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, view_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, option_P.Python_Proxy);
-      Tuple_SetItem (Args, 3, No_Value);
+      Tuple_SetItem (Args, 0, (if event_P /= null then event_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if view_P /= null then view_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if option_P /= null then option_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, (if index_P /= null then index_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end helpEvent;
    procedure paint
      (self     : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
-      index_P  : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+      index_P  : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paint");
       Args   := Tuple_New (3);
-      Tuple_SetItem (Args, 0, painter_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, option_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, No_Value);
+      Tuple_SetItem (Args, 0, (if painter_P /= null then painter_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if option_P /= null then option_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if index_P /= null then index_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end paint;
-   function paintingRoles (self : access Inst) return List_int is
-      Method, Args, Result : Handle;
+   function paintingRoles (self : access Inst) return LIST_int is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintingRoles");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end paintingRoles;
    procedure setEditorData
      (self    : access Inst; editor_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
-      index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+      index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setEditorData");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, editor_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 0, (if editor_P /= null then editor_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if index_P /= null then index_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setEditorData;
    procedure setModelData
      (self    : access Inst; editor_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
       model_P : access QtAda6.QtCore.QAbstractItemModel.Inst'Class;
-      index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+      index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setModelData");
       Args   := Tuple_New (3);
-      Tuple_SetItem (Args, 0, editor_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, model_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, No_Value);
+      Tuple_SetItem (Args, 0, (if editor_P /= null then editor_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if model_P /= null then model_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if index_P /= null then index_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setModelData;
    function sizeHint
      (self    : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
-      index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+      index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
       return access QtAda6.QtCore.QSize.Inst'Class
    is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, option_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 0, (if option_P /= null then option_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if index_P /= null then index_P.Python_Proxy else No_Value));
       Result           := Object_CallObject (Method, Args, True);
       Ret.Python_Proxy := Result;
       return Ret;
@@ -167,15 +180,15 @@ package body QtAda6.QtWidgets.QAbstractItemDelegate is
    procedure updateEditorGeometry
      (self     : access Inst; editor_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class;
-      index_P  : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+      index_P  : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "updateEditorGeometry");
       Args   := Tuple_New (3);
-      Tuple_SetItem (Args, 0, editor_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, option_P.Python_Proxy);
-      Tuple_SetItem (Args, 2, No_Value);
+      Tuple_SetItem (Args, 0, (if editor_P /= null then editor_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if option_P /= null then option_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if index_P /= null then index_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end updateEditorGeometry;
 end QtAda6.QtWidgets.QAbstractItemDelegate;

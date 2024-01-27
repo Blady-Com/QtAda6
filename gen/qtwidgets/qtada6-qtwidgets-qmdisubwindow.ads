@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -28,19 +28,21 @@ limited with QtAda6.QtWidgets.QMenu;
 limited with QtAda6.QtGui.QShowEvent;
 limited with QtAda6.QtCore.QTimerEvent;
 with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QMdiSubWindow is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   aboutToActivate    : ClassVar_Signal;-- aboutToActivate()
-   windowStateChanged : ClassVar_Signal;-- windowStateChanged(Qt::WindowStates,Qt::WindowStates)
+   function aboutToActivate (self : access Inst) return CLASSVAR_Signal;-- aboutToActivate()
+   function windowStateChanged
+     (self : access Inst) return CLASSVAR_Signal;-- windowStateChanged(Qt::WindowStates,Qt::WindowStates)
    function Create
-     (parent_P : Optional_QtAda6_QtWidgets_QWidget; flags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class)
-      return Class;
+     (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
+      flags_P  : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class;
    procedure changeEvent (self : access Inst; changeEvent_P : access QtAda6.QtCore.QEvent.Inst'Class);
    procedure childEvent (self : access Inst; childEvent_P : access QtAda6.QtCore.QChildEvent.Inst'Class);
    procedure closeEvent (self : access Inst; closeEvent_P : access QtAda6.QtGui.QCloseEvent.Inst'Class);
@@ -72,7 +74,8 @@ package QtAda6.QtWidgets.QMdiSubWindow is
    procedure setKeyboardPageStep (self : access Inst; step_P : int);
    procedure setKeyboardSingleStep (self : access Inst; step_P : int);
    procedure setOption
-     (self : access Inst; option_P : access QtAda6.QtWidgets.QMdiSubWindow.SubWindowOption.Inst'Class; on_P : bool);
+     (self : access Inst; option_P : access QtAda6.QtWidgets.QMdiSubWindow.SubWindowOption.Inst'Class;
+      on_P : bool := False);
    procedure setSystemMenu (self : access Inst; systemMenu_P : access QtAda6.QtWidgets.QMenu.Inst'Class);
    procedure setWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    procedure showEvent (self : access Inst; showEvent_P : access QtAda6.QtGui.QShowEvent.Inst'Class);

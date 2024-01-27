@@ -4,24 +4,25 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.QEvent;
 with QtAda6.QtWidgets.QFrame;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QStackedWidget is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QFrame.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   currentChanged : ClassVar_Signal;-- currentChanged(int)
-   widgetRemoved  : ClassVar_Signal;-- widgetRemoved(int)
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+   function currentChanged (self : access Inst) return CLASSVAR_Signal;-- currentChanged(int)
+   function widgetRemoved (self : access Inst) return CLASSVAR_Signal;-- widgetRemoved(int)
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function addWidget (self : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return int;
    function count (self : access Inst) return int;
    function currentIndex (self : access Inst) return int;

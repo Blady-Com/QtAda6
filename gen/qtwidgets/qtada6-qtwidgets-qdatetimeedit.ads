@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -27,27 +27,31 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtWidgets.QAbstractSpinBox.StepEnabledFlag;
 limited with QtAda6.QtGui.QWheelEvent;
 with QtAda6.QtWidgets.QAbstractSpinBox;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QDateTimeEdit is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractSpinBox.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   dateChanged     : ClassVar_Signal;-- dateChanged(QDate)
-   dateTimeChanged : ClassVar_Signal;-- dateTimeChanged(QDateTime)
-   timeChanged     : ClassVar_Signal;-- timeChanged(QTime)
+   function dateChanged (self : access Inst) return CLASSVAR_Signal;-- dateChanged(QDate)
+   function dateTimeChanged (self : access Inst) return CLASSVAR_Signal;-- dateTimeChanged(QDateTime)
+   function timeChanged (self : access Inst) return CLASSVAR_Signal;-- timeChanged(QTime)
    function Create
-     (d_P : access QtAda6.QtCore.QDate.Inst'Class; parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+     (d_P : access QtAda6.QtCore.QDate.Inst'Class; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
+      return Class;
    function Create
-     (dt_P : access QtAda6.QtCore.QDateTime.Inst'Class; parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+     (dt_P : access QtAda6.QtCore.QDateTime.Inst'Class; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
+      return Class;
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function Create
-     (t_P : access QtAda6.QtCore.QTime.Inst'Class; parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+     (t_P : access QtAda6.QtCore.QTime.Inst'Class; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
+      return Class;
    function Create
      (val_P    : Any; parserType_P : access QtAda6.QtCore.QMetaType.Type_K.Inst'Class;
-      parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+      parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function calendar (self : access Inst) return access QtAda6.QtCore.QCalendar.Inst'Class;
    function calendarPopup (self : access Inst) return bool;
    function calendarWidget (self : access Inst) return access QtAda6.QtWidgets.QCalendarWidget.Inst'Class;
@@ -117,6 +121,6 @@ package QtAda6.QtWidgets.QDateTimeEdit is
    function textFromDateTime (self : access Inst; dt_P : access QtAda6.QtCore.QDateTime.Inst'Class) return str;
    function time (self : access Inst) return access QtAda6.QtCore.QTime.Inst'Class;
    function timeSpec (self : access Inst) return access QtAda6.QtCore.Qt.TimeSpec.Inst'Class;
-   function validate (self : access Inst; input_P : str; pos_P : int) return Object;
+   function validate (self : access Inst; input_P : str; pos_P : int) return access Object'Class;
    procedure wheelEvent (self : access Inst; event_P : access QtAda6.QtGui.QWheelEvent.Inst'Class);
 end QtAda6.QtWidgets.QDateTimeEdit;

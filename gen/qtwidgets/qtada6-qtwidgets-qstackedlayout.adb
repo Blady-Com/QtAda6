@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -23,48 +23,56 @@ package body QtAda6.QtWidgets.QStackedLayout is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
+   function currentChanged (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "currentChanged"));
+   end currentChanged;
+   function widgetRemoved (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "widgetRemoved"));
+   end widgetRemoved;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStackedLayout");
       Args  := Tuple_New (0);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStackedLayout");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, parent_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create (parentLayout_P : access QtAda6.QtWidgets.QLayout.Inst'Class) return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStackedLayout");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, parentLayout_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if parentLayout_P /= null then parentLayout_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure addItem (self : access Inst; item_P : access QtAda6.QtWidgets.QLayoutItem.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addItem");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, item_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if item_P /= null then item_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end addItem;
    function addWidget (self : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addWidget");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, w_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if w_P /= null then w_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end addWidget;
    function count (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "count");
       Args   := Tuple_New (0);
@@ -72,7 +80,7 @@ package body QtAda6.QtWidgets.QStackedLayout is
       return Long_AsLong (Result);
    end count;
    function currentIndex (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "currentIndex");
       Args   := Tuple_New (0);
@@ -80,8 +88,8 @@ package body QtAda6.QtWidgets.QStackedLayout is
       return Long_AsLong (Result);
    end currentIndex;
    function currentWidget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentWidget");
       Args             := Tuple_New (0);
@@ -90,7 +98,7 @@ package body QtAda6.QtWidgets.QStackedLayout is
       return Ret;
    end currentWidget;
    function hasHeightForWidth (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasHeightForWidth");
       Args   := Tuple_New (0);
@@ -98,7 +106,7 @@ package body QtAda6.QtWidgets.QStackedLayout is
       return To_Ada (Result);
    end hasHeightForWidth;
    function heightForWidth (self : access Inst; width_P : int) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "heightForWidth");
       Args   := Tuple_New (1);
@@ -109,18 +117,18 @@ package body QtAda6.QtWidgets.QStackedLayout is
    function insertWidget
      (self : access Inst; index_P : int; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return int
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertWidget");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, Long_FromLong (index_P));
-      Tuple_SetItem (Args, 1, w_P.Python_Proxy);
+      Tuple_SetItem (Args, 1, (if w_P /= null then w_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return Long_AsLong (Result);
    end insertWidget;
    function itemAt (self : access Inst; arg_1_P : int) return access QtAda6.QtWidgets.QLayoutItem.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtWidgets.QLayoutItem.Class := new QtAda6.QtWidgets.QLayoutItem.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtWidgets.QLayoutItem.Class := new QtAda6.QtWidgets.QLayoutItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemAt");
       Args   := Tuple_New (1);
@@ -130,8 +138,8 @@ package body QtAda6.QtWidgets.QStackedLayout is
       return Ret;
    end itemAt;
    function minimumSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSize");
       Args             := Tuple_New (0);
@@ -140,7 +148,7 @@ package body QtAda6.QtWidgets.QStackedLayout is
       return Ret;
    end minimumSize;
    procedure setCurrentIndex (self : access Inst; index_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentIndex");
       Args   := Tuple_New (1);
@@ -148,34 +156,34 @@ package body QtAda6.QtWidgets.QStackedLayout is
       Result := Object_CallObject (Method, Args, True);
    end setCurrentIndex;
    procedure setCurrentWidget (self : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentWidget");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, w_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if w_P /= null then w_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setCurrentWidget;
    procedure setGeometry (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setGeometry");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, rect_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if rect_P /= null then rect_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setGeometry;
    procedure setStackingMode
      (self : access Inst; stackingMode_P : access QtAda6.QtWidgets.QStackedLayout.StackingMode.Inst'Class)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStackingMode");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, stackingMode_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if stackingMode_P /= null then stackingMode_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setStackingMode;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -184,8 +192,8 @@ package body QtAda6.QtWidgets.QStackedLayout is
       return Ret;
    end sizeHint;
    function stackingMode_F (self : access Inst) return access QtAda6.QtWidgets.QStackedLayout.StackingMode.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtWidgets.QStackedLayout.StackingMode.Class :=
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtWidgets.QStackedLayout.StackingMode.Class :=
         new QtAda6.QtWidgets.QStackedLayout.StackingMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "stackingMode");
@@ -195,8 +203,8 @@ package body QtAda6.QtWidgets.QStackedLayout is
       return Ret;
    end stackingMode_F;
    function takeAt (self : access Inst; arg_1_P : int) return access QtAda6.QtWidgets.QLayoutItem.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtWidgets.QLayoutItem.Class := new QtAda6.QtWidgets.QLayoutItem.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtWidgets.QLayoutItem.Class := new QtAda6.QtWidgets.QLayoutItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "takeAt");
       Args   := Tuple_New (1);
@@ -206,8 +214,8 @@ package body QtAda6.QtWidgets.QStackedLayout is
       return Ret;
    end takeAt;
    function widget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "widget");
       Args             := Tuple_New (0);
@@ -216,8 +224,8 @@ package body QtAda6.QtWidgets.QStackedLayout is
       return Ret;
    end widget;
    function widget (self : access Inst; arg_1_P : int) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "widget");
       Args   := Tuple_New (1);

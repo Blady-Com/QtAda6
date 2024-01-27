@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -19,15 +19,15 @@ package body QtAda6.QtWidgets.QStyleFactory is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleFactory");
       Args  := Tuple_New (0);
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function create (arg_1_P : str) return access QtAda6.QtWidgets.QStyle.Inst'Class is
-      Class, Method, Args, Result : Handle;
-      Ret                         : constant QtAda6.QtWidgets.QStyle.Class := new QtAda6.QtWidgets.QStyle.Inst;
+      Class, Method, Args, List, Result : Handle;
+      Ret                               : constant QtAda6.QtWidgets.QStyle.Class := new QtAda6.QtWidgets.QStyle.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleFactory");
       Method := Object_GetAttrString (Class, "create");
@@ -37,13 +37,13 @@ package body QtAda6.QtWidgets.QStyleFactory is
       Ret.Python_Proxy := Result;
       return Ret;
    end create;
-   function keys return List_str is
-      Class, Method, Args, Result : Handle;
+   function keys return LIST_str is
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleFactory");
       Method := Object_GetAttrString (Class, "keys");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end keys;
 end QtAda6.QtWidgets.QStyleFactory;

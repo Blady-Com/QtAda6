@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -17,22 +17,23 @@ limited with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtCore.QPersistentModelIndex;
 limited with QtAda6.QtWidgets.QDataWidgetMapper.SubmitPolicy;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QDataWidgetMapper is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtCore_QObject is access Any;
-   type Union_QtAda6_QtCore_QByteArray_bytes is access Any;
-   type Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex is new Any;
    procedure Finalize (Self : in out Class);
-   currentIndexChanged : ClassVar_Signal;-- currentIndexChanged(int)
-   function Create (parent_P : Optional_QtAda6_QtCore_QObject) return Class;
+   function currentIndexChanged (self : access Inst) return CLASSVAR_Signal;-- currentIndexChanged(int)
+   function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    procedure addMapping (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class; section_P : int);
    procedure addMapping
      (self           : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class; section_P : int;
-      propertyName_P : Union_QtAda6_QtCore_QByteArray_bytes);
+      propertyName_P : UNION_QtAda6_QtCore_QByteArraybytes);
    procedure clearMapping (self : access Inst);
    function currentIndex (self : access Inst) return int;
    function itemDelegate (self : access Inst) return access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class;
@@ -48,13 +49,13 @@ package QtAda6.QtWidgets.QDataWidgetMapper is
    function rootIndex (self : access Inst) return access QtAda6.QtCore.QModelIndex.Inst'Class;
    procedure setCurrentIndex (self : access Inst; index_P : int);
    procedure setCurrentModelIndex
-     (self : access Inst; index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
    procedure setItemDelegate
      (self : access Inst; delegate_P : access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class);
    procedure setModel (self : access Inst; model_P : access QtAda6.QtCore.QAbstractItemModel.Inst'Class);
    procedure setOrientation (self : access Inst; aOrientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class);
    procedure setRootIndex
-     (self : access Inst; index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
    procedure setSubmitPolicy
      (self : access Inst; policy_P : access QtAda6.QtWidgets.QDataWidgetMapper.SubmitPolicy.Inst'Class);
    function submit_F (self : access Inst) return bool;

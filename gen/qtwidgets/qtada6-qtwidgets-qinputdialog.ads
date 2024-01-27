@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -17,30 +17,31 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtWidgets.QInputDialog.InputDialogOption;
 with QtAda6.QtWidgets.QDialog;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QInputDialog is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
-   type List_str is access Any;
-   type Tuple_float_bool is access Any;
-   type Tuple_int_bool is access Any;
-   type Sequence_str is access Any;
-   type Tuple_str_bool is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QDialog.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   type LIST_str is array (Positive range <>) of str;
+   type TUPLE_floatbool is new Any;
+   type TUPLE_intbool is new Any;
+   type SEQUENCE_str is array (Positive range <>) of str;
+   type TUPLE_strbool is new Any;
    procedure Finalize (Self : in out Class);
-   doubleValueChanged  : ClassVar_Signal;-- doubleValueChanged(double)
-   doubleValueSelected : ClassVar_Signal;-- doubleValueSelected(double)
-   intValueChanged     : ClassVar_Signal;-- intValueChanged(int)
-   intValueSelected    : ClassVar_Signal;-- intValueSelected(int)
-   textValueChanged    : ClassVar_Signal;-- textValueChanged(QString)
-   textValueSelected   : ClassVar_Signal;-- textValueSelected(QString)
+   function doubleValueChanged (self : access Inst) return CLASSVAR_Signal;-- doubleValueChanged(double)
+   function doubleValueSelected (self : access Inst) return CLASSVAR_Signal;-- doubleValueSelected(double)
+   function intValueChanged (self : access Inst) return CLASSVAR_Signal;-- intValueChanged(int)
+   function intValueSelected (self : access Inst) return CLASSVAR_Signal;-- intValueSelected(int)
+   function textValueChanged (self : access Inst) return CLASSVAR_Signal;-- textValueChanged(QString)
+   function textValueSelected (self : access Inst) return CLASSVAR_Signal;-- textValueSelected(QString)
    function Create
-     (parent_P : Optional_QtAda6_QtWidgets_QWidget; flags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class)
-      return Class;
+     (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
+      flags_P  : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class;
    function cancelButtonText (self : access Inst) return str;
-   function comboBoxItems (self : access Inst) return List_str;
+   function comboBoxItems (self : access Inst) return LIST_str;
    procedure done (self : access Inst; result_P : int);
    function doubleDecimals (self : access Inst) return int;
    function doubleMaximum (self : access Inst) return float;
@@ -48,26 +49,26 @@ package QtAda6.QtWidgets.QInputDialog is
    function doubleStep (self : access Inst) return float;
    function doubleValue (self : access Inst) return float;
    function getDouble
-     (parent_P   : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; label_P : str; value_P : float;
-      minValue_P : float; maxValue_P : float; decimals_P : int; flags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class;
-      step_P     : float) return Tuple_float_bool;
+     (parent_P   : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; label_P : str; value_P : float := 0.0;
+      minValue_P : float := 0.0; maxValue_P : float := 0.0; decimals_P : int := 0;
+      flags_P    : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null; step_P : float := 0.0) return TUPLE_floatbool;
    function getInt
-     (parent_P   : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; label_P : str; value_P : int;
-      minValue_P : int; maxValue_P : int; step_P : int; flags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class)
-      return Tuple_int_bool;
+     (parent_P   : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; label_P : str; value_P : int := 0;
+      minValue_P : int                                           := 0; maxValue_P : int := 0; step_P : int := 0;
+      flags_P    : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return TUPLE_intbool;
    function getItem
-     (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; label_P : str; items_P : Sequence_str;
-      current_P          : int; editable_P : bool; flags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class;
-      inputMethodHints_P : access QtAda6.QtCore.Qt.InputMethodHint.Inst'Class) return Tuple_str_bool;
+     (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; label_P : str; items_P : SEQUENCE_str;
+      current_P : int := 0; editable_P : bool := False; flags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null;
+      inputMethodHints_P : access QtAda6.QtCore.Qt.InputMethodHint.Inst'Class := null) return TUPLE_strbool;
    function getMultiLineText
-     (parent_P           : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; label_P : str; text_P : str;
-      flags_P            : access QtAda6.QtCore.Qt.WindowType.Inst'Class;
-      inputMethodHints_P : access QtAda6.QtCore.Qt.InputMethodHint.Inst'Class) return Tuple_str_bool;
+     (parent_P           : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; label_P : str; text_P : str := "";
+      flags_P            : access QtAda6.QtCore.Qt.WindowType.Inst'Class      := null;
+      inputMethodHints_P : access QtAda6.QtCore.Qt.InputMethodHint.Inst'Class := null) return TUPLE_strbool;
    function getText
      (parent_P           : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; label_P : str;
-      echo_P             : access QtAda6.QtWidgets.QLineEdit.EchoMode.Inst'Class; text_P : str;
-      flags_P            : access QtAda6.QtCore.Qt.WindowType.Inst'Class;
-      inputMethodHints_P : access QtAda6.QtCore.Qt.InputMethodHint.Inst'Class) return Tuple_str_bool;
+      echo_P             : access QtAda6.QtWidgets.QLineEdit.EchoMode.Inst'Class := null; text_P : str := "";
+      flags_P            : access QtAda6.QtCore.Qt.WindowType.Inst'Class         := null;
+      inputMethodHints_P : access QtAda6.QtCore.Qt.InputMethodHint.Inst'Class    := null) return TUPLE_strbool;
    function inputMode_F (self : access Inst) return access QtAda6.QtWidgets.QInputDialog.InputMode.Inst'Class;
    function intMaximum (self : access Inst) return int;
    function intMinimum (self : access Inst) return int;
@@ -81,7 +82,7 @@ package QtAda6.QtWidgets.QInputDialog is
    procedure open (self : access Inst; receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes);
    procedure setCancelButtonText (self : access Inst; text_P : str);
    procedure setComboBoxEditable (self : access Inst; editable_P : bool);
-   procedure setComboBoxItems (self : access Inst; items_P : Sequence_str);
+   procedure setComboBoxItems (self : access Inst; items_P : SEQUENCE_str);
    procedure setDoubleDecimals (self : access Inst; decimals_P : int);
    procedure setDoubleMaximum (self : access Inst; max_P : float);
    procedure setDoubleMinimum (self : access Inst; min_P : float);
@@ -97,7 +98,8 @@ package QtAda6.QtWidgets.QInputDialog is
    procedure setLabelText (self : access Inst; text_P : str);
    procedure setOkButtonText (self : access Inst; text_P : str);
    procedure setOption
-     (self : access Inst; option_P : access QtAda6.QtWidgets.QInputDialog.InputDialogOption.Inst'Class; on_P : bool);
+     (self : access Inst; option_P : access QtAda6.QtWidgets.QInputDialog.InputDialogOption.Inst'Class;
+      on_P : bool := False);
    procedure setTextEchoMode (self : access Inst; mode_P : access QtAda6.QtWidgets.QLineEdit.EchoMode.Inst'Class);
    procedure setTextValue (self : access Inst; text_P : str);
    procedure setVisible (self : access Inst; visible_P : bool);

@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -29,16 +29,17 @@ limited with QtAda6.QtWidgets.QAbstractSpinBox.StepEnabledFlag;
 limited with QtAda6.QtCore.QTimerEvent;
 limited with QtAda6.QtGui.QWheelEvent;
 with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QAbstractSpinBox is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   editingFinished : ClassVar_Signal;-- editingFinished()
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+   function editingFinished (self : access Inst) return CLASSVAR_Signal;-- editingFinished()
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function alignment (self : access Inst) return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class;
    function buttonSymbols_F
      (self : access Inst) return access QtAda6.QtWidgets.QAbstractSpinBox.ButtonSymbols.Inst'Class;
@@ -96,7 +97,7 @@ package QtAda6.QtWidgets.QAbstractSpinBox is
    procedure stepUp (self : access Inst);
    function text (self : access Inst) return str;
    procedure timerEvent (self : access Inst; event_P : access QtAda6.QtCore.QTimerEvent.Inst'Class);
-   function validate (self : access Inst; input_P : str; pos_P : int) return Object;
+   function validate (self : access Inst; input_P : str; pos_P : int) return access Object'Class;
    procedure wheelEvent (self : access Inst; event_P : access QtAda6.QtGui.QWheelEvent.Inst'Class);
    function wrapping (self : access Inst) return bool;
 end QtAda6.QtWidgets.QAbstractSpinBox;

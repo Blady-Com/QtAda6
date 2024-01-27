@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -35,25 +35,26 @@ limited with QtAda6.QtWidgets.QGraphicsItem.Extension;
 limited with QtAda6.QtGui.QTextCursor;
 limited with QtAda6.QtCore.Qt.TextInteractionFlag;
 with QtAda6.QtWidgets.QGraphicsObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QGraphicsTextItem is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QGraphicsItem is access Any;
-   type Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is access Any;
-   type Union_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is access Any;
-   type Union_QtAda6_QtGui_QFont_str_Sequence_str is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QGraphicsObject.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
+   type UNION_QtAda6_QtGui_QColorQtAda6_QtGui_QRgba64AnyQtAda6_QtCore_Qt_GlobalColorstrint is new Any;
+   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
    procedure Finalize (Self : in out Class);
-   linkActivated : ClassVar_Signal;-- linkActivated(QString)
-   linkHovered   : ClassVar_Signal;-- linkHovered(QString)
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QGraphicsItem) return Class;
-   function Create (text_P : str; parent_P : Optional_QtAda6_QtWidgets_QGraphicsItem) return Class;
+   function linkActivated (self : access Inst) return CLASSVAR_Signal;-- linkActivated(QString)
+   function linkHovered (self : access Inst) return CLASSVAR_Signal;-- linkHovered(QString)
+   function Create (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class;
+   function Create (text_P : str; parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class;
    procedure adjustSize (self : access Inst);
    function boundingRect (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class;
    function contains
-     (self : access Inst; point_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
       return bool;
    procedure contextMenuEvent
      (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneContextMenuEvent.Inst'Class);
@@ -96,12 +97,11 @@ package QtAda6.QtWidgets.QGraphicsTextItem is
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    function sceneEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
    procedure setDefaultTextColor
-     (self : access Inst;
-      c_P  : Union_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
+     (self : access Inst; c_P : UNION_QtAda6_QtGui_QColorQtAda6_QtGui_QRgba64AnyQtAda6_QtCore_Qt_GlobalColorstrint);
    procedure setDocument (self : access Inst; document_P : access QtAda6.QtGui.QTextDocument.Inst'Class);
    procedure setExtension
      (self : access Inst; extension_P : access QtAda6.QtWidgets.QGraphicsItem.Extension.Inst'Class; variant_P : Any);
-   procedure setFont (self : access Inst; font_P : Union_QtAda6_QtGui_QFont_str_Sequence_str);
+   procedure setFont (self : access Inst; font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str);
    procedure setHtml (self : access Inst; html_P : str);
    procedure setOpenExternalLinks (self : access Inst; open_P : bool);
    procedure setPlainText (self : access Inst; text_P : str);

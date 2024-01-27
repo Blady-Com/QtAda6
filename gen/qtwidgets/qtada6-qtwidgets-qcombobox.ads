@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -36,45 +36,47 @@ limited with QtAda6.QtWidgets.QAbstractItemView;
 limited with QtAda6.QtGui.QShowEvent;
 limited with QtAda6.QtGui.QWheelEvent;
 with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QComboBox is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
-   type Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is access Any;
-   type Sequence_str is access Any;
-   type Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   type UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap is new Any;
+   type SEQUENCE_str is array (Positive range <>) of str;
+   type UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex is new Any;
    procedure Finalize (Self : in out Class);
-   activated           : ClassVar_Signal;-- activated(int)
-   currentIndexChanged : ClassVar_Signal;-- currentIndexChanged(int)
-   currentTextChanged  : ClassVar_Signal;-- currentTextChanged(QString)
-   editTextChanged     : ClassVar_Signal;-- editTextChanged(QString)
-   highlighted         : ClassVar_Signal;-- highlighted(int)
-   textActivated       : ClassVar_Signal;-- textActivated(QString)
-   textHighlighted     : ClassVar_Signal;-- textHighlighted(QString)
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+   function activated (self : access Inst) return CLASSVAR_Signal;-- activated(int)
+   function currentIndexChanged (self : access Inst) return CLASSVAR_Signal;-- currentIndexChanged(int)
+   function currentTextChanged (self : access Inst) return CLASSVAR_Signal;-- currentTextChanged(QString)
+   function editTextChanged (self : access Inst) return CLASSVAR_Signal;-- editTextChanged(QString)
+   function highlighted (self : access Inst) return CLASSVAR_Signal;-- highlighted(int)
+   function textActivated (self : access Inst) return CLASSVAR_Signal;-- textActivated(QString)
+   function textHighlighted (self : access Inst) return CLASSVAR_Signal;-- textHighlighted(QString)
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    procedure addItem
-     (self : access Inst; icon_P : Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str; userData_P : Any);
-   procedure addItem (self : access Inst; text_P : str; userData_P : Any);
-   procedure addItems (self : access Inst; texts_P : Sequence_str);
+     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
+      userData_P : Any := null);
+   procedure addItem (self : access Inst; text_P : str; userData_P : Any := null);
+   procedure addItems (self : access Inst; texts_P : SEQUENCE_str);
    procedure changeEvent (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class);
    procedure clear (self : access Inst);
    procedure clearEditText (self : access Inst);
    function completer (self : access Inst) return access QtAda6.QtWidgets.QCompleter.Inst'Class;
    procedure contextMenuEvent (self : access Inst; e_P : access QtAda6.QtGui.QContextMenuEvent.Inst'Class);
    function count (self : access Inst) return int;
-   function currentData (self : access Inst; role_P : int) return Any;
+   function currentData (self : access Inst; role_P : int := 0) return Any;
    function currentIndex (self : access Inst) return int;
    function currentText (self : access Inst) return str;
    function duplicatesEnabled (self : access Inst) return bool;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
    function findData
-     (self : access Inst; data_P : Any; role_P : int; flags_P : access QtAda6.QtCore.Qt.MatchFlag.Inst'Class)
-      return int;
+     (self    : access Inst; data_P : Any; role_P : int := 0;
+      flags_P : access QtAda6.QtCore.Qt.MatchFlag.Inst'Class := null) return int;
    function findText
-     (self : access Inst; text_P : str; flags_P : access QtAda6.QtCore.Qt.MatchFlag.Inst'Class) return int;
+     (self : access Inst; text_P : str; flags_P : access QtAda6.QtCore.Qt.MatchFlag.Inst'Class := null) return int;
    procedure focusInEvent (self : access Inst; e_P : access QtAda6.QtGui.QFocusEvent.Inst'Class);
    procedure focusOutEvent (self : access Inst; e_P : access QtAda6.QtGui.QFocusEvent.Inst'Class);
    function hasFrame (self : access Inst) return bool;
@@ -88,14 +90,14 @@ package QtAda6.QtWidgets.QComboBox is
    function inputMethodQuery
      (self : access Inst; query_P : access QtAda6.QtCore.Qt.InputMethodQuery.Inst'Class; argument_P : Any) return Any;
    procedure insertItem
-     (self       : access Inst; index_P : int; icon_P : Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
-      userData_P : Any);
-   procedure insertItem (self : access Inst; index_P : int; text_P : str; userData_P : Any);
-   procedure insertItems (self : access Inst; index_P : int; texts_P : Sequence_str);
+     (self       : access Inst; index_P : int; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
+      userData_P : Any := null);
+   procedure insertItem (self : access Inst; index_P : int; text_P : str; userData_P : Any := null);
+   procedure insertItems (self : access Inst; index_P : int; texts_P : SEQUENCE_str);
    function insertPolicy_F (self : access Inst) return access QtAda6.QtWidgets.QComboBox.InsertPolicy.Inst'Class;
    procedure insertSeparator (self : access Inst; index_P : int);
    function isEditable (self : access Inst) return bool;
-   function itemData (self : access Inst; index_P : int; role_P : int) return Any;
+   function itemData (self : access Inst; index_P : int; role_P : int := 0) return Any;
    function itemDelegate (self : access Inst) return access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class;
    function itemIcon (self : access Inst; index_P : int) return access QtAda6.QtGui.QIcon.Inst'Class;
    function itemText (self : access Inst; index_P : int) return str;
@@ -124,10 +126,10 @@ package QtAda6.QtWidgets.QComboBox is
    procedure setFrame (self : access Inst; arg_1_P : bool);
    procedure setIconSize (self : access Inst; size_P : access QtAda6.QtCore.QSize.Inst'Class);
    procedure setInsertPolicy (self : access Inst; policy_P : access QtAda6.QtWidgets.QComboBox.InsertPolicy.Inst'Class);
-   procedure setItemData (self : access Inst; index_P : int; value_P : Any; role_P : int);
+   procedure setItemData (self : access Inst; index_P : int; value_P : Any; role_P : int := 0);
    procedure setItemDelegate
      (self : access Inst; delegate_P : access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class);
-   procedure setItemIcon (self : access Inst; index_P : int; icon_P : Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
+   procedure setItemIcon (self : access Inst; index_P : int; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap);
    procedure setItemText (self : access Inst; index_P : int; text_P : str);
    procedure setLineEdit (self : access Inst; edit_P : access QtAda6.QtWidgets.QLineEdit.Inst'Class);
    procedure setMaxCount (self : access Inst; max_P : int);
@@ -137,7 +139,7 @@ package QtAda6.QtWidgets.QComboBox is
    procedure setModelColumn (self : access Inst; visibleColumn_P : int);
    procedure setPlaceholderText (self : access Inst; placeholderText_P : str);
    procedure setRootModelIndex
-     (self : access Inst; index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
    procedure setSizeAdjustPolicy
      (self : access Inst; policy_P : access QtAda6.QtWidgets.QComboBox.SizeAdjustPolicy.Inst'Class);
    procedure setValidator (self : access Inst; v_P : access QtAda6.QtGui.QValidator.Inst'Class);

@@ -4,13 +4,12 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with Enum.Enum;
 package body QtAda6.QtWidgets.QSystemTrayIcon.ActivationReason is
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
@@ -18,4 +17,39 @@ package body QtAda6.QtWidgets.QSystemTrayIcon.ActivationReason is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
+   function Unknown return Class is
+      Parent_Class, Enum_Class : Handle;
+   begin
+      Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSystemTrayIcon");
+      Enum_Class   := Object_GetAttrString (Parent_Class, "ActivationReason");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Unknown"));
+   end Unknown;
+   function Context return Class is
+      Parent_Class, Enum_Class : Handle;
+   begin
+      Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSystemTrayIcon");
+      Enum_Class   := Object_GetAttrString (Parent_Class, "ActivationReason");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Context"));
+   end Context;
+   function DoubleClick return Class is
+      Parent_Class, Enum_Class : Handle;
+   begin
+      Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSystemTrayIcon");
+      Enum_Class   := Object_GetAttrString (Parent_Class, "ActivationReason");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DoubleClick"));
+   end DoubleClick;
+   function Trigger return Class is
+      Parent_Class, Enum_Class : Handle;
+   begin
+      Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSystemTrayIcon");
+      Enum_Class   := Object_GetAttrString (Parent_Class, "ActivationReason");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Trigger"));
+   end Trigger;
+   function MiddleClick return Class is
+      Parent_Class, Enum_Class : Handle;
+   begin
+      Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSystemTrayIcon");
+      Enum_Class   := Object_GetAttrString (Parent_Class, "ActivationReason");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MiddleClick"));
+   end MiddleClick;
 end QtAda6.QtWidgets.QSystemTrayIcon.ActivationReason;

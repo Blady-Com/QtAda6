@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -25,60 +25,70 @@ package body QtAda6.QtWidgets.QKeySequenceEdit is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
+   function editingFinished (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return
+        new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "editingFinished"));
+   end editingFinished;
+   function keySequenceChanged (self : access Inst) return CLASSVAR_Signal is
+   begin
+      return
+        new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "keySequenceChanged"));
+   end keySequenceChanged;
    function Create
-     (keySequence_P : Union_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
-      parent_P      : Optional_QtAda6_QtWidgets_QWidget) return Class
+     (keySequence_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint;
+      parent_P      : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QKeySequenceEdit");
       Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, No_Value);
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 0, (if keySequence_P /= null then keySequence_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class is
-      Class, Args : Handle;
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QKeySequenceEdit");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure clear (self : access Inst) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clear");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
    end clear;
    function event (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, arg_1_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end event;
-   function finishingKeyCombinations (self : access Inst) return List_QtAda6_QtCore_QKeyCombination is
-      Method, Args, Result : Handle;
+   function finishingKeyCombinations (self : access Inst) return LIST_QtAda6_QtCore_QKeyCombination is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "finishingKeyCombinations");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return null;
+      return (2 .. 1 => <>);
    end finishingKeyCombinations;
    procedure focusOutEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QFocusEvent.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "focusOutEvent");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, arg_1_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end focusOutEvent;
    function isClearButtonEnabled (self : access Inst) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isClearButtonEnabled");
       Args   := Tuple_New (0);
@@ -86,24 +96,24 @@ package body QtAda6.QtWidgets.QKeySequenceEdit is
       return To_Ada (Result);
    end isClearButtonEnabled;
    procedure keyPressEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QKeyEvent.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "keyPressEvent");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, arg_1_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end keyPressEvent;
    procedure keyReleaseEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QKeyEvent.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "keyReleaseEvent");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, arg_1_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end keyReleaseEvent;
    function keySequence (self : access Inst) return access QtAda6.QtGui.QKeySequence.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QKeySequence.Class := new QtAda6.QtGui.QKeySequence.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QKeySequence.Class := new QtAda6.QtGui.QKeySequence.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "keySequence");
       Args             := Tuple_New (0);
@@ -112,7 +122,7 @@ package body QtAda6.QtWidgets.QKeySequenceEdit is
       return Ret;
    end keySequence;
    function maximumSequenceLength (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "maximumSequenceLength");
       Args   := Tuple_New (0);
@@ -120,7 +130,7 @@ package body QtAda6.QtWidgets.QKeySequenceEdit is
       return Long_AsLong (Result);
    end maximumSequenceLength;
    procedure setClearButtonEnabled (self : access Inst; enable_P : bool) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setClearButtonEnabled");
       Args   := Tuple_New (1);
@@ -128,28 +138,35 @@ package body QtAda6.QtWidgets.QKeySequenceEdit is
       Result := Object_CallObject (Method, Args, True);
    end setClearButtonEnabled;
    procedure setFinishingKeyCombinations
-     (self : access Inst; finishingKeyCombinations_P : Sequence_QtAda6_QtCore_QKeyCombination)
+     (self : access Inst; finishingKeyCombinations_P : SEQUENCE_QtAda6_QtCore_QKeyCombination)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFinishingKeyCombinations");
-      Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      List   := List_New (finishingKeyCombinations_P'Length);
+      for ind in finishingKeyCombinations_P'Range loop
+         List_SetItem
+           (List, ssize_t (ind - finishingKeyCombinations_P'First),
+            (if finishingKeyCombinations_P (ind) /= null then finishingKeyCombinations_P (ind).Python_Proxy
+             else No_Value));
+      end loop;
+      Args := Tuple_New (1);
+      Tuple_SetItem (Args, 0, List);
       Result := Object_CallObject (Method, Args, True);
    end setFinishingKeyCombinations;
    procedure setKeySequence
      (self          : access Inst;
-      keySequence_P : Union_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
+      keySequence_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setKeySequence");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if keySequence_P /= null then keySequence_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setKeySequence;
    procedure setMaximumSequenceLength (self : access Inst; count_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMaximumSequenceLength");
       Args   := Tuple_New (1);
@@ -157,11 +174,11 @@ package body QtAda6.QtWidgets.QKeySequenceEdit is
       Result := Object_CallObject (Method, Args, True);
    end setMaximumSequenceLength;
    procedure timerEvent (self : access Inst; arg_1_P : access QtAda6.QtCore.QTimerEvent.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "timerEvent");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, arg_1_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end timerEvent;
 end QtAda6.QtWidgets.QKeySequenceEdit;

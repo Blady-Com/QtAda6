@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -21,42 +21,42 @@ package body QtAda6.QtWidgets.QTreeWidgetItemIterator is
       Free (Inst_Access (Self));
    end Finalize;
    function Create
-     (it_P : Union_QtAda6_QtWidgets_QTreeWidgetItemIterator_QtAda6_QtWidgets_QTreeWidget_QtAda6_QtWidgets_QTreeWidgetItem)
+     (it_P : UNION_QtAda6_QtWidgets_QTreeWidgetItemIteratorQtAda6_QtWidgets_QTreeWidgetQtAda6_QtWidgets_QTreeWidgetItem)
       return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if it_P /= null then it_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create
      (item_P  : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class;
-      flags_P : access QtAda6.QtWidgets.QTreeWidgetItemIterator.IteratorFlag.Inst'Class) return Class
+      flags_P : access QtAda6.QtWidgets.QTreeWidgetItemIterator.IteratorFlag.Inst'Class := null) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
       Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, item_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, flags_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if item_P /= null then item_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if flags_P /= null then flags_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create
      (widget_P : access QtAda6.QtWidgets.QTreeWidget.Inst'Class;
-      flags_P  : access QtAda6.QtWidgets.QTreeWidgetItemIterator.IteratorFlag.Inst'Class) return Class
+      flags_P  : access QtAda6.QtWidgets.QTreeWidgetItemIterator.IteratorFlag.Inst'Class := null) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
       Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, widget_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, flags_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if flags_P /= null then flags_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Result : Handle;
+      Class, Method, Args, List, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -65,8 +65,8 @@ package body QtAda6.QtWidgets.QTreeWidgetItemIterator is
    end U_copy_U;
    function U_iadd_U (self : access Inst; n_P : int) return access QtAda6.QtWidgets.QTreeWidgetItemIterator.Inst'Class
    is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtWidgets.QTreeWidgetItemIterator.Class :=
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtWidgets.QTreeWidgetItemIterator.Class :=
         new QtAda6.QtWidgets.QTreeWidgetItemIterator.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__iadd__");
@@ -78,8 +78,8 @@ package body QtAda6.QtWidgets.QTreeWidgetItemIterator is
    end U_iadd_U;
    function U_isub_U (self : access Inst; n_P : int) return access QtAda6.QtWidgets.QTreeWidgetItemIterator.Inst'Class
    is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtWidgets.QTreeWidgetItemIterator.Class :=
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtWidgets.QTreeWidgetItemIterator.Class :=
         new QtAda6.QtWidgets.QTreeWidgetItemIterator.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__isub__");
@@ -89,24 +89,24 @@ package body QtAda6.QtWidgets.QTreeWidgetItemIterator is
       Ret.Python_Proxy := Result;
       return Ret;
    end U_isub_U;
-   function U_iter_U (self : access Inst) return Object is
-      Method, Args, Result : Handle;
+   function U_iter_U (self : access Inst) return access Object'Class is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__iter__");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return (Python_Proxy => Result);
+      return null;
    end U_iter_U;
-   function U_next_U (self : access Inst) return Object is
-      Method, Args, Result : Handle;
+   function U_next_U (self : access Inst) return access Object'Class is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__next__");
       Args   := Tuple_New (0);
       Result := Object_CallObject (Method, Args, True);
-      return (Python_Proxy => Result);
+      return null;
    end U_next_U;
    function value (self : access Inst) return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QTreeWidgetItem.Class := new QtAda6.QtWidgets.QTreeWidgetItem.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "value");

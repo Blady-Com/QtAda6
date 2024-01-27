@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -47,25 +47,24 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtCore.Qt.CursorShape;
 limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtCore.Qt.FocusReason;
-limited with QtAda6.QtWidgets.QGraphicsTransform;
 limited with QtAda6.QtWidgets.QGraphicsSceneWheelEvent;
+with QtAda6.QtWidgets.QGraphicsTransform;
 package QtAda6.QtWidgets.QGraphicsItem is
-   type Optional_QtAda6_QtWidgets_QGraphicsItem is access Any;
-   type List_QtAda6_QtWidgets_QGraphicsItem is access Any;
-   type Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is access Any;
-   type Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect is access Any;
-   type Union_QtAda6_QtGui_QPolygonF_Sequence_QtAda6_QtCore_QPointF_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRectF is
-     access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
-   type Union_QtAda6_QtGui_QCursor_QtAda6_QtCore_Qt_CursorShape_QtAda6_QtGui_QPixmap is access Any;
-   type Sequence_QtAda6_QtWidgets_QGraphicsTransform is access Any;
-   type List_QtAda6_QtWidgets_QGraphicsTransform is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   subtype LIST_QtAda6_QtWidgets_QGraphicsItem is QtAda6.QtWidgets.QGraphicsItem.Class_Array;
+   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
+   type UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect is new Any;
+   type TUPLE is new Any;
+   type UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF is new Any;
+   type UNION_QtAda6_QtGui_QCursorQtAda6_QtCore_Qt_CursorShapeQtAda6_QtGui_QPixmap is new Any;
+   subtype SEQUENCE_QtAda6_QtWidgets_QGraphicsTransform is QtAda6.QtWidgets.QGraphicsTransform.Class_Array;
+   subtype LIST_QtAda6_QtWidgets_QGraphicsTransform is QtAda6.QtWidgets.QGraphicsTransform.Class_Array;
    procedure Finalize (Self : in out Class);
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QGraphicsItem) return Class;
+   function Create (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class;
    function acceptDrops (self : access Inst) return bool;
    function acceptHoverEvents (self : access Inst) return bool;
    function acceptTouchEvents (self : access Inst) return bool;
@@ -78,24 +77,24 @@ package QtAda6.QtWidgets.QGraphicsItem is
       return access QtAda6.QtGui.QRegion.Inst'Class;
    function boundingRegionGranularity (self : access Inst) return float;
    function cacheMode_F (self : access Inst) return access QtAda6.QtWidgets.QGraphicsItem.CacheMode.Inst'Class;
-   function childItems (self : access Inst) return List_QtAda6_QtWidgets_QGraphicsItem;
+   function childItems (self : access Inst) return LIST_QtAda6_QtWidgets_QGraphicsItem;
    function childrenBoundingRect (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class;
    procedure clearFocus (self : access Inst);
    function clipPath (self : access Inst) return access QtAda6.QtGui.QPainterPath.Inst'Class;
    function collidesWithItem
      (self   : access Inst; other_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class;
-      mode_P : access QtAda6.QtCore.Qt.ItemSelectionMode.Inst'Class) return bool;
+      mode_P : access QtAda6.QtCore.Qt.ItemSelectionMode.Inst'Class := null) return bool;
    function collidesWithPath
      (self   : access Inst; path_P : access QtAda6.QtGui.QPainterPath.Inst'Class;
-      mode_P : access QtAda6.QtCore.Qt.ItemSelectionMode.Inst'Class) return bool;
+      mode_P : access QtAda6.QtCore.Qt.ItemSelectionMode.Inst'Class := null) return bool;
    function collidingItems
-     (self : access Inst; mode_P : access QtAda6.QtCore.Qt.ItemSelectionMode.Inst'Class)
-      return List_QtAda6_QtWidgets_QGraphicsItem;
+     (self : access Inst; mode_P : access QtAda6.QtCore.Qt.ItemSelectionMode.Inst'Class := null)
+      return LIST_QtAda6_QtWidgets_QGraphicsItem;
    function commonAncestorItem
      (self : access Inst; other_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class)
       return access QtAda6.QtWidgets.QGraphicsItem.Inst'Class;
    function contains
-     (self : access Inst; point_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
       return bool;
    procedure contextMenuEvent
      (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneContextMenuEvent.Inst'Class);
@@ -113,9 +112,11 @@ package QtAda6.QtWidgets.QGraphicsItem is
    procedure dropEvent (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneDragDropEvent.Inst'Class);
    function effectiveOpacity (self : access Inst) return float;
    procedure ensureVisible
-     (self : access Inst; rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect; xmargin_P : int; ymargin_P : int);
+     (self      : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect := null; xmargin_P : int := 0;
+      ymargin_P : int := 0);
    procedure ensureVisible
-     (self : access Inst; x_P : float; y_P : float; w_P : float; h_P : float; xmargin_P : int; ymargin_P : int);
+     (self      : access Inst; x_P : float; y_P : float; w_P : float; h_P : float; xmargin_P : int := 0;
+      ymargin_P : int := 0);
    function extension_F (self : access Inst; variant_P : Any) return Any;
    function filtersChildEvents (self : access Inst) return bool;
    function flags (self : access Inst) return access QtAda6.QtWidgets.QGraphicsItem.GraphicsItemFlag.Inst'Class;
@@ -145,10 +146,10 @@ package QtAda6.QtWidgets.QGraphicsItem is
      (self : access Inst; filterItem_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class);
    function isActive (self : access Inst) return bool;
    function isAncestorOf (self : access Inst; child_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class) return bool;
-   function isBlockedByModalPanel (self : access Inst) return Tuple;
+   function isBlockedByModalPanel (self : access Inst) return TUPLE;
    function isClipped (self : access Inst) return bool;
    function isEnabled (self : access Inst) return bool;
-   function isObscured (self : access Inst; rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect) return bool;
+   function isObscured (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect := null) return bool;
    function isObscured (self : access Inst; x_P : float; y_P : float; w_P : float; h_P : float) return bool;
    function isObscuredBy (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class) return bool;
    function isPanel (self : access Inst) return bool;
@@ -161,7 +162,7 @@ package QtAda6.QtWidgets.QGraphicsItem is
    function itemChange_F
      (self : access Inst; change_P : access QtAda6.QtWidgets.QGraphicsItem.GraphicsItemChange.Inst'Class; value_P : Any)
       return Any;
-   function itemTransform (self : access Inst; other_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class) return Tuple;
+   function itemTransform (self : access Inst; other_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class) return TUPLE;
    procedure keyPressEvent (self : access Inst; event_P : access QtAda6.QtGui.QKeyEvent.Inst'Class);
    procedure keyReleaseEvent (self : access Inst; event_P : access QtAda6.QtGui.QKeyEvent.Inst'Class);
    function mapFromItem
@@ -169,15 +170,15 @@ package QtAda6.QtWidgets.QGraphicsItem is
       path_P : access QtAda6.QtGui.QPainterPath.Inst'Class) return access QtAda6.QtGui.QPainterPath.Inst'Class;
    function mapFromItem
      (self    : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class;
-      point_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+      point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapFromItem
      (self      : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class;
-      polygon_P : Union_QtAda6_QtGui_QPolygonF_Sequence_QtAda6_QtCore_QPointF_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRectF)
+      polygon_P : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF)
       return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function mapFromItem
      (self   : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class;
-      rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect) return access QtAda6.QtGui.QPolygonF.Inst'Class;
+      rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect) return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function mapFromItem
      (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class; x_P : float; y_P : float)
       return access QtAda6.QtCore.QPointF.Inst'Class;
@@ -188,14 +189,13 @@ package QtAda6.QtWidgets.QGraphicsItem is
      (self : access Inst; path_P : access QtAda6.QtGui.QPainterPath.Inst'Class)
       return access QtAda6.QtGui.QPainterPath.Inst'Class;
    function mapFromParent
-     (self : access Inst; point_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapFromParent
-     (self      : access Inst;
-      polygon_P : Union_QtAda6_QtGui_QPolygonF_Sequence_QtAda6_QtCore_QPointF_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRectF)
+     (self : access Inst; polygon_P : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF)
       return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function mapFromParent
-     (self : access Inst; rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect)
+     (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect)
       return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function mapFromParent (self : access Inst; x_P : float; y_P : float) return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapFromParent
@@ -205,14 +205,13 @@ package QtAda6.QtWidgets.QGraphicsItem is
      (self : access Inst; path_P : access QtAda6.QtGui.QPainterPath.Inst'Class)
       return access QtAda6.QtGui.QPainterPath.Inst'Class;
    function mapFromScene
-     (self : access Inst; point_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapFromScene
-     (self      : access Inst;
-      polygon_P : Union_QtAda6_QtGui_QPolygonF_Sequence_QtAda6_QtCore_QPointF_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRectF)
+     (self : access Inst; polygon_P : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF)
       return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function mapFromScene
-     (self : access Inst; rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect)
+     (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect)
       return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function mapFromScene (self : access Inst; x_P : float; y_P : float) return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapFromScene
@@ -220,36 +219,36 @@ package QtAda6.QtWidgets.QGraphicsItem is
       return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function mapRectFromItem
      (self   : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class;
-      rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect) return access QtAda6.QtCore.QRectF.Inst'Class;
+      rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect) return access QtAda6.QtCore.QRectF.Inst'Class;
    function mapRectFromItem
      (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class; x_P : float; y_P : float;
       w_P  : float; h_P : float) return access QtAda6.QtCore.QRectF.Inst'Class;
    function mapRectFromParent
-     (self : access Inst; rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect)
+     (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect)
       return access QtAda6.QtCore.QRectF.Inst'Class;
    function mapRectFromParent
      (self : access Inst; x_P : float; y_P : float; w_P : float; h_P : float)
       return access QtAda6.QtCore.QRectF.Inst'Class;
    function mapRectFromScene
-     (self : access Inst; rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect)
+     (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect)
       return access QtAda6.QtCore.QRectF.Inst'Class;
    function mapRectFromScene
      (self : access Inst; x_P : float; y_P : float; w_P : float; h_P : float)
       return access QtAda6.QtCore.QRectF.Inst'Class;
    function mapRectToItem
      (self   : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class;
-      rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect) return access QtAda6.QtCore.QRectF.Inst'Class;
+      rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect) return access QtAda6.QtCore.QRectF.Inst'Class;
    function mapRectToItem
      (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class; x_P : float; y_P : float;
       w_P  : float; h_P : float) return access QtAda6.QtCore.QRectF.Inst'Class;
    function mapRectToParent
-     (self : access Inst; rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect)
+     (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect)
       return access QtAda6.QtCore.QRectF.Inst'Class;
    function mapRectToParent
      (self : access Inst; x_P : float; y_P : float; w_P : float; h_P : float)
       return access QtAda6.QtCore.QRectF.Inst'Class;
    function mapRectToScene
-     (self : access Inst; rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect)
+     (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect)
       return access QtAda6.QtCore.QRectF.Inst'Class;
    function mapRectToScene
      (self : access Inst; x_P : float; y_P : float; w_P : float; h_P : float)
@@ -259,15 +258,15 @@ package QtAda6.QtWidgets.QGraphicsItem is
       path_P : access QtAda6.QtGui.QPainterPath.Inst'Class) return access QtAda6.QtGui.QPainterPath.Inst'Class;
    function mapToItem
      (self    : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class;
-      point_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+      point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapToItem
      (self      : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class;
-      polygon_P : Union_QtAda6_QtGui_QPolygonF_Sequence_QtAda6_QtCore_QPointF_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRectF)
+      polygon_P : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF)
       return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function mapToItem
      (self   : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class;
-      rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect) return access QtAda6.QtGui.QPolygonF.Inst'Class;
+      rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect) return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function mapToItem
      (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class; x_P : float; y_P : float)
       return access QtAda6.QtCore.QPointF.Inst'Class;
@@ -278,14 +277,13 @@ package QtAda6.QtWidgets.QGraphicsItem is
      (self : access Inst; path_P : access QtAda6.QtGui.QPainterPath.Inst'Class)
       return access QtAda6.QtGui.QPainterPath.Inst'Class;
    function mapToParent
-     (self : access Inst; point_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapToParent
-     (self      : access Inst;
-      polygon_P : Union_QtAda6_QtGui_QPolygonF_Sequence_QtAda6_QtCore_QPointF_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRectF)
+     (self : access Inst; polygon_P : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF)
       return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function mapToParent
-     (self : access Inst; rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect)
+     (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect)
       return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function mapToParent (self : access Inst; x_P : float; y_P : float) return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapToParent
@@ -295,14 +293,13 @@ package QtAda6.QtWidgets.QGraphicsItem is
      (self : access Inst; path_P : access QtAda6.QtGui.QPainterPath.Inst'Class)
       return access QtAda6.QtGui.QPainterPath.Inst'Class;
    function mapToScene
-     (self : access Inst; point_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapToScene
-     (self      : access Inst;
-      polygon_P : Union_QtAda6_QtGui_QPolygonF_Sequence_QtAda6_QtCore_QPointF_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRectF)
+     (self : access Inst; polygon_P : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF)
       return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function mapToScene
-     (self : access Inst; rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect)
+     (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect)
       return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function mapToScene (self : access Inst; x_P : float; y_P : float) return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapToScene
@@ -321,7 +318,7 @@ package QtAda6.QtWidgets.QGraphicsItem is
    procedure paint
      (self     : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
       option_P : access QtAda6.QtWidgets.QStyleOptionGraphicsItem.Inst'Class;
-      widget_P : Optional_QtAda6_QtWidgets_QWidget);
+      widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null);
    function panel_F (self : access Inst) return access QtAda6.QtWidgets.QGraphicsItem.Inst'Class;
    function panelModality_F (self : access Inst) return access QtAda6.QtWidgets.QGraphicsItem.PanelModality.Inst'Class;
    function parentItem (self : access Inst) return access QtAda6.QtWidgets.QGraphicsItem.Inst'Class;
@@ -344,7 +341,7 @@ package QtAda6.QtWidgets.QGraphicsItem is
    function scenePos (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class;
    function sceneTransform (self : access Inst) return access QtAda6.QtGui.QTransform.Inst'Class;
    procedure scroll
-     (self : access Inst; dx_P : float; dy_P : float; rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect);
+     (self : access Inst; dx_P : float; dy_P : float; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect := null);
    procedure setAcceptDrops (self : access Inst; on_P : bool);
    procedure setAcceptHoverEvents (self : access Inst; enabled_P : bool);
    procedure setAcceptTouchEvents (self : access Inst; enabled_P : bool);
@@ -353,16 +350,17 @@ package QtAda6.QtWidgets.QGraphicsItem is
    procedure setBoundingRegionGranularity (self : access Inst; granularity_P : float);
    procedure setCacheMode
      (self        : access Inst; mode_P : access QtAda6.QtWidgets.QGraphicsItem.CacheMode.Inst'Class;
-      cacheSize_P : access QtAda6.QtCore.QSize.Inst'Class);
+      cacheSize_P : access QtAda6.QtCore.QSize.Inst'Class := null);
    procedure setCursor
-     (self : access Inst; cursor_P : Union_QtAda6_QtGui_QCursor_QtAda6_QtCore_Qt_CursorShape_QtAda6_QtGui_QPixmap);
+     (self : access Inst; cursor_P : UNION_QtAda6_QtGui_QCursorQtAda6_QtCore_Qt_CursorShapeQtAda6_QtGui_QPixmap);
    procedure setData (self : access Inst; key_P : int; value_P : Any);
    procedure setEnabled (self : access Inst; enabled_P : bool);
    procedure setFiltersChildEvents (self : access Inst; enabled_P : bool);
    procedure setFlag
-     (self : access Inst; flag_P : access QtAda6.QtWidgets.QGraphicsItem.GraphicsItemFlag.Inst'Class; enabled_P : bool);
+     (self      : access Inst; flag_P : access QtAda6.QtWidgets.QGraphicsItem.GraphicsItemFlag.Inst'Class;
+      enabled_P : bool := False);
    procedure setFlags (self : access Inst; flags_P : access QtAda6.QtWidgets.QGraphicsItem.GraphicsItemFlag.Inst'Class);
-   procedure setFocus (self : access Inst; focusReason_P : access QtAda6.QtCore.Qt.FocusReason.Inst'Class);
+   procedure setFocus (self : access Inst; focusReason_P : access QtAda6.QtCore.Qt.FocusReason.Inst'Class := null);
    procedure setFocusProxy (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class);
    procedure setGraphicsEffect (self : access Inst; effect_P : access QtAda6.QtWidgets.QGraphicsEffect.Inst'Class);
    procedure setGroup (self : access Inst; group_P : access QtAda6.QtWidgets.QGraphicsItemGroup.Inst'Class);
@@ -373,18 +371,18 @@ package QtAda6.QtWidgets.QGraphicsItem is
      (self : access Inst; panelModality_P : access QtAda6.QtWidgets.QGraphicsItem.PanelModality.Inst'Class);
    procedure setParentItem (self : access Inst; parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class);
    procedure setPos
-     (self : access Inst; pos_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element);
+     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element);
    procedure setPos (self : access Inst; x_P : float; y_P : float);
    procedure setRotation (self : access Inst; angle_P : float);
    procedure setScale (self : access Inst; scale_P : float);
    procedure setSelected (self : access Inst; selected_P : bool);
    procedure setToolTip (self : access Inst; toolTip_P : str);
-   procedure setTransform (self : access Inst; matrix_P : access QtAda6.QtGui.QTransform.Inst'Class; combine_P : bool);
+   procedure setTransform
+     (self : access Inst; matrix_P : access QtAda6.QtGui.QTransform.Inst'Class; combine_P : bool := False);
    procedure setTransformOriginPoint (self : access Inst; ax_P : float; ay_P : float);
    procedure setTransformOriginPoint
-     (self     : access Inst;
-      origin_P : Union_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element);
-   procedure setTransformations (self : access Inst; transformations_P : Sequence_QtAda6_QtWidgets_QGraphicsTransform);
+     (self : access Inst; origin_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element);
+   procedure setTransformations (self : access Inst; transformations_P : SEQUENCE_QtAda6_QtWidgets_QGraphicsTransform);
    procedure setVisible (self : access Inst; visible_P : bool);
    procedure setX (self : access Inst; x_P : float);
    procedure setY (self : access Inst; y_P : float);
@@ -398,12 +396,12 @@ package QtAda6.QtWidgets.QGraphicsItem is
    function topLevelWidget (self : access Inst) return access QtAda6.QtWidgets.QGraphicsWidget.Inst'Class;
    function transform (self : access Inst) return access QtAda6.QtGui.QTransform.Inst'Class;
    function transformOriginPoint (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class;
-   function transformations (self : access Inst) return List_QtAda6_QtWidgets_QGraphicsTransform;
+   function transformations (self : access Inst) return LIST_QtAda6_QtWidgets_QGraphicsTransform;
    function type_K (self : access Inst) return int;
    procedure ungrabKeyboard (self : access Inst);
    procedure ungrabMouse (self : access Inst);
    procedure unsetCursor (self : access Inst);
-   procedure update (self : access Inst; rect_P : Union_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect);
+   procedure update (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect := null);
    procedure update (self : access Inst; x_P : float; y_P : float; width_P : float; height_P : float);
    procedure updateMicroFocus (self : access Inst);
    procedure wheelEvent (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneWheelEvent.Inst'Class);

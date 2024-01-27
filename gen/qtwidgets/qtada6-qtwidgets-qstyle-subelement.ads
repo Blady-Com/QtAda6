@@ -4,74 +4,74 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with Enum.IntEnum;
 package QtAda6.QtWidgets.QStyle.SubElement is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
-   type Inst is new Enum.IntEnum.Inst with null record;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
+   type Inst is new Enum.IntEnum with null record;
    procedure Finalize (Self : in out Class);
-   SE_PushButtonContents         : QStyle.SubElement.Class;-- 0x0
-   SE_PushButtonFocusRect        : QStyle.SubElement.Class;-- 0x1
-   SE_CheckBoxIndicator          : QStyle.SubElement.Class;-- 0x2
-   SE_CheckBoxContents           : QStyle.SubElement.Class;-- 0x3
-   SE_CheckBoxFocusRect          : QStyle.SubElement.Class;-- 0x4
-   SE_CheckBoxClickRect          : QStyle.SubElement.Class;-- 0x5
-   SE_RadioButtonIndicator       : QStyle.SubElement.Class;-- 0x6
-   SE_RadioButtonContents        : QStyle.SubElement.Class;-- 0x7
-   SE_RadioButtonFocusRect       : QStyle.SubElement.Class;-- 0x8
-   SE_RadioButtonClickRect       : QStyle.SubElement.Class;-- 0x9
-   SE_ComboBoxFocusRect          : QStyle.SubElement.Class;-- 0xa
-   SE_SliderFocusRect            : QStyle.SubElement.Class;-- 0xb
-   SE_ProgressBarGroove          : QStyle.SubElement.Class;-- 0xc
-   SE_ProgressBarContents        : QStyle.SubElement.Class;-- 0xd
-   SE_ProgressBarLabel           : QStyle.SubElement.Class;-- 0xe
-   SE_ToolBoxTabContents         : QStyle.SubElement.Class;-- 0xf
-   SE_HeaderLabel                : QStyle.SubElement.Class;-- 0x10
-   SE_HeaderArrow                : QStyle.SubElement.Class;-- 0x11
-   SE_TabWidgetTabBar            : QStyle.SubElement.Class;-- 0x12
-   SE_TabWidgetTabPane           : QStyle.SubElement.Class;-- 0x13
-   SE_TabWidgetTabContents       : QStyle.SubElement.Class;-- 0x14
-   SE_TabWidgetLeftCorner        : QStyle.SubElement.Class;-- 0x15
-   SE_TabWidgetRightCorner       : QStyle.SubElement.Class;-- 0x16
-   SE_ItemViewItemCheckIndicator : QStyle.SubElement.Class;-- 0x17
-   SE_TabBarTearIndicator        : QStyle.SubElement.Class;-- 0x18
-   SE_TabBarTearIndicatorLeft    : QStyle.SubElement.Class;-- 0x18
-   SE_TreeViewDisclosureItem     : QStyle.SubElement.Class;-- 0x19
-   SE_LineEditContents           : QStyle.SubElement.Class;-- 0x1a
-   SE_FrameContents              : QStyle.SubElement.Class;-- 0x1b
-   SE_DockWidgetCloseButton      : QStyle.SubElement.Class;-- 0x1c
-   SE_DockWidgetFloatButton      : QStyle.SubElement.Class;-- 0x1d
-   SE_DockWidgetTitleBarText     : QStyle.SubElement.Class;-- 0x1e
-   SE_DockWidgetIcon             : QStyle.SubElement.Class;-- 0x1f
-   SE_CheckBoxLayoutItem         : QStyle.SubElement.Class;-- 0x20
-   SE_ComboBoxLayoutItem         : QStyle.SubElement.Class;-- 0x21
-   SE_DateTimeEditLayoutItem     : QStyle.SubElement.Class;-- 0x22
-   SE_LabelLayoutItem            : QStyle.SubElement.Class;-- 0x23
-   SE_ProgressBarLayoutItem      : QStyle.SubElement.Class;-- 0x24
-   SE_PushButtonLayoutItem       : QStyle.SubElement.Class;-- 0x25
-   SE_RadioButtonLayoutItem      : QStyle.SubElement.Class;-- 0x26
-   SE_SliderLayoutItem           : QStyle.SubElement.Class;-- 0x27
-   SE_SpinBoxLayoutItem          : QStyle.SubElement.Class;-- 0x28
-   SE_ToolButtonLayoutItem       : QStyle.SubElement.Class;-- 0x29
-   SE_FrameLayoutItem            : QStyle.SubElement.Class;-- 0x2a
-   SE_GroupBoxLayoutItem         : QStyle.SubElement.Class;-- 0x2b
-   SE_TabWidgetLayoutItem        : QStyle.SubElement.Class;-- 0x2c
-   SE_ItemViewItemDecoration     : QStyle.SubElement.Class;-- 0x2d
-   SE_ItemViewItemText           : QStyle.SubElement.Class;-- 0x2e
-   SE_ItemViewItemFocusRect      : QStyle.SubElement.Class;-- 0x2f
-   SE_TabBarTabLeftButton        : QStyle.SubElement.Class;-- 0x30
-   SE_TabBarTabRightButton       : QStyle.SubElement.Class;-- 0x31
-   SE_TabBarTabText              : QStyle.SubElement.Class;-- 0x32
-   SE_ShapedFrameContents        : QStyle.SubElement.Class;-- 0x33
-   SE_ToolBarHandle              : QStyle.SubElement.Class;-- 0x34
-   SE_TabBarScrollLeftButton     : QStyle.SubElement.Class;-- 0x35
-   SE_TabBarScrollRightButton    : QStyle.SubElement.Class;-- 0x36
-   SE_TabBarTearIndicatorRight   : QStyle.SubElement.Class;-- 0x37
-   SE_PushButtonBevel            : QStyle.SubElement.Class;-- 0x38
-   SE_CustomBase                 : QStyle.SubElement.Class;-- 0xf0000000
+   function SE_PushButtonContents return Class;-- 0x0
+   function SE_PushButtonFocusRect return Class;-- 0x1
+   function SE_CheckBoxIndicator return Class;-- 0x2
+   function SE_CheckBoxContents return Class;-- 0x3
+   function SE_CheckBoxFocusRect return Class;-- 0x4
+   function SE_CheckBoxClickRect return Class;-- 0x5
+   function SE_RadioButtonIndicator return Class;-- 0x6
+   function SE_RadioButtonContents return Class;-- 0x7
+   function SE_RadioButtonFocusRect return Class;-- 0x8
+   function SE_RadioButtonClickRect return Class;-- 0x9
+   function SE_ComboBoxFocusRect return Class;-- 0xa
+   function SE_SliderFocusRect return Class;-- 0xb
+   function SE_ProgressBarGroove return Class;-- 0xc
+   function SE_ProgressBarContents return Class;-- 0xd
+   function SE_ProgressBarLabel return Class;-- 0xe
+   function SE_ToolBoxTabContents return Class;-- 0xf
+   function SE_HeaderLabel return Class;-- 0x10
+   function SE_HeaderArrow return Class;-- 0x11
+   function SE_TabWidgetTabBar return Class;-- 0x12
+   function SE_TabWidgetTabPane return Class;-- 0x13
+   function SE_TabWidgetTabContents return Class;-- 0x14
+   function SE_TabWidgetLeftCorner return Class;-- 0x15
+   function SE_TabWidgetRightCorner return Class;-- 0x16
+   function SE_ItemViewItemCheckIndicator return Class;-- 0x17
+   function SE_TabBarTearIndicator return Class;-- 0x18
+   function SE_TabBarTearIndicatorLeft return Class;-- 0x18
+   function SE_TreeViewDisclosureItem return Class;-- 0x19
+   function SE_LineEditContents return Class;-- 0x1a
+   function SE_FrameContents return Class;-- 0x1b
+   function SE_DockWidgetCloseButton return Class;-- 0x1c
+   function SE_DockWidgetFloatButton return Class;-- 0x1d
+   function SE_DockWidgetTitleBarText return Class;-- 0x1e
+   function SE_DockWidgetIcon return Class;-- 0x1f
+   function SE_CheckBoxLayoutItem return Class;-- 0x20
+   function SE_ComboBoxLayoutItem return Class;-- 0x21
+   function SE_DateTimeEditLayoutItem return Class;-- 0x22
+   function SE_LabelLayoutItem return Class;-- 0x23
+   function SE_ProgressBarLayoutItem return Class;-- 0x24
+   function SE_PushButtonLayoutItem return Class;-- 0x25
+   function SE_RadioButtonLayoutItem return Class;-- 0x26
+   function SE_SliderLayoutItem return Class;-- 0x27
+   function SE_SpinBoxLayoutItem return Class;-- 0x28
+   function SE_ToolButtonLayoutItem return Class;-- 0x29
+   function SE_FrameLayoutItem return Class;-- 0x2a
+   function SE_GroupBoxLayoutItem return Class;-- 0x2b
+   function SE_TabWidgetLayoutItem return Class;-- 0x2c
+   function SE_ItemViewItemDecoration return Class;-- 0x2d
+   function SE_ItemViewItemText return Class;-- 0x2e
+   function SE_ItemViewItemFocusRect return Class;-- 0x2f
+   function SE_TabBarTabLeftButton return Class;-- 0x30
+   function SE_TabBarTabRightButton return Class;-- 0x31
+   function SE_TabBarTabText return Class;-- 0x32
+   function SE_ShapedFrameContents return Class;-- 0x33
+   function SE_ToolBarHandle return Class;-- 0x34
+   function SE_TabBarScrollLeftButton return Class;-- 0x35
+   function SE_TabBarScrollRightButton return Class;-- 0x36
+   function SE_TabBarTearIndicatorRight return Class;-- 0x37
+   function SE_PushButtonBevel return Class;-- 0x38
+   function SE_CustomBase return Class;-- 0xf0000000
 end QtAda6.QtWidgets.QStyle.SubElement;

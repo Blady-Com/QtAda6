@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -24,38 +24,40 @@ package body QtAda6.QtWidgets.QUndoView is
       Free (Inst_Access (Self));
    end Finalize;
    function Create
-     (group_P : access QtAda6.QtGui.QUndoGroup.Inst'Class; parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class
+     (group_P  : access QtAda6.QtGui.QUndoGroup.Inst'Class;
+      parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QUndoView");
       Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, group_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 0, (if group_P /= null then group_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class is
-      Class, Args : Handle;
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QUndoView");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function Create
-     (stack_P : access QtAda6.QtGui.QUndoStack.Inst'Class; parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class
+     (stack_P  : access QtAda6.QtGui.QUndoStack.Inst'Class;
+      parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QUndoView");
       Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, stack_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 0, (if stack_P /= null then stack_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function cleanIcon (self : access Inst) return access QtAda6.QtGui.QIcon.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "cleanIcon");
       Args             := Tuple_New (0);
@@ -64,7 +66,7 @@ package body QtAda6.QtWidgets.QUndoView is
       return Ret;
    end cleanIcon;
    function emptyLabel (self : access Inst) return str is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "emptyLabel");
       Args   := Tuple_New (0);
@@ -72,8 +74,8 @@ package body QtAda6.QtWidgets.QUndoView is
       return As_String (Result);
    end emptyLabel;
    function group (self : access Inst) return access QtAda6.QtGui.QUndoGroup.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QUndoGroup.Class := new QtAda6.QtGui.QUndoGroup.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QUndoGroup.Class := new QtAda6.QtGui.QUndoGroup.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "group");
       Args             := Tuple_New (0);
@@ -81,16 +83,16 @@ package body QtAda6.QtWidgets.QUndoView is
       Ret.Python_Proxy := Result;
       return Ret;
    end group;
-   procedure setCleanIcon (self : access Inst; icon_P : Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap) is
-      Method, Args, Result : Handle;
+   procedure setCleanIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap) is
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCleanIcon");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if icon_P /= null then icon_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setCleanIcon;
    procedure setEmptyLabel (self : access Inst; label_P : str) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setEmptyLabel");
       Args   := Tuple_New (1);
@@ -98,24 +100,24 @@ package body QtAda6.QtWidgets.QUndoView is
       Result := Object_CallObject (Method, Args, True);
    end setEmptyLabel;
    procedure setGroup (self : access Inst; group_P : access QtAda6.QtGui.QUndoGroup.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setGroup");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, group_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if group_P /= null then group_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setGroup;
    procedure setStack (self : access Inst; stack_P : access QtAda6.QtGui.QUndoStack.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStack");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, stack_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if stack_P /= null then stack_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setStack;
    function stack (self : access Inst) return access QtAda6.QtGui.QUndoStack.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtGui.QUndoStack.Class := new QtAda6.QtGui.QUndoStack.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtGui.QUndoStack.Class := new QtAda6.QtGui.QUndoStack.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "stack");
       Args             := Tuple_New (0);

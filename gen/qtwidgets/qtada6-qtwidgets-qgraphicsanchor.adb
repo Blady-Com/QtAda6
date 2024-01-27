@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -20,15 +20,15 @@ package body QtAda6.QtWidgets.QGraphicsAnchor is
       Free (Inst_Access (Self));
    end Finalize;
    procedure setSizePolicy (self : access Inst; policy_P : access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSizePolicy");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, policy_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if policy_P /= null then policy_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setSizePolicy;
    procedure setSpacing (self : access Inst; spacing_P : float) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSpacing");
       Args   := Tuple_New (1);
@@ -36,7 +36,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchor is
       Result := Object_CallObject (Method, Args, True);
    end setSpacing;
    function sizePolicy (self : access Inst) return access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QSizePolicy.Policy.Class := new QtAda6.QtWidgets.QSizePolicy.Policy.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizePolicy");
@@ -46,7 +46,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchor is
       return Ret;
    end sizePolicy;
    function spacing (self : access Inst) return float is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "spacing");
       Args   := Tuple_New (0);
@@ -54,7 +54,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchor is
       return Float_AsDouble (Result);
    end spacing;
    procedure unsetSpacing (self : access Inst) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "unsetSpacing");
       Args   := Tuple_New (0);

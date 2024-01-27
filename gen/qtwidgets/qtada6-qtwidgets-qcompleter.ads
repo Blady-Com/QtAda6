@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -20,26 +20,28 @@ limited with QtAda6.QtCore.QPersistentModelIndex;
 limited with QtAda6.QtWidgets.QAbstractItemView;
 limited with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QCompleter is
-   type ClassVar_Signal is access Any;
-   type Sequence_str is access Any;
-   type Optional_QtAda6_QtCore_QObject is access Any;
-   type Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is access Any;
-   type List_str is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   type SEQUENCE_str is array (Positive range <>) of str;
+   type UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex is new Any;
+   type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
-   activated   : ClassVar_Signal;-- activated(QString)
-   highlighted : ClassVar_Signal;-- highlighted(QString)
-   function Create (completions_P : Sequence_str; parent_P : Optional_QtAda6_QtCore_QObject) return Class;
+   function activated (self : access Inst) return CLASSVAR_Signal;-- activated(QString)
+   function highlighted (self : access Inst) return CLASSVAR_Signal;-- highlighted(QString)
    function Create
-     (model_P : access QtAda6.QtCore.QAbstractItemModel.Inst'Class; parent_P : Optional_QtAda6_QtCore_QObject)
-      return Class;
-   function Create (parent_P : Optional_QtAda6_QtCore_QObject) return Class;
+     (completions_P : SEQUENCE_str; parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
+   function Create
+     (model_P  : access QtAda6.QtCore.QAbstractItemModel.Inst'Class;
+      parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
+   function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function caseSensitivity (self : access Inst) return access QtAda6.QtCore.Qt.CaseSensitivity.Inst'Class;
-   procedure complete (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class);
+   procedure complete (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class := null);
    function completionColumn (self : access Inst) return int;
    function completionCount (self : access Inst) return int;
    function completionMode_F (self : access Inst) return access QtAda6.QtWidgets.QCompleter.CompletionMode.Inst'Class;
@@ -58,7 +60,7 @@ package QtAda6.QtWidgets.QCompleter is
    function model_F (self : access Inst) return access QtAda6.QtCore.QAbstractItemModel.Inst'Class;
    function modelSorting_F (self : access Inst) return access QtAda6.QtWidgets.QCompleter.ModelSorting.Inst'Class;
    function pathFromIndex
-     (self : access Inst; index_P : Union_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return str;
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return str;
    function popup (self : access Inst) return access QtAda6.QtWidgets.QAbstractItemView.Inst'Class;
    procedure setCaseSensitivity
      (self : access Inst; caseSensitivity_P : access QtAda6.QtCore.Qt.CaseSensitivity.Inst'Class);
@@ -76,7 +78,7 @@ package QtAda6.QtWidgets.QCompleter is
    procedure setPopup (self : access Inst; popup_P : access QtAda6.QtWidgets.QAbstractItemView.Inst'Class);
    procedure setWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    procedure setWrapAround (self : access Inst; wrap_P : bool);
-   function splitPath (self : access Inst; path_P : str) return List_str;
+   function splitPath (self : access Inst; path_P : str) return LIST_str;
    function widget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class;
    function wrapAround (self : access Inst) return bool;
 end QtAda6.QtWidgets.QCompleter;

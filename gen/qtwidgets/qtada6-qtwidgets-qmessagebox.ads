@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -12,7 +12,6 @@ limited with QtAda6.QtWidgets.QMessageBox.Icon;
 limited with QtAda6.QtWidgets.QMessageBox.StandardButton;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.Qt.WindowType;
-limited with QtAda6.QtWidgets.QAbstractButton;
 limited with QtAda6.QtWidgets.QMessageBox.ButtonRole;
 limited with QtAda6.QtWidgets.QPushButton;
 limited with QtAda6.QtCore.QEvent;
@@ -28,25 +27,27 @@ limited with QtAda6.QtCore.Qt.TextInteractionFlag;
 limited with QtAda6.QtCore.Qt.WindowModality;
 limited with QtAda6.QtGui.QShowEvent;
 with QtAda6.QtWidgets.QDialog;
+with QtAda6.QtCore.Signal;
+with QtAda6.QtWidgets.QAbstractButton;
 package QtAda6.QtWidgets.QMessageBox is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
-   type List_QtAda6_QtWidgets_QAbstractButton is access Any;
-   type Union_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QDialog.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   subtype LIST_QtAda6_QtWidgets_QAbstractButton is QtAda6.QtWidgets.QAbstractButton.Class_Array;
+   type UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr is new Any;
    procedure Finalize (Self : in out Class);
-   buttonClicked : ClassVar_Signal;-- buttonClicked(QAbstractButton*)
+   function buttonClicked (self : access Inst) return CLASSVAR_Signal;-- buttonClicked(QAbstractButton*)
    function Create
      (icon_P    : access QtAda6.QtWidgets.QMessageBox.Icon.Inst'Class; title_P : str; text_P : str;
-      buttons_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;
-      parent_P  : Optional_QtAda6_QtWidgets_QWidget; flags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class)
-      return Class;
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+      buttons_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class := null;
+      parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class                    := null;
+      flags_P   : access QtAda6.QtCore.Qt.WindowType.Inst'Class                 := null) return Class;
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    procedure about (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; text_P : str);
-   procedure aboutQt (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str);
+   procedure aboutQt (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str := "");
    procedure addButton
      (self   : access Inst; button_P : access QtAda6.QtWidgets.QAbstractButton.Inst'Class;
       role_P : access QtAda6.QtWidgets.QMessageBox.ButtonRole.Inst'Class);
@@ -63,7 +64,7 @@ package QtAda6.QtWidgets.QMessageBox is
      (self : access Inst; button_P : access QtAda6.QtWidgets.QAbstractButton.Inst'Class)
       return access QtAda6.QtWidgets.QMessageBox.ButtonRole.Inst'Class;
    function buttonText (self : access Inst; button_P : int) return str;
-   function buttons (self : access Inst) return List_QtAda6_QtWidgets_QAbstractButton;
+   function buttons (self : access Inst) return LIST_QtAda6_QtWidgets_QAbstractButton;
    procedure changeEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class);
    function checkBox (self : access Inst) return access QtAda6.QtWidgets.QCheckBox.Inst'Class;
    function clickedButton (self : access Inst) return access QtAda6.QtWidgets.QAbstractButton.Inst'Class;
@@ -72,7 +73,11 @@ package QtAda6.QtWidgets.QMessageBox is
      (parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; text_P : str;
       button0_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;
       button1_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class) return int;
--- function critical(parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class;title_P : str;text_P : str;buttons_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;defaultButton_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class) return access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;
+   function critical
+     (parent_P        : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; text_P : str;
+      buttons_P       : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class := null;
+      defaultButton_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class := null)
+      return access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;
    function defaultButton (self : access Inst) return access QtAda6.QtWidgets.QPushButton.Inst'Class;
    function detailedText (self : access Inst) return str;
    function escapeButton (self : access Inst) return access QtAda6.QtWidgets.QAbstractButton.Inst'Class;
@@ -82,9 +87,9 @@ package QtAda6.QtWidgets.QMessageBox is
    function information
      (parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; text_P : str;
       button0_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;
-      button1_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class)
+      button1_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class := null)
       return access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;
--- function information(parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class;title_P : str;text_P : str;buttons_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;defaultButton_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class) return access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;
+-- function information(parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class;title_P : str;text_P : str;buttons_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class := null;defaultButton_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class := null) return access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;
    function informativeText (self : access Inst) return str;
    procedure keyPressEvent (self : access Inst; event_P : access QtAda6.QtGui.QKeyEvent.Inst'Class);
    procedure open (self : access Inst);
@@ -93,7 +98,11 @@ package QtAda6.QtWidgets.QMessageBox is
      (parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; text_P : str;
       button0_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;
       button1_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class) return int;
--- function question(parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class;title_P : str;text_P : str;buttons_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;defaultButton_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class) return access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;
+   function question
+     (parent_P        : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; text_P : str;
+      buttons_P       : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class := null;
+      defaultButton_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class := null)
+      return access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;
    procedure removeButton (self : access Inst; button_P : access QtAda6.QtWidgets.QAbstractButton.Inst'Class);
    procedure resizeEvent (self : access Inst; event_P : access QtAda6.QtGui.QResizeEvent.Inst'Class);
    procedure setButtonText (self : access Inst; button_P : int; text_P : str);
@@ -106,7 +115,7 @@ package QtAda6.QtWidgets.QMessageBox is
    procedure setEscapeButton
      (self : access Inst; button_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class);
    procedure setIcon (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QMessageBox.Icon.Inst'Class);
-   procedure setIconPixmap (self : access Inst; pixmap_P : Union_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str);
+   procedure setIconPixmap (self : access Inst; pixmap_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr);
    procedure setInformativeText (self : access Inst; text_P : str);
    procedure setStandardButtons
      (self : access Inst; buttons_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class);
@@ -131,5 +140,9 @@ package QtAda6.QtWidgets.QMessageBox is
      (parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; text_P : str;
       button0_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;
       button1_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class) return int;
--- function warning(parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class;title_P : str;text_P : str;buttons_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;defaultButton_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class) return access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;
+   function warning
+     (parent_P        : access QtAda6.QtWidgets.QWidget.Inst'Class; title_P : str; text_P : str;
+      buttons_P       : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class := null;
+      defaultButton_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class := null)
+      return access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class;
 end QtAda6.QtWidgets.QMessageBox;

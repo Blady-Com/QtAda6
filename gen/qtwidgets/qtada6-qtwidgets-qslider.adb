@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -27,45 +27,45 @@ package body QtAda6.QtWidgets.QSlider is
       Free (Inst_Access (Self));
    end Finalize;
    function Create
-     (orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class; parent_P : Optional_QtAda6_QtWidgets_QWidget)
-      return Class
+     (orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class;
+      parent_P      : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class
    is
-      Class, Args : Handle;
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSlider");
       Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, orientation_P.Python_Proxy);
-      Tuple_SetItem (Args, 1, No_Value);
+      Tuple_SetItem (Args, 0, (if orientation_P /= null then orientation_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class is
-      Class, Args : Handle;
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
+      Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSlider");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, No_Value);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, event_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if event_P /= null then event_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
       return To_Ada (Result);
    end event;
    procedure initStyleOption (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionSlider.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "initStyleOption");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, option_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if option_P /= null then option_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end initStyleOption;
    function minimumSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSizeHint");
       Args             := Tuple_New (0);
@@ -74,39 +74,39 @@ package body QtAda6.QtWidgets.QSlider is
       return Ret;
    end minimumSizeHint;
    procedure mouseMoveEvent (self : access Inst; ev_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseMoveEvent");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, ev_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if ev_P /= null then ev_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end mouseMoveEvent;
    procedure mousePressEvent (self : access Inst; ev_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mousePressEvent");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, ev_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if ev_P /= null then ev_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end mousePressEvent;
    procedure mouseReleaseEvent (self : access Inst; ev_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseReleaseEvent");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, ev_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if ev_P /= null then ev_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end mouseReleaseEvent;
    procedure paintEvent (self : access Inst; ev_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, ev_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if ev_P /= null then ev_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end paintEvent;
    procedure setTickInterval (self : access Inst; ti_P : int) is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTickInterval");
       Args   := Tuple_New (1);
@@ -115,16 +115,16 @@ package body QtAda6.QtWidgets.QSlider is
    end setTickInterval;
    procedure setTickPosition (self : access Inst; position_P : access QtAda6.QtWidgets.QSlider.TickPosition.Inst'Class)
    is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTickPosition");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, position_P.Python_Proxy);
+      Tuple_SetItem (Args, 0, (if position_P /= null then position_P.Python_Proxy else No_Value));
       Result := Object_CallObject (Method, Args, True);
    end setTickPosition;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Result : Handle;
-      Ret                  : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, List, Result : Handle;
+      Ret                        : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -133,7 +133,7 @@ package body QtAda6.QtWidgets.QSlider is
       return Ret;
    end sizeHint;
    function tickInterval (self : access Inst) return int is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tickInterval");
       Args   := Tuple_New (0);
@@ -141,7 +141,7 @@ package body QtAda6.QtWidgets.QSlider is
       return Long_AsLong (Result);
    end tickInterval;
    function tickPosition_F (self : access Inst) return access QtAda6.QtWidgets.QSlider.TickPosition.Inst'Class is
-      Method, Args, Result : Handle;
+      Method, Args, List, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QSlider.TickPosition.Class := new QtAda6.QtWidgets.QSlider.TickPosition.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "tickPosition");

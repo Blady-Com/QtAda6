@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -23,29 +23,30 @@ limited with QtAda6.QtWidgets.QTabWidget.TabPosition;
 limited with QtAda6.QtWidgets.QTabWidget.TabShape;
 limited with QtAda6.QtGui.QShowEvent;
 with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QTabWidget is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
-   type Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
+   type UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap is new Any;
    procedure Finalize (Self : in out Class);
-   currentChanged      : ClassVar_Signal;-- currentChanged(int)
-   tabBarClicked       : ClassVar_Signal;-- tabBarClicked(int)
-   tabBarDoubleClicked : ClassVar_Signal;-- tabBarDoubleClicked(int)
-   tabCloseRequested   : ClassVar_Signal;-- tabCloseRequested(int)
-   function Create (parent_P : Optional_QtAda6_QtWidgets_QWidget) return Class;
+   function currentChanged (self : access Inst) return CLASSVAR_Signal;-- currentChanged(int)
+   function tabBarClicked (self : access Inst) return CLASSVAR_Signal;-- tabBarClicked(int)
+   function tabBarDoubleClicked (self : access Inst) return CLASSVAR_Signal;-- tabBarDoubleClicked(int)
+   function tabCloseRequested (self : access Inst) return CLASSVAR_Signal;-- tabCloseRequested(int)
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function addTab
      (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class; arg_2_P : str) return int;
    function addTab
      (self   : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
-      icon_P : Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; label_P : str) return int;
+      icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; label_P : str) return int;
    procedure changeEvent (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class);
    procedure clear (self : access Inst);
    function cornerWidget
-     (self : access Inst; corner_P : access QtAda6.QtCore.Qt.Corner.Inst'Class)
+     (self : access Inst; corner_P : access QtAda6.QtCore.Qt.Corner.Inst'Class := null)
       return access QtAda6.QtWidgets.QWidget.Inst'Class;
    function count (self : access Inst) return int;
    function currentIndex (self : access Inst) return int;
@@ -64,7 +65,7 @@ package QtAda6.QtWidgets.QTabWidget is
       return int;
    function insertTab
      (self   : access Inst; index_P : int; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
-      icon_P : Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; label_P : str) return int;
+      icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; label_P : str) return int;
    function isMovable (self : access Inst) return bool;
    function isTabEnabled (self : access Inst; index_P : int) return bool;
    function isTabVisible (self : access Inst; index_P : int) return bool;
@@ -75,7 +76,7 @@ package QtAda6.QtWidgets.QTabWidget is
    procedure resizeEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QResizeEvent.Inst'Class);
    procedure setCornerWidget
      (self     : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
-      corner_P : access QtAda6.QtCore.Qt.Corner.Inst'Class);
+      corner_P : access QtAda6.QtCore.Qt.Corner.Inst'Class := null);
    procedure setCurrentIndex (self : access Inst; index_P : int);
    procedure setCurrentWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    procedure setDocumentMode (self : access Inst; set_P : bool);
@@ -85,7 +86,7 @@ package QtAda6.QtWidgets.QTabWidget is
    procedure setTabBar (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QTabBar.Inst'Class);
    procedure setTabBarAutoHide (self : access Inst; enabled_P : bool);
    procedure setTabEnabled (self : access Inst; index_P : int; enabled_P : bool);
-   procedure setTabIcon (self : access Inst; index_P : int; icon_P : Union_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
+   procedure setTabIcon (self : access Inst; index_P : int; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap);
    procedure setTabPosition
      (self : access Inst; position_P : access QtAda6.QtWidgets.QTabWidget.TabPosition.Inst'Class);
    procedure setTabShape (self : access Inst; s_P : access QtAda6.QtWidgets.QTabWidget.TabShape.Inst'Class);

@@ -4,7 +4,7 @@
 -- ROLE                         : Qt Widgets module provides ready to use Widgets functionalities
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -18,19 +18,21 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtGui.QResizeEvent;
 limited with QtAda6.QtGui.QShowEvent;
 with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QDialog is
-   type ClassVar_Signal is access Any;
-   type Optional_QtAda6_QtWidgets_QWidget is access Any;
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
+   type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
+   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   accepted : ClassVar_Signal;-- accepted()
-   finished : ClassVar_Signal;-- finished(int)
-   rejected : ClassVar_Signal;-- rejected()
+   function accepted (self : access Inst) return CLASSVAR_Signal;-- accepted()
+   function finished (self : access Inst) return CLASSVAR_Signal;-- finished(int)
+   function rejected (self : access Inst) return CLASSVAR_Signal;-- rejected()
    function Create
-     (parent_P : Optional_QtAda6_QtWidgets_QWidget; f_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class) return Class;
+     (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
+      f_P      : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class;
    procedure accept_K (self : access Inst);
    procedure adjustPosition (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    procedure closeEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QCloseEvent.Inst'Class);
