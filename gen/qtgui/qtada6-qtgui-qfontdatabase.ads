@@ -12,7 +12,7 @@ limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtGui.QFont;
 limited with QtAda6.QtGui.QFontInfo;
 limited with QtAda6.QtGui.QFontDatabase.SystemFont;
-with QtAda6.QtGui.QFontDatabase.WritingSystem;
+limited with QtAda6.QtGui.QFontDatabase.WritingSystem;
 package QtAda6.QtGui.QFontDatabase is
    type Inst;
    type Inst_Access is access all Inst;

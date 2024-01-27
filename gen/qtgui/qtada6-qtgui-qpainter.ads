@@ -53,6 +53,7 @@ with QtAda6.QtCore.QLineF;
 with QtAda6.QtCore.QLine;
 with QtAda6.QtCore.QRectF;
 with QtAda6.QtCore.QRect;
+with QtAda6.QtGui.QWindow;
 package QtAda6.QtGui.QPainter is
    type Inst;
    type Inst_Access is access all Inst;

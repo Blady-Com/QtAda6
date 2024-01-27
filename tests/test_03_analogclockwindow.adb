@@ -1,6 +1,9 @@
 with QtAda6.QtCore.QTime;
 with QtAda6.QtCore.QPoint;
 with QtAda6.QtGui.QWindow;
+with QtAda6.QtGui.QGradient.Preset;
+with QtAda6.QtCore.Qt.PenStyle;
+with QtAda6.QtGui.QPainter.RenderHint;
 
 with Interfaces.C; use Interfaces.C;
 
@@ -37,7 +40,7 @@ package body Test_03_AnalogClockWindow is
              ((QtAda6.QtCore.QPoint.Create (7, 8), QtAda6.QtCore.QPoint.Create (-7, 8),
                QtAda6.QtCore.QPoint.Create (0, -70)));
 
-         Self.a_hour_color   := QtAda6.QtGui.QColor.Create (127, 0, 127);
+         Self.a_hour_color   := QtAda6.QtGui.QColor.Create (127, 0, 127, 255);
          Self.a_minute_color := QtAda6.QtGui.QColor.Create (0, 127, 127, 191);
       end return;
    end Create;
@@ -45,9 +48,9 @@ package body Test_03_AnalogClockWindow is
    procedure paintEvent (self : access Inst; e : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
 --           p : QtAda6.QtGui.QPainter.Class := QtAda6.QtGui.QPainter.Create (QtAda6.QtGui.QWindow.Inst_Access(self));
 --           p : QtAda6.QtGui.QPainter.Class := QtAda6.QtGui.QPainter.Create(new QtAda6.QtGui.QWindow.Inst'(python_proxy => self.Python_Proxy));
-      p : QtAda6.QtGui.QPainter.Class;
+      p : QtAda6.QtGui.QPainter.Class :=
+        QtAda6.QtGui.QPainter.Create (new QtAda6.QtGui.QWindow.Inst'(Python_Proxy => self.Python_Proxy));
    begin
-      p := QtAda6.QtGui.QPainter.Create (new QtAda6.QtGui.QWindow.Inst'(Python_Proxy => self.Python_Proxy));
       self.render (p);
    end paintEvent;
 
@@ -60,16 +63,15 @@ package body Test_03_AnalogClockWindow is
 --        l_heigth := Self.height;
       l_width  := 200;
       l_heigth := 200;
-         --          p.fillRect(0, 0, l_width, l_heigth, QGradient.NightFade);
-      p.fillRect (0, 0, l_width, l_heigth, 16#AC# * 256 * 256 + 16#93# * 256 + 16#D4#);
+      p.fillRect (0, 0, l_width, l_heigth, QtAda6.QtGui.QGradient.Preset.NightFade);
 
-         --          p.setRenderHint(QPainter.Antialiasing);
+      p.setRenderHint (QtAda6.QtGui.QPainter.RenderHint.Antialiasing);
       p.translate (QtAda6.float (l_width) / 2.0, QtAda6.float (l_heigth) / 2.0);
 
       l_side := QtAda6.float (QtAda6.int'Min (l_width, l_heigth));
       p.scale (l_side / 200.0, l_side / 200.0);
-         --          p.setPen(Qt.NoPen);
-      p.setPen (0);
+
+      p.setPen (QtAda6.QtCore.Qt.PenStyle.NoPen);
       p.setBrush (Self.a_hour_color);
       l_time := QtAda6.QtCore.QTime.currentTime;
 
@@ -84,8 +86,7 @@ package body Test_03_AnalogClockWindow is
          p.rotate (30.0);
       end loop;
 
-         --          p.setPen(Qt.NoPen);
-      p.setPen (0);
+      p.setPen (QtAda6.QtCore.Qt.PenStyle.NoPen);
       p.setBrush (Self.a_minute_color);
 
       p.save;

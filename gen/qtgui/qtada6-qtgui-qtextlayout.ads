@@ -23,7 +23,7 @@ limited with QtAda6.QtGui.QTextLayout.CursorMode;
 limited with QtAda6.QtGui.QRawFont;
 limited with QtAda6.QtGui.QTextOption;
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
-with QtAda6.QtGui.QTextLayout.FormatRange;
+limited with QtAda6.QtGui.QTextLayout.FormatRange;
 with QtAda6.QtGui.QGlyphRun;
 package QtAda6.QtGui.QTextLayout is
    type Inst;

@@ -12,7 +12,7 @@ limited with QtAda6.QtGui.QTextBlock.iterator;
 limited with QtAda6.QtGui.QTextBlockFormat;
 limited with QtAda6.QtGui.QTextCharFormat;
 limited with QtAda6.QtGui.QTextDocument;
-limited with QtAda6.QtGui.QTextLayout;
+--  limited with QtAda6.QtGui.QTextLayout;
 limited with QtAda6.QtGui.QTextBlockUserData;
 limited with QtAda6.QtCore.Qt.LayoutDirection;
 limited with QtAda6.QtGui.QTextList;

@@ -8,11 +8,11 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtCore.QPoint;
+--  limited with QtAda6.QtCore.QPointF;
+--  limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtGui.QPainterPath.Element;
-limited with QtAda6.QtCore.QRectF;
-limited with QtAda6.QtCore.QRect;
+--  limited with QtAda6.QtCore.QRectF;
+--  limited with QtAda6.QtCore.QRect; -- error: unlimited view visible through context clause at qtada6-qtgui-qpainter.ads:55
 package QtAda6.QtGui.QPainter.PixmapFragment is
    type Inst;
    type Inst_Access is access all Inst;

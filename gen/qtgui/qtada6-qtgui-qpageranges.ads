@@ -9,7 +9,7 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QDataStream;
-with QtAda6.QtGui.QPageRanges.Range_K;
+limited with QtAda6.QtGui.QPageRanges.Range_K;
 package QtAda6.QtGui.QPageRanges is
    type Inst;
    type Inst_Access is access all Inst;

@@ -52,7 +52,6 @@ begin
          --      clock = AnalogClockWindow()
          app              : QtAda6.QtGui.QGuiApplication.Class := QtAda6.QtGui.QGuiApplication.Create ((1 => ""));
          clock            : Test_03_AnalogClockWindow.Class    := Test_03_AnalogClockWindow.Create;
-         ModuleA, ModuleB : Handle;
          CodeB            : Handle;
          Args             : Handle;
          Result           : Handle;
@@ -92,8 +91,6 @@ begin
          -- Set callback which will be called by test_03_module
          Py.Test_03_Module.Set (L_Render'Unrestricted_Access);
 
-         ModuleA := Import_ImportModule ("test_03_module");
-         ModuleB := Import_ImportModule ("test_03_acw");
          CodeB   := Compile ("import test_03_acw" & LF &
                                "def B():" & LF &
                                "   test_03_acw.Code()", "hello.py");

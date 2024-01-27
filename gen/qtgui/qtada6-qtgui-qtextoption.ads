@@ -12,7 +12,7 @@ limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtGui.QTextOption.Flag;
 limited with QtAda6.QtCore.Qt.LayoutDirection;
 limited with QtAda6.QtGui.QTextOption.WrapMode;
-with QtAda6.QtGui.QTextOption.Tab;
+limited with QtAda6.QtGui.QTextOption.Tab;
 package QtAda6.QtGui.QTextOption is
    type Inst;
    type Inst_Access is access all Inst;
