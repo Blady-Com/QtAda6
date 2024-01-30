@@ -45,6 +45,7 @@ Python version: 3.9.6 (default, May  7 2023, 23:32:45)
 Python CWD: /Users/me/Documents/Programmation/Qt/QtAda6
 Python Enum:  2
 PySide6 version: 6.5.2
+<class 'NoneType'>
 Exiting
 ```
 
@@ -62,6 +63,7 @@ It tests few QtCore API:
 % cd QtAda6
 % gprbuild -P qtada6_tests.gpr -XTarget_OS=OSX test_02
 % PYTHONPATH=$HOME/env/lib/python3.9/site-packages bin/test_02
+PySide version: 6.5.2
 QtCore version: 6.5.2
 Today: 10
 Current folder: /Users/me/Documents/Programmation/Qt/QtAda6
@@ -90,8 +92,8 @@ It tests few QtGui API:
 % cd QtAda6
 % gprbuild -P qtada6_tests.gpr -XTarget_OS=OSX test_03
 % PYTHONPATH=$HOME/env/lib/python3.9/site-packages:$PWD/tests bin/test_03
-PySide version: 6.5.0
-QtCore version: 6.5.0
+PySide version: 6.5.2
+QtCore version: 6.5.2
 0
 Exiting
 ```
@@ -107,7 +109,7 @@ It tests few QtWidgets API:
 % cd QtAda6
 % gprbuild -P qtada6_tests.gpr -XTarget_OS=OSX test_04
 % PYTHONPATH=$HOME/env/lib/python3.9/site-packages bin/test_04
-PySide version: 6.5.0
+PySide version: 6.5.2
 0
 Exiting
 ```
@@ -121,11 +123,8 @@ This is the very first release whose goal is mostly to get feedbacks on how it i
 Known limitations are :
 
 - Only QtCore, QtGui and QtWidgets are provided
-- Union, Dict, List and so on are not translated
-- Enumerates are not translated
-- Signals are not translated
+- Union, Tuple, Dict and so on are not translated
 - Class inheritance is not available on Ada side
-- Optional parameters are not translated
 - No memory management
 
 ## Get involved
@@ -142,4 +141,4 @@ Post your feedbacks on [QtAda6](https://github.com/Blady-Com/QtAda6) GitHub issu
 
 QtAda6 is free software released under [CeCILL-C](http://www.cecill.info) V2.1.
 
-Pascal Pignard, September-November 2023.
+Pascal Pignard, September-November 2023, January 2024.
