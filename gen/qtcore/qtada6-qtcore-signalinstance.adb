@@ -21,9 +21,10 @@ package body QtAda6.QtCore.SignalInstance is
       Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "connect");
-      Args   := Tuple_New (2);
+      Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if slot_P /= null then slot_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
+      --        Tuple_SetItem (Args, 1, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
+      -- Nore isn't accepted for Type
       Result := Object_CallObject (Method, Args, True);
    end connect;
    procedure disconnect (self : access Inst; slot_P : access Object'Class := null) is

@@ -122,9 +122,10 @@ package body QtAda6.QtWidgets.QWidget is
       Class, Args, List : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWidget");
-      Args  := Tuple_New (2);
+      Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, (if f_P /= null then f_P.Python_Proxy else No_Value));
+      --        Tuple_SetItem (Args, 1, (if f_P /= null then f_P.Python_Proxy else No_Value));
+      -- None isn't accepted for WindowType
       return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
    end Create;
    function acceptDrops (self : access Inst) return bool is

@@ -8,6 +8,9 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+
+with Ada.Unchecked_Deallocation;
+
 package body QtAda6 is
    use Py;
 
@@ -74,6 +77,17 @@ package body QtAda6 is
       Py.Invalidate (QtAda6_QtCore_Python_Proxy);
       Py.Invalidate (QtAda6_QtGui_Python_Proxy);
       Py.Invalidate (QtAda6_QtWidgets_Python_Proxy);
+   end Finalize;
+
+   --------------
+   -- Finalize --
+   --------------
+
+   procedure Finalize (Self : in out Object_Class) is
+      procedure Free is new Ada.Unchecked_Deallocation (Object, Object_Access);
+   begin
+      Py.Invalidate (Self.Python_Proxy);
+      Free (Object_Access (Self));
    end Finalize;
 
 end QtAda6;

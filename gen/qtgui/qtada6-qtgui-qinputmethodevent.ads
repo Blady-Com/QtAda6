@@ -9,7 +9,7 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 with QtAda6.QtCore.QEvent;
-with QtAda6.QtGui.QInputMethodEvent.Attribute;
+limited with QtAda6.QtGui.QInputMethodEvent.Attribute;
 package QtAda6.QtGui.QInputMethodEvent is
    type Inst;
    type Inst_Access is access all Inst;

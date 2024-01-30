@@ -40,17 +40,21 @@ package QtAda6 is
    end Shiboken;
 
    type Object is new Shiboken.Object with null record;
-   type Any is access all Object'Class;
-   type Type_K_T is new Any;
-   type Iterable is new Any;
-   type Property is new Any;
-   type None is new Any;
+   type Object_Access is access all Object;
+   type Object_Class is access all Object'Class;
+   procedure Finalize (Self : in out Object_Class);
+
+   type Any is new Object_Class;
+   type Type_K_T is new Object_Class;
+   type Iterable is new Object_Class;
+   type Property is new Object_Class;
+   type None is new Object_Class;
 
    package Enum is
-     type Enum is new Shiboken.Object with null record;
-     type Flag is new Shiboken.Object with null record;
-     type IntEnum is new Shiboken.Object with null record;
-     type IntFlag is new Shiboken.Object with null record;
+      type Enum is new Shiboken.Object with null record;
+      type Flag is new Shiboken.Object with null record;
+      type IntEnum is new Shiboken.Object with null record;
+      type IntFlag is new Shiboken.Object with null record;
    end Enum;
 
    package shibokensupport is
@@ -62,7 +66,7 @@ package QtAda6 is
       end signature;
    end shibokensupport;
 
-   None_conv_A2P_is_not_supported     : Py.Handle;
+   None_conv_A2P_is_not_supported : Py.Handle;
 
    function QtCore_Python_Proxy return Py.Handle;
    function QtGui_Python_Proxy return Py.Handle;

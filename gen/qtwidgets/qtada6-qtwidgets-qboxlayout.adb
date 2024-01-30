@@ -95,10 +95,11 @@ package body QtAda6.QtWidgets.QBoxLayout is
       Method, Args, List, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addWidget");
-      Args   := Tuple_New (3);
+      Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Long_FromLong (stretch_P));
-      Tuple_SetItem (Args, 2, (if alignment_P /= null then alignment_P.Python_Proxy else No_Value));
+      --        Tuple_SetItem (Args, 2, (if alignment_P /= null then alignment_P.Python_Proxy else No_Value));
+      -- None isn't accepted for AlignmentFlag
       Result := Object_CallObject (Method, Args, True);
    end addWidget;
    function count (self : access Inst) return int is

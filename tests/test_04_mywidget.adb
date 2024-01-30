@@ -15,17 +15,19 @@ package body Test_04_MyWidget is
 
    function Create (Callback : Py.Handle) return Class is
       Widget : QtAda6.QtWidgets.QWidget.Class := QtAda6.QtWidgets.QWidget.Create;
+      CB     : QtAda6.Any                     := new qtada6.Object'(Python_Proxy => Callback);
    begin
       return Self : constant Class := new Inst'(QtAda6.QtWidgets.QWidget.Inst_Access (Widget).all with others => <>) do
-         Self.Hello  := ("Hallo Welt", "Hei maailma", "Hola Mundo", "Привет мир");
+         Self.Hello  := ["Hallo Welt", "Hei maailma", "Hola Mundo", "Привет мир"];
          Self.Button := QtAda6.QtWidgets.QPushButton.Create ("Click me!");
          Self.Text   := QtAda6.QtWidgets.QLabel.Create ("Hello World");
          Self.Layout :=
            QtAda6.QtWidgets.QVBoxLayout.Create
              (QtAda6.QtWidgets.QWidget.Class (QtAda6.QtWidgets.QWidget.Inst_Access (Self)));
-         Self.Layout.addWidget (QtAda6.QtWidgets.QWidget.Class (QtAda6.QtWidgets.QWidget.Inst_Access (Self.Text)));
-         Self.Layout.addWidget (QtAda6.QtWidgets.QWidget.Class (QtAda6.QtWidgets.QWidget.Inst_Access (Self.Button)));
-         Self.Button.clicked.U_get_U.connect ((Python_Proxy => Callback));
+         Self.Layout.addWidget (arg_1_P => QtAda6.QtWidgets.QWidget.Inst_Access (Self.Text));
+         Self.Layout.addWidget (arg_1_P => QtAda6.QtWidgets.QWidget.Inst_Access (Self.Button));
+         Self.Button.clicked.U_get_U.connect (CB);
+         QtAda6.Finalize (CB);
          QtAda6.QtWidgets.QWidget.Finalize (Widget);
       end return;
    end Create;
