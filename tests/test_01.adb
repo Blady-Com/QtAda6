@@ -53,7 +53,7 @@ procedure Test_01 is
       return "PySide6 version: " & As_String (Result);
    end PySide6_Version;
 
-   function Python_Enum (E : String) return String is
+   function Python_Enum (aClass, aEnum : String) return String is
       use Py;
       Code   : Handle;
       Args   : Handle;
@@ -63,13 +63,9 @@ procedure Test_01 is
       Enum   : Handle;
    begin
       Module := Import_ImportModule ("test_01_enum");
-      Class  := Object_GetAttrString (Module, "MyEnum");
-      Enum   := Object_GetAttrString (Class, E);
-      Code   := Compile ("def Code(E):" & LF & "   return E.value", "test.py");
-      Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Enum);
-      Result := Object_CallObject (Code, Args, True);
-      return "Python Enum: " & Long_AsLong (Result)'Image;
+      Class  := Object_GetAttrString (Module, aClass);
+      Enum   := Object_GetAttrString (Class, aEnum);
+      return "Python Enum: " & Long_AsLong (Object_GetAttrString (Enum, "value"))'Image;
    end Python_Enum;
 
    procedure Python_Type is
@@ -78,8 +74,8 @@ procedure Test_01 is
       Args   : Handle;
       Result : Handle;
    begin
-      Code   := Compile ("def Code(P):" & LF & "   print (type(P))", "test.py");
-      Args   := Tuple_New (1);
+      Code := Compile ("def Code(P):" & LF & "   print (type(P))", "test.py");
+      Args := Tuple_New (1);
 --        Tuple_SetItem (Args, 0, Long_FromLong(33));
       Tuple_SetItem (Args, 0, No_Value);
       Result := Object_CallObject (Code, Args, True);
@@ -97,7 +93,10 @@ begin
       Put_Line (Python_Version);
       Put_Line (Python_CWD);
       Put_Line (PySide6_Version);
-      Put_Line (Python_Enum ("D"));
+      Put_Line (Python_Enum ("ColorE", "BLUE"));
+      Put_Line (Python_Enum ("NumberIE", "TWO"));
+      Put_Line (Python_Enum ("ColorF", "RED"));
+      Put_Line (Python_Enum ("ColorIF", "GREEN"));
       Python_Type;
    end;
    if Py.FinalizeEx < 0 then

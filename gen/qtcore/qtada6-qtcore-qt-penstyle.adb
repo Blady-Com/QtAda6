@@ -21,8 +21,8 @@ package body QtAda6.QtCore.Qt.PenStyle is
       Parent_Class, Enum_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PenStyle");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoPen"));
+      --        Enum_Class   := Object_GetAttrString (Parent_Class, "PenStyle");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoPen"));
    end NoPen;
    function SolidLine return Class is
       Parent_Class, Enum_Class : Handle;
@@ -49,8 +49,8 @@ package body QtAda6.QtCore.Qt.PenStyle is
       Parent_Class, Enum_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PenStyle");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DashDotLine"));
+      --        Enum_Class   := Object_GetAttrString (Parent_Class, "PenStyle");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DashDotLine"));
    end DashDotLine;
    function DashDotDotLine return Class is
       Parent_Class, Enum_Class : Handle;

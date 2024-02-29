@@ -21,8 +21,8 @@ package body QtAda6.QtGui.QPainter.RenderHint is
       Parent_Class, Enum_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPainter");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RenderHint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Antialiasing"));
+      --        Enum_Class   := Object_GetAttrString (Parent_Class, "RenderHint");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Antialiasing"));
    end Antialiasing;
    function TextAntialiasing return Class is
       Parent_Class, Enum_Class : Handle;

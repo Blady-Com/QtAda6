@@ -12,6 +12,7 @@ with QtAda6.QtCore.QDate;
 with QtAda6.QtCore.QDir;
 with QtAda6.QtCore.QSysInfo;
 with QtAda6.QtCore.QProcessEnvironment;
+with QtAda6.QtCore.Qt.PenStyle;
 
 with Ada.Exceptions; use Ada.Exceptions;
 with Interfaces.C;   use Interfaces.C;
@@ -42,6 +43,7 @@ begin
          MD : QtAda6.QtCore.QDate.Class               := QtAda6.QtCore.QDate.currentDate;
          CF : QtAda6.QtCore.QDir.Class                := QtAda6.QtCore.QDir.current;
          ME : QtAda6.QtCore.QProcessEnvironment.Class := QtAda6.QtCore.QProcessEnvironment.systemEnvironment;
+         PS : QtAda6.QtCore.Qt.PenStyle.Class         := QtAda6.QtCore.Qt.PenStyle.DashDotLine;
       begin
          --  5. call QtAda6 API
          Put_Line ("Today: " & QtAda6.Image (MD.day));
@@ -50,10 +52,12 @@ begin
          if ME.contains ("HOME") then
             Put_Line ("HOME: " & ME.value ("HOME", "none"));
          end if;
+         Put_Line ("DashDotLine:" & QtAda6.Image (Py.Long_AsLong (Py.Object_GetAttrString (PS.Python_Proxy, "value"))));
          --  6. finalize QtAda6 objects
          QtAda6.QtCore.QDate.Finalize (MD);
          QtAda6.QtCore.QDir.Finalize (CF);
          QtAda6.QtCore.QProcessEnvironment.Finalize (ME);
+         QtAda6.QtCore.Qt.PenStyle.Finalize (PS);
       end;
 
       --  7. finalize QtAda6

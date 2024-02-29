@@ -35,8 +35,8 @@ package body QtAda6.QtCore.Qt.AlignmentFlag is
       Parent_Class, Enum_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "AlignmentFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlignRight"));
+      --        Enum_Class   := Object_GetAttrString (Parent_Class, "AlignmentFlag");
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlignRight"));
    end AlignRight;
    function AlignTrailing return Class is
       Parent_Class, Enum_Class : Handle;
