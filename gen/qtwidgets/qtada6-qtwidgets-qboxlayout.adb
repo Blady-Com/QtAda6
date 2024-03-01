@@ -92,15 +92,20 @@ package body QtAda6.QtWidgets.QBoxLayout is
      (self        : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class; stretch_P : int := 0;
       alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class := null)
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, List, Result, Dict : Handle;
+      use type int;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addWidget");
-      Args   := Tuple_New (2);
+      Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, Long_FromLong (stretch_P));
-      --        Tuple_SetItem (Args, 2, (if alignment_P /= null then alignment_P.Python_Proxy else No_Value));
-      -- None isn't accepted for AlignmentFlag
-      Result := Object_CallObject (Method, Args, True);
+      Dict := Dict_New;
+      if stretch_P /= 0 then
+         Dict_SetItemString (Dict, "stretch", Long_FromLong (stretch_P));
+      end if;
+      if alignment_P /= null then
+         Dict_SetItemString (Dict, "alignment", alignment_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
    end addWidget;
    function count (self : access Inst) return int is
       Method, Args, List, Result : Handle;

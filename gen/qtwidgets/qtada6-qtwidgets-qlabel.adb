@@ -58,15 +58,19 @@ package body QtAda6.QtWidgets.QLabel is
      (text_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null;
       f_P    : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class
    is
-      Class, Args, List : Handle;
+      Class, Args, List, Dict  : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLabel");
-      Args  := Tuple_New (2);
+      Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (text_P));
-      Tuple_SetItem (Args, 1, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
-      --        Tuple_SetItem (Args, 2, (if f_P /= null then f_P.Python_Proxy else No_Value));
-      -- None isn't accepted for WindowType
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      if f_P /= null then
+         Dict_SetItemString (Dict, "f", f_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function alignment (self : access Inst) return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class is
       Method, Args, List, Result : Handle;
