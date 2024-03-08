@@ -13,6 +13,9 @@ with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QStandardPaths.StandardLocation;
 with QtAda6.QtCore.QStandardPaths.LocateOption;
 package body QtAda6.QtCore.QStandardPaths is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -20,17 +23,18 @@ package body QtAda6.QtCore.QStandardPaths is
       Free (Inst_Access (Self));
    end Finalize;
    function displayName (type_K_P : access QtAda6.QtCore.QStandardPaths.StandardLocation.Inst'Class) return str is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "displayName");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end displayName;
    function findExecutable (executableName_P : str; paths_P : SEQUENCE_str := (2 .. 1 => <>)) return str is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "findExecutable");
@@ -38,80 +42,93 @@ package body QtAda6.QtCore.QStandardPaths is
       for ind in paths_P'Range loop
          List_SetItem (List, ssize_t (ind - paths_P'First), Unicode_FromString (paths_P (ind)));
       end loop;
-      Args := Tuple_New (2);
+      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (executableName_P));
-      Tuple_SetItem (Args, 1, List);
-      Result := Object_CallObject (Method, Args, True);
+      Dict := Dict_New;
+      if paths_P /= (2 .. 1 => <>) then
+         Dict_SetItemString (Dict, "paths", List);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end findExecutable;
    function isTestModeEnabled return bool is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "isTestModeEnabled");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end isTestModeEnabled;
-   function locate_F
+   function locate
      (type_K_P  : access QtAda6.QtCore.QStandardPaths.StandardLocation.Inst'Class; fileName_P : str;
       options_P : access QtAda6.QtCore.QStandardPaths.LocateOption.Inst'Class := null) return str
    is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "locate");
-      Args   := Tuple_New (3);
+      Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Unicode_FromString (fileName_P));
-      Tuple_SetItem (Args, 2, (if options_P /= null then options_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict := Dict_New;
+      if options_P /= null then
+         Dict_SetItemString (Dict, "options", options_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
-   end locate_F;
+   end locate;
    function locateAll
      (type_K_P  : access QtAda6.QtCore.QStandardPaths.StandardLocation.Inst'Class; fileName_P : str;
       options_P : access QtAda6.QtCore.QStandardPaths.LocateOption.Inst'Class := null) return LIST_str
    is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "locateAll");
-      Args   := Tuple_New (3);
+      Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Unicode_FromString (fileName_P));
-      Tuple_SetItem (Args, 2, (if options_P /= null then options_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict := Dict_New;
+      if options_P /= null then
+         Dict_SetItemString (Dict, "options", options_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
       return (2 .. 1 => <>);
    end locateAll;
    procedure setTestModeEnabled (testMode_P : bool) is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "setTestModeEnabled");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, To_Python (testMode_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setTestModeEnabled;
    function standardLocations
      (type_K_P : access QtAda6.QtCore.QStandardPaths.StandardLocation.Inst'Class) return LIST_str
    is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "standardLocations");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return (2 .. 1 => <>);
    end standardLocations;
    function writableLocation (type_K_P : access QtAda6.QtCore.QStandardPaths.StandardLocation.Inst'Class) return str is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "writableLocation");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end writableLocation;
 end QtAda6.QtCore.QStandardPaths;

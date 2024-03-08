@@ -9,14 +9,14 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QIODevice;
+limited with QtAda6.QtCore.QXmlStreamNamespaceDeclaration;
 limited with QtAda6.QtCore.QXmlStreamAttributes;
+limited with QtAda6.QtCore.QXmlStreamEntityDeclaration;
 limited with QtAda6.QtCore.QXmlStreamEntityResolver;
 limited with QtAda6.QtCore.QXmlStreamReader.Error;
+limited with QtAda6.QtCore.QXmlStreamNotationDeclaration;
 limited with QtAda6.QtCore.QXmlStreamReader.ReadElementTextBehaviour;
 limited with QtAda6.QtCore.QXmlStreamReader.TokenType;
-with QtAda6.QtCore.QXmlStreamNamespaceDeclaration;
-with QtAda6.QtCore.QXmlStreamEntityDeclaration;
-with QtAda6.QtCore.QXmlStreamNotationDeclaration;
 package QtAda6.QtCore.QXmlStreamReader is
    type Inst;
    type Inst_Access is access all Inst;
@@ -79,7 +79,7 @@ package QtAda6.QtCore.QXmlStreamReader is
    function processingInstructionTarget (self : access Inst) return str;
    function qualifiedName (self : access Inst) return str;
    procedure raiseError (self : access Inst; message_P : str := "");
-   function readElementText_F
+   function readElementText
      (self        : access Inst;
       behaviour_P : access QtAda6.QtCore.QXmlStreamReader.ReadElementTextBehaviour.Inst'Class := null) return str;
    function readNext (self : access Inst) return access QtAda6.QtCore.QXmlStreamReader.TokenType.Inst'Class;
@@ -90,7 +90,7 @@ package QtAda6.QtCore.QXmlStreamReader is
      (self : access Inst; resolver_P : access QtAda6.QtCore.QXmlStreamEntityResolver.Inst'Class);
    procedure setNamespaceProcessing (self : access Inst; arg_1_P : bool);
    procedure skipCurrentElement (self : access Inst);
-   function text_F (self : access Inst) return str;
+   function text (self : access Inst) return str;
    function tokenString (self : access Inst) return str;
    function tokenType_F (self : access Inst) return access QtAda6.QtCore.QXmlStreamReader.TokenType.Inst'Class;
 end QtAda6.QtCore.QXmlStreamReader;

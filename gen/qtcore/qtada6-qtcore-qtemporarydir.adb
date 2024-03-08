@@ -10,7 +10,11 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
+with QtAda6.QtCore.QTemporaryDir;
 package body QtAda6.QtCore.QTemporaryDir is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,83 +22,93 @@ package body QtAda6.QtCore.QTemporaryDir is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTemporaryDir");
       Args  := Tuple_New (0);
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict  := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (templateName_P : str) return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTemporaryDir");
       Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (templateName_P));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function autoRemove (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "autoRemove");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end autoRemove;
    function errorString (self : access Inst) return str is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "errorString");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end errorString;
    function filePath (self : access Inst; fileName_P : str) return str is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "filePath");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (fileName_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end filePath;
    function isValid (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end isValid;
    function path (self : access Inst) return str is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "path");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end path;
    function remove (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "remove");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end remove;
    procedure setAutoRemove (self : access Inst; b_P : bool) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAutoRemove");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, To_Python (b_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setAutoRemove;
    procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QTemporaryDir.Inst'Class) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end swap;
 end QtAda6.QtCore.QTemporaryDir;

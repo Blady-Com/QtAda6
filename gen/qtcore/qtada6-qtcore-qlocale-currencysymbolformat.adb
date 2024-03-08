@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QLocale.CurrencySymbolFormat is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtCore.QLocale.CurrencySymbolFormat is
       Free (Inst_Access (Self));
    end Finalize;
    function CurrencyIsoCode return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLocale");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "CurrencySymbolFormat");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CurrencyIsoCode"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CurrencyIsoCode"));
    end CurrencyIsoCode;
    function CurrencySymbol return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLocale");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "CurrencySymbolFormat");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CurrencySymbol"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CurrencySymbol"));
    end CurrencySymbol;
    function CurrencyDisplayName return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLocale");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "CurrencySymbolFormat");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CurrencyDisplayName"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CurrencyDisplayName"));
    end CurrencyDisplayName;
 end QtAda6.QtCore.QLocale.CurrencySymbolFormat;

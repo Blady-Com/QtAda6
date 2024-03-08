@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QStringConverter.Encoding;
 limited with QtAda6.QtCore.QStringConverterBase.Flag;
-limited with QtAda6.QtCore.QByteArray;
 with QtAda6.QtCore.QStringConverter;
 package QtAda6.QtCore.QStringDecoder is
    type Inst;
@@ -18,7 +17,7 @@ package QtAda6.QtCore.QStringDecoder is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QStringConverter.Inst with null record;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create
@@ -27,8 +26,8 @@ package QtAda6.QtCore.QStringDecoder is
    function Create
      (name_P : bytes; f_P : access QtAda6.QtCore.QStringConverterBase.Flag.Inst'Class := null) return Class;
    function appendToBuffer
-     (self : access Inst; out_K_P : bytes; ba_P : UNION_QtAda6_QtCore_QByteArraybytes) return bytes;
+     (self : access Inst; out_K_P : bytes; ba_P : UNION_QtAda6_QtCore_QByteArray_bytes) return bytes;
    function decoderForHtml
-     (data_P : UNION_QtAda6_QtCore_QByteArraybytes) return access QtAda6.QtCore.QStringDecoder.Inst'Class;
+     (data_P : UNION_QtAda6_QtCore_QByteArray_bytes) return access QtAda6.QtCore.QStringDecoder.Inst'Class;
    function requiredSpace (self : access Inst; inputLength_P : int) return int;
 end QtAda6.QtCore.QStringDecoder;

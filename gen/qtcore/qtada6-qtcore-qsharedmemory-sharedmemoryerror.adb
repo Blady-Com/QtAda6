@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QSharedMemory.SharedMemoryError is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,66 +21,57 @@ package body QtAda6.QtCore.QSharedMemory.SharedMemoryError is
       Free (Inst_Access (Self));
    end Finalize;
    function NoError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSharedMemory");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SharedMemoryError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoError"));
    end NoError;
    function PermissionDenied return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSharedMemory");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SharedMemoryError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PermissionDenied"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PermissionDenied"));
    end PermissionDenied;
    function InvalidSize return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSharedMemory");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SharedMemoryError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InvalidSize"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InvalidSize"));
    end InvalidSize;
    function KeyError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSharedMemory");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SharedMemoryError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "KeyError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "KeyError"));
    end KeyError;
    function AlreadyExists return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSharedMemory");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SharedMemoryError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlreadyExists"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlreadyExists"));
    end AlreadyExists;
    function NotFound return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSharedMemory");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SharedMemoryError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NotFound"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NotFound"));
    end NotFound;
    function LockError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSharedMemory");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SharedMemoryError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LockError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LockError"));
    end LockError;
    function OutOfResources return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSharedMemory");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SharedMemoryError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "OutOfResources"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "OutOfResources"));
    end OutOfResources;
    function UnknownError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSharedMemory");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SharedMemoryError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UnknownError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UnknownError"));
    end UnknownError;
 end QtAda6.QtCore.QSharedMemory.SharedMemoryError;

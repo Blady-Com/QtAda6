@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.WindowState is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtCore.Qt.WindowState is
       Free (Inst_Access (Self));
    end Finalize;
    function WindowNoState return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowNoState"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowNoState"));
    end WindowNoState;
    function WindowMinimized return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowMinimized"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowMinimized"));
    end WindowMinimized;
    function WindowMaximized return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowMaximized"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowMaximized"));
    end WindowMaximized;
    function WindowFullScreen return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowFullScreen"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowFullScreen"));
    end WindowFullScreen;
    function WindowActive return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowActive"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowActive"));
    end WindowActive;
 end QtAda6.QtCore.Qt.WindowState;

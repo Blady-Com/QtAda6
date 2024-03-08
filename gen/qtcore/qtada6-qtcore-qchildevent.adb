@@ -10,10 +10,13 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QEvent;
+with QtAda6.QtCore.QChildEvent;
 with QtAda6.QtCore.QEvent.Type_K;
 with QtAda6.QtCore.QObject;
 package body QtAda6.QtCore.QChildEvent is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -21,67 +24,74 @@ package body QtAda6.QtCore.QChildEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtCore.QChildEvent.Inst'Class) return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QChildEvent");
       Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
      (type_K_P : access QtAda6.QtCore.QEvent.Type_K.Inst'Class; child_P : access QtAda6.QtCore.QObject.Inst'Class)
       return Class
    is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QChildEvent");
       Args  := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, (if child_P /= null then child_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function added (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "added");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end added;
    function child (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret                                     : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "child");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end child;
    function clone (self : access Inst) return access QtAda6.QtCore.QChildEvent.Inst'Class is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtCore.QChildEvent.Class := new QtAda6.QtCore.QChildEvent.Inst;
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret : constant QtAda6.QtCore.QChildEvent.Class := new QtAda6.QtCore.QChildEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end clone;
    function polished (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "polished");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end polished;
    function removed (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removed");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end removed;
 end QtAda6.QtCore.QChildEvent;

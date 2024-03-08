@@ -15,9 +15,9 @@ limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtCore.Qt.ConnectionType;
 limited with QtAda6.QtCore.QGenericReturnArgument;
 limited with QtAda6.QtCore.QGenericArgument;
+limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtCore.QMetaMethod.MethodType;
 limited with QtAda6.QtCore.QMetaType;
-with QtAda6.QtCore.QByteArray;
 package QtAda6.QtCore.QMetaMethod is
    type Inst;
    type Inst_Access is access all Inst;

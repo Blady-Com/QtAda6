@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtCore.QIODevice;
 limited with QtAda6.QtCore.QXmlStreamAttribute;
 limited with QtAda6.QtCore.QXmlStreamAttributes;
@@ -19,10 +18,10 @@ package QtAda6.QtCore.QXmlStreamWriter is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (array_K_P : UNION_QtAda6_QtCore_QByteArraybytes) return Class;
+   function Create (array_K_P : UNION_QtAda6_QtCore_QByteArray_bytes) return Class;
    function Create (device_P : access QtAda6.QtCore.QIODevice.Inst'Class) return Class;
    function autoFormatting (self : access Inst) return bool;
    function autoFormattingIndent (self : access Inst) return int;

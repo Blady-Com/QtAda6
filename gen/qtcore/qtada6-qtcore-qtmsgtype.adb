@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QtMsgType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,45 +21,39 @@ package body QtAda6.QtCore.QtMsgType is
       Free (Inst_Access (Self));
    end Finalize;
    function QtDebugMsg return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QtMsgType");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QtMsgType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "QtDebugMsg"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "QtDebugMsg"));
    end QtDebugMsg;
    function QtWarningMsg return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QtMsgType");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QtMsgType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "QtWarningMsg"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "QtWarningMsg"));
    end QtWarningMsg;
    function QtCriticalMsg return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QtMsgType");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QtMsgType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "QtCriticalMsg"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "QtCriticalMsg"));
    end QtCriticalMsg;
    function QtSystemMsg return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QtMsgType");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QtMsgType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "QtSystemMsg"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "QtSystemMsg"));
    end QtSystemMsg;
    function QtFatalMsg return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QtMsgType");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QtMsgType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "QtFatalMsg"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "QtFatalMsg"));
    end QtFatalMsg;
    function QtInfoMsg return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QtMsgType");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QtMsgType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "QtInfoMsg"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "QtInfoMsg"));
    end QtInfoMsg;
 end QtAda6.QtCore.QtMsgType;

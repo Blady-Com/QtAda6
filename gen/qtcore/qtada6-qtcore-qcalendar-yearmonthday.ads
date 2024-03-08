@@ -14,10 +14,10 @@ package QtAda6.QtCore.QCalendar.YearMonthDay is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QCalendar_YearMonthDayint is new Any;
+   type UNION_QtAda6_QtCore_QCalendar_YearMonthDay_int is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (YearMonthDay_P : UNION_QtAda6_QtCore_QCalendar_YearMonthDayint) return Class;
+   function Create (YearMonthDay_P : UNION_QtAda6_QtCore_QCalendar_YearMonthDay_int) return Class;
    function Create (y_P : int; m_P : int := 0; d_P : int := 0) return Class;
    procedure U_copy_U;
    function isValid (self : access Inst) return bool;

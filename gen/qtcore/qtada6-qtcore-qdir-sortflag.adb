@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QDir.SortFlag is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,87 +21,75 @@ package body QtAda6.QtCore.QDir.SortFlag is
       Free (Inst_Access (Self));
    end Finalize;
    function NoSort return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDir");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SortFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoSort"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoSort"));
    end NoSort;
    function Name return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDir");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SortFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Name"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Name"));
    end Name;
    function Time return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDir");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SortFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Time"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Time"));
    end Time;
    function Size return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDir");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SortFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Size"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Size"));
    end Size;
    function SortByMask return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDir");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SortFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SortByMask"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SortByMask"));
    end SortByMask;
    function Unsorted return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDir");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SortFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Unsorted"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Unsorted"));
    end Unsorted;
    function DirsFirst return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDir");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SortFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DirsFirst"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DirsFirst"));
    end DirsFirst;
    function Reversed return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDir");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SortFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Reversed"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Reversed"));
    end Reversed;
    function IgnoreCase return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDir");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SortFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "IgnoreCase"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "IgnoreCase"));
    end IgnoreCase;
    function DirsLast return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDir");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SortFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DirsLast"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DirsLast"));
    end DirsLast;
    function LocaleAware return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDir");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SortFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LocaleAware"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LocaleAware"));
    end LocaleAware;
    function Type_K return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDir");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SortFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Type"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Type"));
    end Type_K;
 end QtAda6.QtCore.QDir.SortFlag;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QCborKnownTags is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,164 +21,141 @@ package body QtAda6.QtCore.QCborKnownTags is
       Free (Inst_Access (Self));
    end Finalize;
    function DateTimeString return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DateTimeString"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DateTimeString"));
    end DateTimeString;
    function UnixTime_t return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UnixTime_t"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UnixTime_t"));
    end UnixTime_t;
    function PositiveBignum return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PositiveBignum"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PositiveBignum"));
    end PositiveBignum;
    function NegativeBignum return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NegativeBignum"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NegativeBignum"));
    end NegativeBignum;
    function Decimal return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Decimal"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Decimal"));
    end Decimal;
    function Bigfloat return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Bigfloat"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Bigfloat"));
    end Bigfloat;
    function COSE_Encrypt0 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "COSE_Encrypt0"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "COSE_Encrypt0"));
    end COSE_Encrypt0;
    function COSE_Mac0 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "COSE_Mac0"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "COSE_Mac0"));
    end COSE_Mac0;
    function COSE_Sign1 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "COSE_Sign1"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "COSE_Sign1"));
    end COSE_Sign1;
    function ExpectedBase64url return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExpectedBase64url"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExpectedBase64url"));
    end ExpectedBase64url;
    function ExpectedBase64 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExpectedBase64"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExpectedBase64"));
    end ExpectedBase64;
    function ExpectedBase16 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExpectedBase16"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExpectedBase16"));
    end ExpectedBase16;
    function EncodedCbor return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "EncodedCbor"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "EncodedCbor"));
    end EncodedCbor;
    function Url return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Url"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Url"));
    end Url;
    function Base64url return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Base64url"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Base64url"));
    end Base64url;
    function Base64 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Base64"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Base64"));
    end Base64;
    function RegularExpression return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RegularExpression"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RegularExpression"));
    end RegularExpression;
    function MimeMessage return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MimeMessage"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MimeMessage"));
    end MimeMessage;
    function Uuid return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Uuid"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Uuid"));
    end Uuid;
    function COSE_Encrypt return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "COSE_Encrypt"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "COSE_Encrypt"));
    end COSE_Encrypt;
    function COSE_Mac return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "COSE_Mac"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "COSE_Mac"));
    end COSE_Mac;
    function COSE_Sign return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "COSE_Sign"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "COSE_Sign"));
    end COSE_Sign;
    function Signature return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborKnownTags");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborKnownTags");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Signature"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Signature"));
    end Signature;
 end QtAda6.QtCore.QCborKnownTags;

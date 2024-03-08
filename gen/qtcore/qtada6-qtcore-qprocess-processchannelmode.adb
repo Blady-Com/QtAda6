@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QProcess.ProcessChannelMode is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtCore.QProcess.ProcessChannelMode is
       Free (Inst_Access (Self));
    end Finalize;
    function SeparateChannels return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessChannelMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SeparateChannels"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SeparateChannels"));
    end SeparateChannels;
    function MergedChannels return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessChannelMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MergedChannels"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MergedChannels"));
    end MergedChannels;
    function ForwardedChannels return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessChannelMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ForwardedChannels"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ForwardedChannels"));
    end ForwardedChannels;
    function ForwardedOutputChannel return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessChannelMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ForwardedOutputChannel"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ForwardedOutputChannel"));
    end ForwardedOutputChannel;
    function ForwardedErrorChannel return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessChannelMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ForwardedErrorChannel"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ForwardedErrorChannel"));
    end ForwardedErrorChannel;
 end QtAda6.QtCore.QProcess.ProcessChannelMode;

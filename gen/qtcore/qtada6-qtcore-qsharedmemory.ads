@@ -28,7 +28,7 @@ package QtAda6.QtCore.QSharedMemory is
       return bool;
    function data (self : access Inst) return int;
    function detach (self : access Inst) return bool;
-   function error_F (self : access Inst) return access QtAda6.QtCore.QSharedMemory.SharedMemoryError.Inst'Class;
+   function error (self : access Inst) return access QtAda6.QtCore.QSharedMemory.SharedMemoryError.Inst'Class;
    function errorString (self : access Inst) return str;
    function isAttached (self : access Inst) return bool;
    function key (self : access Inst) return str;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QRegularExpression.MatchOption is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtCore.QRegularExpression.MatchOption is
       Free (Inst_Access (Self));
    end Finalize;
    function NoMatchOption return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QRegularExpression");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MatchOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoMatchOption"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoMatchOption"));
    end NoMatchOption;
    function AnchorAtOffsetMatchOption return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QRegularExpression");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MatchOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AnchorAtOffsetMatchOption"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AnchorAtOffsetMatchOption"));
    end AnchorAtOffsetMatchOption;
    function AnchoredMatchOption return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QRegularExpression");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MatchOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AnchoredMatchOption"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AnchoredMatchOption"));
    end AnchoredMatchOption;
    function DontCheckSubjectStringMatchOption return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QRegularExpression");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MatchOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DontCheckSubjectStringMatchOption"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DontCheckSubjectStringMatchOption"));
    end DontCheckSubjectStringMatchOption;
 end QtAda6.QtCore.QRegularExpression.MatchOption;

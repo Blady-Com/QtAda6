@@ -10,12 +10,14 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QVariantAnimation;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.QByteArray;
 with QtAda6.QtCore.QEvent;
+with QtAda6.QtCore.QByteArray;
 with QtAda6.QtCore.QAbstractAnimation.State;
 package body QtAda6.QtCore.QPropertyAnimation is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -23,89 +25,102 @@ package body QtAda6.QtCore.QPropertyAnimation is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPropertyAnimation");
-      Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Args  := Tuple_New (0);
+      Dict  := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (target_P : access QtAda6.QtCore.QObject.Inst'Class; propertyName_P : UNION_QtAda6_QtCore_QByteArraybytes;
+     (target_P : access QtAda6.QtCore.QObject.Inst'Class; propertyName_P : UNION_QtAda6_QtCore_QByteArray_bytes;
       parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class
    is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPropertyAnimation");
-      Args  := Tuple_New (3);
+      Args  := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if target_P /= null then target_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, (if propertyName_P /= null then propertyName_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 2, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if event_P /= null then event_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end event;
    function propertyName (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "propertyName");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end propertyName;
-   procedure setPropertyName (self : access Inst; propertyName_P : UNION_QtAda6_QtCore_QByteArraybytes) is
-      Method, Args, List, Result : Handle;
+   procedure setPropertyName (self : access Inst; propertyName_P : UNION_QtAda6_QtCore_QByteArray_bytes) is
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPropertyName");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if propertyName_P /= null then propertyName_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setPropertyName;
    procedure setTargetObject (self : access Inst; target_P : access QtAda6.QtCore.QObject.Inst'Class) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTargetObject");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if target_P /= null then target_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setTargetObject;
    function targetObject (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret                                     : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "targetObject");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end targetObject;
    procedure updateCurrentValue (self : access Inst; value_P : Any) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "updateCurrentValue");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if value_P /= null then value_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end updateCurrentValue;
    procedure updateState
      (self       : access Inst; newState_P : access QtAda6.QtCore.QAbstractAnimation.State.Inst'Class;
       oldState_P : access QtAda6.QtCore.QAbstractAnimation.State.Inst'Class)
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "updateState");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if newState_P /= null then newState_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, (if oldState_P /= null then oldState_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end updateState;
 end QtAda6.QtCore.QPropertyAnimation;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QLocale.DataSizeFormat is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtCore.QLocale.DataSizeFormat is
       Free (Inst_Access (Self));
    end Finalize;
    function DataSizeIecFormat return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLocale");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DataSizeFormat");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DataSizeIecFormat"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DataSizeIecFormat"));
    end DataSizeIecFormat;
    function DataSizeBase1000 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLocale");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DataSizeFormat");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DataSizeBase1000"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DataSizeBase1000"));
    end DataSizeBase1000;
    function DataSizeSIQuantifiers return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLocale");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DataSizeFormat");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DataSizeSIQuantifiers"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DataSizeSIQuantifiers"));
    end DataSizeSIQuantifiers;
    function DataSizeTraditionalFormat return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLocale");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DataSizeFormat");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DataSizeTraditionalFormat"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DataSizeTraditionalFormat"));
    end DataSizeTraditionalFormat;
    function DataSizeSIFormat return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLocale");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DataSizeFormat");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DataSizeSIFormat"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DataSizeSIFormat"));
    end DataSizeSIFormat;
 end QtAda6.QtCore.QLocale.DataSizeFormat;

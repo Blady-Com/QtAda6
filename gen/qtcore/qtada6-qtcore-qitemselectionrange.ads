@@ -9,31 +9,31 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QPersistentModelIndex;
+limited with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtCore.QAbstractItemModel;
-with QtAda6.QtCore.QModelIndex;
 package QtAda6.QtCore.QItemSelectionRange is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex is new Any;
+   type UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is new Any;
    subtype LIST_QtAda6_QtCore_QModelIndex is QtAda6.QtCore.QModelIndex.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (QItemSelectionRange_P : access QtAda6.QtCore.QItemSelectionRange.Inst'Class) return Class;
-   function Create (index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return Class;
+   function Create (index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return Class;
    function Create
-     (topL_P    : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
-      bottomR_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return Class;
+     (topL_P    : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
+      bottomR_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return Class;
    procedure U_copy_U;
    function bottom (self : access Inst) return int;
    function bottomRight (self : access Inst) return access QtAda6.QtCore.QPersistentModelIndex.Inst'Class;
    function contains
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return bool;
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool;
    function contains
      (self          : access Inst; row_P : int; column_P : int;
-      parentIndex_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return bool;
+      parentIndex_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool;
    function height (self : access Inst) return int;
    function indexes (self : access Inst) return LIST_QtAda6_QtCore_QModelIndex;
    function intersected

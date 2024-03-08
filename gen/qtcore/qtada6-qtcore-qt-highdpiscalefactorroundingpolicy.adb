@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.HighDpiScaleFactorRoundingPolicy is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,45 +21,39 @@ package body QtAda6.QtCore.Qt.HighDpiScaleFactorRoundingPolicy is
       Free (Inst_Access (Self));
    end Finalize;
    function Unset return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "HighDpiScaleFactorRoundingPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Unset"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Unset"));
    end Unset;
    function Round return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "HighDpiScaleFactorRoundingPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Round"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Round"));
    end Round;
    function Ceil return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "HighDpiScaleFactorRoundingPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Ceil"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Ceil"));
    end Ceil;
    function Floor return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "HighDpiScaleFactorRoundingPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Floor"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Floor"));
    end Floor;
    function RoundPreferFloor return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "HighDpiScaleFactorRoundingPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RoundPreferFloor"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RoundPreferFloor"));
    end RoundPreferFloor;
    function PassThrough return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "HighDpiScaleFactorRoundingPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PassThrough"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PassThrough"));
    end PassThrough;
 end QtAda6.QtCore.Qt.HighDpiScaleFactorRoundingPolicy;

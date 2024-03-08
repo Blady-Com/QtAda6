@@ -17,7 +17,10 @@ package QtAda6.QtCore.QPluginLoader is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   type DICT_strQtAda6_QtCore_QJsonValue is new Any;
+   type DICT_str_QtAda6_QtCore_QJsonValue is record
+      C0 : str;
+      C1 : access QtAda6.QtCore.QJsonValue.Inst'Class;
+   end record;
    subtype LIST_QtAda6_QtCore_QObject is QtAda6.QtCore.QObject.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create (fileName_P : str; parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
@@ -28,7 +31,7 @@ package QtAda6.QtCore.QPluginLoader is
    function isLoaded (self : access Inst) return bool;
    function load (self : access Inst) return bool;
    function loadHints (self : access Inst) return access QtAda6.QtCore.QLibrary.LoadHint.Inst'Class;
-   function metaData (self : access Inst) return DICT_strQtAda6_QtCore_QJsonValue;
+   function metaData (self : access Inst) return DICT_str_QtAda6_QtCore_QJsonValue;
    procedure setFileName (self : access Inst; fileName_P : str);
    procedure setLoadHints (self : access Inst; loadHints_P : access QtAda6.QtCore.QLibrary.LoadHint.Inst'Class);
    function staticInstances return LIST_QtAda6_QtCore_QObject;

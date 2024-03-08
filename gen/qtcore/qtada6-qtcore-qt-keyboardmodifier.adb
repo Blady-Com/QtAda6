@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.KeyboardModifier is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,59 +21,51 @@ package body QtAda6.QtCore.Qt.KeyboardModifier is
       Free (Inst_Access (Self));
    end Finalize;
    function NoModifier return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "KeyboardModifier");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoModifier"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoModifier"));
    end NoModifier;
    function ShiftModifier return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "KeyboardModifier");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ShiftModifier"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ShiftModifier"));
    end ShiftModifier;
    function ControlModifier return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "KeyboardModifier");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ControlModifier"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ControlModifier"));
    end ControlModifier;
    function AltModifier return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "KeyboardModifier");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AltModifier"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AltModifier"));
    end AltModifier;
    function MetaModifier return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "KeyboardModifier");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MetaModifier"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MetaModifier"));
    end MetaModifier;
    function KeypadModifier return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "KeyboardModifier");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "KeypadModifier"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "KeypadModifier"));
    end KeypadModifier;
    function GroupSwitchModifier return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "KeyboardModifier");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "GroupSwitchModifier"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "GroupSwitchModifier"));
    end GroupSwitchModifier;
    function KeyboardModifierMask return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "KeyboardModifier");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "KeyboardModifierMask"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "KeyboardModifierMask"));
    end KeyboardModifierMask;
 end QtAda6.QtCore.Qt.KeyboardModifier;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QCborSimpleType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtCore.QCborSimpleType is
       Free (Inst_Access (Self));
    end Finalize;
    function False_U return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborSimpleType");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborSimpleType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "False_"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "False_"));
    end False_U;
    function True_U return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborSimpleType");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborSimpleType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "True_"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "True_"));
    end True_U;
    function Null_K return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborSimpleType");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborSimpleType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Null"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Null"));
    end Null_K;
    function Undefined return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborSimpleType");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "QCborSimpleType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Undefined"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Undefined"));
    end Undefined;
 end QtAda6.QtCore.QCborSimpleType;

@@ -9,10 +9,8 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QByteArray;
-limited with QtAda6.QtCore.QMetaType;
-limited with QtAda6.QtCore.QMetaType.Type_K;
+limited with QtAda6.QtCore.QUrl;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.QUrl;
 package QtAda6.QtCore.QMimeData is
    type Inst;
    type Inst_Access is access all Inst;
@@ -20,8 +18,8 @@ package QtAda6.QtCore.QMimeData is
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
    type LIST_str is array (Positive range <>) of str;
-   type UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K is new Any;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K is new Any;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    subtype SEQUENCE_QtAda6_QtCore_QUrl is QtAda6.QtCore.QUrl.Class_Array;
    subtype LIST_QtAda6_QtCore_QUrl is QtAda6.QtCore.QUrl.Class_Array;
    procedure Finalize (Self : in out Class);
@@ -41,9 +39,9 @@ package QtAda6.QtCore.QMimeData is
    procedure removeFormat (self : access Inst; mimetype_P : str);
    function retrieveData
      (self            : access Inst; mimetype_P : str;
-      preferredType_P : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K) return Any;
+      preferredType_P : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K) return Any;
    procedure setColorData (self : access Inst; color_P : Any);
-   procedure setData (self : access Inst; mimetype_P : str; data_P : UNION_QtAda6_QtCore_QByteArraybytes);
+   procedure setData (self : access Inst; mimetype_P : str; data_P : UNION_QtAda6_QtCore_QByteArray_bytes);
    procedure setHtml (self : access Inst; html_P : str);
    procedure setImageData (self : access Inst; image_P : Any);
    procedure setText (self : access Inst; text_P : str);

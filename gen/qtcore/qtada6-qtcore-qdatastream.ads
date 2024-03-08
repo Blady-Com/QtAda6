@@ -9,7 +9,6 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QIODevice;
-limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtCore.QIODeviceBase.OpenModeFlag;
 limited with QtAda6.QtCore.QCborArray;
 limited with QtAda6.QtCore.QCborMap;
@@ -25,27 +24,7 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtCore.QTime;
 limited with QtAda6.QtCore.QUuid;
 limited with QtAda6.QtCore.QJsonValue;
-limited with QtAda6.QtCore.QBitArray;
-limited with QtAda6.QtCore.QCborValue;
-limited with QtAda6.QtCore.QCborKnownTags;
 limited with QtAda6.QtCore.QCborSimpleType;
-limited with QtAda6.QtCore.QCborTag;
-limited with QtAda6.QtCore.QCborValue.Type_K;
-limited with QtAda6.QtCore.QEasingCurve;
-limited with QtAda6.QtCore.QEasingCurve.Type_K;
-limited with QtAda6.QtCore.QJsonValue.Type_K;
-limited with QtAda6.QtCore.QLineF;
-limited with QtAda6.QtCore.QLocale;
-limited with QtAda6.QtCore.QLocale.Language;
-limited with QtAda6.QtCore.QMarginsF;
-limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtCore.QRectF;
-limited with QtAda6.QtCore.QSizeF;
-limited with QtAda6.QtCore.QUrl;
-limited with QtAda6.QtCore.QKeyCombination;
-limited with QtAda6.QtCore.Qt.KeyboardModifier;
-limited with QtAda6.QtCore.Qt.Key;
-limited with QtAda6.QtCore.QRegularExpression;
 limited with QtAda6.QtCore.QTimeZone;
 limited with QtAda6.QtCore.QVersionNumber;
 limited with QtAda6.QtCore.QDataStream.ByteOrder;
@@ -58,32 +37,35 @@ package QtAda6.QtCore.QDataStream is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QIODeviceBase.Inst with null record;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
-   type DICT_strQtAda6_QtCore_QJsonValue is new Any;
-   type UNION_QtAda6_QtCore_QBitArrayint is new Any;
-   type UNION_QtAda6_QtCore_QCborValueQtAda6_QtCore_QCborKnownTagsQtAda6_QtCore_QCborSimpleTypeQtAda6_QtCore_QCborTagQtAda6_QtCore_QCborValue_Type_KstrboolQtAda6_QtCore_QByteArrayQtAda6_QtCore_QCborArrayQtAda6_QtCore_QCborMapbytesfloatint is
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
+   type DICT_str_QtAda6_QtCore_QJsonValue is record
+      C0 : str;
+      C1 : access QtAda6.QtCore.QJsonValue.Inst'Class;
+   end record;
+   type UNION_QtAda6_QtCore_QBitArray_int is new Any;
+   type UNION_QtAda6_QtCore_QCborValue_QtAda6_QtCore_QCborKnownTags_QtAda6_QtCore_QCborSimpleType_QtAda6_QtCore_QCborTag_QtAda6_QtCore_QCborValue_Type_K_str_bool_QtAda6_QtCore_QByteArray_QtAda6_QtCore_QCborArray_QtAda6_QtCore_QCborMap_bytes_float_int is
      new Any;
-   type UNION_QtAda6_QtCore_QEasingCurveQtAda6_QtCore_QEasingCurve_Type_K is new Any;
-   type UNION_QtAda6_QtCore_QJsonValueQtAda6_QtCore_QJsonValue_Type_KboolQtAda6_QtCore_QJsonArrayDICT_strQtAda6_QtCore_QJsonValuestrbytesfloatint is
+   type UNION_QtAda6_QtCore_QEasingCurve_QtAda6_QtCore_QEasingCurve_Type_K is new Any;
+   type UNION_QtAda6_QtCore_QJsonValue_QtAda6_QtCore_QJsonValue_Type_K_bool_QtAda6_QtCore_QJsonArray_DICT_str_QtAda6_QtCore_QJsonValue_str_bytes_float_int is
      new Any;
-   type UNION_QtAda6_QtCore_QLineFQtAda6_QtCore_QLine is new Any;
-   type UNION_QtAda6_QtCore_QLocaleQtAda6_QtCore_QLocale_Language is new Any;
-   type UNION_QtAda6_QtCore_QMarginsFQtAda6_QtCore_QMargins is new Any;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPoint is new Any;
-   type UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect is new Any;
-   type UNION_QtAda6_QtCore_QSizeFQtAda6_QtCore_QSize is new Any;
-   type UNION_QtAda6_QtCore_QUrlstr is new Any;
-   type UNION_QtAda6_QtCore_QKeyCombinationQtAda6_QtCore_Qt_KeyboardModifierQtAda6_QtCore_Qt_Key is new Any;
-   type UNION_QtAda6_QtCore_QRegularExpressionstr is new Any;
-   type TUPLE is new Any;
+   type UNION_QtAda6_QtCore_QLineF_QtAda6_QtCore_QLine is new Any;
+   type UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language is new Any;
+   type UNION_QtAda6_QtCore_QMarginsF_QtAda6_QtCore_QMargins is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint is new Any;
+   type UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect is new Any;
+   type UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize is new Any;
+   type UNION_QtAda6_QtCore_QUrl_str is new Any;
+   type UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key is new Any;
+   type UNION_QtAda6_QtCore_QRegularExpression_str is new Any;
+   type TUPLE is null record;
    type LIST_str is array (Positive range <>) of str;
    type SEQUENCE_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (arg_1_P : access QtAda6.QtCore.QIODevice.Inst'Class) return Class;
-   function Create (arg_1_P : UNION_QtAda6_QtCore_QByteArraybytes) return Class;
+   function Create (arg_1_P : UNION_QtAda6_QtCore_QByteArray_bytes) return Class;
    function Create
-     (arg_1_P : UNION_QtAda6_QtCore_QByteArraybytes;
+     (arg_1_P : UNION_QtAda6_QtCore_QByteArray_bytes;
       flags_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class) return Class;
    procedure U_lshift_U (self : access Inst; arg_1_P : str);
    function U_lshift_U
@@ -127,54 +109,54 @@ package QtAda6.QtCore.QDataStream is
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U (self : access Inst; arg_2_P : str) return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U
-     (self : access Inst; arg_2_P : DICT_strQtAda6_QtCore_QJsonValue)
+     (self : access Inst; arg_2_P : DICT_str_QtAda6_QtCore_QJsonValue)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
 -- function U_lshift_U(self : access Inst;arg_2_P : str) return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QBitArrayint)
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QBitArray_int)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QByteArraybytes)
-      return access QtAda6.QtCore.QDataStream.Inst'Class;
-   function U_lshift_U
-     (self    : access Inst;
-      arg_2_P : UNION_QtAda6_QtCore_QCborValueQtAda6_QtCore_QCborKnownTagsQtAda6_QtCore_QCborSimpleTypeQtAda6_QtCore_QCborTagQtAda6_QtCore_QCborValue_Type_KstrboolQtAda6_QtCore_QByteArrayQtAda6_QtCore_QCborArrayQtAda6_QtCore_QCborMapbytesfloatint)
-      return access QtAda6.QtCore.QDataStream.Inst'Class;
-   function U_lshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QEasingCurveQtAda6_QtCore_QEasingCurve_Type_K)
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QByteArray_bytes)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U
      (self    : access Inst;
-      arg_2_P : UNION_QtAda6_QtCore_QJsonValueQtAda6_QtCore_QJsonValue_Type_KboolQtAda6_QtCore_QJsonArrayDICT_strQtAda6_QtCore_QJsonValuestrbytesfloatint)
+      arg_2_P : UNION_QtAda6_QtCore_QCborValue_QtAda6_QtCore_QCborKnownTags_QtAda6_QtCore_QCborSimpleType_QtAda6_QtCore_QCborTag_QtAda6_QtCore_QCborValue_Type_K_str_bool_QtAda6_QtCore_QByteArray_QtAda6_QtCore_QCborArray_QtAda6_QtCore_QCborMap_bytes_float_int)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QLineFQtAda6_QtCore_QLine)
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QEasingCurve_QtAda6_QtCore_QEasingCurve_Type_K)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QLocaleQtAda6_QtCore_QLocale_Language)
+     (self    : access Inst;
+      arg_2_P : UNION_QtAda6_QtCore_QJsonValue_QtAda6_QtCore_QJsonValue_Type_K_bool_QtAda6_QtCore_QJsonArray_DICT_str_QtAda6_QtCore_QJsonValue_str_bytes_float_int)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QMarginsFQtAda6_QtCore_QMargins)
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QLineF_QtAda6_QtCore_QLine)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPoint)
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect)
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QMarginsF_QtAda6_QtCore_QMargins)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QSizeFQtAda6_QtCore_QSize)
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QUrlstr) return access QtAda6.QtCore.QDataStream.Inst'Class;
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect)
+      return access QtAda6.QtCore.QDataStream.Inst'Class;
+   function U_lshift_U
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize)
+      return access QtAda6.QtCore.QDataStream.Inst'Class;
+   function U_lshift_U
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QUrl_str) return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U
      (self          : access Inst;
-      combination_P : UNION_QtAda6_QtCore_QKeyCombinationQtAda6_QtCore_Qt_KeyboardModifierQtAda6_QtCore_Qt_Key)
+      combination_P : UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U (self : access Inst; i_P : int) return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U (self : access Inst; p_P : Any) return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U
-     (self : access Inst; re_P : UNION_QtAda6_QtCore_QRegularExpressionstr)
+     (self : access Inst; re_P : UNION_QtAda6_QtCore_QRegularExpression_str)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_lshift_U
      (self : access Inst; st_P : access QtAda6.QtCore.QCborSimpleType.Inst'Class)
@@ -226,54 +208,54 @@ package QtAda6.QtCore.QDataStream is
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U (self : access Inst; arg_2_P : str) return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U
-     (self : access Inst; arg_2_P : DICT_strQtAda6_QtCore_QJsonValue)
+     (self : access Inst; arg_2_P : DICT_str_QtAda6_QtCore_QJsonValue)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
 -- function U_rshift_U(self : access Inst;arg_2_P : str) return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QBitArrayint)
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QBitArray_int)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QByteArraybytes)
-      return access QtAda6.QtCore.QDataStream.Inst'Class;
-   function U_rshift_U
-     (self    : access Inst;
-      arg_2_P : UNION_QtAda6_QtCore_QCborValueQtAda6_QtCore_QCborKnownTagsQtAda6_QtCore_QCborSimpleTypeQtAda6_QtCore_QCborTagQtAda6_QtCore_QCborValue_Type_KstrboolQtAda6_QtCore_QByteArrayQtAda6_QtCore_QCborArrayQtAda6_QtCore_QCborMapbytesfloatint)
-      return access QtAda6.QtCore.QDataStream.Inst'Class;
-   function U_rshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QEasingCurveQtAda6_QtCore_QEasingCurve_Type_K)
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QByteArray_bytes)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U
      (self    : access Inst;
-      arg_2_P : UNION_QtAda6_QtCore_QJsonValueQtAda6_QtCore_QJsonValue_Type_KboolQtAda6_QtCore_QJsonArrayDICT_strQtAda6_QtCore_QJsonValuestrbytesfloatint)
+      arg_2_P : UNION_QtAda6_QtCore_QCborValue_QtAda6_QtCore_QCborKnownTags_QtAda6_QtCore_QCborSimpleType_QtAda6_QtCore_QCborTag_QtAda6_QtCore_QCborValue_Type_K_str_bool_QtAda6_QtCore_QByteArray_QtAda6_QtCore_QCborArray_QtAda6_QtCore_QCborMap_bytes_float_int)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QLineFQtAda6_QtCore_QLine)
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QEasingCurve_QtAda6_QtCore_QEasingCurve_Type_K)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QLocaleQtAda6_QtCore_QLocale_Language)
+     (self    : access Inst;
+      arg_2_P : UNION_QtAda6_QtCore_QJsonValue_QtAda6_QtCore_QJsonValue_Type_K_bool_QtAda6_QtCore_QJsonArray_DICT_str_QtAda6_QtCore_QJsonValue_str_bytes_float_int)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QMarginsFQtAda6_QtCore_QMargins)
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QLineF_QtAda6_QtCore_QLine)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPoint)
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect)
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QMarginsF_QtAda6_QtCore_QMargins)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QSizeFQtAda6_QtCore_QSize)
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QUrlstr) return access QtAda6.QtCore.QDataStream.Inst'Class;
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect)
+      return access QtAda6.QtCore.QDataStream.Inst'Class;
+   function U_rshift_U
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize)
+      return access QtAda6.QtCore.QDataStream.Inst'Class;
+   function U_rshift_U
+     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QUrl_str) return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U
      (self          : access Inst;
-      combination_P : UNION_QtAda6_QtCore_QKeyCombinationQtAda6_QtCore_Qt_KeyboardModifierQtAda6_QtCore_Qt_Key)
+      combination_P : UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U (self : access Inst; i_P : int) return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U (self : access Inst; p_P : Any) return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U
-     (self : access Inst; re_P : UNION_QtAda6_QtCore_QRegularExpressionstr)
+     (self : access Inst; re_P : UNION_QtAda6_QtCore_QRegularExpression_str)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_rshift_U
      (self : access Inst; st_P : access QtAda6.QtCore.QCborSimpleType.Inst'Class)

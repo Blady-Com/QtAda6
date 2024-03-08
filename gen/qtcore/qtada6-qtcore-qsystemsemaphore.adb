@@ -13,6 +13,9 @@ with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QSystemSemaphore.AccessMode;
 with QtAda6.QtCore.QSystemSemaphore.SystemSemaphoreError;
 package body QtAda6.QtCore.QSystemSemaphore is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -23,70 +26,87 @@ package body QtAda6.QtCore.QSystemSemaphore is
      (key_P  : str; initialValue_P : int := 0;
       mode_P : access QtAda6.QtCore.QSystemSemaphore.AccessMode.Inst'Class := null) return Class
    is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSystemSemaphore");
-      Args  := Tuple_New (3);
+      Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (key_P));
-      Tuple_SetItem (Args, 1, Long_FromLong (initialValue_P));
-      Tuple_SetItem (Args, 2, (if mode_P /= null then mode_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      if initialValue_P /= 0 then
+         Dict_SetItemString (Dict, "initialValue", Long_FromLong (initialValue_P));
+      end if;
+      if mode_P /= null then
+         Dict_SetItemString (Dict, "mode", mode_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function acquire (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "acquire");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end acquire;
-   function error_F (self : access Inst) return access QtAda6.QtCore.QSystemSemaphore.SystemSemaphoreError.Inst'Class is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtCore.QSystemSemaphore.SystemSemaphoreError.Class :=
+   function error (self : access Inst) return access QtAda6.QtCore.QSystemSemaphore.SystemSemaphoreError.Inst'Class is
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret                                     : constant QtAda6.QtCore.QSystemSemaphore.SystemSemaphoreError.Class :=
         new QtAda6.QtCore.QSystemSemaphore.SystemSemaphoreError.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "error");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
-   end error_F;
+   end error;
    function errorString (self : access Inst) return str is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "errorString");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end errorString;
    function key (self : access Inst) return str is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "key");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end key;
    function release (self : access Inst; n_P : int := 0) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "release");
-      Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Long_FromLong (n_P));
-      Result := Object_CallObject (Method, Args, True);
+      Args   := Tuple_New (0);
+      Dict   := Dict_New;
+      if n_P /= 0 then
+         Dict_SetItemString (Dict, "n", Long_FromLong (n_P));
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end release;
    procedure setKey
      (self   : access Inst; key_P : str; initialValue_P : int := 0;
       mode_P : access QtAda6.QtCore.QSystemSemaphore.AccessMode.Inst'Class := null)
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setKey");
-      Args   := Tuple_New (3);
+      Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (key_P));
-      Tuple_SetItem (Args, 1, Long_FromLong (initialValue_P));
-      Tuple_SetItem (Args, 2, (if mode_P /= null then mode_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict := Dict_New;
+      if initialValue_P /= 0 then
+         Dict_SetItemString (Dict, "initialValue", Long_FromLong (initialValue_P));
+      end if;
+      if mode_P /= null then
+         Dict_SetItemString (Dict, "mode", mode_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
    end setKey;
 end QtAda6.QtCore.QSystemSemaphore;

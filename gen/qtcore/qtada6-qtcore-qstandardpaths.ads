@@ -22,7 +22,7 @@ package QtAda6.QtCore.QStandardPaths is
    function displayName (type_K_P : access QtAda6.QtCore.QStandardPaths.StandardLocation.Inst'Class) return str;
    function findExecutable (executableName_P : str; paths_P : SEQUENCE_str := (2 .. 1 => <>)) return str;
    function isTestModeEnabled return bool;
-   function locate_F
+   function locate
      (type_K_P  : access QtAda6.QtCore.QStandardPaths.StandardLocation.Inst'Class; fileName_P : str;
       options_P : access QtAda6.QtCore.QStandardPaths.LocateOption.Inst'Class := null) return str;
    function locateAll

@@ -13,6 +13,9 @@ with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.QUrl;
 package body QtAda6.QtCore.QFileSelector is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -20,53 +23,60 @@ package body QtAda6.QtCore.QFileSelector is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileSelector");
-      Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Args  := Tuple_New (0);
+      Dict  := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function allSelectors (self : access Inst) return LIST_str is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "allSelectors");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return (2 .. 1 => <>);
    end allSelectors;
    function extraSelectors (self : access Inst) return LIST_str is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "extraSelectors");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return (2 .. 1 => <>);
    end extraSelectors;
    function select_K (self : access Inst; filePath_P : str) return str is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "select");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (filePath_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end select_K;
    function select_K
-     (self : access Inst; filePath_P : UNION_QtAda6_QtCore_QUrlstr) return access QtAda6.QtCore.QUrl.Inst'Class
+     (self : access Inst; filePath_P : UNION_QtAda6_QtCore_QUrl_str) return access QtAda6.QtCore.QUrl.Inst'Class
    is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtCore.QUrl.Class := new QtAda6.QtCore.QUrl.Inst;
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret                                     : constant QtAda6.QtCore.QUrl.Class := new QtAda6.QtCore.QUrl.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "select");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if filePath_P /= null then filePath_P.Python_Proxy else No_Value));
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end select_K;
    procedure setExtraSelectors (self : access Inst; list_P : SEQUENCE_str) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setExtraSelectors");
       List   := List_New (list_P'Length);
@@ -75,6 +85,7 @@ package body QtAda6.QtCore.QFileSelector is
       end loop;
       Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setExtraSelectors;
 end QtAda6.QtCore.QFileSelector;

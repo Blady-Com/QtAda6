@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.TabFocusBehavior is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtCore.Qt.TabFocusBehavior is
       Free (Inst_Access (Self));
    end Finalize;
    function NoTabFocus return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TabFocusBehavior");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoTabFocus"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoTabFocus"));
    end NoTabFocus;
    function TabFocusTextControls return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TabFocusBehavior");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TabFocusTextControls"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TabFocusTextControls"));
    end TabFocusTextControls;
    function TabFocusListControls return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TabFocusBehavior");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TabFocusListControls"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TabFocusListControls"));
    end TabFocusListControls;
    function TabFocusAllControls return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TabFocusBehavior");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TabFocusAllControls"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TabFocusAllControls"));
    end TabFocusAllControls;
 end QtAda6.QtCore.Qt.TabFocusBehavior;

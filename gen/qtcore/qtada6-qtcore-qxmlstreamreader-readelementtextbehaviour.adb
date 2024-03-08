@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QXmlStreamReader.ReadElementTextBehaviour is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtCore.QXmlStreamReader.ReadElementTextBehaviour is
       Free (Inst_Access (Self));
    end Finalize;
    function ErrorOnUnexpectedElement return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QXmlStreamReader");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ReadElementTextBehaviour");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ErrorOnUnexpectedElement"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ErrorOnUnexpectedElement"));
    end ErrorOnUnexpectedElement;
    function IncludeChildElements return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QXmlStreamReader");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ReadElementTextBehaviour");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "IncludeChildElements"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "IncludeChildElements"));
    end IncludeChildElements;
    function SkipChildElements return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QXmlStreamReader");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ReadElementTextBehaviour");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SkipChildElements"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SkipChildElements"));
    end SkipChildElements;
 end QtAda6.QtCore.QXmlStreamReader.ReadElementTextBehaviour;

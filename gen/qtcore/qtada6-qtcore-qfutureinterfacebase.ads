@@ -22,8 +22,8 @@ package QtAda6.QtCore.QFutureInterfaceBase is
    procedure Finalize (Self : in out Class);
    function Create (initialState_P : access QtAda6.QtCore.QFutureInterfaceBase.State.Inst'Class := null) return Class;
    function Create (other_P : access QtAda6.QtCore.QFutureInterfaceBase.Inst'Class) return Class;
-   procedure cancel_F (self : access Inst);
-   procedure cancel_F (self : access Inst; mode_P : access QtAda6.QtCore.QFutureInterfaceBase.CancelMode.Inst'Class);
+   procedure cancel (self : access Inst);
+   procedure cancel (self : access Inst; mode_P : access QtAda6.QtCore.QFutureInterfaceBase.CancelMode.Inst'Class);
    procedure cancelAndFinish (self : access Inst);
    procedure cleanContinuation (self : access Inst);
    function derefT (self : access Inst) return bool;

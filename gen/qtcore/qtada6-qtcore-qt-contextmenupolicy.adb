@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.ContextMenuPolicy is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtCore.Qt.ContextMenuPolicy is
       Free (Inst_Access (Self));
    end Finalize;
    function NoContextMenu return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ContextMenuPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoContextMenu"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoContextMenu"));
    end NoContextMenu;
    function DefaultContextMenu return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ContextMenuPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DefaultContextMenu"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DefaultContextMenu"));
    end DefaultContextMenu;
    function ActionsContextMenu return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ContextMenuPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ActionsContextMenu"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ActionsContextMenu"));
    end ActionsContextMenu;
    function CustomContextMenu return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ContextMenuPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CustomContextMenu"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CustomContextMenu"));
    end CustomContextMenu;
    function PreventContextMenu return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ContextMenuPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreventContextMenu"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreventContextMenu"));
    end PreventContextMenu;
 end QtAda6.QtCore.Qt.ContextMenuPolicy;

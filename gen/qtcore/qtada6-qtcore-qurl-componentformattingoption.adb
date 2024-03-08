@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QUrl.ComponentFormattingOption is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,59 +21,51 @@ package body QtAda6.QtCore.QUrl.ComponentFormattingOption is
       Free (Inst_Access (Self));
    end Finalize;
    function PrettyDecoded return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QUrl");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComponentFormattingOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PrettyDecoded"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PrettyDecoded"));
    end PrettyDecoded;
    function EncodeSpaces return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QUrl");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComponentFormattingOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "EncodeSpaces"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "EncodeSpaces"));
    end EncodeSpaces;
    function EncodeUnicode return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QUrl");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComponentFormattingOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "EncodeUnicode"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "EncodeUnicode"));
    end EncodeUnicode;
    function EncodeDelimiters return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QUrl");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComponentFormattingOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "EncodeDelimiters"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "EncodeDelimiters"));
    end EncodeDelimiters;
    function EncodeReserved return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QUrl");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComponentFormattingOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "EncodeReserved"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "EncodeReserved"));
    end EncodeReserved;
    function FullyEncoded return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QUrl");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComponentFormattingOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FullyEncoded"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FullyEncoded"));
    end FullyEncoded;
    function DecodeReserved return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QUrl");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComponentFormattingOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DecodeReserved"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DecodeReserved"));
    end DecodeReserved;
    function FullyDecoded return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QUrl");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComponentFormattingOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FullyDecoded"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FullyDecoded"));
    end FullyDecoded;
 end QtAda6.QtCore.QUrl.ComponentFormattingOption;

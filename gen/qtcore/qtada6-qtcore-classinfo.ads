@@ -14,7 +14,10 @@ package QtAda6.QtCore.ClassInfo is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Object with null record;
-   type DICT_strstr is new Any;
+   type DICT_str_str is record
+      C0 : str;
+      C1 : str;
+   end record;
    procedure Finalize (Self : in out Class);
-   function Create (info_P : DICT_strstr) return Class;
+   function Create (info_P : DICT_str_str) return Class;
 end QtAda6.QtCore.ClassInfo;

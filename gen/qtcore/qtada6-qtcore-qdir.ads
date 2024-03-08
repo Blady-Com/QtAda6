@@ -10,31 +10,31 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QDir.SortFlag;
 limited with QtAda6.QtCore.QDir.Filter;
-with QtAda6.QtCore.QFileInfo;
+limited with QtAda6.QtCore.QFileInfo;
 package QtAda6.QtCore.QDir is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QDirstr is new Any;
-   type UNION_strbytesos_PathLikeNoneType is new Any;
-   type UNION_strbytesos_PathLike is new Any;
+   type UNION_QtAda6_QtCore_QDir_str is new Any;
+   type UNION_str_bytes_os_PathLike_NoneType is new Any;
+   type UNION_str_bytes_os_PathLike is new Any;
    subtype LIST_QtAda6_QtCore_QFileInfo is QtAda6.QtCore.QFileInfo.Class_Array;
    type SEQUENCE_str is array (Positive range <>) of str;
    type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
-   function Create (arg_1_P : UNION_QtAda6_QtCore_QDirstr) return Class;
-   function Create (path_P : UNION_strbytesos_PathLikeNoneType) return Class;
+   function Create (arg_1_P : UNION_QtAda6_QtCore_QDir_str) return Class;
+   function Create (path_P : UNION_str_bytes_os_PathLike_NoneType) return Class;
    function Create
-     (path_P   : UNION_strbytesos_PathLike; nameFilter_P : str;
+     (path_P   : UNION_str_bytes_os_PathLike; nameFilter_P : str;
       sort_P   : access QtAda6.QtCore.QDir.SortFlag.Inst'Class := null;
       filter_P : access QtAda6.QtCore.QDir.Filter.Inst'Class   := null) return Class;
    procedure U_copy_U;
    function U_reduce_U (self : access Inst) return access Object'Class;
    function absoluteFilePath (self : access Inst; fileName_P : str) return str;
    function absolutePath (self : access Inst) return str;
-   procedure addSearchPath (prefix_P : str; path_P : UNION_strbytesos_PathLike);
+   procedure addSearchPath (prefix_P : str; path_P : UNION_str_bytes_os_PathLike);
    function canonicalPath (self : access Inst) return str;
    function cd (self : access Inst; dirName_P : str) return bool;
    function cdUp (self : access Inst) return bool;
@@ -92,11 +92,11 @@ package QtAda6.QtCore.QDir is
    function setCurrent (path_P : str) return bool;
    procedure setFilter (self : access Inst; filter_P : access QtAda6.QtCore.QDir.Filter.Inst'Class);
    procedure setNameFilters (self : access Inst; nameFilters_P : SEQUENCE_str);
-   procedure setPath (self : access Inst; path_P : UNION_strbytesos_PathLike);
+   procedure setPath (self : access Inst; path_P : UNION_str_bytes_os_PathLike);
    procedure setSearchPaths (prefix_P : str; searchPaths_P : SEQUENCE_str);
    procedure setSorting (self : access Inst; sort_P : access QtAda6.QtCore.QDir.SortFlag.Inst'Class);
    function sorting (self : access Inst) return access QtAda6.QtCore.QDir.SortFlag.Inst'Class;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QDirstr);
+   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QDir_str);
    function temp return access QtAda6.QtCore.QDir.Inst'Class;
    function tempPath return str;
    function toNativeSeparators (pathName_P : str) return str;

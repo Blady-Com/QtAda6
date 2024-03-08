@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QPermission;
 limited with QtAda6.QtCore.Qt.PermissionStatus;
 limited with QtAda6.QtCore.QEvent;
@@ -17,22 +18,24 @@ limited with QtAda6.QtCore.QTranslator;
 limited with QtAda6.QtCore.QEventLoop.ProcessEventsFlag;
 limited with QtAda6.QtCore.Qt.ApplicationAttribute;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QCoreApplication is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    type SEQUENCE_str is array (Positive range <>) of str;
    type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
-   function aboutToQuit (self : access Inst) return CLASSVAR_Signal;-- aboutToQuit()
-   function applicationNameChanged (self : access Inst) return CLASSVAR_Signal;-- applicationNameChanged()
-   function applicationVersionChanged (self : access Inst) return CLASSVAR_Signal;-- applicationVersionChanged()
-   function organizationDomainChanged (self : access Inst) return CLASSVAR_Signal;-- organizationDomainChanged()
-   function organizationNameChanged (self : access Inst) return CLASSVAR_Signal;-- organizationNameChanged()
+   function aboutToQuit (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- aboutToQuit()
+   function applicationNameChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- applicationNameChanged()
+   function applicationVersionChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- applicationVersionChanged()
+   function organizationDomainChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- organizationDomainChanged()
+   function organizationNameChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- organizationNameChanged()
    function Create return Class;
    function Create (arg_1_P : SEQUENCE_str) return Class;
    procedure addLibraryPath (arg_1_P : str);

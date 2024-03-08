@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.ScrollPhase is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtCore.Qt.ScrollPhase is
       Free (Inst_Access (Self));
    end Finalize;
    function NoScrollPhase return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ScrollPhase");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoScrollPhase"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoScrollPhase"));
    end NoScrollPhase;
    function ScrollBegin return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ScrollPhase");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ScrollBegin"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ScrollBegin"));
    end ScrollBegin;
    function ScrollUpdate return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ScrollPhase");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ScrollUpdate"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ScrollUpdate"));
    end ScrollUpdate;
    function ScrollEnd return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ScrollPhase");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ScrollEnd"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ScrollEnd"));
    end ScrollEnd;
    function ScrollMomentum return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ScrollPhase");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ScrollMomentum"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ScrollMomentum"));
    end ScrollMomentum;
 end QtAda6.QtCore.Qt.ScrollPhase;

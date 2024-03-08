@@ -27,7 +27,7 @@ package QtAda6.QtCore.QLibrary is
    function fileName (self : access Inst) return str;
    function isLibrary (fileName_P : str) return bool;
    function isLoaded (self : access Inst) return bool;
-   function load_F (self : access Inst) return bool;
+   function load (self : access Inst) return bool;
    function loadHints (self : access Inst) return access QtAda6.QtCore.QLibrary.LoadHint.Inst'Class;
    function resolve (fileName_P : str; symbol_P : bytes) return int;
    function resolve (fileName_P : str; verNum_P : int; symbol_P : bytes) return int;

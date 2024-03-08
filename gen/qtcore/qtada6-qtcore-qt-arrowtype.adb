@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.ArrowType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtCore.Qt.ArrowType is
       Free (Inst_Access (Self));
    end Finalize;
    function NoArrow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ArrowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoArrow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoArrow"));
    end NoArrow;
    function UpArrow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ArrowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UpArrow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UpArrow"));
    end UpArrow;
    function DownArrow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ArrowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DownArrow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DownArrow"));
    end DownArrow;
    function LeftArrow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ArrowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LeftArrow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LeftArrow"));
    end LeftArrow;
    function RightArrow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ArrowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RightArrow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RightArrow"));
    end RightArrow;
 end QtAda6.QtCore.Qt.ArrowType;

@@ -8,33 +8,34 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.QByteArray;
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QAbstractNativeEventFilter;
 limited with QtAda6.QtCore.QThread;
 limited with QtAda6.QtCore.QEventLoop.ProcessEventsFlag;
 limited with QtAda6.QtCore.QSocketNotifier;
 limited with QtAda6.QtCore.Qt.TimerType;
-with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QAbstractEventDispatcher.TimerInfo;
+with QtAda6.QtCore.QObject;
 package QtAda6.QtCore.QAbstractEventDispatcher is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
-   type TUPLE_boolint is new Any;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
+   type TUPLE_bool_int is record
+      C0 : bool;
+      C1 : int;
+   end record;
    subtype LIST_QtAda6_QtCore_QAbstractEventDispatcher_TimerInfo is
      QtAda6.QtCore.QAbstractEventDispatcher.TimerInfo.Class_Array;
    procedure Finalize (Self : in out Class);
-   function aboutToBlock (self : access Inst) return CLASSVAR_Signal;-- aboutToBlock()
-   function awake (self : access Inst) return CLASSVAR_Signal;-- awake()
+   function aboutToBlock (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- aboutToBlock()
+   function awake (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- awake()
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    procedure closingDown (self : access Inst);
    function filterNativeEvent
-     (self : access Inst; eventType_P : UNION_QtAda6_QtCore_QByteArraybytes; message_P : int) return TUPLE_boolint;
+     (self : access Inst; eventType_P : UNION_QtAda6_QtCore_QByteArray_bytes; message_P : int) return TUPLE_bool_int;
    procedure installNativeEventFilter
      (self : access Inst; filterObj_P : access QtAda6.QtCore.QAbstractNativeEventFilter.Inst'Class);
    function instance

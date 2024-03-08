@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.QPersistentModelIndex;
 limited with QtAda6.QtCore.Qt.ItemFlag;
 limited with QtAda6.QtCore.QAbstractItemModel;
 package QtAda6.QtCore.QModelIndex is
@@ -17,10 +16,10 @@ package QtAda6.QtCore.QModelIndex is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex is new Any;
+   type UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (QModelIndex_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return Class;
+   function Create (QModelIndex_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return Class;
    procedure U_copy_U;
    function column (self : access Inst) return int;
    function constInternalPointer (self : access Inst) return int;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QFileDevice.FileError is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,108 +21,93 @@ package body QtAda6.QtCore.QFileDevice.FileError is
       Free (Inst_Access (Self));
    end Finalize;
    function NoError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoError"));
    end NoError;
    function ReadError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ReadError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ReadError"));
    end ReadError;
    function WriteError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WriteError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WriteError"));
    end WriteError;
    function FatalError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FatalError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FatalError"));
    end FatalError;
    function ResourceError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ResourceError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ResourceError"));
    end ResourceError;
    function OpenError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "OpenError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "OpenError"));
    end OpenError;
    function AbortError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AbortError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AbortError"));
    end AbortError;
    function TimeOutError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TimeOutError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TimeOutError"));
    end TimeOutError;
    function UnspecifiedError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UnspecifiedError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UnspecifiedError"));
    end UnspecifiedError;
    function RemoveError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RemoveError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RemoveError"));
    end RemoveError;
    function RenameError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RenameError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RenameError"));
    end RenameError;
    function PositionError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PositionError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PositionError"));
    end PositionError;
    function ResizeError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ResizeError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ResizeError"));
    end ResizeError;
    function PermissionsError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PermissionsError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PermissionsError"));
    end PermissionsError;
    function CopyError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FileError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CopyError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CopyError"));
    end CopyError;
 end QtAda6.QtCore.QFileDevice.FileError;

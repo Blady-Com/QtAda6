@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QProcess.ProcessError is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,45 +21,39 @@ package body QtAda6.QtCore.QProcess.ProcessError is
       Free (Inst_Access (Self));
    end Finalize;
    function FailedToStart return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FailedToStart"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FailedToStart"));
    end FailedToStart;
    function Crashed return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Crashed"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Crashed"));
    end Crashed;
    function Timedout return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Timedout"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Timedout"));
    end Timedout;
    function ReadError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ReadError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ReadError"));
    end ReadError;
    function WriteError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WriteError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WriteError"));
    end WriteError;
    function UnknownError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UnknownError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UnknownError"));
    end UnknownError;
 end QtAda6.QtCore.QProcess.ProcessError;

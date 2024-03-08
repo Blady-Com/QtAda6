@@ -10,9 +10,11 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QLocale.Language;
 limited with QtAda6.QtCore.QLocale.Script;
+limited with QtAda6.QtCore.QLocale.Country;
 limited with QtAda6.QtCore.QLocale.LanguageCodeType;
 limited with QtAda6.QtCore.QLocale.CurrencySymbolFormat;
 limited with QtAda6.QtCore.QLocale.FormatType;
+limited with QtAda6.QtCore.Qt.DayOfWeek;
 limited with QtAda6.QtCore.QLocale.DataSizeFormat;
 limited with QtAda6.QtCore.QLocale.MeasurementSystem;
 limited with QtAda6.QtCore.QLocale.NumberOption;
@@ -22,21 +24,25 @@ limited with QtAda6.QtCore.QCalendar;
 limited with QtAda6.QtCore.QDate;
 limited with QtAda6.QtCore.QDateTime;
 limited with QtAda6.QtCore.QTime;
-limited with QtAda6.QtCore.QLocale.Country;
-with QtAda6.QtCore.Qt.DayOfWeek;
 package QtAda6.QtCore.QLocale is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QLocaleQtAda6_QtCore_QLocale_Language is new Any;
+   type UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language is new Any;
    subtype LIST_QtAda6_QtCore_QLocale_Country is QtAda6.QtCore.QLocale.Country.Class_Array;
    type SEQUENCE_str is array (Positive range <>) of str;
    subtype LIST_QtAda6_QtCore_QLocale is QtAda6.QtCore.QLocale.Class_Array;
-   type TUPLE is new Any;
-   type TUPLE_floatbool is new Any;
-   type TUPLE_intbool is new Any;
+   type TUPLE is null record;
+   type TUPLE_float_bool is record
+      C0 : float;
+      C1 : bool;
+   end record;
+   type TUPLE_int_bool is record
+      C0 : int;
+      C1 : bool;
+   end record;
    type LIST_str is array (Positive range <>) of str;
    subtype LIST_QtAda6_QtCore_Qt_DayOfWeek is QtAda6.QtCore.Qt.DayOfWeek.Class_Array;
    procedure Finalize (Self : in out Class);
@@ -49,11 +55,11 @@ package QtAda6.QtCore.QLocale is
      (language_P  : access QtAda6.QtCore.QLocale.Language.Inst'Class;
       territory_P : access QtAda6.QtCore.QLocale.Country.Inst'Class) return Class;
    function Create (name_P : str) return Class;
-   function Create (other_P : UNION_QtAda6_QtCore_QLocaleQtAda6_QtCore_QLocale_Language) return Class;
+   function Create (other_P : UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language) return Class;
    procedure U_copy_U;
    function amText (self : access Inst) return str;
    function bcp47Name (self : access Inst) return str;
-   function c_F return access QtAda6.QtCore.QLocale.Inst'Class;
+   function c return access QtAda6.QtCore.QLocale.Inst'Class;
    function codeToCountry (countryCode_P : str) return access QtAda6.QtCore.QLocale.Country.Inst'Class;
    function codeToLanguage
      (languageCode_P : str; codeTypes_P : access QtAda6.QtCore.QLocale.LanguageCodeType.Inst'Class := null)
@@ -67,7 +73,7 @@ package QtAda6.QtCore.QLocale is
    function countryToCode (country_P : access QtAda6.QtCore.QLocale.Country.Inst'Class) return str;
    function countryToString (country_P : access QtAda6.QtCore.QLocale.Country.Inst'Class) return str;
    function createSeparatedList (self : access Inst; strl_P : SEQUENCE_str) return str;
-   function currencySymbol_F
+   function currencySymbol
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QLocale.CurrencySymbolFormat.Inst'Class := null) return str;
    function dateFormat
      (self : access Inst; format_P : access QtAda6.QtCore.QLocale.FormatType.Inst'Class := null) return str;
@@ -111,7 +117,7 @@ package QtAda6.QtCore.QLocale is
    function script_F (self : access Inst) return access QtAda6.QtCore.QLocale.Script.Inst'Class;
    function scriptToCode (script_P : access QtAda6.QtCore.QLocale.Script.Inst'Class) return str;
    function scriptToString (script_P : access QtAda6.QtCore.QLocale.Script.Inst'Class) return str;
-   procedure setDefault (locale_P : UNION_QtAda6_QtCore_QLocaleQtAda6_QtCore_QLocale_Language);
+   procedure setDefault (locale_P : UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language);
    procedure setNumberOptions (self : access Inst; options_P : access QtAda6.QtCore.QLocale.NumberOption.Inst'Class);
    function standaloneDayName
      (self : access Inst; arg_1_P : int; format_P : access QtAda6.QtCore.QLocale.FormatType.Inst'Class := null)
@@ -119,8 +125,8 @@ package QtAda6.QtCore.QLocale is
    function standaloneMonthName
      (self : access Inst; arg_1_P : int; format_P : access QtAda6.QtCore.QLocale.FormatType.Inst'Class := null)
       return str;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QLocaleQtAda6_QtCore_QLocale_Language);
-   function system_F return access QtAda6.QtCore.QLocale.Inst'Class;
+   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language);
+   function system return access QtAda6.QtCore.QLocale.Inst'Class;
    function territory (self : access Inst) return access QtAda6.QtCore.QLocale.Country.Inst'Class;
    function territoryToCode (territory_P : access QtAda6.QtCore.QLocale.Country.Inst'Class) return str;
    function territoryToString (territory_P : access QtAda6.QtCore.QLocale.Country.Inst'Class) return str;
@@ -154,17 +160,17 @@ package QtAda6.QtCore.QLocale is
      (self : access Inst; string_P : str; format_P : str; cal_P : access QtAda6.QtCore.QCalendar.Inst'Class)
       return access QtAda6.QtCore.QDateTime.Inst'Class;
    function toDouble (self : access Inst; s_P : str) return TUPLE;
-   function toDouble (self : access Inst; s_P : str) return TUPLE_floatbool;
+   function toDouble (self : access Inst; s_P : str) return TUPLE_float_bool;
    function toFloat (self : access Inst; s_P : str) return TUPLE;
-   function toFloat (self : access Inst; s_P : str) return TUPLE_floatbool;
+   function toFloat (self : access Inst; s_P : str) return TUPLE_float_bool;
    function toInt (self : access Inst; s_P : str) return TUPLE;
-   function toInt (self : access Inst; s_P : str) return TUPLE_intbool;
-   function toLong (self : access Inst; s_P : str) return TUPLE_intbool;
+   function toInt (self : access Inst; s_P : str) return TUPLE_int_bool;
+   function toLong (self : access Inst; s_P : str) return TUPLE_int_bool;
    function toLongLong (self : access Inst; s_P : str) return TUPLE;
-   function toLongLong (self : access Inst; s_P : str) return TUPLE_intbool;
+   function toLongLong (self : access Inst; s_P : str) return TUPLE_int_bool;
    function toLower (self : access Inst; str_P : str) return str;
    function toShort (self : access Inst; s_P : str) return TUPLE;
-   function toShort (self : access Inst; s_P : str) return TUPLE_intbool;
+   function toShort (self : access Inst; s_P : str) return TUPLE_int_bool;
    function toString
      (self     : access Inst; date_P : access QtAda6.QtCore.QDate.Inst'Class;
       format_P : access QtAda6.QtCore.QLocale.FormatType.Inst'Class; cal_P : access QtAda6.QtCore.QCalendar.Inst'Class)
@@ -202,12 +208,12 @@ package QtAda6.QtCore.QLocale is
       return access QtAda6.QtCore.QTime.Inst'Class;
    function toTime (self : access Inst; string_P : str; format_P : str) return access QtAda6.QtCore.QTime.Inst'Class;
    function toUInt (self : access Inst; s_P : str) return TUPLE;
-   function toUInt (self : access Inst; s_P : str) return TUPLE_intbool;
-   function toULong (self : access Inst; s_P : str) return TUPLE_intbool;
+   function toUInt (self : access Inst; s_P : str) return TUPLE_int_bool;
+   function toULong (self : access Inst; s_P : str) return TUPLE_int_bool;
    function toULongLong (self : access Inst; s_P : str) return TUPLE;
-   function toULongLong (self : access Inst; s_P : str) return TUPLE_intbool;
+   function toULongLong (self : access Inst; s_P : str) return TUPLE_int_bool;
    function toUShort (self : access Inst; s_P : str) return TUPLE;
-   function toUShort (self : access Inst; s_P : str) return TUPLE_intbool;
+   function toUShort (self : access Inst; s_P : str) return TUPLE_int_bool;
    function toUpper (self : access Inst; str_P : str) return str;
    function uiLanguages (self : access Inst) return LIST_str;
    function weekdays (self : access Inst) return LIST_QtAda6_QtCore_Qt_DayOfWeek;

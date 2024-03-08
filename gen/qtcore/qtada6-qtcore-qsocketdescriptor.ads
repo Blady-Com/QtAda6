@@ -14,9 +14,9 @@ package QtAda6.QtCore.QSocketDescriptor is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QSocketDescriptorint is new Any;
+   type UNION_QtAda6_QtCore_QSocketDescriptor_int is new Any;
    procedure Finalize (Self : in out Class);
-   function Create (QSocketDescriptor_P : UNION_QtAda6_QtCore_QSocketDescriptorint) return Class;
+   function Create (QSocketDescriptor_P : UNION_QtAda6_QtCore_QSocketDescriptor_int) return Class;
    function Create (descriptor_P : int := 0) return Class;
    procedure U_copy_U;
    function isValid (self : access Inst) return bool;

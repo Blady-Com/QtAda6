@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.TextFlag is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,94 +21,81 @@ package body QtAda6.QtCore.Qt.TextFlag is
       Free (Inst_Access (Self));
    end Finalize;
    function TextSingleLine return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextSingleLine"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextSingleLine"));
    end TextSingleLine;
    function TextDontClip return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextDontClip"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextDontClip"));
    end TextDontClip;
    function TextExpandTabs return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextExpandTabs"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextExpandTabs"));
    end TextExpandTabs;
    function TextShowMnemonic return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextShowMnemonic"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextShowMnemonic"));
    end TextShowMnemonic;
    function TextWordWrap return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextWordWrap"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextWordWrap"));
    end TextWordWrap;
    function TextWrapAnywhere return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextWrapAnywhere"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextWrapAnywhere"));
    end TextWrapAnywhere;
    function TextDontPrint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextDontPrint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextDontPrint"));
    end TextDontPrint;
    function TextHideMnemonic return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextHideMnemonic"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextHideMnemonic"));
    end TextHideMnemonic;
    function TextJustificationForced return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextJustificationForced"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextJustificationForced"));
    end TextJustificationForced;
    function TextForceLeftToRight return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextForceLeftToRight"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextForceLeftToRight"));
    end TextForceLeftToRight;
    function TextForceRightToLeft return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextForceRightToLeft"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextForceRightToLeft"));
    end TextForceRightToLeft;
    function TextLongestVariant return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextLongestVariant"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextLongestVariant"));
    end TextLongestVariant;
    function TextIncludeTrailingSpaces return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextIncludeTrailingSpaces"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextIncludeTrailingSpaces"));
    end TextIncludeTrailingSpaces;
 end QtAda6.QtCore.Qt.TextFlag;

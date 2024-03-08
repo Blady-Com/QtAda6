@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QMetaMethod.Access_K is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtCore.QMetaMethod.Access_K is
       Free (Inst_Access (Self));
    end Finalize;
    function Private_K return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaMethod");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Access_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Private"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Private"));
    end Private_K;
    function Protected_K return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaMethod");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Access_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Protected"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Protected"));
    end Protected_K;
    function Public return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaMethod");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Access_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Public"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Public"));
    end Public;
 end QtAda6.QtCore.QMetaMethod.Access_K;

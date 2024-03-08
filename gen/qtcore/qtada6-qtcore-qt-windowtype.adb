@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.WindowType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,269 +21,231 @@ package body QtAda6.QtCore.Qt.WindowType is
       Free (Inst_Access (Self));
    end Finalize;
    function Widget return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Widget"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Widget"));
    end Widget;
    function Window return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Window"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Window"));
    end Window;
    function Dialog return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Dialog"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Dialog"));
    end Dialog;
    function Sheet return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Sheet"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Sheet"));
    end Sheet;
    function Drawer return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Drawer"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Drawer"));
    end Drawer;
    function Popup return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Popup"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Popup"));
    end Popup;
    function Tool return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Tool"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Tool"));
    end Tool;
    function ToolTip return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ToolTip"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ToolTip"));
    end ToolTip;
    function SplashScreen return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SplashScreen"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SplashScreen"));
    end SplashScreen;
    function Desktop return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Desktop"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Desktop"));
    end Desktop;
    function SubWindow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SubWindow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SubWindow"));
    end SubWindow;
    function ForeignWindow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ForeignWindow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ForeignWindow"));
    end ForeignWindow;
    function CoverWindow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CoverWindow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CoverWindow"));
    end CoverWindow;
    function WindowType_Mask return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowType_Mask"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowType_Mask"));
    end WindowType_Mask;
    function MSWindowsFixedSizeDialogHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MSWindowsFixedSizeDialogHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MSWindowsFixedSizeDialogHint"));
    end MSWindowsFixedSizeDialogHint;
    function MSWindowsOwnDC return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MSWindowsOwnDC"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MSWindowsOwnDC"));
    end MSWindowsOwnDC;
    function BypassWindowManagerHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BypassWindowManagerHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BypassWindowManagerHint"));
    end BypassWindowManagerHint;
    function X11BypassWindowManagerHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "X11BypassWindowManagerHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "X11BypassWindowManagerHint"));
    end X11BypassWindowManagerHint;
    function FramelessWindowHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FramelessWindowHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FramelessWindowHint"));
    end FramelessWindowHint;
    function WindowTitleHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowTitleHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowTitleHint"));
    end WindowTitleHint;
    function WindowSystemMenuHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowSystemMenuHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowSystemMenuHint"));
    end WindowSystemMenuHint;
    function WindowMinimizeButtonHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowMinimizeButtonHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowMinimizeButtonHint"));
    end WindowMinimizeButtonHint;
    function WindowMaximizeButtonHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowMaximizeButtonHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowMaximizeButtonHint"));
    end WindowMaximizeButtonHint;
    function WindowMinMaxButtonsHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowMinMaxButtonsHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowMinMaxButtonsHint"));
    end WindowMinMaxButtonsHint;
    function WindowContextHelpButtonHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowContextHelpButtonHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowContextHelpButtonHint"));
    end WindowContextHelpButtonHint;
    function WindowShadeButtonHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowShadeButtonHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowShadeButtonHint"));
    end WindowShadeButtonHint;
    function WindowStaysOnTopHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowStaysOnTopHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowStaysOnTopHint"));
    end WindowStaysOnTopHint;
    function WindowTransparentForInput return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowTransparentForInput"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowTransparentForInput"));
    end WindowTransparentForInput;
    function WindowOverridesSystemGestures return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowOverridesSystemGestures"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowOverridesSystemGestures"));
    end WindowOverridesSystemGestures;
    function WindowDoesNotAcceptFocus return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowDoesNotAcceptFocus"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowDoesNotAcceptFocus"));
    end WindowDoesNotAcceptFocus;
    function MaximizeUsingFullscreenGeometryHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MaximizeUsingFullscreenGeometryHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MaximizeUsingFullscreenGeometryHint"));
    end MaximizeUsingFullscreenGeometryHint;
    function CustomizeWindowHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CustomizeWindowHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CustomizeWindowHint"));
    end CustomizeWindowHint;
    function WindowStaysOnBottomHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowStaysOnBottomHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowStaysOnBottomHint"));
    end WindowStaysOnBottomHint;
    function WindowCloseButtonHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowCloseButtonHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowCloseButtonHint"));
    end WindowCloseButtonHint;
    function MacWindowToolBarButtonHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MacWindowToolBarButtonHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MacWindowToolBarButtonHint"));
    end MacWindowToolBarButtonHint;
    function BypassGraphicsProxyWidget return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BypassGraphicsProxyWidget"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BypassGraphicsProxyWidget"));
    end BypassGraphicsProxyWidget;
    function NoDropShadowWindowHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoDropShadowWindowHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoDropShadowWindowHint"));
    end NoDropShadowWindowHint;
    function WindowFullscreenButtonHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowFullscreenButtonHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowFullscreenButtonHint"));
    end WindowFullscreenButtonHint;
 end QtAda6.QtCore.Qt.WindowType;

@@ -15,37 +15,37 @@ package QtAda6.QtCore.QMarginsF is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QMarginsFQtAda6_QtCore_QMargins is new Any;
+   type UNION_QtAda6_QtCore_QMarginsF_QtAda6_QtCore_QMargins is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (QMarginsF_P : UNION_QtAda6_QtCore_QMarginsFQtAda6_QtCore_QMargins) return Class;
+   function Create (QMarginsF_P : UNION_QtAda6_QtCore_QMarginsF_QtAda6_QtCore_QMargins) return Class;
    function Create (left_P : float; top_P : float; right_P : float; bottom_P : float) return Class;
    function Create (margins_P : access QtAda6.QtCore.QMargins.Inst'Class) return Class;
    function U_add_U (self : access Inst; lhs_P : float) return access QtAda6.QtCore.QMarginsF.Inst'Class;
 -- function U_add_U(self : access Inst;rhs_P : float) return access QtAda6.QtCore.QMarginsF.Inst'Class;
    function U_add_U
-     (self : access Inst; rhs_P : UNION_QtAda6_QtCore_QMarginsFQtAda6_QtCore_QMargins)
+     (self : access Inst; rhs_P : UNION_QtAda6_QtCore_QMarginsF_QtAda6_QtCore_QMargins)
       return access QtAda6.QtCore.QMarginsF.Inst'Class;
    procedure U_copy_U;
    function U_iadd_U (self : access Inst; addend_P : float) return access QtAda6.QtCore.QMarginsF.Inst'Class;
    function U_iadd_U
-     (self : access Inst; margins_P : UNION_QtAda6_QtCore_QMarginsFQtAda6_QtCore_QMargins)
+     (self : access Inst; margins_P : UNION_QtAda6_QtCore_QMarginsF_QtAda6_QtCore_QMargins)
       return access QtAda6.QtCore.QMarginsF.Inst'Class;
    function U_imul_U (self : access Inst; factor_P : float) return access QtAda6.QtCore.QMarginsF.Inst'Class;
    function U_isub_U
-     (self : access Inst; margins_P : UNION_QtAda6_QtCore_QMarginsFQtAda6_QtCore_QMargins)
+     (self : access Inst; margins_P : UNION_QtAda6_QtCore_QMarginsF_QtAda6_QtCore_QMargins)
       return access QtAda6.QtCore.QMarginsF.Inst'Class;
    function U_isub_U (self : access Inst; subtrahend_P : float) return access QtAda6.QtCore.QMarginsF.Inst'Class;
    function U_mul_U (self : access Inst; lhs_P : float) return access QtAda6.QtCore.QMarginsF.Inst'Class;
 -- function U_mul_U(self : access Inst;rhs_P : float) return access QtAda6.QtCore.QMarginsF.Inst'Class;
    function U_neg_U (self : access Inst) return access QtAda6.QtCore.QMarginsF.Inst'Class;
    function U_or_U
-     (self : access Inst; m2_P : UNION_QtAda6_QtCore_QMarginsFQtAda6_QtCore_QMargins)
+     (self : access Inst; m2_P : UNION_QtAda6_QtCore_QMarginsF_QtAda6_QtCore_QMargins)
       return access QtAda6.QtCore.QMarginsF.Inst'Class;
    function U_pos_U (self : access Inst) return access QtAda6.QtCore.QMarginsF.Inst'Class;
    function U_sub_U (self : access Inst; rhs_P : float) return access QtAda6.QtCore.QMarginsF.Inst'Class;
    function U_sub_U
-     (self : access Inst; rhs_P : UNION_QtAda6_QtCore_QMarginsFQtAda6_QtCore_QMargins)
+     (self : access Inst; rhs_P : UNION_QtAda6_QtCore_QMarginsF_QtAda6_QtCore_QMargins)
       return access QtAda6.QtCore.QMarginsF.Inst'Class;
    function bottom (self : access Inst) return float;
    function isNull (self : access Inst) return bool;

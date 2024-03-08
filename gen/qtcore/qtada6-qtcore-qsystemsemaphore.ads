@@ -21,7 +21,7 @@ package QtAda6.QtCore.QSystemSemaphore is
      (key_P  : str; initialValue_P : int := 0;
       mode_P : access QtAda6.QtCore.QSystemSemaphore.AccessMode.Inst'Class := null) return Class;
    function acquire (self : access Inst) return bool;
-   function error_F (self : access Inst) return access QtAda6.QtCore.QSystemSemaphore.SystemSemaphoreError.Inst'Class;
+   function error (self : access Inst) return access QtAda6.QtCore.QSystemSemaphore.SystemSemaphoreError.Inst'Class;
    function errorString (self : access Inst) return str;
    function key (self : access Inst) return str;
    function release (self : access Inst; n_P : int := 0) return bool;

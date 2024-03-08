@@ -8,8 +8,8 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtCore.QUuid.StringFormat;
+limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtCore.QUuid.Variant;
 limited with QtAda6.QtCore.QUuid.Version;
 package QtAda6.QtCore.QUuid is
@@ -18,7 +18,7 @@ package QtAda6.QtCore.QUuid is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create
@@ -32,14 +32,14 @@ package QtAda6.QtCore.QUuid is
    function createUuidV3
      (ns_P : access QtAda6.QtCore.QUuid.Inst'Class; baseData_P : str) return access QtAda6.QtCore.QUuid.Inst'Class;
    function createUuidV3
-     (ns_P : access QtAda6.QtCore.QUuid.Inst'Class; baseData_P : UNION_QtAda6_QtCore_QByteArraybytes)
+     (ns_P : access QtAda6.QtCore.QUuid.Inst'Class; baseData_P : UNION_QtAda6_QtCore_QByteArray_bytes)
       return access QtAda6.QtCore.QUuid.Inst'Class;
    function createUuidV5
      (ns_P : access QtAda6.QtCore.QUuid.Inst'Class; baseData_P : str) return access QtAda6.QtCore.QUuid.Inst'Class;
    function createUuidV5
-     (ns_P : access QtAda6.QtCore.QUuid.Inst'Class; baseData_P : UNION_QtAda6_QtCore_QByteArraybytes)
+     (ns_P : access QtAda6.QtCore.QUuid.Inst'Class; baseData_P : UNION_QtAda6_QtCore_QByteArray_bytes)
       return access QtAda6.QtCore.QUuid.Inst'Class;
-   function fromRfc4122 (arg_1_P : UNION_QtAda6_QtCore_QByteArraybytes) return access QtAda6.QtCore.QUuid.Inst'Class;
+   function fromRfc4122 (arg_1_P : UNION_QtAda6_QtCore_QByteArray_bytes) return access QtAda6.QtCore.QUuid.Inst'Class;
    function fromString (string_P : str) return access QtAda6.QtCore.QUuid.Inst'Class;
    function isNull (self : access Inst) return bool;
    function toByteArray

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.PyClassProperty is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,17 +21,26 @@ package body QtAda6.QtCore.PyClassProperty is
       Free (Inst_Access (Self));
    end Finalize;
    function Create
-     (fget_P : CALLABLE_AnyAny := null; fset_P : CALLABLE_AnyAnyNoneType := null; fdel_P : CALLABLE_AnyNoneType := null;
-      doc_P  : str             := "") return Class
+     (fget_P : CALLABLE_Any_Any      := null; fset_P : CALLABLE_Any_Any_NoneType := null;
+      fdel_P : CALLABLE_Any_NoneType := null; doc_P : str := "") return Class
    is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "PyClassProperty");
-      Args  := Tuple_New (4);
-      Tuple_SetItem (Args, 0, (if fget_P /= null then fget_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, (if fset_P /= null then fset_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 2, (if fdel_P /= null then fdel_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 3, Unicode_FromString (doc_P));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Args  := Tuple_New (0);
+      Dict  := Dict_New;
+      if fget_P /= null then
+         Dict_SetItemString (Dict, "fget", fget_P.Python_Proxy);
+      end if;
+      if fset_P /= null then
+         Dict_SetItemString (Dict, "fset", fset_P.Python_Proxy);
+      end if;
+      if fdel_P /= null then
+         Dict_SetItemString (Dict, "fdel", fdel_P.Python_Proxy);
+      end if;
+      if doc_P /= "" then
+         Dict_SetItemString (Dict, "doc", Unicode_FromString (doc_P));
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
 end QtAda6.QtCore.PyClassProperty;

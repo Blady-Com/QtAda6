@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QMetaType.Type_K;
 limited with QtAda6.QtCore.QMetaType.TypeFlag;
-limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtCore.QDataStream;
 limited with QtAda6.QtCore.QMetaObject;
 package QtAda6.QtCore.QMetaType is
@@ -19,9 +18,12 @@ package QtAda6.QtCore.QMetaType is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K is new Any;
-   type TUPLE_boolint is new Any;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K is new Any;
+   type TUPLE_bool_int is record
+      C0 : bool;
+      C1 : int;
+   end record;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (arg_1_P : access QtAda6.QtCore.QMetaType.Type_K.Inst'Class) return Class;
@@ -30,37 +32,37 @@ package QtAda6.QtCore.QMetaType is
    procedure U_copy_U;
    function alignOf (self : access Inst) return int;
    function canConvert
-     (fromType_P : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K;
-      toType_P   : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K) return bool;
+     (fromType_P : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K;
+      toType_P   : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K) return bool;
    function canView
-     (fromType_P : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K;
-      toType_P   : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K) return bool;
-   function compare (lhs_P : int; rhs_P : int; typeId_P : int) return TUPLE_boolint;
+     (fromType_P : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K;
+      toType_P   : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K) return bool;
+   function compare (lhs_P : int; rhs_P : int; typeId_P : int) return TUPLE_bool_int;
    function construct (self : access Inst; where_P : int; copy_P : int := 0) return int;
    function construct (type_K_P : int; where_P : int; copy_P : int) return int;
    function convert (from_U_P : int; fromTypeId_P : int; to_P : int; toTypeId_P : int) return bool;
    function convert
-     (fromType_P : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K; from_U_P : int;
-      toType_P   : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K; to_P : int) return bool;
+     (fromType_P : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K; from_U_P : int;
+      toType_P   : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K; to_P : int) return bool;
    function create (self : access Inst; copy_P : int := 0) return int;
    function create (type_K_P : int; copy_P : int := 0) return int;
    procedure destroy (self : access Inst; data_P : int);
    procedure destroy (type_K_P : int; data_P : int);
    procedure destruct (self : access Inst; data_P : int);
    procedure destruct (type_K_P : int; where_P : int);
-   function equals (lhs_P : int; rhs_P : int; typeId_P : int) return TUPLE_boolint;
+   function equals (lhs_P : int; rhs_P : int; typeId_P : int) return TUPLE_bool_int;
    function equals (self : access Inst; lhs_P : int; rhs_P : int) return bool;
    function flags (self : access Inst) return access QtAda6.QtCore.QMetaType.TypeFlag.Inst'Class;
-   function fromName (name_P : UNION_QtAda6_QtCore_QByteArraybytes) return access QtAda6.QtCore.QMetaType.Inst'Class;
+   function fromName (name_P : UNION_QtAda6_QtCore_QByteArray_bytes) return access QtAda6.QtCore.QMetaType.Inst'Class;
    function hasRegisteredConverterFunction
-     (fromType_P : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K;
-      toType_P   : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K) return bool;
+     (fromType_P : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K;
+      toType_P   : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K) return bool;
    function hasRegisteredDataStreamOperators (self : access Inst) return bool;
    function hasRegisteredDebugStreamOperator (self : access Inst) return bool;
    function hasRegisteredDebugStreamOperator (typeId_P : int) return bool;
    function hasRegisteredMutableViewFunction
-     (fromType_P : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K;
-      toType_P   : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K) return bool;
+     (fromType_P : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K;
+      toType_P   : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K) return bool;
    function id (self : access Inst; arg_1_P : int := 0) return int;
    function isCopyConstructible (self : access Inst) return bool;
    function isDefaultConstructible (self : access Inst) return bool;
@@ -84,13 +86,13 @@ package QtAda6.QtCore.QMetaType is
    function typeFlags (type_K_P : int) return access QtAda6.QtCore.QMetaType.TypeFlag.Inst'Class;
    function typeName (type_K_P : int) return bytes;
    procedure unregisterConverterFunction
-     (from_U_P : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K;
-      to_P     : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K);
-   procedure unregisterMetaType (type_K_P : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K);
+     (from_U_P : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K;
+      to_P     : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K);
+   procedure unregisterMetaType (type_K_P : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K);
    procedure unregisterMutableViewFunction
-     (from_U_P : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K;
-      to_P     : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K);
+     (from_U_P : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K;
+      to_P     : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K);
    function view
-     (fromType_P : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K; from_U_P : int;
-      toType_P   : UNION_QtAda6_QtCore_QMetaTypeQtAda6_QtCore_QMetaType_Type_K; to_P : int) return bool;
+     (fromType_P : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K; from_U_P : int;
+      toType_P   : UNION_QtAda6_QtCore_QMetaType_QtAda6_QtCore_QMetaType_Type_K; to_P : int) return bool;
 end QtAda6.QtCore.QMetaType;

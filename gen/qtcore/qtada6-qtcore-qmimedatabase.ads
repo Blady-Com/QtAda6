@@ -8,12 +8,10 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.QByteArray;
+limited with QtAda6.QtCore.QMimeType;
 limited with QtAda6.QtCore.QIODevice;
 limited with QtAda6.QtCore.QFileInfo;
 limited with QtAda6.QtCore.QMimeDatabase.MatchMode;
-limited with QtAda6.QtCore.QUrl;
-with QtAda6.QtCore.QMimeType;
 package QtAda6.QtCore.QMimeDatabase is
    type Inst;
    type Inst_Access is access all Inst;
@@ -21,13 +19,13 @@ package QtAda6.QtCore.QMimeDatabase is
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
    subtype LIST_QtAda6_QtCore_QMimeType is QtAda6.QtCore.QMimeType.Class_Array;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
-   type UNION_QtAda6_QtCore_QUrlstr is new Any;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
+   type UNION_QtAda6_QtCore_QUrl_str is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function allMimeTypes (self : access Inst) return LIST_QtAda6_QtCore_QMimeType;
    function mimeTypeForData
-     (self : access Inst; data_P : UNION_QtAda6_QtCore_QByteArraybytes)
+     (self : access Inst; data_P : UNION_QtAda6_QtCore_QByteArray_bytes)
       return access QtAda6.QtCore.QMimeType.Inst'Class;
    function mimeTypeForData
      (self : access Inst; device_P : access QtAda6.QtCore.QIODevice.Inst'Class)
@@ -40,14 +38,14 @@ package QtAda6.QtCore.QMimeDatabase is
      (self : access Inst; fileName_P : str; mode_P : access QtAda6.QtCore.QMimeDatabase.MatchMode.Inst'Class := null)
       return access QtAda6.QtCore.QMimeType.Inst'Class;
    function mimeTypeForFileNameAndData
-     (self : access Inst; fileName_P : str; data_P : UNION_QtAda6_QtCore_QByteArraybytes)
+     (self : access Inst; fileName_P : str; data_P : UNION_QtAda6_QtCore_QByteArray_bytes)
       return access QtAda6.QtCore.QMimeType.Inst'Class;
    function mimeTypeForFileNameAndData
      (self : access Inst; fileName_P : str; device_P : access QtAda6.QtCore.QIODevice.Inst'Class)
       return access QtAda6.QtCore.QMimeType.Inst'Class;
    function mimeTypeForName (self : access Inst; nameOrAlias_P : str) return access QtAda6.QtCore.QMimeType.Inst'Class;
    function mimeTypeForUrl
-     (self : access Inst; url_P : UNION_QtAda6_QtCore_QUrlstr) return access QtAda6.QtCore.QMimeType.Inst'Class;
+     (self : access Inst; url_P : UNION_QtAda6_QtCore_QUrl_str) return access QtAda6.QtCore.QMimeType.Inst'Class;
    function mimeTypesForFileName (self : access Inst; fileName_P : str) return LIST_QtAda6_QtCore_QMimeType;
    function suffixForFileName (self : access Inst; fileName_P : str) return str;
 end QtAda6.QtCore.QMimeDatabase;

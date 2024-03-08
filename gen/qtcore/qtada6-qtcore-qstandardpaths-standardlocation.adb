@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QStandardPaths.StandardLocation is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,150 +21,129 @@ package body QtAda6.QtCore.QStandardPaths.StandardLocation is
       Free (Inst_Access (Self));
    end Finalize;
    function DesktopLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DesktopLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DesktopLocation"));
    end DesktopLocation;
    function DocumentsLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DocumentsLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DocumentsLocation"));
    end DocumentsLocation;
    function FontsLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FontsLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FontsLocation"));
    end FontsLocation;
    function ApplicationsLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ApplicationsLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ApplicationsLocation"));
    end ApplicationsLocation;
    function MusicLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MusicLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MusicLocation"));
    end MusicLocation;
    function MoviesLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MoviesLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MoviesLocation"));
    end MoviesLocation;
    function PicturesLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PicturesLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PicturesLocation"));
    end PicturesLocation;
    function TempLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TempLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TempLocation"));
    end TempLocation;
    function HomeLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HomeLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HomeLocation"));
    end HomeLocation;
    function AppLocalDataLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AppLocalDataLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AppLocalDataLocation"));
    end AppLocalDataLocation;
    function CacheLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CacheLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CacheLocation"));
    end CacheLocation;
    function GenericDataLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "GenericDataLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "GenericDataLocation"));
    end GenericDataLocation;
    function RuntimeLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RuntimeLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RuntimeLocation"));
    end RuntimeLocation;
    function ConfigLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ConfigLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ConfigLocation"));
    end ConfigLocation;
    function DownloadLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DownloadLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DownloadLocation"));
    end DownloadLocation;
    function GenericCacheLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "GenericCacheLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "GenericCacheLocation"));
    end GenericCacheLocation;
    function GenericConfigLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "GenericConfigLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "GenericConfigLocation"));
    end GenericConfigLocation;
    function AppDataLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AppDataLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AppDataLocation"));
    end AppDataLocation;
    function AppConfigLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AppConfigLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AppConfigLocation"));
    end AppConfigLocation;
    function PublicShareLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PublicShareLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PublicShareLocation"));
    end PublicShareLocation;
    function TemplatesLocation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StandardLocation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TemplatesLocation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TemplatesLocation"));
    end TemplatesLocation;
 end QtAda6.QtCore.QStandardPaths.StandardLocation;

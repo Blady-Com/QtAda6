@@ -26,7 +26,7 @@ package QtAda6.QtCore.QFileDevice is
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class) return Class;
    function atEnd (self : access Inst) return bool;
    procedure close (self : access Inst);
-   function error_F (self : access Inst) return access QtAda6.QtCore.QFileDevice.FileError.Inst'Class;
+   function error (self : access Inst) return access QtAda6.QtCore.QFileDevice.FileError.Inst'Class;
    function fileName (self : access Inst) return str;
    function fileTime_F
      (self : access Inst; time_P : access QtAda6.QtCore.QFileDevice.FileTime.Inst'Class)
@@ -34,7 +34,7 @@ package QtAda6.QtCore.QFileDevice is
    function flush (self : access Inst) return bool;
    function handle_F (self : access Inst) return int;
    function isSequential (self : access Inst) return bool;
-   function map_F
+   function map
      (self    : access Inst; offset_P : int; size_P : int;
       flags_P : access QtAda6.QtCore.QFileDevice.MemoryMapFlag.Inst'Class := null) return access Object'Class;
    function permissions (self : access Inst) return access QtAda6.QtCore.QFileDevice.Permission.Inst'Class;

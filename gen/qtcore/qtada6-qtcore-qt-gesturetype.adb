@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.GestureType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,52 +21,45 @@ package body QtAda6.QtCore.Qt.GestureType is
       Free (Inst_Access (Self));
    end Finalize;
    function TapGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GestureType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TapGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TapGesture"));
    end TapGesture;
    function TapAndHoldGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GestureType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TapAndHoldGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TapAndHoldGesture"));
    end TapAndHoldGesture;
    function PanGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GestureType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PanGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PanGesture"));
    end PanGesture;
    function PinchGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GestureType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PinchGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PinchGesture"));
    end PinchGesture;
    function SwipeGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GestureType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SwipeGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SwipeGesture"));
    end SwipeGesture;
    function CustomGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GestureType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CustomGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CustomGesture"));
    end CustomGesture;
    function LastGestureType return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GestureType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LastGestureType"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LastGestureType"));
    end LastGestureType;
 end QtAda6.QtCore.Qt.GestureType;

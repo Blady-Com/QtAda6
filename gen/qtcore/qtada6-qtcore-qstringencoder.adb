@@ -10,10 +10,12 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QStringConverter;
 with QtAda6.QtCore.QStringConverter.Encoding;
 with QtAda6.QtCore.QStringConverterBase.Flag;
 package body QtAda6.QtCore.QStringEncoder is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -21,42 +23,50 @@ package body QtAda6.QtCore.QStringEncoder is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStringEncoder");
       Args  := Tuple_New (0);
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict  := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
      (encoding_P : access QtAda6.QtCore.QStringConverter.Encoding.Inst'Class;
       flags_P    : access QtAda6.QtCore.QStringConverterBase.Flag.Inst'Class := null) return Class
    is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStringEncoder");
-      Args  := Tuple_New (2);
+      Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if encoding_P /= null then encoding_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, (if flags_P /= null then flags_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      if flags_P /= null then
+         Dict_SetItemString (Dict, "flags", flags_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
      (name_P : bytes; flags_P : access QtAda6.QtCore.QStringConverterBase.Flag.Inst'Class := null) return Class
    is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStringEncoder");
-      Args  := Tuple_New (2);
+      Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, Bytes_FromString (String (name_P)));
-      Tuple_SetItem (Args, 1, (if flags_P /= null then flags_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      if flags_P /= null then
+         Dict_SetItemString (Dict, "flags", flags_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function requiredSpace (self : access Inst; inputLength_P : int) return int is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "requiredSpace");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Long_FromLong (inputLength_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end requiredSpace;
 end QtAda6.QtCore.QStringEncoder;

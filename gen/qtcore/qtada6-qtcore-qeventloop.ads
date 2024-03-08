@@ -19,16 +19,16 @@ package QtAda6.QtCore.QEventLoop is
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
    procedure Finalize (Self : in out Class);
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
-   function event_F (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
+   function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
    function exec
      (self : access Inst; flags_P : access QtAda6.QtCore.QEventLoop.ProcessEventsFlag.Inst'Class := null) return int;
    function exec_U
      (self : access Inst; flags_P : access QtAda6.QtCore.QEventLoop.ProcessEventsFlag.Inst'Class := null) return int;
    procedure exit_K (self : access Inst; returnCode_P : int := 0);
    function isRunning (self : access Inst) return bool;
-   procedure processEvents_F
+   procedure processEvents
      (self : access Inst; flags_P : access QtAda6.QtCore.QEventLoop.ProcessEventsFlag.Inst'Class; maximumTime_P : int);
-   function processEvents_F
+   function processEvents
      (self : access Inst; flags_P : access QtAda6.QtCore.QEventLoop.ProcessEventsFlag.Inst'Class := null) return bool;
    procedure quit (self : access Inst);
    procedure wakeUp (self : access Inst);

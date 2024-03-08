@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QProcess.ExitStatus is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,17 +21,15 @@ package body QtAda6.QtCore.QProcess.ExitStatus is
       Free (Inst_Access (Self));
    end Finalize;
    function NormalExit return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ExitStatus");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NormalExit"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NormalExit"));
    end NormalExit;
    function CrashExit return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ExitStatus");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CrashExit"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CrashExit"));
    end CrashExit;
 end QtAda6.QtCore.QProcess.ExitStatus;

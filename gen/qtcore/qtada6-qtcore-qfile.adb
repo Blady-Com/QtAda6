@@ -10,13 +10,15 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QFileDevice;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.QByteArray;
 with QtAda6.QtCore.QIODeviceBase.OpenModeFlag;
 with QtAda6.QtCore.QFileDevice.FileHandleFlag;
 with QtAda6.QtCore.QFileDevice.Permission;
 package body QtAda6.QtCore.QFile is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -24,330 +26,369 @@ package body QtAda6.QtCore.QFile is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Args  := Tuple_New (0);
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict  := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (name_P : UNION_strbytesos_PathLike) return Class is
-      Class, Args, List : Handle;
+   function Create (name_P : UNION_str_bytes_os_PathLike) return Class is
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if name_P /= null then name_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (name_P : UNION_strbytesos_PathLike; parent_P : access QtAda6.QtCore.QObject.Inst'Class) return Class
+   function Create
+     (name_P : UNION_str_bytes_os_PathLike; parent_P : access QtAda6.QtCore.QObject.Inst'Class) return Class
    is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Args  := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if name_P /= null then name_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class) return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function copy (fileName_P : str; newName_P : str) return bool is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Method := Object_GetAttrString (Class, "copy");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, Unicode_FromString (fileName_P));
       Tuple_SetItem (Args, 1, Unicode_FromString (newName_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end copy;
-   function copy (self : access Inst; newName_P : UNION_strbytesos_PathLike) return bool is
-      Method, Args, List, Result : Handle;
+   function copy (self : access Inst; newName_P : UNION_str_bytes_os_PathLike) return bool is
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "copy");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if newName_P /= null then newName_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end copy;
    function decodeName (localFileName_P : bytes) return str is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Method := Object_GetAttrString (Class, "decodeName");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Bytes_FromString (String (localFileName_P)));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end decodeName;
-   function decodeName (localFileName_P : UNION_QtAda6_QtCore_QByteArraybytes) return str is
-      Class, Method, Args, List, Result : Handle;
+   function decodeName (localFileName_P : UNION_QtAda6_QtCore_QByteArray_bytes) return str is
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Method := Object_GetAttrString (Class, "decodeName");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if localFileName_P /= null then localFileName_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end decodeName;
    function encodeName (fileName_P : str) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Class, Method, Args, List, Result : Handle;
-      Ret                               : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Method := Object_GetAttrString (Class, "encodeName");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (fileName_P));
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end encodeName;
    function exists (fileName_P : str) return bool is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Method := Object_GetAttrString (Class, "exists");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (fileName_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end exists;
    function exists (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exists");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end exists;
    function fileName (self : access Inst) return str is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fileName");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end fileName;
    function link (fileName_P : str; newName_P : str) return bool is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Method := Object_GetAttrString (Class, "link");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, Unicode_FromString (fileName_P));
       Tuple_SetItem (Args, 1, Unicode_FromString (newName_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end link;
-   function link (self : access Inst; newName_P : UNION_strbytesos_PathLike) return bool is
-      Method, Args, List, Result : Handle;
+   function link (self : access Inst; newName_P : UNION_str_bytes_os_PathLike) return bool is
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "link");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if newName_P /= null then newName_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end link;
-   function moveToTrash (fileName_P : str) return TUPLE_boolstr is
-      Class, Method, Args, List, Result : Handle;
+   function moveToTrash (fileName_P : str) return TUPLE_bool_str is
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Method := Object_GetAttrString (Class, "moveToTrash");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (fileName_P));
-      Result := Object_CallObject (Method, Args, True);
-      return null;
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Ret : TUPLE_bool_str do
+         Ret.C0 := To_Ada (Tuple_GetItem (Result, 0));
+         Ret.C1 := As_String (Tuple_GetItem (Result, 1));
+      end return;
    end moveToTrash;
    function moveToTrash (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "moveToTrash");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end moveToTrash;
    function open
      (self          : access Inst; fd_P : int; ioFlags_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class;
       handleFlags_P : access QtAda6.QtCore.QFileDevice.FileHandleFlag.Inst'Class := null) return bool
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
-      Args   := Tuple_New (3);
+      Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, Long_FromLong (fd_P));
       Tuple_SetItem (Args, 1, (if ioFlags_P /= null then ioFlags_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 2, (if handleFlags_P /= null then handleFlags_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict := Dict_New;
+      if handleFlags_P /= null then
+         Dict_SetItemString (Dict, "handleFlags", handleFlags_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end open;
    function open (self : access Inst; flags_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class) return bool
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if flags_P /= null then flags_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end open;
    function open
      (self          : access Inst; flags_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class;
       permissions_P : access QtAda6.QtCore.QFileDevice.Permission.Inst'Class) return bool
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if flags_P /= null then flags_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, (if permissions_P /= null then permissions_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end open;
    function permissions
-     (filename_P : UNION_strbytesos_PathLike) return access QtAda6.QtCore.QFileDevice.Permission.Inst'Class
+     (filename_P : UNION_str_bytes_os_PathLike) return access QtAda6.QtCore.QFileDevice.Permission.Inst'Class
    is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
       Ret : constant QtAda6.QtCore.QFileDevice.Permission.Class := new QtAda6.QtCore.QFileDevice.Permission.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Method := Object_GetAttrString (Class, "permissions");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if filename_P /= null then filename_P.Python_Proxy else No_Value));
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end permissions;
    function permissions (self : access Inst) return access QtAda6.QtCore.QFileDevice.Permission.Inst'Class is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
       Ret : constant QtAda6.QtCore.QFileDevice.Permission.Class := new QtAda6.QtCore.QFileDevice.Permission.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "permissions");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end permissions;
    function remove (fileName_P : str) return bool is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Method := Object_GetAttrString (Class, "remove");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (fileName_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end remove;
    function remove (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "remove");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end remove;
    function rename (oldName_P : str; newName_P : str) return bool is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Method := Object_GetAttrString (Class, "rename");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, Unicode_FromString (oldName_P));
       Tuple_SetItem (Args, 1, Unicode_FromString (newName_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end rename;
-   function rename (self : access Inst; newName_P : UNION_strbytesos_PathLike) return bool is
-      Method, Args, List, Result : Handle;
+   function rename (self : access Inst; newName_P : UNION_str_bytes_os_PathLike) return bool is
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rename");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if newName_P /= null then newName_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end rename;
    function resize (filename_P : str; sz_P : int) return bool is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Method := Object_GetAttrString (Class, "resize");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, Unicode_FromString (filename_P));
       Tuple_SetItem (Args, 1, Long_FromLong (sz_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end resize;
    function resize (self : access Inst; sz_P : int) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resize");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Long_FromLong (sz_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end resize;
-   procedure setFileName (self : access Inst; name_P : UNION_strbytesos_PathLike) is
-      Method, Args, List, Result : Handle;
+   procedure setFileName (self : access Inst; name_P : UNION_str_bytes_os_PathLike) is
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFileName");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if name_P /= null then name_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setFileName;
    function setPermissions
-     (filename_P : UNION_strbytesos_PathLike; permissionSpec_P : access QtAda6.QtCore.QFileDevice.Permission.Inst'Class)
-      return bool
+     (filename_P       : UNION_str_bytes_os_PathLike;
+      permissionSpec_P : access QtAda6.QtCore.QFileDevice.Permission.Inst'Class) return bool
    is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Method := Object_GetAttrString (Class, "setPermissions");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if filename_P /= null then filename_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, (if permissionSpec_P /= null then permissionSpec_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end setPermissions;
    function setPermissions
      (self : access Inst; permissionSpec_P : access QtAda6.QtCore.QFileDevice.Permission.Inst'Class) return bool
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPermissions");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if permissionSpec_P /= null then permissionSpec_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end setPermissions;
    function size (self : access Inst) return int is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "size");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end size;
    function symLinkTarget (fileName_P : str) return str is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFile");
       Method := Object_GetAttrString (Class, "symLinkTarget");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (fileName_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end symLinkTarget;
    function symLinkTarget (self : access Inst) return str is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "symLinkTarget");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end symLinkTarget;
 end QtAda6.QtCore.QFile;

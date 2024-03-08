@@ -8,26 +8,22 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.QAbstractEventDispatcher;
 limited with QtAda6.QtCore.QThread.Priority;
-limited with QtAda6.QtCore.QDeadlineTimer;
-limited with QtAda6.QtCore.QDeadlineTimer.ForeverConstant;
-limited with QtAda6.QtCore.Qt.TimerType;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QThread is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtCore_QDeadlineTimerQtAda6_QtCore_QDeadlineTimer_ForeverConstantQtAda6_QtCore_Qt_TimerTypeint is
+   type UNION_QtAda6_QtCore_QDeadlineTimer_QtAda6_QtCore_QDeadlineTimer_ForeverConstant_QtAda6_QtCore_Qt_TimerType_int is
      new Any;
    procedure Finalize (Self : in out Class);
-   function finished (self : access Inst) return CLASSVAR_Signal;-- finished()
-   function started (self : access Inst) return CLASSVAR_Signal;-- started()
+   function finished (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- finished()
+   function started (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- started()
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function currentThread return access QtAda6.QtCore.QThread.Inst'Class;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
@@ -57,7 +53,7 @@ package QtAda6.QtCore.QThread is
    procedure usleep (arg_1_P : int);
    function wait
      (self       : access Inst;
-      deadline_P : UNION_QtAda6_QtCore_QDeadlineTimerQtAda6_QtCore_QDeadlineTimer_ForeverConstantQtAda6_QtCore_Qt_TimerTypeint :=
+      deadline_P : UNION_QtAda6_QtCore_QDeadlineTimer_QtAda6_QtCore_QDeadlineTimer_ForeverConstant_QtAda6_QtCore_Qt_TimerType_int :=
         null)
       return bool;
    function wait (self : access Inst; time_P : int) return bool;

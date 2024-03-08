@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QEventLoop.ProcessEventsFlag is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,59 +21,51 @@ package body QtAda6.QtCore.QEventLoop.ProcessEventsFlag is
       Free (Inst_Access (Self));
    end Finalize;
    function AllEvents return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QEventLoop");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessEventsFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AllEvents"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AllEvents"));
    end AllEvents;
    function ExcludeUserInputEvents return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QEventLoop");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessEventsFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExcludeUserInputEvents"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExcludeUserInputEvents"));
    end ExcludeUserInputEvents;
    function ExcludeSocketNotifiers return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QEventLoop");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessEventsFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExcludeSocketNotifiers"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExcludeSocketNotifiers"));
    end ExcludeSocketNotifiers;
    function WaitForMoreEvents return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QEventLoop");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessEventsFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WaitForMoreEvents"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WaitForMoreEvents"));
    end WaitForMoreEvents;
    function X11ExcludeTimers return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QEventLoop");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessEventsFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "X11ExcludeTimers"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "X11ExcludeTimers"));
    end X11ExcludeTimers;
    function EventLoopExec return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QEventLoop");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessEventsFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "EventLoopExec"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "EventLoopExec"));
    end EventLoopExec;
    function DialogExec return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QEventLoop");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessEventsFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DialogExec"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DialogExec"));
    end DialogExec;
    function ApplicationExec return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QEventLoop");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ProcessEventsFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ApplicationExec"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ApplicationExec"));
    end ApplicationExec;
 end QtAda6.QtCore.QEventLoop.ProcessEventsFlag;

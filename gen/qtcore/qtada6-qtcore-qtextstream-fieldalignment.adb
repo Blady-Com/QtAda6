@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QTextStream.FieldAlignment is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtCore.QTextStream.FieldAlignment is
       Free (Inst_Access (Self));
    end Finalize;
    function AlignLeft return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextStream");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FieldAlignment");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlignLeft"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlignLeft"));
    end AlignLeft;
    function AlignRight return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextStream");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FieldAlignment");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlignRight"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlignRight"));
    end AlignRight;
    function AlignCenter return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextStream");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FieldAlignment");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlignCenter"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlignCenter"));
    end AlignCenter;
    function AlignAccountingStyle return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextStream");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FieldAlignment");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlignAccountingStyle"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlignAccountingStyle"));
    end AlignAccountingStyle;
 end QtAda6.QtCore.QTextStream.FieldAlignment;

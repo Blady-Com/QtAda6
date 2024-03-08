@@ -10,7 +10,11 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
+with QtAda6.QtCore.QRunnable;
 package body QtAda6.QtCore.QRunnable is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,45 +22,50 @@ package body QtAda6.QtCore.QRunnable is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QRunnable");
       Args  := Tuple_New (0);
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict  := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function autoDelete (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "autoDelete");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end autoDelete;
    function create (functionToRun_P : access Object'Class) return access QtAda6.QtCore.QRunnable.Inst'Class is
-      Class, Method, Args, List, Result : Handle;
-      Ret                               : constant QtAda6.QtCore.QRunnable.Class := new QtAda6.QtCore.QRunnable.Inst;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRunnable.Class := new QtAda6.QtCore.QRunnable.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QRunnable");
       Method := Object_GetAttrString (Class, "create");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if functionToRun_P /= null then functionToRun_P.Python_Proxy else No_Value));
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end create;
    procedure run (self : access Inst) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "run");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end run;
    procedure setAutoDelete (self : access Inst; autoDelete_P : bool) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAutoDelete");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, To_Python (autoDelete_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setAutoDelete;
 end QtAda6.QtCore.QRunnable;

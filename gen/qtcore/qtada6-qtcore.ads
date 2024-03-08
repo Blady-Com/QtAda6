@@ -19,7 +19,7 @@ package QtAda6.QtCore is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is tagged null record;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
 -- Copyright (C) 2022 The Qt Company Ltd.
 -- SPDX-License-Identifier: LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only
 --
@@ -45,14 +45,14 @@ package QtAda6.QtCore is
    function SLOT_F (arg_1_P : bytes) return str;
    procedure U_init_feature_U;
    procedure U_moduleShutdown;
-   function qAbs_F (arg_1_P : float) return float;
+   function qAbs (arg_1_P : float) return float;
    procedure qAddPostRoutine (arg_1_P : access Object'Class);
    procedure qCCritical (arg_1_P : access Object'Class; arg_2_P : bytes);
    procedure qCDebug (arg_1_P : access Object'Class; arg_2_P : bytes);
    procedure qCInfo (arg_1_P : access Object'Class; arg_2_P : bytes);
    procedure qCWarning (arg_1_P : access Object'Class; arg_2_P : bytes);
    function qCompress
-     (data_P : UNION_QtAda6_QtCore_QByteArraybytes; compressionLevel_P : int := 0)
+     (data_P : UNION_QtAda6_QtCore_QByteArray_bytes; compressionLevel_P : int := 0)
       return access QtAda6.QtCore.QByteArray.Inst'Class;
    function qCompress
      (data_P : bytes; nbytes_P : int; compressionLevel_P : int := 0) return access QtAda6.QtCore.QByteArray.Inst'Class;
@@ -74,10 +74,10 @@ package QtAda6.QtCore is
    function qRegisterResourceData (arg_1_P : int; arg_2_P : bytes; arg_3_P : bytes; arg_4_P : bytes) return bool;
    procedure qSetMessagePattern (messagePattern_P : str);
    function qUncompress
-     (data_P : UNION_QtAda6_QtCore_QByteArraybytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
+     (data_P : UNION_QtAda6_QtCore_QByteArray_bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function qUncompress (data_P : bytes; nbytes_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function qUnregisterResourceData (arg_1_P : int; arg_2_P : bytes; arg_3_P : bytes; arg_4_P : bytes) return bool;
-   function qVersion_F return bytes;
+   function qVersion return bytes;
    procedure qWarning (arg_1_P : bytes);
    function qtTrId (id_P : bytes; n_P : int := 0) return str;
 -- eof

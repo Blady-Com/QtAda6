@@ -8,17 +8,16 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.QPersistentModelIndex;
+limited with QtAda6.QtCore.QItemSelectionRange;
+limited with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtCore.QItemSelectionModel.SelectionFlag;
-with QtAda6.QtCore.QItemSelectionRange;
-with QtAda6.QtCore.QModelIndex;
 package QtAda6.QtCore.QItemSelection is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex is new Any;
+   type UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is new Any;
    subtype SEQUENCE_QtAda6_QtCore_QItemSelectionRange is QtAda6.QtCore.QItemSelectionRange.Class_Array;
    subtype LIST_QtAda6_QtCore_QItemSelectionRange is QtAda6.QtCore.QItemSelectionRange.Class_Array;
    subtype LIST_QtAda6_QtCore_QModelIndex is QtAda6.QtCore.QModelIndex.Class_Array;
@@ -26,8 +25,8 @@ package QtAda6.QtCore.QItemSelection is
    function Create return Class;
    function Create (QItemSelection_P : access QtAda6.QtCore.QItemSelection.Inst'Class) return Class;
    function Create
-     (topLeft_P     : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
-      bottomRight_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return Class;
+     (topLeft_P     : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
+      bottomRight_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return Class;
    function U_add_U
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QItemSelection.Inst'Class)
       return access QtAda6.QtCore.QItemSelection.Inst'Class;
@@ -48,7 +47,7 @@ package QtAda6.QtCore.QItemSelection is
    function constFirst (self : access Inst) return access QtAda6.QtCore.QItemSelectionRange.Inst'Class;
    function constLast (self : access Inst) return access QtAda6.QtCore.QItemSelectionRange.Inst'Class;
    function contains
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return bool;
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool;
    function count (self : access Inst) return int;
    function data (self : access Inst) return access QtAda6.QtCore.QItemSelectionRange.Inst'Class;
    function empty (self : access Inst) return bool;
@@ -85,8 +84,8 @@ package QtAda6.QtCore.QItemSelection is
    procedure reserve (self : access Inst; size_P : int);
    procedure resize (self : access Inst; size_P : int);
    procedure select_K
-     (self          : access Inst; topLeft_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
-      bottomRight_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
+     (self          : access Inst; topLeft_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
+      bottomRight_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
    procedure shrink_to_fit (self : access Inst);
    function size (self : access Inst) return int;
    function sliced (self : access Inst; pos_P : int) return LIST_QtAda6_QtCore_QItemSelectionRange;

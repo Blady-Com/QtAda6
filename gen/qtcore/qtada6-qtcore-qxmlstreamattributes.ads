@@ -8,7 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with QtAda6.QtCore.QXmlStreamAttribute;
+limited with QtAda6.QtCore.QXmlStreamAttribute;
 package QtAda6.QtCore.QXmlStreamAttributes is
    type Inst;
    type Inst_Access is access all Inst;

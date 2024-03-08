@@ -8,27 +8,29 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QAbstractAnimation.Direction;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.QAnimationGroup;
 limited with QtAda6.QtCore.QAbstractAnimation.DeletionPolicy;
 limited with QtAda6.QtCore.QAbstractAnimation.State;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QAbstractAnimation is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function currentLoopChanged (self : access Inst) return CLASSVAR_Signal;-- currentLoopChanged(int)
+   function currentLoopChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- currentLoopChanged(int)
    function directionChanged
-     (self : access Inst) return CLASSVAR_Signal;-- directionChanged(QAbstractAnimation::Direction)
-   function finished (self : access Inst) return CLASSVAR_Signal;-- finished()
+     (self : access Inst)
+      return access QtAda6.QtCore.Signal.Inst'Class;-- directionChanged(QAbstractAnimation::Direction)
+   function finished (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- finished()
    function stateChanged
-     (self : access Inst) return CLASSVAR_Signal;-- stateChanged(QAbstractAnimation::State,QAbstractAnimation::State)
+     (self : access Inst)
+      return access QtAda6.QtCore.Signal.Inst'Class;-- stateChanged(QAbstractAnimation::State,QAbstractAnimation::State)
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function currentLoop (self : access Inst) return int;
    function currentLoopTime (self : access Inst) return int;

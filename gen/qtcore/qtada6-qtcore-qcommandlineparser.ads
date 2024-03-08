@@ -8,10 +8,10 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.QCommandLineOption;
 limited with QtAda6.QtCore.QCoreApplication;
 limited with QtAda6.QtCore.QCommandLineParser.OptionsAfterPositionalArgumentsMode;
 limited with QtAda6.QtCore.QCommandLineParser.SingleDashWordOptionMode;
-with QtAda6.QtCore.QCommandLineOption;
 package QtAda6.QtCore.QCommandLineParser is
    type Inst;
    type Inst_Access is access all Inst;
@@ -37,7 +37,7 @@ package QtAda6.QtCore.QCommandLineParser is
    function isSet (self : access Inst; option_P : access QtAda6.QtCore.QCommandLineOption.Inst'Class) return bool;
    function optionNames (self : access Inst) return LIST_str;
    function parse (self : access Inst; arguments_P : SEQUENCE_str) return bool;
-   function positionalArguments_F (self : access Inst) return LIST_str;
+   function positionalArguments (self : access Inst) return LIST_str;
    procedure process (self : access Inst; app_P : access QtAda6.QtCore.QCoreApplication.Inst'Class);
    procedure process (self : access Inst; arguments_P : SEQUENCE_str);
    procedure setApplicationDescription (self : access Inst; description_P : str);

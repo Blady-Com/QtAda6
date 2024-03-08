@@ -14,11 +14,11 @@ package QtAda6.QtCore.PyClassProperty is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Property with null record;
-   type CALLABLE_AnyAny is new Any;
-   type CALLABLE_AnyAnyNoneType is new Any;
-   type CALLABLE_AnyNoneType is new Any;
+   type CALLABLE_Any_Any is new Any;
+   type CALLABLE_Any_Any_NoneType is new Any;
+   type CALLABLE_Any_NoneType is new Any;
    procedure Finalize (Self : in out Class);
    function Create
-     (fget_P : CALLABLE_AnyAny := null; fset_P : CALLABLE_AnyAnyNoneType := null; fdel_P : CALLABLE_AnyNoneType := null;
-      doc_P  : str             := "") return Class;
+     (fget_P : CALLABLE_Any_Any      := null; fset_P : CALLABLE_Any_Any_NoneType := null;
+      fdel_P : CALLABLE_Any_NoneType := null; doc_P : str := "") return Class;
 end QtAda6.QtCore.PyClassProperty;

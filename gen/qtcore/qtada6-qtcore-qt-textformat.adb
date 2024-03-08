@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.TextFormat is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtCore.Qt.TextFormat is
       Free (Inst_Access (Self));
    end Finalize;
    function PlainText return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFormat");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PlainText"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PlainText"));
    end PlainText;
    function RichText return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFormat");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RichText"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RichText"));
    end RichText;
    function AutoText return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFormat");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AutoText"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AutoText"));
    end AutoText;
    function MarkdownText return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextFormat");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MarkdownText"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MarkdownText"));
    end MarkdownText;
 end QtAda6.QtCore.Qt.TextFormat;

@@ -57,5 +57,5 @@ package QtAda6.QtCore.Qt is
      (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class;
    function uppercasedigits
      (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class;
-   function ws_F (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class;
+   function ws (s_P : access QtAda6.QtCore.QTextStream.Inst'Class) return access QtAda6.QtCore.QTextStream.Inst'Class;
 end QtAda6.QtCore.Qt;

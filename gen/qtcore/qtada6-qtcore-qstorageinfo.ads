@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.QDir;
 limited with QtAda6.QtCore.QByteArray;
 package QtAda6.QtCore.QStorageInfo is
    type Inst;
@@ -16,11 +15,11 @@ package QtAda6.QtCore.QStorageInfo is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QDirstr is new Any;
+   type UNION_QtAda6_QtCore_QDir_str is new Any;
    subtype LIST_QtAda6_QtCore_QStorageInfo is QtAda6.QtCore.QStorageInfo.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (dir_P : UNION_QtAda6_QtCore_QDirstr) return Class;
+   function Create (dir_P : UNION_QtAda6_QtCore_QDir_str) return Class;
    function Create (other_P : access QtAda6.QtCore.QStorageInfo.Inst'Class) return Class;
    function Create (path_P : str) return Class;
    procedure U_copy_U;

@@ -10,7 +10,11 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
+with QtAda6.QtCore.QCollatorSortKey;
 package body QtAda6.QtCore.QCollatorSortKey is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,28 +22,31 @@ package body QtAda6.QtCore.QCollatorSortKey is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (other_P : access QtAda6.QtCore.QCollatorSortKey.Inst'Class) return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCollatorSortKey");
       Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function compare (self : access Inst; key_P : access QtAda6.QtCore.QCollatorSortKey.Inst'Class) return int is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "compare");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if key_P /= null then key_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end compare;
    procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QCollatorSortKey.Inst'Class) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end swap;
 end QtAda6.QtCore.QCollatorSortKey;

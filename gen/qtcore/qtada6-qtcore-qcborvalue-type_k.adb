@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QCborValue.Type_K is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,122 +21,105 @@ package body QtAda6.QtCore.QCborValue.Type_K is
       Free (Inst_Access (Self));
    end Finalize;
    function Invalid return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Invalid"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Invalid"));
    end Invalid;
    function Integer return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Integer"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Integer"));
    end Integer;
    function ByteArray return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ByteArray"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ByteArray"));
    end ByteArray;
    function String return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "String"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "String"));
    end String;
    function Array_K return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Array"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Array"));
    end Array_K;
    function Map return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Map"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Map"));
    end Map;
    function Tag return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Tag"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Tag"));
    end Tag;
    function SimpleType return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SimpleType"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SimpleType"));
    end SimpleType;
    function False_U return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "False_"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "False_"));
    end False_U;
    function True_U return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "True_"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "True_"));
    end True_U;
    function Null_K return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Null"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Null"));
    end Null_K;
    function Undefined return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Undefined"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Undefined"));
    end Undefined;
    function Double return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Double"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Double"));
    end Double;
    function DateTime return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DateTime"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DateTime"));
    end DateTime;
    function Url return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Url"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Url"));
    end Url;
    function RegularExpression return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RegularExpression"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RegularExpression"));
    end RegularExpression;
    function Uuid return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborValue");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Uuid"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Uuid"));
    end Uuid;
 end QtAda6.QtCore.QCborValue.Type_K;

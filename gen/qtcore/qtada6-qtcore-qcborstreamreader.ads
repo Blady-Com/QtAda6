@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtCore.QIODevice;
 limited with QtAda6.QtCore.QCborSimpleType;
 limited with QtAda6.QtCore.QCborError;
@@ -22,16 +21,16 @@ package QtAda6.QtCore.QCborStreamReader is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (data_P : bytes; len_P : int) return Class;
    function Create (data_P : bytearray; len_P : int) return Class;
-   function Create (data_P : UNION_QtAda6_QtCore_QByteArraybytes) return Class;
+   function Create (data_P : UNION_QtAda6_QtCore_QByteArray_bytes) return Class;
    function Create (device_P : access QtAda6.QtCore.QIODevice.Inst'Class) return Class;
    procedure addData (self : access Inst; data_P : bytes; len_P : int);
    procedure addData (self : access Inst; data_P : bytearray; len_P : int);
-   procedure addData (self : access Inst; data_P : UNION_QtAda6_QtCore_QByteArraybytes);
+   procedure addData (self : access Inst; data_P : UNION_QtAda6_QtCore_QByteArray_bytes);
    procedure clear (self : access Inst);
    function containerDepth (self : access Inst) return int;
    function currentOffset (self : access Inst) return int;

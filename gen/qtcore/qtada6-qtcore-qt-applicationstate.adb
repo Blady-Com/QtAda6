@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.ApplicationState is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtCore.Qt.ApplicationState is
       Free (Inst_Access (Self));
    end Finalize;
    function ApplicationSuspended return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ApplicationState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ApplicationSuspended"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ApplicationSuspended"));
    end ApplicationSuspended;
    function ApplicationHidden return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ApplicationState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ApplicationHidden"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ApplicationHidden"));
    end ApplicationHidden;
    function ApplicationInactive return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ApplicationState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ApplicationInactive"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ApplicationInactive"));
    end ApplicationInactive;
    function ApplicationActive return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ApplicationState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ApplicationActive"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ApplicationActive"));
    end ApplicationActive;
 end QtAda6.QtCore.Qt.ApplicationState;

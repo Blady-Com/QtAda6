@@ -22,7 +22,7 @@ package QtAda6.QtCore.QLibraryInfo is
    function isDebugBuild return bool;
    function isSharedBuild return bool;
    function location (location_P : access QtAda6.QtCore.QLibraryInfo.LibraryPath.Inst'Class) return str;
-   function path_F (p_P : access QtAda6.QtCore.QLibraryInfo.LibraryPath.Inst'Class) return str;
+   function path (p_P : access QtAda6.QtCore.QLibraryInfo.LibraryPath.Inst'Class) return str;
    function platformPluginArguments (platformName_P : str) return LIST_str;
    function version return access QtAda6.QtCore.QVersionNumber.Inst'Class;
 end QtAda6.QtCore.QLibraryInfo;

@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtCore.QPauseAnimation;
 limited with QtAda6.QtCore.QAbstractAnimation;
@@ -15,17 +16,15 @@ limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.QAbstractAnimation.Direction;
 limited with QtAda6.QtCore.QAbstractAnimation.State;
 with QtAda6.QtCore.QAnimationGroup;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QSequentialAnimationGroup is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QAnimationGroup.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
    function currentAnimationChanged
-     (self : access Inst) return CLASSVAR_Signal;-- currentAnimationChanged(QAbstractAnimation*)
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- currentAnimationChanged(QAbstractAnimation*)
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function addPause (self : access Inst; msecs_P : int) return access QtAda6.QtCore.QPauseAnimation.Inst'Class;
    function currentAnimation (self : access Inst) return access QtAda6.QtCore.QAbstractAnimation.Inst'Class;

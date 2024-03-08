@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QMetaObject.Call is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,73 +21,63 @@ package body QtAda6.QtCore.QMetaObject.Call is
       Free (Inst_Access (Self));
    end Finalize;
    function InvokeMetaMethod return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Call");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InvokeMetaMethod"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InvokeMetaMethod"));
    end InvokeMetaMethod;
    function ReadProperty return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Call");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ReadProperty"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ReadProperty"));
    end ReadProperty;
    function WriteProperty return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Call");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WriteProperty"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WriteProperty"));
    end WriteProperty;
    function ResetProperty return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Call");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ResetProperty"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ResetProperty"));
    end ResetProperty;
    function CreateInstance return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Call");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CreateInstance"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CreateInstance"));
    end CreateInstance;
    function IndexOfMethod return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Call");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "IndexOfMethod"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "IndexOfMethod"));
    end IndexOfMethod;
    function RegisterPropertyMetaType return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Call");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RegisterPropertyMetaType"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RegisterPropertyMetaType"));
    end RegisterPropertyMetaType;
    function RegisterMethodArgumentMetaType return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Call");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RegisterMethodArgumentMetaType"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RegisterMethodArgumentMetaType"));
    end RegisterMethodArgumentMetaType;
    function BindableProperty return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Call");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BindableProperty"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BindableProperty"));
    end BindableProperty;
    function CustomCall return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Call");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CustomCall"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CustomCall"));
    end CustomCall;
 end QtAda6.QtCore.QMetaObject.Call;

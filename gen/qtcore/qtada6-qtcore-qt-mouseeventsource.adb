@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.MouseEventSource is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtCore.Qt.MouseEventSource is
       Free (Inst_Access (Self));
    end Finalize;
    function MouseEventNotSynthesized return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MouseEventSource");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MouseEventNotSynthesized"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MouseEventNotSynthesized"));
    end MouseEventNotSynthesized;
    function MouseEventSynthesizedBySystem return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MouseEventSource");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MouseEventSynthesizedBySystem"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MouseEventSynthesizedBySystem"));
    end MouseEventSynthesizedBySystem;
    function MouseEventSynthesizedByQt return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MouseEventSource");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MouseEventSynthesizedByQt"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MouseEventSynthesizedByQt"));
    end MouseEventSynthesizedByQt;
    function MouseEventSynthesizedByApplication return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MouseEventSource");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MouseEventSynthesizedByApplication"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MouseEventSynthesizedByApplication"));
    end MouseEventSynthesizedByApplication;
 end QtAda6.QtCore.Qt.MouseEventSource;

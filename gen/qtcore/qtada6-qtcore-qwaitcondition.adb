@@ -11,11 +11,11 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QMutex;
-with QtAda6.QtCore.QDeadlineTimer;
-with QtAda6.QtCore.QDeadlineTimer.ForeverConstant;
-with QtAda6.QtCore.Qt.TimerType;
 with QtAda6.QtCore.QReadWriteLock;
 package body QtAda6.QtCore.QWaitCondition is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -23,92 +23,105 @@ package body QtAda6.QtCore.QWaitCondition is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QWaitCondition");
       Args  := Tuple_New (0);
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict  := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure notify_all (self : access Inst) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "notify_all");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end notify_all;
    procedure notify_one (self : access Inst) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "notify_one");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end notify_one;
    function wait
      (self       : access Inst; lockedMutex_P : access QtAda6.QtCore.QMutex.Inst'Class;
-      deadline_P : UNION_QtAda6_QtCore_QDeadlineTimerQtAda6_QtCore_QDeadlineTimer_ForeverConstantQtAda6_QtCore_Qt_TimerTypeint :=
+      deadline_P : UNION_QtAda6_QtCore_QDeadlineTimer_QtAda6_QtCore_QDeadlineTimer_ForeverConstant_QtAda6_QtCore_Qt_TimerType_int :=
         null)
       return bool
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "wait");
-      Args   := Tuple_New (2);
+      Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if lockedMutex_P /= null then lockedMutex_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, (if deadline_P /= null then deadline_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict := Dict_New;
+      if deadline_P /= null then
+         Dict_SetItemString (Dict, "deadline", deadline_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end wait;
    function wait (self : access Inst; lockedMutex_P : access QtAda6.QtCore.QMutex.Inst'Class; time_P : int) return bool
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "wait");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if lockedMutex_P /= null then lockedMutex_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Long_FromLong (time_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end wait;
    function wait
      (self       : access Inst; lockedReadWriteLock_P : access QtAda6.QtCore.QReadWriteLock.Inst'Class;
-      deadline_P : UNION_QtAda6_QtCore_QDeadlineTimerQtAda6_QtCore_QDeadlineTimer_ForeverConstantQtAda6_QtCore_Qt_TimerTypeint :=
+      deadline_P : UNION_QtAda6_QtCore_QDeadlineTimer_QtAda6_QtCore_QDeadlineTimer_ForeverConstant_QtAda6_QtCore_Qt_TimerType_int :=
         null)
       return bool
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "wait");
-      Args   := Tuple_New (2);
+      Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if lockedReadWriteLock_P /= null then lockedReadWriteLock_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, (if deadline_P /= null then deadline_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict := Dict_New;
+      if deadline_P /= null then
+         Dict_SetItemString (Dict, "deadline", deadline_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end wait;
    function wait
      (self : access Inst; lockedReadWriteLock_P : access QtAda6.QtCore.QReadWriteLock.Inst'Class; time_P : int)
       return bool
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "wait");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if lockedReadWriteLock_P /= null then lockedReadWriteLock_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Long_FromLong (time_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end wait;
    procedure wakeAll (self : access Inst) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "wakeAll");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end wakeAll;
    procedure wakeOne (self : access Inst) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "wakeOne");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end wakeOne;
 end QtAda6.QtCore.QWaitCondition;

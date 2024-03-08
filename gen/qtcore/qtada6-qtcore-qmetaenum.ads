@@ -15,7 +15,7 @@ package QtAda6.QtCore.QMetaEnum is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type TUPLE is new Any;
+   type TUPLE is null record;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (QMetaEnum_P : access QtAda6.QtCore.QMetaEnum.Inst'Class) return Class;

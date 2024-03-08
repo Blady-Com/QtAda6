@@ -8,33 +8,32 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QChildEvent;
 limited with QtAda6.QtCore.Qt.ConnectionType;
 limited with QtAda6.QtCore.QMetaObject.Connection;
 limited with QtAda6.QtCore.QMetaMethod;
 limited with QtAda6.QtCore.QEvent;
+limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtCore.Qt.FindChildOption;
-limited with QtAda6.QtCore.QRegularExpression;
 limited with QtAda6.QtCore.QMetaObject;
 limited with QtAda6.QtCore.QThread;
 limited with QtAda6.QtCore.Qt.TimerType;
 limited with QtAda6.QtCore.QTimerEvent;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtCore.QByteArray;
 package QtAda6.QtCore.QObject is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    subtype LIST_QtAda6_QtCore_QObject is QtAda6.QtCore.QObject.Class_Array;
    type CALLABLE is new Any;
    subtype LIST_QtAda6_QtCore_QByteArray is QtAda6.QtCore.QByteArray.Class_Array;
-   type UNION_QtAda6_QtCore_QRegularExpressionstr is new Any;
+   type UNION_QtAda6_QtCore_QRegularExpression_str is new Any;
    procedure Finalize (Self : in out Class);
-   function destroyed (self : access Inst) return CLASSVAR_Signal;-- destroyed()
-   function objectNameChanged (self : access Inst) return CLASSVAR_Signal;-- objectNameChanged(QString)
+   function destroyed (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- destroyed()
+   function objectNameChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- objectNameChanged(QString)
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function blockSignals (self : access Inst; b_P : bool) return bool;
    procedure childEvent (self : access Inst; event_P : access QtAda6.QtCore.QChildEvent.Inst'Class);
@@ -100,7 +99,7 @@ package QtAda6.QtCore.QObject is
      (self      : access Inst; type_K_P : Type_K_T; name_P : str := "";
       options_P : access QtAda6.QtCore.Qt.FindChildOption.Inst'Class := null) return Iterable;
    function findChildren
-     (self      : access Inst; type_K_P : Type_K_T; pattern_P : UNION_QtAda6_QtCore_QRegularExpressionstr;
+     (self      : access Inst; type_K_P : Type_K_T; pattern_P : UNION_QtAda6_QtCore_QRegularExpression_str;
       options_P : access QtAda6.QtCore.Qt.FindChildOption.Inst'Class := null) return Iterable;
    function inherits (self : access Inst; classname_P : bytes) return bool;
    procedure installEventFilter (self : access Inst; filterObj_P : access QtAda6.QtCore.QObject.Inst'Class);

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.NativeGestureType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,52 +21,45 @@ package body QtAda6.QtCore.Qt.NativeGestureType is
       Free (Inst_Access (Self));
    end Finalize;
    function BeginNativeGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "NativeGestureType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BeginNativeGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BeginNativeGesture"));
    end BeginNativeGesture;
    function EndNativeGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "NativeGestureType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "EndNativeGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "EndNativeGesture"));
    end EndNativeGesture;
    function PanNativeGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "NativeGestureType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PanNativeGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PanNativeGesture"));
    end PanNativeGesture;
    function ZoomNativeGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "NativeGestureType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ZoomNativeGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ZoomNativeGesture"));
    end ZoomNativeGesture;
    function SmartZoomNativeGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "NativeGestureType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SmartZoomNativeGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SmartZoomNativeGesture"));
    end SmartZoomNativeGesture;
    function RotateNativeGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "NativeGestureType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RotateNativeGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RotateNativeGesture"));
    end RotateNativeGesture;
    function SwipeNativeGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "NativeGestureType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SwipeNativeGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SwipeNativeGesture"));
    end SwipeNativeGesture;
 end QtAda6.QtCore.Qt.NativeGestureType;

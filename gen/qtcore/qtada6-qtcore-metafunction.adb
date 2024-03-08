@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.MetaFunction is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,12 +21,13 @@ package body QtAda6.QtCore.MetaFunction is
       Free (Inst_Access (Self));
    end Finalize;
    function U_call_U (self : access Inst; args_P : Any) return Any is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__call__");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if args_P /= null then args_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return null;
    end U_call_U;
 end QtAda6.QtCore.MetaFunction;

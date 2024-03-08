@@ -21,14 +21,14 @@ package QtAda6.QtCore.QRegularExpression is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QRegularExpressionstr is new Any;
+   type UNION_QtAda6_QtCore_QRegularExpression_str is new Any;
    type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create
      (pattern_P : str; options_P : access QtAda6.QtCore.QRegularExpression.PatternOption.Inst'Class := null)
       return Class;
-   function Create (re_P : UNION_QtAda6_QtCore_QRegularExpressionstr) return Class;
+   function Create (re_P : UNION_QtAda6_QtCore_QRegularExpression_str) return Class;
    procedure U_copy_U;
    function anchoredPattern (expression_P : str) return str;
    function captureCount (self : access Inst) return int;
@@ -50,12 +50,12 @@ package QtAda6.QtCore.QRegularExpression is
       matchOptions_P : access QtAda6.QtCore.QRegularExpression.MatchOption.Inst'Class := null)
       return access QtAda6.QtCore.QRegularExpressionMatchIterator.Inst'Class;
    function isValid (self : access Inst) return bool;
-   function match_F
+   function match
      (self           : access Inst; subject_P : str; offset_P : int := 0;
       matchType_P    : access QtAda6.QtCore.QRegularExpression.MatchType.Inst'Class   := null;
       matchOptions_P : access QtAda6.QtCore.QRegularExpression.MatchOption.Inst'Class := null)
       return access QtAda6.QtCore.QRegularExpressionMatch.Inst'Class;
--- function match_F(self : access Inst;subjectView_P : str;offset_P : int := 0;matchType_P : access QtAda6.QtCore.QRegularExpression.MatchType.Inst'Class := null;matchOptions_P : access QtAda6.QtCore.QRegularExpression.MatchOption.Inst'Class := null) return access QtAda6.QtCore.QRegularExpressionMatch.Inst'Class;
+-- function match(self : access Inst;subjectView_P : str;offset_P : int := 0;matchType_P : access QtAda6.QtCore.QRegularExpression.MatchType.Inst'Class := null;matchOptions_P : access QtAda6.QtCore.QRegularExpression.MatchOption.Inst'Class := null) return access QtAda6.QtCore.QRegularExpressionMatch.Inst'Class;
    function matchView
      (self           : access Inst; subjectView_P : str; offset_P : int := 0;
       matchType_P    : access QtAda6.QtCore.QRegularExpression.MatchType.Inst'Class   := null;
@@ -63,13 +63,13 @@ package QtAda6.QtCore.QRegularExpression is
       return access QtAda6.QtCore.QRegularExpressionMatch.Inst'Class;
    function namedCaptureGroups (self : access Inst) return LIST_str;
    procedure optimize (self : access Inst);
-   function pattern_F (self : access Inst) return str;
+   function pattern (self : access Inst) return str;
    function patternErrorOffset (self : access Inst) return int;
    function patternOptions (self : access Inst) return access QtAda6.QtCore.QRegularExpression.PatternOption.Inst'Class;
    procedure setPattern (self : access Inst; pattern_P : str);
    procedure setPatternOptions
      (self : access Inst; options_P : access QtAda6.QtCore.QRegularExpression.PatternOption.Inst'Class);
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QRegularExpressionstr);
+   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QRegularExpression_str);
    function wildcardToRegularExpression
      (str_P : str; options_P : access QtAda6.QtCore.QRegularExpression.WildcardConversionOption.Inst'Class := null)
       return str;

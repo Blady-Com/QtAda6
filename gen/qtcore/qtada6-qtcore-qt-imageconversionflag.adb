@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.Qt.ImageConversionFlag is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,136 +21,117 @@ package body QtAda6.QtCore.Qt.ImageConversionFlag is
       Free (Inst_Access (Self));
    end Finalize;
    function AutoColor return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AutoColor"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AutoColor"));
    end AutoColor;
    function AutoDither return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AutoDither"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AutoDither"));
    end AutoDither;
    function DiffuseDither return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DiffuseDither"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DiffuseDither"));
    end DiffuseDither;
    function ThresholdAlphaDither return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ThresholdAlphaDither"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ThresholdAlphaDither"));
    end ThresholdAlphaDither;
    function MonoOnly return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MonoOnly"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MonoOnly"));
    end MonoOnly;
    function ColorMode_Mask return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ColorMode_Mask"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ColorMode_Mask"));
    end ColorMode_Mask;
    function ColorOnly return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ColorOnly"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ColorOnly"));
    end ColorOnly;
    function OrderedAlphaDither return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "OrderedAlphaDither"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "OrderedAlphaDither"));
    end OrderedAlphaDither;
    function DiffuseAlphaDither return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DiffuseAlphaDither"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DiffuseAlphaDither"));
    end DiffuseAlphaDither;
    function AlphaDither_Mask return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlphaDither_Mask"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlphaDither_Mask"));
    end AlphaDither_Mask;
    function NoAlpha return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoAlpha"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoAlpha"));
    end NoAlpha;
    function OrderedDither return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "OrderedDither"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "OrderedDither"));
    end OrderedDither;
    function ThresholdDither return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ThresholdDither"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ThresholdDither"));
    end ThresholdDither;
    function Dither_Mask return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Dither_Mask"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Dither_Mask"));
    end Dither_Mask;
    function PreferDither return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreferDither"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreferDither"));
    end PreferDither;
    function AvoidDither return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AvoidDither"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AvoidDither"));
    end AvoidDither;
    function DitherMode_Mask return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DitherMode_Mask"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DitherMode_Mask"));
    end DitherMode_Mask;
    function NoOpaqueDetection return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoOpaqueDetection"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoOpaqueDetection"));
    end NoOpaqueDetection;
    function NoFormatConversion return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Qt");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageConversionFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoFormatConversion"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoFormatConversion"));
    end NoFormatConversion;
 end QtAda6.QtCore.Qt.ImageConversionFlag;

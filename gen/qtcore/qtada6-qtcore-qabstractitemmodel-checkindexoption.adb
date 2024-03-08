@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QAbstractItemModel.CheckIndexOption is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtCore.QAbstractItemModel.CheckIndexOption is
       Free (Inst_Access (Self));
    end Finalize;
    function NoOption return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QAbstractItemModel");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "CheckIndexOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoOption"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoOption"));
    end NoOption;
    function IndexIsValid return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QAbstractItemModel");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "CheckIndexOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "IndexIsValid"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "IndexIsValid"));
    end IndexIsValid;
    function DoNotUseParent return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QAbstractItemModel");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "CheckIndexOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DoNotUseParent"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DoNotUseParent"));
    end DoNotUseParent;
    function ParentIsInvalid return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QAbstractItemModel");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "CheckIndexOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ParentIsInvalid"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ParentIsInvalid"));
    end ParentIsInvalid;
 end QtAda6.QtCore.QAbstractItemModel.CheckIndexOption;

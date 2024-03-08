@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtCore.QFileDevice.Permission is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,87 +21,75 @@ package body QtAda6.QtCore.QFileDevice.Permission is
       Free (Inst_Access (Self));
    end Finalize;
    function ExeOther return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Permission");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExeOther"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExeOther"));
    end ExeOther;
    function WriteOther return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Permission");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WriteOther"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WriteOther"));
    end WriteOther;
    function ReadOther return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Permission");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ReadOther"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ReadOther"));
    end ReadOther;
    function ExeGroup return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Permission");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExeGroup"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExeGroup"));
    end ExeGroup;
    function WriteGroup return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Permission");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WriteGroup"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WriteGroup"));
    end WriteGroup;
    function ReadGroup return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Permission");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ReadGroup"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ReadGroup"));
    end ReadGroup;
    function ExeUser return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Permission");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExeUser"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExeUser"));
    end ExeUser;
    function WriteUser return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Permission");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WriteUser"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WriteUser"));
    end WriteUser;
    function ReadUser return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Permission");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ReadUser"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ReadUser"));
    end ReadUser;
    function ExeOwner return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Permission");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExeOwner"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExeOwner"));
    end ExeOwner;
    function WriteOwner return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Permission");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WriteOwner"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WriteOwner"));
    end WriteOwner;
    function ReadOwner return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QFileDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Permission");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ReadOwner"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ReadOwner"));
    end ReadOwner;
 end QtAda6.QtCore.QFileDevice.Permission;
