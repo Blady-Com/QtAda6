@@ -17,6 +17,10 @@ package QtAda6.QtCore.QUrlQuery is
    type Inst is new Shiboken.Object with null record;
    type UNION_QtAda6_QtCore_QUrl_str is new Any;
    type LIST_str is array (Positive range <>) of str;
+   type TUPLE_str_str is record
+      C1 : str;
+      C2 : str;
+   end record;
    type LIST_TUPLE_str_str is array (Positive range <>) of TUPLE_str_str;
    type SEQUENCE_TUPLE_str_str is array (Positive range <>) of TUPLE_str_str;
    procedure Finalize (Self : in out Class);

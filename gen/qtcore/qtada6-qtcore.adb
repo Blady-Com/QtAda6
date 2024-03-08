@@ -460,7 +460,7 @@ package body QtAda6.QtCore is
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return bytes (String'(Bytes_AsString (Result)));
+      return bytes (String'(As_String (Result)));
    end qVersion;
    procedure qWarning (arg_1_P : bytes) is
       Method, Args, Dict, List, Tuple, Result : Handle;
