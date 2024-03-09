@@ -11,13 +11,6 @@
 limited with QtAda6.QtGui.QBrush;
 limited with QtAda6.QtGui.QPainterPath;
 limited with QtAda6.QtGui.QPen;
-limited with QtAda6.QtCore.Qt.BrushStyle;
-limited with QtAda6.QtCore.Qt.GlobalColor;
-limited with QtAda6.QtGui.QColor;
-limited with QtAda6.QtGui.QGradient;
-limited with QtAda6.QtGui.QImage;
-limited with QtAda6.QtGui.QPixmap;
-limited with QtAda6.QtCore.Qt.PenStyle;
 with QtAda6.QtWidgets.QGraphicsItem;
 package QtAda6.QtWidgets.QAbstractGraphicsShapeItem is
    type Inst;
@@ -25,9 +18,9 @@ package QtAda6.QtWidgets.QAbstractGraphicsShapeItem is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QGraphicsItem.Inst with null record;
-   type UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap is
+   type UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap is
      new Any;
-   type UNION_QtAda6_QtGui_QPenQtAda6_QtCore_Qt_PenStyleQtAda6_QtGui_QColor is new Any;
+   type UNION_QtAda6_QtGui_QPen_QtAda6_QtCore_Qt_PenStyle_QtAda6_QtGui_QColor is new Any;
    procedure Finalize (Self : in out Class);
    function Create (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class;
    function brush (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class;
@@ -36,6 +29,6 @@ package QtAda6.QtWidgets.QAbstractGraphicsShapeItem is
    function pen (self : access Inst) return access QtAda6.QtGui.QPen.Inst'Class;
    procedure setBrush
      (self    : access Inst;
-      brush_P : UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap);
-   procedure setPen (self : access Inst; pen_P : UNION_QtAda6_QtGui_QPenQtAda6_QtCore_Qt_PenStyleQtAda6_QtGui_QColor);
+      brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
+   procedure setPen (self : access Inst; pen_P : UNION_QtAda6_QtGui_QPen_QtAda6_QtCore_Qt_PenStyle_QtAda6_QtGui_QColor);
 end QtAda6.QtWidgets.QAbstractGraphicsShapeItem;

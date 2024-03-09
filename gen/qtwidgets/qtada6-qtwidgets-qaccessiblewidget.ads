@@ -30,7 +30,7 @@ package QtAda6.QtWidgets.QAccessibleWidget is
 --  and QtAda6.QtGui.QAccessibleActionInterface.Inst
    with null record;
    type LIST_str is array (Positive range <>) of str;
-   type LIST_TUPLE_QtAda6_QtGui_QAccessibleInterfaceQtAda6_QtGui_QAccessible_RelationFlag is
+   type LIST_TUPLE_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag is
      array (Positive range <>) of TUPLE_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag;
    procedure Finalize (Self : in out Class);
    function Create
@@ -54,7 +54,7 @@ package QtAda6.QtWidgets.QAccessibleWidget is
    function rect (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class;
    function relations
      (self : access Inst; match_P : access QtAda6.QtGui.QAccessible.RelationFlag.Inst'Class := null)
-      return LIST_TUPLE_QtAda6_QtGui_QAccessibleInterfaceQtAda6_QtGui_QAccessible_RelationFlag;
+      return LIST_TUPLE_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag;
    function role (self : access Inst) return access QtAda6.QtGui.QAccessible.Role.Inst'Class;
    function state (self : access Inst) return access QtAda6.QtGui.QAccessible.State.Inst'Class;
    function text (self : access Inst; t_P : access QtAda6.QtGui.QAccessible.Text.Inst'Class) return str;

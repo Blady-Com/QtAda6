@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QFileSystemModel.Roles is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtWidgets.QFileSystemModel.Roles is
       Free (Inst_Access (Self));
    end Finalize;
    function FileIconRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileSystemModel");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Roles");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FileIconRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FileIconRole"));
    end FileIconRole;
    function FilePathRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileSystemModel");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Roles");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FilePathRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FilePathRole"));
    end FilePathRole;
    function FileNameRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileSystemModel");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Roles");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FileNameRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FileNameRole"));
    end FileNameRole;
    function FilePermissions return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileSystemModel");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Roles");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FilePermissions"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FilePermissions"));
    end FilePermissions;
 end QtAda6.QtWidgets.QFileSystemModel.Roles;

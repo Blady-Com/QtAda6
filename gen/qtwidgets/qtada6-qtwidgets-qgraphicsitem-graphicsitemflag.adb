@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QGraphicsItem.GraphicsItemFlag is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,143 +21,123 @@ package body QtAda6.QtWidgets.QGraphicsItem.GraphicsItemFlag is
       Free (Inst_Access (Self));
    end Finalize;
    function ItemIsMovable return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemIsMovable"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemIsMovable"));
    end ItemIsMovable;
    function ItemIsSelectable return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemIsSelectable"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemIsSelectable"));
    end ItemIsSelectable;
    function ItemIsFocusable return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemIsFocusable"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemIsFocusable"));
    end ItemIsFocusable;
    function ItemClipsToShape return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemClipsToShape"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemClipsToShape"));
    end ItemClipsToShape;
    function ItemClipsChildrenToShape return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemClipsChildrenToShape"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemClipsChildrenToShape"));
    end ItemClipsChildrenToShape;
    function ItemIgnoresTransformations return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemIgnoresTransformations"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemIgnoresTransformations"));
    end ItemIgnoresTransformations;
    function ItemIgnoresParentOpacity return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemIgnoresParentOpacity"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemIgnoresParentOpacity"));
    end ItemIgnoresParentOpacity;
    function ItemDoesntPropagateOpacityToChildren return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemDoesntPropagateOpacityToChildren"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemDoesntPropagateOpacityToChildren"));
    end ItemDoesntPropagateOpacityToChildren;
    function ItemStacksBehindParent return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemStacksBehindParent"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemStacksBehindParent"));
    end ItemStacksBehindParent;
    function ItemUsesExtendedStyleOption return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemUsesExtendedStyleOption"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemUsesExtendedStyleOption"));
    end ItemUsesExtendedStyleOption;
    function ItemHasNoContents return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemHasNoContents"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemHasNoContents"));
    end ItemHasNoContents;
    function ItemSendsGeometryChanges return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemSendsGeometryChanges"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemSendsGeometryChanges"));
    end ItemSendsGeometryChanges;
    function ItemAcceptsInputMethod return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemAcceptsInputMethod"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemAcceptsInputMethod"));
    end ItemAcceptsInputMethod;
    function ItemNegativeZStacksBehindParent return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemNegativeZStacksBehindParent"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemNegativeZStacksBehindParent"));
    end ItemNegativeZStacksBehindParent;
    function ItemIsPanel return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemIsPanel"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemIsPanel"));
    end ItemIsPanel;
    function ItemIsFocusScope return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemIsFocusScope"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemIsFocusScope"));
    end ItemIsFocusScope;
    function ItemSendsScenePositionChanges return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemSendsScenePositionChanges"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemSendsScenePositionChanges"));
    end ItemSendsScenePositionChanges;
    function ItemStopsClickFocusPropagation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemStopsClickFocusPropagation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemStopsClickFocusPropagation"));
    end ItemStopsClickFocusPropagation;
    function ItemStopsFocusHandling return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemStopsFocusHandling"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemStopsFocusHandling"));
    end ItemStopsFocusHandling;
    function ItemContainsChildrenInShape return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GraphicsItemFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemContainsChildrenInShape"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemContainsChildrenInShape"));
    end ItemContainsChildrenInShape;
 end QtAda6.QtWidgets.QGraphicsItem.GraphicsItemFlag;

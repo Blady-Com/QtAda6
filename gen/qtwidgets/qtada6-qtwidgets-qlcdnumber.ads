@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtWidgets.QLCDNumber.Mode;
@@ -15,16 +16,14 @@ limited with QtAda6.QtGui.QPaintEvent;
 limited with QtAda6.QtWidgets.QLCDNumber.SegmentStyle;
 limited with QtAda6.QtCore.QSize;
 with QtAda6.QtWidgets.QFrame;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QLCDNumber is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QFrame.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function overflow (self : access Inst) return CLASSVAR_Signal;-- overflow()
+   function overflow (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- overflow()
    function Create (numDigits_P : int; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function checkOverflow (self : access Inst; num_P : float) return bool;

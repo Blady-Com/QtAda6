@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QGraphicsView.CacheModeFlag is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,17 +21,15 @@ package body QtAda6.QtWidgets.QGraphicsView.CacheModeFlag is
       Free (Inst_Access (Self));
    end Finalize;
    function CacheNone return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsView");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "CacheModeFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CacheNone"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CacheNone"));
    end CacheNone;
    function CacheBackground return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsView");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "CacheModeFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CacheBackground"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CacheBackground"));
    end CacheBackground;
 end QtAda6.QtWidgets.QGraphicsView.CacheModeFlag;

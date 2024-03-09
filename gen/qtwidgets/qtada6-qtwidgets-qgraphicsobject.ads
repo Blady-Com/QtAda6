@@ -8,12 +8,12 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.Qt.GestureType;
 limited with QtAda6.QtCore.Qt.GestureFlag;
 with QtAda6.QtWidgets.QGraphicsItem;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QGraphicsObject is
    type Inst;
    type Inst_Access is access all Inst;
@@ -22,20 +22,19 @@ package QtAda6.QtWidgets.QGraphicsObject is
    type Inst is new QtAda6.QtWidgets.QGraphicsItem.Inst
 --  and QtAda6.QtCore.QObject.Inst
    with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function childrenChanged (self : access Inst) return CLASSVAR_Signal;-- childrenChanged()
-   function enabledChanged (self : access Inst) return CLASSVAR_Signal;-- enabledChanged()
-   function heightChanged (self : access Inst) return CLASSVAR_Signal;-- heightChanged()
-   function opacityChanged (self : access Inst) return CLASSVAR_Signal;-- opacityChanged()
-   function parentChanged (self : access Inst) return CLASSVAR_Signal;-- parentChanged()
-   function rotationChanged (self : access Inst) return CLASSVAR_Signal;-- rotationChanged()
-   function scaleChanged (self : access Inst) return CLASSVAR_Signal;-- scaleChanged()
-   function visibleChanged (self : access Inst) return CLASSVAR_Signal;-- visibleChanged()
-   function widthChanged (self : access Inst) return CLASSVAR_Signal;-- widthChanged()
-   function xChanged (self : access Inst) return CLASSVAR_Signal;-- xChanged()
-   function yChanged (self : access Inst) return CLASSVAR_Signal;-- yChanged()
-   function zChanged (self : access Inst) return CLASSVAR_Signal;-- zChanged()
+   function childrenChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- childrenChanged()
+   function enabledChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- enabledChanged()
+   function heightChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- heightChanged()
+   function opacityChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- opacityChanged()
+   function parentChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- parentChanged()
+   function rotationChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- rotationChanged()
+   function scaleChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- scaleChanged()
+   function visibleChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- visibleChanged()
+   function widthChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- widthChanged()
+   function xChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- xChanged()
+   function yChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- yChanged()
+   function zChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- zChanged()
    function Create (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class;
    function event (self : access Inst; ev_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
    procedure grabGesture

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QToolButton.ToolButtonPopupMode is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtWidgets.QToolButton.ToolButtonPopupMode is
       Free (Inst_Access (Self));
    end Finalize;
    function DelayedPopup return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ToolButtonPopupMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DelayedPopup"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DelayedPopup"));
    end DelayedPopup;
    function MenuButtonPopup return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ToolButtonPopupMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MenuButtonPopup"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MenuButtonPopup"));
    end MenuButtonPopup;
    function InstantPopup return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ToolButtonPopupMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InstantPopup"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InstantPopup"));
    end InstantPopup;
 end QtAda6.QtWidgets.QToolButton.ToolButtonPopupMode;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QTabBar.SelectionBehavior is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtWidgets.QTabBar.SelectionBehavior is
       Free (Inst_Access (Self));
    end Finalize;
    function SelectLeftTab return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTabBar");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SelectionBehavior");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SelectLeftTab"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SelectLeftTab"));
    end SelectLeftTab;
    function SelectRightTab return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTabBar");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SelectionBehavior");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SelectRightTab"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SelectRightTab"));
    end SelectRightTab;
    function SelectPreviousTab return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTabBar");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SelectionBehavior");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SelectPreviousTab"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SelectPreviousTab"));
    end SelectPreviousTab;
 end QtAda6.QtWidgets.QTabBar.SelectionBehavior;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QGraphicsEffect.ChangeFlag is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtWidgets.QGraphicsEffect.ChangeFlag is
       Free (Inst_Access (Self));
    end Finalize;
    function SourceAttached return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsEffect");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ChangeFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SourceAttached"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SourceAttached"));
    end SourceAttached;
    function SourceDetached return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsEffect");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ChangeFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SourceDetached"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SourceDetached"));
    end SourceDetached;
    function SourceBoundingRectChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsEffect");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ChangeFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SourceBoundingRectChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SourceBoundingRectChanged"));
    end SourceBoundingRectChanged;
    function SourceInvalidated return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsEffect");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ChangeFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SourceInvalidated"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SourceInvalidated"));
    end SourceInvalidated;
 end QtAda6.QtWidgets.QGraphicsEffect.ChangeFlag;

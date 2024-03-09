@@ -10,6 +10,7 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
+with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.Qt.WindowType;
 with QtAda6.QtCore.Qt.DockWidgetArea;
@@ -20,33 +21,36 @@ with QtAda6.QtWidgets.QStyleOptionDockWidget;
 with QtAda6.QtGui.QPaintEvent;
 with QtAda6.QtGui.QAction;
 package body QtAda6.QtWidgets.QDockWidget is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function allowedAreasChanged (self : access Inst) return CLASSVAR_Signal is
+   function allowedAreasChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class is
    begin
       return
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "allowedAreasChanged"));
    end allowedAreasChanged;
-   function dockLocationChanged (self : access Inst) return CLASSVAR_Signal is
+   function dockLocationChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class is
    begin
       return
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "dockLocationChanged"));
    end dockLocationChanged;
-   function featuresChanged (self : access Inst) return CLASSVAR_Signal is
+   function featuresChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class is
    begin
       return
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "featuresChanged"));
    end featuresChanged;
-   function topLevelChanged (self : access Inst) return CLASSVAR_Signal is
+   function topLevelChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class is
    begin
       return
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "topLevelChanged"));
    end topLevelChanged;
-   function visibilityChanged (self : access Inst) return CLASSVAR_Signal is
+   function visibilityChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class is
    begin
       return
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "visibilityChanged"));
@@ -55,178 +59,205 @@ package body QtAda6.QtWidgets.QDockWidget is
      (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
       flags_P  : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class
    is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDockWidget");
-      Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, (if flags_P /= null then flags_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Args  := Tuple_New (0);
+      Dict  := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      if flags_P /= null then
+         Dict_SetItemString (Dict, "flags", flags_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
      (title_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null;
       flags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class
    is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDockWidget");
-      Args  := Tuple_New (3);
+      Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (title_P));
-      Tuple_SetItem (Args, 1, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 2, (if flags_P /= null then flags_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      if flags_P /= null then
+         Dict_SetItemString (Dict, "flags", flags_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function allowedAreas (self : access Inst) return access QtAda6.QtCore.Qt.DockWidgetArea.Inst'Class is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DockWidgetArea.Class := new QtAda6.QtCore.Qt.DockWidgetArea.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "allowedAreas");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end allowedAreas;
    procedure changeEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changeEvent");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if event_P /= null then event_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end changeEvent;
    procedure closeEvent (self : access Inst; event_P : access QtAda6.QtGui.QCloseEvent.Inst'Class) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "closeEvent");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if event_P /= null then event_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end closeEvent;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if event_P /= null then event_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end event;
    function features (self : access Inst) return access QtAda6.QtWidgets.QDockWidget.DockWidgetFeature.Inst'Class is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtWidgets.QDockWidget.DockWidgetFeature.Class :=
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret                                     : constant QtAda6.QtWidgets.QDockWidget.DockWidgetFeature.Class :=
         new QtAda6.QtWidgets.QDockWidget.DockWidgetFeature.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "features");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end features;
    procedure initStyleOption (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionDockWidget.Inst'Class)
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "initStyleOption");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if option_P /= null then option_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end initStyleOption;
    function isAreaAllowed (self : access Inst; area_P : access QtAda6.QtCore.Qt.DockWidgetArea.Inst'Class) return bool
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isAreaAllowed");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if area_P /= null then area_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end isAreaAllowed;
    function isFloating (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isFloating");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end isFloating;
    procedure paintEvent (self : access Inst; event_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if event_P /= null then event_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure setAllowedAreas (self : access Inst; areas_P : access QtAda6.QtCore.Qt.DockWidgetArea.Inst'Class) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAllowedAreas");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if areas_P /= null then areas_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setAllowedAreas;
    procedure setFeatures
      (self : access Inst; features_P : access QtAda6.QtWidgets.QDockWidget.DockWidgetFeature.Inst'Class)
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFeatures");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if features_P /= null then features_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setFeatures;
    procedure setFloating (self : access Inst; floating_P : bool) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFloating");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, To_Python (floating_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setFloating;
    procedure setTitleBarWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTitleBarWidget");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setTitleBarWidget;
    procedure setWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setWidget");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setWidget;
    function titleBarWidget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "titleBarWidget");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end titleBarWidget;
    function toggleViewAction (self : access Inst) return access QtAda6.QtGui.QAction.Inst'Class is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toggleViewAction");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end toggleViewAction;
-   function widget_F (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
+   function widget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "widget");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
-   end widget_F;
+   end widget;
 end QtAda6.QtWidgets.QDockWidget;

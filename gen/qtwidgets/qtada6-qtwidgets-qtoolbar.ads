@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtGui.QAction;
 limited with QtAda6.QtGui.QActionEvent;
@@ -20,24 +21,26 @@ limited with QtAda6.QtCore.Qt.Orientation;
 limited with QtAda6.QtGui.QPaintEvent;
 limited with QtAda6.QtCore.Qt.ToolButtonStyle;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QToolBar is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function actionTriggered (self : access Inst) return CLASSVAR_Signal;-- actionTriggered(QAction*)
-   function allowedAreasChanged (self : access Inst) return CLASSVAR_Signal;-- allowedAreasChanged(Qt::ToolBarAreas)
-   function iconSizeChanged (self : access Inst) return CLASSVAR_Signal;-- iconSizeChanged(QSize)
-   function movableChanged (self : access Inst) return CLASSVAR_Signal;-- movableChanged(bool)
-   function orientationChanged (self : access Inst) return CLASSVAR_Signal;-- orientationChanged(Qt::Orientation)
+   function actionTriggered
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- actionTriggered(QAction*)
+   function allowedAreasChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- allowedAreasChanged(Qt::ToolBarAreas)
+   function iconSizeChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- iconSizeChanged(QSize)
+   function movableChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- movableChanged(bool)
+   function orientationChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- orientationChanged(Qt::Orientation)
    function toolButtonStyleChanged
-     (self : access Inst) return CLASSVAR_Signal;-- toolButtonStyleChanged(Qt::ToolButtonStyle)
-   function topLevelChanged (self : access Inst) return CLASSVAR_Signal;-- topLevelChanged(bool)
-   function visibilityChanged (self : access Inst) return CLASSVAR_Signal;-- visibilityChanged(bool)
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- toolButtonStyleChanged(Qt::ToolButtonStyle)
+   function topLevelChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- topLevelChanged(bool)
+   function visibilityChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- visibilityChanged(bool)
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function Create (title_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function actionAt

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QTabBar.Shape is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,59 +21,51 @@ package body QtAda6.QtWidgets.QTabBar.Shape is
       Free (Inst_Access (Self));
    end Finalize;
    function RoundedNorth return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTabBar");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Shape");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RoundedNorth"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RoundedNorth"));
    end RoundedNorth;
    function RoundedSouth return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTabBar");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Shape");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RoundedSouth"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RoundedSouth"));
    end RoundedSouth;
    function RoundedWest return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTabBar");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Shape");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RoundedWest"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RoundedWest"));
    end RoundedWest;
    function RoundedEast return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTabBar");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Shape");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RoundedEast"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RoundedEast"));
    end RoundedEast;
    function TriangularNorth return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTabBar");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Shape");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TriangularNorth"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TriangularNorth"));
    end TriangularNorth;
    function TriangularSouth return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTabBar");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Shape");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TriangularSouth"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TriangularSouth"));
    end TriangularSouth;
    function TriangularWest return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTabBar");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Shape");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TriangularWest"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TriangularWest"));
    end TriangularWest;
    function TriangularEast return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTabBar");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Shape");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TriangularEast"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TriangularEast"));
    end TriangularEast;
 end QtAda6.QtWidgets.QTabBar.Shape;

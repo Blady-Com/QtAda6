@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.Qt.WindowType;
 limited with QtAda6.QtCore.QEvent;
@@ -20,16 +21,14 @@ limited with QtAda6.QtWidgets.QLabel;
 limited with QtAda6.QtGui.QShowEvent;
 limited with QtAda6.QtCore.QSize;
 with QtAda6.QtWidgets.QDialog;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QProgressDialog is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QDialog.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function canceled (self : access Inst) return CLASSVAR_Signal;-- canceled()
+   function canceled (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- canceled()
    function Create
      (labelText_P : str; cancelButtonText_P : str; minimum_P : int; maximum_P : int;
       parent_P    : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;

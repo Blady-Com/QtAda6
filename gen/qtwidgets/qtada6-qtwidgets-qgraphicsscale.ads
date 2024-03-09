@@ -8,28 +8,25 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QObject;
-limited with QtAda6.QtGui.QMatrix4x4;
-limited with QtAda6.QtGui.QTransform;
 limited with QtAda6.QtGui.QVector3D;
 with QtAda6.QtWidgets.QGraphicsTransform;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QGraphicsScale is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QGraphicsTransform.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtGui_QMatrix4x4QtAda6_QtGui_QTransform is new Any;
+   type UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform is new Any;
    procedure Finalize (Self : in out Class);
-   function originChanged (self : access Inst) return CLASSVAR_Signal;-- originChanged()
-   function scaleChanged (self : access Inst) return CLASSVAR_Signal;-- scaleChanged()
-   function xScaleChanged (self : access Inst) return CLASSVAR_Signal;-- xScaleChanged()
-   function yScaleChanged (self : access Inst) return CLASSVAR_Signal;-- yScaleChanged()
-   function zScaleChanged (self : access Inst) return CLASSVAR_Signal;-- zScaleChanged()
+   function originChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- originChanged()
+   function scaleChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- scaleChanged()
+   function xScaleChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- xScaleChanged()
+   function yScaleChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- yScaleChanged()
+   function zScaleChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- zScaleChanged()
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
-   procedure applyTo (self : access Inst; matrix_P : UNION_QtAda6_QtGui_QMatrix4x4QtAda6_QtGui_QTransform);
+   procedure applyTo (self : access Inst; matrix_P : UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform);
    function origin (self : access Inst) return access QtAda6.QtGui.QVector3D.Inst'Class;
    procedure setOrigin (self : access Inst; point_P : access QtAda6.QtGui.QVector3D.Inst'Class);
    procedure setXScale (self : access Inst; arg_1_P : float);

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QFormLayout.ItemRole is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtWidgets.QFormLayout.ItemRole is
       Free (Inst_Access (Self));
    end Finalize;
    function LabelRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFormLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ItemRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LabelRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LabelRole"));
    end LabelRole;
    function FieldRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFormLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ItemRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FieldRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FieldRole"));
    end FieldRole;
    function SpanningRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFormLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ItemRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SpanningRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SpanningRole"));
    end SpanningRole;
 end QtAda6.QtWidgets.QFormLayout.ItemRole;

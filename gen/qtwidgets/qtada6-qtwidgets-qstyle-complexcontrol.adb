@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QStyle.ComplexControl is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,73 +21,63 @@ package body QtAda6.QtWidgets.QStyle.ComplexControl is
       Free (Inst_Access (Self));
    end Finalize;
    function CC_SpinBox return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyle");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComplexControl");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CC_SpinBox"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CC_SpinBox"));
    end CC_SpinBox;
    function CC_ComboBox return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyle");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComplexControl");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CC_ComboBox"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CC_ComboBox"));
    end CC_ComboBox;
    function CC_ScrollBar return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyle");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComplexControl");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CC_ScrollBar"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CC_ScrollBar"));
    end CC_ScrollBar;
    function CC_Slider return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyle");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComplexControl");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CC_Slider"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CC_Slider"));
    end CC_Slider;
    function CC_ToolButton return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyle");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComplexControl");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CC_ToolButton"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CC_ToolButton"));
    end CC_ToolButton;
    function CC_TitleBar return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyle");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComplexControl");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CC_TitleBar"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CC_TitleBar"));
    end CC_TitleBar;
    function CC_Dial return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyle");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComplexControl");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CC_Dial"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CC_Dial"));
    end CC_Dial;
    function CC_GroupBox return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyle");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComplexControl");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CC_GroupBox"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CC_GroupBox"));
    end CC_GroupBox;
    function CC_MdiControls return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyle");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComplexControl");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CC_MdiControls"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CC_MdiControls"));
    end CC_MdiControls;
    function CC_CustomBase return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyle");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ComplexControl");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CC_CustomBase"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CC_CustomBase"));
    end CC_CustomBase;
 end QtAda6.QtWidgets.QStyle.ComplexControl;

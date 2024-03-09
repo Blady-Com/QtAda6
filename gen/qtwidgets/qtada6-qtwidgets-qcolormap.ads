@@ -8,10 +8,8 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtWidgets.QColormap.Mode;
-limited with QtAda6.QtGui.QRgba64;
-limited with QtAda6.QtCore.Qt.GlobalColor;
-with QtAda6.QtGui.QColor;
 package QtAda6.QtWidgets.QColormap is
    type Inst;
    type Inst_Access is access all Inst;
@@ -19,7 +17,7 @@ package QtAda6.QtWidgets.QColormap is
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
    subtype LIST_QtAda6_QtGui_QColor is QtAda6.QtGui.QColor.Class_Array;
-   type UNION_QtAda6_QtGui_QColorQtAda6_QtGui_QRgba64AnyQtAda6_QtCore_Qt_GlobalColorstrint is new Any;
+   type UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is new Any;
    procedure Finalize (Self : in out Class);
    function Create (colormap_P : access QtAda6.QtWidgets.QColormap.Inst'Class) return Class;
    procedure U_copy_U;
@@ -31,7 +29,7 @@ package QtAda6.QtWidgets.QColormap is
    function instance (screen_P : int := 0) return access QtAda6.QtWidgets.QColormap.Inst'Class;
    function mode_F (self : access Inst) return access QtAda6.QtWidgets.QColormap.Mode.Inst'Class;
    function pixel
-     (self : access Inst; color_P : UNION_QtAda6_QtGui_QColorQtAda6_QtGui_QRgba64AnyQtAda6_QtCore_Qt_GlobalColorstrint)
-      return int;
+     (self    : access Inst;
+      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int) return int;
    function size (self : access Inst) return int;
 end QtAda6.QtWidgets.QColormap;

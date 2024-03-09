@@ -16,15 +16,11 @@ limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtWidgets.QStyle.ControlElement;
 limited with QtAda6.QtWidgets.QStyleOption;
 limited with QtAda6.QtCore.QRect;
-limited with QtAda6.QtGui.QPixmap;
-limited with QtAda6.QtGui.QImage;
-limited with QtAda6.QtGui.QPalette;
-limited with QtAda6.QtCore.Qt.GlobalColor;
-limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtGui.QPalette.ColorRole;
 limited with QtAda6.QtWidgets.QStyle.PrimitiveElement;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtGui.QIcon.Mode;
+limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtWidgets.QStyle.SubControl;
 limited with QtAda6.QtGui.QFontMetrics;
@@ -36,6 +32,7 @@ limited with QtAda6.QtWidgets.QStyle.ContentsType;
 limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtWidgets.QStyle.StandardPixmap;
 limited with QtAda6.QtGui.QIcon;
+limited with QtAda6.QtGui.QPalette;
 limited with QtAda6.QtWidgets.QStyle.StyleHint;
 limited with QtAda6.QtWidgets.QStyleHintReturn;
 limited with QtAda6.QtWidgets.QStyle.SubElement;
@@ -46,8 +43,8 @@ package QtAda6.QtWidgets.QProxyStyle is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QCommonStyle.Inst with null record;
-   type UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr is new Any;
-   type UNION_QtAda6_QtGui_QPaletteQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColor is new Any;
+   type UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is new Any;
+   type UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor is new Any;
    procedure Finalize (Self : in out Class);
    function Create (key_P : str) return Class;
    function Create (style_P : access QtAda6.QtWidgets.QStyle.Inst'Class := null) return Class;
@@ -64,11 +61,11 @@ package QtAda6.QtWidgets.QProxyStyle is
    procedure drawItemPixmap
      (self     : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
       rect_P   : access QtAda6.QtCore.QRect.Inst'Class; alignment_P : int;
-      pixmap_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr);
+      pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str);
    procedure drawItemText
      (self   : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
       rect_P : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int;
-      pal_P  : UNION_QtAda6_QtGui_QPaletteQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColor; enabled_P : bool;
+      pal_P  : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor; enabled_P : bool;
       text_P : str; textRole_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class := null);
    procedure drawPrimitive
      (self     : access Inst; element_P : access QtAda6.QtWidgets.QStyle.PrimitiveElement.Inst'Class;
@@ -77,7 +74,7 @@ package QtAda6.QtWidgets.QProxyStyle is
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
    function generatedIconPixmap
      (self     : access Inst; iconMode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class;
-      pixmap_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr;
+      pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str;
       opt_P    : access QtAda6.QtWidgets.QStyleOption.Inst'Class) return access QtAda6.QtGui.QPixmap.Inst'Class;
    function hitTestComplexControl
      (self     : access Inst; control_P : access QtAda6.QtWidgets.QStyle.ComplexControl.Inst'Class;
@@ -86,7 +83,7 @@ package QtAda6.QtWidgets.QProxyStyle is
       return access QtAda6.QtWidgets.QStyle.SubControl.Inst'Class;
    function itemPixmapRect
      (self     : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int;
-      pixmap_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr) return access QtAda6.QtCore.QRect.Inst'Class;
+      pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str) return access QtAda6.QtCore.QRect.Inst'Class;
    function itemTextRect
      (self : access Inst; fm_P : access QtAda6.QtGui.QFontMetrics.Inst'Class;
       r_P  : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int; enabled_P : bool; text_P : str)
@@ -103,8 +100,8 @@ package QtAda6.QtWidgets.QProxyStyle is
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class      := null) return int;
    procedure polish (self : access Inst; app_P : access QtAda6.QtWidgets.QApplication.Inst'Class);
    procedure polish
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QPaletteQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColor);
--- procedure polish(self : access Inst;pal_P : UNION_QtAda6_QtGui_QPaletteQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColor);
+     (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor);
+-- procedure polish(self : access Inst;pal_P : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor);
    procedure polish (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    procedure setBaseStyle (self : access Inst; style_P : access QtAda6.QtWidgets.QStyle.Inst'Class);
    function sizeFromContents

@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QDate;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.QDateTime;
@@ -27,18 +28,17 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtWidgets.QAbstractSpinBox.StepEnabledFlag;
 limited with QtAda6.QtGui.QWheelEvent;
 with QtAda6.QtWidgets.QAbstractSpinBox;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QDateTimeEdit is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractSpinBox.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function dateChanged (self : access Inst) return CLASSVAR_Signal;-- dateChanged(QDate)
-   function dateTimeChanged (self : access Inst) return CLASSVAR_Signal;-- dateTimeChanged(QDateTime)
-   function timeChanged (self : access Inst) return CLASSVAR_Signal;-- timeChanged(QTime)
+   function dateChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- dateChanged(QDate)
+   function dateTimeChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- dateTimeChanged(QDateTime)
+   function timeChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- timeChanged(QTime)
    function Create
      (d_P : access QtAda6.QtCore.QDate.Inst'Class; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
       return Class;

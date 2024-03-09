@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.Qt.WindowType;
 limited with QtAda6.QtGui.QCloseEvent;
 limited with QtAda6.QtGui.QContextMenuEvent;
@@ -18,18 +19,16 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtGui.QResizeEvent;
 limited with QtAda6.QtGui.QShowEvent;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QDialog is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function accepted (self : access Inst) return CLASSVAR_Signal;-- accepted()
-   function finished (self : access Inst) return CLASSVAR_Signal;-- finished(int)
-   function rejected (self : access Inst) return CLASSVAR_Signal;-- rejected()
+   function accepted (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- accepted()
+   function finished (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- finished(int)
+   function rejected (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- rejected()
    function Create
      (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
       f_P      : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class;

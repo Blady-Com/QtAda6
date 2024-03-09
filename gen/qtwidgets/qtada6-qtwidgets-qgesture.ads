@@ -11,8 +11,6 @@
 limited with QtAda6.QtWidgets.QGesture.GestureCancelPolicy;
 limited with QtAda6.QtCore.Qt.GestureType;
 limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtCore.Qt.GestureState;
 with QtAda6.QtCore.QObject;
 package QtAda6.QtWidgets.QGesture is
@@ -21,7 +19,7 @@ package QtAda6.QtWidgets.QGesture is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function gestureCancelPolicy_F
@@ -32,7 +30,7 @@ package QtAda6.QtWidgets.QGesture is
    procedure setGestureCancelPolicy
      (self : access Inst; policy_P : access QtAda6.QtWidgets.QGesture.GestureCancelPolicy.Inst'Class);
    procedure setHotSpot
-     (self : access Inst; value_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element);
+     (self : access Inst; value_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element);
    function state (self : access Inst) return access QtAda6.QtCore.Qt.GestureState.Inst'Class;
    procedure unsetHotSpot (self : access Inst);
 end QtAda6.QtWidgets.QGesture;

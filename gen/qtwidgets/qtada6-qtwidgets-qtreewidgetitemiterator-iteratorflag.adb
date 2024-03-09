@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QTreeWidgetItemIterator.IteratorFlag is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,143 +21,123 @@ package body QtAda6.QtWidgets.QTreeWidgetItemIterator.IteratorFlag is
       Free (Inst_Access (Self));
    end Finalize;
    function All_K return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "All"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "All"));
    end All_K;
    function Hidden return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Hidden"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Hidden"));
    end Hidden;
    function NotHidden return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NotHidden"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NotHidden"));
    end NotHidden;
    function Selected return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Selected"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Selected"));
    end Selected;
    function Unselected return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Unselected"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Unselected"));
    end Unselected;
    function Selectable return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Selectable"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Selectable"));
    end Selectable;
    function NotSelectable return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NotSelectable"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NotSelectable"));
    end NotSelectable;
    function DragEnabled return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DragEnabled"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DragEnabled"));
    end DragEnabled;
    function DragDisabled return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DragDisabled"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DragDisabled"));
    end DragDisabled;
    function DropEnabled return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DropEnabled"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DropEnabled"));
    end DropEnabled;
    function DropDisabled return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DropDisabled"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DropDisabled"));
    end DropDisabled;
    function HasChildren return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HasChildren"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HasChildren"));
    end HasChildren;
    function NoChildren return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoChildren"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoChildren"));
    end NoChildren;
    function Checked return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Checked"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Checked"));
    end Checked;
    function NotChecked return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NotChecked"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NotChecked"));
    end NotChecked;
    function Enabled return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Enabled"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Enabled"));
    end Enabled;
    function Disabled return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Disabled"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Disabled"));
    end Disabled;
    function Editable return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Editable"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Editable"));
    end Editable;
    function NotEditable return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NotEditable"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NotEditable"));
    end NotEditable;
    function UserFlag return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidgetItemIterator");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IteratorFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UserFlag"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UserFlag"));
    end UserFlag;
 end QtAda6.QtWidgets.QTreeWidgetItemIterator.IteratorFlag;

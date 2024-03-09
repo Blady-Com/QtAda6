@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QFormLayout.FieldGrowthPolicy is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtWidgets.QFormLayout.FieldGrowthPolicy is
       Free (Inst_Access (Self));
    end Finalize;
    function FieldsStayAtSizeHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFormLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FieldGrowthPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FieldsStayAtSizeHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FieldsStayAtSizeHint"));
    end FieldsStayAtSizeHint;
    function ExpandingFieldsGrow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFormLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FieldGrowthPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExpandingFieldsGrow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExpandingFieldsGrow"));
    end ExpandingFieldsGrow;
    function AllNonFixedFieldsGrow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFormLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FieldGrowthPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AllNonFixedFieldsGrow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AllNonFixedFieldsGrow"));
    end AllNonFixedFieldsGrow;
 end QtAda6.QtWidgets.QFormLayout.FieldGrowthPolicy;

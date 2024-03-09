@@ -8,30 +8,28 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.Qt.WindowType;
-limited with QtAda6.QtGui.QIcon;
-limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtCore.QEvent;
+limited with QtAda6.QtGui.QIcon;
 limited with QtAda6.QtGui.QShowEvent;
 with QtAda6.QtWidgets.QFrame;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QToolBox is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QFrame.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap is new Any;
+   type UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is new Any;
    procedure Finalize (Self : in out Class);
-   function currentChanged (self : access Inst) return CLASSVAR_Signal;-- currentChanged(int)
+   function currentChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- currentChanged(int)
    function Create
      (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
       f_P      : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class;
    function addItem
      (self   : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
-      icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str) return int;
+      icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str) return int;
    function addItem
      (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class; text_P : str) return int;
    procedure changeEvent (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class);
@@ -42,7 +40,7 @@ package QtAda6.QtWidgets.QToolBox is
    function indexOf (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return int;
    function insertItem
      (self   : access Inst; index_P : int; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
-      icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str) return int;
+      icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str) return int;
    function insertItem
      (self : access Inst; index_P : int; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class; text_P : str)
       return int;
@@ -56,7 +54,7 @@ package QtAda6.QtWidgets.QToolBox is
    procedure setCurrentIndex (self : access Inst; index_P : int);
    procedure setCurrentWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    procedure setItemEnabled (self : access Inst; index_P : int; enabled_P : bool);
-   procedure setItemIcon (self : access Inst; index_P : int; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap);
+   procedure setItemIcon (self : access Inst; index_P : int; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
    procedure setItemText (self : access Inst; index_P : int; text_P : str);
    procedure setItemToolTip (self : access Inst; index_P : int; toolTip_P : str);
    procedure showEvent (self : access Inst; e_P : access QtAda6.QtGui.QShowEvent.Inst'Class);

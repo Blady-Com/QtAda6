@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QMdiArea.WindowOrder is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtWidgets.QMdiArea.WindowOrder is
       Free (Inst_Access (Self));
    end Finalize;
    function CreationOrder return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMdiArea");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowOrder");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CreationOrder"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CreationOrder"));
    end CreationOrder;
    function StackingOrder return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMdiArea");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowOrder");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "StackingOrder"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "StackingOrder"));
    end StackingOrder;
    function ActivationHistoryOrder return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMdiArea");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WindowOrder");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ActivationHistoryOrder"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ActivationHistoryOrder"));
    end ActivationHistoryOrder;
 end QtAda6.QtWidgets.QMdiArea.WindowOrder;

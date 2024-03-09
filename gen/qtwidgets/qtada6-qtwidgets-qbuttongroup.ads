@@ -8,26 +8,29 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
+limited with QtAda6.QtWidgets.QAbstractButton;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtWidgets.QAbstractButton;
 package QtAda6.QtWidgets.QButtonGroup is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    subtype LIST_QtAda6_QtWidgets_QAbstractButton is QtAda6.QtWidgets.QAbstractButton.Class_Array;
    procedure Finalize (Self : in out Class);
-   function buttonClicked (self : access Inst) return CLASSVAR_Signal;-- buttonClicked(QAbstractButton*)
-   function buttonPressed (self : access Inst) return CLASSVAR_Signal;-- buttonPressed(QAbstractButton*)
-   function buttonReleased (self : access Inst) return CLASSVAR_Signal;-- buttonReleased(QAbstractButton*)
-   function buttonToggled (self : access Inst) return CLASSVAR_Signal;-- buttonToggled(QAbstractButton*,bool)
-   function idClicked (self : access Inst) return CLASSVAR_Signal;-- idClicked(int)
-   function idPressed (self : access Inst) return CLASSVAR_Signal;-- idPressed(int)
-   function idReleased (self : access Inst) return CLASSVAR_Signal;-- idReleased(int)
-   function idToggled (self : access Inst) return CLASSVAR_Signal;-- idToggled(int,bool)
+   function buttonClicked
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- buttonClicked(QAbstractButton*)
+   function buttonPressed
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- buttonPressed(QAbstractButton*)
+   function buttonReleased
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- buttonReleased(QAbstractButton*)
+   function buttonToggled
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- buttonToggled(QAbstractButton*,bool)
+   function idClicked (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- idClicked(int)
+   function idPressed (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- idPressed(int)
+   function idReleased (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- idReleased(int)
+   function idToggled (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- idToggled(int,bool)
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    procedure addButton
      (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QAbstractButton.Inst'Class; id_P : int := 0);

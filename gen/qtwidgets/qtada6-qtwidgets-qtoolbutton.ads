@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtGui.QActionEvent;
 limited with QtAda6.QtCore.Qt.ArrowType;
@@ -24,16 +25,14 @@ limited with QtAda6.QtWidgets.QToolButton.ToolButtonPopupMode;
 limited with QtAda6.QtCore.Qt.ToolButtonStyle;
 limited with QtAda6.QtCore.QTimerEvent;
 with QtAda6.QtWidgets.QAbstractButton;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QToolButton is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractButton.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function triggered (self : access Inst) return CLASSVAR_Signal;-- triggered(QAction*)
+   function triggered (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- triggered(QAction*)
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    procedure actionEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QActionEvent.Inst'Class);
    function arrowType (self : access Inst) return access QtAda6.QtCore.Qt.ArrowType.Inst'Class;
@@ -52,7 +51,7 @@ package QtAda6.QtWidgets.QToolButton is
    procedure mouseReleaseEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class);
    procedure nextCheckState (self : access Inst);
    procedure paintEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QPaintEvent.Inst'Class);
-   function popupMode_F (self : access Inst) return access QtAda6.QtWidgets.QToolButton.ToolButtonPopupMode.Inst'Class;
+   function popupMode (self : access Inst) return access QtAda6.QtWidgets.QToolButton.ToolButtonPopupMode.Inst'Class;
    procedure setArrowType (self : access Inst; type_K_P : access QtAda6.QtCore.Qt.ArrowType.Inst'Class);
    procedure setAutoRaise (self : access Inst; enable_P : bool);
    procedure setDefaultAction (self : access Inst; arg_1_P : access QtAda6.QtGui.QAction.Inst'Class);

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QTableWidgetItem.ItemType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,17 +21,15 @@ package body QtAda6.QtWidgets.QTableWidgetItem.ItemType is
       Free (Inst_Access (Self));
    end Finalize;
    function Type_K return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTableWidgetItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ItemType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Type"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Type"));
    end Type_K;
    function UserType return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTableWidgetItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ItemType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UserType"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UserType"));
    end UserType;
 end QtAda6.QtWidgets.QTableWidgetItem.ItemType;

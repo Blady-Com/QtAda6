@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QDockWidget.DockWidgetFeature is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,52 +21,45 @@ package body QtAda6.QtWidgets.QDockWidget.DockWidgetFeature is
       Free (Inst_Access (Self));
    end Finalize;
    function NoDockWidgetFeatures return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDockWidget");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DockWidgetFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoDockWidgetFeatures"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoDockWidgetFeatures"));
    end NoDockWidgetFeatures;
    function DockWidgetClosable return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDockWidget");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DockWidgetFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DockWidgetClosable"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DockWidgetClosable"));
    end DockWidgetClosable;
    function DockWidgetMovable return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDockWidget");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DockWidgetFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DockWidgetMovable"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DockWidgetMovable"));
    end DockWidgetMovable;
    function DockWidgetFloatable return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDockWidget");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DockWidgetFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DockWidgetFloatable"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DockWidgetFloatable"));
    end DockWidgetFloatable;
    function DockWidgetVerticalTitleBar return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDockWidget");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DockWidgetFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DockWidgetVerticalTitleBar"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DockWidgetVerticalTitleBar"));
    end DockWidgetVerticalTitleBar;
    function DockWidgetFeatureMask return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDockWidget");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DockWidgetFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DockWidgetFeatureMask"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DockWidgetFeatureMask"));
    end DockWidgetFeatureMask;
    function Reserved return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDockWidget");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DockWidgetFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Reserved"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Reserved"));
    end Reserved;
 end QtAda6.QtWidgets.QDockWidget.DockWidgetFeature;

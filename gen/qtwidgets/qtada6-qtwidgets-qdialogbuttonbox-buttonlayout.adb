@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QDialogButtonBox.ButtonLayout is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtWidgets.QDialogButtonBox.ButtonLayout is
       Free (Inst_Access (Self));
    end Finalize;
    function WinLayout return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDialogButtonBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonLayout");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WinLayout"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WinLayout"));
    end WinLayout;
    function MacLayout return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDialogButtonBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonLayout");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MacLayout"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MacLayout"));
    end MacLayout;
    function KdeLayout return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDialogButtonBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonLayout");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "KdeLayout"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "KdeLayout"));
    end KdeLayout;
    function GnomeLayout return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDialogButtonBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonLayout");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "GnomeLayout"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "GnomeLayout"));
    end GnomeLayout;
    function AndroidLayout return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDialogButtonBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonLayout");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AndroidLayout"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AndroidLayout"));
    end AndroidLayout;
 end QtAda6.QtWidgets.QDialogButtonBox.ButtonLayout;

@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.Qt.WindowType;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.QChildEvent;
@@ -28,18 +29,17 @@ limited with QtAda6.QtWidgets.QMenu;
 limited with QtAda6.QtGui.QShowEvent;
 limited with QtAda6.QtCore.QTimerEvent;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QMdiSubWindow is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function aboutToActivate (self : access Inst) return CLASSVAR_Signal;-- aboutToActivate()
+   function aboutToActivate (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- aboutToActivate()
    function windowStateChanged
-     (self : access Inst) return CLASSVAR_Signal;-- windowStateChanged(Qt::WindowStates,Qt::WindowStates)
+     (self : access Inst)
+      return access QtAda6.QtCore.Signal.Inst'Class;-- windowStateChanged(Qt::WindowStates,Qt::WindowStates)
    function Create
      (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
       flags_P  : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class;

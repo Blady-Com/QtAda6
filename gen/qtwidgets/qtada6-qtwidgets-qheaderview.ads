@@ -8,13 +8,13 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.Qt.Orientation;
 limited with QtAda6.QtWidgets.QWidget;
-limited with QtAda6.QtCore.QModelIndex;
-limited with QtAda6.QtCore.QPersistentModelIndex;
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.QPoint;
+limited with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtWidgets.QStyleOptionFrame;
 limited with QtAda6.QtWidgets.QStyleOptionHeader;
 limited with QtAda6.QtGui.QMouseEvent;
@@ -33,41 +33,44 @@ limited with QtAda6.QtCore.Qt.SortOrder;
 limited with QtAda6.QtCore.QItemSelection;
 limited with QtAda6.QtGui.QRegion;
 with QtAda6.QtWidgets.QAbstractItemView;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QHeaderView is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractItemView.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex is new Any;
+   type UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is new Any;
    type SEQUENCE_int is array (Positive range <>) of int;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    procedure Finalize (Self : in out Class);
-   function geometriesChanged (self : access Inst) return CLASSVAR_Signal;-- geometriesChanged()
-   function sectionClicked (self : access Inst) return CLASSVAR_Signal;-- sectionClicked(int)
-   function sectionCountChanged (self : access Inst) return CLASSVAR_Signal;-- sectionCountChanged(int,int)
-   function sectionDoubleClicked (self : access Inst) return CLASSVAR_Signal;-- sectionDoubleClicked(int)
-   function sectionEntered (self : access Inst) return CLASSVAR_Signal;-- sectionEntered(int)
-   function sectionHandleDoubleClicked (self : access Inst) return CLASSVAR_Signal;-- sectionHandleDoubleClicked(int)
-   function sectionMoved (self : access Inst) return CLASSVAR_Signal;-- sectionMoved(int,int,int)
-   function sectionPressed (self : access Inst) return CLASSVAR_Signal;-- sectionPressed(int)
-   function sectionResized (self : access Inst) return CLASSVAR_Signal;-- sectionResized(int,int,int)
-   function sortIndicatorChanged (self : access Inst) return CLASSVAR_Signal;-- sortIndicatorChanged(int,Qt::SortOrder)
+   function geometriesChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- geometriesChanged()
+   function sectionClicked (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- sectionClicked(int)
+   function sectionCountChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- sectionCountChanged(int,int)
+   function sectionDoubleClicked
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- sectionDoubleClicked(int)
+   function sectionEntered (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- sectionEntered(int)
+   function sectionHandleDoubleClicked
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- sectionHandleDoubleClicked(int)
+   function sectionMoved (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- sectionMoved(int,int,int)
+   function sectionPressed (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- sectionPressed(int)
+   function sectionResized
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- sectionResized(int,int,int)
+   function sortIndicatorChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- sortIndicatorChanged(int,Qt::SortOrder)
    function sortIndicatorClearableChanged
-     (self : access Inst) return CLASSVAR_Signal;-- sortIndicatorClearableChanged(bool)
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- sortIndicatorClearableChanged(bool)
    function Create
      (orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class;
       parent_P      : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function cascadingSectionResizes (self : access Inst) return bool;
    function count (self : access Inst) return int;
    procedure currentChanged
-     (self  : access Inst; current_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
-      old_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
+     (self  : access Inst; current_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
+      old_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
    procedure dataChanged
-     (self          : access Inst; topLeft_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
-      bottomRight_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
+     (self          : access Inst; topLeft_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
+      bottomRight_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
       roles_P       : SEQUENCE_int := (2 .. 1 => <>));
    function defaultAlignment (self : access Inst) return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class;
    function defaultSectionSize (self : access Inst) return int;
@@ -92,7 +95,7 @@ package QtAda6.QtWidgets.QHeaderView is
    procedure initializeSections (self : access Inst; start_P : int; end_K_P : int);
    function isFirstSectionMovable (self : access Inst) return bool;
    function isIndexHidden
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return bool;
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool;
    function isSectionHidden (self : access Inst; logicalIndex_P : int) return bool;
    function isSortIndicatorClearable (self : access Inst) return bool;
    function isSortIndicatorShown (self : access Inst) return bool;
@@ -123,14 +126,14 @@ package QtAda6.QtWidgets.QHeaderView is
    procedure resizeSection (self : access Inst; logicalIndex_P : int; size_P : int);
    procedure resizeSections (self : access Inst);
    procedure resizeSections (self : access Inst; mode_P : access QtAda6.QtWidgets.QHeaderView.ResizeMode.Inst'Class);
-   function restoreState (self : access Inst; state_P : UNION_QtAda6_QtCore_QByteArraybytes) return bool;
+   function restoreState (self : access Inst; state_P : UNION_QtAda6_QtCore_QByteArray_bytes) return bool;
    procedure rowsInserted
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex; start_P : int;
+     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex; start_P : int;
       end_K_P : int);
    function saveState (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class;
    procedure scrollContentsBy (self : access Inst; dx_P : int; dy_P : int);
    procedure scrollTo
-     (self   : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
+     (self   : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
       hint_P : access QtAda6.QtWidgets.QAbstractItemView.ScrollHint.Inst'Class);
    function sectionPosition (self : access Inst; logicalIndex_P : int) return int;
    function sectionResizeMode
@@ -141,12 +144,12 @@ package QtAda6.QtWidgets.QHeaderView is
    function sectionSizeHint (self : access Inst; logicalIndex_P : int) return int;
    function sectionViewportPosition (self : access Inst; logicalIndex_P : int) return int;
    procedure sectionsAboutToBeRemoved
-     (self           : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
+     (self           : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
       logicalFirst_P : int; logicalLast_P : int);
    function sectionsClickable (self : access Inst) return bool;
    function sectionsHidden (self : access Inst) return bool;
    procedure sectionsInserted
-     (self           : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
+     (self           : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
       logicalFirst_P : int; logicalLast_P : int);
    function sectionsMovable (self : access Inst) return bool;
    function sectionsMoved (self : access Inst) return bool;
@@ -192,7 +195,7 @@ package QtAda6.QtWidgets.QHeaderView is
    function visualIndex (self : access Inst; logicalIndex_P : int) return int;
    function visualIndexAt (self : access Inst; position_P : int) return int;
    function visualRect
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
       return access QtAda6.QtCore.QRect.Inst'Class;
    function visualRegionForSelection
      (self : access Inst; selection_P : access QtAda6.QtCore.QItemSelection.Inst'Class)

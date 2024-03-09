@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QWidget.RenderFlag is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtWidgets.QWidget.RenderFlag is
       Free (Inst_Access (Self));
    end Finalize;
    function DrawWindowBackground return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWidget");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RenderFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DrawWindowBackground"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DrawWindowBackground"));
    end DrawWindowBackground;
    function DrawChildren return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWidget");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RenderFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DrawChildren"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DrawChildren"));
    end DrawChildren;
    function IgnoreMask return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWidget");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RenderFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "IgnoreMask"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "IgnoreMask"));
    end IgnoreMask;
 end QtAda6.QtWidgets.QWidget.RenderFlag;

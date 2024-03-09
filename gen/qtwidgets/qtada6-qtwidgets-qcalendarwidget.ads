@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QCalendar;
 limited with QtAda6.QtCore.QDate;
 limited with QtAda6.QtGui.QTextCharFormat;
@@ -24,24 +25,26 @@ limited with QtAda6.QtGui.QResizeEvent;
 limited with QtAda6.QtWidgets.QCalendarWidget.SelectionMode;
 limited with QtAda6.QtWidgets.QCalendarWidget.VerticalHeaderFormat;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QCalendarWidget is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type DICT_QtAda6_QtCore_QDateQtAda6_QtGui_QTextCharFormat is new Any;
+   type DICT_QtAda6_QtCore_QDate_QtAda6_QtGui_QTextCharFormat is record
+      C0 : access QtAda6.QtCore.QDate.Inst'Class;
+      C1 : access QtAda6.QtGui.QTextCharFormat.Inst'Class;
+   end record;
    procedure Finalize (Self : in out Class);
-   function activated (self : access Inst) return CLASSVAR_Signal;-- activated(QDate)
-   function clicked (self : access Inst) return CLASSVAR_Signal;-- clicked(QDate)
-   function currentPageChanged (self : access Inst) return CLASSVAR_Signal;-- currentPageChanged(int,int)
-   function selectionChanged (self : access Inst) return CLASSVAR_Signal;-- selectionChanged()
+   function activated (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- activated(QDate)
+   function clicked (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- clicked(QDate)
+   function currentPageChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- currentPageChanged(int,int)
+   function selectionChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- selectionChanged()
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function calendar (self : access Inst) return access QtAda6.QtCore.QCalendar.Inst'Class;
    function dateEditAcceptDelay (self : access Inst) return int;
-   function dateTextFormat (self : access Inst) return DICT_QtAda6_QtCore_QDateQtAda6_QtGui_QTextCharFormat;
+   function dateTextFormat (self : access Inst) return DICT_QtAda6_QtCore_QDate_QtAda6_QtGui_QTextCharFormat;
    function dateTextFormat
      (self : access Inst; date_P : access QtAda6.QtCore.QDate.Inst'Class)
       return access QtAda6.QtGui.QTextCharFormat.Inst'Class;

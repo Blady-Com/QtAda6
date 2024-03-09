@@ -8,9 +8,10 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtWidgets.QAbstractItemDelegate.EndEditHint;
-limited with QtAda6.QtCore.QPersistentModelIndex;
+limited with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtCore.Qt.DropAction;
 limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtWidgets.QAbstractItemView.DragDropMode;
@@ -41,35 +42,31 @@ limited with QtAda6.QtCore.QItemSelection;
 limited with QtAda6.QtCore.QItemSelectionModel.SelectionFlag;
 limited with QtAda6.QtWidgets.QAbstractItemView.SelectionMode;
 limited with QtAda6.QtCore.QItemSelectionModel;
-limited with QtAda6.QtGui.QRegion;
-limited with QtAda6.QtGui.QBitmap;
-limited with QtAda6.QtGui.QPolygon;
 limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtWidgets.QAbstractItemView.State;
 limited with QtAda6.QtCore.Qt.TextElideMode;
 limited with QtAda6.QtCore.QTimerEvent;
+limited with QtAda6.QtGui.QRegion;
 with QtAda6.QtWidgets.QAbstractScrollArea;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtCore.QModelIndex;
 package QtAda6.QtWidgets.QAbstractItemView is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractScrollArea.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex is new Any;
+   type UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is new Any;
    type SEQUENCE_int is array (Positive range <>) of int;
    subtype LIST_QtAda6_QtCore_QModelIndex is QtAda6.QtCore.QModelIndex.Class_Array;
-   type UNION_QtAda6_QtGui_QRegionQtAda6_QtGui_QBitmapQtAda6_QtGui_QPolygonQtAda6_QtCore_QRect is new Any;
+   type UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect is new Any;
    procedure Finalize (Self : in out Class);
-   function activated (self : access Inst) return CLASSVAR_Signal;-- activated(QModelIndex)
-   function clicked (self : access Inst) return CLASSVAR_Signal;-- clicked(QModelIndex)
-   function doubleClicked (self : access Inst) return CLASSVAR_Signal;-- doubleClicked(QModelIndex)
-   function entered (self : access Inst) return CLASSVAR_Signal;-- entered(QModelIndex)
-   function iconSizeChanged (self : access Inst) return CLASSVAR_Signal;-- iconSizeChanged(QSize)
-   function pressed (self : access Inst) return CLASSVAR_Signal;-- pressed(QModelIndex)
-   function viewportEntered (self : access Inst) return CLASSVAR_Signal;-- viewportEntered()
+   function activated (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- activated(QModelIndex)
+   function clicked (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- clicked(QModelIndex)
+   function doubleClicked
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- doubleClicked(QModelIndex)
+   function entered (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- entered(QModelIndex)
+   function iconSizeChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- iconSizeChanged(QSize)
+   function pressed (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- pressed(QModelIndex)
+   function viewportEntered (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- viewportEntered()
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function alternatingRowColors (self : access Inst) return bool;
    function autoScrollMargin (self : access Inst) return int;
@@ -78,15 +75,15 @@ package QtAda6.QtWidgets.QAbstractItemView is
      (self   : access Inst; editor_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
       hint_P : access QtAda6.QtWidgets.QAbstractItemDelegate.EndEditHint.Inst'Class);
    procedure closePersistentEditor
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
    procedure commitData (self : access Inst; editor_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    procedure currentChanged
-     (self       : access Inst; current_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
-      previous_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
+     (self       : access Inst; current_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
+      previous_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
    function currentIndex (self : access Inst) return access QtAda6.QtCore.QModelIndex.Inst'Class;
    procedure dataChanged
-     (self          : access Inst; topLeft_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
-      bottomRight_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
+     (self          : access Inst; topLeft_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
+      bottomRight_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
       roles_P       : SEQUENCE_int := (2 .. 1 => <>));
    function defaultDropAction (self : access Inst) return access QtAda6.QtCore.Qt.DropAction.Inst'Class;
    function dirtyRegionOffset (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class;
@@ -102,9 +99,9 @@ package QtAda6.QtWidgets.QAbstractItemView is
    procedure dropEvent (self : access Inst; event_P : access QtAda6.QtGui.QDropEvent.Inst'Class);
    function dropIndicatorPosition_F
      (self : access Inst) return access QtAda6.QtWidgets.QAbstractItemView.DropIndicatorPosition.Inst'Class;
-   procedure edit_F (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
-   function edit_F
-     (self      : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
+   procedure edit (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
+   function edit
+     (self      : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
       trigger_P : access QtAda6.QtWidgets.QAbstractItemView.EditTrigger.Inst'Class;
       event_P   : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
    function editTriggers (self : access Inst) return access QtAda6.QtWidgets.QAbstractItemView.EditTrigger.Inst'Class;
@@ -128,7 +125,7 @@ package QtAda6.QtWidgets.QAbstractItemView is
      (self : access Inst; point_P : access QtAda6.QtCore.QPoint.Inst'Class)
       return access QtAda6.QtCore.QModelIndex.Inst'Class;
    function indexWidget
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
       return access QtAda6.QtWidgets.QWidget.Inst'Class;
    procedure initViewItemOption
      (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class);
@@ -136,17 +133,17 @@ package QtAda6.QtWidgets.QAbstractItemView is
    function inputMethodQuery
      (self : access Inst; query_P : access QtAda6.QtCore.Qt.InputMethodQuery.Inst'Class) return Any;
    function isIndexHidden
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return bool;
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool;
    function isPersistentEditorOpen
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex) return bool;
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool;
    function itemDelegate (self : access Inst) return access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class;
    function itemDelegate
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
       return access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class;
    function itemDelegateForColumn
      (self : access Inst; column_P : int) return access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class;
    function itemDelegateForIndex
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
       return access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class;
    function itemDelegateForRow
      (self : access Inst; row_P : int) return access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class;
@@ -162,22 +159,22 @@ package QtAda6.QtWidgets.QAbstractItemView is
       modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class)
       return access QtAda6.QtCore.QModelIndex.Inst'Class;
    procedure openPersistentEditor
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
    procedure reset (self : access Inst);
    procedure resetHorizontalScrollMode (self : access Inst);
    procedure resetVerticalScrollMode (self : access Inst);
    procedure resizeEvent (self : access Inst; event_P : access QtAda6.QtGui.QResizeEvent.Inst'Class);
    function rootIndex (self : access Inst) return access QtAda6.QtCore.QModelIndex.Inst'Class;
    procedure rowsAboutToBeRemoved
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex; start_P : int;
+     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex; start_P : int;
       end_K_P : int);
    procedure rowsInserted
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex; start_P : int;
+     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex; start_P : int;
       end_K_P : int);
    procedure scheduleDelayedItemsLayout (self : access Inst);
    procedure scrollDirtyRegion (self : access Inst; dx_P : int; dy_P : int);
    procedure scrollTo
-     (self   : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
+     (self   : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
       hint_P : access QtAda6.QtWidgets.QAbstractItemView.ScrollHint.Inst'Class := null);
    procedure scrollToBottom (self : access Inst);
    procedure scrollToTop (self : access Inst);
@@ -189,7 +186,7 @@ package QtAda6.QtWidgets.QAbstractItemView is
      (self         : access Inst; selected_P : access QtAda6.QtCore.QItemSelection.Inst'Class;
       deselected_P : access QtAda6.QtCore.QItemSelection.Inst'Class);
    function selectionCommand
-     (self    : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
+     (self    : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
       event_P : access QtAda6.QtCore.QEvent.Inst'Class := null)
       return access QtAda6.QtCore.QItemSelectionModel.SelectionFlag.Inst'Class;
    function selectionMode_F
@@ -199,11 +196,11 @@ package QtAda6.QtWidgets.QAbstractItemView is
    procedure setAutoScroll (self : access Inst; enable_P : bool);
    procedure setAutoScrollMargin (self : access Inst; margin_P : int);
    procedure setCurrentIndex
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
    procedure setDefaultDropAction (self : access Inst; dropAction_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class);
    procedure setDirtyRegion
      (self     : access Inst;
-      region_P : UNION_QtAda6_QtGui_QRegionQtAda6_QtGui_QBitmapQtAda6_QtGui_QPolygonQtAda6_QtCore_QRect);
+      region_P : UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect);
    procedure setDragDropMode
      (self : access Inst; behavior_P : access QtAda6.QtWidgets.QAbstractItemView.DragDropMode.Inst'Class);
    procedure setDragDropOverwriteMode (self : access Inst; overwrite_P : bool);
@@ -215,7 +212,7 @@ package QtAda6.QtWidgets.QAbstractItemView is
      (self : access Inst; mode_P : access QtAda6.QtWidgets.QAbstractItemView.ScrollMode.Inst'Class);
    procedure setIconSize (self : access Inst; size_P : access QtAda6.QtCore.QSize.Inst'Class);
    procedure setIndexWidget
-     (self     : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex;
+     (self     : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    procedure setItemDelegate
      (self : access Inst; delegate_P : access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class);
@@ -225,7 +222,7 @@ package QtAda6.QtWidgets.QAbstractItemView is
      (self : access Inst; row_P : int; delegate_P : access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class);
    procedure setModel (self : access Inst; model_P : access QtAda6.QtCore.QAbstractItemModel.Inst'Class);
    procedure setRootIndex
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
    procedure setSelection
      (self      : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class;
       command_P : access QtAda6.QtCore.QItemSelectionModel.SelectionFlag.Inst'Class);
@@ -243,7 +240,7 @@ package QtAda6.QtWidgets.QAbstractItemView is
    function showDropIndicator (self : access Inst) return bool;
    function sizeHintForColumn (self : access Inst; column_P : int) return int;
    function sizeHintForIndex
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
       return access QtAda6.QtCore.QSize.Inst'Class;
    function sizeHintForRow (self : access Inst; row_P : int) return int;
    procedure startAutoScroll (self : access Inst);
@@ -253,7 +250,7 @@ package QtAda6.QtWidgets.QAbstractItemView is
    function tabKeyNavigation (self : access Inst) return bool;
    function textElideMode (self : access Inst) return access QtAda6.QtCore.Qt.TextElideMode.Inst'Class;
    procedure timerEvent (self : access Inst; event_P : access QtAda6.QtCore.QTimerEvent.Inst'Class);
-   procedure update (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex);
+   procedure update (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
    procedure updateEditorData (self : access Inst);
    procedure updateEditorGeometries (self : access Inst);
    procedure updateGeometries (self : access Inst);
@@ -265,7 +262,7 @@ package QtAda6.QtWidgets.QAbstractItemView is
    function viewportEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
    function viewportSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class;
    function visualRect
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
       return access QtAda6.QtCore.QRect.Inst'Class;
    function visualRegionForSelection
      (self : access Inst; selection_P : access QtAda6.QtCore.QItemSelection.Inst'Class)

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QAbstractSlider.SliderChange is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtWidgets.QAbstractSlider.SliderChange is
       Free (Inst_Access (Self));
    end Finalize;
    function SliderRangeChange return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractSlider");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SliderChange");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SliderRangeChange"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SliderRangeChange"));
    end SliderRangeChange;
    function SliderOrientationChange return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractSlider");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SliderChange");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SliderOrientationChange"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SliderOrientationChange"));
    end SliderOrientationChange;
    function SliderStepsChange return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractSlider");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SliderChange");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SliderStepsChange"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SliderStepsChange"));
    end SliderStepsChange;
    function SliderValueChange return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractSlider");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SliderChange");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SliderValueChange"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SliderValueChange"));
    end SliderValueChange;
 end QtAda6.QtWidgets.QAbstractSlider.SliderChange;

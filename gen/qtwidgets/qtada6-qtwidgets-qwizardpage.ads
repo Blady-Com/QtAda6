@@ -8,23 +8,21 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWizard.WizardButton;
 limited with QtAda6.QtWidgets.QWizard.WizardPixmap;
 limited with QtAda6.QtGui.QPixmap;
-limited with QtAda6.QtGui.QImage;
 limited with QtAda6.QtWidgets.QWizard;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QWizardPage is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr is new Any;
+   type UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is new Any;
    procedure Finalize (Self : in out Class);
-   function completeChanged (self : access Inst) return CLASSVAR_Signal;-- completeChanged()
+   function completeChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- completeChanged()
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function buttonText
      (self : access Inst; which_P : access QtAda6.QtWidgets.QWizard.WizardButton.Inst'Class) return str;
@@ -48,7 +46,7 @@ package QtAda6.QtWidgets.QWizardPage is
    procedure setFinalPage (self : access Inst; finalPage_P : bool);
    procedure setPixmap
      (self     : access Inst; which_P : access QtAda6.QtWidgets.QWizard.WizardPixmap.Inst'Class;
-      pixmap_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr);
+      pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str);
    procedure setSubTitle (self : access Inst; subTitle_P : str);
    procedure setTitle (self : access Inst; title_P : str);
    function subTitle (self : access Inst) return str;

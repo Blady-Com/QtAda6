@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QStyleOptionButton.ButtonFeature is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,45 +21,39 @@ package body QtAda6.QtWidgets.QStyleOptionButton.ButtonFeature is
       Free (Inst_Access (Self));
    end Finalize;
    function None_U return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "None_"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "None_"));
    end None_U;
    function Flat return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Flat"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Flat"));
    end Flat;
    function HasMenu return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HasMenu"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HasMenu"));
    end HasMenu;
    function DefaultButton return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DefaultButton"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DefaultButton"));
    end DefaultButton;
    function AutoDefaultButton return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AutoDefaultButton"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AutoDefaultButton"));
    end AutoDefaultButton;
    function CommandLinkButton return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CommandLinkButton"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CommandLinkButton"));
    end CommandLinkButton;
 end QtAda6.QtWidgets.QStyleOptionButton.ButtonFeature;

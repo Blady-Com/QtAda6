@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QGraphicsEffect.PixmapPadMode is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtWidgets.QGraphicsEffect.PixmapPadMode is
       Free (Inst_Access (Self));
    end Finalize;
    function NoPad return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsEffect");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PixmapPadMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoPad"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoPad"));
    end NoPad;
    function PadToTransparentBorder return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsEffect");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PixmapPadMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PadToTransparentBorder"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PadToTransparentBorder"));
    end PadToTransparentBorder;
    function PadToEffectiveBoundingRect return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsEffect");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PixmapPadMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PadToEffectiveBoundingRect"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PadToEffectiveBoundingRect"));
    end PadToEffectiveBoundingRect;
 end QtAda6.QtWidgets.QGraphicsEffect.PixmapPadMode;

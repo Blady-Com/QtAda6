@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QAbstractItemView.DragDropMode is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtWidgets.QAbstractItemView.DragDropMode is
       Free (Inst_Access (Self));
    end Finalize;
    function NoDragDrop return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemView");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DragDropMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoDragDrop"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoDragDrop"));
    end NoDragDrop;
    function DragOnly return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemView");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DragDropMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DragOnly"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DragOnly"));
    end DragOnly;
    function DropOnly return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemView");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DragDropMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DropOnly"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DropOnly"));
    end DropOnly;
    function DragDrop return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemView");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DragDropMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DragDrop"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DragDrop"));
    end DragDrop;
    function InternalMove return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemView");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DragDropMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InternalMove"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InternalMove"));
    end InternalMove;
 end QtAda6.QtWidgets.QAbstractItemView.DragDropMode;

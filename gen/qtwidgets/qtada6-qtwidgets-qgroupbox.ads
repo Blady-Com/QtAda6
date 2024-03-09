@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.QChildEvent;
@@ -18,17 +19,15 @@ limited with QtAda6.QtGui.QMouseEvent;
 limited with QtAda6.QtGui.QPaintEvent;
 limited with QtAda6.QtGui.QResizeEvent;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QGroupBox is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function clicked (self : access Inst) return CLASSVAR_Signal;-- clicked()
-   function toggled (self : access Inst) return CLASSVAR_Signal;-- toggled(bool)
+   function clicked (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- clicked()
+   function toggled (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- toggled(bool)
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function Create (title_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function alignment (self : access Inst) return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class;

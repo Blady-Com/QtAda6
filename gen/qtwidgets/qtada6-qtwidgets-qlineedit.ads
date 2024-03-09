@@ -8,15 +8,11 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtGui.QAction;
 limited with QtAda6.QtWidgets.QLineEdit.ActionPosition;
-limited with QtAda6.QtGui.QIcon;
-limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtCore.Qt.ConnectionType;
-limited with QtAda6.QtGui.QKeySequence;
-limited with QtAda6.QtCore.QKeyCombination;
-limited with QtAda6.QtGui.QKeySequence.StandardKey;
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtWidgets.QCompleter;
@@ -42,25 +38,24 @@ limited with QtAda6.QtCore.QMargins;
 limited with QtAda6.QtGui.QValidator;
 limited with QtAda6.QtCore.QTimerEvent;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QLineEdit is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap is new Any;
-   type UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint is
+   type UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is new Any;
+   type UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int is
      new Any;
    procedure Finalize (Self : in out Class);
-   function cursorPositionChanged (self : access Inst) return CLASSVAR_Signal;-- cursorPositionChanged(int,int)
-   function editingFinished (self : access Inst) return CLASSVAR_Signal;-- editingFinished()
-   function inputRejected (self : access Inst) return CLASSVAR_Signal;-- inputRejected()
-   function returnPressed (self : access Inst) return CLASSVAR_Signal;-- returnPressed()
-   function selectionChanged (self : access Inst) return CLASSVAR_Signal;-- selectionChanged()
-   function textChanged (self : access Inst) return CLASSVAR_Signal;-- textChanged(QString)
-   function textEdited (self : access Inst) return CLASSVAR_Signal;-- textEdited(QString)
+   function cursorPositionChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- cursorPositionChanged(int,int)
+   function editingFinished (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- editingFinished()
+   function inputRejected (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- inputRejected()
+   function returnPressed (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- returnPressed()
+   function selectionChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- selectionChanged()
+   function textChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- textChanged(QString)
+   function textEdited (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- textEdited(QString)
    function Create (arg_1_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    procedure addAction (self : access Inst; action_P : access QtAda6.QtGui.QAction.Inst'Class);
@@ -69,31 +64,31 @@ package QtAda6.QtWidgets.QLineEdit is
       position_P : access QtAda6.QtWidgets.QLineEdit.ActionPosition.Inst'Class);
 -- procedure addAction(self : access Inst;arg_1_P : access QtAda6.QtGui.QAction.Inst'Class);
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap;
+     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap;
       position_P : access QtAda6.QtWidgets.QLineEdit.ActionPosition.Inst'Class)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str)
+     (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
+     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
       callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
+     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
       receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint)
+     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint;
+     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
       callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint;
+     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
       receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
       return access QtAda6.QtGui.QAction.Inst'Class;
@@ -106,15 +101,15 @@ package QtAda6.QtWidgets.QLineEdit is
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
      (self       : access Inst; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint)
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
      (self       : access Inst; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint;
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
       callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
      (self       : access Inst; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint;
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
       receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
       return access QtAda6.QtGui.QAction.Inst'Class;

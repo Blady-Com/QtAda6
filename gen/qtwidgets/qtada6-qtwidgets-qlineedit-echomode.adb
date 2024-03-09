@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QLineEdit.EchoMode is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtWidgets.QLineEdit.EchoMode is
       Free (Inst_Access (Self));
    end Finalize;
    function Normal return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLineEdit");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "EchoMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Normal"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Normal"));
    end Normal;
    function NoEcho return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLineEdit");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "EchoMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoEcho"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoEcho"));
    end NoEcho;
    function Password return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLineEdit");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "EchoMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Password"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Password"));
    end Password;
    function PasswordEchoOnEdit return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLineEdit");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "EchoMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PasswordEchoOnEdit"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PasswordEchoOnEdit"));
    end PasswordEchoOnEdit;
 end QtAda6.QtWidgets.QLineEdit.EchoMode;

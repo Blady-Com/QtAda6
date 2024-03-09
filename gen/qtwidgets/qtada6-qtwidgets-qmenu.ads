@@ -8,19 +8,17 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QPoint;
+limited with QtAda6.QtGui.QAction;
 limited with QtAda6.QtGui.QActionEvent;
 limited with QtAda6.QtCore.QRect;
-limited with QtAda6.QtGui.QIcon;
-limited with QtAda6.QtGui.QPixmap;
-limited with QtAda6.QtGui.QKeySequence;
-limited with QtAda6.QtCore.QKeyCombination;
-limited with QtAda6.QtGui.QKeySequence.StandardKey;
 limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtCore.Qt.ConnectionType;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtGui.QEnterEvent;
 limited with QtAda6.QtGui.QHideEvent;
+limited with QtAda6.QtGui.QIcon;
 limited with QtAda6.QtWidgets.QStyleOptionMenuItem;
 limited with QtAda6.QtGui.QKeyEvent;
 limited with QtAda6.QtGui.QMouseEvent;
@@ -29,26 +27,23 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtCore.QTimerEvent;
 limited with QtAda6.QtGui.QWheelEvent;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtGui.QAction;
 package QtAda6.QtWidgets.QMenu is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap is new Any;
-   type UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrintNoneType is
+   type UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is new Any;
+   type UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int_NoneType is
      new Any;
-   type UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint is
+   type UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int is
      new Any;
    subtype SEQUENCE_QtAda6_QtGui_QAction is QtAda6.QtGui.QAction.Class_Array;
    procedure Finalize (Self : in out Class);
-   function aboutToHide (self : access Inst) return CLASSVAR_Signal;-- aboutToHide()
-   function aboutToShow (self : access Inst) return CLASSVAR_Signal;-- aboutToShow()
-   function hovered (self : access Inst) return CLASSVAR_Signal;-- hovered(QAction*)
-   function triggered (self : access Inst) return CLASSVAR_Signal;-- triggered(QAction*)
+   function aboutToHide (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- aboutToHide()
+   function aboutToShow (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- aboutToShow()
+   function hovered (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- hovered(QAction*)
+   function triggered (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- triggered(QAction*)
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function Create (title_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function actionAt
@@ -61,50 +56,50 @@ package QtAda6.QtWidgets.QMenu is
    function activeAction (self : access Inst) return access QtAda6.QtGui.QAction.Inst'Class;
    procedure addAction (self : access Inst; action_P : access QtAda6.QtGui.QAction.Inst'Class);
    procedure addAction
-     (self       : access Inst; arg_1_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
+     (self       : access Inst; arg_1_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
       arg_3_P    : access Object'Class;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrintNoneType :=
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int_NoneType :=
         null);
    function addAction
-     (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str)
+     (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
+     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
       callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
+     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
       receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint)
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
+     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
       receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint)
+     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint;
+     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
       callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint;
+     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
       receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction (self : access Inst; text_P : str) return access QtAda6.QtGui.QAction.Inst'Class;
    procedure addAction
      (self       : access Inst; text_P : str; arg_2_P : access Object'Class;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrintNoneType :=
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int_NoneType :=
         null);
    function addAction
      (self : access Inst; text_P : str; callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
      (self       : access Inst; text_P : str; receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint)
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
      (self     : access Inst; text_P : str; receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
@@ -112,27 +107,27 @@ package QtAda6.QtWidgets.QMenu is
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
      (self       : access Inst; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint)
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
      (self       : access Inst; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint;
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
       callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
      (self       : access Inst; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint;
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
       receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addMenu
-     (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; title_P : str)
+     (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; title_P : str)
       return access QtAda6.QtWidgets.QMenu.Inst'Class;
    function addMenu
      (self : access Inst; menu_P : access QtAda6.QtWidgets.QMenu.Inst'Class)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addMenu (self : access Inst; title_P : str) return access QtAda6.QtWidgets.QMenu.Inst'Class;
    function addSection
-     (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str)
+     (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addSection (self : access Inst; text_P : str) return access QtAda6.QtGui.QAction.Inst'Class;
    function addSeparator (self : access Inst) return access QtAda6.QtGui.QAction.Inst'Class;
@@ -170,7 +165,7 @@ package QtAda6.QtWidgets.QMenu is
       menu_P : access QtAda6.QtWidgets.QMenu.Inst'Class) return access QtAda6.QtGui.QAction.Inst'Class;
    function insertSection
      (self   : access Inst; before_P : access QtAda6.QtGui.QAction.Inst'Class;
-      icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str)
+      icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function insertSection
      (self : access Inst; before_P : access QtAda6.QtGui.QAction.Inst'Class; text_P : str)
@@ -197,7 +192,7 @@ package QtAda6.QtWidgets.QMenu is
    procedure setActiveAction (self : access Inst; act_P : access QtAda6.QtGui.QAction.Inst'Class);
    procedure setAsDockMenu (self : access Inst);
    procedure setDefaultAction (self : access Inst; arg_1_P : access QtAda6.QtGui.QAction.Inst'Class);
-   procedure setIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap);
+   procedure setIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
    procedure setSeparatorsCollapsible (self : access Inst; collapse_P : bool);
    procedure setTearOffEnabled (self : access Inst; arg_1_P : bool);
    procedure setTitle (self : access Inst; title_P : str);

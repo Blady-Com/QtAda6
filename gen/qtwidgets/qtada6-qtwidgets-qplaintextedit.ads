@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtGui.QTextBlock;
@@ -25,15 +26,14 @@ limited with QtAda6.QtGui.QDragEnterEvent;
 limited with QtAda6.QtGui.QDragLeaveEvent;
 limited with QtAda6.QtGui.QDragMoveEvent;
 limited with QtAda6.QtGui.QDropEvent;
+limited with QtAda6.QtWidgets.QTextEdit.ExtraSelection;
 limited with QtAda6.QtGui.QTextDocument.FindFlag;
-limited with QtAda6.QtCore.QRegularExpression;
 limited with QtAda6.QtGui.QFocusEvent;
 limited with QtAda6.QtGui.QAbstractTextDocumentLayout.PaintContext;
 limited with QtAda6.QtGui.QInputMethodEvent;
 limited with QtAda6.QtCore.Qt.InputMethodQuery;
 limited with QtAda6.QtGui.QKeyEvent;
 limited with QtAda6.QtWidgets.QPlainTextEdit.LineWrapMode;
-limited with QtAda6.QtCore.QUrl;
 limited with QtAda6.QtGui.QMouseEvent;
 limited with QtAda6.QtGui.QTextCursor.MoveOperation;
 limited with QtAda6.QtGui.QTextCursor.MoveMode;
@@ -46,29 +46,29 @@ limited with QtAda6.QtGui.QShowEvent;
 limited with QtAda6.QtCore.QTimerEvent;
 limited with QtAda6.QtGui.QWheelEvent;
 with QtAda6.QtWidgets.QAbstractScrollArea;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtWidgets.QTextEdit.ExtraSelection;
 package QtAda6.QtWidgets.QPlainTextEdit is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractScrollArea.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    subtype LIST_QtAda6_QtWidgets_QTextEdit_ExtraSelection is QtAda6.QtWidgets.QTextEdit.ExtraSelection.Class_Array;
-   type UNION_QtAda6_QtCore_QRegularExpressionstr is new Any;
-   type UNION_QtAda6_QtCore_QUrlstr is new Any;
+   type UNION_QtAda6_QtCore_QRegularExpression_str is new Any;
+   type UNION_QtAda6_QtCore_QUrl_str is new Any;
    subtype SEQUENCE_QtAda6_QtWidgets_QTextEdit_ExtraSelection is QtAda6.QtWidgets.QTextEdit.ExtraSelection.Class_Array;
    procedure Finalize (Self : in out Class);
-   function blockCountChanged (self : access Inst) return CLASSVAR_Signal;-- blockCountChanged(int)
-   function copyAvailable (self : access Inst) return CLASSVAR_Signal;-- copyAvailable(bool)
-   function cursorPositionChanged (self : access Inst) return CLASSVAR_Signal;-- cursorPositionChanged()
-   function modificationChanged (self : access Inst) return CLASSVAR_Signal;-- modificationChanged(bool)
-   function redoAvailable (self : access Inst) return CLASSVAR_Signal;-- redoAvailable(bool)
-   function selectionChanged (self : access Inst) return CLASSVAR_Signal;-- selectionChanged()
-   function textChanged (self : access Inst) return CLASSVAR_Signal;-- textChanged()
-   function undoAvailable (self : access Inst) return CLASSVAR_Signal;-- undoAvailable(bool)
-   function updateRequest (self : access Inst) return CLASSVAR_Signal;-- updateRequest(QRect,int)
+   function blockCountChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- blockCountChanged(int)
+   function copyAvailable (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- copyAvailable(bool)
+   function cursorPositionChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- cursorPositionChanged()
+   function modificationChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- modificationChanged(bool)
+   function redoAvailable (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- redoAvailable(bool)
+   function selectionChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- selectionChanged()
+   function textChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- textChanged()
+   function undoAvailable (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- undoAvailable(bool)
+   function updateRequest (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- updateRequest(QRect,int)
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function Create (text_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function anchorAt (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) return str;
@@ -121,7 +121,7 @@ package QtAda6.QtWidgets.QPlainTextEdit is
      (self : access Inst; exp_P : str; options_P : access QtAda6.QtGui.QTextDocument.FindFlag.Inst'Class := null)
       return bool;
    function find
-     (self      : access Inst; exp_P : UNION_QtAda6_QtCore_QRegularExpressionstr;
+     (self      : access Inst; exp_P : UNION_QtAda6_QtCore_QRegularExpression_str;
       options_P : access QtAda6.QtGui.QTextDocument.FindFlag.Inst'Class := null) return bool;
    function firstVisibleBlock (self : access Inst) return access QtAda6.QtGui.QTextBlock.Inst'Class;
    procedure focusInEvent (self : access Inst; e_P : access QtAda6.QtGui.QFocusEvent.Inst'Class);
@@ -141,7 +141,7 @@ package QtAda6.QtWidgets.QPlainTextEdit is
    procedure keyPressEvent (self : access Inst; e_P : access QtAda6.QtGui.QKeyEvent.Inst'Class);
    procedure keyReleaseEvent (self : access Inst; e_P : access QtAda6.QtGui.QKeyEvent.Inst'Class);
    function lineWrapMode_F (self : access Inst) return access QtAda6.QtWidgets.QPlainTextEdit.LineWrapMode.Inst'Class;
-   function loadResource (self : access Inst; type_K_P : int; name_P : UNION_QtAda6_QtCore_QUrlstr) return Any;
+   function loadResource (self : access Inst; type_K_P : int; name_P : UNION_QtAda6_QtCore_QUrl_str) return Any;
    function maximumBlockCount (self : access Inst) return int;
    procedure mergeCurrentCharFormat (self : access Inst; modifier_P : access QtAda6.QtGui.QTextCharFormat.Inst'Class);
    procedure mouseDoubleClickEvent (self : access Inst; e_P : access QtAda6.QtGui.QMouseEvent.Inst'Class);

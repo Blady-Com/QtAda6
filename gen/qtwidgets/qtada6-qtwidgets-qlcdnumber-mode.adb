@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QLCDNumber.Mode is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtWidgets.QLCDNumber.Mode is
       Free (Inst_Access (Self));
    end Finalize;
    function Hex return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLCDNumber");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Mode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Hex"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Hex"));
    end Hex;
    function Dec return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLCDNumber");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Mode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Dec"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Dec"));
    end Dec;
    function Oct return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLCDNumber");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Mode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Oct"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Oct"));
    end Oct;
    function Bin return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLCDNumber");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Mode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Bin"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Bin"));
    end Bin;
 end QtAda6.QtWidgets.QLCDNumber.Mode;

@@ -10,8 +10,6 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtGui.QPainterPath.Element;
 with QtAda6.QtWidgets.QGesture;
 package QtAda6.QtWidgets.QTapAndHoldGesture is
    type Inst;
@@ -19,12 +17,12 @@ package QtAda6.QtWidgets.QTapAndHoldGesture is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QGesture.Inst with null record;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function position (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class;
    procedure setPosition
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element);
+     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element);
    procedure setTimeout (msecs_P : int);
    function timeout return int;
 end QtAda6.QtWidgets.QTapAndHoldGesture;

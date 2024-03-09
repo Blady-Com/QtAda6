@@ -109,12 +109,12 @@ package QtAda6.QtWidgets.QFormLayout is
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class;
    function spacing (self : access Inst) return int;
    function takeAt (self : access Inst; index_P : int) return access QtAda6.QtWidgets.QLayoutItem.Inst'Class;
-   function takeRow_F
+   function takeRow
      (self : access Inst; layout_P : access QtAda6.QtWidgets.QLayout.Inst'Class)
       return access QtAda6.QtWidgets.QFormLayout.TakeRowResult.Inst'Class;
-   function takeRow_F
+   function takeRow
      (self : access Inst; row_P : int) return access QtAda6.QtWidgets.QFormLayout.TakeRowResult.Inst'Class;
-   function takeRow_F
+   function takeRow
      (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class)
       return access QtAda6.QtWidgets.QFormLayout.TakeRowResult.Inst'Class;
    function verticalSpacing (self : access Inst) return int;

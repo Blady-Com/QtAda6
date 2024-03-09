@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QWizard.WizardButton is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,94 +21,81 @@ package body QtAda6.QtWidgets.QWizard.WizardButton is
       Free (Inst_Access (Self));
    end Finalize;
    function NoButton return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWizard");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WizardButton");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoButton"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoButton"));
    end NoButton;
    function BackButton return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWizard");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WizardButton");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BackButton"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BackButton"));
    end BackButton;
    function NextButton return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWizard");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WizardButton");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NextButton"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NextButton"));
    end NextButton;
    function CommitButton return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWizard");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WizardButton");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CommitButton"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CommitButton"));
    end CommitButton;
    function FinishButton return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWizard");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WizardButton");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FinishButton"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FinishButton"));
    end FinishButton;
    function CancelButton return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWizard");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WizardButton");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CancelButton"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CancelButton"));
    end CancelButton;
    function HelpButton return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWizard");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WizardButton");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HelpButton"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HelpButton"));
    end HelpButton;
    function CustomButton1 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWizard");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WizardButton");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CustomButton1"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CustomButton1"));
    end CustomButton1;
    function NStandardButtons return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWizard");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WizardButton");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NStandardButtons"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NStandardButtons"));
    end NStandardButtons;
    function CustomButton2 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWizard");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WizardButton");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CustomButton2"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CustomButton2"));
    end CustomButton2;
    function CustomButton3 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWizard");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WizardButton");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CustomButton3"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CustomButton3"));
    end CustomButton3;
    function NButtons return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWizard");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WizardButton");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NButtons"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NButtons"));
    end NButtons;
    function Stretch return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWizard");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WizardButton");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Stretch"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Stretch"));
    end Stretch;
 end QtAda6.QtWidgets.QWizard.WizardButton;

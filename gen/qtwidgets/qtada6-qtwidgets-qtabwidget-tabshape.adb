@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QTabWidget.TabShape is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,17 +21,15 @@ package body QtAda6.QtWidgets.QTabWidget.TabShape is
       Free (Inst_Access (Self));
    end Finalize;
    function Rounded return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTabWidget");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TabShape");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Rounded"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Rounded"));
    end Rounded;
    function Triangular return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTabWidget");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TabShape");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Triangular"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Triangular"));
    end Triangular;
 end QtAda6.QtWidgets.QTabWidget.TabShape;

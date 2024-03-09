@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QGraphicsScene.SceneLayer is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtWidgets.QGraphicsScene.SceneLayer is
       Free (Inst_Access (Self));
    end Finalize;
    function ItemLayer return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsScene");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SceneLayer");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ItemLayer"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ItemLayer"));
    end ItemLayer;
    function BackgroundLayer return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsScene");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SceneLayer");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BackgroundLayer"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BackgroundLayer"));
    end BackgroundLayer;
    function ForegroundLayer return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsScene");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SceneLayer");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ForegroundLayer"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ForegroundLayer"));
    end ForegroundLayer;
    function AllLayers return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsScene");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SceneLayer");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AllLayers"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AllLayers"));
    end AllLayers;
 end QtAda6.QtWidgets.QGraphicsScene.SceneLayer;

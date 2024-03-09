@@ -8,10 +8,12 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QMessageBox.Icon;
 limited with QtAda6.QtWidgets.QMessageBox.StandardButton;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.Qt.WindowType;
+limited with QtAda6.QtWidgets.QAbstractButton;
 limited with QtAda6.QtWidgets.QMessageBox.ButtonRole;
 limited with QtAda6.QtWidgets.QPushButton;
 limited with QtAda6.QtCore.QEvent;
@@ -21,25 +23,22 @@ limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtGui.QKeyEvent;
 limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtGui.QResizeEvent;
-limited with QtAda6.QtGui.QImage;
 limited with QtAda6.QtCore.Qt.TextFormat;
 limited with QtAda6.QtCore.Qt.TextInteractionFlag;
 limited with QtAda6.QtCore.Qt.WindowModality;
 limited with QtAda6.QtGui.QShowEvent;
 with QtAda6.QtWidgets.QDialog;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtWidgets.QAbstractButton;
 package QtAda6.QtWidgets.QMessageBox is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QDialog.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    subtype LIST_QtAda6_QtWidgets_QAbstractButton is QtAda6.QtWidgets.QAbstractButton.Class_Array;
-   type UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr is new Any;
+   type UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is new Any;
    procedure Finalize (Self : in out Class);
-   function buttonClicked (self : access Inst) return CLASSVAR_Signal;-- buttonClicked(QAbstractButton*)
+   function buttonClicked
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- buttonClicked(QAbstractButton*)
    function Create
      (icon_P    : access QtAda6.QtWidgets.QMessageBox.Icon.Inst'Class; title_P : str; text_P : str;
       buttons_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class := null;
@@ -57,7 +56,7 @@ package QtAda6.QtWidgets.QMessageBox is
    function addButton
      (self : access Inst; text_P : str; role_P : access QtAda6.QtWidgets.QMessageBox.ButtonRole.Inst'Class)
       return access QtAda6.QtWidgets.QPushButton.Inst'Class;
-   function button_F
+   function button
      (self : access Inst; which_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class)
       return access QtAda6.QtWidgets.QAbstractButton.Inst'Class;
    function buttonRole_F
@@ -115,7 +114,7 @@ package QtAda6.QtWidgets.QMessageBox is
    procedure setEscapeButton
      (self : access Inst; button_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class);
    procedure setIcon (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QMessageBox.Icon.Inst'Class);
-   procedure setIconPixmap (self : access Inst; pixmap_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr);
+   procedure setIconPixmap (self : access Inst; pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str);
    procedure setInformativeText (self : access Inst; text_P : str);
    procedure setStandardButtons
      (self : access Inst; buttons_P : access QtAda6.QtWidgets.QMessageBox.StandardButton.Inst'Class);

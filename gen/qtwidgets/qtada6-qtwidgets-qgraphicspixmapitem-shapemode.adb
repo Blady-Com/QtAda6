@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QGraphicsPixmapItem.ShapeMode is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem.ShapeMode is
       Free (Inst_Access (Self));
    end Finalize;
    function MaskShape return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsPixmapItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ShapeMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MaskShape"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MaskShape"));
    end MaskShape;
    function BoundingRectShape return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsPixmapItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ShapeMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BoundingRectShape"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BoundingRectShape"));
    end BoundingRectShape;
    function HeuristicMaskShape return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsPixmapItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ShapeMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HeuristicMaskShape"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HeuristicMaskShape"));
    end HeuristicMaskShape;
 end QtAda6.QtWidgets.QGraphicsPixmapItem.ShapeMode;

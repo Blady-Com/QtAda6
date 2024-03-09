@@ -10,10 +10,6 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtWidgets.QGraphicsItem;
 limited with QtAda6.QtCore.QRectF;
-limited with QtAda6.QtCore.QRect;
-limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtGui.QPainterPath;
 limited with QtAda6.QtGui.QPainter;
 limited with QtAda6.QtWidgets.QStyleOptionGraphicsItem;
@@ -25,19 +21,19 @@ package QtAda6.QtWidgets.QGraphicsRectItem is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractGraphicsShapeItem.Inst with null record;
-   type UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect is new Any;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
+   type UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class;
    function Create
-     (rect_P   : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect;
+     (rect_P   : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect;
       parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class;
    function Create
      (x_P      : float; y_P : float; w_P : float; h_P : float;
       parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class;
    function boundingRect (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class;
    function contains
-     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
       return bool;
    function extension (self : access Inst; variant_P : Any) return Any;
    function isObscuredBy (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class) return bool;
@@ -47,7 +43,7 @@ package QtAda6.QtWidgets.QGraphicsRectItem is
       option_P : access QtAda6.QtWidgets.QStyleOptionGraphicsItem.Inst'Class;
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null);
    function rect (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class;
-   procedure setRect (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect);
+   procedure setRect (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect);
    procedure setRect (self : access Inst; x_P : float; y_P : float; w_P : float; h_P : float);
    function shape (self : access Inst) return access QtAda6.QtGui.QPainterPath.Inst'Class;
    function type_K (self : access Inst) return int;

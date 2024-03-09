@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QGestureRecognizer.ResultFlag is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,59 +21,51 @@ package body QtAda6.QtWidgets.QGestureRecognizer.ResultFlag is
       Free (Inst_Access (Self));
    end Finalize;
    function Ignore return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGestureRecognizer");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResultFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Ignore"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Ignore"));
    end Ignore;
    function MayBeGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGestureRecognizer");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResultFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MayBeGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MayBeGesture"));
    end MayBeGesture;
    function TriggerGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGestureRecognizer");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResultFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TriggerGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TriggerGesture"));
    end TriggerGesture;
    function FinishGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGestureRecognizer");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResultFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FinishGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FinishGesture"));
    end FinishGesture;
    function CancelGesture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGestureRecognizer");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResultFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CancelGesture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CancelGesture"));
    end CancelGesture;
    function ResultState_Mask return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGestureRecognizer");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResultFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ResultState_Mask"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ResultState_Mask"));
    end ResultState_Mask;
    function ConsumeEventHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGestureRecognizer");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResultFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ConsumeEventHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ConsumeEventHint"));
    end ConsumeEventHint;
    function ResultHint_Mask return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGestureRecognizer");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResultFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ResultHint_Mask"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ResultHint_Mask"));
    end ResultHint_Mask;
 end QtAda6.QtWidgets.QGestureRecognizer.ResultFlag;

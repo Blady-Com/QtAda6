@@ -11,9 +11,7 @@
 limited with QtAda6.QtCore.QRectF;
 limited with QtAda6.QtCore.Qt.SizeHint;
 limited with QtAda6.QtCore.QSizeF;
-limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtWidgets.QGraphicsItem;
-limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtWidgets.QSizePolicy.Policy;
 limited with QtAda6.QtWidgets.QSizePolicy.ControlType;
 limited with QtAda6.QtWidgets.QSizePolicy;
@@ -23,8 +21,8 @@ package QtAda6.QtWidgets.QGraphicsLayoutItem is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QSizeFQtAda6_QtCore_QSize is new Any;
-   type UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect is new Any;
+   type UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize is new Any;
+   type UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect is new Any;
    procedure Finalize (Self : in out Class);
    function Create
      (parent_P : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class := null; isLayout_P : bool := False)
@@ -32,7 +30,7 @@ package QtAda6.QtWidgets.QGraphicsLayoutItem is
    function contentsRect (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class;
    function effectiveSizeHint
      (self         : access Inst; which_P : access QtAda6.QtCore.Qt.SizeHint.Inst'Class;
-      constraint_P : UNION_QtAda6_QtCore_QSizeFQtAda6_QtCore_QSize := null)
+      constraint_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize := null)
       return access QtAda6.QtCore.QSizeF.Inst'Class;
    function geometry (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class;
    function getContentsMargins (self : access Inst) return access Object'Class;
@@ -50,21 +48,21 @@ package QtAda6.QtWidgets.QGraphicsLayoutItem is
    function preferredHeight (self : access Inst) return float;
    function preferredSize (self : access Inst) return access QtAda6.QtCore.QSizeF.Inst'Class;
    function preferredWidth (self : access Inst) return float;
-   procedure setGeometry (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect);
+   procedure setGeometry (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect);
    procedure setGraphicsItem (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class);
    procedure setMaximumHeight (self : access Inst; height_P : float);
-   procedure setMaximumSize (self : access Inst; size_P : UNION_QtAda6_QtCore_QSizeFQtAda6_QtCore_QSize);
+   procedure setMaximumSize (self : access Inst; size_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize);
    procedure setMaximumSize (self : access Inst; w_P : float; h_P : float);
    procedure setMaximumWidth (self : access Inst; width_P : float);
    procedure setMinimumHeight (self : access Inst; height_P : float);
-   procedure setMinimumSize (self : access Inst; size_P : UNION_QtAda6_QtCore_QSizeFQtAda6_QtCore_QSize);
+   procedure setMinimumSize (self : access Inst; size_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize);
    procedure setMinimumSize (self : access Inst; w_P : float; h_P : float);
    procedure setMinimumWidth (self : access Inst; width_P : float);
    procedure setOwnedByLayout (self : access Inst; ownedByLayout_P : bool);
    procedure setParentLayoutItem
      (self : access Inst; parent_P : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class);
    procedure setPreferredHeight (self : access Inst; height_P : float);
-   procedure setPreferredSize (self : access Inst; size_P : UNION_QtAda6_QtCore_QSizeFQtAda6_QtCore_QSize);
+   procedure setPreferredSize (self : access Inst; size_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize);
    procedure setPreferredSize (self : access Inst; w_P : float; h_P : float);
    procedure setPreferredWidth (self : access Inst; width_P : float);
    procedure setSizePolicy
@@ -74,7 +72,7 @@ package QtAda6.QtWidgets.QGraphicsLayoutItem is
    procedure setSizePolicy (self : access Inst; policy_P : access QtAda6.QtWidgets.QSizePolicy.Inst'Class);
    function sizeHint
      (self         : access Inst; which_P : access QtAda6.QtCore.Qt.SizeHint.Inst'Class;
-      constraint_P : UNION_QtAda6_QtCore_QSizeFQtAda6_QtCore_QSize := null)
+      constraint_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize := null)
       return access QtAda6.QtCore.QSizeF.Inst'Class;
    function sizePolicy (self : access Inst) return access QtAda6.QtWidgets.QSizePolicy.Inst'Class;
    procedure updateGeometry (self : access Inst);

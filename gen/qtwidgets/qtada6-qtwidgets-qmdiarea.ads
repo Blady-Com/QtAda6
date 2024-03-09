@@ -8,8 +8,10 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtWidgets.QMdiArea.WindowOrder;
+limited with QtAda6.QtWidgets.QMdiSubWindow;
 limited with QtAda6.QtCore.Qt.WindowType;
 limited with QtAda6.QtGui.QBrush;
 limited with QtAda6.QtCore.QChildEvent;
@@ -18,12 +20,6 @@ limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtGui.QPaintEvent;
 limited with QtAda6.QtGui.QResizeEvent;
-limited with QtAda6.QtCore.Qt.BrushStyle;
-limited with QtAda6.QtCore.Qt.GlobalColor;
-limited with QtAda6.QtGui.QColor;
-limited with QtAda6.QtGui.QGradient;
-limited with QtAda6.QtGui.QImage;
-limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtWidgets.QMdiArea.AreaOption;
 limited with QtAda6.QtWidgets.QTabWidget.TabPosition;
 limited with QtAda6.QtWidgets.QTabWidget.TabShape;
@@ -31,20 +27,18 @@ limited with QtAda6.QtWidgets.QMdiArea.ViewMode;
 limited with QtAda6.QtGui.QShowEvent;
 limited with QtAda6.QtCore.QTimerEvent;
 with QtAda6.QtWidgets.QAbstractScrollArea;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtWidgets.QMdiSubWindow;
 package QtAda6.QtWidgets.QMdiArea is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractScrollArea.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap is
+   type UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap is
      new Any;
    subtype LIST_QtAda6_QtWidgets_QMdiSubWindow is QtAda6.QtWidgets.QMdiSubWindow.Class_Array;
    procedure Finalize (Self : in out Class);
-   function subWindowActivated (self : access Inst) return CLASSVAR_Signal;-- subWindowActivated(QMdiSubWindow*)
+   function subWindowActivated
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- subWindowActivated(QMdiSubWindow*)
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    procedure activateNextSubWindow (self : access Inst);
    procedure activatePreviousSubWindow (self : access Inst);
@@ -74,7 +68,7 @@ package QtAda6.QtWidgets.QMdiArea is
    procedure setActiveSubWindow (self : access Inst; window_P : access QtAda6.QtWidgets.QMdiSubWindow.Inst'Class);
    procedure setBackground
      (self         : access Inst;
-      background_P : UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap);
+      background_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
    procedure setDocumentMode (self : access Inst; enabled_P : bool);
    procedure setOption
      (self : access Inst; option_P : access QtAda6.QtWidgets.QMdiArea.AreaOption.Inst'Class; on_P : bool := False);

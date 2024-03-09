@@ -9,9 +9,9 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QObject;
+limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.QEvent;
 with QtAda6.QtGui.QAction;
-with QtAda6.QtWidgets.QWidget;
 package QtAda6.QtWidgets.QWidgetAction is
    type Inst;
    type Inst_Access is access all Inst;

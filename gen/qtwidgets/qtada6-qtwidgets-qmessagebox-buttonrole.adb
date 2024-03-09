@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QMessageBox.ButtonRole is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,80 +21,69 @@ package body QtAda6.QtWidgets.QMessageBox.ButtonRole is
       Free (Inst_Access (Self));
    end Finalize;
    function InvalidRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMessageBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InvalidRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InvalidRole"));
    end InvalidRole;
    function AcceptRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMessageBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AcceptRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AcceptRole"));
    end AcceptRole;
    function RejectRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMessageBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RejectRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RejectRole"));
    end RejectRole;
    function DestructiveRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMessageBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DestructiveRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DestructiveRole"));
    end DestructiveRole;
    function ActionRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMessageBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ActionRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ActionRole"));
    end ActionRole;
    function HelpRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMessageBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HelpRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HelpRole"));
    end HelpRole;
    function YesRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMessageBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "YesRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "YesRole"));
    end YesRole;
    function NoRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMessageBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoRole"));
    end NoRole;
    function ResetRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMessageBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ResetRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ResetRole"));
    end ResetRole;
    function ApplyRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMessageBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ApplyRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ApplyRole"));
    end ApplyRole;
    function NRoles return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMessageBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ButtonRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NRoles"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NRoles"));
    end NRoles;
 end QtAda6.QtWidgets.QMessageBox.ButtonRole;

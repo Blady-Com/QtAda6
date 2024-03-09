@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QColormap.Mode is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtWidgets.QColormap.Mode is
       Free (Inst_Access (Self));
    end Finalize;
    function Direct return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColormap");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Mode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Direct"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Direct"));
    end Direct;
    function Indexed return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColormap");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Mode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Indexed"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Indexed"));
    end Indexed;
    function Gray return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColormap");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Mode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Gray"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Gray"));
    end Gray;
 end QtAda6.QtWidgets.QColormap.Mode;

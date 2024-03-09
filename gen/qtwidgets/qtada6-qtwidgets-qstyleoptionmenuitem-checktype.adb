@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QStyleOptionMenuItem.CheckType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtWidgets.QStyleOptionMenuItem.CheckType is
       Free (Inst_Access (Self));
    end Finalize;
    function NotCheckable return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionMenuItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "CheckType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NotCheckable"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NotCheckable"));
    end NotCheckable;
    function Exclusive return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionMenuItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "CheckType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Exclusive"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Exclusive"));
    end Exclusive;
    function NonExclusive return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionMenuItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "CheckType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NonExclusive"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NonExclusive"));
    end NonExclusive;
 end QtAda6.QtWidgets.QStyleOptionMenuItem.CheckType;

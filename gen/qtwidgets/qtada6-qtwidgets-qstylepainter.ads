@@ -15,11 +15,6 @@ limited with QtAda6.QtWidgets.QStyleOptionComplex;
 limited with QtAda6.QtWidgets.QStyle.ControlElement;
 limited with QtAda6.QtWidgets.QStyleOption;
 limited with QtAda6.QtCore.QRect;
-limited with QtAda6.QtGui.QPixmap;
-limited with QtAda6.QtGui.QImage;
-limited with QtAda6.QtGui.QPalette;
-limited with QtAda6.QtCore.Qt.GlobalColor;
-limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtGui.QPalette.ColorRole;
 limited with QtAda6.QtWidgets.QStyle.PrimitiveElement;
 limited with QtAda6.QtWidgets.QStyle;
@@ -30,8 +25,8 @@ package QtAda6.QtWidgets.QStylePainter is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QPainter.Inst with null record;
-   type UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr is new Any;
-   type UNION_QtAda6_QtGui_QPaletteQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColor is new Any;
+   type UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is new Any;
+   type UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create
@@ -50,10 +45,10 @@ package QtAda6.QtWidgets.QStylePainter is
       opt_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class);
    procedure drawItemPixmap
      (self     : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int;
-      pixmap_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr);
+      pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str);
    procedure drawItemText
      (self   : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int;
-      pal_P  : UNION_QtAda6_QtGui_QPaletteQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColor; enabled_P : bool;
+      pal_P  : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor; enabled_P : bool;
       text_P : str; textRole_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class := null);
    procedure drawPrimitive
      (self  : access Inst; pe_P : access QtAda6.QtWidgets.QStyle.PrimitiveElement.Inst'Class;

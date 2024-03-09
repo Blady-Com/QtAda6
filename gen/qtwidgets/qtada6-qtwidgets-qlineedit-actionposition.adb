@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QLineEdit.ActionPosition is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,17 +21,15 @@ package body QtAda6.QtWidgets.QLineEdit.ActionPosition is
       Free (Inst_Access (Self));
    end Finalize;
    function LeadingPosition return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLineEdit");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ActionPosition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LeadingPosition"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LeadingPosition"));
    end LeadingPosition;
    function TrailingPosition return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLineEdit");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ActionPosition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TrailingPosition"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TrailingPosition"));
    end TrailingPosition;
 end QtAda6.QtWidgets.QLineEdit.ActionPosition;

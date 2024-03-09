@@ -10,8 +10,6 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtWidgets.QGraphicsItem;
 limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtCore.QTimeLine;
 limited with QtAda6.QtGui.QTransform;
 with QtAda6.QtCore.QObject;
@@ -21,9 +19,9 @@ package QtAda6.QtWidgets.QGraphicsItemAnimation is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   type LIST_TUPLE_floatQtAda6_QtCore_QPointF is array (Positive range <>) of TUPLE_float_QtAda6_QtCore_QPointF;
-   type LIST_TUPLE_floatfloat is array (Positive range <>) of TUPLE_float_float;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
+   type LIST_TUPLE_float_QtAda6_QtCore_QPointF is array (Positive range <>) of TUPLE_float_QtAda6_QtCore_QPointF;
+   type LIST_TUPLE_float_float is array (Positive range <>) of TUPLE_float_float;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    procedure afterAnimationStep (self : access Inst; step_P : float);
@@ -33,24 +31,24 @@ package QtAda6.QtWidgets.QGraphicsItemAnimation is
    function horizontalShearAt (self : access Inst; step_P : float) return float;
    function item (self : access Inst) return access QtAda6.QtWidgets.QGraphicsItem.Inst'Class;
    function posAt (self : access Inst; step_P : float) return access QtAda6.QtCore.QPointF.Inst'Class;
-   function posList (self : access Inst) return LIST_TUPLE_floatQtAda6_QtCore_QPointF;
+   function posList (self : access Inst) return LIST_TUPLE_float_QtAda6_QtCore_QPointF;
    function rotationAt (self : access Inst; step_P : float) return float;
-   function rotationList (self : access Inst) return LIST_TUPLE_floatfloat;
-   function scaleList (self : access Inst) return LIST_TUPLE_floatQtAda6_QtCore_QPointF;
+   function rotationList (self : access Inst) return LIST_TUPLE_float_float;
+   function scaleList (self : access Inst) return LIST_TUPLE_float_QtAda6_QtCore_QPointF;
    procedure setItem (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class);
    procedure setPosAt
      (self  : access Inst; step_P : float;
-      pos_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element);
+      pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element);
    procedure setRotationAt (self : access Inst; step_P : float; angle_P : float);
    procedure setScaleAt (self : access Inst; step_P : float; sx_P : float; sy_P : float);
    procedure setShearAt (self : access Inst; step_P : float; sh_P : float; sv_P : float);
    procedure setStep (self : access Inst; x_P : float);
    procedure setTimeLine (self : access Inst; timeLine_P : access QtAda6.QtCore.QTimeLine.Inst'Class);
    procedure setTranslationAt (self : access Inst; step_P : float; dx_P : float; dy_P : float);
-   function shearList (self : access Inst) return LIST_TUPLE_floatQtAda6_QtCore_QPointF;
+   function shearList (self : access Inst) return LIST_TUPLE_float_QtAda6_QtCore_QPointF;
    function timeLine (self : access Inst) return access QtAda6.QtCore.QTimeLine.Inst'Class;
    function transformAt (self : access Inst; step_P : float) return access QtAda6.QtGui.QTransform.Inst'Class;
-   function translationList (self : access Inst) return LIST_TUPLE_floatQtAda6_QtCore_QPointF;
+   function translationList (self : access Inst) return LIST_TUPLE_float_QtAda6_QtCore_QPointF;
    function verticalScaleAt (self : access Inst; step_P : float) return float;
    function verticalShearAt (self : access Inst; step_P : float) return float;
    function xTranslationAt (self : access Inst; step_P : float) return float;

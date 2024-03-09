@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QListView.ResizeMode is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,17 +21,15 @@ package body QtAda6.QtWidgets.QListView.ResizeMode is
       Free (Inst_Access (Self));
    end Finalize;
    function Fixed return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QListView");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResizeMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Fixed"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Fixed"));
    end Fixed;
    function Adjust return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QListView");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResizeMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Adjust"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Adjust"));
    end Adjust;
 end QtAda6.QtWidgets.QListView.ResizeMode;

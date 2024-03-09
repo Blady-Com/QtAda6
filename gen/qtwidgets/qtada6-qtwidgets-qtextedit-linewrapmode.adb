@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QTextEdit.LineWrapMode is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtWidgets.QTextEdit.LineWrapMode is
       Free (Inst_Access (Self));
    end Finalize;
    function NoWrap return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTextEdit");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "LineWrapMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoWrap"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoWrap"));
    end NoWrap;
    function WidgetWidth return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTextEdit");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "LineWrapMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WidgetWidth"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WidgetWidth"));
    end WidgetWidth;
    function FixedPixelWidth return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTextEdit");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "LineWrapMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FixedPixelWidth"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FixedPixelWidth"));
    end FixedPixelWidth;
    function FixedColumnWidth return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTextEdit");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "LineWrapMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FixedColumnWidth"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FixedColumnWidth"));
    end FixedColumnWidth;
 end QtAda6.QtWidgets.QTextEdit.LineWrapMode;

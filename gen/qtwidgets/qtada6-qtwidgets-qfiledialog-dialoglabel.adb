@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QFileDialog.DialogLabel is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtWidgets.QFileDialog.DialogLabel is
       Free (Inst_Access (Self));
    end Finalize;
    function LookIn return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DialogLabel");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LookIn"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LookIn"));
    end LookIn;
    function FileName return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DialogLabel");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FileName"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FileName"));
    end FileName;
    function FileType return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DialogLabel");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FileType"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FileType"));
    end FileType;
    function Accept_K return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DialogLabel");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Accept"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Accept"));
    end Accept_K;
    function Reject return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileDialog");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DialogLabel");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Reject"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Reject"));
    end Reject;
 end QtAda6.QtWidgets.QFileDialog.DialogLabel;

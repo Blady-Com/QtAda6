@@ -8,7 +8,9 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
+limited with QtAda6.QtWidgets.QTableWidgetItem;
 limited with QtAda6.QtGui.QDropEvent;
 limited with QtAda6.QtCore.QMimeData;
 limited with QtAda6.QtCore.Qt.DropAction;
@@ -16,46 +18,52 @@ limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.Qt.MatchFlag;
 limited with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtCore.QPersistentModelIndex;
 limited with QtAda6.QtWidgets.QAbstractItemView.ScrollHint;
+limited with QtAda6.QtWidgets.QTableWidgetSelectionRange;
 limited with QtAda6.QtCore.QItemSelectionModel.SelectionFlag;
 limited with QtAda6.QtCore.QAbstractItemModel;
 limited with QtAda6.QtCore.Qt.SortOrder;
 limited with QtAda6.QtCore.QRect;
 with QtAda6.QtWidgets.QTableView;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtWidgets.QTableWidgetItem;
-with QtAda6.QtWidgets.QTableWidgetSelectionRange;
 package QtAda6.QtWidgets.QTableWidget is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QTableView.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    subtype LIST_QtAda6_QtWidgets_QTableWidgetItem is QtAda6.QtWidgets.QTableWidgetItem.Class_Array;
-   type UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex is new Any;
+   type UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is new Any;
    subtype SEQUENCE_QtAda6_QtWidgets_QTableWidgetItem is QtAda6.QtWidgets.QTableWidgetItem.Class_Array;
    type LIST_str is array (Positive range <>) of str;
    subtype LIST_QtAda6_QtWidgets_QTableWidgetSelectionRange is QtAda6.QtWidgets.QTableWidgetSelectionRange.Class_Array;
    type SEQUENCE_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
-   function cellActivated (self : access Inst) return CLASSVAR_Signal;-- cellActivated(int,int)
-   function cellChanged (self : access Inst) return CLASSVAR_Signal;-- cellChanged(int,int)
-   function cellClicked (self : access Inst) return CLASSVAR_Signal;-- cellClicked(int,int)
-   function cellDoubleClicked (self : access Inst) return CLASSVAR_Signal;-- cellDoubleClicked(int,int)
-   function cellEntered (self : access Inst) return CLASSVAR_Signal;-- cellEntered(int,int)
-   function cellPressed (self : access Inst) return CLASSVAR_Signal;-- cellPressed(int,int)
-   function currentCellChanged (self : access Inst) return CLASSVAR_Signal;-- currentCellChanged(int,int,int,int)
+   function cellActivated (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- cellActivated(int,int)
+   function cellChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- cellChanged(int,int)
+   function cellClicked (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- cellClicked(int,int)
+   function cellDoubleClicked
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- cellDoubleClicked(int,int)
+   function cellEntered (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- cellEntered(int,int)
+   function cellPressed (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- cellPressed(int,int)
+   function currentCellChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- currentCellChanged(int,int,int,int)
    function currentItemChanged
-     (self : access Inst) return CLASSVAR_Signal;-- currentItemChanged(QTableWidgetItem*,QTableWidgetItem*)
-   function itemActivated (self : access Inst) return CLASSVAR_Signal;-- itemActivated(QTableWidgetItem*)
-   function itemChanged (self : access Inst) return CLASSVAR_Signal;-- itemChanged(QTableWidgetItem*)
-   function itemClicked (self : access Inst) return CLASSVAR_Signal;-- itemClicked(QTableWidgetItem*)
-   function itemDoubleClicked (self : access Inst) return CLASSVAR_Signal;-- itemDoubleClicked(QTableWidgetItem*)
-   function itemEntered (self : access Inst) return CLASSVAR_Signal;-- itemEntered(QTableWidgetItem*)
-   function itemPressed (self : access Inst) return CLASSVAR_Signal;-- itemPressed(QTableWidgetItem*)
-   function itemSelectionChanged (self : access Inst) return CLASSVAR_Signal;-- itemSelectionChanged()
+     (self : access Inst)
+      return access QtAda6.QtCore.Signal.Inst'Class;-- currentItemChanged(QTableWidgetItem*,QTableWidgetItem*)
+   function itemActivated
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemActivated(QTableWidgetItem*)
+   function itemChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemChanged(QTableWidgetItem*)
+   function itemClicked
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemClicked(QTableWidgetItem*)
+   function itemDoubleClicked
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemDoubleClicked(QTableWidgetItem*)
+   function itemEntered
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemEntered(QTableWidgetItem*)
+   function itemPressed
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemPressed(QTableWidgetItem*)
+   function itemSelectionChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemSelectionChanged()
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function Create
      (rows_P : int; columns_P : int; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
@@ -96,7 +104,7 @@ package QtAda6.QtWidgets.QTableWidget is
    function itemAt
      (self : access Inst; x_P : int; y_P : int) return access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class;
    function itemFromIndex
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
       return access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class;
    function itemPrototype (self : access Inst) return access QtAda6.QtWidgets.QTableWidgetItem.Inst'Class;
    function items

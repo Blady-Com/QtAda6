@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtGui.QKeyEvent;
 limited with QtAda6.QtCore.Qt.Orientation;
@@ -16,21 +17,19 @@ limited with QtAda6.QtWidgets.QAbstractSlider.SliderChange;
 limited with QtAda6.QtCore.QTimerEvent;
 limited with QtAda6.QtGui.QWheelEvent;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QAbstractSlider is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function actionTriggered (self : access Inst) return CLASSVAR_Signal;-- actionTriggered(int)
-   function rangeChanged (self : access Inst) return CLASSVAR_Signal;-- rangeChanged(int,int)
-   function sliderMoved (self : access Inst) return CLASSVAR_Signal;-- sliderMoved(int)
-   function sliderPressed (self : access Inst) return CLASSVAR_Signal;-- sliderPressed()
-   function sliderReleased (self : access Inst) return CLASSVAR_Signal;-- sliderReleased()
-   function valueChanged (self : access Inst) return CLASSVAR_Signal;-- valueChanged(int)
+   function actionTriggered (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- actionTriggered(int)
+   function rangeChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- rangeChanged(int,int)
+   function sliderMoved (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- sliderMoved(int)
+   function sliderPressed (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- sliderPressed()
+   function sliderReleased (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- sliderReleased()
+   function valueChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- valueChanged(int)
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    procedure changeEvent (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class);
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;

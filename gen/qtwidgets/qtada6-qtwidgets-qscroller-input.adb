@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QScroller.Input is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtWidgets.QScroller.Input is
       Free (Inst_Access (Self));
    end Finalize;
    function InputPress return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScroller");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Input");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InputPress"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InputPress"));
    end InputPress;
    function InputMove return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScroller");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Input");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InputMove"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InputMove"));
    end InputMove;
    function InputRelease return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScroller");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Input");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InputRelease"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InputRelease"));
    end InputRelease;
 end QtAda6.QtWidgets.QScroller.Input;

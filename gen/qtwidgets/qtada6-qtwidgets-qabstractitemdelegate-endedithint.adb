@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QAbstractItemDelegate.EndEditHint is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtWidgets.QAbstractItemDelegate.EndEditHint is
       Free (Inst_Access (Self));
    end Finalize;
    function NoHint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemDelegate");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "EndEditHint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoHint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoHint"));
    end NoHint;
    function EditNextItem return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemDelegate");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "EndEditHint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "EditNextItem"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "EditNextItem"));
    end EditNextItem;
    function EditPreviousItem return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemDelegate");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "EndEditHint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "EditPreviousItem"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "EditPreviousItem"));
    end EditPreviousItem;
    function SubmitModelCache return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemDelegate");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "EndEditHint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SubmitModelCache"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SubmitModelCache"));
    end SubmitModelCache;
    function RevertModelCache return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemDelegate");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "EndEditHint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RevertModelCache"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RevertModelCache"));
    end RevertModelCache;
 end QtAda6.QtWidgets.QAbstractItemDelegate.EndEditHint;

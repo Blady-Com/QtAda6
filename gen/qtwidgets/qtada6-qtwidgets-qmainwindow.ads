@@ -8,8 +8,10 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.Qt.WindowType;
 limited with QtAda6.QtCore.Qt.DockWidgetArea;
+limited with QtAda6.QtWidgets.QDockWidget;
 limited with QtAda6.QtCore.Qt.Orientation;
 limited with QtAda6.QtCore.Qt.ToolBarArea;
 limited with QtAda6.QtWidgets.QToolBar;
@@ -27,25 +29,22 @@ limited with QtAda6.QtWidgets.QTabWidget.TabPosition;
 limited with QtAda6.QtWidgets.QTabWidget.TabShape;
 limited with QtAda6.QtCore.Qt.ToolButtonStyle;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtWidgets.QDockWidget;
 package QtAda6.QtWidgets.QMainWindow is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    subtype SEQUENCE_QtAda6_QtWidgets_QDockWidget is QtAda6.QtWidgets.QDockWidget.Class_Array;
    type SEQUENCE_int is array (Positive range <>) of int;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    subtype LIST_QtAda6_QtWidgets_QDockWidget is QtAda6.QtWidgets.QDockWidget.Class_Array;
    procedure Finalize (Self : in out Class);
-   function iconSizeChanged (self : access Inst) return CLASSVAR_Signal;-- iconSizeChanged(QSize)
+   function iconSizeChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- iconSizeChanged(QSize)
    function tabifiedDockWidgetActivated
-     (self : access Inst) return CLASSVAR_Signal;-- tabifiedDockWidgetActivated(QDockWidget*)
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- tabifiedDockWidgetActivated(QDockWidget*)
    function toolButtonStyleChanged
-     (self : access Inst) return CLASSVAR_Signal;-- toolButtonStyleChanged(Qt::ToolButtonStyle)
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- toolButtonStyleChanged(Qt::ToolButtonStyle)
    function Create
      (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
       flags_P  : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class;
@@ -93,7 +92,7 @@ package QtAda6.QtWidgets.QMainWindow is
    function restoreDockWidget
      (self : access Inst; dockwidget_P : access QtAda6.QtWidgets.QDockWidget.Inst'Class) return bool;
    function restoreState
-     (self : access Inst; state_P : UNION_QtAda6_QtCore_QByteArraybytes; version_P : int := 0) return bool;
+     (self : access Inst; state_P : UNION_QtAda6_QtCore_QByteArray_bytes; version_P : int := 0) return bool;
    function saveState (self : access Inst; version_P : int := 0) return access QtAda6.QtCore.QByteArray.Inst'Class;
    procedure setAnimated (self : access Inst; enabled_P : bool);
    procedure setCentralWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);

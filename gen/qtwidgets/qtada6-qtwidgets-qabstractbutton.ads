@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtGui.QFocusEvent;
 limited with QtAda6.QtWidgets.QButtonGroup;
@@ -17,29 +18,24 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtGui.QKeyEvent;
 limited with QtAda6.QtGui.QMouseEvent;
 limited with QtAda6.QtGui.QPaintEvent;
-limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtCore.Qt.Key;
 limited with QtAda6.QtGui.QKeySequence;
-limited with QtAda6.QtCore.QKeyCombination;
-limited with QtAda6.QtGui.QKeySequence.StandardKey;
 limited with QtAda6.QtCore.QTimerEvent;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QAbstractButton is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap is new Any;
-   type UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint is
+   type UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is new Any;
+   type UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int is
      new Any;
    procedure Finalize (Self : in out Class);
-   function clicked (self : access Inst) return CLASSVAR_Signal;-- clicked()
-   function pressed (self : access Inst) return CLASSVAR_Signal;-- pressed()
-   function released (self : access Inst) return CLASSVAR_Signal;-- released()
-   function toggled (self : access Inst) return CLASSVAR_Signal;-- toggled(bool)
+   function clicked (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- clicked()
+   function pressed (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- pressed()
+   function released (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- released()
+   function toggled (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- toggled(bool)
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    procedure animateClick (self : access Inst);
    function autoExclusive (self : access Inst) return bool;
@@ -73,12 +69,12 @@ package QtAda6.QtWidgets.QAbstractButton is
    procedure setCheckable (self : access Inst; arg_1_P : bool);
    procedure setChecked (self : access Inst; arg_1_P : bool);
    procedure setDown (self : access Inst; arg_1_P : bool);
-   procedure setIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap);
+   procedure setIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
    procedure setIconSize (self : access Inst; size_P : access QtAda6.QtCore.QSize.Inst'Class);
    procedure setShortcut (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.Key.Inst'Class);
    procedure setShortcut
      (self  : access Inst;
-      key_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint);
+      key_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int);
    procedure setText (self : access Inst; text_P : str);
    function shortcut (self : access Inst) return access QtAda6.QtGui.QKeySequence.Inst'Class;
    function text (self : access Inst) return str;

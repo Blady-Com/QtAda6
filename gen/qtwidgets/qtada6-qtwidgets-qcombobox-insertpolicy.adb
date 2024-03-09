@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QComboBox.InsertPolicy is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,52 +21,45 @@ package body QtAda6.QtWidgets.QComboBox.InsertPolicy is
       Free (Inst_Access (Self));
    end Finalize;
    function NoInsert return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QComboBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "InsertPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoInsert"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoInsert"));
    end NoInsert;
    function InsertAtTop return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QComboBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "InsertPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InsertAtTop"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InsertAtTop"));
    end InsertAtTop;
    function InsertAtCurrent return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QComboBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "InsertPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InsertAtCurrent"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InsertAtCurrent"));
    end InsertAtCurrent;
    function InsertAtBottom return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QComboBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "InsertPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InsertAtBottom"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InsertAtBottom"));
    end InsertAtBottom;
    function InsertAfterCurrent return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QComboBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "InsertPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InsertAfterCurrent"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InsertAfterCurrent"));
    end InsertAfterCurrent;
    function InsertBeforeCurrent return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QComboBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "InsertPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InsertBeforeCurrent"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InsertBeforeCurrent"));
    end InsertBeforeCurrent;
    function InsertAlphabetically return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QComboBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "InsertPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InsertAlphabetically"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InsertAlphabetically"));
    end InsertAlphabetically;
 end QtAda6.QtWidgets.QComboBox.InsertPolicy;

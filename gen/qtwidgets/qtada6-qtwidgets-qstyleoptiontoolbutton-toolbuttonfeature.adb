@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QStyleOptionToolButton.ToolButtonFeature is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,45 +21,39 @@ package body QtAda6.QtWidgets.QStyleOptionToolButton.ToolButtonFeature is
       Free (Inst_Access (Self));
    end Finalize;
    function None_U return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionToolButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ToolButtonFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "None_"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "None_"));
    end None_U;
    function Arrow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionToolButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ToolButtonFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Arrow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Arrow"));
    end Arrow;
    function Menu return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionToolButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ToolButtonFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Menu"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Menu"));
    end Menu;
    function MenuButtonPopup return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionToolButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ToolButtonFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MenuButtonPopup"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MenuButtonPopup"));
    end MenuButtonPopup;
    function PopupDelay return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionToolButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ToolButtonFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PopupDelay"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PopupDelay"));
    end PopupDelay;
    function HasMenu return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionToolButton");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ToolButtonFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HasMenu"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HasMenu"));
    end HasMenu;
 end QtAda6.QtWidgets.QStyleOptionToolButton.ToolButtonFeature;

@@ -8,20 +8,19 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtWidgets.QAbstractSpinBox.StepType;
 with QtAda6.QtWidgets.QAbstractSpinBox;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QDoubleSpinBox is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractSpinBox.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function textChanged (self : access Inst) return CLASSVAR_Signal;-- textChanged(QString)
-   function valueChanged (self : access Inst) return CLASSVAR_Signal;-- valueChanged(double)
+   function textChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- textChanged(QString)
+   function valueChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- valueChanged(double)
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function cleanText (self : access Inst) return str;
    function decimals (self : access Inst) return int;

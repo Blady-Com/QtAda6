@@ -8,23 +8,22 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtWidgets.QLayoutItem;
 limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtWidgets.QStackedLayout.StackingMode;
 with QtAda6.QtWidgets.QLayout;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QStackedLayout is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QLayout.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function currentChanged (self : access Inst) return CLASSVAR_Signal;-- currentChanged(int)
-   function widgetRemoved (self : access Inst) return CLASSVAR_Signal;-- widgetRemoved(int)
+   function currentChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- currentChanged(int)
+   function widgetRemoved (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- widgetRemoved(int)
    function Create return Class;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return Class;
    function Create (parentLayout_P : access QtAda6.QtWidgets.QLayout.Inst'Class) return Class;

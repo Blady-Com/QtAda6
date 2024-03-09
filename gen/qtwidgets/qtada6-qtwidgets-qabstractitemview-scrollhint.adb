@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QAbstractItemView.ScrollHint is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtWidgets.QAbstractItemView.ScrollHint is
       Free (Inst_Access (Self));
    end Finalize;
    function EnsureVisible return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemView");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ScrollHint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "EnsureVisible"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "EnsureVisible"));
    end EnsureVisible;
    function PositionAtTop return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemView");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ScrollHint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PositionAtTop"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PositionAtTop"));
    end PositionAtTop;
    function PositionAtBottom return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemView");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ScrollHint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PositionAtBottom"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PositionAtBottom"));
    end PositionAtBottom;
    function PositionAtCenter return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractItemView");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ScrollHint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PositionAtCenter"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PositionAtCenter"));
    end PositionAtCenter;
 end QtAda6.QtWidgets.QAbstractItemView.ScrollHint;

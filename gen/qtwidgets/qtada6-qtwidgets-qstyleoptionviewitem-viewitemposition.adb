@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QStyleOptionViewItem.ViewItemPosition is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtWidgets.QStyleOptionViewItem.ViewItemPosition is
       Free (Inst_Access (Self));
    end Finalize;
    function Invalid return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionViewItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ViewItemPosition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Invalid"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Invalid"));
    end Invalid;
    function Beginning return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionViewItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ViewItemPosition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Beginning"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Beginning"));
    end Beginning;
    function Middle return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionViewItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ViewItemPosition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Middle"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Middle"));
    end Middle;
    function End_K return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionViewItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ViewItemPosition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "End"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "End"));
    end End_K;
    function OnlyOne return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionViewItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ViewItemPosition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "OnlyOne"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "OnlyOne"));
    end OnlyOne;
 end QtAda6.QtWidgets.QStyleOptionViewItem.ViewItemPosition;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QSystemTrayIcon.MessageIcon is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtWidgets.QSystemTrayIcon.MessageIcon is
       Free (Inst_Access (Self));
    end Finalize;
    function NoIcon return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSystemTrayIcon");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MessageIcon");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoIcon"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoIcon"));
    end NoIcon;
    function Information return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSystemTrayIcon");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MessageIcon");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Information"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Information"));
    end Information;
    function Warning return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSystemTrayIcon");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MessageIcon");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Warning"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Warning"));
    end Warning;
    function Critical return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSystemTrayIcon");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MessageIcon");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Critical"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Critical"));
    end Critical;
 end QtAda6.QtWidgets.QSystemTrayIcon.MessageIcon;

@@ -8,7 +8,9 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
+limited with QtAda6.QtWidgets.QTreeWidgetItem;
 limited with QtAda6.QtGui.QDropEvent;
 limited with QtAda6.QtCore.QMimeData;
 limited with QtAda6.QtCore.Qt.DropAction;
@@ -16,7 +18,6 @@ limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.Qt.MatchFlag;
 limited with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtCore.QPersistentModelIndex;
 limited with QtAda6.QtWidgets.QAbstractItemView.ScrollHint;
 limited with QtAda6.QtCore.QItemSelectionModel.SelectionFlag;
 limited with QtAda6.QtCore.QAbstractItemModel;
@@ -24,32 +25,39 @@ limited with QtAda6.QtCore.QItemSelectionModel;
 limited with QtAda6.QtCore.Qt.SortOrder;
 limited with QtAda6.QtCore.QRect;
 with QtAda6.QtWidgets.QTreeView;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtWidgets.QTreeWidgetItem;
 package QtAda6.QtWidgets.QTreeWidget is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QTreeView.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    subtype SEQUENCE_QtAda6_QtWidgets_QTreeWidgetItem is QtAda6.QtWidgets.QTreeWidgetItem.Class_Array;
    subtype LIST_QtAda6_QtWidgets_QTreeWidgetItem is QtAda6.QtWidgets.QTreeWidgetItem.Class_Array;
-   type UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex is new Any;
+   type UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is new Any;
    type LIST_str is array (Positive range <>) of str;
    type SEQUENCE_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function currentItemChanged
-     (self : access Inst) return CLASSVAR_Signal;-- currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)
-   function itemActivated (self : access Inst) return CLASSVAR_Signal;-- itemActivated(QTreeWidgetItem*,int)
-   function itemChanged (self : access Inst) return CLASSVAR_Signal;-- itemChanged(QTreeWidgetItem*,int)
-   function itemClicked (self : access Inst) return CLASSVAR_Signal;-- itemClicked(QTreeWidgetItem*,int)
-   function itemCollapsed (self : access Inst) return CLASSVAR_Signal;-- itemCollapsed(QTreeWidgetItem*)
-   function itemDoubleClicked (self : access Inst) return CLASSVAR_Signal;-- itemDoubleClicked(QTreeWidgetItem*,int)
-   function itemEntered (self : access Inst) return CLASSVAR_Signal;-- itemEntered(QTreeWidgetItem*,int)
-   function itemExpanded (self : access Inst) return CLASSVAR_Signal;-- itemExpanded(QTreeWidgetItem*)
-   function itemPressed (self : access Inst) return CLASSVAR_Signal;-- itemPressed(QTreeWidgetItem*,int)
-   function itemSelectionChanged (self : access Inst) return CLASSVAR_Signal;-- itemSelectionChanged()
+     (self : access Inst)
+      return access QtAda6.QtCore.Signal.Inst'Class;-- currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)
+   function itemActivated
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemActivated(QTreeWidgetItem*,int)
+   function itemChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemChanged(QTreeWidgetItem*,int)
+   function itemClicked
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemClicked(QTreeWidgetItem*,int)
+   function itemCollapsed
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemCollapsed(QTreeWidgetItem*)
+   function itemDoubleClicked
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemDoubleClicked(QTreeWidgetItem*,int)
+   function itemEntered
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemEntered(QTreeWidgetItem*,int)
+   function itemExpanded
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemExpanded(QTreeWidgetItem*)
+   function itemPressed
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemPressed(QTreeWidgetItem*,int)
+   function itemSelectionChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- itemSelectionChanged()
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    procedure addTopLevelItem (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class);
    procedure addTopLevelItems (self : access Inst; items_P : SEQUENCE_QtAda6_QtWidgets_QTreeWidgetItem);
@@ -96,7 +104,7 @@ package QtAda6.QtWidgets.QTreeWidget is
      (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class)
       return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class;
    function itemFromIndex
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndexQtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
       return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class;
    function itemWidget
      (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; column_P : int)

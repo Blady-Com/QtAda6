@@ -10,17 +10,20 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtWidgets.QDateTimeEdit;
+with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QDate;
 with QtAda6.QtWidgets.QWidget;
 package body QtAda6.QtWidgets.QDateEdit is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function userDateChanged (self : access Inst) return CLASSVAR_Signal is
+   function userDateChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class is
    begin
       return
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "userDateChanged"));
@@ -29,20 +32,26 @@ package body QtAda6.QtWidgets.QDateEdit is
      (date_P : access QtAda6.QtCore.QDate.Inst'Class; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
       return Class
    is
-      Class, Args, List : Handle;
-   begin
-      Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDateEdit");
-      Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, (if date_P /= null then date_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
-   end Create;
-   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDateEdit");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Tuple_SetItem (Args, 0, (if date_P /= null then date_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
+      Class, Args, Dict, List, Tuple : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDateEdit");
+      Args  := Tuple_New (0);
+      Dict  := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
 end QtAda6.QtWidgets.QDateEdit;

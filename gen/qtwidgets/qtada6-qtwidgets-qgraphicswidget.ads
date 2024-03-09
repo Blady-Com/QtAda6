@@ -8,17 +8,16 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QGraphicsItem;
 limited with QtAda6.QtCore.Qt.WindowType;
+limited with QtAda6.QtGui.QAction;
 limited with QtAda6.QtCore.QRectF;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtGui.QCloseEvent;
 limited with QtAda6.QtGui.QFocusEvent;
 limited with QtAda6.QtCore.Qt.FocusPolicy;
 limited with QtAda6.QtGui.QFont;
-limited with QtAda6.QtGui.QKeySequence;
-limited with QtAda6.QtCore.QKeyCombination;
-limited with QtAda6.QtGui.QKeySequence.StandardKey;
 limited with QtAda6.QtCore.Qt.ShortcutContext;
 limited with QtAda6.QtGui.QHideEvent;
 limited with QtAda6.QtWidgets.QGraphicsSceneHoverEvent;
@@ -31,27 +30,16 @@ limited with QtAda6.QtGui.QPainter;
 limited with QtAda6.QtWidgets.QStyleOptionGraphicsItem;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtGui.QPalette;
-limited with QtAda6.QtCore.QSizeF;
-limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtWidgets.QGraphicsSceneResizeEvent;
 limited with QtAda6.QtCore.Qt.WidgetAttribute;
-limited with QtAda6.QtCore.QMarginsF;
-limited with QtAda6.QtCore.QMargins;
-limited with QtAda6.QtCore.QRect;
-limited with QtAda6.QtCore.Qt.GlobalColor;
-limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtWidgets.QStyle;
 limited with QtAda6.QtGui.QPainterPath;
 limited with QtAda6.QtGui.QShowEvent;
+limited with QtAda6.QtCore.QSizeF;
 limited with QtAda6.QtCore.Qt.SizeHint;
-limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtCore.Qt.WindowFrameSection;
 with QtAda6.QtWidgets.QGraphicsObject;
 with QtAda6.QtWidgets.QGraphicsLayoutItem;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtGui.QAction;
 package QtAda6.QtWidgets.QGraphicsWidget is
    type Inst;
    type Inst_Access is access all Inst;
@@ -60,20 +48,19 @@ package QtAda6.QtWidgets.QGraphicsWidget is
    type Inst is new QtAda6.QtWidgets.QGraphicsObject.Inst
 --  and QtAda6.QtWidgets.QGraphicsLayoutItem.Inst
    with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    subtype LIST_QtAda6_QtGui_QAction is QtAda6.QtGui.QAction.Class_Array;
    subtype SEQUENCE_QtAda6_QtGui_QAction is QtAda6.QtGui.QAction.Class_Array;
-   type UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint is
+   type UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int is
      new Any;
-   type UNION_QtAda6_QtCore_QSizeFQtAda6_QtCore_QSize is new Any;
-   type UNION_QtAda6_QtCore_QMarginsFQtAda6_QtCore_QMargins is new Any;
-   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
-   type UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect is new Any;
-   type UNION_QtAda6_QtGui_QPaletteQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColor is new Any;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
+   type UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize is new Any;
+   type UNION_QtAda6_QtCore_QMarginsF_QtAda6_QtCore_QMargins is new Any;
+   type UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str is new Any;
+   type UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect is new Any;
+   type UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
-   function geometryChanged (self : access Inst) return CLASSVAR_Signal;-- geometryChanged()
-   function layoutChanged (self : access Inst) return CLASSVAR_Signal;-- layoutChanged()
+   function geometryChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- geometryChanged()
+   function layoutChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- layoutChanged()
    function Create
      (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null;
       wFlags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class    := null) return Class;
@@ -99,7 +86,7 @@ package QtAda6.QtWidgets.QGraphicsWidget is
    procedure grabMouseEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class);
    function grabShortcut
      (self       : access Inst;
-      sequence_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint;
+      sequence_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
       context_P  : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return int;
    procedure hideEvent (self : access Inst; event_P : access QtAda6.QtGui.QHideEvent.Inst'Class);
    procedure hoverLeaveEvent
@@ -132,7 +119,7 @@ package QtAda6.QtWidgets.QGraphicsWidget is
    function rect (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class;
    procedure releaseShortcut (self : access Inst; id_P : int);
    procedure removeAction (self : access Inst; action_P : access QtAda6.QtGui.QAction.Inst'Class);
-   procedure resize (self : access Inst; size_P : UNION_QtAda6_QtCore_QSizeFQtAda6_QtCore_QSize);
+   procedure resize (self : access Inst; size_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize);
    procedure resize (self : access Inst; w_P : float; h_P : float);
    procedure resizeEvent (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneResizeEvent.Inst'Class);
    function sceneEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
@@ -140,15 +127,15 @@ package QtAda6.QtWidgets.QGraphicsWidget is
      (self : access Inst; attribute_P : access QtAda6.QtCore.Qt.WidgetAttribute.Inst'Class; on_P : bool := False);
    procedure setAutoFillBackground (self : access Inst; enabled_P : bool);
    procedure setContentsMargins (self : access Inst; left_P : float; top_P : float; right_P : float; bottom_P : float);
-   procedure setContentsMargins (self : access Inst; margins_P : UNION_QtAda6_QtCore_QMarginsFQtAda6_QtCore_QMargins);
+   procedure setContentsMargins (self : access Inst; margins_P : UNION_QtAda6_QtCore_QMarginsF_QtAda6_QtCore_QMargins);
    procedure setFocusPolicy (self : access Inst; policy_P : access QtAda6.QtCore.Qt.FocusPolicy.Inst'Class);
-   procedure setFont (self : access Inst; font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str);
-   procedure setGeometry (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect);
+   procedure setFont (self : access Inst; font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str);
+   procedure setGeometry (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect);
    procedure setGeometry (self : access Inst; x_P : float; y_P : float; w_P : float; h_P : float);
    procedure setLayout (self : access Inst; layout_P : access QtAda6.QtWidgets.QGraphicsLayout.Inst'Class);
    procedure setLayoutDirection (self : access Inst; direction_P : access QtAda6.QtCore.Qt.LayoutDirection.Inst'Class);
    procedure setPalette
-     (self : access Inst; palette_P : UNION_QtAda6_QtGui_QPaletteQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColor);
+     (self : access Inst; palette_P : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor);
    procedure setShortcutAutoRepeat (self : access Inst; id_P : int; enabled_P : bool := False);
    procedure setShortcutEnabled (self : access Inst; id_P : int; enabled_P : bool := False);
    procedure setStyle (self : access Inst; style_P : access QtAda6.QtWidgets.QStyle.Inst'Class);
@@ -159,14 +146,14 @@ package QtAda6.QtWidgets.QGraphicsWidget is
    procedure setWindowFrameMargins
      (self : access Inst; left_P : float; top_P : float; right_P : float; bottom_P : float);
    procedure setWindowFrameMargins
-     (self : access Inst; margins_P : UNION_QtAda6_QtCore_QMarginsFQtAda6_QtCore_QMargins);
+     (self : access Inst; margins_P : UNION_QtAda6_QtCore_QMarginsF_QtAda6_QtCore_QMargins);
    procedure setWindowTitle (self : access Inst; title_P : str);
    function shape (self : access Inst) return access QtAda6.QtGui.QPainterPath.Inst'Class;
    procedure showEvent (self : access Inst; event_P : access QtAda6.QtGui.QShowEvent.Inst'Class);
    function size (self : access Inst) return access QtAda6.QtCore.QSizeF.Inst'Class;
    function sizeHint
      (self         : access Inst; which_P : access QtAda6.QtCore.Qt.SizeHint.Inst'Class;
-      constraint_P : UNION_QtAda6_QtCore_QSizeFQtAda6_QtCore_QSize := null)
+      constraint_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize := null)
       return access QtAda6.QtCore.QSizeF.Inst'Class;
    function style (self : access Inst) return access QtAda6.QtWidgets.QStyle.Inst'Class;
    function testAttribute
@@ -182,7 +169,7 @@ package QtAda6.QtWidgets.QGraphicsWidget is
    function windowFrameGeometry (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class;
    function windowFrameRect (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class;
    function windowFrameSectionAt
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.Qt.WindowFrameSection.Inst'Class;
    function windowTitle (self : access Inst) return str;
    function windowType (self : access Inst) return access QtAda6.QtCore.Qt.WindowType.Inst'Class;

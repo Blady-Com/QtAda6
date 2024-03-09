@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtGui.QFont;
 limited with QtAda6.QtCore.QEvent;
@@ -15,17 +16,16 @@ limited with QtAda6.QtWidgets.QFontComboBox.FontFilter;
 limited with QtAda6.QtGui.QFontDatabase.WritingSystem;
 limited with QtAda6.QtCore.QSize;
 with QtAda6.QtWidgets.QComboBox;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QFontComboBox is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QComboBox.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
+   type UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str is new Any;
    procedure Finalize (Self : in out Class);
-   function currentFontChanged (self : access Inst) return CLASSVAR_Signal;-- currentFontChanged(QFont)
+   function currentFontChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- currentFontChanged(QFont)
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function currentFont (self : access Inst) return access QtAda6.QtGui.QFont.Inst'Class;
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
@@ -33,8 +33,9 @@ package QtAda6.QtWidgets.QFontComboBox is
    function sampleTextForFont (self : access Inst; fontFamily_P : str) return str;
    function sampleTextForSystem
      (self : access Inst; writingSystem_P : access QtAda6.QtGui.QFontDatabase.WritingSystem.Inst'Class) return str;
-   procedure setCurrentFont (self : access Inst; f_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str);
-   procedure setDisplayFont (self : access Inst; fontFamily_P : str; font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str);
+   procedure setCurrentFont (self : access Inst; f_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str);
+   procedure setDisplayFont
+     (self : access Inst; fontFamily_P : str; font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str);
    procedure setFontFilters
      (self : access Inst; filters_P : access QtAda6.QtWidgets.QFontComboBox.FontFilter.Inst'Class);
    procedure setSampleTextForFont (self : access Inst; fontFamily_P : str; sampleText_P : str);

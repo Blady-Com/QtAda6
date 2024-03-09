@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QPinchGesture.ChangeFlag is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtWidgets.QPinchGesture.ChangeFlag is
       Free (Inst_Access (Self));
    end Finalize;
    function ScaleFactorChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QPinchGesture");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ChangeFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ScaleFactorChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ScaleFactorChanged"));
    end ScaleFactorChanged;
    function RotationAngleChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QPinchGesture");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ChangeFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RotationAngleChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RotationAngleChanged"));
    end RotationAngleChanged;
    function CenterPointChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QPinchGesture");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ChangeFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CenterPointChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CenterPointChanged"));
    end CenterPointChanged;
 end QtAda6.QtWidgets.QPinchGesture.ChangeFlag;

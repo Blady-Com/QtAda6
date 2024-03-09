@@ -8,21 +8,19 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtWidgets.QGraphicsScene;
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtGui.QBrush;
 limited with QtAda6.QtWidgets.QGraphicsView.CacheModeFlag;
-limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtGui.QPainterPath.Element;
+limited with QtAda6.QtWidgets.QGraphicsItem;
 limited with QtAda6.QtGui.QContextMenuEvent;
 limited with QtAda6.QtGui.QDragEnterEvent;
 limited with QtAda6.QtGui.QDragLeaveEvent;
 limited with QtAda6.QtWidgets.QGraphicsView.DragMode;
 limited with QtAda6.QtGui.QDragMoveEvent;
 limited with QtAda6.QtGui.QPainter;
-limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtGui.QDropEvent;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.Qt.AspectRatioMode;
@@ -30,10 +28,13 @@ limited with QtAda6.QtGui.QFocusEvent;
 limited with QtAda6.QtGui.QInputMethodEvent;
 limited with QtAda6.QtCore.Qt.InputMethodQuery;
 limited with QtAda6.QtWidgets.QGraphicsScene.SceneLayer;
+limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtGui.QPainterPath;
 limited with QtAda6.QtCore.Qt.ItemSelectionMode;
-limited with QtAda6.QtGui.QPolygon;
+limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtGui.QKeyEvent;
+limited with QtAda6.QtGui.QPolygon;
+limited with QtAda6.QtCore.QPointF;
 limited with QtAda6.QtGui.QPolygonF;
 limited with QtAda6.QtGui.QMouseEvent;
 limited with QtAda6.QtWidgets.QGraphicsView.OptimizationFlag;
@@ -41,48 +42,40 @@ limited with QtAda6.QtGui.QPaintEvent;
 limited with QtAda6.QtGui.QPainter.RenderHint;
 limited with QtAda6.QtWidgets.QGraphicsView.ViewportAnchor;
 limited with QtAda6.QtGui.QResizeEvent;
-limited with QtAda6.QtCore.Qt.BrushStyle;
-limited with QtAda6.QtCore.Qt.GlobalColor;
-limited with QtAda6.QtGui.QColor;
-limited with QtAda6.QtGui.QGradient;
-limited with QtAda6.QtGui.QImage;
-limited with QtAda6.QtGui.QPixmap;
+limited with QtAda6.QtCore.QRectF;
 limited with QtAda6.QtGui.QTransform;
 limited with QtAda6.QtWidgets.QGraphicsView.ViewportUpdateMode;
 limited with QtAda6.QtGui.QShowEvent;
 limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtGui.QWheelEvent;
 with QtAda6.QtWidgets.QAbstractScrollArea;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtWidgets.QGraphicsItem;
-with QtAda6.QtCore.QRectF;
 package QtAda6.QtWidgets.QGraphicsView is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractScrollArea.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
-   type UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
+   type UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect is new Any;
    subtype LIST_QtAda6_QtWidgets_QGraphicsItem is QtAda6.QtWidgets.QGraphicsItem.Class_Array;
-   type UNION_QtAda6_QtGui_QPolygonSEQUENCE_QtAda6_QtCore_QRect is new Any;
-   type UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF is new Any;
-   type UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap is
+   type UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect is new Any;
+   type UNION_QtAda6_QtGui_QPolygonF_SEQUENCE_QtAda6_QtCore_QRectF is new Any;
+   type UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap is
      new Any;
    subtype SEQUENCE_QtAda6_QtCore_QRectF is QtAda6.QtCore.QRectF.Class_Array;
    procedure Finalize (Self : in out Class);
-   function rubberBandChanged (self : access Inst) return CLASSVAR_Signal;-- rubberBandChanged(QRect,QPointF,QPointF)
+   function rubberBandChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- rubberBandChanged(QRect,QPointF,QPointF)
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function Create
      (scene_P  : access QtAda6.QtWidgets.QGraphicsScene.Inst'Class;
       parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function alignment (self : access Inst) return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class;
    function backgroundBrush (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class;
-   function cacheMode_F (self : access Inst) return access QtAda6.QtWidgets.QGraphicsView.CacheModeFlag.Inst'Class;
+   function cacheMode (self : access Inst) return access QtAda6.QtWidgets.QGraphicsView.CacheModeFlag.Inst'Class;
    procedure centerOn (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class);
    procedure centerOn
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element);
+     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element);
    procedure centerOn (self : access Inst; x_P : float; y_P : float);
    procedure contextMenuEvent (self : access Inst; event_P : access QtAda6.QtGui.QContextMenuEvent.Inst'Class);
    procedure dragEnterEvent (self : access Inst; event_P : access QtAda6.QtGui.QDragEnterEvent.Inst'Class);
@@ -91,10 +84,10 @@ package QtAda6.QtWidgets.QGraphicsView is
    procedure dragMoveEvent (self : access Inst; event_P : access QtAda6.QtGui.QDragMoveEvent.Inst'Class);
    procedure drawBackground
      (self   : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
-      rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect);
+      rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect);
    procedure drawForeground
      (self   : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
-      rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect);
+      rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect);
    procedure drawItems
      (self      : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class; items_P : Iterable;
       options_P : Iterable);
@@ -103,7 +96,7 @@ package QtAda6.QtWidgets.QGraphicsView is
      (self      : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class; xmargin_P : int := 0;
       ymargin_P : int := 0);
    procedure ensureVisible
-     (self      : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect; xmargin_P : int := 0;
+     (self      : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect; xmargin_P : int := 0;
       ymargin_P : int := 0);
    procedure ensureVisible
      (self      : access Inst; x_P : float; y_P : float; w_P : float; h_P : float; xmargin_P : int := 0;
@@ -113,7 +106,7 @@ package QtAda6.QtWidgets.QGraphicsView is
      (self              : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class;
       aspectRadioMode_P : access QtAda6.QtCore.Qt.AspectRatioMode.Inst'Class := null);
    procedure fitInView
-     (self              : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect;
+     (self              : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect;
       aspectRadioMode_P : access QtAda6.QtCore.Qt.AspectRatioMode.Inst'Class := null);
    procedure fitInView
      (self              : access Inst; x_P : float; y_P : float; w_P : float; h_P : float;
@@ -126,7 +119,7 @@ package QtAda6.QtWidgets.QGraphicsView is
    function inputMethodQuery
      (self : access Inst; query_P : access QtAda6.QtCore.Qt.InputMethodQuery.Inst'Class) return Any;
    procedure invalidateScene
-     (self     : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect := null;
+     (self     : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect := null;
       layers_P : access QtAda6.QtWidgets.QGraphicsScene.SceneLayer.Inst'Class := null);
    function isInteractive (self : access Inst) return bool;
    function isTransformed (self : access Inst) return bool;
@@ -139,7 +132,7 @@ package QtAda6.QtWidgets.QGraphicsView is
      (self   : access Inst; path_P : access QtAda6.QtGui.QPainterPath.Inst'Class;
       mode_P : access QtAda6.QtCore.Qt.ItemSelectionMode.Inst'Class := null) return LIST_QtAda6_QtWidgets_QGraphicsItem;
    function items
-     (self   : access Inst; polygon_P : UNION_QtAda6_QtGui_QPolygonSEQUENCE_QtAda6_QtCore_QRect;
+     (self   : access Inst; polygon_P : UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect;
       mode_P : access QtAda6.QtCore.Qt.ItemSelectionMode.Inst'Class := null) return LIST_QtAda6_QtWidgets_QGraphicsItem;
    function items
      (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) return LIST_QtAda6_QtWidgets_QGraphicsItem;
@@ -156,13 +149,13 @@ package QtAda6.QtWidgets.QGraphicsView is
      (self : access Inst; path_P : access QtAda6.QtGui.QPainterPath.Inst'Class)
       return access QtAda6.QtGui.QPainterPath.Inst'Class;
    function mapFromScene
-     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.QPoint.Inst'Class;
    function mapFromScene
-     (self : access Inst; polygon_P : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF)
+     (self : access Inst; polygon_P : UNION_QtAda6_QtGui_QPolygonF_SEQUENCE_QtAda6_QtCore_QRectF)
       return access QtAda6.QtGui.QPolygon.Inst'Class;
    function mapFromScene
-     (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect)
+     (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect)
       return access QtAda6.QtGui.QPolygon.Inst'Class;
    function mapFromScene (self : access Inst; x_P : float; y_P : float) return access QtAda6.QtCore.QPoint.Inst'Class;
    function mapFromScene
@@ -175,7 +168,7 @@ package QtAda6.QtWidgets.QGraphicsView is
      (self : access Inst; point_P : access QtAda6.QtCore.QPoint.Inst'Class)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapToScene
-     (self : access Inst; polygon_P : UNION_QtAda6_QtGui_QPolygonSEQUENCE_QtAda6_QtCore_QRect)
+     (self : access Inst; polygon_P : UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect)
       return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function mapToScene
      (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class)
@@ -192,7 +185,7 @@ package QtAda6.QtWidgets.QGraphicsView is
    procedure paintEvent (self : access Inst; event_P : access QtAda6.QtGui.QPaintEvent.Inst'Class);
    procedure render
      (self              : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
-      target_P          : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect      := null;
+      target_P          : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect     := null;
       source_P          : access QtAda6.QtCore.QRect.Inst'Class              := null;
       aspectRatioMode_P : access QtAda6.QtCore.Qt.AspectRatioMode.Inst'Class := null);
    function renderHints (self : access Inst) return access QtAda6.QtGui.QPainter.RenderHint.Inst'Class;
@@ -210,12 +203,12 @@ package QtAda6.QtWidgets.QGraphicsView is
    procedure setAlignment (self : access Inst; alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class);
    procedure setBackgroundBrush
      (self    : access Inst;
-      brush_P : UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap);
+      brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
    procedure setCacheMode (self : access Inst; mode_P : access QtAda6.QtWidgets.QGraphicsView.CacheModeFlag.Inst'Class);
    procedure setDragMode (self : access Inst; mode_P : access QtAda6.QtWidgets.QGraphicsView.DragMode.Inst'Class);
    procedure setForegroundBrush
      (self    : access Inst;
-      brush_P : UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap);
+      brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
    procedure setInteractive (self : access Inst; allowed_P : bool);
    procedure setOptimizationFlag
      (self      : access Inst; flag_P : access QtAda6.QtWidgets.QGraphicsView.OptimizationFlag.Inst'Class;
@@ -230,7 +223,7 @@ package QtAda6.QtWidgets.QGraphicsView is
    procedure setRubberBandSelectionMode
      (self : access Inst; mode_P : access QtAda6.QtCore.Qt.ItemSelectionMode.Inst'Class);
    procedure setScene (self : access Inst; scene_P : access QtAda6.QtWidgets.QGraphicsScene.Inst'Class);
-   procedure setSceneRect (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect);
+   procedure setSceneRect (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect);
    procedure setSceneRect (self : access Inst; x_P : float; y_P : float; w_P : float; h_P : float);
    procedure setTransform
      (self : access Inst; matrix_P : access QtAda6.QtGui.QTransform.Inst'Class; combine_P : bool := False);
@@ -247,7 +240,7 @@ package QtAda6.QtWidgets.QGraphicsView is
      (self : access Inst) return access QtAda6.QtWidgets.QGraphicsView.ViewportAnchor.Inst'Class;
    procedure translate (self : access Inst; dx_P : float; dy_P : float);
    procedure updateScene (self : access Inst; rects_P : SEQUENCE_QtAda6_QtCore_QRectF);
-   procedure updateSceneRect (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect);
+   procedure updateSceneRect (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect);
    function viewportEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
    function viewportTransform (self : access Inst) return access QtAda6.QtGui.QTransform.Inst'Class;
    function viewportUpdateMode_F

@@ -8,13 +8,11 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtWidgets.QGesture;
 limited with QtAda6.QtCore.Qt.GestureType;
 limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.QEvent;
-with QtAda6.QtWidgets.QGesture;
 package QtAda6.QtWidgets.QGestureEvent is
    type Inst;
    type Inst_Access is access all Inst;
@@ -23,7 +21,7 @@ package QtAda6.QtWidgets.QGestureEvent is
    type Inst is new QtAda6.QtCore.QEvent.Inst with null record;
    subtype SEQUENCE_QtAda6_QtWidgets_QGesture is QtAda6.QtWidgets.QGesture.Class_Array;
    subtype LIST_QtAda6_QtWidgets_QGesture is QtAda6.QtWidgets.QGesture.Class_Array;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create (gestures_P : SEQUENCE_QtAda6_QtWidgets_QGesture) return Class;
    procedure accept_K (self : access Inst);
@@ -43,7 +41,7 @@ package QtAda6.QtWidgets.QGestureEvent is
    function isAccepted (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QGesture.Inst'Class) return bool;
    function mapToGraphicsScene
      (self           : access Inst;
-      gesturePoint_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
+      gesturePoint_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    procedure setAccepted (self : access Inst; accepted_P : bool);
    procedure setAccepted (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.GestureType.Inst'Class; arg_2_P : bool);

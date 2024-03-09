@@ -12,7 +12,6 @@ limited with QtAda6.QtGui.QUndoGroup;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtGui.QUndoStack;
 limited with QtAda6.QtGui.QIcon;
-limited with QtAda6.QtGui.QPixmap;
 with QtAda6.QtWidgets.QListView;
 package QtAda6.QtWidgets.QUndoView is
    type Inst;
@@ -20,7 +19,7 @@ package QtAda6.QtWidgets.QUndoView is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QListView.Inst with null record;
-   type UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap is new Any;
+   type UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is new Any;
    procedure Finalize (Self : in out Class);
    function Create
      (group_P  : access QtAda6.QtGui.QUndoGroup.Inst'Class;
@@ -32,7 +31,7 @@ package QtAda6.QtWidgets.QUndoView is
    function cleanIcon (self : access Inst) return access QtAda6.QtGui.QIcon.Inst'Class;
    function emptyLabel (self : access Inst) return str;
    function group (self : access Inst) return access QtAda6.QtGui.QUndoGroup.Inst'Class;
-   procedure setCleanIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap);
+   procedure setCleanIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
    procedure setEmptyLabel (self : access Inst; label_P : str);
    procedure setGroup (self : access Inst; group_P : access QtAda6.QtGui.QUndoGroup.Inst'Class);
    procedure setStack (self : access Inst; stack_P : access QtAda6.QtGui.QUndoStack.Inst'Class);

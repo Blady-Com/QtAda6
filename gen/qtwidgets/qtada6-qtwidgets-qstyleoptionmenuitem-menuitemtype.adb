@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QStyleOptionMenuItem.MenuItemType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,59 +21,51 @@ package body QtAda6.QtWidgets.QStyleOptionMenuItem.MenuItemType is
       Free (Inst_Access (Self));
    end Finalize;
    function Normal return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionMenuItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MenuItemType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Normal"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Normal"));
    end Normal;
    function DefaultItem return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionMenuItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MenuItemType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DefaultItem"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DefaultItem"));
    end DefaultItem;
    function Separator return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionMenuItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MenuItemType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Separator"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Separator"));
    end Separator;
    function SubMenu return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionMenuItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MenuItemType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SubMenu"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SubMenu"));
    end SubMenu;
    function Scroller return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionMenuItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MenuItemType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Scroller"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Scroller"));
    end Scroller;
    function TearOff return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionMenuItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MenuItemType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TearOff"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TearOff"));
    end TearOff;
    function Margin return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionMenuItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MenuItemType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Margin"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Margin"));
    end Margin;
    function EmptyArea return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionMenuItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MenuItemType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "EmptyArea"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "EmptyArea"));
    end EmptyArea;
 end QtAda6.QtWidgets.QStyleOptionMenuItem.MenuItemType;

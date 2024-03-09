@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.Qt.WindowType;
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
@@ -21,23 +22,20 @@ limited with QtAda6.QtGui.QMovie;
 limited with QtAda6.QtGui.QPaintEvent;
 limited with QtAda6.QtGui.QPicture;
 limited with QtAda6.QtGui.QPixmap;
-limited with QtAda6.QtGui.QImage;
 limited with QtAda6.QtCore.Qt.TextFormat;
 limited with QtAda6.QtCore.Qt.TextInteractionFlag;
 with QtAda6.QtWidgets.QFrame;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QLabel is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QFrame.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtGui_QPictureint is new Any;
-   type UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr is new Any;
+   type UNION_QtAda6_QtGui_QPicture_int is new Any;
+   type UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is new Any;
    procedure Finalize (Self : in out Class);
-   function linkActivated (self : access Inst) return CLASSVAR_Signal;-- linkActivated(QString)
-   function linkHovered (self : access Inst) return CLASSVAR_Signal;-- linkHovered(QString)
+   function linkActivated (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- linkActivated(QString)
+   function linkHovered (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- linkHovered(QString)
    function Create
      (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
       f_P      : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class;
@@ -78,8 +76,8 @@ package QtAda6.QtWidgets.QLabel is
    procedure setNum (self : access Inst; arg_1_P : float);
    procedure setNum (self : access Inst; arg_1_P : int);
    procedure setOpenExternalLinks (self : access Inst; open_P : bool);
-   procedure setPicture (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QPictureint);
-   procedure setPixmap (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QPixmapQtAda6_QtGui_QImagestr);
+   procedure setPicture (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QPicture_int);
+   procedure setPixmap (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str);
    procedure setScaledContents (self : access Inst; arg_1_P : bool);
    procedure setSelection (self : access Inst; arg_1_P : int; arg_2_P : int);
    procedure setText (self : access Inst; arg_1_P : str);

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QLayout.SizeConstraint is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,45 +21,39 @@ package body QtAda6.QtWidgets.QLayout.SizeConstraint is
       Free (Inst_Access (Self));
    end Finalize;
    function SetDefaultConstraint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SizeConstraint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SetDefaultConstraint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SetDefaultConstraint"));
    end SetDefaultConstraint;
    function SetNoConstraint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SizeConstraint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SetNoConstraint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SetNoConstraint"));
    end SetNoConstraint;
    function SetMinimumSize return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SizeConstraint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SetMinimumSize"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SetMinimumSize"));
    end SetMinimumSize;
    function SetFixedSize return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SizeConstraint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SetFixedSize"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SetFixedSize"));
    end SetFixedSize;
    function SetMaximumSize return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SizeConstraint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SetMaximumSize"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SetMaximumSize"));
    end SetMaximumSize;
    function SetMinAndMaxSize return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SizeConstraint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SetMinAndMaxSize"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SetMinAndMaxSize"));
    end SetMinAndMaxSize;
 end QtAda6.QtWidgets.QLayout.SizeConstraint;

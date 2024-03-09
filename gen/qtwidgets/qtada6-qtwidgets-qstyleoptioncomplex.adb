@@ -10,8 +10,11 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtWidgets.QStyleOption;
+with QtAda6.QtWidgets.QStyleOptionComplex;
 package body QtAda6.QtWidgets.QStyleOptionComplex is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -19,20 +22,26 @@ package body QtAda6.QtWidgets.QStyleOptionComplex is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (other_P : access QtAda6.QtWidgets.QStyleOptionComplex.Inst'Class) return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionComplex");
       Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (version_P : int := 0; type_K_P : int := 0) return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleOptionComplex");
-      Args  := Tuple_New (2);
-      Tuple_SetItem (Args, 0, Long_FromLong (version_P));
-      Tuple_SetItem (Args, 1, Long_FromLong (type_K_P));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Args  := Tuple_New (0);
+      Dict  := Dict_New;
+      if version_P /= 0 then
+         Dict_SetItemString (Dict, "version", Long_FromLong (version_P));
+      end if;
+      if type_K_P /= 0 then
+         Dict_SetItemString (Dict, "type", Long_FromLong (type_K_P));
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
 end QtAda6.QtWidgets.QStyleOptionComplex;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtWidgets.QFontComboBox.FontFilter is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtWidgets.QFontComboBox.FontFilter is
       Free (Inst_Access (Self));
    end Finalize;
    function AllFonts return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFontComboBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FontFilter");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AllFonts"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AllFonts"));
    end AllFonts;
    function ScalableFonts return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFontComboBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FontFilter");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ScalableFonts"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ScalableFonts"));
    end ScalableFonts;
    function NonScalableFonts return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFontComboBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FontFilter");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NonScalableFonts"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NonScalableFonts"));
    end NonScalableFonts;
    function MonospacedFonts return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFontComboBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FontFilter");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MonospacedFonts"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MonospacedFonts"));
    end MonospacedFonts;
    function ProportionalFonts return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFontComboBox");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FontFilter");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ProportionalFonts"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ProportionalFonts"));
    end ProportionalFonts;
 end QtAda6.QtWidgets.QFontComboBox.FontFilter;
