@@ -12,12 +12,14 @@ with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QSize;
 with QtAda6.QtGui.QImage.Format;
-with QtAda6.QtGui.QImage;
 with QtAda6.QtCore.QRect;
 with QtAda6.QtCore.QIODevice;
 with QtAda6.QtCore.QByteArray;
 with QtAda6.QtGui.QImageIOHandler.ImageOption;
 package body QtAda6.QtGui.QImageIOHandler is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -25,17 +27,18 @@ package body QtAda6.QtGui.QImageIOHandler is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageIOHandler");
       Args  := Tuple_New (0);
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict  := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function allocateImage
      (size_P  : access QtAda6.QtCore.QSize.Inst'Class; format_P : access QtAda6.QtGui.QImage.Format.Inst'Class;
-      image_P : UNION_QtAda6_QtGui_QImagestr) return bool
+      image_P : UNION_QtAda6_QtGui_QImage_str) return bool
    is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageIOHandler");
       Method := Object_GetAttrString (Class, "allocateImage");
@@ -43,161 +46,179 @@ package body QtAda6.QtGui.QImageIOHandler is
       Tuple_SetItem (Args, 0, (if size_P /= null then size_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, (if format_P /= null then format_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 2, (if image_P /= null then image_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end allocateImage;
    function canRead (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "canRead");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end canRead;
    function currentImageNumber (self : access Inst) return int is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "currentImageNumber");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end currentImageNumber;
    function currentImageRect (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentImageRect");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end currentImageRect;
    function device (self : access Inst) return access QtAda6.QtCore.QIODevice.Inst'Class is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtCore.QIODevice.Class := new QtAda6.QtCore.QIODevice.Inst;
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret : constant QtAda6.QtCore.QIODevice.Class := new QtAda6.QtCore.QIODevice.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "device");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end device;
-   function format_F (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
+   function format (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class is
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "format");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
-   end format_F;
+   end format;
    function imageCount (self : access Inst) return int is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "imageCount");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end imageCount;
    function jumpToImage (self : access Inst; imageNumber_P : int) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "jumpToImage");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Long_FromLong (imageNumber_P));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end jumpToImage;
    function jumpToNextImage (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "jumpToNextImage");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end jumpToNextImage;
    function loopCount (self : access Inst) return int is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "loopCount");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end loopCount;
    function nextImageDelay (self : access Inst) return int is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "nextImageDelay");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end nextImageDelay;
-   function option_F
+   function option
      (self : access Inst; option_P : access QtAda6.QtGui.QImageIOHandler.ImageOption.Inst'Class) return Any
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "option");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if option_P /= null then option_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return null;
-   end option_F;
-   function read (self : access Inst; image_P : UNION_QtAda6_QtGui_QImagestr) return bool is
-      Method, Args, List, Result : Handle;
+   end option;
+   function read (self : access Inst; image_P : UNION_QtAda6_QtGui_QImage_str) return bool is
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "read");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if image_P /= null then image_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end read;
    procedure setDevice (self : access Inst; device_P : access QtAda6.QtCore.QIODevice.Inst'Class) is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDevice");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if device_P /= null then device_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setDevice;
-   procedure setFormat (self : access Inst; format_P : UNION_QtAda6_QtCore_QByteArraybytes) is
-      Method, Args, List, Result : Handle;
+   procedure setFormat (self : access Inst; format_P : UNION_QtAda6_QtCore_QByteArray_bytes) is
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if format_P /= null then format_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setFormat;
    procedure setOption
      (self : access Inst; option_P : access QtAda6.QtGui.QImageIOHandler.ImageOption.Inst'Class; value_P : Any)
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOption");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if option_P /= null then option_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, (if value_P /= null then value_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end setOption;
    function supportsOption
      (self : access Inst; option_P : access QtAda6.QtGui.QImageIOHandler.ImageOption.Inst'Class) return bool
    is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "supportsOption");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if option_P /= null then option_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end supportsOption;
-   function write (self : access Inst; image_P : UNION_QtAda6_QtGui_QImagestr) return bool is
-      Method, Args, List, Result : Handle;
+   function write (self : access Inst; image_P : UNION_QtAda6_QtGui_QImage_str) return bool is
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "write");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if image_P /= null then image_P.Python_Proxy else No_Value));
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end write;
 end QtAda6.QtGui.QImageIOHandler;

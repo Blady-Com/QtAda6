@@ -12,10 +12,6 @@ limited with QtAda6.QtGui.QTextDocument;
 limited with QtAda6.QtGui.QTextBlock;
 limited with QtAda6.QtGui.QTextBlockUserData;
 limited with QtAda6.QtGui.QTextCharFormat;
-limited with QtAda6.QtGui.QColor;
-limited with QtAda6.QtGui.QRgba64;
-limited with QtAda6.QtCore.Qt.GlobalColor;
-limited with QtAda6.QtGui.QFont;
 with QtAda6.QtCore.QObject;
 package QtAda6.QtGui.QSyntaxHighlighter is
    type Inst;
@@ -23,8 +19,8 @@ package QtAda6.QtGui.QSyntaxHighlighter is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   type UNION_QtAda6_QtGui_QColorQtAda6_QtGui_QRgba64AnyQtAda6_QtCore_Qt_GlobalColorstrint is new Any;
-   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
+   type UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is new Any;
+   type UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str is new Any;
    procedure Finalize (Self : in out Class);
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class) return Class;
    function Create (parent_P : access QtAda6.QtGui.QTextDocument.Inst'Class) return Class;
@@ -42,9 +38,9 @@ package QtAda6.QtGui.QSyntaxHighlighter is
    procedure setDocument (self : access Inst; doc_P : access QtAda6.QtGui.QTextDocument.Inst'Class);
    procedure setFormat
      (self    : access Inst; start_P : int; count_P : int;
-      color_P : UNION_QtAda6_QtGui_QColorQtAda6_QtGui_QRgba64AnyQtAda6_QtCore_Qt_GlobalColorstrint);
+      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
    procedure setFormat
-     (self : access Inst; start_P : int; count_P : int; font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str);
+     (self : access Inst; start_P : int; count_P : int; font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str);
    procedure setFormat
      (self : access Inst; start_P : int; count_P : int; format_P : access QtAda6.QtGui.QTextCharFormat.Inst'Class);
 end QtAda6.QtGui.QSyntaxHighlighter;

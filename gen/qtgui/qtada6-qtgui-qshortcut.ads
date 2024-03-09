@@ -8,34 +8,33 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtGui.QKeySequence.StandardKey;
 limited with QtAda6.QtCore.Qt.ShortcutContext;
-limited with QtAda6.QtCore.QKeyCombination;
 limited with QtAda6.QtCore.QEvent;
+limited with QtAda6.QtGui.QKeySequence;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtGui.QKeySequence;
 package QtAda6.QtGui.QShortcut is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    type CALLABLE is new Any;
-   type UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint is
+   type UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int is
      new Any;
    subtype LIST_QtAda6_QtGui_QKeySequence is QtAda6.QtGui.QKeySequence.Class_Array;
    subtype SEQUENCE_QtAda6_QtGui_QKeySequence is QtAda6.QtGui.QKeySequence.Class_Array;
    procedure Finalize (Self : in out Class);
-   function activated (self : access Inst) return CLASSVAR_Signal;-- activated()
-   function activatedAmbiguously (self : access Inst) return CLASSVAR_Signal;-- activatedAmbiguously()
+   function activated (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- activated()
+   function activatedAmbiguously
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- activatedAmbiguously()
    function Create
      (arg_1_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class;
       arg_2_P : access QtAda6.QtCore.QObject.Inst'Class; arg_3_P : CALLABLE;
       arg_4_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class;
    function Create
-     (arg_1_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint;
+     (arg_1_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
       arg_2_P : access QtAda6.QtCore.QObject.Inst'Class; arg_3_P : CALLABLE;
       arg_4_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class;
    function Create
@@ -43,7 +42,7 @@ package QtAda6.QtGui.QShortcut is
       parent_P  : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes := ""; ambiguousMember_P : bytes := "";
       context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class;
    function Create
-     (key_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint;
+     (key_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
       parent_P  : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes := ""; ambiguousMember_P : bytes := "";
       context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class) return Class;
@@ -59,7 +58,7 @@ package QtAda6.QtGui.QShortcut is
    procedure setEnabled (self : access Inst; enable_P : bool);
    procedure setKey
      (self  : access Inst;
-      key_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint);
+      key_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int);
    procedure setKeys (self : access Inst; key_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class);
    procedure setKeys (self : access Inst; keys_P : SEQUENCE_QtAda6_QtGui_QKeySequence);
    procedure setWhatsThis (self : access Inst; text_P : str);

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QPageLayout.Unit is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,45 +21,39 @@ package body QtAda6.QtGui.QPageLayout.Unit is
       Free (Inst_Access (Self));
    end Finalize;
    function Millimeter return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Unit");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Millimeter"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Millimeter"));
    end Millimeter;
    function Point return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Unit");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Point"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Point"));
    end Point;
    function Inch return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Unit");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Inch"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Inch"));
    end Inch;
    function Pica return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Unit");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Pica"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Pica"));
    end Pica;
    function Didot return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Unit");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Didot"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Didot"));
    end Didot;
    function Cicero return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageLayout");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Unit");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Cicero"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Cicero"));
    end Cicero;
 end QtAda6.QtGui.QPageLayout.Unit;

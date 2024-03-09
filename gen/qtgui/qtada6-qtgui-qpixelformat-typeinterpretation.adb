@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QPixelFormat.TypeInterpretation is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtGui.QPixelFormat.TypeInterpretation is
       Free (Inst_Access (Self));
    end Finalize;
    function UnsignedInteger return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixelFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TypeInterpretation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UnsignedInteger"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UnsignedInteger"));
    end UnsignedInteger;
    function UnsignedShort return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixelFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TypeInterpretation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UnsignedShort"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UnsignedShort"));
    end UnsignedShort;
    function UnsignedByte return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixelFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TypeInterpretation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UnsignedByte"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UnsignedByte"));
    end UnsignedByte;
    function FloatingPoint return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixelFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TypeInterpretation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FloatingPoint"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FloatingPoint"));
    end FloatingPoint;
 end QtAda6.QtGui.QPixelFormat.TypeInterpretation;

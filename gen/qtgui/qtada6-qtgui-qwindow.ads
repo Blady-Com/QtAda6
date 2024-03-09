@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtGui.QScreen;
 limited with QtAda6.QtGui.QAccessibleInterface;
 limited with QtAda6.QtCore.QSize;
@@ -27,19 +28,12 @@ limited with QtAda6.QtGui.QIcon;
 limited with QtAda6.QtGui.QWindow.AncestorMode;
 limited with QtAda6.QtGui.QKeyEvent;
 limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtGui.QRegion;
 limited with QtAda6.QtCore.Qt.WindowModality;
 limited with QtAda6.QtGui.QMouseEvent;
 limited with QtAda6.QtGui.QMoveEvent;
-limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtGui.QPaintEvent;
 limited with QtAda6.QtGui.QResizeEvent;
-limited with QtAda6.QtCore.Qt.CursorShape;
-limited with QtAda6.QtGui.QPixmap;
-limited with QtAda6.QtGui.QSurfaceFormat.FormatOption;
-limited with QtAda6.QtGui.QBitmap;
-limited with QtAda6.QtGui.QPolygon;
 limited with QtAda6.QtGui.QSurface.SurfaceType;
 limited with QtAda6.QtGui.QWindow.Visibility;
 limited with QtAda6.QtCore.Qt.WindowState;
@@ -50,7 +44,6 @@ limited with QtAda6.QtGui.QTouchEvent;
 limited with QtAda6.QtGui.QWheelEvent;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtGui.QSurface;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QWindow is
    type Inst;
    type Inst_Access is access all Inst;
@@ -59,34 +52,44 @@ package QtAda6.QtGui.QWindow is
    type Inst is new QtAda6.QtCore.QObject.Inst
 --  and QtAda6.QtGui.QSurface.Inst
    with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
-   type UNION_QtAda6_QtGui_QCursorQtAda6_QtCore_Qt_CursorShapeQtAda6_QtGui_QPixmap is new Any;
-   type UNION_QtAda6_QtGui_QSurfaceFormatQtAda6_QtGui_QSurfaceFormat_FormatOption is new Any;
-   type UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap is new Any;
-   type UNION_QtAda6_QtGui_QRegionQtAda6_QtGui_QBitmapQtAda6_QtGui_QPolygonQtAda6_QtCore_QRect is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
+   type UNION_QtAda6_QtGui_QCursor_QtAda6_QtCore_Qt_CursorShape_QtAda6_QtGui_QPixmap is new Any;
+   type UNION_QtAda6_QtGui_QSurfaceFormat_QtAda6_QtGui_QSurfaceFormat_FormatOption is new Any;
+   type UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is new Any;
+   type UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect is new Any;
    procedure Finalize (Self : in out Class);
-   function activeChanged (self : access Inst) return CLASSVAR_Signal;-- activeChanged()
+   function activeChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- activeChanged()
    function contentOrientationChanged
-     (self : access Inst) return CLASSVAR_Signal;-- contentOrientationChanged(Qt::ScreenOrientation)
-   function focusObjectChanged (self : access Inst) return CLASSVAR_Signal;-- focusObjectChanged(QObject*)
-   function heightChanged (self : access Inst) return CLASSVAR_Signal;-- heightChanged(int)
-   function maximumHeightChanged (self : access Inst) return CLASSVAR_Signal;-- maximumHeightChanged(int)
-   function maximumWidthChanged (self : access Inst) return CLASSVAR_Signal;-- maximumWidthChanged(int)
-   function minimumHeightChanged (self : access Inst) return CLASSVAR_Signal;-- minimumHeightChanged(int)
-   function minimumWidthChanged (self : access Inst) return CLASSVAR_Signal;-- minimumWidthChanged(int)
-   function modalityChanged (self : access Inst) return CLASSVAR_Signal;-- modalityChanged(Qt::WindowModality)
-   function opacityChanged (self : access Inst) return CLASSVAR_Signal;-- opacityChanged(double)
-   function screenChanged (self : access Inst) return CLASSVAR_Signal;-- screenChanged(QScreen*)
-   function transientParentChanged (self : access Inst) return CLASSVAR_Signal;-- transientParentChanged(QWindow*)
-   function visibilityChanged (self : access Inst) return CLASSVAR_Signal;-- visibilityChanged(QWindow::Visibility)
-   function visibleChanged (self : access Inst) return CLASSVAR_Signal;-- visibleChanged(bool)
-   function widthChanged (self : access Inst) return CLASSVAR_Signal;-- widthChanged(int)
-   function windowStateChanged (self : access Inst) return CLASSVAR_Signal;-- windowStateChanged(Qt::WindowState)
-   function windowTitleChanged (self : access Inst) return CLASSVAR_Signal;-- windowTitleChanged(QString)
-   function xChanged (self : access Inst) return CLASSVAR_Signal;-- xChanged(int)
-   function yChanged (self : access Inst) return CLASSVAR_Signal;-- yChanged(int)
+     (self : access Inst)
+      return access QtAda6.QtCore.Signal.Inst'Class;-- contentOrientationChanged(Qt::ScreenOrientation)
+   function focusObjectChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- focusObjectChanged(QObject*)
+   function heightChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- heightChanged(int)
+   function maximumHeightChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- maximumHeightChanged(int)
+   function maximumWidthChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- maximumWidthChanged(int)
+   function minimumHeightChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- minimumHeightChanged(int)
+   function minimumWidthChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- minimumWidthChanged(int)
+   function modalityChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- modalityChanged(Qt::WindowModality)
+   function opacityChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- opacityChanged(double)
+   function screenChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- screenChanged(QScreen*)
+   function transientParentChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- transientParentChanged(QWindow*)
+   function visibilityChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- visibilityChanged(QWindow::Visibility)
+   function visibleChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- visibleChanged(bool)
+   function widthChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- widthChanged(int)
+   function windowStateChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- windowStateChanged(Qt::WindowState)
+   function windowTitleChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- windowTitleChanged(QString)
+   function xChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- xChanged(int)
+   function yChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- yChanged(int)
    function Create (parent_P : access QtAda6.QtGui.QWindow.Inst'Class) return Class;
    function Create (screen_P : access QtAda6.QtGui.QScreen.Inst'Class := null) return Class;
    function accessibleRoot (self : access Inst) return access QtAda6.QtGui.QAccessibleInterface.Inst'Class;
@@ -130,12 +133,12 @@ package QtAda6.QtGui.QWindow is
    function mapFromGlobal
      (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtCore.QPoint.Inst'Class;
    function mapFromGlobal
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapToGlobal
      (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtCore.QPoint.Inst'Class;
    function mapToGlobal
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function mask (self : access Inst) return access QtAda6.QtGui.QRegion.Inst'Class;
    function maximumHeight (self : access Inst) return int;
@@ -151,7 +154,7 @@ package QtAda6.QtGui.QWindow is
    procedure mouseReleaseEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class);
    procedure moveEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMoveEvent.Inst'Class);
    function nativeEvent
-     (self : access Inst; eventType_P : UNION_QtAda6_QtCore_QByteArraybytes; message_P : int)
+     (self : access Inst; eventType_P : UNION_QtAda6_QtCore_QByteArray_bytes; message_P : int)
       return access Object'Class;
    function opacity (self : access Inst) return float;
    procedure paintEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QPaintEvent.Inst'Class);
@@ -172,22 +175,22 @@ package QtAda6.QtGui.QWindow is
    function screen (self : access Inst) return access QtAda6.QtGui.QScreen.Inst'Class;
    procedure setBaseSize (self : access Inst; size_P : access QtAda6.QtCore.QSize.Inst'Class);
    procedure setCursor
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QCursorQtAda6_QtCore_Qt_CursorShapeQtAda6_QtGui_QPixmap);
+     (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QCursor_QtAda6_QtCore_Qt_CursorShape_QtAda6_QtGui_QPixmap);
    procedure setFilePath (self : access Inst; filePath_P : str);
    procedure setFlag
      (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class; on_P : bool := False);
    procedure setFlags (self : access Inst; flags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class);
    procedure setFormat
-     (self : access Inst; format_P : UNION_QtAda6_QtGui_QSurfaceFormatQtAda6_QtGui_QSurfaceFormat_FormatOption);
+     (self : access Inst; format_P : UNION_QtAda6_QtGui_QSurfaceFormat_QtAda6_QtGui_QSurfaceFormat_FormatOption);
    procedure setFramePosition (self : access Inst; point_P : access QtAda6.QtCore.QPoint.Inst'Class);
    procedure setGeometry (self : access Inst; posx_P : int; posy_P : int; w_P : int; h_P : int);
    procedure setGeometry (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class);
    procedure setHeight (self : access Inst; arg_P : int);
-   procedure setIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap);
+   procedure setIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
    function setKeyboardGrabEnabled (self : access Inst; grab_P : bool) return bool;
    procedure setMask
      (self     : access Inst;
-      region_P : UNION_QtAda6_QtGui_QRegionQtAda6_QtGui_QBitmapQtAda6_QtGui_QPolygonQtAda6_QtCore_QRect);
+      region_P : UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect);
    procedure setMaximumHeight (self : access Inst; h_P : int);
    procedure setMaximumSize (self : access Inst; size_P : access QtAda6.QtCore.QSize.Inst'Class);
    procedure setMaximumWidth (self : access Inst; w_P : int);
@@ -237,5 +240,5 @@ package QtAda6.QtGui.QWindow is
    function windowState (self : access Inst) return access QtAda6.QtCore.Qt.WindowState.Inst'Class;
    function windowStates (self : access Inst) return access QtAda6.QtCore.Qt.WindowState.Inst'Class;
    function x (self : access Inst) return int;
-   function y_F (self : access Inst) return int;
+   function y (self : access Inst) return int;
 end QtAda6.QtGui.QWindow;

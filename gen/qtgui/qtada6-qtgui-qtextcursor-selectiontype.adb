@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QTextCursor.SelectionType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtGui.QTextCursor.SelectionType is
       Free (Inst_Access (Self));
    end Finalize;
    function WordUnderCursor return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SelectionType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WordUnderCursor"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WordUnderCursor"));
    end WordUnderCursor;
    function LineUnderCursor return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SelectionType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LineUnderCursor"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LineUnderCursor"));
    end LineUnderCursor;
    function BlockUnderCursor return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SelectionType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BlockUnderCursor"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BlockUnderCursor"));
    end BlockUnderCursor;
    function Document return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SelectionType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Document"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Document"));
    end Document;
 end QtAda6.QtGui.QTextCursor.SelectionType;

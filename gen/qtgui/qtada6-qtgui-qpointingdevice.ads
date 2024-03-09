@@ -8,24 +8,24 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtGui.QInputDevice.DeviceType;
 limited with QtAda6.QtGui.QPointingDevice.PointerType;
 limited with QtAda6.QtGui.QInputDevice.Capability;
 limited with QtAda6.QtGui.QPointingDeviceUniqueId;
 limited with QtAda6.QtCore.QObject;
 with QtAda6.QtGui.QInputDevice;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QPointingDevice is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QInputDevice.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
    function grabChanged
      (self : access Inst)
-      return CLASSVAR_Signal;-- grabChanged(QObject*,GrabTransition,const QPointerEvent*,QEventPoint)
+      return access QtAda6.QtCore.Signal.Inst'
+     Class;-- grabChanged(QObject*,GrabTransition,const QPointerEvent*,QEventPoint)
    function Create
      (name_P     : str; systemId_P : int; devType_P : access QtAda6.QtGui.QInputDevice.DeviceType.Inst'Class;
       pType_P    : access QtAda6.QtGui.QPointingDevice.PointerType.Inst'Class;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QPointingDevice.PointerType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,52 +21,45 @@ package body QtAda6.QtGui.QPointingDevice.PointerType is
       Free (Inst_Access (Self));
    end Finalize;
    function Unknown return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PointerType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Unknown"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Unknown"));
    end Unknown;
    function Generic_K return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PointerType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Generic"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Generic"));
    end Generic_K;
    function Finger return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PointerType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Finger"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Finger"));
    end Finger;
    function Pen return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PointerType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Pen"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Pen"));
    end Pen;
    function Eraser return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PointerType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Eraser"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Eraser"));
    end Eraser;
    function Cursor return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PointerType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Cursor"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Cursor"));
    end Cursor;
    function AllPointerTypes return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PointerType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AllPointerTypes"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AllPointerTypes"));
    end AllPointerTypes;
 end QtAda6.QtGui.QPointingDevice.PointerType;

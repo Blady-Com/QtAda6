@@ -8,9 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.QPointF;
 limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtCore.Qt.MouseButton;
 limited with QtAda6.QtCore.Qt.KeyboardModifier;
 limited with QtAda6.QtCore.Qt.ScrollPhase;
@@ -23,12 +21,12 @@ package QtAda6.QtGui.QWheelEvent is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QSinglePointEvent.Inst with null record;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create (arg_1_P : access QtAda6.QtGui.QWheelEvent.Inst'Class) return Class;
    function Create
-     (pos_P        : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element;
-      globalPos_P  : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element;
+     (pos_P        : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
+      globalPos_P  : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
       pixelDelta_P : access QtAda6.QtCore.QPoint.Inst'Class; angleDelta_P : access QtAda6.QtCore.QPoint.Inst'Class;
       buttons_P    : access QtAda6.QtCore.Qt.MouseButton.Inst'Class;
       modifiers_P  : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;

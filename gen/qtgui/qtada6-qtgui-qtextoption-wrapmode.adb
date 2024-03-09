@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QTextOption.WrapMode is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtGui.QTextOption.WrapMode is
       Free (Inst_Access (Self));
    end Finalize;
    function NoWrap return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextOption");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WrapMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoWrap"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoWrap"));
    end NoWrap;
    function WordWrap return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextOption");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WrapMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WordWrap"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WordWrap"));
    end WordWrap;
    function ManualWrap return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextOption");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WrapMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ManualWrap"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ManualWrap"));
    end ManualWrap;
    function WrapAnywhere return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextOption");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WrapMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WrapAnywhere"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WrapAnywhere"));
    end WrapAnywhere;
    function WrapAtWordBoundaryOrAnywhere return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextOption");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "WrapMode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WrapAtWordBoundaryOrAnywhere"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WrapAtWordBoundaryOrAnywhere"));
    end WrapAtWordBoundaryOrAnywhere;
 end QtAda6.QtGui.QTextOption.WrapMode;

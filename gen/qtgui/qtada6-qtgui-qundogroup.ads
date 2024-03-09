@@ -8,26 +8,28 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
+limited with QtAda6.QtGui.QUndoStack;
 limited with QtAda6.QtGui.QAction;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtGui.QUndoStack;
 package QtAda6.QtGui.QUndoGroup is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    subtype LIST_QtAda6_QtGui_QUndoStack is QtAda6.QtGui.QUndoStack.Class_Array;
    procedure Finalize (Self : in out Class);
-   function activeStackChanged (self : access Inst) return CLASSVAR_Signal;-- activeStackChanged(QUndoStack*)
-   function canRedoChanged (self : access Inst) return CLASSVAR_Signal;-- canRedoChanged(bool)
-   function canUndoChanged (self : access Inst) return CLASSVAR_Signal;-- canUndoChanged(bool)
-   function cleanChanged (self : access Inst) return CLASSVAR_Signal;-- cleanChanged(bool)
-   function indexChanged (self : access Inst) return CLASSVAR_Signal;-- indexChanged(int)
-   function redoTextChanged (self : access Inst) return CLASSVAR_Signal;-- redoTextChanged(QString)
-   function undoTextChanged (self : access Inst) return CLASSVAR_Signal;-- undoTextChanged(QString)
+   function activeStackChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- activeStackChanged(QUndoStack*)
+   function canRedoChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- canRedoChanged(bool)
+   function canUndoChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- canUndoChanged(bool)
+   function cleanChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- cleanChanged(bool)
+   function indexChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- indexChanged(int)
+   function redoTextChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- redoTextChanged(QString)
+   function undoTextChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- undoTextChanged(QString)
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function activeStack (self : access Inst) return access QtAda6.QtGui.QUndoStack.Inst'Class;
    procedure addStack (self : access Inst; stack_P : access QtAda6.QtGui.QUndoStack.Inst'Class);

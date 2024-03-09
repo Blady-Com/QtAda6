@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QTextOption.TabType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtGui.QTextOption.TabType is
       Free (Inst_Access (Self));
    end Finalize;
    function LeftTab return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextOption");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TabType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LeftTab"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LeftTab"));
    end LeftTab;
    function RightTab return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextOption");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TabType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RightTab"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RightTab"));
    end RightTab;
    function CenterTab return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextOption");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TabType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CenterTab"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CenterTab"));
    end CenterTab;
    function DelimiterTab return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextOption");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TabType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DelimiterTab"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DelimiterTab"));
    end DelimiterTab;
 end QtAda6.QtGui.QTextOption.TabType;

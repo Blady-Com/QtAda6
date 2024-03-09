@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QTextCursor.MoveOperation is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,178 +21,153 @@ package body QtAda6.QtGui.QTextCursor.MoveOperation is
       Free (Inst_Access (Self));
    end Finalize;
    function NoMove return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoMove"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoMove"));
    end NoMove;
    function Start return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Start"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Start"));
    end Start;
    function Up return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Up"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Up"));
    end Up;
    function StartOfLine return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "StartOfLine"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "StartOfLine"));
    end StartOfLine;
    function StartOfBlock return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "StartOfBlock"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "StartOfBlock"));
    end StartOfBlock;
    function StartOfWord return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "StartOfWord"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "StartOfWord"));
    end StartOfWord;
    function PreviousBlock return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreviousBlock"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreviousBlock"));
    end PreviousBlock;
    function PreviousCharacter return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreviousCharacter"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreviousCharacter"));
    end PreviousCharacter;
    function PreviousWord return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreviousWord"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreviousWord"));
    end PreviousWord;
    function Left return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Left"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Left"));
    end Left;
    function WordLeft return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WordLeft"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WordLeft"));
    end WordLeft;
    function End_K return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "End"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "End"));
    end End_K;
    function Down return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Down"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Down"));
    end Down;
    function EndOfLine return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "EndOfLine"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "EndOfLine"));
    end EndOfLine;
    function EndOfWord return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "EndOfWord"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "EndOfWord"));
    end EndOfWord;
    function EndOfBlock return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "EndOfBlock"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "EndOfBlock"));
    end EndOfBlock;
    function NextBlock return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NextBlock"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NextBlock"));
    end NextBlock;
    function NextCharacter return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NextCharacter"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NextCharacter"));
    end NextCharacter;
    function NextWord return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NextWord"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NextWord"));
    end NextWord;
    function Right return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Right"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Right"));
    end Right;
    function WordRight return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WordRight"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WordRight"));
    end WordRight;
    function NextCell return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NextCell"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NextCell"));
    end NextCell;
    function PreviousCell return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreviousCell"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreviousCell"));
    end PreviousCell;
    function NextRow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NextRow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NextRow"));
    end NextRow;
    function PreviousRow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCursor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MoveOperation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreviousRow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreviousRow"));
    end PreviousRow;
 end QtAda6.QtGui.QTextCursor.MoveOperation;

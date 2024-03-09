@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QImageIOHandler.Transformation is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,59 +21,51 @@ package body QtAda6.QtGui.QImageIOHandler.Transformation is
       Free (Inst_Access (Self));
    end Finalize;
    function TransformationNone return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageIOHandler");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Transformation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TransformationNone"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TransformationNone"));
    end TransformationNone;
    function TransformationMirror return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageIOHandler");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Transformation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TransformationMirror"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TransformationMirror"));
    end TransformationMirror;
    function TransformationFlip return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageIOHandler");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Transformation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TransformationFlip"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TransformationFlip"));
    end TransformationFlip;
    function TransformationRotate180 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageIOHandler");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Transformation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TransformationRotate180"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TransformationRotate180"));
    end TransformationRotate180;
    function TransformationRotate90 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageIOHandler");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Transformation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TransformationRotate90"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TransformationRotate90"));
    end TransformationRotate90;
    function TransformationMirrorAndRotate90 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageIOHandler");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Transformation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TransformationMirrorAndRotate90"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TransformationMirrorAndRotate90"));
    end TransformationMirrorAndRotate90;
    function TransformationFlipAndRotate90 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageIOHandler");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Transformation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TransformationFlipAndRotate90"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TransformationFlipAndRotate90"));
    end TransformationFlipAndRotate90;
    function TransformationRotate270 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageIOHandler");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Transformation");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TransformationRotate270"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TransformationRotate270"));
    end TransformationRotate270;
 end QtAda6.QtGui.QImageIOHandler.Transformation;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QEventPoint.State is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtGui.QEventPoint.State is
       Free (Inst_Access (Self));
    end Finalize;
    function Unknown return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QEventPoint");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "State");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Unknown"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Unknown"));
    end Unknown;
    function Pressed return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QEventPoint");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "State");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Pressed"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Pressed"));
    end Pressed;
    function Updated return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QEventPoint");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "State");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Updated"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Updated"));
    end Updated;
    function Stationary return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QEventPoint");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "State");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Stationary"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Stationary"));
    end Stationary;
    function Released return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QEventPoint");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "State");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Released"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Released"));
    end Released;
 end QtAda6.QtGui.QEventPoint.State;

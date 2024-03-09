@@ -9,26 +9,23 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtGui.QVector2D;
 limited with QtAda6.QtGui.QVector3D;
 limited with QtAda6.QtCore.QDataStream;
-limited with QtAda6.QtGui.QMatrix4x4;
-limited with QtAda6.QtGui.QTransform;
+limited with QtAda6.QtCore.QPointF;
 package QtAda6.QtGui.QVector4D is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
-   type UNION_QtAda6_QtGui_QMatrix4x4QtAda6_QtGui_QTransform is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
+   type UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (point_P : access QtAda6.QtCore.QPoint.Inst'Class) return Class;
    function Create
-     (point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element) return Class;
+     (point_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element) return Class;
    function Create (vector_P : access QtAda6.QtGui.QVector2D.Inst'Class) return Class;
    function Create (vector_P : access QtAda6.QtGui.QVector2D.Inst'Class; zpos_P : float; wpos_P : float) return Class;
    function Create (vector_P : access QtAda6.QtGui.QVector3D.Inst'Class) return Class;
@@ -53,7 +50,7 @@ package QtAda6.QtGui.QVector4D is
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_mul_U (self : access Inst; factor_P : float) return access QtAda6.QtGui.QVector4D.Inst'Class;
    function U_mul_U
-     (self : access Inst; matrix_P : UNION_QtAda6_QtGui_QMatrix4x4QtAda6_QtGui_QTransform)
+     (self : access Inst; matrix_P : UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform)
       return access QtAda6.QtGui.QVector4D.Inst'Class;
    function U_mul_U
      (self : access Inst; v2_P : access QtAda6.QtGui.QVector4D.Inst'Class)

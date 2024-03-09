@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QAction.Priority is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtGui.QAction.Priority is
       Free (Inst_Access (Self));
    end Finalize;
    function LowPriority return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAction");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Priority");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LowPriority"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LowPriority"));
    end LowPriority;
    function NormalPriority return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAction");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Priority");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NormalPriority"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NormalPriority"));
    end NormalPriority;
    function HighPriority return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAction");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Priority");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HighPriority"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HighPriority"));
    end HighPriority;
 end QtAda6.QtGui.QAction.Priority;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QPaintDevice.PaintDeviceMetric is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,87 +21,75 @@ package body QtAda6.QtGui.QPaintDevice.PaintDeviceMetric is
       Free (Inst_Access (Self));
    end Finalize;
    function PdmWidth return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintDeviceMetric");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PdmWidth"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PdmWidth"));
    end PdmWidth;
    function PdmHeight return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintDeviceMetric");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PdmHeight"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PdmHeight"));
    end PdmHeight;
    function PdmWidthMM return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintDeviceMetric");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PdmWidthMM"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PdmWidthMM"));
    end PdmWidthMM;
    function PdmHeightMM return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintDeviceMetric");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PdmHeightMM"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PdmHeightMM"));
    end PdmHeightMM;
    function PdmNumColors return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintDeviceMetric");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PdmNumColors"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PdmNumColors"));
    end PdmNumColors;
    function PdmDepth return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintDeviceMetric");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PdmDepth"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PdmDepth"));
    end PdmDepth;
    function PdmDpiX return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintDeviceMetric");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PdmDpiX"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PdmDpiX"));
    end PdmDpiX;
    function PdmDpiY return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintDeviceMetric");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PdmDpiY"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PdmDpiY"));
    end PdmDpiY;
    function PdmPhysicalDpiX return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintDeviceMetric");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PdmPhysicalDpiX"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PdmPhysicalDpiX"));
    end PdmPhysicalDpiX;
    function PdmPhysicalDpiY return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintDeviceMetric");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PdmPhysicalDpiY"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PdmPhysicalDpiY"));
    end PdmPhysicalDpiY;
    function PdmDevicePixelRatio return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintDeviceMetric");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PdmDevicePixelRatio"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PdmDevicePixelRatio"));
    end PdmDevicePixelRatio;
    function PdmDevicePixelRatioScaled return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintDeviceMetric");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PdmDevicePixelRatioScaled"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PdmDevicePixelRatioScaled"));
    end PdmDevicePixelRatioScaled;
 end QtAda6.QtGui.QPaintDevice.PaintDeviceMetric;

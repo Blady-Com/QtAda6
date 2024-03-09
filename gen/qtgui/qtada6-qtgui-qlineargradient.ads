@@ -9,8 +9,6 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtGui.QPainterPath.Element;
 with QtAda6.QtGui.QGradient;
 package QtAda6.QtGui.QLinearGradient is
    type Inst;
@@ -18,21 +16,21 @@ package QtAda6.QtGui.QLinearGradient is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QGradient.Inst with null record;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (QLinearGradient_P : access QtAda6.QtGui.QLinearGradient.Inst'Class) return Class;
    function Create
-     (start_P     : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element;
-      finalStop_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element) return Class;
+     (start_P     : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
+      finalStop_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element) return Class;
    function Create (xStart_P : float; yStart_P : float; xFinalStop_P : float; yFinalStop_P : float) return Class;
    procedure U_copy_U;
    function finalStop (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class;
    procedure setFinalStop
-     (self : access Inst; stop_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element);
+     (self : access Inst; stop_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element);
    procedure setFinalStop (self : access Inst; x_P : float; y_P : float);
    procedure setStart
-     (self : access Inst; start_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element);
+     (self : access Inst; start_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element);
    procedure setStart (self : access Inst; x_P : float; y_P : float);
    function start (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class;
 end QtAda6.QtGui.QLinearGradient;

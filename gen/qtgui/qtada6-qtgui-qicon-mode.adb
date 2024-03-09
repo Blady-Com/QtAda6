@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QIcon.Mode is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtGui.QIcon.Mode is
       Free (Inst_Access (Self));
    end Finalize;
    function Normal return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Mode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Normal"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Normal"));
    end Normal;
    function Disabled return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Mode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Disabled"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Disabled"));
    end Disabled;
    function Active return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Mode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Active"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Active"));
    end Active;
    function Selected return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Mode");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Selected"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Selected"));
    end Selected;
 end QtAda6.QtGui.QIcon.Mode;

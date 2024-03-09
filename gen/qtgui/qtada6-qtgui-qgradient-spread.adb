@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QGradient.Spread is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtGui.QGradient.Spread is
       Free (Inst_Access (Self));
    end Finalize;
    function PadSpread return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGradient");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Spread");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PadSpread"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PadSpread"));
    end PadSpread;
    function ReflectSpread return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGradient");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Spread");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ReflectSpread"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ReflectSpread"));
    end ReflectSpread;
    function RepeatSpread return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGradient");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Spread");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RepeatSpread"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RepeatSpread"));
    end RepeatSpread;
 end QtAda6.QtGui.QGradient.Spread;

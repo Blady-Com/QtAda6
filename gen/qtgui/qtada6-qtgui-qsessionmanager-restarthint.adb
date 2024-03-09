@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QSessionManager.RestartHint is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtGui.QSessionManager.RestartHint is
       Free (Inst_Access (Self));
    end Finalize;
    function RestartIfRunning return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSessionManager");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RestartHint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RestartIfRunning"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RestartIfRunning"));
    end RestartIfRunning;
    function RestartAnyway return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSessionManager");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RestartHint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RestartAnyway"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RestartAnyway"));
    end RestartAnyway;
    function RestartImmediately return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSessionManager");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RestartHint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RestartImmediately"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RestartImmediately"));
    end RestartImmediately;
    function RestartNever return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSessionManager");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RestartHint");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RestartNever"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RestartNever"));
    end RestartNever;
 end QtAda6.QtGui.QSessionManager.RestartHint;

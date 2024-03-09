@@ -8,14 +8,13 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtGui.QScreen;
 limited with QtAda6.QtGui.QSurfaceFormat;
-limited with QtAda6.QtGui.QSurfaceFormat.FormatOption;
 limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtGui.QSurface.SurfaceType;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtGui.QSurface;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QOffscreenSurface is
    type Inst;
    type Inst_Access is access all Inst;
@@ -24,10 +23,9 @@ package QtAda6.QtGui.QOffscreenSurface is
    type Inst is new QtAda6.QtCore.QObject.Inst
 --  and QtAda6.QtGui.QSurface.Inst
    with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtGui_QSurfaceFormatQtAda6_QtGui_QSurfaceFormat_FormatOption is new Any;
+   type UNION_QtAda6_QtGui_QSurfaceFormat_QtAda6_QtGui_QSurfaceFormat_FormatOption is new Any;
    procedure Finalize (Self : in out Class);
-   function screenChanged (self : access Inst) return CLASSVAR_Signal;-- screenChanged(QScreen*)
+   function screenChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- screenChanged(QScreen*)
    function Create
      (screen_P : access QtAda6.QtGui.QScreen.Inst'Class  := null;
       parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
@@ -39,7 +37,7 @@ package QtAda6.QtGui.QOffscreenSurface is
    function resolveInterface (self : access Inst; name_P : bytes; revision_P : int) return int;
    function screen (self : access Inst) return access QtAda6.QtGui.QScreen.Inst'Class;
    procedure setFormat
-     (self : access Inst; format_P : UNION_QtAda6_QtGui_QSurfaceFormatQtAda6_QtGui_QSurfaceFormat_FormatOption);
+     (self : access Inst; format_P : UNION_QtAda6_QtGui_QSurfaceFormat_QtAda6_QtGui_QSurfaceFormat_FormatOption);
    procedure setScreen (self : access Inst; screen_P : access QtAda6.QtGui.QScreen.Inst'Class);
    function size (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class;
    function surfaceHandle (self : access Inst) return int;

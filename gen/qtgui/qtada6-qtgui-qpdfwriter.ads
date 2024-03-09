@@ -23,12 +23,12 @@ package QtAda6.QtGui.QPdfWriter is
    type Inst is new QtAda6.QtCore.QObject.Inst
 --  and QtAda6.QtGui.QPagedPaintDevice.Inst
    with null record;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    procedure Finalize (Self : in out Class);
    function Create (device_P : access QtAda6.QtCore.QIODevice.Inst'Class) return Class;
    function Create (filename_P : str) return Class;
    procedure addFileAttachment
-     (self : access Inst; fileName_P : str; data_P : UNION_QtAda6_QtCore_QByteArraybytes; mimeType_P : str := "");
+     (self : access Inst; fileName_P : str; data_P : UNION_QtAda6_QtCore_QByteArray_bytes; mimeType_P : str := "");
    function creator (self : access Inst) return str;
    function documentXmpMetadata (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function metric
@@ -38,7 +38,7 @@ package QtAda6.QtGui.QPdfWriter is
    function pdfVersion (self : access Inst) return access QtAda6.QtGui.QPagedPaintDevice.PdfVersion.Inst'Class;
    function resolution (self : access Inst) return int;
    procedure setCreator (self : access Inst; creator_P : str);
-   procedure setDocumentXmpMetadata (self : access Inst; xmpMetadata_P : UNION_QtAda6_QtCore_QByteArraybytes);
+   procedure setDocumentXmpMetadata (self : access Inst; xmpMetadata_P : UNION_QtAda6_QtCore_QByteArray_bytes);
    procedure setPdfVersion
      (self : access Inst; version_P : access QtAda6.QtGui.QPagedPaintDevice.PdfVersion.Inst'Class);
    procedure setResolution (self : access Inst; resolution_P : int);

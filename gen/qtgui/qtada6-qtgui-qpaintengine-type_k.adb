@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QPaintEngine.Type_K is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,136 +21,117 @@ package body QtAda6.QtGui.QPaintEngine.Type_K is
       Free (Inst_Access (Self));
    end Finalize;
    function X11 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "X11"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "X11"));
    end X11;
    function Windows return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Windows"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Windows"));
    end Windows;
    function QuickDraw return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "QuickDraw"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "QuickDraw"));
    end QuickDraw;
    function CoreGraphics return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CoreGraphics"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CoreGraphics"));
    end CoreGraphics;
    function MacPrinter return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MacPrinter"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MacPrinter"));
    end MacPrinter;
    function QWindowSystem return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "QWindowSystem"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "QWindowSystem"));
    end QWindowSystem;
    function OpenGL return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "OpenGL"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "OpenGL"));
    end OpenGL;
    function Picture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Picture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Picture"));
    end Picture;
    function SVG return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SVG"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SVG"));
    end SVG;
    function Raster return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Raster"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Raster"));
    end Raster;
    function Direct3D return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Direct3D"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Direct3D"));
    end Direct3D;
    function Pdf return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Pdf"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Pdf"));
    end Pdf;
    function OpenVG return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "OpenVG"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "OpenVG"));
    end OpenVG;
    function OpenGL2 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "OpenGL2"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "OpenGL2"));
    end OpenGL2;
    function PaintBuffer return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PaintBuffer"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PaintBuffer"));
    end PaintBuffer;
    function Blitter return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Blitter"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Blitter"));
    end Blitter;
    function Direct2D return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Direct2D"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Direct2D"));
    end Direct2D;
    function User return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "User"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "User"));
    end User;
    function MaxUser return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MaxUser"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MaxUser"));
    end MaxUser;
 end QtAda6.QtGui.QPaintEngine.Type_K;

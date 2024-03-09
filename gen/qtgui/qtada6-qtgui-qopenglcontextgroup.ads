@@ -8,8 +8,8 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtGui.QOpenGLContext;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtGui.QOpenGLContext;
 package QtAda6.QtGui.QOpenGLContextGroup is
    type Inst;
    type Inst_Access is access all Inst;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QPaintEngine.PaintEngineFeature is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,143 +21,123 @@ package body QtAda6.QtGui.QPaintEngine.PaintEngineFeature is
       Free (Inst_Access (Self));
    end Finalize;
    function PrimitiveTransform return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PrimitiveTransform"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PrimitiveTransform"));
    end PrimitiveTransform;
    function PatternTransform return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PatternTransform"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PatternTransform"));
    end PatternTransform;
    function PixmapTransform return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PixmapTransform"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PixmapTransform"));
    end PixmapTransform;
    function PatternBrush return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PatternBrush"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PatternBrush"));
    end PatternBrush;
    function LinearGradientFill return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LinearGradientFill"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LinearGradientFill"));
    end LinearGradientFill;
    function RadialGradientFill return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RadialGradientFill"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RadialGradientFill"));
    end RadialGradientFill;
    function ConicalGradientFill return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ConicalGradientFill"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ConicalGradientFill"));
    end ConicalGradientFill;
    function AlphaBlend return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlphaBlend"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlphaBlend"));
    end AlphaBlend;
    function PorterDuff return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PorterDuff"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PorterDuff"));
    end PorterDuff;
    function PainterPaths return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PainterPaths"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PainterPaths"));
    end PainterPaths;
    function Antialiasing return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Antialiasing"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Antialiasing"));
    end Antialiasing;
    function BrushStroke return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BrushStroke"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BrushStroke"));
    end BrushStroke;
    function ConstantOpacity return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ConstantOpacity"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ConstantOpacity"));
    end ConstantOpacity;
    function MaskedBrush return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MaskedBrush"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MaskedBrush"));
    end MaskedBrush;
    function PerspectiveTransform return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PerspectiveTransform"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PerspectiveTransform"));
    end PerspectiveTransform;
    function BlendModes return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BlendModes"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BlendModes"));
    end BlendModes;
    function ObjectBoundingModeGradients return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ObjectBoundingModeGradients"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ObjectBoundingModeGradients"));
    end ObjectBoundingModeGradients;
    function RasterOpModes return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RasterOpModes"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RasterOpModes"));
    end RasterOpModes;
    function PaintOutsidePaintEvent return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PaintOutsidePaintEvent"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PaintOutsidePaintEvent"));
    end PaintOutsidePaintEvent;
    function AllFeatures return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "PaintEngineFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AllFeatures"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AllFeatures"));
    end AllFeatures;
 end QtAda6.QtGui.QPaintEngine.PaintEngineFeature;

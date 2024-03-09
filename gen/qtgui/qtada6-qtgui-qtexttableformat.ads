@@ -10,8 +10,8 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtGui.QTextFormat;
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
+limited with QtAda6.QtGui.QTextLength;
 with QtAda6.QtGui.QTextFrameFormat;
-with QtAda6.QtGui.QTextLength;
 package QtAda6.QtGui.QTextTableFormat is
    type Inst;
    type Inst_Access is access all Inst;

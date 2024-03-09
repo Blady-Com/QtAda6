@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QSurface.SurfaceType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,52 +21,45 @@ package body QtAda6.QtGui.QSurface.SurfaceType is
       Free (Inst_Access (Self));
    end Finalize;
    function RasterSurface return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurface");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SurfaceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RasterSurface"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RasterSurface"));
    end RasterSurface;
    function OpenGLSurface return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurface");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SurfaceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "OpenGLSurface"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "OpenGLSurface"));
    end OpenGLSurface;
    function RasterGLSurface return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurface");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SurfaceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RasterGLSurface"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RasterGLSurface"));
    end RasterGLSurface;
    function OpenVGSurface return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurface");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SurfaceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "OpenVGSurface"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "OpenVGSurface"));
    end OpenVGSurface;
    function VulkanSurface return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurface");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SurfaceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "VulkanSurface"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "VulkanSurface"));
    end VulkanSurface;
    function MetalSurface return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurface");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SurfaceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MetalSurface"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MetalSurface"));
    end MetalSurface;
    function Direct3DSurface return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurface");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SurfaceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Direct3DSurface"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Direct3DSurface"));
    end Direct3DSurface;
 end QtAda6.QtGui.QSurface.SurfaceType;

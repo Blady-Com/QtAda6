@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QScrollEvent.ScrollState is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtGui.QScrollEvent.ScrollState is
       Free (Inst_Access (Self));
    end Finalize;
    function ScrollStarted return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QScrollEvent");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ScrollState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ScrollStarted"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ScrollStarted"));
    end ScrollStarted;
    function ScrollUpdated return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QScrollEvent");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ScrollState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ScrollUpdated"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ScrollUpdated"));
    end ScrollUpdated;
    function ScrollFinished return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QScrollEvent");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ScrollState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ScrollFinished"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ScrollFinished"));
    end ScrollFinished;
 end QtAda6.QtGui.QScrollEvent.ScrollState;

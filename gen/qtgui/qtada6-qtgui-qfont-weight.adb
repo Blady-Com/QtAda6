@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QFont.Weight is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,66 +21,57 @@ package body QtAda6.QtGui.QFont.Weight is
       Free (Inst_Access (Self));
    end Finalize;
    function Thin return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Weight");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Thin"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Thin"));
    end Thin;
    function ExtraLight return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Weight");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExtraLight"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExtraLight"));
    end ExtraLight;
    function Light return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Weight");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Light"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Light"));
    end Light;
    function Normal return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Weight");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Normal"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Normal"));
    end Normal;
    function Medium return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Weight");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Medium"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Medium"));
    end Medium;
    function DemiBold return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Weight");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DemiBold"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DemiBold"));
    end DemiBold;
    function Bold return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Weight");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Bold"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Bold"));
    end Bold;
    function ExtraBold return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Weight");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExtraBold"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExtraBold"));
    end ExtraBold;
    function Black return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Weight");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Black"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Black"));
    end Black;
 end QtAda6.QtGui.QFont.Weight;

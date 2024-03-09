@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QFontDatabase.SystemFont is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtGui.QFontDatabase.SystemFont is
       Free (Inst_Access (Self));
    end Finalize;
    function GeneralFont return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFontDatabase");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SystemFont");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "GeneralFont"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "GeneralFont"));
    end GeneralFont;
    function FixedFont return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFontDatabase");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SystemFont");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FixedFont"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FixedFont"));
    end FixedFont;
    function TitleFont return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFontDatabase");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SystemFont");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TitleFont"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TitleFont"));
    end TitleFont;
    function SmallestReadableFont return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFontDatabase");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SystemFont");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SmallestReadableFont"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SmallestReadableFont"));
    end SmallestReadableFont;
 end QtAda6.QtGui.QFontDatabase.SystemFont;

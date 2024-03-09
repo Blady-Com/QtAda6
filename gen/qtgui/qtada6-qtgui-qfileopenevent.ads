@@ -16,11 +16,11 @@ package QtAda6.QtGui.QFileOpenEvent is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QEvent.Inst with null record;
-   type UNION_QtAda6_QtCore_QUrlstr is new Any;
+   type UNION_QtAda6_QtCore_QUrl_str is new Any;
    procedure Finalize (Self : in out Class);
    function Create (arg_1_P : access QtAda6.QtGui.QFileOpenEvent.Inst'Class) return Class;
    function Create (file_P : str) return Class;
-   function Create (url_P : UNION_QtAda6_QtCore_QUrlstr) return Class;
+   function Create (url_P : UNION_QtAda6_QtCore_QUrl_str) return Class;
    function clone (self : access Inst) return access QtAda6.QtGui.QFileOpenEvent.Inst'Class;
    function file (self : access Inst) return str;
    function url (self : access Inst) return access QtAda6.QtCore.QUrl.Inst'Class;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QAccessibleTableModelChangeEvent.ModelChangeType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,45 +21,39 @@ package body QtAda6.QtGui.QAccessibleTableModelChangeEvent.ModelChangeType is
       Free (Inst_Access (Self));
    end Finalize;
    function ModelReset return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTableModelChangeEvent");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ModelChangeType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ModelReset"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ModelReset"));
    end ModelReset;
    function DataChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTableModelChangeEvent");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ModelChangeType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DataChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DataChanged"));
    end DataChanged;
    function RowsInserted return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTableModelChangeEvent");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ModelChangeType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RowsInserted"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RowsInserted"));
    end RowsInserted;
    function ColumnsInserted return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTableModelChangeEvent");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ModelChangeType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ColumnsInserted"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ColumnsInserted"));
    end ColumnsInserted;
    function RowsRemoved return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTableModelChangeEvent");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ModelChangeType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RowsRemoved"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RowsRemoved"));
    end RowsRemoved;
    function ColumnsRemoved return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTableModelChangeEvent");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ModelChangeType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ColumnsRemoved"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ColumnsRemoved"));
    end ColumnsRemoved;
 end QtAda6.QtGui.QAccessibleTableModelChangeEvent.ModelChangeType;

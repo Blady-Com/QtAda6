@@ -10,11 +10,10 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QEvent.Type_K;
 limited with QtAda6.QtGui.QPointingDevice;
-limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtCore.Qt.KeyboardModifier;
 limited with QtAda6.QtCore.Qt.MouseButton;
+limited with QtAda6.QtCore.QPoint;
+limited with QtAda6.QtCore.QPointF;
 with QtAda6.QtGui.QSinglePointEvent;
 package QtAda6.QtGui.QTabletEvent is
    type Inst;
@@ -22,13 +21,13 @@ package QtAda6.QtGui.QTabletEvent is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QSinglePointEvent.Inst with null record;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create (arg_1_P : access QtAda6.QtGui.QTabletEvent.Inst'Class) return Class;
    function Create
      (t_P : access QtAda6.QtCore.QEvent.Type_K.Inst'Class; device_P : access QtAda6.QtGui.QPointingDevice.Inst'Class;
-      pos_P       : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element;
-      globalPos_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element;
+      pos_P       : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
+      globalPos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
       pressure_P  : float; xTilt_P : float; yTilt_P : float; tangentialPressure_P : float; rotation_P : float;
       z_P         : float; keyState_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
       button_P    : access QtAda6.QtCore.Qt.MouseButton.Inst'Class;

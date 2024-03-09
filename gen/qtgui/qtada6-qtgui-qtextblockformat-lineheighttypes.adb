@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QTextBlockFormat.LineHeightTypes is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtGui.QTextBlockFormat.LineHeightTypes is
       Free (Inst_Access (Self));
    end Finalize;
    function SingleHeight return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextBlockFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "LineHeightTypes");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SingleHeight"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SingleHeight"));
    end SingleHeight;
    function ProportionalHeight return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextBlockFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "LineHeightTypes");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ProportionalHeight"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ProportionalHeight"));
    end ProportionalHeight;
    function FixedHeight return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextBlockFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "LineHeightTypes");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FixedHeight"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FixedHeight"));
    end FixedHeight;
    function MinimumHeight return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextBlockFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "LineHeightTypes");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MinimumHeight"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MinimumHeight"));
    end MinimumHeight;
    function LineDistanceHeight return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextBlockFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "LineHeightTypes");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LineDistanceHeight"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LineDistanceHeight"));
    end LineDistanceHeight;
 end QtAda6.QtGui.QTextBlockFormat.LineHeightTypes;

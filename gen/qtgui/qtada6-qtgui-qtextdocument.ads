@@ -8,6 +8,8 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
+limited with QtAda6.QtGui.QTextFormat;
 limited with QtAda6.QtCore.QUrl;
 limited with QtAda6.QtGui.QTextBlock;
 limited with QtAda6.QtGui.QTextDocument.Stacks;
@@ -17,49 +19,46 @@ limited with QtAda6.QtGui.QFont;
 limited with QtAda6.QtGui.QTextOption;
 limited with QtAda6.QtGui.QAbstractTextDocumentLayout;
 limited with QtAda6.QtGui.QPainter;
-limited with QtAda6.QtCore.QRectF;
-limited with QtAda6.QtCore.QRect;
-limited with QtAda6.QtCore.QRegularExpression;
 limited with QtAda6.QtGui.QTextCursor;
 limited with QtAda6.QtGui.QTextDocument.FindFlag;
 limited with QtAda6.QtGui.QTextFrame;
 limited with QtAda6.QtGui.QTextDocument.MetaInformation;
 limited with QtAda6.QtCore.QSizeF;
 limited with QtAda6.QtGui.QPagedPaintDevice;
-limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtGui.QTextDocument.MarkdownFeature;
-limited with QtAda6.QtCore.QSize;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtGui.QTextFormat;
 package QtAda6.QtGui.QTextDocument is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtCore_QUrlstr is new Any;
+   type UNION_QtAda6_QtCore_QUrl_str is new Any;
    subtype LIST_QtAda6_QtGui_QTextFormat is QtAda6.QtGui.QTextFormat.Class_Array;
-   type UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect is new Any;
-   type UNION_QtAda6_QtCore_QRegularExpressionstr is new Any;
-   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
-   type UNION_QtAda6_QtGui_QTextOptionQtAda6_QtCore_Qt_AlignmentFlag is new Any;
-   type UNION_QtAda6_QtCore_QSizeFQtAda6_QtCore_QSize is new Any;
+   type UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect is new Any;
+   type UNION_QtAda6_QtCore_QRegularExpression_str is new Any;
+   type UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str is new Any;
+   type UNION_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag is new Any;
+   type UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize is new Any;
    procedure Finalize (Self : in out Class);
-   function baseUrlChanged (self : access Inst) return CLASSVAR_Signal;-- baseUrlChanged(QUrl)
-   function blockCountChanged (self : access Inst) return CLASSVAR_Signal;-- blockCountChanged(int)
-   function contentsChange (self : access Inst) return CLASSVAR_Signal;-- contentsChange(int,int,int)
-   function contentsChanged (self : access Inst) return CLASSVAR_Signal;-- contentsChanged()
-   function cursorPositionChanged (self : access Inst) return CLASSVAR_Signal;-- cursorPositionChanged(QTextCursor)
-   function documentLayoutChanged (self : access Inst) return CLASSVAR_Signal;-- documentLayoutChanged()
-   function modificationChanged (self : access Inst) return CLASSVAR_Signal;-- modificationChanged(bool)
-   function redoAvailable (self : access Inst) return CLASSVAR_Signal;-- redoAvailable(bool)
-   function undoAvailable (self : access Inst) return CLASSVAR_Signal;-- undoAvailable(bool)
-   function undoCommandAdded (self : access Inst) return CLASSVAR_Signal;-- undoCommandAdded()
+   function baseUrlChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- baseUrlChanged(QUrl)
+   function blockCountChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- blockCountChanged(int)
+   function contentsChange
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- contentsChange(int,int,int)
+   function contentsChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- contentsChanged()
+   function cursorPositionChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- cursorPositionChanged(QTextCursor)
+   function documentLayoutChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- documentLayoutChanged()
+   function modificationChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- modificationChanged(bool)
+   function redoAvailable (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- redoAvailable(bool)
+   function undoAvailable (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- undoAvailable(bool)
+   function undoCommandAdded (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- undoCommandAdded()
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function Create (text_P : str; parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
-   procedure addResource (self : access Inst; type_K_P : int; name_P : UNION_QtAda6_QtCore_QUrlstr; resource_P : Any);
+   procedure addResource (self : access Inst; type_K_P : int; name_P : UNION_QtAda6_QtCore_QUrl_str; resource_P : Any);
    procedure adjustSize (self : access Inst);
    function allFormats (self : access Inst) return LIST_QtAda6_QtGui_QTextFormat;
    function availableRedoSteps (self : access Inst) return int;
@@ -87,22 +86,22 @@ package QtAda6.QtGui.QTextDocument is
    function documentMargin (self : access Inst) return float;
    procedure drawContents
      (self   : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
-      rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect := null);
+      rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect := null);
    function end_K (self : access Inst) return access QtAda6.QtGui.QTextBlock.Inst'Class;
-   function find_F
-     (self      : access Inst; expr_P : UNION_QtAda6_QtCore_QRegularExpressionstr;
+   function find
+     (self      : access Inst; expr_P : UNION_QtAda6_QtCore_QRegularExpression_str;
       cursor_P  : access QtAda6.QtGui.QTextCursor.Inst'Class;
       options_P : access QtAda6.QtGui.QTextDocument.FindFlag.Inst'Class := null)
       return access QtAda6.QtGui.QTextCursor.Inst'Class;
-   function find_F
-     (self      : access Inst; expr_P : UNION_QtAda6_QtCore_QRegularExpressionstr; from_U_P : int := 0;
+   function find
+     (self      : access Inst; expr_P : UNION_QtAda6_QtCore_QRegularExpression_str; from_U_P : int := 0;
       options_P : access QtAda6.QtGui.QTextDocument.FindFlag.Inst'Class := null)
       return access QtAda6.QtGui.QTextCursor.Inst'Class;
-   function find_F
+   function find
      (self      : access Inst; subString_P : str; cursor_P : access QtAda6.QtGui.QTextCursor.Inst'Class;
       options_P : access QtAda6.QtGui.QTextDocument.FindFlag.Inst'Class := null)
       return access QtAda6.QtGui.QTextCursor.Inst'Class;
-   function find_F
+   function find
      (self      : access Inst; subString_P : str; from_U_P : int := 0;
       options_P : access QtAda6.QtGui.QTextDocument.FindFlag.Inst'Class := null)
       return access QtAda6.QtGui.QTextCursor.Inst'Class;
@@ -123,7 +122,7 @@ package QtAda6.QtGui.QTextDocument is
    function isUndoRedoEnabled (self : access Inst) return bool;
    function lastBlock (self : access Inst) return access QtAda6.QtGui.QTextBlock.Inst'Class;
    function lineCount (self : access Inst) return int;
-   function loadResource (self : access Inst; type_K_P : int; name_P : UNION_QtAda6_QtCore_QUrlstr) return Any;
+   function loadResource (self : access Inst; type_K_P : int; name_P : UNION_QtAda6_QtCore_QUrl_str) return Any;
    procedure markContentsDirty (self : access Inst; from_U_P : int; length_P : int);
    function maximumBlockCount (self : access Inst) return int;
    function metaInformation_F
@@ -137,17 +136,17 @@ package QtAda6.QtGui.QTextDocument is
    procedure print_U (self : access Inst; printer_P : access QtAda6.QtGui.QPagedPaintDevice.Inst'Class);
    procedure redo (self : access Inst);
    procedure redo (self : access Inst; cursor_P : access QtAda6.QtGui.QTextCursor.Inst'Class);
-   function resource_F (self : access Inst; type_K_P : int; name_P : UNION_QtAda6_QtCore_QUrlstr) return Any;
+   function resource (self : access Inst; type_K_P : int; name_P : UNION_QtAda6_QtCore_QUrl_str) return Any;
    function revision (self : access Inst) return int;
    function rootFrame (self : access Inst) return access QtAda6.QtGui.QTextFrame.Inst'Class;
-   procedure setBaseUrl (self : access Inst; url_P : UNION_QtAda6_QtCore_QUrlstr);
+   procedure setBaseUrl (self : access Inst; url_P : UNION_QtAda6_QtCore_QUrl_str);
    procedure setBaselineOffset (self : access Inst; baseline_P : float);
    procedure setDefaultCursorMoveStyle
      (self : access Inst; style_P : access QtAda6.QtCore.Qt.CursorMoveStyle.Inst'Class);
-   procedure setDefaultFont (self : access Inst; font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str);
+   procedure setDefaultFont (self : access Inst; font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str);
    procedure setDefaultStyleSheet (self : access Inst; sheet_P : str);
    procedure setDefaultTextOption
-     (self : access Inst; option_P : UNION_QtAda6_QtGui_QTextOptionQtAda6_QtCore_Qt_AlignmentFlag);
+     (self : access Inst; option_P : UNION_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag);
    procedure setDocumentLayout
      (self : access Inst; layout_P : access QtAda6.QtGui.QAbstractTextDocumentLayout.Inst'Class);
    procedure setDocumentMargin (self : access Inst; margin_P : float);
@@ -161,7 +160,7 @@ package QtAda6.QtGui.QTextDocument is
    procedure setMetaInformation
      (self : access Inst; info_P : access QtAda6.QtGui.QTextDocument.MetaInformation.Inst'Class; arg_2_P : str);
    procedure setModified (self : access Inst; m_P : bool := False);
-   procedure setPageSize (self : access Inst; size_P : UNION_QtAda6_QtCore_QSizeFQtAda6_QtCore_QSize);
+   procedure setPageSize (self : access Inst; size_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize);
    procedure setPlainText (self : access Inst; text_P : str);
    procedure setSubScriptBaseline (self : access Inst; baseline_P : float);
    procedure setSuperScriptBaseline (self : access Inst; baseline_P : float);

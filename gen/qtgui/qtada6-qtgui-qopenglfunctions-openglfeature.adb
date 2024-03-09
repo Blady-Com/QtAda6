@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QOpenGLFunctions.OpenGLFeature is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,129 +21,111 @@ package body QtAda6.QtGui.QOpenGLFunctions.OpenGLFeature is
       Free (Inst_Access (Self));
    end Finalize;
    function Multitexture return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Multitexture"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Multitexture"));
    end Multitexture;
    function Shaders return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Shaders"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Shaders"));
    end Shaders;
    function Buffers return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Buffers"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Buffers"));
    end Buffers;
    function Framebuffers return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Framebuffers"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Framebuffers"));
    end Framebuffers;
    function BlendColor return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BlendColor"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BlendColor"));
    end BlendColor;
    function BlendEquation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BlendEquation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BlendEquation"));
    end BlendEquation;
    function BlendEquationSeparate return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BlendEquationSeparate"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BlendEquationSeparate"));
    end BlendEquationSeparate;
    function BlendFuncSeparate return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BlendFuncSeparate"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BlendFuncSeparate"));
    end BlendFuncSeparate;
    function BlendSubtract return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BlendSubtract"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BlendSubtract"));
    end BlendSubtract;
    function CompressedTextures return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CompressedTextures"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CompressedTextures"));
    end CompressedTextures;
    function Multisample return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Multisample"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Multisample"));
    end Multisample;
    function StencilSeparate return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "StencilSeparate"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "StencilSeparate"));
    end StencilSeparate;
    function NPOTTextures return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NPOTTextures"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NPOTTextures"));
    end NPOTTextures;
    function NPOTTextureRepeat return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NPOTTextureRepeat"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NPOTTextureRepeat"));
    end NPOTTextureRepeat;
    function FixedFunctionPipeline return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FixedFunctionPipeline"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FixedFunctionPipeline"));
    end FixedFunctionPipeline;
    function TextureRGFormats return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextureRGFormats"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextureRGFormats"));
    end TextureRGFormats;
    function MultipleRenderTargets return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MultipleRenderTargets"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MultipleRenderTargets"));
    end MultipleRenderTargets;
    function BlendEquationAdvanced return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOpenGLFunctions");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "OpenGLFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BlendEquationAdvanced"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BlendEquationAdvanced"));
    end BlendEquationAdvanced;
 end QtAda6.QtGui.QOpenGLFunctions.OpenGLFeature;

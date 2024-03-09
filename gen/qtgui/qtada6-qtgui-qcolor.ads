@@ -103,7 +103,7 @@ package QtAda6.QtGui.QColor is
    function lightnessF (self : access Inst) return float;
    function magenta (self : access Inst) return int;
    function magentaF (self : access Inst) return float;
-   function name_F (self : access Inst; format_P : access QtAda6.QtGui.QColor.NameFormat.Inst'Class := null) return str;
+   function name (self : access Inst; format_P : access QtAda6.QtGui.QColor.NameFormat.Inst'Class := null) return str;
    function red (self : access Inst) return int;
    function redF (self : access Inst) return float;
    function rgb (self : access Inst) return int;

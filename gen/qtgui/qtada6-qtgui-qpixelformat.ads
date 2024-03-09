@@ -48,7 +48,7 @@ package QtAda6.QtGui.QPixelFormat is
    function hueSize (self : access Inst) return int;
    function lightnessSize (self : access Inst) return int;
    function magentaSize (self : access Inst) return int;
-   function premultiplied_F (self : access Inst) return access QtAda6.QtGui.QPixelFormat.AlphaPremultiplied.Inst'Class;
+   function premultiplied (self : access Inst) return access QtAda6.QtGui.QPixelFormat.AlphaPremultiplied.Inst'Class;
    function redSize (self : access Inst) return int;
    function saturationSize (self : access Inst) return int;
    function subEnum (self : access Inst) return int;

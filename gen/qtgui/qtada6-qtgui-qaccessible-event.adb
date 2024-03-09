@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QAccessible.Event is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,486 +21,417 @@ package body QtAda6.QtGui.QAccessible.Event is
       Free (Inst_Access (Self));
    end Finalize;
    function SoundPlayed return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SoundPlayed"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SoundPlayed"));
    end SoundPlayed;
    function Alert return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Alert"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Alert"));
    end Alert;
    function ForegroundChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ForegroundChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ForegroundChanged"));
    end ForegroundChanged;
    function MenuStart return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MenuStart"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MenuStart"));
    end MenuStart;
    function MenuEnd return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MenuEnd"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MenuEnd"));
    end MenuEnd;
    function PopupMenuStart return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PopupMenuStart"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PopupMenuStart"));
    end PopupMenuStart;
    function PopupMenuEnd return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PopupMenuEnd"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PopupMenuEnd"));
    end PopupMenuEnd;
    function ContextHelpStart return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ContextHelpStart"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ContextHelpStart"));
    end ContextHelpStart;
    function ContextHelpEnd return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ContextHelpEnd"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ContextHelpEnd"));
    end ContextHelpEnd;
    function DragDropStart return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DragDropStart"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DragDropStart"));
    end DragDropStart;
    function DragDropEnd return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DragDropEnd"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DragDropEnd"));
    end DragDropEnd;
    function DialogStart return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DialogStart"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DialogStart"));
    end DialogStart;
    function DialogEnd return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DialogEnd"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DialogEnd"));
    end DialogEnd;
    function ScrollingStart return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ScrollingStart"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ScrollingStart"));
    end ScrollingStart;
    function ScrollingEnd return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ScrollingEnd"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ScrollingEnd"));
    end ScrollingEnd;
    function MenuCommand return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MenuCommand"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MenuCommand"));
    end MenuCommand;
    function ActionChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ActionChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ActionChanged"));
    end ActionChanged;
    function ActiveDescendantChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ActiveDescendantChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ActiveDescendantChanged"));
    end ActiveDescendantChanged;
    function AttributeChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AttributeChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AttributeChanged"));
    end AttributeChanged;
    function DocumentContentChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DocumentContentChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DocumentContentChanged"));
    end DocumentContentChanged;
    function DocumentLoadComplete return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DocumentLoadComplete"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DocumentLoadComplete"));
    end DocumentLoadComplete;
    function DocumentLoadStopped return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DocumentLoadStopped"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DocumentLoadStopped"));
    end DocumentLoadStopped;
    function DocumentReload return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DocumentReload"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DocumentReload"));
    end DocumentReload;
    function HyperlinkEndIndexChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HyperlinkEndIndexChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HyperlinkEndIndexChanged"));
    end HyperlinkEndIndexChanged;
    function HyperlinkNumberOfAnchorsChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HyperlinkNumberOfAnchorsChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HyperlinkNumberOfAnchorsChanged"));
    end HyperlinkNumberOfAnchorsChanged;
    function HyperlinkSelectedLinkChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HyperlinkSelectedLinkChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HyperlinkSelectedLinkChanged"));
    end HyperlinkSelectedLinkChanged;
    function HypertextLinkActivated return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HypertextLinkActivated"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HypertextLinkActivated"));
    end HypertextLinkActivated;
    function HypertextLinkSelected return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HypertextLinkSelected"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HypertextLinkSelected"));
    end HypertextLinkSelected;
    function HyperlinkStartIndexChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HyperlinkStartIndexChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HyperlinkStartIndexChanged"));
    end HyperlinkStartIndexChanged;
    function HypertextChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HypertextChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HypertextChanged"));
    end HypertextChanged;
    function HypertextNLinksChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HypertextNLinksChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HypertextNLinksChanged"));
    end HypertextNLinksChanged;
    function ObjectAttributeChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ObjectAttributeChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ObjectAttributeChanged"));
    end ObjectAttributeChanged;
    function PageChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PageChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PageChanged"));
    end PageChanged;
    function SectionChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SectionChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SectionChanged"));
    end SectionChanged;
    function TableCaptionChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TableCaptionChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TableCaptionChanged"));
    end TableCaptionChanged;
    function TableColumnDescriptionChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TableColumnDescriptionChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TableColumnDescriptionChanged"));
    end TableColumnDescriptionChanged;
    function TableColumnHeaderChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TableColumnHeaderChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TableColumnHeaderChanged"));
    end TableColumnHeaderChanged;
    function TableModelChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TableModelChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TableModelChanged"));
    end TableModelChanged;
    function TableRowDescriptionChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TableRowDescriptionChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TableRowDescriptionChanged"));
    end TableRowDescriptionChanged;
    function TableRowHeaderChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TableRowHeaderChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TableRowHeaderChanged"));
    end TableRowHeaderChanged;
    function TableSummaryChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TableSummaryChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TableSummaryChanged"));
    end TableSummaryChanged;
    function TextAttributeChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextAttributeChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextAttributeChanged"));
    end TextAttributeChanged;
    function TextCaretMoved return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextCaretMoved"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextCaretMoved"));
    end TextCaretMoved;
    function TextColumnChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextColumnChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextColumnChanged"));
    end TextColumnChanged;
    function TextInserted return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextInserted"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextInserted"));
    end TextInserted;
    function TextRemoved return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextRemoved"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextRemoved"));
    end TextRemoved;
    function TextUpdated return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextUpdated"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextUpdated"));
    end TextUpdated;
    function TextSelectionChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextSelectionChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextSelectionChanged"));
    end TextSelectionChanged;
    function VisibleDataChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "VisibleDataChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "VisibleDataChanged"));
    end VisibleDataChanged;
    function ObjectCreated return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ObjectCreated"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ObjectCreated"));
    end ObjectCreated;
    function ObjectDestroyed return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ObjectDestroyed"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ObjectDestroyed"));
    end ObjectDestroyed;
    function ObjectShow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ObjectShow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ObjectShow"));
    end ObjectShow;
    function ObjectHide return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ObjectHide"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ObjectHide"));
    end ObjectHide;
    function ObjectReorder return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ObjectReorder"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ObjectReorder"));
    end ObjectReorder;
    function Focus return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Focus"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Focus"));
    end Focus;
    function Selection return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Selection"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Selection"));
    end Selection;
    function SelectionAdd return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SelectionAdd"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SelectionAdd"));
    end SelectionAdd;
    function SelectionRemove return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SelectionRemove"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SelectionRemove"));
    end SelectionRemove;
    function SelectionWithin return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SelectionWithin"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SelectionWithin"));
    end SelectionWithin;
    function StateChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "StateChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "StateChanged"));
    end StateChanged;
    function LocationChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LocationChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LocationChanged"));
    end LocationChanged;
    function NameChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NameChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NameChanged"));
    end NameChanged;
    function DescriptionChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DescriptionChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DescriptionChanged"));
    end DescriptionChanged;
    function ValueChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ValueChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ValueChanged"));
    end ValueChanged;
    function ParentChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ParentChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ParentChanged"));
    end ParentChanged;
    function HelpChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HelpChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HelpChanged"));
    end HelpChanged;
    function DefaultActionChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DefaultActionChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DefaultActionChanged"));
    end DefaultActionChanged;
    function AcceleratorChanged return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AcceleratorChanged"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AcceleratorChanged"));
    end AcceleratorChanged;
    function InvalidEvent return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Event");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InvalidEvent"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InvalidEvent"));
    end InvalidEvent;
 end QtAda6.QtGui.QAccessible.Event;

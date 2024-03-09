@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QTextItem.RenderFlag is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtGui.QTextItem.RenderFlag is
       Free (Inst_Access (Self));
    end Finalize;
    function RightToLeft return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RenderFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RightToLeft"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RightToLeft"));
    end RightToLeft;
    function Overline return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RenderFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Overline"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Overline"));
    end Overline;
    function Underline return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RenderFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Underline"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Underline"));
    end Underline;
    function StrikeOut return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RenderFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "StrikeOut"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "StrikeOut"));
    end StrikeOut;
    function Dummy return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextItem");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RenderFlag");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Dummy"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Dummy"));
    end Dummy;
 end QtAda6.QtGui.QTextItem.RenderFlag;

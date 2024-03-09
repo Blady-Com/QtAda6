@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QTextCharFormat.VerticalAlignment is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,52 +21,45 @@ package body QtAda6.QtGui.QTextCharFormat.VerticalAlignment is
       Free (Inst_Access (Self));
    end Finalize;
    function AlignNormal return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCharFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "VerticalAlignment");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlignNormal"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlignNormal"));
    end AlignNormal;
    function AlignSuperScript return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCharFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "VerticalAlignment");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlignSuperScript"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlignSuperScript"));
    end AlignSuperScript;
    function AlignSubScript return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCharFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "VerticalAlignment");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlignSubScript"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlignSubScript"));
    end AlignSubScript;
    function AlignMiddle return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCharFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "VerticalAlignment");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlignMiddle"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlignMiddle"));
    end AlignMiddle;
    function AlignTop return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCharFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "VerticalAlignment");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlignTop"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlignTop"));
    end AlignTop;
    function AlignBottom return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCharFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "VerticalAlignment");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlignBottom"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlignBottom"));
    end AlignBottom;
    function AlignBaseline return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextCharFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "VerticalAlignment");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlignBaseline"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlignBaseline"));
    end AlignBaseline;
 end QtAda6.QtGui.QTextCharFormat.VerticalAlignment;

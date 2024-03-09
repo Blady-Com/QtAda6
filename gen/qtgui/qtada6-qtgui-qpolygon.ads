@@ -9,23 +9,23 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QRect;
+limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtCore.QDataStream;
 limited with QtAda6.QtGui.QTransform;
 limited with QtAda6.QtCore.Qt.FillRule;
 limited with QtAda6.QtGui.QPolygonF;
-with QtAda6.QtCore.QPoint;
 package QtAda6.QtGui.QPolygon is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtGui_QPolygonSEQUENCE_QtAda6_QtCore_QRect is new Any;
+   type UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect is new Any;
    subtype SEQUENCE_QtAda6_QtCore_QPoint is QtAda6.QtCore.QPoint.Class_Array;
    subtype LIST_QtAda6_QtCore_QPoint is QtAda6.QtCore.QPoint.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (QPolygon_P : UNION_QtAda6_QtGui_QPolygonSEQUENCE_QtAda6_QtCore_QRect) return Class;
+   function Create (QPolygon_P : UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect) return Class;
    function Create (r_P : access QtAda6.QtCore.QRect.Inst'Class; closed_P : bool := False) return Class;
    function Create (v_P : SEQUENCE_QtAda6_QtCore_QPoint) return Class;
    function U_add_U (self : access Inst; l_P : SEQUENCE_QtAda6_QtCore_QPoint) return LIST_QtAda6_QtCore_QPoint;
@@ -65,9 +65,9 @@ package QtAda6.QtGui.QPolygon is
    function front (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class;
    procedure insert (self : access Inst; arg_1_P : int; arg_2_P : access QtAda6.QtCore.QPoint.Inst'Class);
    function intersected
-     (self : access Inst; r_P : UNION_QtAda6_QtGui_QPolygonSEQUENCE_QtAda6_QtCore_QRect)
+     (self : access Inst; r_P : UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect)
       return access QtAda6.QtGui.QPolygon.Inst'Class;
-   function intersects (self : access Inst; r_P : UNION_QtAda6_QtGui_QPolygonSEQUENCE_QtAda6_QtCore_QRect) return bool;
+   function intersects (self : access Inst; r_P : UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect) return bool;
    function isEmpty (self : access Inst) return bool;
    function isSharedWith (self : access Inst; other_P : SEQUENCE_QtAda6_QtCore_QPoint) return bool;
    function last (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class;
@@ -94,9 +94,9 @@ package QtAda6.QtGui.QPolygon is
    function sliced (self : access Inst; pos_P : int; n_P : int) return LIST_QtAda6_QtCore_QPoint;
    procedure squeeze (self : access Inst);
    function subtracted
-     (self : access Inst; r_P : UNION_QtAda6_QtGui_QPolygonSEQUENCE_QtAda6_QtCore_QRect)
+     (self : access Inst; r_P : UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect)
       return access QtAda6.QtGui.QPolygon.Inst'Class;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtGui_QPolygonSEQUENCE_QtAda6_QtCore_QRect);
+   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect);
    procedure swapItemsAt (self : access Inst; i_P : int; j_P : int);
    function takeAt (self : access Inst; i_P : int) return access QtAda6.QtCore.QPoint.Inst'Class;
    function toList (self : access Inst) return LIST_QtAda6_QtCore_QPoint;
@@ -109,7 +109,7 @@ package QtAda6.QtGui.QPolygon is
      (self : access Inst; offset_P : access QtAda6.QtCore.QPoint.Inst'Class)
       return access QtAda6.QtGui.QPolygon.Inst'Class;
    function united
-     (self : access Inst; r_P : UNION_QtAda6_QtGui_QPolygonSEQUENCE_QtAda6_QtCore_QRect)
+     (self : access Inst; r_P : UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect)
       return access QtAda6.QtGui.QPolygon.Inst'Class;
    function value (self : access Inst; i_P : int) return access QtAda6.QtCore.QPoint.Inst'Class;
 end QtAda6.QtGui.QPolygon;

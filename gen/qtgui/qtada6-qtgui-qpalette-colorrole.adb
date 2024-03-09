@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QPalette.ColorRole is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,157 +21,135 @@ package body QtAda6.QtGui.QPalette.ColorRole is
       Free (Inst_Access (Self));
    end Finalize;
    function WindowText return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WindowText"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WindowText"));
    end WindowText;
    function Button return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Button"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Button"));
    end Button;
    function Light return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Light"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Light"));
    end Light;
    function Midlight return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Midlight"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Midlight"));
    end Midlight;
    function Dark return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Dark"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Dark"));
    end Dark;
    function Mid return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Mid"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Mid"));
    end Mid;
    function Text return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Text"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Text"));
    end Text;
    function BrightText return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BrightText"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BrightText"));
    end BrightText;
    function ButtonText return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ButtonText"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ButtonText"));
    end ButtonText;
    function Base return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Base"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Base"));
    end Base;
    function Window return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Window"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Window"));
    end Window;
    function Shadow return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Shadow"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Shadow"));
    end Shadow;
    function Highlight return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Highlight"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Highlight"));
    end Highlight;
    function HighlightedText return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HighlightedText"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HighlightedText"));
    end HighlightedText;
    function Link return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Link"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Link"));
    end Link;
    function LinkVisited return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LinkVisited"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LinkVisited"));
    end LinkVisited;
    function AlternateBase return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AlternateBase"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AlternateBase"));
    end AlternateBase;
    function NoRole return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoRole"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoRole"));
    end NoRole;
    function ToolTipBase return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ToolTipBase"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ToolTipBase"));
    end ToolTipBase;
    function ToolTipText return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ToolTipText"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ToolTipText"));
    end ToolTipText;
    function PlaceholderText return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PlaceholderText"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PlaceholderText"));
    end PlaceholderText;
    function NColorRoles return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ColorRole");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NColorRoles"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NColorRoles"));
    end NColorRoles;
 end QtAda6.QtGui.QPalette.ColorRole;

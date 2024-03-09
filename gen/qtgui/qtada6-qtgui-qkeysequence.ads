@@ -8,9 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.QKeyCombination;
-limited with QtAda6.QtCore.Qt.KeyboardModifier;
-limited with QtAda6.QtCore.Qt.Key;
 limited with QtAda6.QtGui.QKeySequence.StandardKey;
 limited with QtAda6.QtGui.QKeySequence.SequenceFormat;
 limited with QtAda6.QtCore.QDataStream;
@@ -21,8 +18,8 @@ package QtAda6.QtGui.QKeySequence is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QKeyCombinationQtAda6_QtCore_Qt_KeyboardModifierQtAda6_QtCore_Qt_Key is new Any;
-   type UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint is
+   type UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key is new Any;
+   type UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int is
      new Any;
    subtype LIST_QtAda6_QtGui_QKeySequence is QtAda6.QtGui.QKeySequence.Class_Array;
    subtype SEQUENCE_QtAda6_QtGui_QKeySequence is QtAda6.QtGui.QKeySequence.Class_Array;
@@ -30,16 +27,16 @@ package QtAda6.QtGui.QKeySequence is
    function Create return Class;
    function Create (k1_P : int; k2_P : int := 0; k3_P : int := 0; k4_P : int := 0) return Class;
    function Create
-     (k1_P : UNION_QtAda6_QtCore_QKeyCombinationQtAda6_QtCore_Qt_KeyboardModifierQtAda6_QtCore_Qt_Key;
-      k2_P : UNION_QtAda6_QtCore_QKeyCombinationQtAda6_QtCore_Qt_KeyboardModifierQtAda6_QtCore_Qt_Key := null;
-      k3_P : UNION_QtAda6_QtCore_QKeyCombinationQtAda6_QtCore_Qt_KeyboardModifierQtAda6_QtCore_Qt_Key := null;
-      k4_P : UNION_QtAda6_QtCore_QKeyCombinationQtAda6_QtCore_Qt_KeyboardModifierQtAda6_QtCore_Qt_Key := null)
+     (k1_P : UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key;
+      k2_P : UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key := null;
+      k3_P : UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key := null;
+      k4_P : UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key := null)
       return Class;
    function Create (key_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class) return Class;
    function Create
      (key_P : str; format_P : access QtAda6.QtGui.QKeySequence.SequenceFormat.Inst'Class := null) return Class;
    function Create
-     (ks_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint)
+     (ks_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
       return Class;
    procedure U_copy_U;
    function U_lshift_U
@@ -65,12 +62,12 @@ package QtAda6.QtGui.QKeySequence is
       format_P : access QtAda6.QtGui.QKeySequence.SequenceFormat.Inst'Class := null) return str;
    function matches
      (self  : access Inst;
-      seq_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint)
+      seq_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
       return access QtAda6.QtGui.QKeySequence.SequenceMatch.Inst'Class;
    function mnemonic (text_P : str) return access QtAda6.QtGui.QKeySequence.Inst'Class;
    procedure swap
      (self    : access Inst;
-      other_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint);
+      other_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int);
    function toString
      (self : access Inst; format_P : access QtAda6.QtGui.QKeySequence.SequenceFormat.Inst'Class := null) return str;
 end QtAda6.QtGui.QKeySequence;

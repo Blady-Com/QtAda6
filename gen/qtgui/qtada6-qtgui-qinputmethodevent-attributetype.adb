@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QInputMethodEvent.AttributeType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtGui.QInputMethodEvent.AttributeType is
       Free (Inst_Access (Self));
    end Finalize;
    function TextFormat return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputMethodEvent");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "AttributeType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TextFormat"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TextFormat"));
    end TextFormat;
    function Cursor return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputMethodEvent");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "AttributeType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Cursor"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Cursor"));
    end Cursor;
    function Language return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputMethodEvent");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "AttributeType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Language"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Language"));
    end Language;
    function Ruby return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputMethodEvent");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "AttributeType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Ruby"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Ruby"));
    end Ruby;
    function Selection return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputMethodEvent");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "AttributeType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Selection"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Selection"));
    end Selection;
 end QtAda6.QtGui.QInputMethodEvent.AttributeType;

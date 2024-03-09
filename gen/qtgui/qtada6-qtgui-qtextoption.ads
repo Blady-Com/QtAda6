@@ -10,16 +10,16 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtGui.QTextOption.Flag;
+limited with QtAda6.QtGui.QTextOption.Tab;
 limited with QtAda6.QtCore.Qt.LayoutDirection;
 limited with QtAda6.QtGui.QTextOption.WrapMode;
-limited with QtAda6.QtGui.QTextOption.Tab;
 package QtAda6.QtGui.QTextOption is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtGui_QTextOptionQtAda6_QtCore_Qt_AlignmentFlag is new Any;
+   type UNION_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag is new Any;
    type SEQUENCE_float is array (Positive range <>) of float;
    subtype SEQUENCE_QtAda6_QtGui_QTextOption_Tab is QtAda6.QtGui.QTextOption.Tab.Class_Array;
    type LIST_float is array (Positive range <>) of float;
@@ -27,7 +27,7 @@ package QtAda6.QtGui.QTextOption is
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class) return Class;
-   function Create (o_P : UNION_QtAda6_QtGui_QTextOptionQtAda6_QtCore_Qt_AlignmentFlag) return Class;
+   function Create (o_P : UNION_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag) return Class;
    procedure U_copy_U;
    function alignment (self : access Inst) return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class;
    function flags (self : access Inst) return access QtAda6.QtGui.QTextOption.Flag.Inst'Class;

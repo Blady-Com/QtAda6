@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QFont.Stretch is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,73 +21,63 @@ package body QtAda6.QtGui.QFont.Stretch is
       Free (Inst_Access (Self));
    end Finalize;
    function AnyStretch return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Stretch");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AnyStretch"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AnyStretch"));
    end AnyStretch;
    function UltraCondensed return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Stretch");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UltraCondensed"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UltraCondensed"));
    end UltraCondensed;
    function ExtraCondensed return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Stretch");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExtraCondensed"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExtraCondensed"));
    end ExtraCondensed;
    function Condensed return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Stretch");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Condensed"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Condensed"));
    end Condensed;
    function SemiCondensed return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Stretch");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SemiCondensed"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SemiCondensed"));
    end SemiCondensed;
    function Unstretched return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Stretch");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Unstretched"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Unstretched"));
    end Unstretched;
    function SemiExpanded return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Stretch");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SemiExpanded"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SemiExpanded"));
    end SemiExpanded;
    function Expanded return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Stretch");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Expanded"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Expanded"));
    end Expanded;
    function ExtraExpanded return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Stretch");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExtraExpanded"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExtraExpanded"));
    end ExtraExpanded;
    function UltraExpanded return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Stretch");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UltraExpanded"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UltraExpanded"));
    end UltraExpanded;
 end QtAda6.QtGui.QFont.Stretch;

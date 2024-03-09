@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QTextBlockFormat.MarkerType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtGui.QTextBlockFormat.MarkerType is
       Free (Inst_Access (Self));
    end Finalize;
    function NoMarker return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextBlockFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MarkerType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoMarker"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoMarker"));
    end NoMarker;
    function Unchecked return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextBlockFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MarkerType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Unchecked"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Unchecked"));
    end Unchecked;
    function Checked return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextBlockFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MarkerType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Checked"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Checked"));
    end Checked;
 end QtAda6.QtGui.QTextBlockFormat.MarkerType;

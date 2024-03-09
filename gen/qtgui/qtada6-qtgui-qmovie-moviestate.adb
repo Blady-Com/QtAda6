@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QMovie.MovieState is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtGui.QMovie.MovieState is
       Free (Inst_Access (Self));
    end Finalize;
    function NotRunning return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QMovie");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MovieState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NotRunning"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NotRunning"));
    end NotRunning;
    function Paused return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QMovie");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MovieState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Paused"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Paused"));
    end Paused;
    function Running return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QMovie");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MovieState");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Running"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Running"));
    end Running;
 end QtAda6.QtGui.QMovie.MovieState;

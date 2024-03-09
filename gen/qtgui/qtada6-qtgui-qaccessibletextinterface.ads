@@ -17,30 +17,37 @@ package QtAda6.QtGui.QAccessibleTextInterface is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type TUPLE_strintint is new Any;
-   type TUPLE_intint is new Any;
+   type TUPLE_str_int_int is record
+      C0 : str;
+      C1 : int;
+      C2 : int;
+   end record;
+   type TUPLE_int_int is record
+      C0 : int;
+      C1 : int;
+   end record;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    procedure addSelection (self : access Inst; startOffset_P : int; endOffset_P : int);
-   function attributes (self : access Inst; offset_P : int) return TUPLE_strintint;
+   function attributes (self : access Inst; offset_P : int) return TUPLE_str_int_int;
    function characterCount (self : access Inst) return int;
    function characterRect (self : access Inst; offset_P : int) return access QtAda6.QtCore.QRect.Inst'Class;
    function cursorPosition (self : access Inst) return int;
    function offsetAtPoint (self : access Inst; point_P : access QtAda6.QtCore.QPoint.Inst'Class) return int;
    procedure removeSelection (self : access Inst; selectionIndex_P : int);
    procedure scrollToSubstring (self : access Inst; startIndex_P : int; endIndex_P : int);
-   function selection (self : access Inst; selectionIndex_P : int) return TUPLE_intint;
+   function selection (self : access Inst; selectionIndex_P : int) return TUPLE_int_int;
    function selectionCount (self : access Inst) return int;
    procedure setCursorPosition (self : access Inst; position_P : int);
    procedure setSelection (self : access Inst; selectionIndex_P : int; startOffset_P : int; endOffset_P : int);
    function text (self : access Inst; startOffset_P : int; endOffset_P : int) return str;
    function textAfterOffset
      (self : access Inst; offset_P : int; boundaryType_P : access QtAda6.QtGui.QAccessible.TextBoundaryType.Inst'Class)
-      return TUPLE_strintint;
+      return TUPLE_str_int_int;
    function textAtOffset
      (self : access Inst; offset_P : int; boundaryType_P : access QtAda6.QtGui.QAccessible.TextBoundaryType.Inst'Class)
-      return TUPLE_strintint;
+      return TUPLE_str_int_int;
    function textBeforeOffset
      (self : access Inst; offset_P : int; boundaryType_P : access QtAda6.QtGui.QAccessible.TextBoundaryType.Inst'Class)
-      return TUPLE_strintint;
+      return TUPLE_str_int_int;
 end QtAda6.QtGui.QAccessibleTextInterface;

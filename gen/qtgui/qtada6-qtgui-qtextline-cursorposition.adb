@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QTextLine.CursorPosition is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,17 +21,15 @@ package body QtAda6.QtGui.QTextLine.CursorPosition is
       Free (Inst_Access (Self));
    end Finalize;
    function CursorBetweenCharacters return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextLine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "CursorPosition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CursorBetweenCharacters"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CursorBetweenCharacters"));
    end CursorBetweenCharacters;
    function CursorOnCharacter return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextLine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "CursorPosition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CursorOnCharacter"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CursorOnCharacter"));
    end CursorOnCharacter;
 end QtAda6.QtGui.QTextLine.CursorPosition;

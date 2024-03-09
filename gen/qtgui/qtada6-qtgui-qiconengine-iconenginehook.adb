@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QIconEngine.IconEngineHook is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,17 +21,15 @@ package body QtAda6.QtGui.QIconEngine.IconEngineHook is
       Free (Inst_Access (Self));
    end Finalize;
    function IsNullHook return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIconEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IconEngineHook");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "IsNullHook"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "IsNullHook"));
    end IsNullHook;
    function ScaledPixmapHook return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIconEngine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "IconEngineHook");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ScaledPixmapHook"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ScaledPixmapHook"));
    end ScaledPixmapHook;
 end QtAda6.QtGui.QIconEngine.IconEngineHook;

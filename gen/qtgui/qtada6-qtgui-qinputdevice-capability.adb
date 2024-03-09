@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QInputDevice.Capability is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,115 +21,99 @@ package body QtAda6.QtGui.QInputDevice.Capability is
       Free (Inst_Access (Self));
    end Finalize;
    function None_U return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "None_"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "None_"));
    end None_U;
    function Position return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Position"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Position"));
    end Position;
    function Area return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Area"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Area"));
    end Area;
    function Pressure return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Pressure"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Pressure"));
    end Pressure;
    function Velocity return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Velocity"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Velocity"));
    end Velocity;
    function NormalizedPosition return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NormalizedPosition"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NormalizedPosition"));
    end NormalizedPosition;
    function MouseEmulation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MouseEmulation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MouseEmulation"));
    end MouseEmulation;
    function PixelScroll return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PixelScroll"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PixelScroll"));
    end PixelScroll;
    function Scroll return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Scroll"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Scroll"));
    end Scroll;
    function Hover return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Hover"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Hover"));
    end Hover;
    function Rotation return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Rotation"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Rotation"));
    end Rotation;
    function XTilt return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "XTilt"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "XTilt"));
    end XTilt;
    function YTilt return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "YTilt"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "YTilt"));
    end YTilt;
    function TangentialPressure return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TangentialPressure"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TangentialPressure"));
    end TangentialPressure;
    function ZPosition return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ZPosition"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ZPosition"));
    end ZPosition;
    function All_K return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Capability");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "All"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "All"));
    end All_K;
 end QtAda6.QtGui.QInputDevice.Capability;

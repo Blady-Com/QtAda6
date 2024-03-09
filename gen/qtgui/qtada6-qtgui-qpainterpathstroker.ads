@@ -8,24 +8,22 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtGui.QPen;
-limited with QtAda6.QtCore.Qt.PenStyle;
-limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtCore.Qt.PenCapStyle;
 limited with QtAda6.QtGui.QPainterPath;
 limited with QtAda6.QtCore.Qt.PenJoinStyle;
+limited with QtAda6.QtCore.Qt.PenStyle;
 package QtAda6.QtGui.QPainterPathStroker is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtGui_QPenQtAda6_QtCore_Qt_PenStyleQtAda6_QtGui_QColor is new Any;
+   type UNION_QtAda6_QtGui_QPen_QtAda6_QtCore_Qt_PenStyle_QtAda6_QtGui_QColor is new Any;
    type LIST_float is array (Positive range <>) of float;
    type SEQUENCE_float is array (Positive range <>) of float;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (pen_P : UNION_QtAda6_QtGui_QPenQtAda6_QtCore_Qt_PenStyleQtAda6_QtGui_QColor) return Class;
+   function Create (pen_P : UNION_QtAda6_QtGui_QPen_QtAda6_QtCore_Qt_PenStyle_QtAda6_QtGui_QColor) return Class;
    function capStyle (self : access Inst) return access QtAda6.QtCore.Qt.PenCapStyle.Inst'Class;
    function createStroke
      (self : access Inst; path_P : access QtAda6.QtGui.QPainterPath.Inst'Class)

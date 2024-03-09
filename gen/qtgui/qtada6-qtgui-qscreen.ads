@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.Qt.ScreenOrientation;
 limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtCore.QSize;
@@ -16,26 +17,32 @@ limited with QtAda6.QtCore.QSizeF;
 limited with QtAda6.QtGui.QTransform;
 limited with QtAda6.QtCore.QPoint;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QScreen is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    subtype LIST_QtAda6_QtGui_QScreen is QtAda6.QtGui.QScreen.Class_Array;
    procedure Finalize (Self : in out Class);
-   function availableGeometryChanged (self : access Inst) return CLASSVAR_Signal;-- availableGeometryChanged(QRect)
-   function geometryChanged (self : access Inst) return CLASSVAR_Signal;-- geometryChanged(QRect)
-   function logicalDotsPerInchChanged (self : access Inst) return CLASSVAR_Signal;-- logicalDotsPerInchChanged(double)
-   function orientationChanged (self : access Inst) return CLASSVAR_Signal;-- orientationChanged(Qt::ScreenOrientation)
-   function physicalDotsPerInchChanged (self : access Inst) return CLASSVAR_Signal;-- physicalDotsPerInchChanged(double)
-   function physicalSizeChanged (self : access Inst) return CLASSVAR_Signal;-- physicalSizeChanged(QSizeF)
+   function availableGeometryChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- availableGeometryChanged(QRect)
+   function geometryChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- geometryChanged(QRect)
+   function logicalDotsPerInchChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- logicalDotsPerInchChanged(double)
+   function orientationChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- orientationChanged(Qt::ScreenOrientation)
+   function physicalDotsPerInchChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- physicalDotsPerInchChanged(double)
+   function physicalSizeChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- physicalSizeChanged(QSizeF)
    function primaryOrientationChanged
-     (self : access Inst) return CLASSVAR_Signal;-- primaryOrientationChanged(Qt::ScreenOrientation)
-   function refreshRateChanged (self : access Inst) return CLASSVAR_Signal;-- refreshRateChanged(double)
-   function virtualGeometryChanged (self : access Inst) return CLASSVAR_Signal;-- virtualGeometryChanged(QRect)
+     (self : access Inst)
+      return access QtAda6.QtCore.Signal.Inst'Class;-- primaryOrientationChanged(Qt::ScreenOrientation)
+   function refreshRateChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- refreshRateChanged(double)
+   function virtualGeometryChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- virtualGeometryChanged(QRect)
    function angleBetween
      (self : access Inst; a_P : access QtAda6.QtCore.Qt.ScreenOrientation.Inst'Class;
       b_P  : access QtAda6.QtCore.Qt.ScreenOrientation.Inst'Class) return int;

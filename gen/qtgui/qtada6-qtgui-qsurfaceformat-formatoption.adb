@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QSurfaceFormat.FormatOption is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtGui.QSurfaceFormat.FormatOption is
       Free (Inst_Access (Self));
    end Finalize;
    function StereoBuffers return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FormatOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "StereoBuffers"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "StereoBuffers"));
    end StereoBuffers;
    function DebugContext return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FormatOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DebugContext"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DebugContext"));
    end DebugContext;
    function DeprecatedFunctions return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FormatOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DeprecatedFunctions"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DeprecatedFunctions"));
    end DeprecatedFunctions;
    function ResetNotification return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FormatOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ResetNotification"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ResetNotification"));
    end ResetNotification;
    function ProtectedContent return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FormatOption");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ProtectedContent"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ProtectedContent"));
    end ProtectedContent;
 end QtAda6.QtGui.QSurfaceFormat.FormatOption;

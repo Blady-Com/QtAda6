@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QTextDocument.MarkdownFeature is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtGui.QTextDocument.MarkdownFeature is
       Free (Inst_Access (Self));
    end Finalize;
    function MarkdownDialectCommonMark return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocument");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MarkdownFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MarkdownDialectCommonMark"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MarkdownDialectCommonMark"));
    end MarkdownDialectCommonMark;
    function MarkdownNoHTML return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocument");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MarkdownFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MarkdownNoHTML"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MarkdownNoHTML"));
    end MarkdownNoHTML;
    function MarkdownDialectGitHub return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocument");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "MarkdownFeature");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MarkdownDialectGitHub"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MarkdownDialectGitHub"));
    end MarkdownDialectGitHub;
 end QtAda6.QtGui.QTextDocument.MarkdownFeature;

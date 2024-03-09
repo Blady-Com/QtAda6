@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QTextFormat.FormatType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,45 +21,39 @@ package body QtAda6.QtGui.QTextFormat.FormatType is
       Free (Inst_Access (Self));
    end Finalize;
    function InvalidFormat return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FormatType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InvalidFormat"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InvalidFormat"));
    end InvalidFormat;
    function BlockFormat return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FormatType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "BlockFormat"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "BlockFormat"));
    end BlockFormat;
    function CharFormat return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FormatType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CharFormat"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CharFormat"));
    end CharFormat;
    function ListFormat return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FormatType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ListFormat"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ListFormat"));
    end ListFormat;
    function FrameFormat return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FormatType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FrameFormat"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FrameFormat"));
    end FrameFormat;
    function UserFormat return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "FormatType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UserFormat"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UserFormat"));
    end UserFormat;
 end QtAda6.QtGui.QTextFormat.FormatType;

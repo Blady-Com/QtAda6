@@ -11,10 +11,10 @@
 limited with QtAda6.QtCore.QEvent.Type_K;
 limited with QtAda6.QtGui.QPointingDevice;
 limited with QtAda6.QtCore.Qt.KeyboardModifier;
+limited with QtAda6.QtGui.QEventPoint;
 limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtGui.QPointingDevice.PointerType;
 with QtAda6.QtGui.QInputEvent;
-with QtAda6.QtGui.QEventPoint;
 package QtAda6.QtGui.QPointerEvent is
    type Inst;
    type Inst_Access is access all Inst;

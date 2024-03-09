@@ -9,23 +9,22 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtGui.QVector3D;
 limited with QtAda6.QtGui.QVector4D;
 limited with QtAda6.QtCore.QDataStream;
+limited with QtAda6.QtCore.QPointF;
 package QtAda6.QtGui.QVector2D is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (point_P : access QtAda6.QtCore.QPoint.Inst'Class) return Class;
    function Create
-     (point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element) return Class;
+     (point_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element) return Class;
    function Create (vector_P : access QtAda6.QtGui.QVector3D.Inst'Class) return Class;
    function Create (vector_P : access QtAda6.QtGui.QVector4D.Inst'Class) return Class;
    function Create (xpos_P : float; ypos_P : float) return Class;

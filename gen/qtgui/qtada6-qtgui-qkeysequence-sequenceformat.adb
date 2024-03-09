@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QKeySequence.SequenceFormat is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,17 +21,15 @@ package body QtAda6.QtGui.QKeySequence.SequenceFormat is
       Free (Inst_Access (Self));
    end Finalize;
    function NativeText return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SequenceFormat");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NativeText"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NativeText"));
    end NativeText;
    function PortableText return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SequenceFormat");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PortableText"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PortableText"));
    end PortableText;
 end QtAda6.QtGui.QKeySequence.SequenceFormat;

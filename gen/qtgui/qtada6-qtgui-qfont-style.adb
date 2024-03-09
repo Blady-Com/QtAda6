@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QFont.Style is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtGui.QFont.Style is
       Free (Inst_Access (Self));
    end Finalize;
    function StyleNormal return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Style");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "StyleNormal"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "StyleNormal"));
    end StyleNormal;
    function StyleItalic return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Style");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "StyleItalic"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "StyleItalic"));
    end StyleItalic;
    function StyleOblique return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Style");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "StyleOblique"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "StyleOblique"));
    end StyleOblique;
 end QtAda6.QtGui.QFont.Style;

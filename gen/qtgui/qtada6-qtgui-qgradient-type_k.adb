@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QGradient.Type_K is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtGui.QGradient.Type_K is
       Free (Inst_Access (Self));
    end Finalize;
    function LinearGradient return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGradient");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LinearGradient"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LinearGradient"));
    end LinearGradient;
    function RadialGradient return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGradient");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "RadialGradient"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "RadialGradient"));
    end RadialGradient;
    function ConicalGradient return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGradient");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ConicalGradient"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ConicalGradient"));
    end ConicalGradient;
    function NoGradient return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGradient");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Type_K");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoGradient"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoGradient"));
    end NoGradient;
 end QtAda6.QtGui.QGradient.Type_K;

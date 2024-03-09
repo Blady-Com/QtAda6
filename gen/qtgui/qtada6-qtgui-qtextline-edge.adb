@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QTextLine.Edge is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,17 +21,15 @@ package body QtAda6.QtGui.QTextLine.Edge is
       Free (Inst_Access (Self));
    end Finalize;
    function Leading return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextLine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Edge");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Leading"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Leading"));
    end Leading;
    function Trailing return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextLine");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Edge");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Trailing"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Trailing"));
    end Trailing;
 end QtAda6.QtGui.QTextLine.Edge;

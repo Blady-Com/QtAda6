@@ -13,12 +13,6 @@ limited with QtAda6.QtGui.QTextFrameFormat.BorderStyle;
 limited with QtAda6.QtGui.QTextLength;
 limited with QtAda6.QtGui.QTextFormat.PageBreakFlag;
 limited with QtAda6.QtGui.QTextFrameFormat.Position;
-limited with QtAda6.QtCore.Qt.BrushStyle;
-limited with QtAda6.QtCore.Qt.GlobalColor;
-limited with QtAda6.QtGui.QColor;
-limited with QtAda6.QtGui.QGradient;
-limited with QtAda6.QtGui.QImage;
-limited with QtAda6.QtGui.QPixmap;
 with QtAda6.QtGui.QTextFormat;
 package QtAda6.QtGui.QTextFrameFormat is
    type Inst;
@@ -26,14 +20,14 @@ package QtAda6.QtGui.QTextFrameFormat is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QTextFormat.Inst with null record;
-   type UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap is
+   type UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap is
      new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (QTextFrameFormat_P : access QtAda6.QtGui.QTextFrameFormat.Inst'Class) return Class;
    function Create (fmt_P : access QtAda6.QtGui.QTextFormat.Inst'Class) return Class;
    procedure U_copy_U;
-   function border_F (self : access Inst) return float;
+   function border (self : access Inst) return float;
    function borderBrush (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class;
    function borderStyle_F (self : access Inst) return access QtAda6.QtGui.QTextFrameFormat.BorderStyle.Inst'Class;
    function bottomMargin (self : access Inst) return float;
@@ -48,7 +42,7 @@ package QtAda6.QtGui.QTextFrameFormat is
    procedure setBorder (self : access Inst; border_P : float);
    procedure setBorderBrush
      (self    : access Inst;
-      brush_P : UNION_QtAda6_QtGui_QBrushQtAda6_QtCore_Qt_BrushStyleQtAda6_QtCore_Qt_GlobalColorQtAda6_QtGui_QColorQtAda6_QtGui_QGradientQtAda6_QtGui_QImageQtAda6_QtGui_QPixmap);
+      brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
    procedure setBorderStyle (self : access Inst; style_P : access QtAda6.QtGui.QTextFrameFormat.BorderStyle.Inst'Class);
    procedure setBottomMargin (self : access Inst; margin_P : float);
    procedure setHeight (self : access Inst; height_P : access QtAda6.QtGui.QTextLength.Inst'Class);

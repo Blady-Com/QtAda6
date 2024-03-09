@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QPointingDevice.GrabTransition is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,52 +21,45 @@ package body QtAda6.QtGui.QPointingDevice.GrabTransition is
       Free (Inst_Access (Self));
    end Finalize;
    function GrabPassive return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GrabTransition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "GrabPassive"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "GrabPassive"));
    end GrabPassive;
    function UngrabPassive return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GrabTransition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UngrabPassive"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UngrabPassive"));
    end UngrabPassive;
    function CancelGrabPassive return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GrabTransition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CancelGrabPassive"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CancelGrabPassive"));
    end CancelGrabPassive;
    function OverrideGrabPassive return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GrabTransition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "OverrideGrabPassive"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "OverrideGrabPassive"));
    end OverrideGrabPassive;
    function GrabExclusive return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GrabTransition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "GrabExclusive"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "GrabExclusive"));
    end GrabExclusive;
    function UngrabExclusive return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GrabTransition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UngrabExclusive"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UngrabExclusive"));
    end UngrabExclusive;
    function CancelGrabExclusive return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "GrabTransition");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CancelGrabExclusive"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CancelGrabExclusive"));
    end CancelGrabExclusive;
 end QtAda6.QtGui.QPointingDevice.GrabTransition;

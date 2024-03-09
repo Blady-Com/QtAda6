@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QColorSpace.Primaries is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtGui.QColorSpace.Primaries is
       Free (Inst_Access (Self));
    end Finalize;
    function Custom return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QColorSpace");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Primaries");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Custom"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Custom"));
    end Custom;
    function SRgb return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QColorSpace");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Primaries");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SRgb"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SRgb"));
    end SRgb;
    function AdobeRgb return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QColorSpace");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Primaries");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AdobeRgb"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AdobeRgb"));
    end AdobeRgb;
    function DciP3D65 return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QColorSpace");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Primaries");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DciP3D65"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DciP3D65"));
    end DciP3D65;
    function ProPhotoRgb return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QColorSpace");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Primaries");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ProPhotoRgb"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ProPhotoRgb"));
    end ProPhotoRgb;
 end QtAda6.QtGui.QColorSpace.Primaries;

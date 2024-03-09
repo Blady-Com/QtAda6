@@ -8,23 +8,22 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtGui.QInputDevice.DeviceType;
 limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtGui.QInputDevice.Capability;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QInputDevice is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    subtype LIST_QtAda6_QtGui_QInputDevice is QtAda6.QtGui.QInputDevice.Class_Array;
    type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function availableVirtualGeometryChanged
-     (self : access Inst) return CLASSVAR_Signal;-- availableVirtualGeometryChanged(QRect)
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- availableVirtualGeometryChanged(QRect)
    function Create
      (name_P     : str; systemId_P : int; type_K_P : access QtAda6.QtGui.QInputDevice.DeviceType.Inst'Class;
       seatName_P : str := ""; parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;

@@ -12,7 +12,6 @@ limited with QtAda6.QtGui.QTransform;
 limited with QtAda6.QtCore.QDataStream;
 limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtGui.QVector4D;
 limited with QtAda6.QtGui.QMatrix4x4.Flag;
 limited with QtAda6.QtGui.QVector3D;
@@ -26,12 +25,12 @@ package QtAda6.QtGui.QMatrix4x4 is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtGui_QMatrix4x4QtAda6_QtGui_QTransform is new Any;
+   type UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform is new Any;
    type SEQUENCE_float is array (Positive range <>) of float;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
-   type TUPLE is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
+   type TUPLE is null record;
    type LIST_float is array (Positive range <>) of float;
-   type UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect is new Any;
+   type UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create
@@ -41,32 +40,32 @@ package QtAda6.QtGui.QMatrix4x4 is
    function Create (transform_P : access QtAda6.QtGui.QTransform.Inst'Class) return Class;
    function Create (values_P : Iterable) return Class;
    function U_add_U
-     (self : access Inst; m2_P : UNION_QtAda6_QtGui_QMatrix4x4QtAda6_QtGui_QTransform)
+     (self : access Inst; m2_P : UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform)
       return access QtAda6.QtGui.QMatrix4x4.Inst'Class;
    procedure U_copy_U;
    procedure U_dummy (self : access Inst; arg_1_P : SEQUENCE_float);
    function U_iadd_U
-     (self : access Inst; other_P : UNION_QtAda6_QtGui_QMatrix4x4QtAda6_QtGui_QTransform)
+     (self : access Inst; other_P : UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform)
       return access QtAda6.QtGui.QMatrix4x4.Inst'Class;
    function U_imul_U (self : access Inst; factor_P : float) return access QtAda6.QtGui.QMatrix4x4.Inst'Class;
    function U_imul_U
-     (self : access Inst; other_P : UNION_QtAda6_QtGui_QMatrix4x4QtAda6_QtGui_QTransform)
+     (self : access Inst; other_P : UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform)
       return access QtAda6.QtGui.QMatrix4x4.Inst'Class;
    function U_isub_U
-     (self : access Inst; other_P : UNION_QtAda6_QtGui_QMatrix4x4QtAda6_QtGui_QTransform)
+     (self : access Inst; other_P : UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform)
       return access QtAda6.QtGui.QMatrix4x4.Inst'Class;
    function U_lshift_U
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_mul_U (self : access Inst; factor_P : float) return access QtAda6.QtGui.QMatrix4x4.Inst'Class;
    function U_mul_U
-     (self : access Inst; m2_P : UNION_QtAda6_QtGui_QMatrix4x4QtAda6_QtGui_QTransform)
+     (self : access Inst; m2_P : UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform)
       return access QtAda6.QtGui.QMatrix4x4.Inst'Class;
    function U_mul_U
      (self : access Inst; point_P : access QtAda6.QtCore.QPoint.Inst'Class)
       return access QtAda6.QtCore.QPoint.Inst'Class;
    function U_mul_U
-     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function U_neg_U (self : access Inst) return access QtAda6.QtGui.QMatrix4x4.Inst'Class;
    function U_reduce_U (self : access Inst) return access Object'Class;
@@ -75,7 +74,7 @@ package QtAda6.QtGui.QMatrix4x4 is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function U_sub_U
-     (self : access Inst; m2_P : UNION_QtAda6_QtGui_QMatrix4x4QtAda6_QtGui_QTransform)
+     (self : access Inst; m2_P : UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform)
       return access QtAda6.QtGui.QMatrix4x4.Inst'Class;
    function column (self : access Inst; index_P : int) return access QtAda6.QtGui.QVector4D.Inst'Class;
    function copyDataTo (self : access Inst) return TUPLE;
@@ -103,12 +102,12 @@ package QtAda6.QtGui.QMatrix4x4 is
      (self : access Inst; point_P : access QtAda6.QtGui.QVector4D.Inst'Class)
       return access QtAda6.QtGui.QVector4D.Inst'Class;
    function map
-     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapRect
      (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class) return access QtAda6.QtCore.QRect.Inst'Class;
    function mapRect
-     (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect)
+     (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect)
       return access QtAda6.QtCore.QRectF.Inst'Class;
    function mapVector
      (self : access Inst; vector_P : access QtAda6.QtGui.QVector3D.Inst'Class)
@@ -119,7 +118,7 @@ package QtAda6.QtGui.QMatrix4x4 is
      (self       : access Inst; left_P : float; right_P : float; bottom_P : float; top_P : float; nearPlane_P : float;
       farPlane_P : float);
    procedure ortho (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class);
-   procedure ortho (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect);
+   procedure ortho (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect);
    procedure perspective
      (self : access Inst; verticalAngle_P : float; aspectRatio_P : float; nearPlane_P : float; farPlane_P : float);
    procedure projectedRotate (self : access Inst; angle_P : float; x_P : float; y_P : float; z_P : float);
@@ -146,5 +145,5 @@ package QtAda6.QtGui.QMatrix4x4 is
    procedure viewport
      (self        : access Inst; left_P : float; bottom_P : float; width_P : float; height_P : float;
       nearPlane_P : float := 0.0; farPlane_P : float := 0.0);
-   procedure viewport (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect);
+   procedure viewport (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect);
 end QtAda6.QtGui.QMatrix4x4;

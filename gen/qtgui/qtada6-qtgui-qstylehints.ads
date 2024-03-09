@@ -8,36 +8,41 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.Qt.ColorScheme;
 limited with QtAda6.QtCore.Qt.TabFocusBehavior;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QStyleHints is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function colorSchemeChanged (self : access Inst) return CLASSVAR_Signal;-- colorSchemeChanged(Qt::ColorScheme)
-   function cursorFlashTimeChanged (self : access Inst) return CLASSVAR_Signal;-- cursorFlashTimeChanged(int)
+   function colorSchemeChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- colorSchemeChanged(Qt::ColorScheme)
+   function cursorFlashTimeChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- cursorFlashTimeChanged(int)
    function keyboardInputIntervalChanged
-     (self : access Inst) return CLASSVAR_Signal;-- keyboardInputIntervalChanged(int)
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- keyboardInputIntervalChanged(int)
    function mouseDoubleClickIntervalChanged
-     (self : access Inst) return CLASSVAR_Signal;-- mouseDoubleClickIntervalChanged(int)
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- mouseDoubleClickIntervalChanged(int)
    function mousePressAndHoldIntervalChanged
-     (self : access Inst) return CLASSVAR_Signal;-- mousePressAndHoldIntervalChanged(int)
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- mousePressAndHoldIntervalChanged(int)
    function mouseQuickSelectionThresholdChanged
-     (self : access Inst) return CLASSVAR_Signal;-- mouseQuickSelectionThresholdChanged(int)
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- mouseQuickSelectionThresholdChanged(int)
    function showShortcutsInContextMenusChanged
-     (self : access Inst) return CLASSVAR_Signal;-- showShortcutsInContextMenusChanged(bool)
-   function startDragDistanceChanged (self : access Inst) return CLASSVAR_Signal;-- startDragDistanceChanged(int)
-   function startDragTimeChanged (self : access Inst) return CLASSVAR_Signal;-- startDragTimeChanged(int)
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- showShortcutsInContextMenusChanged(bool)
+   function startDragDistanceChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- startDragDistanceChanged(int)
+   function startDragTimeChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- startDragTimeChanged(int)
    function tabFocusBehaviorChanged
-     (self : access Inst) return CLASSVAR_Signal;-- tabFocusBehaviorChanged(Qt::TabFocusBehavior)
-   function useHoverEffectsChanged (self : access Inst) return CLASSVAR_Signal;-- useHoverEffectsChanged(bool)
-   function wheelScrollLinesChanged (self : access Inst) return CLASSVAR_Signal;-- wheelScrollLinesChanged(int)
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- tabFocusBehaviorChanged(Qt::TabFocusBehavior)
+   function useHoverEffectsChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- useHoverEffectsChanged(bool)
+   function wheelScrollLinesChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- wheelScrollLinesChanged(int)
    function colorScheme (self : access Inst) return access QtAda6.QtCore.Qt.ColorScheme.Inst'Class;
    function cursorFlashTime (self : access Inst) return int;
    function fontSmoothingGamma (self : access Inst) return float;

@@ -10,8 +10,12 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
+with QtAda6.QtGui.QTextOption.Tab;
 with QtAda6.QtGui.QTextOption.TabType;
 package body QtAda6.QtGui.QTextOption.Tab is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -19,38 +23,44 @@ package body QtAda6.QtGui.QTextOption.Tab is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Tab");
       Args  := Tuple_New (0);
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict  := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (Tab_P : access QtAda6.QtGui.QTextOption.Tab.Inst'Class) return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Tab");
       Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if Tab_P /= null then Tab_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
      (pos_P : float; tabType_P : access QtAda6.QtGui.QTextOption.TabType.Inst'Class; delim_P : str := "") return Class
    is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Tab");
-      Args  := Tuple_New (3);
+      Args  := Tuple_New (2);
       Tuple_SetItem (Args, 0, Float_FromDouble (pos_P));
       Tuple_SetItem (Args, 1, (if tabType_P /= null then tabType_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 2, Unicode_FromString (delim_P));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      if delim_P /= "" then
+         Dict_SetItemString (Dict, "delim", Unicode_FromString (delim_P));
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Tab");
       Method := Object_GetAttrString (Class, "__copy__");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
 end QtAda6.QtGui.QTextOption.Tab;

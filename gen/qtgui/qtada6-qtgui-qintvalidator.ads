@@ -8,19 +8,18 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QObject;
 with QtAda6.QtGui.QValidator;
-with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QIntValidator is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QValidator.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
    procedure Finalize (Self : in out Class);
-   function bottomChanged (self : access Inst) return CLASSVAR_Signal;-- bottomChanged(int)
-   function topChanged (self : access Inst) return CLASSVAR_Signal;-- topChanged(int)
+   function bottomChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- bottomChanged(int)
+   function topChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- topChanged(int)
    function Create
      (bottom_P : int; top_P : int; parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;

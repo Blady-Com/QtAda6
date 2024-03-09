@@ -8,45 +8,43 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtGui.QIcon;
-limited with QtAda6.QtGui.QPixmap;
+limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtGui.QActionGroup;
 limited with QtAda6.QtGui.QAction.ActionEvent;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtGui.QFont;
+limited with QtAda6.QtGui.QIcon;
 limited with QtAda6.QtGui.QAction.MenuRole;
 limited with QtAda6.QtGui.QAction.Priority;
 limited with QtAda6.QtCore.Qt.Key;
-limited with QtAda6.QtCore.QKeyCombination;
-limited with QtAda6.QtGui.QKeySequence.StandardKey;
 limited with QtAda6.QtCore.Qt.ShortcutContext;
+limited with QtAda6.QtGui.QKeySequence.StandardKey;
+limited with QtAda6.QtGui.QKeySequence;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtGui.QKeySequence;
 package QtAda6.QtGui.QAction is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   subtype CLASSVAR_Signal is QtAda6.QtCore.Signal.Class;
-   type UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap is new Any;
+   type UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is new Any;
    subtype LIST_QtAda6_QtCore_QObject is QtAda6.QtCore.QObject.Class_Array;
-   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
-   type UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint is
+   type UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str is new Any;
+   type UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int is
      new Any;
    subtype SEQUENCE_QtAda6_QtGui_QKeySequence is QtAda6.QtGui.QKeySequence.Class_Array;
    subtype LIST_QtAda6_QtGui_QKeySequence is QtAda6.QtGui.QKeySequence.Class_Array;
    procedure Finalize (Self : in out Class);
-   function changed (self : access Inst) return CLASSVAR_Signal;-- changed()
-   function checkableChanged (self : access Inst) return CLASSVAR_Signal;-- checkableChanged(bool)
-   function enabledChanged (self : access Inst) return CLASSVAR_Signal;-- enabledChanged(bool)
-   function hovered (self : access Inst) return CLASSVAR_Signal;-- hovered()
-   function toggled (self : access Inst) return CLASSVAR_Signal;-- toggled(bool)
-   function triggered (self : access Inst) return CLASSVAR_Signal;-- triggered()
-   function visibleChanged (self : access Inst) return CLASSVAR_Signal;-- visibleChanged()
+   function changed (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- changed()
+   function checkableChanged
+     (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- checkableChanged(bool)
+   function enabledChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- enabledChanged(bool)
+   function hovered (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- hovered()
+   function toggled (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- toggled(bool)
+   function triggered (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- triggered()
+   function visibleChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- visibleChanged()
    function Create
-     (icon_P   : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap; text_P : str;
+     (icon_P   : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
       parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function Create (text_P : str; parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
@@ -55,7 +53,7 @@ package QtAda6.QtGui.QAction is
    function associatedObjects (self : access Inst) return LIST_QtAda6_QtCore_QObject;
    function autoRepeat (self : access Inst) return bool;
    function data (self : access Inst) return Any;
-   function event_F (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
+   function event (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
    function font (self : access Inst) return access QtAda6.QtGui.QFont.Inst'Class;
    procedure hover (self : access Inst);
    function icon (self : access Inst) return access QtAda6.QtGui.QIcon.Inst'Class;
@@ -67,7 +65,7 @@ package QtAda6.QtGui.QAction is
    function isSeparator (self : access Inst) return bool;
    function isShortcutVisibleInContextMenu (self : access Inst) return bool;
    function isVisible (self : access Inst) return bool;
-   function menu_F (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class;
+   function menu (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class;
    function menuRole_F (self : access Inst) return access QtAda6.QtGui.QAction.MenuRole.Inst'Class;
    function priority_F (self : access Inst) return access QtAda6.QtGui.QAction.Priority.Inst'Class;
    procedure resetEnabled (self : access Inst);
@@ -78,8 +76,8 @@ package QtAda6.QtGui.QAction is
    procedure setData (self : access Inst; var_P : Any);
    procedure setDisabled (self : access Inst; b_P : bool);
    procedure setEnabled (self : access Inst; arg_1_P : bool);
-   procedure setFont (self : access Inst; font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str);
-   procedure setIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIconQtAda6_QtGui_QPixmap);
+   procedure setFont (self : access Inst; font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str);
+   procedure setIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
    procedure setIconText (self : access Inst; text_P : str);
    procedure setIconVisibleInMenu (self : access Inst; visible_P : bool);
    procedure setMenu (self : access Inst; arg_1_P : access QtAda6.QtCore.QObject.Inst'Class);
@@ -89,7 +87,7 @@ package QtAda6.QtGui.QAction is
    procedure setShortcut (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.Key.Inst'Class);
    procedure setShortcut
      (self       : access Inst;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequenceQtAda6_QtCore_QKeyCombinationQtAda6_QtGui_QKeySequence_StandardKeystrint);
+      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int);
    procedure setShortcutContext (self : access Inst; context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class);
    procedure setShortcutVisibleInContextMenu (self : access Inst; show_P : bool);
    procedure setShortcuts (self : access Inst; arg_1_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class);

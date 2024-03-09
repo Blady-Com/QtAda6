@@ -31,7 +31,7 @@ package QtAda6.QtGui.QPaintDevice is
    procedure initPainter (self : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class);
    function logicalDpiX (self : access Inst) return int;
    function logicalDpiY (self : access Inst) return int;
-   function metric_F
+   function metric
      (self : access Inst; metric_P : access QtAda6.QtGui.QPaintDevice.PaintDeviceMetric.Inst'Class) return int;
    function paintEngine (self : access Inst) return access QtAda6.QtGui.QPaintEngine.Inst'Class;
    function paintingActive (self : access Inst) return bool;

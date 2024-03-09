@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QTextFormat.ObjectTypes is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtGui.QTextFormat.ObjectTypes is
       Free (Inst_Access (Self));
    end Finalize;
    function NoObject return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ObjectTypes");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoObject"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoObject"));
    end NoObject;
    function ImageObject return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ObjectTypes");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ImageObject"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ImageObject"));
    end ImageObject;
    function TableObject return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ObjectTypes");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TableObject"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TableObject"));
    end TableObject;
    function TableCellObject return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ObjectTypes");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TableCellObject"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TableCellObject"));
    end TableCellObject;
    function UserObject return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ObjectTypes");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UserObject"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UserObject"));
    end UserObject;
 end QtAda6.QtGui.QTextFormat.ObjectTypes;

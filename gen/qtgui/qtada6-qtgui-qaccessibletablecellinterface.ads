@@ -8,7 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-with QtAda6.QtGui.QAccessibleInterface;
+limited with QtAda6.QtGui.QAccessibleInterface;
 package QtAda6.QtGui.QAccessibleTableCellInterface is
    type Inst;
    type Inst_Access is access all Inst;

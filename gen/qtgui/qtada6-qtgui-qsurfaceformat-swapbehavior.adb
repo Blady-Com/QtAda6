@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QSurfaceFormat.SwapBehavior is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtGui.QSurfaceFormat.SwapBehavior is
       Free (Inst_Access (Self));
    end Finalize;
    function DefaultSwapBehavior return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SwapBehavior");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DefaultSwapBehavior"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DefaultSwapBehavior"));
    end DefaultSwapBehavior;
    function SingleBuffer return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SwapBehavior");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SingleBuffer"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SingleBuffer"));
    end SingleBuffer;
    function DoubleBuffer return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SwapBehavior");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DoubleBuffer"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DoubleBuffer"));
    end DoubleBuffer;
    function TripleBuffer return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "SwapBehavior");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TripleBuffer"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TripleBuffer"));
    end TripleBuffer;
 end QtAda6.QtGui.QSurfaceFormat.SwapBehavior;

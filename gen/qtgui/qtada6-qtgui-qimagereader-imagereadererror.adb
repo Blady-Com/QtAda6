@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QImageReader.ImageReaderError is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,38 +21,33 @@ package body QtAda6.QtGui.QImageReader.ImageReaderError is
       Free (Inst_Access (Self));
    end Finalize;
    function UnknownError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageReader");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageReaderError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UnknownError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UnknownError"));
    end UnknownError;
    function FileNotFoundError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageReader");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageReaderError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "FileNotFoundError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "FileNotFoundError"));
    end FileNotFoundError;
    function DeviceError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageReader");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageReaderError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DeviceError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DeviceError"));
    end DeviceError;
    function UnsupportedFormatError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageReader");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageReaderError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UnsupportedFormatError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UnsupportedFormatError"));
    end UnsupportedFormatError;
    function InvalidDataError return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QImageReader");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ImageReaderError");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "InvalidDataError"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "InvalidDataError"));
    end InvalidDataError;
 end QtAda6.QtGui.QImageReader.ImageReaderError;

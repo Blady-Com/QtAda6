@@ -10,9 +10,12 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QEvent;
+with QtAda6.QtGui.QWindowStateChangeEvent;
 with QtAda6.QtCore.Qt.WindowState;
 package body QtAda6.QtGui.QWindowStateChangeEvent is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -20,57 +23,65 @@ package body QtAda6.QtGui.QWindowStateChangeEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QWindowStateChangeEvent.Inst'Class) return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QWindowStateChangeEvent");
       Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
      (oldState_P : access QtAda6.QtCore.Qt.WindowState.Inst'Class; isOverride_P : bool := False) return Class
    is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QWindowStateChangeEvent");
-      Args  := Tuple_New (2);
+      Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if oldState_P /= null then oldState_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, To_Python (isOverride_P));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      if isOverride_P /= False then
+         Dict_SetItemString (Dict, "isOverride", To_Python (isOverride_P));
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function U_repr_U (self : access Inst) return access Object'Class is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return null;
    end U_repr_U;
    function clone (self : access Inst) return access QtAda6.QtGui.QWindowStateChangeEvent.Inst'Class is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
       Ret : constant QtAda6.QtGui.QWindowStateChangeEvent.Class := new QtAda6.QtGui.QWindowStateChangeEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end clone;
    function isOverride (self : access Inst) return bool is
-      Method, Args, List, Result : Handle;
+      Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isOverride");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end isOverride;
    function oldState (self : access Inst) return access QtAda6.QtCore.Qt.WindowState.Inst'Class is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtCore.Qt.WindowState.Class := new QtAda6.QtCore.Qt.WindowState.Inst;
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret : constant QtAda6.QtCore.Qt.WindowState.Class := new QtAda6.QtCore.Qt.WindowState.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "oldState");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end oldState;

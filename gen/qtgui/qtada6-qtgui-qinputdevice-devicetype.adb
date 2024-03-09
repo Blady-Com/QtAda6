@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QInputDevice.DeviceType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,66 +21,57 @@ package body QtAda6.QtGui.QInputDevice.DeviceType is
       Free (Inst_Access (Self));
    end Finalize;
    function Unknown return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DeviceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Unknown"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Unknown"));
    end Unknown;
    function Mouse return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DeviceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Mouse"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Mouse"));
    end Mouse;
    function TouchScreen return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DeviceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TouchScreen"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TouchScreen"));
    end TouchScreen;
    function TouchPad return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DeviceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "TouchPad"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "TouchPad"));
    end TouchPad;
    function Puck return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DeviceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Puck"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Puck"));
    end Puck;
    function Stylus return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DeviceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Stylus"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Stylus"));
    end Stylus;
    function Airbrush return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DeviceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Airbrush"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Airbrush"));
    end Airbrush;
    function Keyboard return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DeviceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Keyboard"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Keyboard"));
    end Keyboard;
    function AllDevices return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputDevice");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "DeviceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "AllDevices"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "AllDevices"));
    end AllDevices;
 end QtAda6.QtGui.QInputDevice.DeviceType;

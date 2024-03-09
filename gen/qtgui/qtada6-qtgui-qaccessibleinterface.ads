@@ -28,8 +28,7 @@ package QtAda6.QtGui.QAccessibleInterface is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type TUPLE_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag is new Any;
-   type LIST_TUPLE_QtAda6_QtGui_QAccessibleInterfaceQtAda6_QtGui_QAccessible_RelationFlag is
+   type LIST_TUPLE_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag is
      array (Positive range <>) of TUPLE_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag;
    procedure Finalize (Self : in out Class);
    function Create return Class;
@@ -52,7 +51,7 @@ package QtAda6.QtGui.QAccessibleInterface is
    function rect (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class;
    function relations
      (self : access Inst; match_P : access QtAda6.QtGui.QAccessible.RelationFlag.Inst'Class := null)
-      return LIST_TUPLE_QtAda6_QtGui_QAccessibleInterfaceQtAda6_QtGui_QAccessible_RelationFlag;
+      return LIST_TUPLE_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag;
    function role (self : access Inst) return access QtAda6.QtGui.QAccessible.Role.Inst'Class;
    procedure setText (self : access Inst; t_P : access QtAda6.QtGui.QAccessible.Text.Inst'Class; text_P : str);
    function state (self : access Inst) return access QtAda6.QtGui.QAccessible.State.Inst'Class;

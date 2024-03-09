@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QActionGroup.ExclusionPolicy is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,24 +21,21 @@ package body QtAda6.QtGui.QActionGroup.ExclusionPolicy is
       Free (Inst_Access (Self));
    end Finalize;
    function None_U return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QActionGroup");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ExclusionPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "None_"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "None_"));
    end None_U;
    function Exclusive return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QActionGroup");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ExclusionPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Exclusive"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Exclusive"));
    end Exclusive;
    function ExclusiveOptional return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QActionGroup");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ExclusionPolicy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExclusiveOptional"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExclusiveOptional"));
    end ExclusiveOptional;
 end QtAda6.QtGui.QActionGroup.ExclusionPolicy;

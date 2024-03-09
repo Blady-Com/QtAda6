@@ -12,30 +12,28 @@ limited with QtAda6.QtCore.QIODevice;
 limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtGui.QImageReader.ImageReaderError;
+limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtGui.QImage.Format;
 limited with QtAda6.QtGui.QImage;
 limited with QtAda6.QtCore.QSize;
-limited with QtAda6.QtGui.QRgba64;
-limited with QtAda6.QtCore.Qt.GlobalColor;
 limited with QtAda6.QtGui.QImageIOHandler.ImageOption;
 limited with QtAda6.QtGui.QImageIOHandler.Transformation;
-with QtAda6.QtCore.QByteArray;
 package QtAda6.QtGui.QImageReader is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    subtype LIST_QtAda6_QtCore_QByteArray is QtAda6.QtCore.QByteArray.Class_Array;
-   type UNION_QtAda6_QtGui_QColorQtAda6_QtGui_QRgba64AnyQtAda6_QtCore_Qt_GlobalColorstrint is new Any;
+   type UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is new Any;
    type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create
-     (device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : UNION_QtAda6_QtCore_QByteArraybytes := null)
+     (device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : UNION_QtAda6_QtCore_QByteArray_bytes := null)
       return Class;
-   function Create (fileName_P : str; format_P : UNION_QtAda6_QtCore_QByteArraybytes := null) return Class;
+   function Create (fileName_P : str; format_P : UNION_QtAda6_QtCore_QByteArray_bytes := null) return Class;
    function allocationLimit return int;
    function autoDetectImageFormat (self : access Inst) return bool;
    function autoTransform (self : access Inst) return bool;
@@ -46,7 +44,7 @@ package QtAda6.QtGui.QImageReader is
    function currentImageRect (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class;
    function decideFormatFromContent (self : access Inst) return bool;
    function device (self : access Inst) return access QtAda6.QtCore.QIODevice.Inst'Class;
-   function error_F (self : access Inst) return access QtAda6.QtGui.QImageReader.ImageReaderError.Inst'Class;
+   function error (self : access Inst) return access QtAda6.QtGui.QImageReader.ImageReaderError.Inst'Class;
    function errorString (self : access Inst) return str;
    function fileName (self : access Inst) return str;
    function format (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class;
@@ -56,25 +54,26 @@ package QtAda6.QtGui.QImageReader is
    function imageFormat (fileName_P : str) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function imageFormat (self : access Inst) return access QtAda6.QtGui.QImage.Format.Inst'Class;
    function imageFormatsForMimeType
-     (mimeType_P : UNION_QtAda6_QtCore_QByteArraybytes) return LIST_QtAda6_QtCore_QByteArray;
+     (mimeType_P : UNION_QtAda6_QtCore_QByteArray_bytes) return LIST_QtAda6_QtCore_QByteArray;
    function jumpToImage (self : access Inst; imageNumber_P : int) return bool;
    function jumpToNextImage (self : access Inst) return bool;
    function loopCount (self : access Inst) return int;
    function nextImageDelay (self : access Inst) return int;
    function quality (self : access Inst) return int;
-   function read_F (self : access Inst) return access QtAda6.QtGui.QImage.Inst'Class;
+   function read (self : access Inst) return access QtAda6.QtGui.QImage.Inst'Class;
    function scaledClipRect (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class;
    function scaledSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class;
    procedure setAllocationLimit (mbLimit_P : int);
    procedure setAutoDetectImageFormat (self : access Inst; enabled_P : bool);
    procedure setAutoTransform (self : access Inst; enabled_P : bool);
    procedure setBackgroundColor
-     (self : access Inst; color_P : UNION_QtAda6_QtGui_QColorQtAda6_QtGui_QRgba64AnyQtAda6_QtCore_Qt_GlobalColorstrint);
+     (self    : access Inst;
+      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
    procedure setClipRect (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class);
    procedure setDecideFormatFromContent (self : access Inst; ignored_P : bool);
    procedure setDevice (self : access Inst; device_P : access QtAda6.QtCore.QIODevice.Inst'Class);
    procedure setFileName (self : access Inst; fileName_P : str);
-   procedure setFormat (self : access Inst; format_P : UNION_QtAda6_QtCore_QByteArraybytes);
+   procedure setFormat (self : access Inst; format_P : UNION_QtAda6_QtCore_QByteArray_bytes);
    procedure setQuality (self : access Inst; quality_P : int);
    procedure setScaledClipRect (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class);
    procedure setScaledSize (self : access Inst; size_P : access QtAda6.QtCore.QSize.Inst'Class);

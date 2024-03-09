@@ -20,10 +20,10 @@ package QtAda6.QtGui.QAbstractFileIconProvider is
    type Inst is new Shiboken.Object with null record;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function icon_F
+   function icon
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QFileInfo.Inst'Class)
       return access QtAda6.QtGui.QIcon.Inst'Class;
-   function icon_F
+   function icon
      (self : access Inst; arg_1_P : access QtAda6.QtGui.QAbstractFileIconProvider.IconType.Inst'Class)
       return access QtAda6.QtGui.QIcon.Inst'Class;
    function options (self : access Inst) return access QtAda6.QtGui.QAbstractFileIconProvider.Option.Inst'Class;

@@ -9,8 +9,8 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtGui.QTextDocument;
+limited with QtAda6.QtGui.QTextBlock;
 with QtAda6.QtGui.QTextObject;
-with QtAda6.QtGui.QTextBlock;
 package QtAda6.QtGui.QTextBlockGroup is
    type Inst;
    type Inst_Access is access all Inst;

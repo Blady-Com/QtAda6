@@ -10,8 +10,11 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QEvent;
+with QtAda6.QtGui.QShowEvent;
 package body QtAda6.QtGui.QShowEvent is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -19,27 +22,30 @@ package body QtAda6.QtGui.QShowEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QShowEvent");
       Args  := Tuple_New (0);
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict  := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (arg_1_P : access QtAda6.QtGui.QShowEvent.Inst'Class) return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QShowEvent");
       Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function clone (self : access Inst) return access QtAda6.QtGui.QShowEvent.Inst'Class is
-      Method, Args, List, Result : Handle;
-      Ret                        : constant QtAda6.QtGui.QShowEvent.Class := new QtAda6.QtGui.QShowEvent.Inst;
+      Method, Args, Dict, List, Tuple, Result : Handle;
+      Ret : constant QtAda6.QtGui.QShowEvent.Class := new QtAda6.QtGui.QShowEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
       Args             := Tuple_New (0);
-      Result           := Object_CallObject (Method, Args, True);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end clone;

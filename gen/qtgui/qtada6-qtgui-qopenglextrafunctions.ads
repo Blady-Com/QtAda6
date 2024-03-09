@@ -18,8 +18,8 @@ package QtAda6.QtGui.QOpenGLExtraFunctions is
    type Inst is new QtAda6.QtGui.QOpenGLFunctions.Inst with null record;
    type SEQUENCE_float is array (Positive range <>) of float;
    type SEQUENCE_int is array (Positive range <>) of int;
-   type UNION_boolLIST_Any is new Any;
-   type UNION_intLIST_Any is new Any;
+   type UNION_bool_LIST_Any is new Any;
+   type UNION_int_LIST_Any is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (context_P : access QtAda6.QtGui.QOpenGLContext.Inst'Class) return Class;
@@ -107,11 +107,11 @@ package QtAda6.QtGui.QOpenGLExtraFunctions is
    procedure glGetActiveUniformsiv
      (self     : access Inst; program_P : int; uniformCount_P : int; uniformIndices_P : SEQUENCE_int; pname_P : int;
       params_P : SEQUENCE_int);
-   function glGetBooleani_v (self : access Inst; target_P : int; index_P : int) return UNION_boolLIST_Any;
+   function glGetBooleani_v (self : access Inst; target_P : int; index_P : int) return UNION_bool_LIST_Any;
    function glGetFragDataLocation (self : access Inst; program_P : int; name_P : bytes) return int;
    procedure glGetFramebufferParameteriv (self : access Inst; target_P : int; pname_P : int; params_P : SEQUENCE_int);
    function glGetGraphicsResetStatus (self : access Inst) return int;
-   function glGetIntegeri_v (self : access Inst; arg_1_P : int; arg_2_P : int) return UNION_intLIST_Any;
+   function glGetIntegeri_v (self : access Inst; arg_1_P : int; arg_2_P : int) return UNION_int_LIST_Any;
    procedure glGetIntegeri_v (self : access Inst; target_P : int; index_P : int; data_P : SEQUENCE_int);
    procedure glGetInternalformativ
      (self     : access Inst; target_P : int; internalformat_P : int; pname_P : int; bufSize_P : int;

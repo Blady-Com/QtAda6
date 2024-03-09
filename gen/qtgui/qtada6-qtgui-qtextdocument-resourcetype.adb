@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QTextDocument.ResourceType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,45 +21,39 @@ package body QtAda6.QtGui.QTextDocument.ResourceType is
       Free (Inst_Access (Self));
    end Finalize;
    function UnknownResource return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocument");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResourceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UnknownResource"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UnknownResource"));
    end UnknownResource;
    function HtmlResource return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocument");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResourceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "HtmlResource"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "HtmlResource"));
    end HtmlResource;
    function ImageResource return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocument");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResourceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ImageResource"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ImageResource"));
    end ImageResource;
    function StyleSheetResource return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocument");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResourceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "StyleSheetResource"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "StyleSheetResource"));
    end StyleSheetResource;
    function MarkdownResource return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocument");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResourceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "MarkdownResource"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "MarkdownResource"));
    end MarkdownResource;
    function UserResource return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocument");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "ResourceType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "UserResource"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "UserResource"));
    end UserResource;
 end QtAda6.QtGui.QTextDocument.ResourceType;

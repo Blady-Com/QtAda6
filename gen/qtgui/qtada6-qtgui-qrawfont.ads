@@ -9,27 +9,26 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtGui.QFont.HintingPreference;
-limited with QtAda6.QtCore.QByteArray;
+limited with QtAda6.QtCore.QPointF;
 limited with QtAda6.QtGui.QRawFont.LayoutFlag;
 limited with QtAda6.QtGui.QRawFont.AntialiasingType;
 limited with QtAda6.QtGui.QTransform;
 limited with QtAda6.QtGui.QImage;
 limited with QtAda6.QtCore.QRectF;
-limited with QtAda6.QtGui.QFont;
+limited with QtAda6.QtCore.QByteArray;
+limited with QtAda6.QtGui.QFontDatabase.WritingSystem;
 limited with QtAda6.QtGui.QPainterPath;
 limited with QtAda6.QtGui.QFont.Style;
-with QtAda6.QtCore.QPointF;
-with QtAda6.QtGui.QFontDatabase.WritingSystem;
 package QtAda6.QtGui.QRawFont is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QByteArraybytes is new Any;
+   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    type SEQUENCE_int is array (Positive range <>) of int;
    subtype LIST_QtAda6_QtCore_QPointF is QtAda6.QtCore.QPointF.Class_Array;
-   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
+   type UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str is new Any;
    type LIST_int is array (Positive range <>) of int;
    subtype LIST_QtAda6_QtGui_QFontDatabase_WritingSystem is QtAda6.QtGui.QFontDatabase.WritingSystem.Class_Array;
    procedure Finalize (Self : in out Class);
@@ -38,7 +37,7 @@ package QtAda6.QtGui.QRawFont is
      (fileName_P          : str; pixelSize_P : float;
       hintingPreference_P : access QtAda6.QtGui.QFont.HintingPreference.Inst'Class := null) return Class;
    function Create
-     (fontData_P          : UNION_QtAda6_QtCore_QByteArraybytes; pixelSize_P : float;
+     (fontData_P          : UNION_QtAda6_QtCore_QByteArray_bytes; pixelSize_P : float;
       hintingPreference_P : access QtAda6.QtGui.QFont.HintingPreference.Inst'Class := null) return Class;
    function Create (other_P : access QtAda6.QtGui.QRawFont.Inst'Class) return Class;
    procedure U_copy_U;
@@ -59,7 +58,7 @@ package QtAda6.QtGui.QRawFont is
    function familyName (self : access Inst) return str;
    function fontTable (self : access Inst; tagName_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function fromFont
-     (font_P          : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str;
+     (font_P          : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str;
       writingSystem_P : access QtAda6.QtGui.QFontDatabase.WritingSystem.Inst'Class := null)
       return access QtAda6.QtGui.QRawFont.Inst'Class;
    function glyphIndexesForString (self : access Inst; text_P : str) return LIST_int;
@@ -68,7 +67,7 @@ package QtAda6.QtGui.QRawFont is
    function leading (self : access Inst) return float;
    function lineThickness (self : access Inst) return float;
    procedure loadFromData
-     (self                : access Inst; fontData_P : UNION_QtAda6_QtCore_QByteArraybytes; pixelSize_P : float;
+     (self                : access Inst; fontData_P : UNION_QtAda6_QtCore_QByteArray_bytes; pixelSize_P : float;
       hintingPreference_P : access QtAda6.QtGui.QFont.HintingPreference.Inst'Class);
    procedure loadFromFile
      (self                : access Inst; fileName_P : str; pixelSize_P : float;

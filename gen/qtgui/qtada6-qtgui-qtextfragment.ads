@@ -9,7 +9,7 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtGui.QTextCharFormat;
-with QtAda6.QtGui.QGlyphRun;
+limited with QtAda6.QtGui.QGlyphRun;
 package QtAda6.QtGui.QTextFragment is
    type Inst;
    type Inst_Access is access all Inst;

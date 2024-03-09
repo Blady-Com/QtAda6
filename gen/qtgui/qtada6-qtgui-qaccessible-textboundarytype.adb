@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QAccessible.TextBoundaryType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,45 +21,39 @@ package body QtAda6.QtGui.QAccessible.TextBoundaryType is
       Free (Inst_Access (Self));
    end Finalize;
    function CharBoundary return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextBoundaryType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "CharBoundary"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "CharBoundary"));
    end CharBoundary;
    function WordBoundary return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextBoundaryType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "WordBoundary"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "WordBoundary"));
    end WordBoundary;
    function SentenceBoundary return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextBoundaryType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "SentenceBoundary"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "SentenceBoundary"));
    end SentenceBoundary;
    function ParagraphBoundary return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextBoundaryType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ParagraphBoundary"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ParagraphBoundary"));
    end ParagraphBoundary;
    function LineBoundary return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextBoundaryType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "LineBoundary"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "LineBoundary"));
    end LineBoundary;
    function NoBoundary return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "TextBoundaryType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoBoundary"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoBoundary"));
    end NoBoundary;
 end QtAda6.QtGui.QAccessible.TextBoundaryType;

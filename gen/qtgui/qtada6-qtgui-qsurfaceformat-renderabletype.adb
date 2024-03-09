@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QSurfaceFormat.RenderableType is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtGui.QSurfaceFormat.RenderableType is
       Free (Inst_Access (Self));
    end Finalize;
    function DefaultRenderableType return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RenderableType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "DefaultRenderableType"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "DefaultRenderableType"));
    end DefaultRenderableType;
    function OpenGL return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RenderableType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "OpenGL"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "OpenGL"));
    end OpenGL;
    function OpenGLES return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RenderableType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "OpenGLES"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "OpenGLES"));
    end OpenGLES;
    function OpenVG return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurfaceFormat");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "RenderableType");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "OpenVG"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "OpenVG"));
    end OpenVG;
 end QtAda6.QtGui.QSurfaceFormat.RenderableType;

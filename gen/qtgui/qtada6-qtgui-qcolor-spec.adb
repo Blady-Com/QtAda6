@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QColor.Spec is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,45 +21,39 @@ package body QtAda6.QtGui.QColor.Spec is
       Free (Inst_Access (Self));
    end Finalize;
    function Invalid return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QColor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Spec");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Invalid"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Invalid"));
    end Invalid;
    function Rgb return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QColor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Spec");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Rgb"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Rgb"));
    end Rgb;
    function Hsv return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QColor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Spec");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Hsv"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Hsv"));
    end Hsv;
    function Cmyk return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QColor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Spec");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Cmyk"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Cmyk"));
    end Cmyk;
    function Hsl return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QColor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Spec");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "Hsl"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "Hsl"));
    end Hsl;
    function ExtendedRgb return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QColor");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "Spec");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ExtendedRgb"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ExtendedRgb"));
    end ExtendedRgb;
 end QtAda6.QtGui.QColor.Spec;

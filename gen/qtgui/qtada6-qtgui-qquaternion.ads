@@ -18,8 +18,17 @@ package QtAda6.QtGui.QQuaternion is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type TUPLE_floatfloatfloatfloat is new Any;
-   type TUPLE_floatfloatfloat is new Any;
+   type TUPLE_float_float_float_float is record
+      C0 : float;
+      C1 : float;
+      C2 : float;
+      C3 : float;
+   end record;
+   type TUPLE_float_float_float is record
+      C0 : float;
+      C1 : float;
+      C2 : float;
+   end record;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (scalar_P : float; vector_P : access QtAda6.QtGui.QVector3D.Inst'Class) return Class;
@@ -80,8 +89,8 @@ package QtAda6.QtGui.QQuaternion is
      (self    : access Inst; xAxis_P : access QtAda6.QtGui.QVector3D.Inst'Class;
       yAxis_P : access QtAda6.QtGui.QVector3D.Inst'Class; zAxis_P : access QtAda6.QtGui.QVector3D.Inst'Class);
    function getAxisAndAngle (self : access Inst; axis_P : access QtAda6.QtGui.QVector3D.Inst'Class) return float;
-   function getAxisAndAngle (self : access Inst) return TUPLE_floatfloatfloatfloat;
-   function getEulerAngles (self : access Inst) return TUPLE_floatfloatfloat;
+   function getAxisAndAngle (self : access Inst) return TUPLE_float_float_float_float;
+   function getEulerAngles (self : access Inst) return TUPLE_float_float_float;
    function inverted (self : access Inst) return access QtAda6.QtGui.QQuaternion.Inst'Class;
    function isIdentity (self : access Inst) return bool;
    function isNull (self : access Inst) return bool;

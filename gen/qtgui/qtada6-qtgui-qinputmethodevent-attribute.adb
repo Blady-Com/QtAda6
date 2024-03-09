@@ -10,8 +10,12 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
+with QtAda6.QtGui.QInputMethodEvent.Attribute;
 with QtAda6.QtGui.QInputMethodEvent.AttributeType;
 package body QtAda6.QtGui.QInputMethodEvent.Attribute is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -19,30 +23,32 @@ package body QtAda6.QtGui.QInputMethodEvent.Attribute is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (Attribute_P : access QtAda6.QtGui.QInputMethodEvent.Attribute.Inst'Class) return Class is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Attribute");
       Args  := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if Attribute_P /= null then Attribute_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
      (typ_P : access QtAda6.QtGui.QInputMethodEvent.AttributeType.Inst'Class; s_P : int; l_P : int) return Class
    is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Attribute");
       Args  := Tuple_New (3);
       Tuple_SetItem (Args, 0, (if typ_P /= null then typ_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Long_FromLong (s_P));
       Tuple_SetItem (Args, 2, Long_FromLong (l_P));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
      (typ_P : access QtAda6.QtGui.QInputMethodEvent.AttributeType.Inst'Class; s_P : int; l_P : int; val_P : Any)
       return Class
    is
-      Class, Args, List : Handle;
+      Class, Args, Dict, List, Tuple : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Attribute");
       Args  := Tuple_New (4);
@@ -50,14 +56,16 @@ package body QtAda6.QtGui.QInputMethodEvent.Attribute is
       Tuple_SetItem (Args, 1, Long_FromLong (s_P));
       Tuple_SetItem (Args, 2, Long_FromLong (l_P));
       Tuple_SetItem (Args, 3, (if val_P /= null then val_P.Python_Proxy else No_Value));
-      return new Inst'(Python_Proxy => Object_CallObject (Class, Args, True));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, List, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Attribute");
       Method := Object_GetAttrString (Class, "__copy__");
       Args   := Tuple_New (0);
-      Result := Object_CallObject (Method, Args, True);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
 end QtAda6.QtGui.QInputMethodEvent.Attribute;

@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QFont.HintingPreference is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,31 +21,27 @@ package body QtAda6.QtGui.QFont.HintingPreference is
       Free (Inst_Access (Self));
    end Finalize;
    function PreferDefaultHinting return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "HintingPreference");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreferDefaultHinting"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreferDefaultHinting"));
    end PreferDefaultHinting;
    function PreferNoHinting return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "HintingPreference");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreferNoHinting"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreferNoHinting"));
    end PreferNoHinting;
    function PreferVerticalHinting return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "HintingPreference");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreferVerticalHinting"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreferVerticalHinting"));
    end PreferVerticalHinting;
    function PreferFullHinting return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "HintingPreference");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreferFullHinting"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreferFullHinting"));
    end PreferFullHinting;
 end QtAda6.QtGui.QFont.HintingPreference;

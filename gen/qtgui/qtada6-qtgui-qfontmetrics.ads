@@ -8,11 +8,8 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtGui.QFont;
 limited with QtAda6.QtGui.QPaintDevice;
 limited with QtAda6.QtCore.QRect;
-limited with QtAda6.QtGui.QTextOption;
-limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtCore.Qt.TextElideMode;
 limited with QtAda6.QtCore.QSize;
 package QtAda6.QtGui.QFontMetrics is
@@ -21,13 +18,13 @@ package QtAda6.QtGui.QFontMetrics is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtGui_QFontstrSEQUENCE_str is new Any;
-   type UNION_QtAda6_QtGui_QTextOptionQtAda6_QtCore_Qt_AlignmentFlag is new Any;
+   type UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str is new Any;
+   type UNION_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag is new Any;
    procedure Finalize (Self : in out Class);
    function Create (arg_1_P : access QtAda6.QtGui.QFontMetrics.Inst'Class) return Class;
-   function Create (arg_1_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str) return Class;
+   function Create (arg_1_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str) return Class;
    function Create
-     (font_P : UNION_QtAda6_QtGui_QFontstrSEQUENCE_str; pd_P : access QtAda6.QtGui.QPaintDevice.Inst'Class)
+     (font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str; pd_P : access QtAda6.QtGui.QPaintDevice.Inst'Class)
       return Class;
    procedure U_copy_U;
    function ascent (self : access Inst) return int;
@@ -37,7 +34,7 @@ package QtAda6.QtGui.QFontMetrics is
       tabarray_P : access Object'Class := null) return access QtAda6.QtCore.QRect.Inst'Class;
    function boundingRect (self : access Inst; text_P : str) return access QtAda6.QtCore.QRect.Inst'Class;
    function boundingRect
-     (self : access Inst; text_P : str; textOption_P : UNION_QtAda6_QtGui_QTextOptionQtAda6_QtCore_Qt_AlignmentFlag)
+     (self : access Inst; text_P : str; textOption_P : UNION_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag)
       return access QtAda6.QtCore.QRect.Inst'Class;
    function boundingRect
      (self : access Inst; x_P : int; y_P : int; w_P : int; h_P : int; flags_P : int; text_P : str; tabstops_P : int;
@@ -52,7 +49,7 @@ package QtAda6.QtGui.QFontMetrics is
    function height (self : access Inst) return int;
    function horizontalAdvance (self : access Inst; arg_1_P : str; len_P : int := 0) return int;
    function horizontalAdvance
-     (self : access Inst; arg_1_P : str; textOption_P : UNION_QtAda6_QtGui_QTextOptionQtAda6_QtCore_Qt_AlignmentFlag)
+     (self : access Inst; arg_1_P : str; textOption_P : UNION_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag)
       return int;
    function horizontalAdvanceChar (self : access Inst; arg_1_P : int) return int;
    function inFont (self : access Inst; arg_1_P : str) return bool;
@@ -73,7 +70,7 @@ package QtAda6.QtGui.QFontMetrics is
    procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QFontMetrics.Inst'Class);
    function tightBoundingRect (self : access Inst; text_P : str) return access QtAda6.QtCore.QRect.Inst'Class;
    function tightBoundingRect
-     (self : access Inst; text_P : str; textOption_P : UNION_QtAda6_QtGui_QTextOptionQtAda6_QtCore_Qt_AlignmentFlag)
+     (self : access Inst; text_P : str; textOption_P : UNION_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag)
       return access QtAda6.QtCore.QRect.Inst'Class;
    function underlinePos (self : access Inst) return int;
    function xHeight (self : access Inst) return int;

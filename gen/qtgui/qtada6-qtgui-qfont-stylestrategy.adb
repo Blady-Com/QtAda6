@@ -11,6 +11,9 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 package body QtAda6.QtGui.QFont.StyleStrategy is
+   use type QtAda6.int;
+   use type QtAda6.float;
+   use type QtAda6.str;
    procedure Finalize (Self : in out Class) is
       procedure Free is new Ada.Unchecked_Deallocation (Inst, Inst_Access);
    begin
@@ -18,87 +21,75 @@ package body QtAda6.QtGui.QFont.StyleStrategy is
       Free (Inst_Access (Self));
    end Finalize;
    function PreferDefault return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StyleStrategy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreferDefault"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreferDefault"));
    end PreferDefault;
    function PreferBitmap return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StyleStrategy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreferBitmap"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreferBitmap"));
    end PreferBitmap;
    function PreferDevice return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StyleStrategy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreferDevice"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreferDevice"));
    end PreferDevice;
    function PreferOutline return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StyleStrategy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreferOutline"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreferOutline"));
    end PreferOutline;
    function ForceOutline return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StyleStrategy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "ForceOutline"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "ForceOutline"));
    end ForceOutline;
    function PreferMatch return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StyleStrategy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreferMatch"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreferMatch"));
    end PreferMatch;
    function PreferQuality return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StyleStrategy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreferQuality"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreferQuality"));
    end PreferQuality;
    function PreferAntialias return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StyleStrategy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreferAntialias"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreferAntialias"));
    end PreferAntialias;
    function NoAntialias return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StyleStrategy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoAntialias"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoAntialias"));
    end NoAntialias;
    function NoSubpixelAntialias return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StyleStrategy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoSubpixelAntialias"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoSubpixelAntialias"));
    end NoSubpixelAntialias;
    function PreferNoShaping return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StyleStrategy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "PreferNoShaping"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "PreferNoShaping"));
    end PreferNoShaping;
    function NoFontMerging return Class is
-      Parent_Class, Enum_Class : Handle;
+      Parent_Class : Handle;
    begin
       Parent_Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QFont");
-      Enum_Class   := Object_GetAttrString (Parent_Class, "StyleStrategy");
-      return new Inst'(Python_Proxy => Object_GetAttrString (Enum_Class, "NoFontMerging"));
+      return new Inst'(Python_Proxy => Object_GetAttrString (Parent_Class, "NoFontMerging"));
    end NoFontMerging;
 end QtAda6.QtGui.QFont.StyleStrategy;

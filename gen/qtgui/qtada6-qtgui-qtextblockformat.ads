@@ -11,8 +11,8 @@
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtGui.QTextBlockFormat.MarkerType;
 limited with QtAda6.QtGui.QTextFormat.PageBreakFlag;
+limited with QtAda6.QtGui.QTextOption.Tab;
 with QtAda6.QtGui.QTextFormat;
-with QtAda6.QtGui.QTextOption.Tab;
 package QtAda6.QtGui.QTextBlockFormat is
    type Inst;
    type Inst_Access is access all Inst;
@@ -32,10 +32,10 @@ package QtAda6.QtGui.QTextBlockFormat is
    function indent (self : access Inst) return int;
    function isValid (self : access Inst) return bool;
    function leftMargin (self : access Inst) return float;
-   function lineHeight_F (self : access Inst) return float;
-   function lineHeight_F (self : access Inst; scriptLineHeight_P : float; scaling_P : float) return float;
-   function lineHeightType_F (self : access Inst) return int;
-   function marker_F (self : access Inst) return access QtAda6.QtGui.QTextBlockFormat.MarkerType.Inst'Class;
+   function lineHeight (self : access Inst) return float;
+   function lineHeight (self : access Inst; scriptLineHeight_P : float; scaling_P : float) return float;
+   function lineHeightType (self : access Inst) return int;
+   function marker (self : access Inst) return access QtAda6.QtGui.QTextBlockFormat.MarkerType.Inst'Class;
    function nonBreakableLines (self : access Inst) return bool;
    function pageBreakPolicy (self : access Inst) return access QtAda6.QtGui.QTextFormat.PageBreakFlag.Inst'Class;
    function rightMargin (self : access Inst) return float;

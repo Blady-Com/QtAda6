@@ -13,14 +13,12 @@ limited with QtAda6.QtCore.QLine;
 limited with QtAda6.QtCore.QLineF;
 limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtCore.QPointF;
-limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtGui.QPolygon;
-limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtGui.QPolygonF;
-limited with QtAda6.QtCore.QRectF;
 limited with QtAda6.QtGui.QPainterPath;
 limited with QtAda6.QtGui.QRegion;
-limited with QtAda6.QtGui.QBitmap;
+limited with QtAda6.QtCore.QRect;
+limited with QtAda6.QtCore.QRectF;
 limited with QtAda6.QtCore.Qt.Axis;
 limited with QtAda6.QtGui.QTransform.TransformationType;
 package QtAda6.QtGui.QTransform is
@@ -29,13 +27,13 @@ package QtAda6.QtGui.QTransform is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QLineFQtAda6_QtCore_QLine is new Any;
-   type UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element is new Any;
-   type TUPLE is new Any;
-   type UNION_QtAda6_QtGui_QPolygonSEQUENCE_QtAda6_QtCore_QRect is new Any;
-   type UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF is new Any;
-   type UNION_QtAda6_QtGui_QRegionQtAda6_QtGui_QBitmapQtAda6_QtGui_QPolygonQtAda6_QtCore_QRect is new Any;
-   type UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect is new Any;
+   type UNION_QtAda6_QtCore_QLineF_QtAda6_QtCore_QLine is new Any;
+   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
+   type TUPLE is null record;
+   type UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect is new Any;
+   type UNION_QtAda6_QtGui_QPolygonF_SEQUENCE_QtAda6_QtCore_QRectF is new Any;
+   type UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect is new Any;
+   type UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create
@@ -58,7 +56,7 @@ package QtAda6.QtGui.QTransform is
    function U_mul_U
      (self : access Inst; l_P : access QtAda6.QtCore.QLine.Inst'Class) return access QtAda6.QtCore.QLine.Inst'Class;
    function U_mul_U
-     (self : access Inst; l_P : UNION_QtAda6_QtCore_QLineFQtAda6_QtCore_QLine)
+     (self : access Inst; l_P : UNION_QtAda6_QtCore_QLineF_QtAda6_QtCore_QLine)
       return access QtAda6.QtCore.QLineF.Inst'Class;
    function U_mul_U (self : access Inst; n_P : float) return access QtAda6.QtGui.QTransform.Inst'Class;
    function U_mul_U
@@ -67,7 +65,7 @@ package QtAda6.QtGui.QTransform is
    function U_mul_U
      (self : access Inst; p_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtCore.QPoint.Inst'Class;
    function U_mul_U
-     (self : access Inst; p_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; p_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function U_reduce_U (self : access Inst) return access Object'Class;
    function U_repr_U (self : access Inst) return access Object'Class;
@@ -98,15 +96,15 @@ package QtAda6.QtGui.QTransform is
    function m32 (self : access Inst) return float;
    function m33 (self : access Inst) return float;
    function map
-     (self : access Inst; a_P : UNION_QtAda6_QtGui_QPolygonSEQUENCE_QtAda6_QtCore_QRect)
+     (self : access Inst; a_P : UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect)
       return access QtAda6.QtGui.QPolygon.Inst'Class;
    function map
-     (self : access Inst; a_P : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF)
+     (self : access Inst; a_P : UNION_QtAda6_QtGui_QPolygonF_SEQUENCE_QtAda6_QtCore_QRectF)
       return access QtAda6.QtGui.QPolygonF.Inst'Class;
    function map
      (self : access Inst; l_P : access QtAda6.QtCore.QLine.Inst'Class) return access QtAda6.QtCore.QLine.Inst'Class;
    function map
-     (self : access Inst; l_P : UNION_QtAda6_QtCore_QLineFQtAda6_QtCore_QLine)
+     (self : access Inst; l_P : UNION_QtAda6_QtCore_QLineF_QtAda6_QtCore_QLine)
       return access QtAda6.QtCore.QLineF.Inst'Class;
    function map
      (self : access Inst; p_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtCore.QPoint.Inst'Class;
@@ -114,30 +112,31 @@ package QtAda6.QtGui.QTransform is
      (self : access Inst; p_P : access QtAda6.QtGui.QPainterPath.Inst'Class)
       return access QtAda6.QtGui.QPainterPath.Inst'Class;
    function map
-     (self : access Inst; p_P : UNION_QtAda6_QtCore_QPointFQtAda6_QtCore_QPointQtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; p_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function map
-     (self : access Inst; r_P : UNION_QtAda6_QtGui_QRegionQtAda6_QtGui_QBitmapQtAda6_QtGui_QPolygonQtAda6_QtCore_QRect)
+     (self : access Inst;
+      r_P  : UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect)
       return access QtAda6.QtGui.QRegion.Inst'Class;
    function map (self : access Inst; x_P : float; y_P : float) return access Object'Class;
    function mapRect
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QRect.Inst'Class) return access QtAda6.QtCore.QRect.Inst'Class;
    function mapRect
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtCore_QRectFQtAda6_QtCore_QRect)
+     (self : access Inst; arg_1_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect)
       return access QtAda6.QtCore.QRectF.Inst'Class;
    function mapToPolygon
      (self : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class) return access QtAda6.QtGui.QPolygon.Inst'Class;
    function quadToQuad
-     (arg_1_P : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF;
-      arg_2_P : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF) return access Object'Class;
+     (arg_1_P : UNION_QtAda6_QtGui_QPolygonF_SEQUENCE_QtAda6_QtCore_QRectF;
+      arg_2_P : UNION_QtAda6_QtGui_QPolygonF_SEQUENCE_QtAda6_QtCore_QRectF) return access Object'Class;
    function quadToQuad
-     (one_P    : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF;
-      two_P    : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF;
+     (one_P    : UNION_QtAda6_QtGui_QPolygonF_SEQUENCE_QtAda6_QtCore_QRectF;
+      two_P    : UNION_QtAda6_QtGui_QPolygonF_SEQUENCE_QtAda6_QtCore_QRectF;
       result_P : access QtAda6.QtGui.QTransform.Inst'Class) return bool;
    function quadToSquare
-     (arg_1_P : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF) return access Object'Class;
+     (arg_1_P : UNION_QtAda6_QtGui_QPolygonF_SEQUENCE_QtAda6_QtCore_QRectF) return access Object'Class;
    function quadToSquare
-     (quad_P   : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF;
+     (quad_P   : UNION_QtAda6_QtGui_QPolygonF_SEQUENCE_QtAda6_QtCore_QRectF;
       result_P : access QtAda6.QtGui.QTransform.Inst'Class) return bool;
    procedure reset (self : access Inst);
    function rotate
@@ -158,9 +157,9 @@ package QtAda6.QtGui.QTransform is
       m31_P : float; m32_P : float; m33_P : float);
    function shear (self : access Inst; sh_P : float; sv_P : float) return access QtAda6.QtGui.QTransform.Inst'Class;
    function squareToQuad
-     (arg_1_P : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF) return access Object'Class;
+     (arg_1_P : UNION_QtAda6_QtGui_QPolygonF_SEQUENCE_QtAda6_QtCore_QRectF) return access Object'Class;
    function squareToQuad
-     (square_P : UNION_QtAda6_QtGui_QPolygonFSEQUENCE_QtAda6_QtCore_QRectF;
+     (square_P : UNION_QtAda6_QtGui_QPolygonF_SEQUENCE_QtAda6_QtCore_QRectF;
       result_P : access QtAda6.QtGui.QTransform.Inst'Class) return bool;
    function translate (self : access Inst; dx_P : float; dy_P : float) return access QtAda6.QtGui.QTransform.Inst'Class;
    function transposed (self : access Inst) return access QtAda6.QtGui.QTransform.Inst'Class;
