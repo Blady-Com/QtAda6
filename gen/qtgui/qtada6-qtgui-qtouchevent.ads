@@ -11,7 +11,7 @@
 limited with QtAda6.QtCore.QEvent.Type_K;
 limited with QtAda6.QtGui.QPointingDevice;
 limited with QtAda6.QtCore.Qt.KeyboardModifier;
-limited with QtAda6.QtGui.QEventPoint;
+with QtAda6.QtGui.QEventPoint;
 limited with QtAda6.QtCore.QObject;
 with QtAda6.QtGui.QPointerEvent;
 package QtAda6.QtGui.QTouchEvent is

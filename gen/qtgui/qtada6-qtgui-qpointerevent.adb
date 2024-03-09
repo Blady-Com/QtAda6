@@ -42,6 +42,7 @@ package body QtAda6.QtGui.QPointerEvent is
       points_P    : SEQUENCE_QtAda6_QtGui_QEventPoint                   := (2 .. 1 => <>)) return Class
    is
       Class, Args, Dict, List, Tuple : Handle;
+      use type SEQUENCE_QtAda6_QtGui_QEventPoint;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointerEvent");
       List  := List_New (points_P'Length);

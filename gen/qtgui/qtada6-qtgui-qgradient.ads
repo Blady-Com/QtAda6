@@ -21,6 +21,7 @@ package QtAda6.QtGui.QGradient is
    type Inst is new Shiboken.Object with null record;
    type UNION_QtAda6_QtGui_QGradient_QtAda6_QtGui_QGradient_Preset is new Any;
    type UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is new Any;
+   type TUPLE_float_QtAda6_QtGui_QColor is new Any;
    type SEQUENCE_TUPLE_float_QtAda6_QtGui_QColor is array (Positive range <>) of TUPLE_float_QtAda6_QtGui_QColor;
    type LIST_TUPLE_float_QtAda6_QtGui_QColor is array (Positive range <>) of TUPLE_float_QtAda6_QtGui_QColor;
    procedure Finalize (Self : in out Class);

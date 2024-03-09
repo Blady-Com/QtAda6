@@ -51,7 +51,7 @@ package QtAda6.QtGui.QTextLayout is
    procedure draw
      (self         : access Inst; p_P : access QtAda6.QtGui.QPainter.Inst'Class;
       pos_P        : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
-      selections_P : SEQUENCE_QtAda6_QtGui_QTextLayout_FormatRange  := (2 .. 1 => <>);
+      selections_P : SEQUENCE_QtAda6_QtGui_QTextLayout_FormatRange; --  := (2 .. 1 => <>);
       clip_P       : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect := null);
    procedure drawCursor
      (self             : access Inst; p_P : access QtAda6.QtGui.QPainter.Inst'Class;

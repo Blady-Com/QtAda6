@@ -33,12 +33,14 @@ package body Test_03_AnalogClockWindow is
 
          Self.a_hour_hand :=
            QtAda6.QtGui.QPolygon.Create
-             ((QtAda6.QtCore.QPoint.Create (7, 8), QtAda6.QtCore.QPoint.Create (-7, 8),
-               QtAda6.QtCore.QPoint.Create (0, -40)));
+             (QtAda6.QtCore.QPoint.Class_Array'
+                (QtAda6.QtCore.QPoint.Create (7, 8), QtAda6.QtCore.QPoint.Create (-7, 8),
+                 QtAda6.QtCore.QPoint.Create (0, -40)));
          Self.a_minute_hand :=
            QtAda6.QtGui.QPolygon.Create
-             ((QtAda6.QtCore.QPoint.Create (7, 8), QtAda6.QtCore.QPoint.Create (-7, 8),
-               QtAda6.QtCore.QPoint.Create (0, -70)));
+             (QtAda6.QtCore.QPoint.Class_Array'
+                (QtAda6.QtCore.QPoint.Create (7, 8), QtAda6.QtCore.QPoint.Create (-7, 8),
+                 QtAda6.QtCore.QPoint.Create (0, -70)));
 
          Self.a_hour_color   := QtAda6.QtGui.QColor.Create (127, 0, 127, 255);
          Self.a_minute_color := QtAda6.QtGui.QColor.Create (0, 127, 127, 191);

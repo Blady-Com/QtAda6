@@ -41,6 +41,9 @@ limited with QtAda6.QtGui.QPen;
 limited with QtAda6.QtGui.QPainter.RenderHint;
 limited with QtAda6.QtCore.Qt.ClipOperation;
 limited with QtAda6.QtCore.Qt.PenStyle;
+with QtAda6.QtGui.QWindow;
+with QtAda6.QtGui.QColor;
+with QtAda6.QtGui.QPolygon;
 package QtAda6.QtGui.QPainter is
    type Inst;
    type Inst_Access is access all Inst;
@@ -51,7 +54,7 @@ package QtAda6.QtGui.QPainter is
    type UNION_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag is new Any;
    subtype SEQUENCE_QtAda6_QtCore_QPointF is QtAda6.QtCore.QPointF.Class_Array;
    subtype SEQUENCE_QtAda6_QtCore_QPoint is QtAda6.QtCore.QPoint.Class_Array;
-   type UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect is new Any;
+   subtype UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect is QtAda6.QtGui.QPolygon.Class;
    type UNION_QtAda6_QtGui_QPolygonF_SEQUENCE_QtAda6_QtCore_QRectF is new Any;
    type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    type UNION_QtAda6_QtGui_QImage_str is new Any;
@@ -62,15 +65,16 @@ package QtAda6.QtGui.QPainter is
    type UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is new Any;
    subtype SEQUENCE_QtAda6_QtCore_QRectF is QtAda6.QtCore.QRectF.Class_Array;
    subtype SEQUENCE_QtAda6_QtCore_QRect is QtAda6.QtCore.QRect.Class_Array;
-   type UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap is
-     new Any;
-   type UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is new Any;
+   subtype UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap is
+     QtAda6.QtGui.QColor.Class;
+   subtype UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is QtAda6.QtGui.QColor.Class;
    type UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect is new Any;
    type UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str is new Any;
    type UNION_QtAda6_QtGui_QPen_QtAda6_QtCore_Qt_PenStyle_QtAda6_QtGui_QColor is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (arg_1_P : access QtAda6.QtGui.QPaintDevice.Inst'Class) return Class;
+   function Create (arg_1_P : access QtAda6.QtGui.QWindow.Inst'Class) return Class;
    function U_enter_U (self : access Inst) return access QtAda6.QtGui.QPainter.Inst'Class;
    procedure U_exit_U
      (self : access Inst; arg_1_P : access Object'Class; arg_2_P : access Object'Class; arg_3_P : access Object'Class);
@@ -318,15 +322,15 @@ package QtAda6.QtGui.QPainter is
    procedure fillRect
      (self    : access Inst; arg_1_P : access QtAda6.QtCore.QRect.Inst'Class;
       arg_2_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
-   procedure fillRect
-     (self    : access Inst; arg_1_P : access QtAda6.QtCore.QRect.Inst'Class;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
+--     procedure fillRect
+--       (self    : access Inst; arg_1_P : access QtAda6.QtCore.QRect.Inst'Class;
+--        color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
    procedure fillRect
      (self    : access Inst; arg_1_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect;
       arg_2_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
-   procedure fillRect
-     (self    : access Inst; arg_1_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
+--     procedure fillRect
+--       (self    : access Inst; arg_1_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect;
+--        color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
    procedure fillRect
      (self : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class;
       c_P  : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
@@ -351,9 +355,9 @@ package QtAda6.QtGui.QPainter is
    procedure fillRect
      (self : access Inst; x_P : int; y_P : int; w_P : int; h_P : int;
       c_P  : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
-   procedure fillRect
-     (self    : access Inst; x_P : int; y_P : int; w_P : int; h_P : int;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
+--     procedure fillRect
+--       (self    : access Inst; x_P : int; y_P : int; w_P : int; h_P : int;
+--        color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
    procedure fillRect
      (self     : access Inst; x_P : int; y_P : int; w_P : int; h_P : int;
       preset_P : access QtAda6.QtGui.QGradient.Preset.Inst'Class);

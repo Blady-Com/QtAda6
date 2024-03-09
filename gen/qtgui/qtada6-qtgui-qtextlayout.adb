@@ -144,10 +144,11 @@ package body QtAda6.QtGui.QTextLayout is
    procedure draw
      (self         : access Inst; p_P : access QtAda6.QtGui.QPainter.Inst'Class;
       pos_P        : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
-      selections_P : SEQUENCE_QtAda6_QtGui_QTextLayout_FormatRange  := (2 .. 1 => <>);
+      selections_P : SEQUENCE_QtAda6_QtGui_QTextLayout_FormatRange; --  := (2 .. 1 => <>);
       clip_P       : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect := null)
    is
       Method, Args, Dict, List, Tuple, Result : Handle;
+      use type SEQUENCE_QtAda6_QtGui_QTextLayout_FormatRange;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "draw");
       List   := List_New (selections_P'Length);

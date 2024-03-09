@@ -71,6 +71,15 @@ package body QtAda6.QtGui.QPainter is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
+   function Create (arg_1_P : access QtAda6.QtGui.QWindow.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPainter");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
    function U_enter_U (self : access Inst) return access QtAda6.QtGui.QPainter.Inst'Class is
       Method, Args, Dict, List, Tuple, Result : Handle;
       Ret                                     : constant QtAda6.QtGui.QPainter.Class := new QtAda6.QtGui.QPainter.Inst;
@@ -417,6 +426,7 @@ package body QtAda6.QtGui.QPainter is
    procedure drawConvexPolygon
      (self : access Inst; polygon_P : UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect)
    is
+      use type QtAda6.QtGui.QPolygon.Class;
       Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "drawConvexPolygon");
@@ -1123,6 +1133,7 @@ package body QtAda6.QtGui.QPainter is
    end drawPoints;
    procedure drawPoints (self : access Inst; points_P : UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect) is
       Method, Args, Dict, List, Tuple, Result : Handle;
+      use type QtAda6.QtGui.QPolygon.Class;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "drawPoints");
       Args   := Tuple_New (1);
@@ -1195,6 +1206,7 @@ package body QtAda6.QtGui.QPainter is
       fillRule_P : access QtAda6.QtCore.Qt.FillRule.Inst'Class := null)
    is
       Method, Args, Dict, List, Tuple, Result : Handle;
+      use type QtAda6.QtGui.QPolygon.Class;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "drawPolygon");
       Args   := Tuple_New (1);
@@ -1252,6 +1264,7 @@ package body QtAda6.QtGui.QPainter is
    end drawPolyline;
    procedure drawPolyline (self : access Inst; polygon_P : UNION_QtAda6_QtGui_QPolygon_SEQUENCE_QtAda6_QtCore_QRect) is
       Method, Args, Dict, List, Tuple, Result : Handle;
+      use type QtAda6.QtGui.QPolygon.Class;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "drawPolyline");
       Args   := Tuple_New (1);
@@ -1675,6 +1688,7 @@ package body QtAda6.QtGui.QPainter is
      (self    : access Inst; path_P : access QtAda6.QtGui.QPainterPath.Inst'Class;
       brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
    is
+      use type QtAda6.QtGui.QColor.Class;
       Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fillPath");
@@ -1689,6 +1703,7 @@ package body QtAda6.QtGui.QPainter is
       arg_2_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
    is
       Method, Args, Dict, List, Tuple, Result : Handle;
+      use type QtAda6.QtGui.QColor.Class;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fillRect");
       Args   := Tuple_New (2);
@@ -1697,23 +1712,25 @@ package body QtAda6.QtGui.QPainter is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end fillRect;
-   procedure fillRect
-     (self    : access Inst; arg_1_P : access QtAda6.QtCore.QRect.Inst'Class;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-   begin
-      Method := Object_GetAttrString (self.Python_Proxy, "fillRect");
-      Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
-      Dict   := Dict_New;
-      Result := Object_Call (Method, Args, Dict, True);
-   end fillRect;
+--     procedure fillRect
+--       (self    : access Inst; arg_1_P : access QtAda6.QtCore.QRect.Inst'Class;
+--        color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
+--     is
+--        use type QtAda6.QtGui.QColor;
+--        Method, Args, Dict, List, Tuple, Result : Handle;
+--     begin
+--        Method := Object_GetAttrString (self.Python_Proxy, "fillRect");
+--        Args   := Tuple_New (2);
+--        Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+--        Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
+--        Dict   := Dict_New;
+--        Result := Object_Call (Method, Args, Dict, True);
+--     end fillRect;
    procedure fillRect
      (self    : access Inst; arg_1_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect;
       arg_2_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
    is
+      use type QtAda6.QtGui.QColor.Class;
       Method, Args, Dict, List, Tuple, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fillRect");
@@ -1723,19 +1740,19 @@ package body QtAda6.QtGui.QPainter is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end fillRect;
-   procedure fillRect
-     (self    : access Inst; arg_1_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-   begin
-      Method := Object_GetAttrString (self.Python_Proxy, "fillRect");
-      Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
-      Dict   := Dict_New;
-      Result := Object_Call (Method, Args, Dict, True);
-   end fillRect;
+--     procedure fillRect
+--       (self    : access Inst; arg_1_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect;
+--        color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
+--     is
+--        Method, Args, Dict, List, Tuple, Result : Handle;
+--     begin
+--        Method := Object_GetAttrString (self.Python_Proxy, "fillRect");
+--        Args   := Tuple_New (2);
+--        Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+--        Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
+--        Dict   := Dict_New;
+--        Result := Object_Call (Method, Args, Dict, True);
+--     end fillRect;
    procedure fillRect
      (self : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class;
       c_P  : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class)
@@ -1819,6 +1836,7 @@ package body QtAda6.QtGui.QPainter is
       arg_5_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
    is
       Method, Args, Dict, List, Tuple, Result : Handle;
+      use type QtAda6.QtGui.QColor.Class;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fillRect");
       Args   := Tuple_New (5);
@@ -1846,22 +1864,22 @@ package body QtAda6.QtGui.QPainter is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end fillRect;
-   procedure fillRect
-     (self    : access Inst; x_P : int; y_P : int; w_P : int; h_P : int;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-   begin
-      Method := Object_GetAttrString (self.Python_Proxy, "fillRect");
-      Args   := Tuple_New (5);
-      Tuple_SetItem (Args, 0, Long_FromLong (x_P));
-      Tuple_SetItem (Args, 1, Long_FromLong (y_P));
-      Tuple_SetItem (Args, 2, Long_FromLong (w_P));
-      Tuple_SetItem (Args, 3, Long_FromLong (h_P));
-      Tuple_SetItem (Args, 4, (if color_P /= null then color_P.Python_Proxy else No_Value));
-      Dict   := Dict_New;
-      Result := Object_Call (Method, Args, Dict, True);
-   end fillRect;
+--     procedure fillRect
+--       (self    : access Inst; x_P : int; y_P : int; w_P : int; h_P : int;
+--        color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
+--     is
+--        Method, Args, Dict, List, Tuple, Result : Handle;
+--     begin
+--        Method := Object_GetAttrString (self.Python_Proxy, "fillRect");
+--        Args   := Tuple_New (5);
+--        Tuple_SetItem (Args, 0, Long_FromLong (x_P));
+--        Tuple_SetItem (Args, 1, Long_FromLong (y_P));
+--        Tuple_SetItem (Args, 2, Long_FromLong (w_P));
+--        Tuple_SetItem (Args, 3, Long_FromLong (h_P));
+--        Tuple_SetItem (Args, 4, (if color_P /= null then color_P.Python_Proxy else No_Value));
+--        Dict   := Dict_New;
+--        Result := Object_Call (Method, Args, Dict, True);
+--     end fillRect;
    procedure fillRect
      (self     : access Inst; x_P : int; y_P : int; w_P : int; h_P : int;
       preset_P : access QtAda6.QtGui.QGradient.Preset.Inst'Class)
@@ -2046,6 +2064,7 @@ package body QtAda6.QtGui.QPainter is
       bg_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
    is
       Method, Args, Dict, List, Tuple, Result : Handle;
+      use type QtAda6.QtGui.QColor.Class;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBackground");
       Args   := Tuple_New (1);
@@ -2067,6 +2086,7 @@ package body QtAda6.QtGui.QPainter is
       brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
    is
       Method, Args, Dict, List, Tuple, Result : Handle;
+      use type QtAda6.QtGui.QColor.Class;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
       Args   := Tuple_New (1);
@@ -2244,6 +2264,7 @@ package body QtAda6.QtGui.QPainter is
       color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
    is
       Method, Args, Dict, List, Tuple, Result : Handle;
+      use type QtAda6.QtGui.QColor.Class;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPen");
       Args   := Tuple_New (1);

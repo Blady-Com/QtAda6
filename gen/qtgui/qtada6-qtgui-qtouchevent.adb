@@ -42,6 +42,7 @@ package body QtAda6.QtGui.QTouchEvent is
       touchPoints_P : SEQUENCE_QtAda6_QtGui_QEventPoint                   := (2 .. 1 => <>)) return Class
    is
       Class, Args, Dict, List, Tuple : Handle;
+      use type SEQUENCE_QtAda6_QtGui_QEventPoint;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTouchEvent");
       List  := List_New (touchPoints_P'Length);

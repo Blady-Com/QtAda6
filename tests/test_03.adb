@@ -43,7 +43,7 @@ begin
       QtAda6.Initialize;
 
       Put_Line ("PySide version: " & QtAda6.Version);
-      Put_Line ("QtCore version: " & QtAda6.From_bytes (QtAda6.QtCore.qVersion_F));
+      Put_Line ("QtCore version: " & QtAda6.From_bytes (QtAda6.QtCore.qVersion));
 
       declare
          use Py;

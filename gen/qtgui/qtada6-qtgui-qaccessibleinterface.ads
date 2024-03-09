@@ -28,6 +28,7 @@ package QtAda6.QtGui.QAccessibleInterface is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
+   type TUPLE_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag is new Any;
    type LIST_TUPLE_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag is
      array (Positive range <>) of TUPLE_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag;
    procedure Finalize (Self : in out Class);
