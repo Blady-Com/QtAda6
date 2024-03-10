@@ -73,4 +73,10 @@ package body QtAda6.QtCore.Signal is
       Ret.Python_Proxy := Result;
       return Ret;
    end U_get_U;
+   function U_get_U (self : access Inst) return access QtAda6.QtCore.SignalInstance.Inst'Class is
+      Ret : constant QtAda6.QtCore.SignalInstance.Class := new QtAda6.QtCore.SignalInstance.Inst;
+   begin
+      Ret.Python_Proxy := self.Python_Proxy;
+      return Ret;
+   end U_get_U;
 end QtAda6.QtCore.Signal;
