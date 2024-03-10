@@ -45,6 +45,10 @@ Python version: 3.9.6 (default, May  7 2023, 23:32:45)
 Python CWD: /Users/me/Documents/Programmation/Qt/QtAda6
 Python Enum:  2
 PySide6 version: 6.5.2
+Python Enum:  3
+Python Enum:  2
+Python Enum:  1
+Python Enum:  2
 <class 'NoneType'>
 Exiting
 ```
@@ -69,6 +73,7 @@ Today: 10
 Current folder: /Users/me/Documents/Programmation/Qt/QtAda6
 Current machine: MicMac
 HOME: /Users/me
+DashDotLine:4
 Exiting
 ```
 
@@ -98,7 +103,9 @@ QtCore version: 6.5.2
 Exiting
 ```
 
-A GUI app with a graphic clock is launched.
+A GUI app with a graphic clock is launched:
+
+![](https://github.com/Blady-Com/QtAda6/blob/master/media/analog_clock.png)
 
 ### Test_04: QtWidgets
 
@@ -114,7 +121,9 @@ PySide version: 6.5.2
 Exiting
 ```
 
-A GUI app with widgets label and button is launched.
+A GUI app with widgets label and button is launched:
+
+![](https://github.com/Blady-Com/QtAda6/blob/master/media/hello_world.png)
 
 ## Limitations
 
@@ -123,7 +132,7 @@ This is the very first release whose goal is mostly to get feedbacks on how it i
 Known limitations are :
 
 - Only QtCore, QtGui and QtWidgets are provided
-- Union, Tuple, Dict and so on are not translated
+- Union, Signal, composed types and so on are not or partially translated
 - Class inheritance is not available on Ada side
 - No memory management
 
@@ -141,4 +150,4 @@ Post your feedbacks on [QtAda6](https://github.com/Blady-Com/QtAda6) GitHub issu
 
 QtAda6 is free software released under [CeCILL-C](http://www.cecill.info) V2.1.
 
-Pascal Pignard, September-November 2023, January 2024.
+Pascal Pignard, September-November 2023, January-March 2024.
