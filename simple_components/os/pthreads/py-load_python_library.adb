@@ -818,8 +818,9 @@ package body Py.Load_Python_Library is
    begin
       if not Searched then
          Searched := True;
-         -- Search in Command Line Tools install
          Scan ("/Library/Frameworks/Python.framework/Versions", True);
+         -- Search in Command Line Tools install
+         Scan ("/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions", True);
          -- Search in Xcode install
          Scan
          (  (  "/Applications/Xcode.app/Contents/Developer/"
