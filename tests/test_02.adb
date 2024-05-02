@@ -36,7 +36,7 @@ begin
       QtAda6.Initialize;
 
       Put_Line ("PySide version: " & QtAda6.Version);
-      Put_Line ("QtCore version: " & QtAda6.From_bytes (QtAda6.QtCore.qVersion));
+      Put_Line ("QtCore version: " & QtAda6.QtCore.qVersion);
 
       declare
          --  4. declare QTAda6 objects and initialize them

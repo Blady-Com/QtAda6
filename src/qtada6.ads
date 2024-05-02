@@ -22,11 +22,10 @@ package QtAda6 is
    subtype float is Interfaces.C.double;
    function Image is new UXStrings.Conversions.Floating_Point_Image (float);
    subtype str is UXStrings.UXString;
-   type bytes is new UXStrings.UTF_8_Character_Array;
-   type bytearray is new UXStrings.UTF_8_Character_Array;
+   type bytes is access UXStrings.UTF_8_Character_Array;
+   type bytearray is access UXStrings.UTF_8_Character_Array;
 
-   function From_bytes (Item : bytes) return UXStrings.UXString is
-     (UXStrings.From_UTF_8 (UXStrings.UTF_8_Character_Array (Item)));
+   function From_bytes (Item : bytes) return UXStrings.UXString is (UXStrings.From_UTF_8 (Item.all));
 
    function As_String (Object : Py.Handle) return UXStrings.UXString is (UXStrings.From_UTF_8 (Py.As_String (Object)));
    function Unicode_FromString (Value : UXStrings.UXString) return Py.Handle is
@@ -49,6 +48,7 @@ package QtAda6 is
    type Iterable is new Object_Class;
    type Property is new Object_Class;
    type None is new Object_Class;
+   type NoneType is new Object_Class;
 
    package Enum is
       type Enum is new Shiboken.Object with null record;
@@ -56,6 +56,11 @@ package QtAda6 is
       type IntEnum is new Shiboken.Object with null record;
       type IntFlag is new Shiboken.Object with null record;
    end Enum;
+
+   package OS is
+      type PathLike is new Shiboken.Object with null record;
+      PathLike_conv_A2P_is_not_supported : Py.Handle;
+   end OS;
 
    package shibokensupport is
       package signature is
@@ -66,7 +71,9 @@ package QtAda6 is
       end signature;
    end shibokensupport;
 
-   None_conv_A2P_is_not_supported : Py.Handle;
+   None_conv_A2P_is_not_supported     : Py.Handle;
+   NoneType_conv_A2P_is_not_supported : Py.Handle;
+   NoneType_default_is_not_supported  : constant NoneType := null;
 
    function QtCore_Python_Proxy return Py.Handle;
    function QtGui_Python_Proxy return Py.Handle;
