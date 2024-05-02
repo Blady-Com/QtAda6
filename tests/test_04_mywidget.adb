@@ -26,7 +26,9 @@ package body Test_04_MyWidget is
            QtAda6.QtWidgets.QVBoxLayout.Create
              (QtAda6.QtWidgets.QWidget.Class (QtAda6.QtWidgets.QWidget.Inst_Access (Self)));
          Self.Layout.addWidget (arg_1_P => QtAda6.QtWidgets.QWidget.Inst_Access (Self.Text), stretch_P => 50);
-         Self.Layout.addWidget (arg_1_P => QtAda6.QtWidgets.QWidget.Inst_Access (Self.Button), Alignment_P => QtAda6.QtCore.Qt.AlignmentFlag.AlignRight);
+         Self.Layout.addWidget
+           (arg_1_P     => QtAda6.QtWidgets.QWidget.Inst_Access (Self.Button),
+            alignment_P => QtAda6.QtCore.Qt.AlignmentFlag.AlignRight);
          Self.Button.clicked.U_get_U.connect (CB);
          QtAda6.Finalize (CB);
          QtAda6.QtWidgets.QWidget.Finalize (Widget);

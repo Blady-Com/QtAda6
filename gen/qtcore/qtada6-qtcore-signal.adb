@@ -76,11 +76,7 @@ package body QtAda6.QtCore.Signal is
       Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.SignalInstance.Class := new QtAda6.QtCore.SignalInstance.Inst;
    begin
-      Method           := Object_GetAttrString (self.Python_Proxy, "__get__");
-      Args             := Tuple_New (0);
-      Dict             := Dict_New;
-      Result           := Object_Call (Method, Args, Dict, True);
-      Ret.Python_Proxy := Result;
+      Ret.Python_Proxy := self.Python_Proxy;
       return Ret;
    end U_get_U;
 end QtAda6.QtCore.Signal;
