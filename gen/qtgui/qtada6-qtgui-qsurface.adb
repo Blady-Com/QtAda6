@@ -25,7 +25,7 @@ package body QtAda6.QtGui.QSurface is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (type_K_P : access QtAda6.QtGui.QSurface.SurfaceClass.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSurface");
       Args  := Tuple_New (1);
@@ -34,7 +34,7 @@ package body QtAda6.QtGui.QSurface is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function format (self : access Inst) return access QtAda6.QtGui.QSurfaceFormat.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QSurfaceFormat.Class := new QtAda6.QtGui.QSurfaceFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "format");
@@ -45,8 +45,8 @@ package body QtAda6.QtGui.QSurface is
       return Ret;
    end format;
    function size (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "size");
       Args             := Tuple_New (0);
@@ -56,7 +56,7 @@ package body QtAda6.QtGui.QSurface is
       return Ret;
    end size;
    function supportsOpenGL (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "supportsOpenGL");
       Args   := Tuple_New (0);
@@ -65,7 +65,7 @@ package body QtAda6.QtGui.QSurface is
       return To_Ada (Result);
    end supportsOpenGL;
    function surfaceClass_F (self : access Inst) return access QtAda6.QtGui.QSurface.SurfaceClass.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QSurface.SurfaceClass.Class := new QtAda6.QtGui.QSurface.SurfaceClass.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "surfaceClass");
@@ -76,7 +76,7 @@ package body QtAda6.QtGui.QSurface is
       return Ret;
    end surfaceClass_F;
    function surfaceHandle (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "surfaceHandle");
       Args   := Tuple_New (0);
@@ -85,7 +85,7 @@ package body QtAda6.QtGui.QSurface is
       return Long_AsLong (Result);
    end surfaceHandle;
    function surfaceType_F (self : access Inst) return access QtAda6.QtGui.QSurface.SurfaceType.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QSurface.SurfaceType.Class := new QtAda6.QtGui.QSurface.SurfaceType.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "surfaceType");

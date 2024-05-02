@@ -10,13 +10,11 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtGui.QInputDevice.DeviceType;
 with QtAda6.QtGui.QPointingDevice.PointerType;
 with QtAda6.QtGui.QInputDevice.Capability;
 with QtAda6.QtGui.QPointingDeviceUniqueId;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtGui.QPointingDevice;
 package body QtAda6.QtGui.QPointingDevice is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -38,7 +36,7 @@ package body QtAda6.QtGui.QPointingDevice is
       seatName_P : str := ""; uniqueId_P : access QtAda6.QtGui.QPointingDeviceUniqueId.Inst'Class := null;
       parent_P   : access QtAda6.QtCore.QObject.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
       Args  := Tuple_New (7);
@@ -62,7 +60,7 @@ package body QtAda6.QtGui.QPointingDevice is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
       Args  := Tuple_New (0);
@@ -73,7 +71,7 @@ package body QtAda6.QtGui.QPointingDevice is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function buttonCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "buttonCount");
       Args   := Tuple_New (0);
@@ -82,7 +80,7 @@ package body QtAda6.QtGui.QPointingDevice is
       return Long_AsLong (Result);
    end buttonCount;
    function maximumPoints (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "maximumPoints");
       Args   := Tuple_New (0);
@@ -91,8 +89,8 @@ package body QtAda6.QtGui.QPointingDevice is
       return Long_AsLong (Result);
    end maximumPoints;
    function pointerType_F (self : access Inst) return access QtAda6.QtGui.QPointingDevice.PointerType.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPointingDevice.PointerType.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QPointingDevice.PointerType.Class :=
         new QtAda6.QtGui.QPointingDevice.PointerType.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "pointerType");
@@ -103,7 +101,7 @@ package body QtAda6.QtGui.QPointingDevice is
       return Ret;
    end pointerType_F;
    function primaryPointingDevice (seatName_P : str := "") return access QtAda6.QtGui.QPointingDevice.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPointingDevice.Class := new QtAda6.QtGui.QPointingDevice.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPointingDevice");
@@ -118,7 +116,7 @@ package body QtAda6.QtGui.QPointingDevice is
       return Ret;
    end primaryPointingDevice;
    procedure setCapabilities (self : access Inst; caps_P : access QtAda6.QtGui.QInputDevice.Capability.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCapabilities");
       Args   := Tuple_New (1);
@@ -127,7 +125,7 @@ package body QtAda6.QtGui.QPointingDevice is
       Result := Object_Call (Method, Args, Dict, True);
    end setCapabilities;
    procedure setMaximumTouchPoints (self : access Inst; c_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMaximumTouchPoints");
       Args   := Tuple_New (1);
@@ -136,7 +134,7 @@ package body QtAda6.QtGui.QPointingDevice is
       Result := Object_Call (Method, Args, Dict, True);
    end setMaximumTouchPoints;
    procedure setType (self : access Inst; devType_P : access QtAda6.QtGui.QInputDevice.DeviceType.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setType");
       Args   := Tuple_New (1);
@@ -145,7 +143,7 @@ package body QtAda6.QtGui.QPointingDevice is
       Result := Object_Call (Method, Args, Dict, True);
    end setType;
    function uniqueId (self : access Inst) return access QtAda6.QtGui.QPointingDeviceUniqueId.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPointingDeviceUniqueId.Class := new QtAda6.QtGui.QPointingDeviceUniqueId.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "uniqueId");

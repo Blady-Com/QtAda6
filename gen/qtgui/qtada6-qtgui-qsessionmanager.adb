@@ -22,7 +22,7 @@ package body QtAda6.QtGui.QSessionManager is
       Free (Inst_Access (Self));
    end Finalize;
    function allowsErrorInteraction (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "allowsErrorInteraction");
       Args   := Tuple_New (0);
@@ -31,7 +31,7 @@ package body QtAda6.QtGui.QSessionManager is
       return To_Ada (Result);
    end allowsErrorInteraction;
    function allowsInteraction (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "allowsInteraction");
       Args   := Tuple_New (0);
@@ -40,7 +40,7 @@ package body QtAda6.QtGui.QSessionManager is
       return To_Ada (Result);
    end allowsInteraction;
    procedure cancel (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cancel");
       Args   := Tuple_New (0);
@@ -48,16 +48,20 @@ package body QtAda6.QtGui.QSessionManager is
       Result := Object_Call (Method, Args, Dict, True);
    end cancel;
    function discardCommand (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "discardCommand");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end discardCommand;
    function isPhase2 (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isPhase2");
       Args   := Tuple_New (0);
@@ -66,7 +70,7 @@ package body QtAda6.QtGui.QSessionManager is
       return To_Ada (Result);
    end isPhase2;
    procedure release (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "release");
       Args   := Tuple_New (0);
@@ -74,7 +78,7 @@ package body QtAda6.QtGui.QSessionManager is
       Result := Object_Call (Method, Args, Dict, True);
    end release;
    procedure requestPhase2 (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "requestPhase2");
       Args   := Tuple_New (0);
@@ -82,17 +86,21 @@ package body QtAda6.QtGui.QSessionManager is
       Result := Object_Call (Method, Args, Dict, True);
    end requestPhase2;
    function restartCommand (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "restartCommand");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end restartCommand;
    function restartHint_F (self : access Inst) return access QtAda6.QtGui.QSessionManager.RestartHint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QSessionManager.RestartHint.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QSessionManager.RestartHint.Class :=
         new QtAda6.QtGui.QSessionManager.RestartHint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "restartHint");
@@ -103,7 +111,7 @@ package body QtAda6.QtGui.QSessionManager is
       return Ret;
    end restartHint_F;
    function sessionId (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sessionId");
       Args   := Tuple_New (0);
@@ -112,7 +120,7 @@ package body QtAda6.QtGui.QSessionManager is
       return As_String (Result);
    end sessionId;
    function sessionKey (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sessionKey");
       Args   := Tuple_New (0);
@@ -121,20 +129,20 @@ package body QtAda6.QtGui.QSessionManager is
       return As_String (Result);
    end sessionKey;
    procedure setDiscardCommand (self : access Inst; arg_1_P : SEQUENCE_str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDiscardCommand");
+      Args   := Tuple_New (1);
       List   := List_New (arg_1_P'Length);
       for ind in arg_1_P'Range loop
          List_SetItem (List, ssize_t (ind - arg_1_P'First), Unicode_FromString (arg_1_P (ind)));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setDiscardCommand;
    procedure setManagerProperty (self : access Inst; name_P : str; value_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setManagerProperty");
       Args   := Tuple_New (2);
@@ -144,35 +152,35 @@ package body QtAda6.QtGui.QSessionManager is
       Result := Object_Call (Method, Args, Dict, True);
    end setManagerProperty;
    procedure setManagerProperty (self : access Inst; name_P : str; value_P : SEQUENCE_str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setManagerProperty");
-      List   := List_New (value_P'Length);
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (name_P));
+      List := List_New (value_P'Length);
       for ind in value_P'Range loop
          List_SetItem (List, ssize_t (ind - value_P'First), Unicode_FromString (value_P (ind)));
       end loop;
-      Args := Tuple_New (2);
-      Tuple_SetItem (Args, 0, Unicode_FromString (name_P));
       Tuple_SetItem (Args, 1, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setManagerProperty;
    procedure setRestartCommand (self : access Inst; arg_1_P : SEQUENCE_str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRestartCommand");
+      Args   := Tuple_New (1);
       List   := List_New (arg_1_P'Length);
       for ind in arg_1_P'Range loop
          List_SetItem (List, ssize_t (ind - arg_1_P'First), Unicode_FromString (arg_1_P (ind)));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setRestartCommand;
    procedure setRestartHint (self : access Inst; arg_1_P : access QtAda6.QtGui.QSessionManager.RestartHint.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRestartHint");
       Args   := Tuple_New (1);

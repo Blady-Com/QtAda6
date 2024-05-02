@@ -25,7 +25,7 @@ package body QtAda6.QtGui.QAccessibleTextSelectionEvent is
    function Create
      (iface_P : access QtAda6.QtGui.QAccessibleInterface.Inst'Class; start_P : int; end_K_P : int) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTextSelectionEvent");
       Args  := Tuple_New (3);
@@ -36,7 +36,7 @@ package body QtAda6.QtGui.QAccessibleTextSelectionEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (obj_P : access QtAda6.QtCore.QObject.Inst'Class; start_P : int; end_K_P : int) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTextSelectionEvent");
       Args  := Tuple_New (3);
@@ -47,7 +47,7 @@ package body QtAda6.QtGui.QAccessibleTextSelectionEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function selectionEnd (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "selectionEnd");
       Args   := Tuple_New (0);
@@ -56,7 +56,7 @@ package body QtAda6.QtGui.QAccessibleTextSelectionEvent is
       return Long_AsLong (Result);
    end selectionEnd;
    function selectionStart (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "selectionStart");
       Args   := Tuple_New (0);
@@ -65,7 +65,7 @@ package body QtAda6.QtGui.QAccessibleTextSelectionEvent is
       return Long_AsLong (Result);
    end selectionStart;
    procedure setSelection (self : access Inst; start_P : int; end_K_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSelection");
       Args   := Tuple_New (2);

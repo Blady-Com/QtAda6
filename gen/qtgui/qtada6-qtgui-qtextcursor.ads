@@ -21,6 +21,7 @@ limited with QtAda6.QtGui.QTextDocumentFragment;
 limited with QtAda6.QtGui.QTextFrameFormat;
 limited with QtAda6.QtGui.QTextImageFormat;
 limited with QtAda6.QtGui.QTextFrameFormat.Position;
+limited with QtAda6.QtGui.QImage;
 limited with QtAda6.QtGui.QTextDocument.MarkdownFeature;
 limited with QtAda6.QtGui.QTextTableFormat;
 limited with QtAda6.QtGui.QTextCursor.MoveOperation;
@@ -32,7 +33,6 @@ package QtAda6.QtGui.QTextCursor is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtGui_QImage_str is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (block_P : access QtAda6.QtGui.QTextBlock.Inst'Class) return Class;
@@ -82,7 +82,8 @@ package QtAda6.QtGui.QTextCursor is
    procedure insertImage
      (self        : access Inst; format_P : access QtAda6.QtGui.QTextImageFormat.Inst'Class;
       alignment_P : access QtAda6.QtGui.QTextFrameFormat.Position.Inst'Class);
-   procedure insertImage (self : access Inst; image_P : UNION_QtAda6_QtGui_QImage_str; name_P : str := "");
+   procedure insertImage (self : access Inst; image_P : access QtAda6.QtGui.QImage.Inst'Class; name_P : str := "");
+   procedure insertImage (self : access Inst; image_P : str; name_P : str := "");
    procedure insertImage (self : access Inst; name_P : str);
    function insertList
      (self : access Inst; format_P : access QtAda6.QtGui.QTextListFormat.Inst'Class)

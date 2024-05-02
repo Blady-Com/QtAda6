@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QInputMethodEvent.Attribute;
 with QtAda6.QtGui.QInputMethodEvent.AttributeType;
 package body QtAda6.QtGui.QInputMethodEvent.Attribute is
    use type QtAda6.int;
@@ -23,7 +22,7 @@ package body QtAda6.QtGui.QInputMethodEvent.Attribute is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (Attribute_P : access QtAda6.QtGui.QInputMethodEvent.Attribute.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Attribute");
       Args  := Tuple_New (1);
@@ -34,7 +33,7 @@ package body QtAda6.QtGui.QInputMethodEvent.Attribute is
    function Create
      (typ_P : access QtAda6.QtGui.QInputMethodEvent.AttributeType.Inst'Class; s_P : int; l_P : int) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Attribute");
       Args  := Tuple_New (3);
@@ -48,7 +47,7 @@ package body QtAda6.QtGui.QInputMethodEvent.Attribute is
      (typ_P : access QtAda6.QtGui.QInputMethodEvent.AttributeType.Inst'Class; s_P : int; l_P : int; val_P : Any)
       return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Attribute");
       Args  := Tuple_New (4);
@@ -60,7 +59,7 @@ package body QtAda6.QtGui.QInputMethodEvent.Attribute is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Attribute");
       Method := Object_GetAttrString (Class, "__copy__");

@@ -16,6 +16,9 @@ with QtAda6.QtGui.QPaintDevice.PaintDeviceMetric;
 with QtAda6.QtGui.QPaintEngine;
 with QtAda6.QtGui.QPaintEvent;
 with QtAda6.QtCore.QRect;
+with QtAda6.QtGui.QRegion;
+with QtAda6.QtGui.QBitmap;
+with QtAda6.QtGui.QPolygon;
 package body QtAda6.QtGui.QPaintDeviceWindow is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -27,7 +30,7 @@ package body QtAda6.QtGui.QPaintDeviceWindow is
       Free (Inst_Access (Self));
    end Finalize;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -37,7 +40,7 @@ package body QtAda6.QtGui.QPaintDeviceWindow is
       return To_Ada (Result);
    end event;
    procedure exposeEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QExposeEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exposeEvent");
       Args   := Tuple_New (1);
@@ -48,7 +51,7 @@ package body QtAda6.QtGui.QPaintDeviceWindow is
    function metric
      (self : access Inst; metric_P : access QtAda6.QtGui.QPaintDevice.PaintDeviceMetric.Inst'Class) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "metric");
       Args   := Tuple_New (1);
@@ -58,7 +61,7 @@ package body QtAda6.QtGui.QPaintDeviceWindow is
       return Long_AsLong (Result);
    end metric;
    function paintEngine (self : access Inst) return access QtAda6.QtGui.QPaintEngine.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPaintEngine.Class := new QtAda6.QtGui.QPaintEngine.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "paintEngine");
@@ -69,7 +72,7 @@ package body QtAda6.QtGui.QPaintDeviceWindow is
       return Ret;
    end paintEngine;
    procedure paintEvent (self : access Inst; event_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -78,7 +81,7 @@ package body QtAda6.QtGui.QPaintDeviceWindow is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure update (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "update");
       Args   := Tuple_New (0);
@@ -86,7 +89,7 @@ package body QtAda6.QtGui.QPaintDeviceWindow is
       Result := Object_Call (Method, Args, Dict, True);
    end update;
    procedure update (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "update");
       Args   := Tuple_New (1);
@@ -94,11 +97,26 @@ package body QtAda6.QtGui.QPaintDeviceWindow is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end update;
-   procedure update
-     (self     : access Inst;
-      region_P : UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure update (self : access Inst; region_P : access QtAda6.QtGui.QRegion.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "update");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if region_P /= null then region_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end update;
+   procedure update (self : access Inst; region_P : access QtAda6.QtGui.QBitmap.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "update");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if region_P /= null then region_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end update;
+   procedure update (self : access Inst; region_P : access QtAda6.QtGui.QPolygon.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "update");
       Args   := Tuple_New (1);

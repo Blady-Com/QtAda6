@@ -10,9 +10,7 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QTextFrame.iterator;
 with QtAda6.QtGui.QTextBlock;
-with QtAda6.QtGui.QTextFrame;
 package body QtAda6.QtGui.QTextFrame.iterator is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -24,7 +22,7 @@ package body QtAda6.QtGui.QTextFrame.iterator is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "iterator");
       Args  := Tuple_New (0);
@@ -32,7 +30,7 @@ package body QtAda6.QtGui.QTextFrame.iterator is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (iterator_P : access QtAda6.QtGui.QTextFrame.iterator.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "iterator");
       Args  := Tuple_New (1);
@@ -41,7 +39,7 @@ package body QtAda6.QtGui.QTextFrame.iterator is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "iterator");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -50,7 +48,7 @@ package body QtAda6.QtGui.QTextFrame.iterator is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function U_iadd_U (self : access Inst; arg_1_P : int) return access QtAda6.QtGui.QTextFrame.iterator.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextFrame.iterator.Class := new QtAda6.QtGui.QTextFrame.iterator.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__iadd__");
@@ -62,7 +60,7 @@ package body QtAda6.QtGui.QTextFrame.iterator is
       return Ret;
    end U_iadd_U;
    function U_isub_U (self : access Inst; arg_1_P : int) return access QtAda6.QtGui.QTextFrame.iterator.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextFrame.iterator.Class := new QtAda6.QtGui.QTextFrame.iterator.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__isub__");
@@ -74,7 +72,7 @@ package body QtAda6.QtGui.QTextFrame.iterator is
       return Ret;
    end U_isub_U;
    function U_iter_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__iter__");
       Args   := Tuple_New (0);
@@ -83,7 +81,7 @@ package body QtAda6.QtGui.QTextFrame.iterator is
       return null;
    end U_iter_U;
    function U_next_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__next__");
       Args   := Tuple_New (0);
@@ -92,7 +90,7 @@ package body QtAda6.QtGui.QTextFrame.iterator is
       return null;
    end U_next_U;
    function atEnd (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "atEnd");
       Args   := Tuple_New (0);
@@ -101,7 +99,7 @@ package body QtAda6.QtGui.QTextFrame.iterator is
       return To_Ada (Result);
    end atEnd;
    function currentBlock (self : access Inst) return access QtAda6.QtGui.QTextBlock.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextBlock.Class := new QtAda6.QtGui.QTextBlock.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentBlock");
@@ -112,7 +110,7 @@ package body QtAda6.QtGui.QTextFrame.iterator is
       return Ret;
    end currentBlock;
    function currentFrame (self : access Inst) return access QtAda6.QtGui.QTextFrame.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextFrame.Class := new QtAda6.QtGui.QTextFrame.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentFrame");
@@ -123,7 +121,7 @@ package body QtAda6.QtGui.QTextFrame.iterator is
       return Ret;
    end currentFrame;
    function parentFrame (self : access Inst) return access QtAda6.QtGui.QTextFrame.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextFrame.Class := new QtAda6.QtGui.QTextFrame.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "parentFrame");

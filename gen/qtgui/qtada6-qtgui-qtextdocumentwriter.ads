@@ -18,20 +18,22 @@ package QtAda6.QtGui.QTextDocumentWriter is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    subtype LIST_QtAda6_QtCore_QByteArray is QtAda6.QtCore.QByteArray.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create
-     (device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : UNION_QtAda6_QtCore_QByteArray_bytes)
+     (device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : access QtAda6.QtCore.QByteArray.Inst'Class)
       return Class;
-   function Create (fileName_P : str; format_P : UNION_QtAda6_QtCore_QByteArray_bytes := null) return Class;
+   function Create (device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : bytes) return Class;
+   function Create (fileName_P : str; format_P : access QtAda6.QtCore.QByteArray.Inst'Class := null) return Class;
+   function Create (fileName_P : str; format_P : bytes := null) return Class;
    function device (self : access Inst) return access QtAda6.QtCore.QIODevice.Inst'Class;
    function fileName (self : access Inst) return str;
    function format (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class;
    procedure setDevice (self : access Inst; device_P : access QtAda6.QtCore.QIODevice.Inst'Class);
    procedure setFileName (self : access Inst; fileName_P : str);
-   procedure setFormat (self : access Inst; format_P : UNION_QtAda6_QtCore_QByteArray_bytes);
+   procedure setFormat (self : access Inst; format_P : access QtAda6.QtCore.QByteArray.Inst'Class);
+   procedure setFormat (self : access Inst; format_P : bytes);
    function supportedDocumentFormats return LIST_QtAda6_QtCore_QByteArray;
    function write (self : access Inst; document_P : access QtAda6.QtGui.QTextDocument.Inst'Class) return bool;
    function write (self : access Inst; fragment_P : access QtAda6.QtGui.QTextDocumentFragment.Inst'Class) return bool;

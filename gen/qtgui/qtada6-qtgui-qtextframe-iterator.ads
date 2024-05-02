@@ -9,7 +9,6 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtGui.QTextBlock;
---  limited with QtAda6.QtGui.QTextFrame;
 package QtAda6.QtGui.QTextFrame.iterator is
    type Inst;
    type Inst_Access is access all Inst;

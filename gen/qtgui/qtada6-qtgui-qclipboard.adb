@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtGui.QClipboard.Mode;
 with QtAda6.QtGui.QImage;
 with QtAda6.QtCore.QMimeData;
@@ -44,7 +43,7 @@ package body QtAda6.QtGui.QClipboard is
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "selectionChanged"));
    end selectionChanged;
    procedure clear (self : access Inst; mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clear");
       Args   := Tuple_New (0);
@@ -58,8 +57,8 @@ package body QtAda6.QtGui.QClipboard is
      (self : access Inst; mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null)
       return access QtAda6.QtGui.QImage.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QImage.Class := new QtAda6.QtGui.QImage.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QImage.Class := new QtAda6.QtGui.QImage.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "image");
       Args   := Tuple_New (0);
@@ -75,7 +74,7 @@ package body QtAda6.QtGui.QClipboard is
      (self : access Inst; mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null)
       return access QtAda6.QtCore.QMimeData.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMimeData.Class := new QtAda6.QtCore.QMimeData.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mimeData");
@@ -89,7 +88,7 @@ package body QtAda6.QtGui.QClipboard is
       return Ret;
    end mimeData;
    function ownsClipboard (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "ownsClipboard");
       Args   := Tuple_New (0);
@@ -98,7 +97,7 @@ package body QtAda6.QtGui.QClipboard is
       return To_Ada (Result);
    end ownsClipboard;
    function ownsFindBuffer (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "ownsFindBuffer");
       Args   := Tuple_New (0);
@@ -107,7 +106,7 @@ package body QtAda6.QtGui.QClipboard is
       return To_Ada (Result);
    end ownsFindBuffer;
    function ownsSelection (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "ownsSelection");
       Args   := Tuple_New (0);
@@ -119,8 +118,8 @@ package body QtAda6.QtGui.QClipboard is
      (self : access Inst; mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null)
       return access QtAda6.QtGui.QPixmap.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "pixmap");
       Args   := Tuple_New (0);
@@ -133,10 +132,10 @@ package body QtAda6.QtGui.QClipboard is
       return Ret;
    end pixmap;
    procedure setImage
-     (self   : access Inst; arg_1_P : UNION_QtAda6_QtGui_QImage_str;
+     (self   : access Inst; arg_1_P : access QtAda6.QtGui.QImage.Inst'Class;
       mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setImage");
       Args   := Tuple_New (1);
@@ -147,11 +146,25 @@ package body QtAda6.QtGui.QClipboard is
       end if;
       Result := Object_Call (Method, Args, Dict, True);
    end setImage;
+   procedure setImage
+     (self : access Inst; arg_1_P : str; mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setImage");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (arg_1_P));
+      Dict := Dict_New;
+      if mode_P /= null then
+         Dict_SetItemString (Dict, "mode", mode_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setImage;
    procedure setMimeData
      (self   : access Inst; data_P : access QtAda6.QtCore.QMimeData.Inst'Class;
       mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMimeData");
       Args   := Tuple_New (1);
@@ -163,10 +176,10 @@ package body QtAda6.QtGui.QClipboard is
       Result := Object_Call (Method, Args, Dict, True);
    end setMimeData;
    procedure setPixmap
-     (self   : access Inst; arg_1_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str;
+     (self   : access Inst; arg_1_P : access QtAda6.QtGui.QPixmap.Inst'Class;
       mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPixmap");
       Args   := Tuple_New (1);
@@ -177,10 +190,39 @@ package body QtAda6.QtGui.QClipboard is
       end if;
       Result := Object_Call (Method, Args, Dict, True);
    end setPixmap;
+   procedure setPixmap
+     (self   : access Inst; arg_1_P : access QtAda6.QtGui.QImage.Inst'Class;
+      mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPixmap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if mode_P /= null then
+         Dict_SetItemString (Dict, "mode", mode_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPixmap;
+   procedure setPixmap
+     (self : access Inst; arg_1_P : str; mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPixmap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (arg_1_P));
+      Dict := Dict_New;
+      if mode_P /= null then
+         Dict_SetItemString (Dict, "mode", mode_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPixmap;
    procedure setText
      (self : access Inst; arg_1_P : str; mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setText");
       Args   := Tuple_New (1);
@@ -192,7 +234,7 @@ package body QtAda6.QtGui.QClipboard is
       Result := Object_Call (Method, Args, Dict, True);
    end setText;
    function supportsFindBuffer (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "supportsFindBuffer");
       Args   := Tuple_New (0);
@@ -201,7 +243,7 @@ package body QtAda6.QtGui.QClipboard is
       return To_Ada (Result);
    end supportsFindBuffer;
    function supportsSelection (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "supportsSelection");
       Args   := Tuple_New (0);
@@ -210,7 +252,7 @@ package body QtAda6.QtGui.QClipboard is
       return To_Ada (Result);
    end supportsSelection;
    function text (self : access Inst; mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "text");
       Args   := Tuple_New (0);
@@ -225,7 +267,7 @@ package body QtAda6.QtGui.QClipboard is
      (self : access Inst; subtype_K_P : str; mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null)
       return TUPLE
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "text");
       Args   := Tuple_New (1);

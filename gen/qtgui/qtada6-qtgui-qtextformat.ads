@@ -13,6 +13,11 @@ limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtCore.Qt.LayoutDirection;
 limited with QtAda6.QtGui.QTextLength;
 limited with QtAda6.QtGui.QPen;
+limited with QtAda6.QtCore.Qt.BrushStyle;
+limited with QtAda6.QtCore.Qt.GlobalColor;
+limited with QtAda6.QtGui.QGradient;
+limited with QtAda6.QtGui.QImage;
+limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtGui.QTextBlockFormat;
 limited with QtAda6.QtGui.QTextCharFormat;
 limited with QtAda6.QtGui.QTextFrameFormat;
@@ -31,8 +36,6 @@ package QtAda6.QtGui.QTextFormat is
       C0 : int;
       C1 : Any;
    end record;
-   type UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap is
-     new Any;
    subtype SEQUENCE_QtAda6_QtGui_QTextLength is QtAda6.QtGui.QTextLength.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create return Class;
@@ -69,12 +72,20 @@ package QtAda6.QtGui.QTextFormat is
    function properties (self : access Inst) return DICT_int_Any;
    function property_F (self : access Inst; propertyId_P : int) return Any;
    function propertyCount (self : access Inst) return int;
-   procedure setBackground
-     (self    : access Inst;
-      brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
-   procedure setForeground
-     (self    : access Inst;
-      brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
+   procedure setBackground (self : access Inst; brush_P : access QtAda6.QtGui.QBrush.Inst'Class);
+   procedure setBackground (self : access Inst; brush_P : access QtAda6.QtCore.Qt.BrushStyle.Inst'Class);
+   procedure setBackground (self : access Inst; brush_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure setBackground (self : access Inst; brush_P : access QtAda6.QtGui.QColor.Inst'Class);
+   procedure setBackground (self : access Inst; brush_P : access QtAda6.QtGui.QGradient.Inst'Class);
+   procedure setBackground (self : access Inst; brush_P : access QtAda6.QtGui.QImage.Inst'Class);
+   procedure setBackground (self : access Inst; brush_P : access QtAda6.QtGui.QPixmap.Inst'Class);
+   procedure setForeground (self : access Inst; brush_P : access QtAda6.QtGui.QBrush.Inst'Class);
+   procedure setForeground (self : access Inst; brush_P : access QtAda6.QtCore.Qt.BrushStyle.Inst'Class);
+   procedure setForeground (self : access Inst; brush_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure setForeground (self : access Inst; brush_P : access QtAda6.QtGui.QColor.Inst'Class);
+   procedure setForeground (self : access Inst; brush_P : access QtAda6.QtGui.QGradient.Inst'Class);
+   procedure setForeground (self : access Inst; brush_P : access QtAda6.QtGui.QImage.Inst'Class);
+   procedure setForeground (self : access Inst; brush_P : access QtAda6.QtGui.QPixmap.Inst'Class);
    procedure setLayoutDirection (self : access Inst; direction_P : access QtAda6.QtCore.Qt.LayoutDirection.Inst'Class);
    procedure setObjectIndex (self : access Inst; object_P : int);
    procedure setObjectType (self : access Inst; type_K_P : int);

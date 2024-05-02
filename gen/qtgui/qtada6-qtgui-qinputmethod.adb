@@ -10,13 +10,13 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QRectF;
 with QtAda6.QtCore.Qt.LayoutDirection;
 with QtAda6.QtGui.QTransform;
 with QtAda6.QtGui.QInputMethod.Action;
 with QtAda6.QtCore.QLocale;
 with QtAda6.QtCore.Qt.InputMethodQuery;
+with QtAda6.QtCore.QRect;
 package body QtAda6.QtGui.QInputMethod is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -71,8 +71,8 @@ package body QtAda6.QtGui.QInputMethod is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "visibleChanged"));
    end visibleChanged;
    function anchorRectangle (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "anchorRectangle");
       Args             := Tuple_New (0);
@@ -82,7 +82,7 @@ package body QtAda6.QtGui.QInputMethod is
       return Ret;
    end anchorRectangle;
    procedure commit (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "commit");
       Args   := Tuple_New (0);
@@ -90,8 +90,8 @@ package body QtAda6.QtGui.QInputMethod is
       Result := Object_Call (Method, Args, Dict, True);
    end commit;
    function cursorRectangle (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "cursorRectangle");
       Args             := Tuple_New (0);
@@ -101,7 +101,7 @@ package body QtAda6.QtGui.QInputMethod is
       return Ret;
    end cursorRectangle;
    procedure hide (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hide");
       Args   := Tuple_New (0);
@@ -109,7 +109,7 @@ package body QtAda6.QtGui.QInputMethod is
       Result := Object_Call (Method, Args, Dict, True);
    end hide;
    function inputDirection (self : access Inst) return access QtAda6.QtCore.Qt.LayoutDirection.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.LayoutDirection.Class := new QtAda6.QtCore.Qt.LayoutDirection.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "inputDirection");
@@ -120,8 +120,8 @@ package body QtAda6.QtGui.QInputMethod is
       return Ret;
    end inputDirection;
    function inputItemClipRectangle (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "inputItemClipRectangle");
       Args             := Tuple_New (0);
@@ -131,8 +131,8 @@ package body QtAda6.QtGui.QInputMethod is
       return Ret;
    end inputItemClipRectangle;
    function inputItemRectangle (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "inputItemRectangle");
       Args             := Tuple_New (0);
@@ -142,7 +142,7 @@ package body QtAda6.QtGui.QInputMethod is
       return Ret;
    end inputItemRectangle;
    function inputItemTransform (self : access Inst) return access QtAda6.QtGui.QTransform.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTransform.Class := new QtAda6.QtGui.QTransform.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "inputItemTransform");
@@ -155,7 +155,7 @@ package body QtAda6.QtGui.QInputMethod is
    procedure invokeAction
      (self : access Inst; a_P : access QtAda6.QtGui.QInputMethod.Action.Inst'Class; cursorPosition_P : int)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "invokeAction");
       Args   := Tuple_New (2);
@@ -165,7 +165,7 @@ package body QtAda6.QtGui.QInputMethod is
       Result := Object_Call (Method, Args, Dict, True);
    end invokeAction;
    function isAnimating (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isAnimating");
       Args   := Tuple_New (0);
@@ -174,7 +174,7 @@ package body QtAda6.QtGui.QInputMethod is
       return To_Ada (Result);
    end isAnimating;
    function isVisible (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isVisible");
       Args   := Tuple_New (0);
@@ -183,8 +183,8 @@ package body QtAda6.QtGui.QInputMethod is
       return To_Ada (Result);
    end isVisible;
    function keyboardRectangle (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "keyboardRectangle");
       Args             := Tuple_New (0);
@@ -194,8 +194,8 @@ package body QtAda6.QtGui.QInputMethod is
       return Ret;
    end keyboardRectangle;
    function locale (self : access Inst) return access QtAda6.QtCore.QLocale.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QLocale.Class := new QtAda6.QtCore.QLocale.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QLocale.Class := new QtAda6.QtCore.QLocale.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "locale");
       Args             := Tuple_New (0);
@@ -207,7 +207,7 @@ package body QtAda6.QtGui.QInputMethod is
    function queryFocusObject
      (query_P : access QtAda6.QtCore.Qt.InputMethodQuery.Inst'Class; argument_P : Any) return Any
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputMethod");
       Method := Object_GetAttrString (Class, "queryFocusObject");
@@ -219,15 +219,24 @@ package body QtAda6.QtGui.QInputMethod is
       return null;
    end queryFocusObject;
    procedure reset (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "reset");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end reset;
-   procedure setInputItemRectangle (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setInputItemRectangle (self : access Inst; rect_P : access QtAda6.QtCore.QRectF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setInputItemRectangle");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if rect_P /= null then rect_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setInputItemRectangle;
+   procedure setInputItemRectangle (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setInputItemRectangle");
       Args   := Tuple_New (1);
@@ -236,7 +245,7 @@ package body QtAda6.QtGui.QInputMethod is
       Result := Object_Call (Method, Args, Dict, True);
    end setInputItemRectangle;
    procedure setInputItemTransform (self : access Inst; transform_P : access QtAda6.QtGui.QTransform.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setInputItemTransform");
       Args   := Tuple_New (1);
@@ -245,7 +254,7 @@ package body QtAda6.QtGui.QInputMethod is
       Result := Object_Call (Method, Args, Dict, True);
    end setInputItemTransform;
    procedure setVisible (self : access Inst; visible_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVisible");
       Args   := Tuple_New (1);
@@ -254,7 +263,7 @@ package body QtAda6.QtGui.QInputMethod is
       Result := Object_Call (Method, Args, Dict, True);
    end setVisible;
    procedure show (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "show");
       Args   := Tuple_New (0);
@@ -262,7 +271,7 @@ package body QtAda6.QtGui.QInputMethod is
       Result := Object_Call (Method, Args, Dict, True);
    end show;
    procedure update (self : access Inst; queries_P : access QtAda6.QtCore.Qt.InputMethodQuery.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "update");
       Args   := Tuple_New (1);

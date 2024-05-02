@@ -10,14 +10,14 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QDropEvent;
+with QtAda6.QtCore.QPointF;
 with QtAda6.QtCore.Qt.DropAction;
 with QtAda6.QtCore.QMimeData;
 with QtAda6.QtCore.Qt.MouseButton;
 with QtAda6.QtCore.Qt.KeyboardModifier;
 with QtAda6.QtCore.QEvent.Type_K;
 with QtAda6.QtCore.QPoint;
-with QtAda6.QtCore.QPointF;
+with QtAda6.QtGui.QPainterPath.Element;
 with QtAda6.QtCore.QObject;
 package body QtAda6.QtGui.QDropEvent is
    use type QtAda6.int;
@@ -30,7 +30,7 @@ package body QtAda6.QtGui.QDropEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QDropEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QDropEvent");
       Args  := Tuple_New (1);
@@ -39,13 +39,55 @@ package body QtAda6.QtGui.QDropEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (pos_P       : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
+     (pos_P       : access QtAda6.QtCore.QPointF.Inst'Class; actions_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class;
+      data_P : access QtAda6.QtCore.QMimeData.Inst'Class; buttons_P : access QtAda6.QtCore.Qt.MouseButton.Inst'Class;
+      modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      type_K_P    : access QtAda6.QtCore.QEvent.Type_K.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QDropEvent");
+      Args  := Tuple_New (5);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if actions_P /= null then actions_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if data_P /= null then data_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, (if buttons_P /= null then buttons_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 4, (if modifiers_P /= null then modifiers_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if type_K_P /= null then
+         Dict_SetItemString (Dict, "type", type_K_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (pos_P       : access QtAda6.QtCore.QPoint.Inst'Class; actions_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class;
+      data_P : access QtAda6.QtCore.QMimeData.Inst'Class; buttons_P : access QtAda6.QtCore.Qt.MouseButton.Inst'Class;
+      modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      type_K_P    : access QtAda6.QtCore.QEvent.Type_K.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QDropEvent");
+      Args  := Tuple_New (5);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if actions_P /= null then actions_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if data_P /= null then data_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, (if buttons_P /= null then buttons_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 4, (if modifiers_P /= null then modifiers_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if type_K_P /= null then
+         Dict_SetItemString (Dict, "type", type_K_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (pos_P       : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
       actions_P   : access QtAda6.QtCore.Qt.DropAction.Inst'Class; data_P : access QtAda6.QtCore.QMimeData.Inst'Class;
       buttons_P   : access QtAda6.QtCore.Qt.MouseButton.Inst'Class;
       modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
       type_K_P    : access QtAda6.QtCore.QEvent.Type_K.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QDropEvent");
       Args  := Tuple_New (5);
@@ -61,7 +103,7 @@ package body QtAda6.QtGui.QDropEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function U_repr_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
@@ -70,7 +112,7 @@ package body QtAda6.QtGui.QDropEvent is
       return null;
    end U_repr_U;
    procedure acceptProposedAction (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "acceptProposedAction");
       Args   := Tuple_New (0);
@@ -78,7 +120,7 @@ package body QtAda6.QtGui.QDropEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end acceptProposedAction;
    function buttons (self : access Inst) return access QtAda6.QtCore.Qt.MouseButton.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.MouseButton.Class := new QtAda6.QtCore.Qt.MouseButton.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "buttons");
@@ -89,7 +131,7 @@ package body QtAda6.QtGui.QDropEvent is
       return Ret;
    end buttons;
    function clone (self : access Inst) return access QtAda6.QtGui.QDropEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QDropEvent.Class := new QtAda6.QtGui.QDropEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
@@ -100,7 +142,7 @@ package body QtAda6.QtGui.QDropEvent is
       return Ret;
    end clone;
    function dropAction (self : access Inst) return access QtAda6.QtCore.Qt.DropAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "dropAction");
@@ -111,7 +153,7 @@ package body QtAda6.QtGui.QDropEvent is
       return Ret;
    end dropAction;
    function keyboardModifiers (self : access Inst) return access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.KeyboardModifier.Class := new QtAda6.QtCore.Qt.KeyboardModifier.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "keyboardModifiers");
@@ -122,7 +164,7 @@ package body QtAda6.QtGui.QDropEvent is
       return Ret;
    end keyboardModifiers;
    function mimeData (self : access Inst) return access QtAda6.QtCore.QMimeData.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMimeData.Class := new QtAda6.QtCore.QMimeData.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "mimeData");
@@ -133,7 +175,7 @@ package body QtAda6.QtGui.QDropEvent is
       return Ret;
    end mimeData;
    function modifiers (self : access Inst) return access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.KeyboardModifier.Class := new QtAda6.QtCore.Qt.KeyboardModifier.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "modifiers");
@@ -144,7 +186,7 @@ package body QtAda6.QtGui.QDropEvent is
       return Ret;
    end modifiers;
    function mouseButtons (self : access Inst) return access QtAda6.QtCore.Qt.MouseButton.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.MouseButton.Class := new QtAda6.QtCore.Qt.MouseButton.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "mouseButtons");
@@ -155,8 +197,8 @@ package body QtAda6.QtGui.QDropEvent is
       return Ret;
    end mouseButtons;
    function pos (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "pos");
       Args             := Tuple_New (0);
@@ -166,8 +208,8 @@ package body QtAda6.QtGui.QDropEvent is
       return Ret;
    end pos;
    function posF (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "posF");
       Args             := Tuple_New (0);
@@ -177,8 +219,8 @@ package body QtAda6.QtGui.QDropEvent is
       return Ret;
    end posF;
    function position (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "position");
       Args             := Tuple_New (0);
@@ -188,7 +230,7 @@ package body QtAda6.QtGui.QDropEvent is
       return Ret;
    end position;
    function possibleActions (self : access Inst) return access QtAda6.QtCore.Qt.DropAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "possibleActions");
@@ -199,7 +241,7 @@ package body QtAda6.QtGui.QDropEvent is
       return Ret;
    end possibleActions;
    function proposedAction (self : access Inst) return access QtAda6.QtCore.Qt.DropAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "proposedAction");
@@ -210,7 +252,7 @@ package body QtAda6.QtGui.QDropEvent is
       return Ret;
    end proposedAction;
    procedure setDropAction (self : access Inst; action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDropAction");
       Args   := Tuple_New (1);
@@ -219,8 +261,8 @@ package body QtAda6.QtGui.QDropEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setDropAction;
    function source (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "source");
       Args             := Tuple_New (0);

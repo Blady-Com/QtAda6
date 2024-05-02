@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QOverrideCursorGuard;
 package body QtAda6.QtGui.QOverrideCursorGuard is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -22,7 +21,7 @@ package body QtAda6.QtGui.QOverrideCursorGuard is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QOverrideCursorGuard");
       Args  := Tuple_New (0);
@@ -30,7 +29,7 @@ package body QtAda6.QtGui.QOverrideCursorGuard is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function U_enter_U (self : access Inst) return access QtAda6.QtGui.QOverrideCursorGuard.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QOverrideCursorGuard.Class := new QtAda6.QtGui.QOverrideCursorGuard.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "__enter__");
@@ -43,7 +42,7 @@ package body QtAda6.QtGui.QOverrideCursorGuard is
    procedure U_exit_U
      (self : access Inst; arg_1_P : access Object'Class; arg_2_P : access Object'Class; arg_3_P : access Object'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__exit__");
       Args   := Tuple_New (3);
@@ -54,7 +53,7 @@ package body QtAda6.QtGui.QOverrideCursorGuard is
       Result := Object_Call (Method, Args, Dict, True);
    end U_exit_U;
    procedure restoreOverrideCursor (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "restoreOverrideCursor");
       Args   := Tuple_New (0);

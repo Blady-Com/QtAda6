@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QPixelFormat;
 with QtAda6.QtGui.QPixelFormat.ColorModel;
 with QtAda6.QtGui.QPixelFormat.AlphaUsage;
 with QtAda6.QtGui.QPixelFormat.AlphaPosition;
@@ -29,7 +28,7 @@ package body QtAda6.QtGui.QPixelFormat is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixelFormat");
       Args  := Tuple_New (0);
@@ -37,7 +36,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (QPixelFormat_P : access QtAda6.QtGui.QPixelFormat.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixelFormat");
       Args  := Tuple_New (1);
@@ -54,7 +53,7 @@ package body QtAda6.QtGui.QPixelFormat is
       typeInterpretation_P : access QtAda6.QtGui.QPixelFormat.TypeInterpretation.Inst'Class;
       byteOrder_P : access QtAda6.QtGui.QPixelFormat.ByteOrder.Inst'Class := null; subEnum_P : int := 0) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixelFormat");
       Args  := Tuple_New (11);
@@ -79,7 +78,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixelFormat");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -88,7 +87,7 @@ package body QtAda6.QtGui.QPixelFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function alphaPosition_F (self : access Inst) return access QtAda6.QtGui.QPixelFormat.AlphaPosition.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPixelFormat.AlphaPosition.Class := new QtAda6.QtGui.QPixelFormat.AlphaPosition.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "alphaPosition");
@@ -99,7 +98,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Ret;
    end alphaPosition_F;
    function alphaSize (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "alphaSize");
       Args   := Tuple_New (0);
@@ -108,7 +107,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Long_AsLong (Result);
    end alphaSize;
    function alphaUsage_F (self : access Inst) return access QtAda6.QtGui.QPixelFormat.AlphaUsage.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPixelFormat.AlphaUsage.Class := new QtAda6.QtGui.QPixelFormat.AlphaUsage.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "alphaUsage");
@@ -119,7 +118,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Ret;
    end alphaUsage_F;
    function bitsPerPixel (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "bitsPerPixel");
       Args   := Tuple_New (0);
@@ -128,7 +127,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Long_AsLong (Result);
    end bitsPerPixel;
    function blackSize (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "blackSize");
       Args   := Tuple_New (0);
@@ -137,7 +136,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Long_AsLong (Result);
    end blackSize;
    function blueSize (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "blueSize");
       Args   := Tuple_New (0);
@@ -146,7 +145,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Long_AsLong (Result);
    end blueSize;
    function brightnessSize (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "brightnessSize");
       Args   := Tuple_New (0);
@@ -155,7 +154,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Long_AsLong (Result);
    end brightnessSize;
    function byteOrder_F (self : access Inst) return access QtAda6.QtGui.QPixelFormat.ByteOrder.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPixelFormat.ByteOrder.Class := new QtAda6.QtGui.QPixelFormat.ByteOrder.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "byteOrder");
@@ -166,7 +165,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Ret;
    end byteOrder_F;
    function channelCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "channelCount");
       Args   := Tuple_New (0);
@@ -175,7 +174,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Long_AsLong (Result);
    end channelCount;
    function colorModel_F (self : access Inst) return access QtAda6.QtGui.QPixelFormat.ColorModel.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPixelFormat.ColorModel.Class := new QtAda6.QtGui.QPixelFormat.ColorModel.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "colorModel");
@@ -186,7 +185,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Ret;
    end colorModel_F;
    function cyanSize (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cyanSize");
       Args   := Tuple_New (0);
@@ -195,7 +194,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Long_AsLong (Result);
    end cyanSize;
    function greenSize (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "greenSize");
       Args   := Tuple_New (0);
@@ -204,7 +203,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Long_AsLong (Result);
    end greenSize;
    function hueSize (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hueSize");
       Args   := Tuple_New (0);
@@ -213,7 +212,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Long_AsLong (Result);
    end hueSize;
    function lightnessSize (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lightnessSize");
       Args   := Tuple_New (0);
@@ -222,7 +221,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Long_AsLong (Result);
    end lightnessSize;
    function magentaSize (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "magentaSize");
       Args   := Tuple_New (0);
@@ -231,8 +230,8 @@ package body QtAda6.QtGui.QPixelFormat is
       return Long_AsLong (Result);
    end magentaSize;
    function premultiplied (self : access Inst) return access QtAda6.QtGui.QPixelFormat.AlphaPremultiplied.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixelFormat.AlphaPremultiplied.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QPixelFormat.AlphaPremultiplied.Class :=
         new QtAda6.QtGui.QPixelFormat.AlphaPremultiplied.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "premultiplied");
@@ -243,7 +242,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Ret;
    end premultiplied;
    function redSize (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "redSize");
       Args   := Tuple_New (0);
@@ -252,7 +251,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Long_AsLong (Result);
    end redSize;
    function saturationSize (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "saturationSize");
       Args   := Tuple_New (0);
@@ -261,7 +260,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Long_AsLong (Result);
    end saturationSize;
    function subEnum (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "subEnum");
       Args   := Tuple_New (0);
@@ -272,8 +271,8 @@ package body QtAda6.QtGui.QPixelFormat is
    function typeInterpretation_F
      (self : access Inst) return access QtAda6.QtGui.QPixelFormat.TypeInterpretation.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixelFormat.TypeInterpretation.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QPixelFormat.TypeInterpretation.Class :=
         new QtAda6.QtGui.QPixelFormat.TypeInterpretation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "typeInterpretation");
@@ -284,7 +283,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Ret;
    end typeInterpretation_F;
    function yellowSize (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "yellowSize");
       Args   := Tuple_New (0);
@@ -293,7 +292,7 @@ package body QtAda6.QtGui.QPixelFormat is
       return Long_AsLong (Result);
    end yellowSize;
    function yuvLayout_F (self : access Inst) return access QtAda6.QtGui.QPixelFormat.YUVLayout.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPixelFormat.YUVLayout.Class := new QtAda6.QtGui.QPixelFormat.YUVLayout.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "yuvLayout");

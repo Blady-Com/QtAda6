@@ -12,7 +12,6 @@ with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtGui.QVector3D;
 with QtAda6.QtGui.QVector4D;
-with QtAda6.QtGui.QQuaternion;
 with QtAda6.QtCore.QDataStream;
 with QtAda6.QtGui.QMatrix3x3;
 package body QtAda6.QtGui.QQuaternion is
@@ -26,7 +25,7 @@ package body QtAda6.QtGui.QQuaternion is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
       Args  := Tuple_New (0);
@@ -34,7 +33,7 @@ package body QtAda6.QtGui.QQuaternion is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (scalar_P : float; vector_P : access QtAda6.QtGui.QVector3D.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
       Args  := Tuple_New (2);
@@ -44,7 +43,7 @@ package body QtAda6.QtGui.QQuaternion is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (scalar_P : float; xpos_P : float; ypos_P : float; zpos_P : float) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
       Args  := Tuple_New (4);
@@ -56,7 +55,7 @@ package body QtAda6.QtGui.QQuaternion is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (vector_P : access QtAda6.QtGui.QVector4D.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
       Args  := Tuple_New (1);
@@ -68,7 +67,7 @@ package body QtAda6.QtGui.QQuaternion is
      (self : access Inst; q2_P : access QtAda6.QtGui.QQuaternion.Inst'Class)
       return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__add__");
@@ -80,7 +79,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Ret;
    end U_add_U;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -92,7 +91,7 @@ package body QtAda6.QtGui.QQuaternion is
      (self : access Inst; quaternion_P : access QtAda6.QtGui.QQuaternion.Inst'Class)
       return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__iadd__");
@@ -104,7 +103,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Ret;
    end U_iadd_U;
    function U_imul_U (self : access Inst; factor_P : float) return access QtAda6.QtGui.QQuaternion.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__imul__");
@@ -119,7 +118,7 @@ package body QtAda6.QtGui.QQuaternion is
      (self : access Inst; quaternion_P : access QtAda6.QtGui.QQuaternion.Inst'Class)
       return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__imul__");
@@ -134,7 +133,7 @@ package body QtAda6.QtGui.QQuaternion is
      (self : access Inst; quaternion_P : access QtAda6.QtGui.QQuaternion.Inst'Class)
       return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__isub__");
@@ -149,7 +148,7 @@ package body QtAda6.QtGui.QQuaternion is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__lshift__");
@@ -161,7 +160,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Ret;
    end U_lshift_U;
    function U_mul_U (self : access Inst; factor_P : float) return access QtAda6.QtGui.QQuaternion.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__mul__");
@@ -176,7 +175,7 @@ package body QtAda6.QtGui.QQuaternion is
      (self : access Inst; q2_P : access QtAda6.QtGui.QQuaternion.Inst'Class)
       return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__mul__");
@@ -188,7 +187,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Ret;
    end U_mul_U;
    function U_neg_U (self : access Inst) return access QtAda6.QtGui.QQuaternion.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "__neg__");
@@ -199,7 +198,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Ret;
    end U_neg_U;
    function U_reduce_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__reduce__");
       Args   := Tuple_New (0);
@@ -208,7 +207,7 @@ package body QtAda6.QtGui.QQuaternion is
       return null;
    end U_reduce_U;
    function U_repr_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
@@ -220,7 +219,7 @@ package body QtAda6.QtGui.QQuaternion is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__rshift__");
@@ -235,7 +234,7 @@ package body QtAda6.QtGui.QQuaternion is
      (self : access Inst; q2_P : access QtAda6.QtGui.QQuaternion.Inst'Class)
       return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__sub__");
@@ -247,7 +246,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Ret;
    end U_sub_U;
    function conjugated (self : access Inst) return access QtAda6.QtGui.QQuaternion.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "conjugated");
@@ -260,7 +259,7 @@ package body QtAda6.QtGui.QQuaternion is
    function dotProduct
      (q1_P : access QtAda6.QtGui.QQuaternion.Inst'Class; q2_P : access QtAda6.QtGui.QQuaternion.Inst'Class) return float
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
       Method := Object_GetAttrString (Class, "dotProduct");
@@ -275,7 +274,7 @@ package body QtAda6.QtGui.QQuaternion is
      (xAxis_P : access QtAda6.QtGui.QVector3D.Inst'Class; yAxis_P : access QtAda6.QtGui.QVector3D.Inst'Class;
       zAxis_P : access QtAda6.QtGui.QVector3D.Inst'Class) return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
@@ -293,7 +292,7 @@ package body QtAda6.QtGui.QQuaternion is
      (axis_P : access QtAda6.QtGui.QVector3D.Inst'Class; angle_P : float)
       return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
@@ -309,7 +308,7 @@ package body QtAda6.QtGui.QQuaternion is
    function fromAxisAndAngle
      (x_P : float; y_P : float; z_P : float; angle_P : float) return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
@@ -328,7 +327,7 @@ package body QtAda6.QtGui.QQuaternion is
      (direction_P : access QtAda6.QtGui.QVector3D.Inst'Class; up_P : access QtAda6.QtGui.QVector3D.Inst'Class)
       return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
@@ -344,7 +343,7 @@ package body QtAda6.QtGui.QQuaternion is
    function fromEulerAngles
      (eulerAngles_P : access QtAda6.QtGui.QVector3D.Inst'Class) return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
@@ -359,7 +358,7 @@ package body QtAda6.QtGui.QQuaternion is
    function fromEulerAngles
      (pitch_P : float; yaw_P : float; roll_P : float) return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
@@ -376,7 +375,7 @@ package body QtAda6.QtGui.QQuaternion is
    function fromRotationMatrix
      (rot3x3_P : access QtAda6.QtGui.QMatrix3x3.Inst'Class) return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
@@ -392,7 +391,7 @@ package body QtAda6.QtGui.QQuaternion is
      (self    : access Inst; xAxis_P : access QtAda6.QtGui.QVector3D.Inst'Class;
       yAxis_P : access QtAda6.QtGui.QVector3D.Inst'Class; zAxis_P : access QtAda6.QtGui.QVector3D.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "getAxes");
       Args   := Tuple_New (3);
@@ -403,7 +402,7 @@ package body QtAda6.QtGui.QQuaternion is
       Result := Object_Call (Method, Args, Dict, True);
    end getAxes;
    function getAxisAndAngle (self : access Inst; axis_P : access QtAda6.QtGui.QVector3D.Inst'Class) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "getAxisAndAngle");
       Args   := Tuple_New (1);
@@ -413,7 +412,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Float_AsDouble (Result);
    end getAxisAndAngle;
    function getAxisAndAngle (self : access Inst) return TUPLE_float_float_float_float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "getAxisAndAngle");
       Args   := Tuple_New (0);
@@ -427,7 +426,7 @@ package body QtAda6.QtGui.QQuaternion is
       end return;
    end getAxisAndAngle;
    function getEulerAngles (self : access Inst) return TUPLE_float_float_float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "getEulerAngles");
       Args   := Tuple_New (0);
@@ -440,7 +439,7 @@ package body QtAda6.QtGui.QQuaternion is
       end return;
    end getEulerAngles;
    function inverted (self : access Inst) return access QtAda6.QtGui.QQuaternion.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "inverted");
@@ -451,7 +450,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Ret;
    end inverted;
    function isIdentity (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isIdentity");
       Args   := Tuple_New (0);
@@ -460,7 +459,7 @@ package body QtAda6.QtGui.QQuaternion is
       return To_Ada (Result);
    end isIdentity;
    function isNull (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isNull");
       Args   := Tuple_New (0);
@@ -469,7 +468,7 @@ package body QtAda6.QtGui.QQuaternion is
       return To_Ada (Result);
    end isNull;
    function length (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "length");
       Args   := Tuple_New (0);
@@ -478,7 +477,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Float_AsDouble (Result);
    end length;
    function lengthSquared (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lengthSquared");
       Args   := Tuple_New (0);
@@ -490,7 +489,7 @@ package body QtAda6.QtGui.QQuaternion is
      (q1_P : access QtAda6.QtGui.QQuaternion.Inst'Class; q2_P : access QtAda6.QtGui.QQuaternion.Inst'Class; t_P : float)
       return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
@@ -505,7 +504,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Ret;
    end nlerp;
    procedure normalize (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "normalize");
       Args   := Tuple_New (0);
@@ -513,7 +512,7 @@ package body QtAda6.QtGui.QQuaternion is
       Result := Object_Call (Method, Args, Dict, True);
    end normalize;
    function normalized (self : access Inst) return access QtAda6.QtGui.QQuaternion.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "normalized");
@@ -527,7 +526,7 @@ package body QtAda6.QtGui.QQuaternion is
      (self : access Inst; vector_P : access QtAda6.QtGui.QVector3D.Inst'Class)
       return access QtAda6.QtGui.QVector3D.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QVector3D.Class := new QtAda6.QtGui.QVector3D.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rotatedVector");
@@ -542,7 +541,7 @@ package body QtAda6.QtGui.QQuaternion is
      (from_U_P : access QtAda6.QtGui.QVector3D.Inst'Class; to_P : access QtAda6.QtGui.QVector3D.Inst'Class)
       return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
@@ -556,7 +555,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Ret;
    end rotationTo;
    function scalar (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "scalar");
       Args   := Tuple_New (0);
@@ -565,7 +564,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Float_AsDouble (Result);
    end scalar;
    procedure setScalar (self : access Inst; scalar_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setScalar");
       Args   := Tuple_New (1);
@@ -574,7 +573,7 @@ package body QtAda6.QtGui.QQuaternion is
       Result := Object_Call (Method, Args, Dict, True);
    end setScalar;
    procedure setVector (self : access Inst; vector_P : access QtAda6.QtGui.QVector3D.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVector");
       Args   := Tuple_New (1);
@@ -583,7 +582,7 @@ package body QtAda6.QtGui.QQuaternion is
       Result := Object_Call (Method, Args, Dict, True);
    end setVector;
    procedure setVector (self : access Inst; x_P : float; y_P : float; z_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVector");
       Args   := Tuple_New (3);
@@ -594,7 +593,7 @@ package body QtAda6.QtGui.QQuaternion is
       Result := Object_Call (Method, Args, Dict, True);
    end setVector;
    procedure setX (self : access Inst; x_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setX");
       Args   := Tuple_New (1);
@@ -603,7 +602,7 @@ package body QtAda6.QtGui.QQuaternion is
       Result := Object_Call (Method, Args, Dict, True);
    end setX;
    procedure setY (self : access Inst; y_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setY");
       Args   := Tuple_New (1);
@@ -612,7 +611,7 @@ package body QtAda6.QtGui.QQuaternion is
       Result := Object_Call (Method, Args, Dict, True);
    end setY;
    procedure setZ (self : access Inst; z_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setZ");
       Args   := Tuple_New (1);
@@ -624,7 +623,7 @@ package body QtAda6.QtGui.QQuaternion is
      (q1_P : access QtAda6.QtGui.QQuaternion.Inst'Class; q2_P : access QtAda6.QtGui.QQuaternion.Inst'Class; t_P : float)
       return access QtAda6.QtGui.QQuaternion.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QQuaternion.Class := new QtAda6.QtGui.QQuaternion.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QQuaternion");
@@ -639,7 +638,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Ret;
    end slerp;
    function toEulerAngles (self : access Inst) return access QtAda6.QtGui.QVector3D.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QVector3D.Class := new QtAda6.QtGui.QVector3D.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toEulerAngles");
@@ -650,7 +649,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Ret;
    end toEulerAngles;
    function toRotationMatrix (self : access Inst) return access QtAda6.QtGui.QMatrix3x3.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QMatrix3x3.Class := new QtAda6.QtGui.QMatrix3x3.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toRotationMatrix");
@@ -661,7 +660,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Ret;
    end toRotationMatrix;
    function toVector4D (self : access Inst) return access QtAda6.QtGui.QVector4D.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QVector4D.Class := new QtAda6.QtGui.QVector4D.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toVector4D");
@@ -672,7 +671,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Ret;
    end toVector4D;
    function vector (self : access Inst) return access QtAda6.QtGui.QVector3D.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QVector3D.Class := new QtAda6.QtGui.QVector3D.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "vector");
@@ -683,7 +682,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Ret;
    end vector;
    function x (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "x");
       Args   := Tuple_New (0);
@@ -692,7 +691,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Float_AsDouble (Result);
    end x;
    function y (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "y");
       Args   := Tuple_New (0);
@@ -701,7 +700,7 @@ package body QtAda6.QtGui.QQuaternion is
       return Float_AsDouble (Result);
    end y;
    function z (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "z");
       Args   := Tuple_New (0);

@@ -10,8 +10,9 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QConicalGradient;
 with QtAda6.QtCore.QPointF;
+with QtAda6.QtCore.QPoint;
+with QtAda6.QtGui.QPainterPath.Element;
 package body QtAda6.QtGui.QConicalGradient is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -23,7 +24,7 @@ package body QtAda6.QtGui.QConicalGradient is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QConicalGradient");
       Args  := Tuple_New (0);
@@ -31,7 +32,7 @@ package body QtAda6.QtGui.QConicalGradient is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (QConicalGradient_P : access QtAda6.QtGui.QConicalGradient.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QConicalGradient");
       Args  := Tuple_New (1);
@@ -39,11 +40,29 @@ package body QtAda6.QtGui.QConicalGradient is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create
-     (center_P     : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
-      startAngle_P : float) return Class
+   function Create (center_P : access QtAda6.QtCore.QPointF.Inst'Class; startAngle_P : float) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QConicalGradient");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if center_P /= null then center_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Float_FromDouble (startAngle_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (center_P : access QtAda6.QtCore.QPoint.Inst'Class; startAngle_P : float) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QConicalGradient");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if center_P /= null then center_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Float_FromDouble (startAngle_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (center_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class; startAngle_P : float) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QConicalGradient");
       Args  := Tuple_New (2);
@@ -53,7 +72,7 @@ package body QtAda6.QtGui.QConicalGradient is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (cx_P : float; cy_P : float; startAngle_P : float) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QConicalGradient");
       Args  := Tuple_New (3);
@@ -64,7 +83,7 @@ package body QtAda6.QtGui.QConicalGradient is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QConicalGradient");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -73,7 +92,7 @@ package body QtAda6.QtGui.QConicalGradient is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function angle (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "angle");
       Args   := Tuple_New (0);
@@ -82,8 +101,8 @@ package body QtAda6.QtGui.QConicalGradient is
       return Float_AsDouble (Result);
    end angle;
    function center (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "center");
       Args             := Tuple_New (0);
@@ -93,7 +112,7 @@ package body QtAda6.QtGui.QConicalGradient is
       return Ret;
    end center;
    procedure setAngle (self : access Inst; angle_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAngle");
       Args   := Tuple_New (1);
@@ -101,10 +120,26 @@ package body QtAda6.QtGui.QConicalGradient is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setAngle;
-   procedure setCenter
-     (self : access Inst; center_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setCenter (self : access Inst; center_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setCenter");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if center_P /= null then center_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCenter;
+   procedure setCenter (self : access Inst; center_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setCenter");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if center_P /= null then center_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCenter;
+   procedure setCenter (self : access Inst; center_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCenter");
       Args   := Tuple_New (1);
@@ -113,7 +148,7 @@ package body QtAda6.QtGui.QConicalGradient is
       Result := Object_Call (Method, Args, Dict, True);
    end setCenter;
    procedure setCenter (self : access Inst; x_P : float; y_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCenter");
       Args   := Tuple_New (2);

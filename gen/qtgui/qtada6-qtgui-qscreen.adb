@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.Qt.ScreenOrientation;
 with QtAda6.QtCore.QRect;
 with QtAda6.QtCore.QSize;
@@ -18,7 +17,6 @@ with QtAda6.QtGui.QPixmap;
 with QtAda6.QtCore.QSizeF;
 with QtAda6.QtGui.QTransform;
 with QtAda6.QtCore.QPoint;
-with QtAda6.QtGui.QScreen;
 package body QtAda6.QtGui.QScreen is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -83,7 +81,7 @@ package body QtAda6.QtGui.QScreen is
      (self : access Inst; a_P : access QtAda6.QtCore.Qt.ScreenOrientation.Inst'Class;
       b_P  : access QtAda6.QtCore.Qt.ScreenOrientation.Inst'Class) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "angleBetween");
       Args   := Tuple_New (2);
@@ -94,8 +92,8 @@ package body QtAda6.QtGui.QScreen is
       return Long_AsLong (Result);
    end angleBetween;
    function availableGeometry (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "availableGeometry");
       Args             := Tuple_New (0);
@@ -105,8 +103,8 @@ package body QtAda6.QtGui.QScreen is
       return Ret;
    end availableGeometry;
    function availableSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "availableSize");
       Args             := Tuple_New (0);
@@ -116,8 +114,8 @@ package body QtAda6.QtGui.QScreen is
       return Ret;
    end availableSize;
    function availableVirtualGeometry (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "availableVirtualGeometry");
       Args             := Tuple_New (0);
@@ -127,8 +125,8 @@ package body QtAda6.QtGui.QScreen is
       return Ret;
    end availableVirtualGeometry;
    function availableVirtualSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "availableVirtualSize");
       Args             := Tuple_New (0);
@@ -138,7 +136,7 @@ package body QtAda6.QtGui.QScreen is
       return Ret;
    end availableVirtualSize;
    function depth (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "depth");
       Args   := Tuple_New (0);
@@ -147,7 +145,7 @@ package body QtAda6.QtGui.QScreen is
       return Long_AsLong (Result);
    end depth;
    function devicePixelRatio (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "devicePixelRatio");
       Args   := Tuple_New (0);
@@ -156,8 +154,8 @@ package body QtAda6.QtGui.QScreen is
       return Float_AsDouble (Result);
    end devicePixelRatio;
    function geometry (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "geometry");
       Args             := Tuple_New (0);
@@ -170,8 +168,8 @@ package body QtAda6.QtGui.QScreen is
      (self : access Inst; window_P : int; x_P : int := 0; y_P : int := 0; w_P : int := 0; h_P : int := 0)
       return access QtAda6.QtGui.QPixmap.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "grabWindow");
       Args   := Tuple_New (1);
@@ -196,7 +194,7 @@ package body QtAda6.QtGui.QScreen is
    function isLandscape
      (self : access Inst; orientation_P : access QtAda6.QtCore.Qt.ScreenOrientation.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isLandscape");
       Args   := Tuple_New (1);
@@ -208,7 +206,7 @@ package body QtAda6.QtGui.QScreen is
    function isPortrait
      (self : access Inst; orientation_P : access QtAda6.QtCore.Qt.ScreenOrientation.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isPortrait");
       Args   := Tuple_New (1);
@@ -218,7 +216,7 @@ package body QtAda6.QtGui.QScreen is
       return To_Ada (Result);
    end isPortrait;
    function logicalDotsPerInch (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "logicalDotsPerInch");
       Args   := Tuple_New (0);
@@ -227,7 +225,7 @@ package body QtAda6.QtGui.QScreen is
       return Float_AsDouble (Result);
    end logicalDotsPerInch;
    function logicalDotsPerInchX (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "logicalDotsPerInchX");
       Args   := Tuple_New (0);
@@ -236,7 +234,7 @@ package body QtAda6.QtGui.QScreen is
       return Float_AsDouble (Result);
    end logicalDotsPerInchX;
    function logicalDotsPerInchY (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "logicalDotsPerInchY");
       Args   := Tuple_New (0);
@@ -245,7 +243,7 @@ package body QtAda6.QtGui.QScreen is
       return Float_AsDouble (Result);
    end logicalDotsPerInchY;
    function manufacturer (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "manufacturer");
       Args   := Tuple_New (0);
@@ -258,8 +256,8 @@ package body QtAda6.QtGui.QScreen is
       b_P  : access QtAda6.QtCore.Qt.ScreenOrientation.Inst'Class; rect_P : access QtAda6.QtCore.QRect.Inst'Class)
       return access QtAda6.QtCore.QRect.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mapBetween");
       Args   := Tuple_New (3);
@@ -272,7 +270,7 @@ package body QtAda6.QtGui.QScreen is
       return Ret;
    end mapBetween;
    function model (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "model");
       Args   := Tuple_New (0);
@@ -281,7 +279,7 @@ package body QtAda6.QtGui.QScreen is
       return As_String (Result);
    end model;
    function name (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "name");
       Args   := Tuple_New (0);
@@ -290,7 +288,7 @@ package body QtAda6.QtGui.QScreen is
       return As_String (Result);
    end name;
    function nativeOrientation (self : access Inst) return access QtAda6.QtCore.Qt.ScreenOrientation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.ScreenOrientation.Class := new QtAda6.QtCore.Qt.ScreenOrientation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "nativeOrientation");
@@ -301,7 +299,7 @@ package body QtAda6.QtGui.QScreen is
       return Ret;
    end nativeOrientation;
    function orientation (self : access Inst) return access QtAda6.QtCore.Qt.ScreenOrientation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.ScreenOrientation.Class := new QtAda6.QtCore.Qt.ScreenOrientation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "orientation");
@@ -312,7 +310,7 @@ package body QtAda6.QtGui.QScreen is
       return Ret;
    end orientation;
    function physicalDotsPerInch (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "physicalDotsPerInch");
       Args   := Tuple_New (0);
@@ -321,7 +319,7 @@ package body QtAda6.QtGui.QScreen is
       return Float_AsDouble (Result);
    end physicalDotsPerInch;
    function physicalDotsPerInchX (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "physicalDotsPerInchX");
       Args   := Tuple_New (0);
@@ -330,7 +328,7 @@ package body QtAda6.QtGui.QScreen is
       return Float_AsDouble (Result);
    end physicalDotsPerInchX;
    function physicalDotsPerInchY (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "physicalDotsPerInchY");
       Args   := Tuple_New (0);
@@ -339,8 +337,8 @@ package body QtAda6.QtGui.QScreen is
       return Float_AsDouble (Result);
    end physicalDotsPerInchY;
    function physicalSize (self : access Inst) return access QtAda6.QtCore.QSizeF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "physicalSize");
       Args             := Tuple_New (0);
@@ -350,7 +348,7 @@ package body QtAda6.QtGui.QScreen is
       return Ret;
    end physicalSize;
    function primaryOrientation (self : access Inst) return access QtAda6.QtCore.Qt.ScreenOrientation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.ScreenOrientation.Class := new QtAda6.QtCore.Qt.ScreenOrientation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "primaryOrientation");
@@ -361,7 +359,7 @@ package body QtAda6.QtGui.QScreen is
       return Ret;
    end primaryOrientation;
    function refreshRate (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "refreshRate");
       Args   := Tuple_New (0);
@@ -370,18 +368,18 @@ package body QtAda6.QtGui.QScreen is
       return Float_AsDouble (Result);
    end refreshRate;
    function resolveInterface (self : access Inst; name_P : bytes; revision_P : int) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resolveInterface");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (name_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (name_P.all)));
       Tuple_SetItem (Args, 1, Long_FromLong (revision_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end resolveInterface;
    function serialNumber (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "serialNumber");
       Args   := Tuple_New (0);
@@ -390,8 +388,8 @@ package body QtAda6.QtGui.QScreen is
       return As_String (Result);
    end serialNumber;
    function size (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "size");
       Args             := Tuple_New (0);
@@ -405,7 +403,7 @@ package body QtAda6.QtGui.QScreen is
       b_P  : access QtAda6.QtCore.Qt.ScreenOrientation.Inst'Class; target_P : access QtAda6.QtCore.QRect.Inst'Class)
       return access QtAda6.QtGui.QTransform.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTransform.Class := new QtAda6.QtGui.QTransform.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "transformBetween");
@@ -419,8 +417,8 @@ package body QtAda6.QtGui.QScreen is
       return Ret;
    end transformBetween;
    function virtualGeometry (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "virtualGeometry");
       Args             := Tuple_New (0);
@@ -433,8 +431,8 @@ package body QtAda6.QtGui.QScreen is
      (self : access Inst; point_P : access QtAda6.QtCore.QPoint.Inst'Class)
       return access QtAda6.QtGui.QScreen.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QScreen.Class := new QtAda6.QtGui.QScreen.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QScreen.Class := new QtAda6.QtGui.QScreen.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "virtualSiblingAt");
       Args   := Tuple_New (1);
@@ -445,17 +443,21 @@ package body QtAda6.QtGui.QScreen is
       return Ret;
    end virtualSiblingAt;
    function virtualSiblings (self : access Inst) return LIST_QtAda6_QtGui_QScreen is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "virtualSiblings");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtGui_QScreen (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end virtualSiblings;
    function virtualSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "virtualSize");
       Args             := Tuple_New (0);

@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QResizeEvent;
 with QtAda6.QtCore.QSize;
 package body QtAda6.QtGui.QResizeEvent is
    use type QtAda6.int;
@@ -23,7 +22,7 @@ package body QtAda6.QtGui.QResizeEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QResizeEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QResizeEvent");
       Args  := Tuple_New (1);
@@ -34,7 +33,7 @@ package body QtAda6.QtGui.QResizeEvent is
    function Create
      (size_P : access QtAda6.QtCore.QSize.Inst'Class; oldSize_P : access QtAda6.QtCore.QSize.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QResizeEvent");
       Args  := Tuple_New (2);
@@ -44,7 +43,7 @@ package body QtAda6.QtGui.QResizeEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function U_repr_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
@@ -53,7 +52,7 @@ package body QtAda6.QtGui.QResizeEvent is
       return null;
    end U_repr_U;
    function clone (self : access Inst) return access QtAda6.QtGui.QResizeEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QResizeEvent.Class := new QtAda6.QtGui.QResizeEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
@@ -64,8 +63,8 @@ package body QtAda6.QtGui.QResizeEvent is
       return Ret;
    end clone;
    function oldSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "oldSize");
       Args             := Tuple_New (0);
@@ -75,8 +74,8 @@ package body QtAda6.QtGui.QResizeEvent is
       return Ret;
    end oldSize;
    function size (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "size");
       Args             := Tuple_New (0);

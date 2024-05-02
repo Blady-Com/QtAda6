@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QTextTableFormat;
 with QtAda6.QtGui.QTextFormat;
 with QtAda6.QtCore.Qt.AlignmentFlag;
 with QtAda6.QtGui.QTextLength;
@@ -25,7 +24,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextTableFormat");
       Args  := Tuple_New (0);
@@ -33,7 +32,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (QTextTableFormat_P : access QtAda6.QtGui.QTextTableFormat.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextTableFormat");
       Args  := Tuple_New (1);
@@ -42,7 +41,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (fmt_P : access QtAda6.QtGui.QTextFormat.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextTableFormat");
       Args  := Tuple_New (1);
@@ -51,7 +50,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextTableFormat");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -60,7 +59,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function alignment (self : access Inst) return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.AlignmentFlag.Class := new QtAda6.QtCore.Qt.AlignmentFlag.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "alignment");
@@ -71,7 +70,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       return Ret;
    end alignment;
    function borderCollapse (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "borderCollapse");
       Args   := Tuple_New (0);
@@ -80,7 +79,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       return To_Ada (Result);
    end borderCollapse;
    function cellPadding (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cellPadding");
       Args   := Tuple_New (0);
@@ -89,7 +88,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       return Float_AsDouble (Result);
    end cellPadding;
    function cellSpacing (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cellSpacing");
       Args   := Tuple_New (0);
@@ -98,7 +97,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       return Float_AsDouble (Result);
    end cellSpacing;
    procedure clearColumnWidthConstraints (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clearColumnWidthConstraints");
       Args   := Tuple_New (0);
@@ -106,16 +105,20 @@ package body QtAda6.QtGui.QTextTableFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end clearColumnWidthConstraints;
    function columnWidthConstraints (self : access Inst) return LIST_QtAda6_QtGui_QTextLength is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "columnWidthConstraints");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtGui_QTextLength (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end columnWidthConstraints;
    function columns (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "columns");
       Args   := Tuple_New (0);
@@ -124,7 +127,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       return Long_AsLong (Result);
    end columns;
    function headerRowCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "headerRowCount");
       Args   := Tuple_New (0);
@@ -133,7 +136,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       return Long_AsLong (Result);
    end headerRowCount;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -142,7 +145,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       return To_Ada (Result);
    end isValid;
    procedure setAlignment (self : access Inst; alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAlignment");
       Args   := Tuple_New (1);
@@ -151,7 +154,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setAlignment;
    procedure setBorderCollapse (self : access Inst; borderCollapse_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBorderCollapse");
       Args   := Tuple_New (1);
@@ -160,7 +163,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setBorderCollapse;
    procedure setCellPadding (self : access Inst; padding_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCellPadding");
       Args   := Tuple_New (1);
@@ -169,7 +172,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setCellPadding;
    procedure setCellSpacing (self : access Inst; spacing_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCellSpacing");
       Args   := Tuple_New (1);
@@ -178,22 +181,22 @@ package body QtAda6.QtGui.QTextTableFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setCellSpacing;
    procedure setColumnWidthConstraints (self : access Inst; constraints_P : SEQUENCE_QtAda6_QtGui_QTextLength) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setColumnWidthConstraints");
+      Args   := Tuple_New (1);
       List   := List_New (constraints_P'Length);
       for ind in constraints_P'Range loop
          List_SetItem
            (List, ssize_t (ind - constraints_P'First),
             (if constraints_P (ind) /= null then constraints_P (ind).Python_Proxy else No_Value));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setColumnWidthConstraints;
    procedure setColumns (self : access Inst; columns_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setColumns");
       Args   := Tuple_New (1);
@@ -202,7 +205,7 @@ package body QtAda6.QtGui.QTextTableFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setColumns;
    procedure setHeaderRowCount (self : access Inst; count_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHeaderRowCount");
       Args   := Tuple_New (1);

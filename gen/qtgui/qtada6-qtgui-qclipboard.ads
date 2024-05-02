@@ -8,20 +8,18 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtGui.QClipboard.Mode;
 limited with QtAda6.QtGui.QImage;
 limited with QtAda6.QtCore.QMimeData;
 limited with QtAda6.QtGui.QPixmap;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QClipboard is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   type UNION_QtAda6_QtGui_QImage_str is new Any;
-   type UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is new Any;
    type TUPLE is null record;
    procedure Finalize (Self : in out Class);
    function changed (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- changed(QClipboard::Mode)
@@ -42,14 +40,21 @@ package QtAda6.QtGui.QClipboard is
      (self : access Inst; mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null)
       return access QtAda6.QtGui.QPixmap.Inst'Class;
    procedure setImage
-     (self   : access Inst; arg_1_P : UNION_QtAda6_QtGui_QImage_str;
+     (self   : access Inst; arg_1_P : access QtAda6.QtGui.QImage.Inst'Class;
       mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null);
+   procedure setImage
+     (self : access Inst; arg_1_P : str; mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null);
    procedure setMimeData
      (self   : access Inst; data_P : access QtAda6.QtCore.QMimeData.Inst'Class;
       mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null);
    procedure setPixmap
-     (self   : access Inst; arg_1_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str;
+     (self   : access Inst; arg_1_P : access QtAda6.QtGui.QPixmap.Inst'Class;
       mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null);
+   procedure setPixmap
+     (self   : access Inst; arg_1_P : access QtAda6.QtGui.QImage.Inst'Class;
+      mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null);
+   procedure setPixmap
+     (self : access Inst; arg_1_P : str; mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null);
    procedure setText
      (self : access Inst; arg_1_P : str; mode_P : access QtAda6.QtGui.QClipboard.Mode.Inst'Class := null);
    function supportsFindBuffer (self : access Inst) return bool;

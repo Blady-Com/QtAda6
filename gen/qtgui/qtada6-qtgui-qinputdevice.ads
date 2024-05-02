@@ -8,11 +8,11 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtGui.QInputDevice.DeviceType;
 limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtGui.QInputDevice.Capability;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QInputDevice is
    type Inst;
    type Inst_Access is access all Inst;

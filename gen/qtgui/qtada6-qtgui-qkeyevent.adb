@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QKeyEvent;
 with QtAda6.QtCore.QEvent.Type_K;
 with QtAda6.QtCore.Qt.KeyboardModifier;
 with QtAda6.QtGui.QInputDevice;
@@ -27,7 +26,7 @@ package body QtAda6.QtGui.QKeyEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QKeyEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeyEvent");
       Args  := Tuple_New (1);
@@ -41,7 +40,7 @@ package body QtAda6.QtGui.QKeyEvent is
       nativeVirtualKey_P : int; nativeModifiers_P : int; text_P : str := ""; autorep_P : bool := False;
       count_P            : int := 0; device_P : access QtAda6.QtGui.QInputDevice.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeyEvent");
       Args  := Tuple_New (6);
@@ -71,7 +70,7 @@ package body QtAda6.QtGui.QKeyEvent is
       modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class; text_P : str := ""; autorep_P : bool := False;
       count_P     : int := 0) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeyEvent");
       Args  := Tuple_New (3);
@@ -91,7 +90,7 @@ package body QtAda6.QtGui.QKeyEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function U_repr_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
@@ -100,7 +99,7 @@ package body QtAda6.QtGui.QKeyEvent is
       return null;
    end U_repr_U;
    function clone (self : access Inst) return access QtAda6.QtGui.QKeyEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QKeyEvent.Class := new QtAda6.QtGui.QKeyEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
@@ -111,7 +110,7 @@ package body QtAda6.QtGui.QKeyEvent is
       return Ret;
    end clone;
    function count (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "count");
       Args   := Tuple_New (0);
@@ -120,7 +119,7 @@ package body QtAda6.QtGui.QKeyEvent is
       return Long_AsLong (Result);
    end count;
    function isAutoRepeat (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isAutoRepeat");
       Args   := Tuple_New (0);
@@ -129,7 +128,7 @@ package body QtAda6.QtGui.QKeyEvent is
       return To_Ada (Result);
    end isAutoRepeat;
    function key (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "key");
       Args   := Tuple_New (0);
@@ -138,7 +137,7 @@ package body QtAda6.QtGui.QKeyEvent is
       return Long_AsLong (Result);
    end key;
    function keyCombination (self : access Inst) return access QtAda6.QtCore.QKeyCombination.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QKeyCombination.Class := new QtAda6.QtCore.QKeyCombination.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "keyCombination");
@@ -149,7 +148,7 @@ package body QtAda6.QtGui.QKeyEvent is
       return Ret;
    end keyCombination;
    function matches (self : access Inst; key_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "matches");
       Args   := Tuple_New (1);
@@ -159,7 +158,7 @@ package body QtAda6.QtGui.QKeyEvent is
       return To_Ada (Result);
    end matches;
    function modifiers (self : access Inst) return access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.KeyboardModifier.Class := new QtAda6.QtCore.Qt.KeyboardModifier.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "modifiers");
@@ -170,7 +169,7 @@ package body QtAda6.QtGui.QKeyEvent is
       return Ret;
    end modifiers;
    function nativeModifiers (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "nativeModifiers");
       Args   := Tuple_New (0);
@@ -179,7 +178,7 @@ package body QtAda6.QtGui.QKeyEvent is
       return Long_AsLong (Result);
    end nativeModifiers;
    function nativeScanCode (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "nativeScanCode");
       Args   := Tuple_New (0);
@@ -188,7 +187,7 @@ package body QtAda6.QtGui.QKeyEvent is
       return Long_AsLong (Result);
    end nativeScanCode;
    function nativeVirtualKey (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "nativeVirtualKey");
       Args   := Tuple_New (0);
@@ -197,7 +196,7 @@ package body QtAda6.QtGui.QKeyEvent is
       return Long_AsLong (Result);
    end nativeVirtualKey;
    function text (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "text");
       Args   := Tuple_New (0);

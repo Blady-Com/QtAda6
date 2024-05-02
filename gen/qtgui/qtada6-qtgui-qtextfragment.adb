@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QTextFragment;
 with QtAda6.QtGui.QTextCharFormat;
 with QtAda6.QtGui.QGlyphRun;
 package body QtAda6.QtGui.QTextFragment is
@@ -24,7 +23,7 @@ package body QtAda6.QtGui.QTextFragment is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFragment");
       Args  := Tuple_New (0);
@@ -32,7 +31,7 @@ package body QtAda6.QtGui.QTextFragment is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (o_P : access QtAda6.QtGui.QTextFragment.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFragment");
       Args  := Tuple_New (1);
@@ -41,7 +40,7 @@ package body QtAda6.QtGui.QTextFragment is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextFragment");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -50,7 +49,7 @@ package body QtAda6.QtGui.QTextFragment is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function charFormat (self : access Inst) return access QtAda6.QtGui.QTextCharFormat.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextCharFormat.Class := new QtAda6.QtGui.QTextCharFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "charFormat");
@@ -61,7 +60,7 @@ package body QtAda6.QtGui.QTextFragment is
       return Ret;
    end charFormat;
    function charFormatIndex (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "charFormatIndex");
       Args   := Tuple_New (0);
@@ -70,7 +69,7 @@ package body QtAda6.QtGui.QTextFragment is
       return Long_AsLong (Result);
    end charFormatIndex;
    function contains (self : access Inst; position_P : int) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "contains");
       Args   := Tuple_New (1);
@@ -81,7 +80,7 @@ package body QtAda6.QtGui.QTextFragment is
    end contains;
    function glyphRuns (self : access Inst; from_U_P : int := 0; length_P : int := 0) return LIST_QtAda6_QtGui_QGlyphRun
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "glyphRuns");
       Args   := Tuple_New (0);
@@ -93,10 +92,14 @@ package body QtAda6.QtGui.QTextFragment is
          Dict_SetItemString (Dict, "length", Long_FromLong (length_P));
       end if;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtGui_QGlyphRun (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end glyphRuns;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -105,7 +108,7 @@ package body QtAda6.QtGui.QTextFragment is
       return To_Ada (Result);
    end isValid;
    function length (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "length");
       Args   := Tuple_New (0);
@@ -114,7 +117,7 @@ package body QtAda6.QtGui.QTextFragment is
       return Long_AsLong (Result);
    end length;
    function position (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "position");
       Args   := Tuple_New (0);
@@ -123,7 +126,7 @@ package body QtAda6.QtGui.QTextFragment is
       return Long_AsLong (Result);
    end position;
    function text (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "text");
       Args   := Tuple_New (0);

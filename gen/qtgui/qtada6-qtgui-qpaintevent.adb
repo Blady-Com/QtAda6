@@ -10,9 +10,10 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QPaintEvent;
 with QtAda6.QtCore.QRect;
 with QtAda6.QtGui.QRegion;
+with QtAda6.QtGui.QBitmap;
+with QtAda6.QtGui.QPolygon;
 package body QtAda6.QtGui.QPaintEvent is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -24,7 +25,7 @@ package body QtAda6.QtGui.QPaintEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEvent");
       Args  := Tuple_New (1);
@@ -33,7 +34,7 @@ package body QtAda6.QtGui.QPaintEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (paintRect_P : access QtAda6.QtCore.QRect.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEvent");
       Args  := Tuple_New (1);
@@ -41,11 +42,26 @@ package body QtAda6.QtGui.QPaintEvent is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create
-     (paintRegion_P : UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect)
-      return Class
-   is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (paintRegion_P : access QtAda6.QtGui.QRegion.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEvent");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if paintRegion_P /= null then paintRegion_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (paintRegion_P : access QtAda6.QtGui.QBitmap.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEvent");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if paintRegion_P /= null then paintRegion_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (paintRegion_P : access QtAda6.QtGui.QPolygon.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPaintEvent");
       Args  := Tuple_New (1);
@@ -54,7 +70,7 @@ package body QtAda6.QtGui.QPaintEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function clone (self : access Inst) return access QtAda6.QtGui.QPaintEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPaintEvent.Class := new QtAda6.QtGui.QPaintEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
@@ -65,8 +81,8 @@ package body QtAda6.QtGui.QPaintEvent is
       return Ret;
    end clone;
    function rect (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "rect");
       Args             := Tuple_New (0);
@@ -76,8 +92,8 @@ package body QtAda6.QtGui.QPaintEvent is
       return Ret;
    end rect;
    function region (self : access Inst) return access QtAda6.QtGui.QRegion.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QRegion.Class := new QtAda6.QtGui.QRegion.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QRegion.Class := new QtAda6.QtGui.QRegion.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "region");
       Args             := Tuple_New (0);

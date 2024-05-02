@@ -25,7 +25,7 @@ package body QtAda6.QtGui.QAbstractFileIconProvider is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAbstractFileIconProvider");
       Args  := Tuple_New (0);
@@ -36,8 +36,8 @@ package body QtAda6.QtGui.QAbstractFileIconProvider is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QFileInfo.Inst'Class)
       return access QtAda6.QtGui.QIcon.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "icon");
       Args   := Tuple_New (1);
@@ -51,8 +51,8 @@ package body QtAda6.QtGui.QAbstractFileIconProvider is
      (self : access Inst; arg_1_P : access QtAda6.QtGui.QAbstractFileIconProvider.IconType.Inst'Class)
       return access QtAda6.QtGui.QIcon.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "icon");
       Args   := Tuple_New (1);
@@ -63,8 +63,8 @@ package body QtAda6.QtGui.QAbstractFileIconProvider is
       return Ret;
    end icon;
    function options (self : access Inst) return access QtAda6.QtGui.QAbstractFileIconProvider.Option.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAbstractFileIconProvider.Option.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QAbstractFileIconProvider.Option.Class :=
         new QtAda6.QtGui.QAbstractFileIconProvider.Option.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "options");
@@ -76,7 +76,7 @@ package body QtAda6.QtGui.QAbstractFileIconProvider is
    end options;
    procedure setOptions (self : access Inst; arg_1_P : access QtAda6.QtGui.QAbstractFileIconProvider.Option.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOptions");
       Args   := Tuple_New (1);
@@ -85,7 +85,7 @@ package body QtAda6.QtGui.QAbstractFileIconProvider is
       Result := Object_Call (Method, Args, Dict, True);
    end setOptions;
    function type_K (self : access Inst; arg_1_P : access QtAda6.QtCore.QFileInfo.Inst'Class) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "type");
       Args   := Tuple_New (1);

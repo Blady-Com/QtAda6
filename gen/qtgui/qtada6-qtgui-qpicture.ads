@@ -21,10 +21,10 @@ package QtAda6.QtGui.QPicture is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QPaintDevice.Inst with null record;
-   type UNION_QtAda6_QtGui_QPicture_int is new Any;
    procedure Finalize (Self : in out Class);
-   function Create (arg_1_P : UNION_QtAda6_QtGui_QPicture_int) return Class;
-   function Create (formatVersion_P : int := 0) return Class;
+   function Create (arg_1_P : access QtAda6.QtGui.QPicture.Inst'Class) return Class;
+   function Create (arg_1_P : int) return Class;
+-- function Create(formatVersion_P : int := 0) return Class;
    procedure U_copy_U;
    function U_lshift_U
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)
@@ -46,5 +46,6 @@ package QtAda6.QtGui.QPicture is
    procedure setBoundingRect (self : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class);
    procedure setData (self : access Inst; data_P : bytes);
    function size (self : access Inst) return int;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtGui_QPicture_int);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QPicture.Inst'Class);
+   procedure swap (self : access Inst; other_P : int);
 end QtAda6.QtGui.QPicture;

@@ -11,16 +11,16 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtGui.QIconEngine;
+with QtAda6.QtGui.QPixmap;
+with QtAda6.QtGui.QImage;
 with QtAda6.QtCore.QDataStream;
 with QtAda6.QtCore.QSize;
 with QtAda6.QtGui.QIcon.Mode;
 with QtAda6.QtGui.QIcon.State;
 with QtAda6.QtGui.QWindow;
-with QtAda6.QtGui.QIcon;
 with QtAda6.QtGui.QPainter;
 with QtAda6.QtCore.QRect;
 with QtAda6.QtCore.Qt.AlignmentFlag;
-with QtAda6.QtGui.QPixmap;
 package body QtAda6.QtGui.QIcon is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -32,7 +32,7 @@ package body QtAda6.QtGui.QIcon is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Args  := Tuple_New (0);
@@ -40,7 +40,7 @@ package body QtAda6.QtGui.QIcon is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (engine_P : access QtAda6.QtGui.QIconEngine.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Args  := Tuple_New (1);
@@ -49,7 +49,7 @@ package body QtAda6.QtGui.QIcon is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (fileName_P : str) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Args  := Tuple_New (1);
@@ -57,8 +57,8 @@ package body QtAda6.QtGui.QIcon is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (other_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (other_P : access QtAda6.QtGui.QIcon.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Args  := Tuple_New (1);
@@ -66,8 +66,17 @@ package body QtAda6.QtGui.QIcon is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (other_P : access QtAda6.QtGui.QPixmap.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (pixmap_P : access QtAda6.QtGui.QImage.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Args  := Tuple_New (1);
@@ -76,7 +85,7 @@ package body QtAda6.QtGui.QIcon is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -88,7 +97,7 @@ package body QtAda6.QtGui.QIcon is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__lshift__");
@@ -103,7 +112,7 @@ package body QtAda6.QtGui.QIcon is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__rshift__");
@@ -119,8 +128,8 @@ package body QtAda6.QtGui.QIcon is
       mode_P  : access QtAda6.QtGui.QIcon.Mode.Inst'Class  := null;
       state_P : access QtAda6.QtGui.QIcon.State.Inst'Class := null) return access QtAda6.QtCore.QSize.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "actualSize");
       Args   := Tuple_New (1);
@@ -141,8 +150,8 @@ package body QtAda6.QtGui.QIcon is
       size_P  : access QtAda6.QtCore.QSize.Inst'Class; mode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class := null;
       state_P : access QtAda6.QtGui.QIcon.State.Inst'Class := null) return access QtAda6.QtCore.QSize.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "actualSize");
       Args   := Tuple_New (2);
@@ -164,7 +173,7 @@ package body QtAda6.QtGui.QIcon is
       mode_P  : access QtAda6.QtGui.QIcon.Mode.Inst'Class  := null;
       state_P : access QtAda6.QtGui.QIcon.State.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addFile");
       Args   := Tuple_New (1);
@@ -181,21 +190,39 @@ package body QtAda6.QtGui.QIcon is
       end if;
       Result := Object_Call (Method, Args, Dict, True);
    end addFile;
-   procedure addPixmap (self : access Inst; path_P : UNION_str_bytes_os_PathLike) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure addPixmap (self : access Inst; path_P : str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addPixmap");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, (if path_P /= null then path_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 0, Unicode_FromString (path_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end addPixmap;
+   procedure addPixmap (self : access Inst; path_P : bytes) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "addPixmap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (path_P.all)));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end addPixmap;
+   procedure addPixmap (self : access Inst; path_P : OS.PathLike) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "addPixmap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, OS.PathLike_conv_A2P_is_not_supported);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end addPixmap;
    procedure addPixmap
-     (self    : access Inst; pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str;
+     (self    : access Inst; pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class;
       mode_P  : access QtAda6.QtGui.QIcon.Mode.Inst'Class  := null;
       state_P : access QtAda6.QtGui.QIcon.State.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addPixmap");
       Args   := Tuple_New (1);
@@ -209,11 +236,48 @@ package body QtAda6.QtGui.QIcon is
       end if;
       Result := Object_Call (Method, Args, Dict, True);
    end addPixmap;
+   procedure addPixmap
+     (self    : access Inst; pixmap_P : access QtAda6.QtGui.QImage.Inst'Class;
+      mode_P  : access QtAda6.QtGui.QIcon.Mode.Inst'Class  := null;
+      state_P : access QtAda6.QtGui.QIcon.State.Inst'Class := null)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "addPixmap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pixmap_P /= null then pixmap_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if mode_P /= null then
+         Dict_SetItemString (Dict, "mode", mode_P.Python_Proxy);
+      end if;
+      if state_P /= null then
+         Dict_SetItemString (Dict, "state", state_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+   end addPixmap;
+   procedure addPixmap
+     (self    : access Inst; pixmap_P : str; mode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class := null;
+      state_P : access QtAda6.QtGui.QIcon.State.Inst'Class := null)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "addPixmap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (pixmap_P));
+      Dict := Dict_New;
+      if mode_P /= null then
+         Dict_SetItemString (Dict, "mode", mode_P.Python_Proxy);
+      end if;
+      if state_P /= null then
+         Dict_SetItemString (Dict, "state", state_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+   end addPixmap;
    function availableSizes
      (self    : access Inst; mode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class := null;
       state_P : access QtAda6.QtGui.QIcon.State.Inst'Class := null) return LIST_QtAda6_QtCore_QSize
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "availableSizes");
       Args   := Tuple_New (0);
@@ -225,10 +289,14 @@ package body QtAda6.QtGui.QIcon is
          Dict_SetItemString (Dict, "state", state_P.Python_Proxy);
       end if;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtCore_QSize (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end availableSizes;
    function cacheKey (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cacheKey");
       Args   := Tuple_New (0);
@@ -237,17 +305,21 @@ package body QtAda6.QtGui.QIcon is
       return Long_AsLong (Result);
    end cacheKey;
    function fallbackSearchPaths return LIST_str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Method := Object_GetAttrString (Class, "fallbackSearchPaths");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end fallbackSearchPaths;
    function fallbackThemeName return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Method := Object_GetAttrString (Class, "fallbackThemeName");
@@ -257,8 +329,8 @@ package body QtAda6.QtGui.QIcon is
       return As_String (Result);
    end fallbackThemeName;
    function fromTheme (name_P : str) return access QtAda6.QtGui.QIcon.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                            : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Method := Object_GetAttrString (Class, "fromTheme");
@@ -270,11 +342,26 @@ package body QtAda6.QtGui.QIcon is
       return Ret;
    end fromTheme;
    function fromTheme
-     (name_P : str; fallback_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap)
-      return access QtAda6.QtGui.QIcon.Inst'Class
+     (name_P : str; fallback_P : access QtAda6.QtGui.QIcon.Inst'Class) return access QtAda6.QtGui.QIcon.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                            : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
+      Method := Object_GetAttrString (Class, "fromTheme");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (name_P));
+      Tuple_SetItem (Args, 1, (if fallback_P /= null then fallback_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end fromTheme;
+   function fromTheme
+     (name_P : str; fallback_P : access QtAda6.QtGui.QPixmap.Inst'Class) return access QtAda6.QtGui.QIcon.Inst'Class
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Method := Object_GetAttrString (Class, "fromTheme");
@@ -287,7 +374,7 @@ package body QtAda6.QtGui.QIcon is
       return Ret;
    end fromTheme;
    function hasThemeIcon (name_P : str) return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Method := Object_GetAttrString (Class, "hasThemeIcon");
@@ -298,7 +385,7 @@ package body QtAda6.QtGui.QIcon is
       return To_Ada (Result);
    end hasThemeIcon;
    function isMask (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isMask");
       Args   := Tuple_New (0);
@@ -307,7 +394,7 @@ package body QtAda6.QtGui.QIcon is
       return To_Ada (Result);
    end isMask;
    function isNull (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isNull");
       Args   := Tuple_New (0);
@@ -316,7 +403,7 @@ package body QtAda6.QtGui.QIcon is
       return To_Ada (Result);
    end isNull;
    function name (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "name");
       Args   := Tuple_New (0);
@@ -331,7 +418,7 @@ package body QtAda6.QtGui.QIcon is
       mode_P      : access QtAda6.QtGui.QIcon.Mode.Inst'Class        := null;
       state_P     : access QtAda6.QtGui.QIcon.State.Inst'Class       := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paint");
       Args   := Tuple_New (2);
@@ -355,7 +442,7 @@ package body QtAda6.QtGui.QIcon is
       mode_P  : access QtAda6.QtGui.QIcon.Mode.Inst'Class  := null;
       state_P : access QtAda6.QtGui.QIcon.State.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paint");
       Args   := Tuple_New (5);
@@ -380,8 +467,8 @@ package body QtAda6.QtGui.QIcon is
      (self    : access Inst; extent_P : int; mode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class := null;
       state_P : access QtAda6.QtGui.QIcon.State.Inst'Class := null) return access QtAda6.QtGui.QPixmap.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "pixmap");
       Args   := Tuple_New (1);
@@ -402,8 +489,8 @@ package body QtAda6.QtGui.QIcon is
       mode_P  : access QtAda6.QtGui.QIcon.Mode.Inst'Class  := null;
       state_P : access QtAda6.QtGui.QIcon.State.Inst'Class := null) return access QtAda6.QtGui.QPixmap.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "pixmap");
       Args   := Tuple_New (2);
@@ -425,8 +512,8 @@ package body QtAda6.QtGui.QIcon is
       mode_P  : access QtAda6.QtGui.QIcon.Mode.Inst'Class  := null;
       state_P : access QtAda6.QtGui.QIcon.State.Inst'Class := null) return access QtAda6.QtGui.QPixmap.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "pixmap");
       Args   := Tuple_New (1);
@@ -446,8 +533,8 @@ package body QtAda6.QtGui.QIcon is
      (self    : access Inst; w_P : int; h_P : int; mode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class := null;
       state_P : access QtAda6.QtGui.QIcon.State.Inst'Class := null) return access QtAda6.QtGui.QPixmap.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "pixmap");
       Args   := Tuple_New (2);
@@ -469,8 +556,8 @@ package body QtAda6.QtGui.QIcon is
       size_P  : access QtAda6.QtCore.QSize.Inst'Class; mode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class := null;
       state_P : access QtAda6.QtGui.QIcon.State.Inst'Class := null) return access QtAda6.QtGui.QPixmap.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "pixmap");
       Args   := Tuple_New (2);
@@ -488,21 +575,21 @@ package body QtAda6.QtGui.QIcon is
       return Ret;
    end pixmap;
    procedure setFallbackSearchPaths (paths_P : SEQUENCE_str) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Method := Object_GetAttrString (Class, "setFallbackSearchPaths");
+      Args   := Tuple_New (1);
       List   := List_New (paths_P'Length);
       for ind in paths_P'Range loop
          List_SetItem (List, ssize_t (ind - paths_P'First), Unicode_FromString (paths_P (ind)));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setFallbackSearchPaths;
    procedure setFallbackThemeName (name_P : str) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Method := Object_GetAttrString (Class, "setFallbackThemeName");
@@ -512,7 +599,7 @@ package body QtAda6.QtGui.QIcon is
       Result := Object_Call (Method, Args, Dict, True);
    end setFallbackThemeName;
    procedure setIsMask (self : access Inst; isMask_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setIsMask");
       Args   := Tuple_New (1);
@@ -521,7 +608,7 @@ package body QtAda6.QtGui.QIcon is
       Result := Object_Call (Method, Args, Dict, True);
    end setIsMask;
    procedure setThemeName (path_P : str) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Method := Object_GetAttrString (Class, "setThemeName");
@@ -531,21 +618,30 @@ package body QtAda6.QtGui.QIcon is
       Result := Object_Call (Method, Args, Dict, True);
    end setThemeName;
    procedure setThemeSearchPaths (searchpath_P : SEQUENCE_str) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Method := Object_GetAttrString (Class, "setThemeSearchPaths");
+      Args   := Tuple_New (1);
       List   := List_New (searchpath_P'Length);
       for ind in searchpath_P'Range loop
          List_SetItem (List, ssize_t (ind - searchpath_P'First), Unicode_FromString (searchpath_P (ind)));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setThemeSearchPaths;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QIcon.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "swap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end swap;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QPixmap.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
@@ -554,7 +650,7 @@ package body QtAda6.QtGui.QIcon is
       Result := Object_Call (Method, Args, Dict, True);
    end swap;
    function themeName return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Method := Object_GetAttrString (Class, "themeName");
@@ -564,13 +660,17 @@ package body QtAda6.QtGui.QIcon is
       return As_String (Result);
    end themeName;
    function themeSearchPaths return LIST_str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QIcon");
       Method := Object_GetAttrString (Class, "themeSearchPaths");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end themeSearchPaths;
 end QtAda6.QtGui.QIcon;

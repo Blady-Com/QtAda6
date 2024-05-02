@@ -23,7 +23,7 @@ package body QtAda6.QtGui.QTextObject is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (doc_P : access QtAda6.QtGui.QTextDocument.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextObject");
       Args  := Tuple_New (1);
@@ -32,7 +32,7 @@ package body QtAda6.QtGui.QTextObject is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function document (self : access Inst) return access QtAda6.QtGui.QTextDocument.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextDocument.Class := new QtAda6.QtGui.QTextDocument.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "document");
@@ -43,7 +43,7 @@ package body QtAda6.QtGui.QTextObject is
       return Ret;
    end document;
    function format (self : access Inst) return access QtAda6.QtGui.QTextFormat.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextFormat.Class := new QtAda6.QtGui.QTextFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "format");
@@ -54,7 +54,7 @@ package body QtAda6.QtGui.QTextObject is
       return Ret;
    end format;
    function formatIndex (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "formatIndex");
       Args   := Tuple_New (0);
@@ -63,7 +63,7 @@ package body QtAda6.QtGui.QTextObject is
       return Long_AsLong (Result);
    end formatIndex;
    function objectIndex (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "objectIndex");
       Args   := Tuple_New (0);
@@ -72,7 +72,7 @@ package body QtAda6.QtGui.QTextObject is
       return Long_AsLong (Result);
    end objectIndex;
    procedure setFormat (self : access Inst; format_P : access QtAda6.QtGui.QTextFormat.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
       Args   := Tuple_New (1);

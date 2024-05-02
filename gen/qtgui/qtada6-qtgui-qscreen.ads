@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.Qt.ScreenOrientation;
 limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtCore.QSize;
@@ -17,6 +16,7 @@ limited with QtAda6.QtCore.QSizeF;
 limited with QtAda6.QtGui.QTransform;
 limited with QtAda6.QtCore.QPoint;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QScreen is
    type Inst;
    type Inst_Access is access all Inst;

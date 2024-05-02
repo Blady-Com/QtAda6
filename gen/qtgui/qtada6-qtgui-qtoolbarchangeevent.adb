@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QToolBarChangeEvent;
 package body QtAda6.QtGui.QToolBarChangeEvent is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -22,7 +21,7 @@ package body QtAda6.QtGui.QToolBarChangeEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QToolBarChangeEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QToolBarChangeEvent");
       Args  := Tuple_New (1);
@@ -31,7 +30,7 @@ package body QtAda6.QtGui.QToolBarChangeEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (t_P : bool) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QToolBarChangeEvent");
       Args  := Tuple_New (1);
@@ -40,7 +39,7 @@ package body QtAda6.QtGui.QToolBarChangeEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function clone (self : access Inst) return access QtAda6.QtGui.QToolBarChangeEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QToolBarChangeEvent.Class := new QtAda6.QtGui.QToolBarChangeEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
@@ -51,7 +50,7 @@ package body QtAda6.QtGui.QToolBarChangeEvent is
       return Ret;
    end clone;
    function toggle (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toggle");
       Args   := Tuple_New (0);

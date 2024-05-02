@@ -23,7 +23,7 @@ package body QtAda6.QtGui.QAccessibleValueChangeEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (iface_P : access QtAda6.QtGui.QAccessibleInterface.Inst'Class; val_P : Any) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleValueChangeEvent");
       Args  := Tuple_New (2);
@@ -33,7 +33,7 @@ package body QtAda6.QtGui.QAccessibleValueChangeEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (obj_P : access QtAda6.QtCore.QObject.Inst'Class; val_P : Any) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleValueChangeEvent");
       Args  := Tuple_New (2);
@@ -43,7 +43,7 @@ package body QtAda6.QtGui.QAccessibleValueChangeEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure setValue (self : access Inst; val_P : Any) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setValue");
       Args   := Tuple_New (1);
@@ -52,7 +52,7 @@ package body QtAda6.QtGui.QAccessibleValueChangeEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setValue;
    function value (self : access Inst) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "value");
       Args   := Tuple_New (0);

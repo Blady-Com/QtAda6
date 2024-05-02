@@ -13,6 +13,7 @@ limited with QtAda6.QtGui.QTransform;
 limited with QtAda6.QtGui.QVector2D;
 limited with QtAda6.QtGui.QVector3D;
 limited with QtAda6.QtGui.QVector4D;
+limited with QtAda6.QtGui.QMatrix4x4;
 limited with QtAda6.QtGui.QPixelFormat.TypeInterpretation;
 limited with QtAda6.QtGui.QPixelFormat;
 limited with QtAda6.QtGui.QPixelFormat.AlphaUsage;
@@ -26,7 +27,6 @@ package QtAda6.QtGui is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is tagged null record;
-   type UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform is new Any;
 -- Copyright (C) 2022 The Qt Company Ltd.
 -- SPDX-License-Identifier: LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only
 --
@@ -52,8 +52,15 @@ package QtAda6.QtGui is
      (arg_1_P : access QtAda6.QtGui.QVector4D.Inst'Class; arg_2_P : access QtAda6.QtGui.QVector4D.Inst'Class)
       return bool;
    function qFuzzyCompare
-     (arg_1_P : UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform;
-      arg_2_P : UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform) return bool;
+     (arg_1_P : access QtAda6.QtGui.QMatrix4x4.Inst'Class; arg_2_P : access QtAda6.QtGui.QMatrix4x4.Inst'Class)
+      return bool;
+   function qFuzzyCompare
+     (arg_1_P : access QtAda6.QtGui.QMatrix4x4.Inst'Class; arg_2_P : access QtAda6.QtGui.QTransform.Inst'Class)
+      return bool;
+   function qFuzzyCompare
+     (arg_1_P : access QtAda6.QtGui.QTransform.Inst'Class; arg_2_P : access QtAda6.QtGui.QMatrix4x4.Inst'Class)
+      return bool;
+-- function qFuzzyCompare(arg_1_P : access QtAda6.QtGui.QTransform.Inst'Class;arg_2_P : access QtAda6.QtGui.QTransform.Inst'Class) return bool;
    function qGray (r_P : int; g_P : int; b_P : int) return int;
    function qGray (rgb_P : int) return int;
    function qGreen (rgb_P : int) return int;

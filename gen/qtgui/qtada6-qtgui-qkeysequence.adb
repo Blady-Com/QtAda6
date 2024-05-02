@@ -10,10 +10,12 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
+with QtAda6.QtCore.QKeyCombination;
+with QtAda6.QtCore.Qt.KeyboardModifier;
+with QtAda6.QtCore.Qt.Key;
 with QtAda6.QtGui.QKeySequence.StandardKey;
 with QtAda6.QtGui.QKeySequence.SequenceFormat;
 with QtAda6.QtCore.QDataStream;
-with QtAda6.QtGui.QKeySequence;
 with QtAda6.QtGui.QKeySequence.SequenceMatch;
 package body QtAda6.QtGui.QKeySequence is
    use type QtAda6.int;
@@ -26,7 +28,7 @@ package body QtAda6.QtGui.QKeySequence is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
       Args  := Tuple_New (0);
@@ -34,7 +36,7 @@ package body QtAda6.QtGui.QKeySequence is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (k1_P : int; k2_P : int := 0; k3_P : int := 0; k4_P : int := 0) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
       Args  := Tuple_New (1);
@@ -52,13 +54,1807 @@ package body QtAda6.QtGui.QKeySequence is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (k1_P : UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key;
-      k2_P : UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key := null;
-      k3_P : UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key := null;
-      k4_P : UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key := null)
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class          := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class          := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null; k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null)
       return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null; k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class          := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class          := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null; k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class          := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class          := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null; k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null; k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class          := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class          := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null; k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class          := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class          := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null; k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class          := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class          := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null; k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class          := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class     := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
+      k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class          := null;
+      k4_P : access QtAda6.QtCore.QKeyCombination.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class              := null;
+      k4_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if k1_P /= null then k1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if k2_P /= null then
+         Dict_SetItemString (Dict, "k2", k2_P.Python_Proxy);
+      end if;
+      if k3_P /= null then
+         Dict_SetItemString (Dict, "k3", k3_P.Python_Proxy);
+      end if;
+      if k4_P /= null then
+         Dict_SetItemString (Dict, "k4", k4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (k1_P : access QtAda6.QtCore.Qt.Key.Inst'Class; k2_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null;
+      k3_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null; k4_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
       Args  := Tuple_New (1);
@@ -76,7 +1872,7 @@ package body QtAda6.QtGui.QKeySequence is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (key_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
       Args  := Tuple_New (1);
@@ -87,7 +1883,7 @@ package body QtAda6.QtGui.QKeySequence is
    function Create
      (key_P : str; format_P : access QtAda6.QtGui.QKeySequence.SequenceFormat.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
       Args  := Tuple_New (1);
@@ -98,11 +1894,8 @@ package body QtAda6.QtGui.QKeySequence is
       end if;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create
-     (ks_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
-      return Class
-   is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (ks_P : access QtAda6.QtGui.QKeySequence.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
       Args  := Tuple_New (1);
@@ -110,8 +1903,35 @@ package body QtAda6.QtGui.QKeySequence is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
+   function Create (ks_P : access QtAda6.QtCore.QKeyCombination.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if ks_P /= null then ks_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (ks_P : str) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (ks_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (ks_P : int) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (ks_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -123,7 +1943,7 @@ package body QtAda6.QtGui.QKeySequence is
      (self : access Inst; in_U_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__lshift__");
@@ -135,7 +1955,7 @@ package body QtAda6.QtGui.QKeySequence is
       return Ret;
    end U_lshift_U;
    function U_reduce_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__reduce__");
       Args   := Tuple_New (0);
@@ -144,7 +1964,7 @@ package body QtAda6.QtGui.QKeySequence is
       return null;
    end U_reduce_U;
    function U_repr_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
@@ -156,7 +1976,7 @@ package body QtAda6.QtGui.QKeySequence is
      (self : access Inst; out_K_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__rshift__");
@@ -168,7 +1988,7 @@ package body QtAda6.QtGui.QKeySequence is
       return Ret;
    end U_rshift_U;
    function count (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "count");
       Args   := Tuple_New (0);
@@ -180,7 +2000,7 @@ package body QtAda6.QtGui.QKeySequence is
      (str_P : str; format_P : access QtAda6.QtGui.QKeySequence.SequenceFormat.Inst'Class := null)
       return access QtAda6.QtGui.QKeySequence.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QKeySequence.Class := new QtAda6.QtGui.QKeySequence.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
@@ -196,7 +2016,7 @@ package body QtAda6.QtGui.QKeySequence is
       return Ret;
    end fromString;
    function isEmpty (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEmpty");
       Args   := Tuple_New (0);
@@ -207,7 +2027,7 @@ package body QtAda6.QtGui.QKeySequence is
    function keyBindings
      (key_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class) return LIST_QtAda6_QtGui_QKeySequence
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
       Method := Object_GetAttrString (Class, "keyBindings");
@@ -215,13 +2035,17 @@ package body QtAda6.QtGui.QKeySequence is
       Tuple_SetItem (Args, 0, (if key_P /= null then key_P.Python_Proxy else No_Value));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtGui_QKeySequence (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end keyBindings;
    function listFromString
      (str_P : str; format_P : access QtAda6.QtGui.QKeySequence.SequenceFormat.Inst'Class := null)
       return LIST_QtAda6_QtGui_QKeySequence
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
       Method := Object_GetAttrString (Class, "listFromString");
@@ -232,22 +2056,26 @@ package body QtAda6.QtGui.QKeySequence is
          Dict_SetItemString (Dict, "format", format_P.Python_Proxy);
       end if;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtGui_QKeySequence (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end listFromString;
    function listToString
      (list_P   : SEQUENCE_QtAda6_QtGui_QKeySequence;
       format_P : access QtAda6.QtGui.QKeySequence.SequenceFormat.Inst'Class := null) return str
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
       Method := Object_GetAttrString (Class, "listToString");
+      Args   := Tuple_New (1);
       List   := List_New (list_P'Length);
       for ind in list_P'Range loop
          List_SetItem
            (List, ssize_t (ind - list_P'First), (if list_P (ind) /= null then list_P (ind).Python_Proxy else No_Value));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict := Dict_New;
       if format_P /= null then
@@ -257,11 +2085,10 @@ package body QtAda6.QtGui.QKeySequence is
       return As_String (Result);
    end listToString;
    function matches
-     (self  : access Inst;
-      seq_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
+     (self : access Inst; seq_P : access QtAda6.QtGui.QKeySequence.Inst'Class)
       return access QtAda6.QtGui.QKeySequence.SequenceMatch.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QKeySequence.SequenceMatch.Class := new QtAda6.QtGui.QKeySequence.SequenceMatch.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "matches");
@@ -272,8 +2099,64 @@ package body QtAda6.QtGui.QKeySequence is
       Ret.Python_Proxy := Result;
       return Ret;
    end matches;
+   function matches
+     (self : access Inst; seq_P : access QtAda6.QtCore.QKeyCombination.Inst'Class)
+      return access QtAda6.QtGui.QKeySequence.SequenceMatch.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QKeySequence.SequenceMatch.Class := new QtAda6.QtGui.QKeySequence.SequenceMatch.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "matches");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if seq_P /= null then seq_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end matches;
+   function matches
+     (self : access Inst; seq_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class)
+      return access QtAda6.QtGui.QKeySequence.SequenceMatch.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QKeySequence.SequenceMatch.Class := new QtAda6.QtGui.QKeySequence.SequenceMatch.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "matches");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if seq_P /= null then seq_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end matches;
+   function matches (self : access Inst; seq_P : str) return access QtAda6.QtGui.QKeySequence.SequenceMatch.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QKeySequence.SequenceMatch.Class := new QtAda6.QtGui.QKeySequence.SequenceMatch.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "matches");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (seq_P));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end matches;
+   function matches (self : access Inst; seq_P : int) return access QtAda6.QtGui.QKeySequence.SequenceMatch.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QKeySequence.SequenceMatch.Class := new QtAda6.QtGui.QKeySequence.SequenceMatch.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "matches");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (seq_P));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end matches;
    function mnemonic (text_P : str) return access QtAda6.QtGui.QKeySequence.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QKeySequence.Class := new QtAda6.QtGui.QKeySequence.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QKeySequence");
@@ -285,11 +2168,8 @@ package body QtAda6.QtGui.QKeySequence is
       Ret.Python_Proxy := Result;
       return Ret;
    end mnemonic;
-   procedure swap
-     (self    : access Inst;
-      other_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QKeySequence.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
@@ -297,10 +2177,46 @@ package body QtAda6.QtGui.QKeySequence is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end swap;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QKeyCombination.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "swap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end swap;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "swap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end swap;
+   procedure swap (self : access Inst; other_P : str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "swap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (other_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end swap;
+   procedure swap (self : access Inst; other_P : int) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "swap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (other_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end swap;
    function toString
      (self : access Inst; format_P : access QtAda6.QtGui.QKeySequence.SequenceFormat.Inst'Class := null) return str
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toString");
       Args   := Tuple_New (0);

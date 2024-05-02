@@ -11,8 +11,8 @@
 limited with QtAda6.QtGui.QPageSize.PageSizeId;
 limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtGui.QPageSize.SizeMatchPolicy;
-limited with QtAda6.QtGui.QPageSize.Unit;
 limited with QtAda6.QtCore.QSizeF;
+limited with QtAda6.QtGui.QPageSize.Unit;
 limited with QtAda6.QtCore.QRectF;
 limited with QtAda6.QtCore.QRect;
 package QtAda6.QtGui.QPageSize is
@@ -21,18 +21,21 @@ package QtAda6.QtGui.QPageSize is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtGui_QPageSize_QtAda6_QtGui_QPageSize_PageSizeId_QtAda6_QtCore_QSize is new Any;
-   type UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create
-     (other_P : UNION_QtAda6_QtGui_QPageSize_QtAda6_QtGui_QPageSize_PageSizeId_QtAda6_QtCore_QSize) return Class;
-   function Create (pageSizeId_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return Class;
+   function Create (other_P : access QtAda6.QtGui.QPageSize.Inst'Class) return Class;
+   function Create (other_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return Class;
+   function Create (other_P : access QtAda6.QtCore.QSize.Inst'Class) return Class;
+-- function Create(pageSizeId_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return Class;
    function Create
      (pointSize_P   : access QtAda6.QtCore.QSize.Inst'Class; name_P : str := "";
       matchPolicy_P : access QtAda6.QtGui.QPageSize.SizeMatchPolicy.Inst'Class := null) return Class;
    function Create
-     (size_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize; units_P : access QtAda6.QtGui.QPageSize.Unit.Inst'Class;
+     (size_P : access QtAda6.QtCore.QSizeF.Inst'Class; units_P : access QtAda6.QtGui.QPageSize.Unit.Inst'Class;
+      name_P : str := ""; matchPolicy_P : access QtAda6.QtGui.QPageSize.SizeMatchPolicy.Inst'Class := null)
+      return Class;
+   function Create
+     (size_P : access QtAda6.QtCore.QSize.Inst'Class; units_P : access QtAda6.QtGui.QPageSize.Unit.Inst'Class;
       name_P : str := ""; matchPolicy_P : access QtAda6.QtGui.QPageSize.SizeMatchPolicy.Inst'Class := null)
       return Class;
    procedure U_copy_U;
@@ -49,13 +52,18 @@ package QtAda6.QtGui.QPageSize is
       return access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class;
    function id (self : access Inst) return access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class;
    function id
-     (size_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize; units_P : access QtAda6.QtGui.QPageSize.Unit.Inst'Class;
+     (size_P        : access QtAda6.QtCore.QSizeF.Inst'Class; units_P : access QtAda6.QtGui.QPageSize.Unit.Inst'Class;
+      matchPolicy_P : access QtAda6.QtGui.QPageSize.SizeMatchPolicy.Inst'Class := null)
+      return access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class;
+   function id
+     (size_P        : access QtAda6.QtCore.QSize.Inst'Class; units_P : access QtAda6.QtGui.QPageSize.Unit.Inst'Class;
       matchPolicy_P : access QtAda6.QtGui.QPageSize.SizeMatchPolicy.Inst'Class := null)
       return access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class;
    function id (windowsId_P : int) return access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class;
+   function isEquivalentTo (self : access Inst; other_P : access QtAda6.QtGui.QPageSize.Inst'Class) return bool;
    function isEquivalentTo
-     (self : access Inst; other_P : UNION_QtAda6_QtGui_QPageSize_QtAda6_QtGui_QPageSize_PageSizeId_QtAda6_QtCore_QSize)
-      return bool;
+     (self : access Inst; other_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return bool;
+   function isEquivalentTo (self : access Inst; other_P : access QtAda6.QtCore.QSize.Inst'Class) return bool;
    function isValid (self : access Inst) return bool;
    function key (pageSizeId_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return str;
    function key (self : access Inst) return str;
@@ -79,8 +87,9 @@ package QtAda6.QtGui.QPageSize is
    function sizePoints
      (pageSizeId_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return access QtAda6.QtCore.QSize.Inst'Class;
    function sizePoints (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class;
-   procedure swap
-     (self : access Inst; other_P : UNION_QtAda6_QtGui_QPageSize_QtAda6_QtGui_QPageSize_PageSizeId_QtAda6_QtCore_QSize);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QPageSize.Inst'Class);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QSize.Inst'Class);
    function windowsId (pageSizeId_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return int;
    function windowsId (self : access Inst) return int;
 end QtAda6.QtGui.QPageSize;

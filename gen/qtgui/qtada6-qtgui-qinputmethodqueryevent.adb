@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QInputMethodQueryEvent;
 with QtAda6.QtCore.Qt.InputMethodQuery;
 package body QtAda6.QtGui.QInputMethodQueryEvent is
    use type QtAda6.int;
@@ -23,7 +22,7 @@ package body QtAda6.QtGui.QInputMethodQueryEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QInputMethodQueryEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputMethodQueryEvent");
       Args  := Tuple_New (1);
@@ -32,7 +31,7 @@ package body QtAda6.QtGui.QInputMethodQueryEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (queries_P : access QtAda6.QtCore.Qt.InputMethodQuery.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputMethodQueryEvent");
       Args  := Tuple_New (1);
@@ -41,7 +40,7 @@ package body QtAda6.QtGui.QInputMethodQueryEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function clone (self : access Inst) return access QtAda6.QtGui.QInputMethodQueryEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QInputMethodQueryEvent.Class := new QtAda6.QtGui.QInputMethodQueryEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
@@ -52,7 +51,7 @@ package body QtAda6.QtGui.QInputMethodQueryEvent is
       return Ret;
    end clone;
    function queries (self : access Inst) return access QtAda6.QtCore.Qt.InputMethodQuery.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.InputMethodQuery.Class := new QtAda6.QtCore.Qt.InputMethodQuery.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "queries");
@@ -64,7 +63,7 @@ package body QtAda6.QtGui.QInputMethodQueryEvent is
    end queries;
    procedure setValue (self : access Inst; query_P : access QtAda6.QtCore.Qt.InputMethodQuery.Inst'Class; value_P : Any)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setValue");
       Args   := Tuple_New (2);
@@ -74,7 +73,7 @@ package body QtAda6.QtGui.QInputMethodQueryEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setValue;
    function value (self : access Inst; query_P : access QtAda6.QtCore.Qt.InputMethodQuery.Inst'Class) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "value");
       Args   := Tuple_New (1);

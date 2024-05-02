@@ -10,10 +10,12 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
+with QtAda6.QtGui.QPen;
+with QtAda6.QtCore.Qt.PenStyle;
+with QtAda6.QtGui.QColor;
 with QtAda6.QtCore.Qt.PenCapStyle;
 with QtAda6.QtGui.QPainterPath;
 with QtAda6.QtCore.Qt.PenJoinStyle;
-with QtAda6.QtCore.Qt.PenStyle;
 package body QtAda6.QtGui.QPainterPathStroker is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -25,15 +27,33 @@ package body QtAda6.QtGui.QPainterPathStroker is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPainterPathStroker");
       Args  := Tuple_New (0);
       Dict  := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (pen_P : UNION_QtAda6_QtGui_QPen_QtAda6_QtCore_Qt_PenStyle_QtAda6_QtGui_QColor) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (pen_P : access QtAda6.QtGui.QPen.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPainterPathStroker");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pen_P /= null then pen_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (pen_P : access QtAda6.QtCore.Qt.PenStyle.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPainterPathStroker");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pen_P /= null then pen_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (pen_P : access QtAda6.QtGui.QColor.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPainterPathStroker");
       Args  := Tuple_New (1);
@@ -42,7 +62,7 @@ package body QtAda6.QtGui.QPainterPathStroker is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function capStyle (self : access Inst) return access QtAda6.QtCore.Qt.PenCapStyle.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.PenCapStyle.Class := new QtAda6.QtCore.Qt.PenCapStyle.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "capStyle");
@@ -56,7 +76,7 @@ package body QtAda6.QtGui.QPainterPathStroker is
      (self : access Inst; path_P : access QtAda6.QtGui.QPainterPath.Inst'Class)
       return access QtAda6.QtGui.QPainterPath.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPainterPath.Class := new QtAda6.QtGui.QPainterPath.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "createStroke");
@@ -68,7 +88,7 @@ package body QtAda6.QtGui.QPainterPathStroker is
       return Ret;
    end createStroke;
    function curveThreshold (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "curveThreshold");
       Args   := Tuple_New (0);
@@ -77,7 +97,7 @@ package body QtAda6.QtGui.QPainterPathStroker is
       return Float_AsDouble (Result);
    end curveThreshold;
    function dashOffset (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dashOffset");
       Args   := Tuple_New (0);
@@ -86,16 +106,20 @@ package body QtAda6.QtGui.QPainterPathStroker is
       return Float_AsDouble (Result);
    end dashOffset;
    function dashPattern (self : access Inst) return LIST_float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dashPattern");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_float (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := Float_AsDouble (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end dashPattern;
    function joinStyle (self : access Inst) return access QtAda6.QtCore.Qt.PenJoinStyle.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.PenJoinStyle.Class := new QtAda6.QtCore.Qt.PenJoinStyle.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "joinStyle");
@@ -106,7 +130,7 @@ package body QtAda6.QtGui.QPainterPathStroker is
       return Ret;
    end joinStyle;
    function miterLimit (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "miterLimit");
       Args   := Tuple_New (0);
@@ -115,7 +139,7 @@ package body QtAda6.QtGui.QPainterPathStroker is
       return Float_AsDouble (Result);
    end miterLimit;
    procedure setCapStyle (self : access Inst; style_P : access QtAda6.QtCore.Qt.PenCapStyle.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCapStyle");
       Args   := Tuple_New (1);
@@ -124,7 +148,7 @@ package body QtAda6.QtGui.QPainterPathStroker is
       Result := Object_Call (Method, Args, Dict, True);
    end setCapStyle;
    procedure setCurveThreshold (self : access Inst; threshold_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurveThreshold");
       Args   := Tuple_New (1);
@@ -133,7 +157,7 @@ package body QtAda6.QtGui.QPainterPathStroker is
       Result := Object_Call (Method, Args, Dict, True);
    end setCurveThreshold;
    procedure setDashOffset (self : access Inst; offset_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDashOffset");
       Args   := Tuple_New (1);
@@ -142,7 +166,7 @@ package body QtAda6.QtGui.QPainterPathStroker is
       Result := Object_Call (Method, Args, Dict, True);
    end setDashOffset;
    procedure setDashPattern (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.PenStyle.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDashPattern");
       Args   := Tuple_New (1);
@@ -151,20 +175,20 @@ package body QtAda6.QtGui.QPainterPathStroker is
       Result := Object_Call (Method, Args, Dict, True);
    end setDashPattern;
    procedure setDashPattern (self : access Inst; dashPattern_P : SEQUENCE_float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDashPattern");
+      Args   := Tuple_New (1);
       List   := List_New (dashPattern_P'Length);
       for ind in dashPattern_P'Range loop
          List_SetItem (List, ssize_t (ind - dashPattern_P'First), Float_FromDouble (dashPattern_P (ind)));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setDashPattern;
    procedure setJoinStyle (self : access Inst; style_P : access QtAda6.QtCore.Qt.PenJoinStyle.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setJoinStyle");
       Args   := Tuple_New (1);
@@ -173,7 +197,7 @@ package body QtAda6.QtGui.QPainterPathStroker is
       Result := Object_Call (Method, Args, Dict, True);
    end setJoinStyle;
    procedure setMiterLimit (self : access Inst; length_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMiterLimit");
       Args   := Tuple_New (1);
@@ -182,7 +206,7 @@ package body QtAda6.QtGui.QPainterPathStroker is
       Result := Object_Call (Method, Args, Dict, True);
    end setMiterLimit;
    procedure setWidth (self : access Inst; width_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setWidth");
       Args   := Tuple_New (1);
@@ -191,7 +215,7 @@ package body QtAda6.QtGui.QPainterPathStroker is
       Result := Object_Call (Method, Args, Dict, True);
    end setWidth;
    function width (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "width");
       Args   := Tuple_New (0);

@@ -26,7 +26,7 @@ package body QtAda6.QtGui.QAccessibleTextUpdateEvent is
      (iface_P : access QtAda6.QtGui.QAccessibleInterface.Inst'Class; position_P : int; oldText_P : str; text_P : str)
       return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTextUpdateEvent");
       Args  := Tuple_New (4);
@@ -40,7 +40,7 @@ package body QtAda6.QtGui.QAccessibleTextUpdateEvent is
    function Create
      (obj_P : access QtAda6.QtCore.QObject.Inst'Class; position_P : int; oldText_P : str; text_P : str) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTextUpdateEvent");
       Args  := Tuple_New (4);
@@ -52,7 +52,7 @@ package body QtAda6.QtGui.QAccessibleTextUpdateEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function changePosition (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changePosition");
       Args   := Tuple_New (0);
@@ -61,7 +61,7 @@ package body QtAda6.QtGui.QAccessibleTextUpdateEvent is
       return Long_AsLong (Result);
    end changePosition;
    function textInserted (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "textInserted");
       Args   := Tuple_New (0);
@@ -70,7 +70,7 @@ package body QtAda6.QtGui.QAccessibleTextUpdateEvent is
       return As_String (Result);
    end textInserted;
    function textRemoved (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "textRemoved");
       Args   := Tuple_New (0);

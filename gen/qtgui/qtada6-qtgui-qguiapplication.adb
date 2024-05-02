@@ -10,9 +10,11 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtGui.QWindow;
 with QtAda6.QtCore.Qt.ApplicationState;
+with QtAda6.QtGui.QCursor;
+with QtAda6.QtCore.Qt.CursorShape;
+with QtAda6.QtGui.QPixmap;
 with QtAda6.QtGui.QClipboard;
 with QtAda6.QtCore.QEvent;
 with QtAda6.QtCore.QObject;
@@ -22,12 +24,14 @@ with QtAda6.QtGui.QInputMethod;
 with QtAda6.QtCore.Qt.KeyboardModifier;
 with QtAda6.QtCore.Qt.LayoutDirection;
 with QtAda6.QtCore.Qt.MouseButton;
-with QtAda6.QtGui.QCursor;
 with QtAda6.QtGui.QPalette;
+with QtAda6.QtCore.QByteArray;
 with QtAda6.QtGui.QScreen;
 with QtAda6.QtCore.QPoint;
-with QtAda6.QtGui.QStyleHints;
+with QtAda6.QtCore.Qt.GlobalColor;
+with QtAda6.QtGui.QColor;
 with QtAda6.QtGui.QIcon;
+with QtAda6.QtGui.QStyleHints;
 package body QtAda6.QtGui.QGuiApplication is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -109,7 +113,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "screenRemoved"));
    end screenRemoved;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Args  := Tuple_New (0);
@@ -117,30 +121,34 @@ package body QtAda6.QtGui.QGuiApplication is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (arg_1_P : SEQUENCE_str) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
+      Args  := Tuple_New (1);
       List  := List_New (arg_1_P'Length);
       for ind in arg_1_P'Range loop
          List_SetItem (List, ssize_t (ind - arg_1_P'First), Unicode_FromString (arg_1_P (ind)));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function allWindows return LIST_QtAda6_QtGui_QWindow is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "allWindows");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtGui_QWindow (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end allWindows;
    function applicationDisplayName return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "applicationDisplayName");
@@ -150,7 +158,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return As_String (Result);
    end applicationDisplayName;
    function applicationState return access QtAda6.QtCore.Qt.ApplicationState.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.ApplicationState.Class := new QtAda6.QtCore.Qt.ApplicationState.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -161,10 +169,28 @@ package body QtAda6.QtGui.QGuiApplication is
       Ret.Python_Proxy := Result;
       return Ret;
    end applicationState;
-   procedure changeOverrideCursor
-     (arg_1_P : UNION_QtAda6_QtGui_QCursor_QtAda6_QtCore_Qt_CursorShape_QtAda6_QtGui_QPixmap)
-   is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure changeOverrideCursor (arg_1_P : access QtAda6.QtGui.QCursor.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
+      Method := Object_GetAttrString (Class, "changeOverrideCursor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end changeOverrideCursor;
+   procedure changeOverrideCursor (arg_1_P : access QtAda6.QtCore.Qt.CursorShape.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
+      Method := Object_GetAttrString (Class, "changeOverrideCursor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end changeOverrideCursor;
+   procedure changeOverrideCursor (arg_1_P : access QtAda6.QtGui.QPixmap.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "changeOverrideCursor");
@@ -174,7 +200,7 @@ package body QtAda6.QtGui.QGuiApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end changeOverrideCursor;
    function clipboard return access QtAda6.QtGui.QClipboard.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QClipboard.Class := new QtAda6.QtGui.QClipboard.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -186,7 +212,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return Ret;
    end clipboard;
    function desktopFileName return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "desktopFileName");
@@ -196,7 +222,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return As_String (Result);
    end desktopFileName;
    function desktopSettingsAware return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "desktopSettingsAware");
@@ -206,7 +232,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return To_Ada (Result);
    end desktopSettingsAware;
    function devicePixelRatio (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "devicePixelRatio");
       Args   := Tuple_New (0);
@@ -215,7 +241,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return Float_AsDouble (Result);
    end devicePixelRatio;
    function event (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -225,7 +251,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return To_Ada (Result);
    end event;
    function exec return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "exec");
@@ -235,7 +261,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return Long_AsLong (Result);
    end exec;
    function exec_U (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec_");
       Args   := Tuple_New (0);
@@ -244,7 +270,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return Long_AsLong (Result);
    end exec_U;
    function focusObject return access QtAda6.QtCore.QObject.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -256,7 +282,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return Ret;
    end focusObject;
    function focusWindow return access QtAda6.QtGui.QWindow.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QWindow.Class := new QtAda6.QtGui.QWindow.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -268,8 +294,8 @@ package body QtAda6.QtGui.QGuiApplication is
       return Ret;
    end focusWindow;
    function font return access QtAda6.QtGui.QFont.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                            : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method           := Object_GetAttrString (Class, "font");
@@ -281,7 +307,7 @@ package body QtAda6.QtGui.QGuiApplication is
    end font;
    function highDpiScaleFactorRoundingPolicy return access QtAda6.QtCore.Qt.HighDpiScaleFactorRoundingPolicy.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.HighDpiScaleFactorRoundingPolicy.Class :=
         new QtAda6.QtCore.Qt.HighDpiScaleFactorRoundingPolicy.Inst;
    begin
@@ -294,7 +320,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return Ret;
    end highDpiScaleFactorRoundingPolicy;
    function inputMethod return access QtAda6.QtGui.QInputMethod.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QInputMethod.Class := new QtAda6.QtGui.QInputMethod.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -306,7 +332,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return Ret;
    end inputMethod;
    function isLeftToRight return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "isLeftToRight");
@@ -316,7 +342,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return To_Ada (Result);
    end isLeftToRight;
    function isRightToLeft return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "isRightToLeft");
@@ -326,7 +352,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return To_Ada (Result);
    end isRightToLeft;
    function isSavingSession (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isSavingSession");
       Args   := Tuple_New (0);
@@ -335,7 +361,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return To_Ada (Result);
    end isSavingSession;
    function isSessionRestored (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isSessionRestored");
       Args   := Tuple_New (0);
@@ -344,7 +370,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return To_Ada (Result);
    end isSessionRestored;
    function keyboardModifiers return access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.KeyboardModifier.Class := new QtAda6.QtCore.Qt.KeyboardModifier.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -356,7 +382,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return Ret;
    end keyboardModifiers;
    function layoutDirection return access QtAda6.QtCore.Qt.LayoutDirection.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.LayoutDirection.Class := new QtAda6.QtCore.Qt.LayoutDirection.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -368,7 +394,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return Ret;
    end layoutDirection;
    function modalWindow return access QtAda6.QtGui.QWindow.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QWindow.Class := new QtAda6.QtGui.QWindow.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -380,7 +406,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return Ret;
    end modalWindow;
    function mouseButtons return access QtAda6.QtCore.Qt.MouseButton.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.MouseButton.Class := new QtAda6.QtCore.Qt.MouseButton.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -395,7 +421,7 @@ package body QtAda6.QtGui.QGuiApplication is
      (self    : access Inst; arg_1_P : access QtAda6.QtCore.QObject.Inst'Class;
       arg_2_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "notify");
       Args   := Tuple_New (2);
@@ -406,7 +432,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return To_Ada (Result);
    end notify;
    function overrideCursor return access QtAda6.QtGui.QCursor.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QCursor.Class := new QtAda6.QtGui.QCursor.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -418,7 +444,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return Ret;
    end overrideCursor;
    function palette return access QtAda6.QtGui.QPalette.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPalette.Class := new QtAda6.QtGui.QPalette.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -429,8 +455,8 @@ package body QtAda6.QtGui.QGuiApplication is
       Ret.Python_Proxy := Result;
       return Ret;
    end palette;
-   function platformFunction (function_K_P : UNION_QtAda6_QtCore_QByteArray_bytes) return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   function platformFunction (function_K_P : access QtAda6.QtCore.QByteArray.Inst'Class) return int is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "platformFunction");
@@ -440,8 +466,19 @@ package body QtAda6.QtGui.QGuiApplication is
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end platformFunction;
+   function platformFunction (function_K_P : bytes) return int is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
+      Method := Object_GetAttrString (Class, "platformFunction");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (function_K_P.all)));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Long_AsLong (Result);
+   end platformFunction;
    function platformName return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "platformName");
@@ -451,7 +488,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return As_String (Result);
    end platformName;
    function primaryScreen return access QtAda6.QtGui.QScreen.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QScreen.Class := new QtAda6.QtGui.QScreen.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -463,7 +500,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return Ret;
    end primaryScreen;
    function queryKeyboardModifiers return access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.KeyboardModifier.Class := new QtAda6.QtCore.Qt.KeyboardModifier.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -475,7 +512,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return Ret;
    end queryKeyboardModifiers;
    function quitOnLastWindowClosed return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "quitOnLastWindowClosed");
@@ -485,18 +522,18 @@ package body QtAda6.QtGui.QGuiApplication is
       return To_Ada (Result);
    end quitOnLastWindowClosed;
    function resolveInterface (self : access Inst; name_P : bytes; revision_P : int) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resolveInterface");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (name_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (name_P.all)));
       Tuple_SetItem (Args, 1, Long_FromLong (revision_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end resolveInterface;
    procedure restoreOverrideCursor is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "restoreOverrideCursor");
@@ -505,7 +542,7 @@ package body QtAda6.QtGui.QGuiApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end restoreOverrideCursor;
    function screenAt (point_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtGui.QScreen.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QScreen.Class := new QtAda6.QtGui.QScreen.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -518,17 +555,21 @@ package body QtAda6.QtGui.QGuiApplication is
       return Ret;
    end screenAt;
    function screens return LIST_QtAda6_QtGui_QScreen is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "screens");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtGui_QScreen (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end screens;
    function sessionId (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sessionId");
       Args   := Tuple_New (0);
@@ -537,7 +578,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return As_String (Result);
    end sessionId;
    function sessionKey (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sessionKey");
       Args   := Tuple_New (0);
@@ -546,7 +587,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return As_String (Result);
    end sessionKey;
    procedure setApplicationDisplayName (name_P : str) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "setApplicationDisplayName");
@@ -556,7 +597,7 @@ package body QtAda6.QtGui.QGuiApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setApplicationDisplayName;
    procedure setBadgeNumber (self : access Inst; number_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBadgeNumber");
       Args   := Tuple_New (1);
@@ -565,7 +606,7 @@ package body QtAda6.QtGui.QGuiApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setBadgeNumber;
    procedure setDesktopFileName (name_P : str) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "setDesktopFileName");
@@ -575,7 +616,7 @@ package body QtAda6.QtGui.QGuiApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setDesktopFileName;
    procedure setDesktopSettingsAware (on_P : bool) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "setDesktopSettingsAware");
@@ -584,8 +625,8 @@ package body QtAda6.QtGui.QGuiApplication is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setDesktopSettingsAware;
-   procedure setFont (arg_1_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setFont (arg_1_P : access QtAda6.QtGui.QFont.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "setFont");
@@ -594,10 +635,34 @@ package body QtAda6.QtGui.QGuiApplication is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setFont;
+   procedure setFont (arg_1_P : str) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
+      Method := Object_GetAttrString (Class, "setFont");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (arg_1_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFont;
+   procedure setFont (arg_1_P : SEQUENCE_str) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
+      Method := Object_GetAttrString (Class, "setFont");
+      Args   := Tuple_New (1);
+      List   := List_New (arg_1_P'Length);
+      for ind in arg_1_P'Range loop
+         List_SetItem (List, ssize_t (ind - arg_1_P'First), Unicode_FromString (arg_1_P (ind)));
+      end loop;
+      Tuple_SetItem (Args, 0, List);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFont;
    procedure setHighDpiScaleFactorRoundingPolicy
      (policy_P : access QtAda6.QtCore.Qt.HighDpiScaleFactorRoundingPolicy.Inst'Class)
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "setHighDpiScaleFactorRoundingPolicy");
@@ -607,7 +672,7 @@ package body QtAda6.QtGui.QGuiApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setHighDpiScaleFactorRoundingPolicy;
    procedure setLayoutDirection (direction_P : access QtAda6.QtCore.Qt.LayoutDirection.Inst'Class) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "setLayoutDirection");
@@ -616,10 +681,8 @@ package body QtAda6.QtGui.QGuiApplication is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setLayoutDirection;
-   function setOverrideCursor
-     (arg_1_P : UNION_QtAda6_QtGui_QCursor_QtAda6_QtCore_Qt_CursorShape_QtAda6_QtGui_QPixmap) return access Object'Class
-   is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   function setOverrideCursor (arg_1_P : access QtAda6.QtGui.QCursor.Inst'Class) return access Object'Class is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "setOverrideCursor");
@@ -629,8 +692,50 @@ package body QtAda6.QtGui.QGuiApplication is
       Result := Object_Call (Method, Args, Dict, True);
       return null;
    end setOverrideCursor;
-   procedure setPalette (pal_P : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   function setOverrideCursor (arg_1_P : access QtAda6.QtCore.Qt.CursorShape.Inst'Class) return access Object'Class is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
+      Method := Object_GetAttrString (Class, "setOverrideCursor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return null;
+   end setOverrideCursor;
+   function setOverrideCursor (arg_1_P : access QtAda6.QtGui.QPixmap.Inst'Class) return access Object'Class is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
+      Method := Object_GetAttrString (Class, "setOverrideCursor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return null;
+   end setOverrideCursor;
+   procedure setPalette (pal_P : access QtAda6.QtGui.QPalette.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
+      Method := Object_GetAttrString (Class, "setPalette");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pal_P /= null then pal_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPalette;
+   procedure setPalette (pal_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
+      Method := Object_GetAttrString (Class, "setPalette");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pal_P /= null then pal_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPalette;
+   procedure setPalette (pal_P : access QtAda6.QtGui.QColor.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "setPalette");
@@ -640,7 +745,7 @@ package body QtAda6.QtGui.QGuiApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setPalette;
    procedure setQuitOnLastWindowClosed (quit_P : bool) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "setQuitOnLastWindowClosed");
@@ -649,8 +754,18 @@ package body QtAda6.QtGui.QGuiApplication is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setQuitOnLastWindowClosed;
-   procedure setWindowIcon (icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setWindowIcon (icon_P : access QtAda6.QtGui.QIcon.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
+      Method := Object_GetAttrString (Class, "setWindowIcon");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if icon_P /= null then icon_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setWindowIcon;
+   procedure setWindowIcon (icon_P : access QtAda6.QtGui.QPixmap.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "setWindowIcon");
@@ -660,7 +775,7 @@ package body QtAda6.QtGui.QGuiApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setWindowIcon;
    function styleHints return access QtAda6.QtGui.QStyleHints.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QStyleHints.Class := new QtAda6.QtGui.QStyleHints.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -672,7 +787,7 @@ package body QtAda6.QtGui.QGuiApplication is
       return Ret;
    end styleHints;
    procedure sync is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "sync");
@@ -681,7 +796,7 @@ package body QtAda6.QtGui.QGuiApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end sync;
    function topLevelAt (pos_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtGui.QWindow.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QWindow.Class := new QtAda6.QtGui.QWindow.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
@@ -694,18 +809,22 @@ package body QtAda6.QtGui.QGuiApplication is
       return Ret;
    end topLevelAt;
    function topLevelWindows return LIST_QtAda6_QtGui_QWindow is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method := Object_GetAttrString (Class, "topLevelWindows");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtGui_QWindow (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end topLevelWindows;
    function windowIcon return access QtAda6.QtGui.QIcon.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                            : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QGuiApplication");
       Method           := Object_GetAttrString (Class, "windowIcon");

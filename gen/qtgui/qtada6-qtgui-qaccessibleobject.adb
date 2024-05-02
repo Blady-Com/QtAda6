@@ -25,7 +25,7 @@ package body QtAda6.QtGui.QAccessibleObject is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (object_P : access QtAda6.QtCore.QObject.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleObject");
       Args  := Tuple_New (1);
@@ -36,7 +36,7 @@ package body QtAda6.QtGui.QAccessibleObject is
    function childAt
      (self : access Inst; x_P : int; y_P : int) return access QtAda6.QtGui.QAccessibleInterface.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleInterface.Class := new QtAda6.QtGui.QAccessibleInterface.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "childAt");
@@ -49,7 +49,7 @@ package body QtAda6.QtGui.QAccessibleObject is
       return Ret;
    end childAt;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -58,8 +58,8 @@ package body QtAda6.QtGui.QAccessibleObject is
       return To_Ada (Result);
    end isValid;
    function object (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "object");
       Args             := Tuple_New (0);
@@ -69,8 +69,8 @@ package body QtAda6.QtGui.QAccessibleObject is
       return Ret;
    end object;
    function rect (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "rect");
       Args             := Tuple_New (0);
@@ -80,7 +80,7 @@ package body QtAda6.QtGui.QAccessibleObject is
       return Ret;
    end rect;
    procedure setText (self : access Inst; t_P : access QtAda6.QtGui.QAccessible.Text.Inst'Class; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setText");
       Args   := Tuple_New (2);

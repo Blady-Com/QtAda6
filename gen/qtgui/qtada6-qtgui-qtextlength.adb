@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QTextLength;
 with QtAda6.QtGui.QTextLength.Type_K;
 package body QtAda6.QtGui.QTextLength is
    use type QtAda6.int;
@@ -23,7 +22,7 @@ package body QtAda6.QtGui.QTextLength is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextLength");
       Args  := Tuple_New (0);
@@ -31,7 +30,7 @@ package body QtAda6.QtGui.QTextLength is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (QTextLength_P : access QtAda6.QtGui.QTextLength.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextLength");
       Args  := Tuple_New (1);
@@ -40,7 +39,7 @@ package body QtAda6.QtGui.QTextLength is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (type_K_P : access QtAda6.QtGui.QTextLength.Type_K.Inst'Class; value_P : float) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextLength");
       Args  := Tuple_New (2);
@@ -50,7 +49,7 @@ package body QtAda6.QtGui.QTextLength is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextLength");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -59,7 +58,7 @@ package body QtAda6.QtGui.QTextLength is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function rawValue (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rawValue");
       Args   := Tuple_New (0);
@@ -68,7 +67,7 @@ package body QtAda6.QtGui.QTextLength is
       return Float_AsDouble (Result);
    end rawValue;
    function type_K_F (self : access Inst) return access QtAda6.QtGui.QTextLength.Type_K.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextLength.Type_K.Class := new QtAda6.QtGui.QTextLength.Type_K.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "type");
@@ -79,7 +78,7 @@ package body QtAda6.QtGui.QTextLength is
       return Ret;
    end type_K_F;
    function value (self : access Inst; maximumLength_P : float) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "value");
       Args   := Tuple_New (1);

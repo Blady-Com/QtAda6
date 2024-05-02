@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QContextMenuEvent;
 with QtAda6.QtGui.QContextMenuEvent.Reason;
 with QtAda6.QtCore.QPoint;
 with QtAda6.QtCore.Qt.KeyboardModifier;
@@ -25,7 +24,7 @@ package body QtAda6.QtGui.QContextMenuEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QContextMenuEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QContextMenuEvent");
       Args  := Tuple_New (1);
@@ -37,7 +36,7 @@ package body QtAda6.QtGui.QContextMenuEvent is
      (reason_P : access QtAda6.QtGui.QContextMenuEvent.Reason.Inst'Class;
       pos_P    : access QtAda6.QtCore.QPoint.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QContextMenuEvent");
       Args  := Tuple_New (2);
@@ -51,7 +50,7 @@ package body QtAda6.QtGui.QContextMenuEvent is
       pos_P       : access QtAda6.QtCore.QPoint.Inst'Class; globalPos_P : access QtAda6.QtCore.QPoint.Inst'Class;
       modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QContextMenuEvent");
       Args  := Tuple_New (3);
@@ -65,7 +64,7 @@ package body QtAda6.QtGui.QContextMenuEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function clone (self : access Inst) return access QtAda6.QtGui.QContextMenuEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QContextMenuEvent.Class := new QtAda6.QtGui.QContextMenuEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
@@ -76,8 +75,8 @@ package body QtAda6.QtGui.QContextMenuEvent is
       return Ret;
    end clone;
    function globalPos (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "globalPos");
       Args             := Tuple_New (0);
@@ -87,7 +86,7 @@ package body QtAda6.QtGui.QContextMenuEvent is
       return Ret;
    end globalPos;
    function globalX (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "globalX");
       Args   := Tuple_New (0);
@@ -96,7 +95,7 @@ package body QtAda6.QtGui.QContextMenuEvent is
       return Long_AsLong (Result);
    end globalX;
    function globalY (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "globalY");
       Args   := Tuple_New (0);
@@ -105,8 +104,8 @@ package body QtAda6.QtGui.QContextMenuEvent is
       return Long_AsLong (Result);
    end globalY;
    function pos (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "pos");
       Args             := Tuple_New (0);
@@ -116,7 +115,7 @@ package body QtAda6.QtGui.QContextMenuEvent is
       return Ret;
    end pos;
    function reason_F (self : access Inst) return access QtAda6.QtGui.QContextMenuEvent.Reason.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QContextMenuEvent.Reason.Class := new QtAda6.QtGui.QContextMenuEvent.Reason.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "reason");
@@ -127,7 +126,7 @@ package body QtAda6.QtGui.QContextMenuEvent is
       return Ret;
    end reason_F;
    function x (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "x");
       Args   := Tuple_New (0);
@@ -136,7 +135,7 @@ package body QtAda6.QtGui.QContextMenuEvent is
       return Long_AsLong (Result);
    end x;
    function y (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "y");
       Args   := Tuple_New (0);

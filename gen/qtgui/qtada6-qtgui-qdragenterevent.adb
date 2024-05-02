@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QDragEnterEvent;
 with QtAda6.QtCore.QPoint;
 with QtAda6.QtCore.Qt.DropAction;
 with QtAda6.QtCore.QMimeData;
@@ -27,7 +26,7 @@ package body QtAda6.QtGui.QDragEnterEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QDragEnterEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QDragEnterEvent");
       Args  := Tuple_New (1);
@@ -40,7 +39,7 @@ package body QtAda6.QtGui.QDragEnterEvent is
       data_P : access QtAda6.QtCore.QMimeData.Inst'Class; buttons_P : access QtAda6.QtCore.Qt.MouseButton.Inst'Class;
       modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QDragEnterEvent");
       Args  := Tuple_New (5);
@@ -53,7 +52,7 @@ package body QtAda6.QtGui.QDragEnterEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function U_repr_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
@@ -62,7 +61,7 @@ package body QtAda6.QtGui.QDragEnterEvent is
       return null;
    end U_repr_U;
    function clone (self : access Inst) return access QtAda6.QtGui.QDragEnterEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QDragEnterEvent.Class := new QtAda6.QtGui.QDragEnterEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");

@@ -24,7 +24,7 @@ package body QtAda6.QtGui.Qt is
    function convertFromPlainText
      (plain_P : str; mode_P : access QtAda6.QtCore.Qt.WhiteSpaceMode.Inst'Class := null) return str
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "convertFromPlainText");
@@ -38,7 +38,7 @@ package body QtAda6.QtGui.Qt is
       return As_String (Result);
    end convertFromPlainText;
    function mightBeRichText (arg_1_P : str) return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "Qt");
       Method := Object_GetAttrString (Class, "mightBeRichText");

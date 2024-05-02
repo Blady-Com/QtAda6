@@ -8,10 +8,10 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtGui.QUndoCommand;
 limited with QtAda6.QtGui.QAction;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QUndoStack is
    type Inst;
    type Inst_Access is access all Inst;

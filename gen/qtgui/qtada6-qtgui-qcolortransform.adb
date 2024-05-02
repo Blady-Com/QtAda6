@@ -10,9 +10,9 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QColorTransform;
 with QtAda6.QtGui.QColor;
 with QtAda6.QtGui.QRgba64;
+with QtAda6.QtCore.Qt.GlobalColor;
 package body QtAda6.QtGui.QColorTransform is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -24,7 +24,7 @@ package body QtAda6.QtGui.QColorTransform is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QColorTransform");
       Args  := Tuple_New (0);
@@ -32,7 +32,7 @@ package body QtAda6.QtGui.QColorTransform is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (colorTransform_P : access QtAda6.QtGui.QColorTransform.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QColorTransform");
       Args  := Tuple_New (1);
@@ -41,7 +41,7 @@ package body QtAda6.QtGui.QColorTransform is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QColorTransform");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -50,7 +50,7 @@ package body QtAda6.QtGui.QColorTransform is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function isIdentity (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isIdentity");
       Args   := Tuple_New (0);
@@ -59,7 +59,7 @@ package body QtAda6.QtGui.QColorTransform is
       return To_Ada (Result);
    end isIdentity;
    function map (self : access Inst; argb_P : int) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "map");
       Args   := Tuple_New (1);
@@ -69,12 +69,10 @@ package body QtAda6.QtGui.QColorTransform is
       return Long_AsLong (Result);
    end map;
    function map
-     (self    : access Inst;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
-      return access QtAda6.QtGui.QColor.Inst'Class
+     (self : access Inst; color_P : access QtAda6.QtGui.QColor.Inst'Class) return access QtAda6.QtGui.QColor.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "map");
       Args   := Tuple_New (1);
@@ -85,11 +83,76 @@ package body QtAda6.QtGui.QColorTransform is
       return Ret;
    end map;
    function map
+     (self : access Inst; color_P : access QtAda6.QtGui.QRgba64.Inst'Class) return access QtAda6.QtGui.QColor.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "map");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end map;
+   function map (self : access Inst; color_P : Any) return access QtAda6.QtGui.QColor.Inst'Class is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "map");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end map;
+   function map
+     (self : access Inst; color_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class)
+      return access QtAda6.QtGui.QColor.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "map");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end map;
+   function map (self : access Inst; color_P : str) return access QtAda6.QtGui.QColor.Inst'Class is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "map");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (color_P));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end map;
+   function map (self : access Inst; color_P : int) return access QtAda6.QtGui.QColor.Inst'Class is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "map");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (color_P));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end map;
+   function map
      (self : access Inst; rgba64_P : access QtAda6.QtGui.QRgba64.Inst'Class)
       return access QtAda6.QtGui.QRgba64.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QRgba64.Class := new QtAda6.QtGui.QRgba64.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QRgba64.Class := new QtAda6.QtGui.QRgba64.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "map");
       Args   := Tuple_New (1);
@@ -100,7 +163,7 @@ package body QtAda6.QtGui.QColorTransform is
       return Ret;
    end map;
    procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QColorTransform.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);

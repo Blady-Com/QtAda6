@@ -10,12 +10,12 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtGui.QKeySequence.StandardKey;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.Qt.ShortcutContext;
-with QtAda6.QtCore.QEvent;
 with QtAda6.QtGui.QKeySequence;
+with QtAda6.QtCore.QKeyCombination;
+with QtAda6.QtCore.QEvent;
 package body QtAda6.QtGui.QShortcut is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -41,7 +41,7 @@ package body QtAda6.QtGui.QShortcut is
       arg_2_P : access QtAda6.QtCore.QObject.Inst'Class; arg_3_P : CALLABLE;
       arg_4_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QShortcut");
       Args  := Tuple_New (3);
@@ -55,15 +55,65 @@ package body QtAda6.QtGui.QShortcut is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (arg_1_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
-      arg_2_P : access QtAda6.QtCore.QObject.Inst'Class; arg_3_P : CALLABLE;
-      arg_4_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class
+     (arg_1_P : access QtAda6.QtGui.QKeySequence.Inst'Class; arg_2_P : access QtAda6.QtCore.QObject.Inst'Class;
+      arg_3_P : CALLABLE; arg_4_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QShortcut");
       Args  := Tuple_New (3);
       Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if arg_2_P /= null then arg_2_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if arg_3_P /= null then arg_3_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if arg_4_P /= null then
+         Dict_SetItemString (Dict, "arg__4", arg_4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (arg_1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class; arg_2_P : access QtAda6.QtCore.QObject.Inst'Class;
+      arg_3_P : CALLABLE; arg_4_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QShortcut");
+      Args  := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if arg_2_P /= null then arg_2_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if arg_3_P /= null then arg_3_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if arg_4_P /= null then
+         Dict_SetItemString (Dict, "arg__4", arg_4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (arg_1_P : str; arg_2_P : access QtAda6.QtCore.QObject.Inst'Class; arg_3_P : CALLABLE;
+      arg_4_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QShortcut");
+      Args  := Tuple_New (3);
+      Tuple_SetItem (Args, 0, Unicode_FromString (arg_1_P));
+      Tuple_SetItem (Args, 1, (if arg_2_P /= null then arg_2_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if arg_3_P /= null then arg_3_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if arg_4_P /= null then
+         Dict_SetItemString (Dict, "arg__4", arg_4_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (arg_1_P : int; arg_2_P : access QtAda6.QtCore.QObject.Inst'Class; arg_3_P : CALLABLE;
+      arg_4_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QShortcut");
+      Args  := Tuple_New (3);
+      Tuple_SetItem (Args, 0, Long_FromLong (arg_1_P));
       Tuple_SetItem (Args, 1, (if arg_2_P /= null then arg_2_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 2, (if arg_3_P /= null then arg_3_P.Python_Proxy else No_Value));
       Dict := Dict_New;
@@ -74,21 +124,21 @@ package body QtAda6.QtGui.QShortcut is
    end Create;
    function Create
      (key_P     : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class;
-      parent_P  : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes := ""; ambiguousMember_P : bytes := "";
+      parent_P  : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes := null; ambiguousMember_P : bytes := null;
       context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QShortcut");
       Args  := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if key_P /= null then key_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       Dict := Dict_New;
-      if member_P /= "" then
-         Dict_SetItemString (Dict, "member", Bytes_FromString (String (member_P)));
+      if member_P /= null then
+         Dict_SetItemString (Dict, "member", Bytes_FromString (Standard.String (member_P.all)));
       end if;
-      if ambiguousMember_P /= "" then
-         Dict_SetItemString (Dict, "ambiguousMember", Bytes_FromString (String (ambiguousMember_P)));
+      if ambiguousMember_P /= null then
+         Dict_SetItemString (Dict, "ambiguousMember", Bytes_FromString (Standard.String (ambiguousMember_P.all)));
       end if;
       if context_P /= null then
          Dict_SetItemString (Dict, "context", context_P.Python_Proxy);
@@ -96,22 +146,91 @@ package body QtAda6.QtGui.QShortcut is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (key_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
-      parent_P  : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes := ""; ambiguousMember_P : bytes := "";
+     (key_P     : access QtAda6.QtGui.QKeySequence.Inst'Class; parent_P : access QtAda6.QtCore.QObject.Inst'Class;
+      member_P  : bytes                                              := null; ambiguousMember_P : bytes := null;
       context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QShortcut");
       Args  := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if key_P /= null then key_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       Dict := Dict_New;
-      if member_P /= "" then
-         Dict_SetItemString (Dict, "member", Bytes_FromString (String (member_P)));
+      if member_P /= null then
+         Dict_SetItemString (Dict, "member", Bytes_FromString (Standard.String (member_P.all)));
       end if;
-      if ambiguousMember_P /= "" then
-         Dict_SetItemString (Dict, "ambiguousMember", Bytes_FromString (String (ambiguousMember_P)));
+      if ambiguousMember_P /= null then
+         Dict_SetItemString (Dict, "ambiguousMember", Bytes_FromString (Standard.String (ambiguousMember_P.all)));
+      end if;
+      if context_P /= null then
+         Dict_SetItemString (Dict, "context", context_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (key_P     : access QtAda6.QtCore.QKeyCombination.Inst'Class; parent_P : access QtAda6.QtCore.QObject.Inst'Class;
+      member_P  : bytes                                              := null; ambiguousMember_P : bytes := null;
+      context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QShortcut");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if key_P /= null then key_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if member_P /= null then
+         Dict_SetItemString (Dict, "member", Bytes_FromString (Standard.String (member_P.all)));
+      end if;
+      if ambiguousMember_P /= null then
+         Dict_SetItemString (Dict, "ambiguousMember", Bytes_FromString (Standard.String (ambiguousMember_P.all)));
+      end if;
+      if context_P /= null then
+         Dict_SetItemString (Dict, "context", context_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (key_P             : str; parent_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes := null;
+      ambiguousMember_P : bytes := null; context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QShortcut");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (key_P));
+      Tuple_SetItem (Args, 1, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if member_P /= null then
+         Dict_SetItemString (Dict, "member", Bytes_FromString (Standard.String (member_P.all)));
+      end if;
+      if ambiguousMember_P /= null then
+         Dict_SetItemString (Dict, "ambiguousMember", Bytes_FromString (Standard.String (ambiguousMember_P.all)));
+      end if;
+      if context_P /= null then
+         Dict_SetItemString (Dict, "context", context_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (key_P             : int; parent_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes := null;
+      ambiguousMember_P : bytes := null; context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QShortcut");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (key_P));
+      Tuple_SetItem (Args, 1, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if member_P /= null then
+         Dict_SetItemString (Dict, "member", Bytes_FromString (Standard.String (member_P.all)));
+      end if;
+      if ambiguousMember_P /= null then
+         Dict_SetItemString (Dict, "ambiguousMember", Bytes_FromString (Standard.String (ambiguousMember_P.all)));
       end if;
       if context_P /= null then
          Dict_SetItemString (Dict, "context", context_P.Python_Proxy);
@@ -119,7 +238,7 @@ package body QtAda6.QtGui.QShortcut is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QShortcut");
       Args  := Tuple_New (1);
@@ -128,7 +247,7 @@ package body QtAda6.QtGui.QShortcut is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function autoRepeat (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "autoRepeat");
       Args   := Tuple_New (0);
@@ -137,7 +256,7 @@ package body QtAda6.QtGui.QShortcut is
       return To_Ada (Result);
    end autoRepeat;
    function context (self : access Inst) return access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.ShortcutContext.Class := new QtAda6.QtCore.Qt.ShortcutContext.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "context");
@@ -148,7 +267,7 @@ package body QtAda6.QtGui.QShortcut is
       return Ret;
    end context;
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -158,7 +277,7 @@ package body QtAda6.QtGui.QShortcut is
       return To_Ada (Result);
    end event;
    function id (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "id");
       Args   := Tuple_New (0);
@@ -167,7 +286,7 @@ package body QtAda6.QtGui.QShortcut is
       return Long_AsLong (Result);
    end id;
    function isEnabled (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEnabled");
       Args   := Tuple_New (0);
@@ -176,7 +295,7 @@ package body QtAda6.QtGui.QShortcut is
       return To_Ada (Result);
    end isEnabled;
    function key (self : access Inst) return access QtAda6.QtGui.QKeySequence.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QKeySequence.Class := new QtAda6.QtGui.QKeySequence.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "key");
@@ -187,16 +306,20 @@ package body QtAda6.QtGui.QShortcut is
       return Ret;
    end key;
    function keys (self : access Inst) return LIST_QtAda6_QtGui_QKeySequence is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "keys");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtGui_QKeySequence (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end keys;
    procedure setAutoRepeat (self : access Inst; on_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAutoRepeat");
       Args   := Tuple_New (1);
@@ -205,7 +328,7 @@ package body QtAda6.QtGui.QShortcut is
       Result := Object_Call (Method, Args, Dict, True);
    end setAutoRepeat;
    procedure setContext (self : access Inst; context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setContext");
       Args   := Tuple_New (1);
@@ -214,7 +337,7 @@ package body QtAda6.QtGui.QShortcut is
       Result := Object_Call (Method, Args, Dict, True);
    end setContext;
    procedure setEnabled (self : access Inst; enable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setEnabled");
       Args   := Tuple_New (1);
@@ -222,11 +345,8 @@ package body QtAda6.QtGui.QShortcut is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setEnabled;
-   procedure setKey
-     (self  : access Inst;
-      key_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setKey (self : access Inst; key_P : access QtAda6.QtGui.QKeySequence.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setKey");
       Args   := Tuple_New (1);
@@ -234,8 +354,44 @@ package body QtAda6.QtGui.QShortcut is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setKey;
+   procedure setKey (self : access Inst; key_P : access QtAda6.QtCore.QKeyCombination.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setKey");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if key_P /= null then key_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setKey;
+   procedure setKey (self : access Inst; key_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setKey");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if key_P /= null then key_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setKey;
+   procedure setKey (self : access Inst; key_P : str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setKey");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (key_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setKey;
+   procedure setKey (self : access Inst; key_P : int) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setKey");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (key_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setKey;
    procedure setKeys (self : access Inst; key_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setKeys");
       Args   := Tuple_New (1);
@@ -244,21 +400,21 @@ package body QtAda6.QtGui.QShortcut is
       Result := Object_Call (Method, Args, Dict, True);
    end setKeys;
    procedure setKeys (self : access Inst; keys_P : SEQUENCE_QtAda6_QtGui_QKeySequence) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setKeys");
+      Args   := Tuple_New (1);
       List   := List_New (keys_P'Length);
       for ind in keys_P'Range loop
          List_SetItem
            (List, ssize_t (ind - keys_P'First), (if keys_P (ind) /= null then keys_P (ind).Python_Proxy else No_Value));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setKeys;
    procedure setWhatsThis (self : access Inst; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setWhatsThis");
       Args   := Tuple_New (1);
@@ -267,7 +423,7 @@ package body QtAda6.QtGui.QShortcut is
       Result := Object_Call (Method, Args, Dict, True);
    end setWhatsThis;
    function whatsThis (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "whatsThis");
       Args   := Tuple_New (0);

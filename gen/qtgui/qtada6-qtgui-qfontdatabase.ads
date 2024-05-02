@@ -8,8 +8,10 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtGui.QFontDatabase.WritingSystem;
 limited with QtAda6.QtGui.QFont;
+limited with QtAda6.QtGui.QFontInfo;
 limited with QtAda6.QtGui.QFontDatabase.SystemFont;
 package QtAda6.QtGui.QFontDatabase is
    type Inst;
@@ -17,18 +19,17 @@ package QtAda6.QtGui.QFontDatabase is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    type LIST_str is array (Positive range <>) of str;
    type LIST_int is array (Positive range <>) of int;
-   type UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str is new Any;
-   type UNION_QtAda6_QtGui_QFontInfo_QtAda6_QtGui_QFont is new Any;
+   type SEQUENCE_str is array (Positive range <>) of str;
    subtype LIST_QtAda6_QtGui_QFontDatabase_WritingSystem is QtAda6.QtGui.QFontDatabase.WritingSystem.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (QFontDatabase_P : access QtAda6.QtGui.QFontDatabase.Inst'Class) return Class;
    procedure U_copy_U;
    function addApplicationFont (fileName_P : str) return int;
-   function addApplicationFontFromData (fontData_P : UNION_QtAda6_QtCore_QByteArray_bytes) return int;
+   function addApplicationFontFromData (fontData_P : access QtAda6.QtCore.QByteArray.Inst'Class) return int;
+   function addApplicationFontFromData (fontData_P : bytes) return int;
    function applicationFontFamilies (id_P : int) return LIST_str;
    function bold (family_P : str; style_P : str) return bool;
    function families
@@ -46,8 +47,11 @@ package QtAda6.QtGui.QFontDatabase is
    function removeApplicationFont (id_P : int) return bool;
    function smoothSizes (family_P : str; style_P : str) return LIST_int;
    function standardSizes return LIST_int;
-   function styleString (font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str) return str;
-   function styleString (fontInfo_P : UNION_QtAda6_QtGui_QFontInfo_QtAda6_QtGui_QFont) return str;
+   function styleString (font_P : access QtAda6.QtGui.QFont.Inst'Class) return str;
+   function styleString (font_P : str) return str;
+   function styleString (font_P : SEQUENCE_str) return str;
+   function styleString (fontInfo_P : access QtAda6.QtGui.QFontInfo.Inst'Class) return str;
+-- function styleString(fontInfo_P : access QtAda6.QtGui.QFont.Inst'Class) return str;
    function styles (family_P : str) return LIST_str;
    function systemFont_F
      (type_K_P : access QtAda6.QtGui.QFontDatabase.SystemFont.Inst'Class) return access QtAda6.QtGui.QFont.Inst'Class;

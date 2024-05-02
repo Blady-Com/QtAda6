@@ -10,12 +10,13 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QStaticText;
 with QtAda6.QtGui.QStaticText.PerformanceHint;
 with QtAda6.QtGui.QTransform;
+with QtAda6.QtGui.QFont;
 with QtAda6.QtCore.Qt.TextFormat;
-with QtAda6.QtCore.QSizeF;
 with QtAda6.QtGui.QTextOption;
+with QtAda6.QtCore.Qt.AlignmentFlag;
+with QtAda6.QtCore.QSizeF;
 package body QtAda6.QtGui.QStaticText is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -27,7 +28,7 @@ package body QtAda6.QtGui.QStaticText is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QStaticText");
       Args  := Tuple_New (0);
@@ -35,7 +36,7 @@ package body QtAda6.QtGui.QStaticText is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (other_P : access QtAda6.QtGui.QStaticText.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QStaticText");
       Args  := Tuple_New (1);
@@ -44,7 +45,7 @@ package body QtAda6.QtGui.QStaticText is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (text_P : str) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QStaticText");
       Args  := Tuple_New (1);
@@ -53,7 +54,7 @@ package body QtAda6.QtGui.QStaticText is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QStaticText");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -62,8 +63,8 @@ package body QtAda6.QtGui.QStaticText is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function performanceHint_F (self : access Inst) return access QtAda6.QtGui.QStaticText.PerformanceHint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QStaticText.PerformanceHint.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QStaticText.PerformanceHint.Class :=
         new QtAda6.QtGui.QStaticText.PerformanceHint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "performanceHint");
@@ -75,9 +76,9 @@ package body QtAda6.QtGui.QStaticText is
    end performanceHint_F;
    procedure prepare
      (self   : access Inst; matrix_P : access QtAda6.QtGui.QTransform.Inst'Class := null;
-      font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str := null)
+      font_P : access QtAda6.QtGui.QFont.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "prepare");
       Args   := Tuple_New (0);
@@ -90,10 +91,46 @@ package body QtAda6.QtGui.QStaticText is
       end if;
       Result := Object_Call (Method, Args, Dict, True);
    end prepare;
+   procedure prepare
+     (self : access Inst; matrix_P : access QtAda6.QtGui.QTransform.Inst'Class := null; font_P : str := "")
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "prepare");
+      Args   := Tuple_New (0);
+      Dict   := Dict_New;
+      if matrix_P /= null then
+         Dict_SetItemString (Dict, "matrix", matrix_P.Python_Proxy);
+      end if;
+      if font_P /= "" then
+         Dict_SetItemString (Dict, "font", Unicode_FromString (font_P));
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+   end prepare;
+   procedure prepare
+     (self : access Inst; matrix_P : access QtAda6.QtGui.QTransform.Inst'Class := null; font_P : SEQUENCE_str)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "prepare");
+      Args   := Tuple_New (0);
+      Dict   := Dict_New;
+      if matrix_P /= null then
+         Dict_SetItemString (Dict, "matrix", matrix_P.Python_Proxy);
+      end if;
+      List := List_New (font_P'Length);
+      for ind in font_P'Range loop
+         List_SetItem (List, ssize_t (ind - font_P'First), Unicode_FromString (font_P (ind)));
+      end loop;
+      if font_P'Length > 0 then
+         Dict_SetItemString (Dict, "font", List);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+   end prepare;
    procedure setPerformanceHint
      (self : access Inst; performanceHint_P : access QtAda6.QtGui.QStaticText.PerformanceHint.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPerformanceHint");
       Args   := Tuple_New (1);
@@ -102,7 +139,7 @@ package body QtAda6.QtGui.QStaticText is
       Result := Object_Call (Method, Args, Dict, True);
    end setPerformanceHint;
    procedure setText (self : access Inst; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setText");
       Args   := Tuple_New (1);
@@ -111,7 +148,7 @@ package body QtAda6.QtGui.QStaticText is
       Result := Object_Call (Method, Args, Dict, True);
    end setText;
    procedure setTextFormat (self : access Inst; textFormat_P : access QtAda6.QtCore.Qt.TextFormat.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTextFormat");
       Args   := Tuple_New (1);
@@ -119,10 +156,17 @@ package body QtAda6.QtGui.QStaticText is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setTextFormat;
-   procedure setTextOption
-     (self : access Inst; textOption_P : UNION_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setTextOption (self : access Inst; textOption_P : access QtAda6.QtGui.QTextOption.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setTextOption");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if textOption_P /= null then textOption_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setTextOption;
+   procedure setTextOption (self : access Inst; textOption_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTextOption");
       Args   := Tuple_New (1);
@@ -131,7 +175,7 @@ package body QtAda6.QtGui.QStaticText is
       Result := Object_Call (Method, Args, Dict, True);
    end setTextOption;
    procedure setTextWidth (self : access Inst; textWidth_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTextWidth");
       Args   := Tuple_New (1);
@@ -140,8 +184,8 @@ package body QtAda6.QtGui.QStaticText is
       Result := Object_Call (Method, Args, Dict, True);
    end setTextWidth;
    function size (self : access Inst) return access QtAda6.QtCore.QSizeF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "size");
       Args             := Tuple_New (0);
@@ -151,7 +195,7 @@ package body QtAda6.QtGui.QStaticText is
       return Ret;
    end size;
    procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QStaticText.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
@@ -160,7 +204,7 @@ package body QtAda6.QtGui.QStaticText is
       Result := Object_Call (Method, Args, Dict, True);
    end swap;
    function text (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "text");
       Args   := Tuple_New (0);
@@ -169,7 +213,7 @@ package body QtAda6.QtGui.QStaticText is
       return As_String (Result);
    end text;
    function textFormat (self : access Inst) return access QtAda6.QtCore.Qt.TextFormat.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.TextFormat.Class := new QtAda6.QtCore.Qt.TextFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "textFormat");
@@ -180,7 +224,7 @@ package body QtAda6.QtGui.QStaticText is
       return Ret;
    end textFormat;
    function textOption (self : access Inst) return access QtAda6.QtGui.QTextOption.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextOption.Class := new QtAda6.QtGui.QTextOption.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "textOption");
@@ -191,7 +235,7 @@ package body QtAda6.QtGui.QStaticText is
       return Ret;
    end textOption;
    function textWidth (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "textWidth");
       Args   := Tuple_New (0);

@@ -10,13 +10,13 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtGui.QRgba64;
+limited with QtAda6.QtCore.Qt.GlobalColor;
 package QtAda6.QtGui.QColorTransform is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (colorTransform_P : access QtAda6.QtGui.QColorTransform.Inst'Class) return Class;
@@ -24,9 +24,16 @@ package QtAda6.QtGui.QColorTransform is
    function isIdentity (self : access Inst) return bool;
    function map (self : access Inst; argb_P : int) return int;
    function map
-     (self    : access Inst;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
+     (self : access Inst; color_P : access QtAda6.QtGui.QColor.Inst'Class) return access QtAda6.QtGui.QColor.Inst'Class;
+   function map
+     (self : access Inst; color_P : access QtAda6.QtGui.QRgba64.Inst'Class)
       return access QtAda6.QtGui.QColor.Inst'Class;
+   function map (self : access Inst; color_P : Any) return access QtAda6.QtGui.QColor.Inst'Class;
+   function map
+     (self : access Inst; color_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class)
+      return access QtAda6.QtGui.QColor.Inst'Class;
+   function map (self : access Inst; color_P : str) return access QtAda6.QtGui.QColor.Inst'Class;
+   function map (self : access Inst; color_P : int) return access QtAda6.QtGui.QColor.Inst'Class;
    function map
      (self : access Inst; rgba64_P : access QtAda6.QtGui.QRgba64.Inst'Class)
       return access QtAda6.QtGui.QRgba64.Inst'Class;

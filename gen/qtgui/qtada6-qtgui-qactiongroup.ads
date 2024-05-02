@@ -8,10 +8,12 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtGui.QAction;
+limited with QtAda6.QtGui.QIcon;
+limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtGui.QActionGroup.ExclusionPolicy;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QActionGroup is
    type Inst;
    type Inst_Access is access all Inst;
@@ -19,7 +21,6 @@ package QtAda6.QtGui.QActionGroup is
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
    subtype LIST_QtAda6_QtGui_QAction is QtAda6.QtGui.QAction.Class_Array;
-   type UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is new Any;
    procedure Finalize (Self : in out Class);
    function hovered (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- hovered(QAction*)
    function triggered (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- triggered(QAction*)
@@ -28,7 +29,10 @@ package QtAda6.QtGui.QActionGroup is
    function addAction
      (self : access Inst; a_P : access QtAda6.QtGui.QAction.Inst'Class) return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str)
+     (self : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction (self : access Inst; text_P : str) return access QtAda6.QtGui.QAction.Inst'Class;
    function checkedAction (self : access Inst) return access QtAda6.QtGui.QAction.Inst'Class;

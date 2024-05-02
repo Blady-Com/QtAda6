@@ -14,16 +14,19 @@ limited with QtAda6.QtCore.QDataStream;
 limited with QtAda6.QtGui.QColorTransform;
 limited with QtAda6.QtGui.QColorSpace;
 limited with QtAda6.QtCore.Qt.ImageConversionFlag;
+limited with QtAda6.QtGui.QColorSpace.NamedColorSpace;
 limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtCore.Qt.MaskMode;
 limited with QtAda6.QtCore.QSizeF;
 limited with QtAda6.QtCore.Qt.GlobalColor;
+limited with QtAda6.QtGui.QColor;
+limited with QtAda6.QtGui.QRgba64;
+limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtGui.QImage.InvertMode;
 limited with QtAda6.QtCore.QIODevice;
 limited with QtAda6.QtGui.QPaintDevice.PaintDeviceMetric;
 limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtGui.QPaintEngine;
-limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtGui.QPixelFormat;
 limited with QtAda6.QtCore.Qt.AspectRatioMode;
 limited with QtAda6.QtCore.Qt.TransformationMode;
@@ -35,14 +38,9 @@ package QtAda6.QtGui.QImage is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QPaintDevice.Inst with null record;
-   type UNION_QtAda6_QtGui_QImage_str is new Any;
    type CALLABLE is new Any;
-   type UNION_str_bytes_os_PathLike is new Any;
    type LIST_int is array (Positive range <>) of int;
-   type UNION_QtAda6_QtGui_QColorSpace_QtAda6_QtGui_QColorSpace_NamedColorSpace is new Any;
    type SEQUENCE_int is array (Positive range <>) of int;
-   type UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is new Any;
-   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function Create return Class;
@@ -51,7 +49,8 @@ package QtAda6.QtGui.QImage is
    function Create
      (arg_1_P : str; arg_2_P : int; arg_3_P : int; arg_4_P : int;
       arg_5_P : access QtAda6.QtGui.QImage.Format.Inst'Class) return Class;
-   function Create (arg_1_P : UNION_QtAda6_QtGui_QImage_str) return Class;
+   function Create (arg_1_P : access QtAda6.QtGui.QImage.Inst'Class) return Class;
+   function Create (arg_1_P : str) return Class;
    function Create
      (data_P        : bytes; width_P : int; height_P : int; bytesPerLine_P : int;
       format_P      : access QtAda6.QtGui.QImage.Format.Inst'Class; cleanupFunction_P : CALLABLE := null;
@@ -59,7 +58,9 @@ package QtAda6.QtGui.QImage is
    function Create
      (data_P            : bytes; width_P : int; height_P : int; format_P : access QtAda6.QtGui.QImage.Format.Inst'Class;
       cleanupFunction_P : CALLABLE := null; cleanupInfo_P : int := 0) return Class;
-   function Create (fileName_P : UNION_str_bytes_os_PathLike; format_P : bytes := "") return Class;
+   function Create (fileName_P : str; format_P : bytes := null) return Class;
+   function Create (fileName_P : bytes; format_P : bytes := null) return Class;
+   function Create (fileName_P : OS.PathLike; format_P : bytes := null) return Class;
    function Create
      (size_P : access QtAda6.QtCore.QSize.Inst'Class; format_P : access QtAda6.QtGui.QImage.Format.Inst'Class)
       return Class;
@@ -91,8 +92,9 @@ package QtAda6.QtGui.QImage is
    procedure convertTo
      (self    : access Inst; f_P : access QtAda6.QtGui.QImage.Format.Inst'Class;
       flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null);
+   procedure convertToColorSpace (self : access Inst; arg_1_P : access QtAda6.QtGui.QColorSpace.Inst'Class);
    procedure convertToColorSpace
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QColorSpace_QtAda6_QtGui_QColorSpace_NamedColorSpace);
+     (self : access Inst; arg_1_P : access QtAda6.QtGui.QColorSpace.NamedColorSpace.Inst'Class);
    function convertToFormat
      (self    : access Inst; f_P : access QtAda6.QtGui.QImage.Format.Inst'Class; colorTable_P : SEQUENCE_int;
       flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null)
@@ -112,7 +114,10 @@ package QtAda6.QtGui.QImage is
       flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null)
       return access QtAda6.QtGui.QImage.Inst'Class;
    function convertedToColorSpace
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QColorSpace_QtAda6_QtGui_QColorSpace_NamedColorSpace)
+     (self : access Inst; arg_1_P : access QtAda6.QtGui.QColorSpace.Inst'Class)
+      return access QtAda6.QtGui.QImage.Inst'Class;
+   function convertedToColorSpace
+     (self : access Inst; arg_1_P : access QtAda6.QtGui.QColorSpace.NamedColorSpace.Inst'Class)
       return access QtAda6.QtGui.QImage.Inst'Class;
    function copy
      (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class := null)
@@ -135,14 +140,18 @@ package QtAda6.QtGui.QImage is
    function dotsPerMeterX (self : access Inst) return int;
    function dotsPerMeterY (self : access Inst) return int;
    procedure fill (self : access Inst; color_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
-   procedure fill
-     (self    : access Inst;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
-   procedure fill (self : access Inst; pixel_P : int);
+   procedure fill (self : access Inst; color_P : access QtAda6.QtGui.QColor.Inst'Class);
+   procedure fill (self : access Inst; color_P : access QtAda6.QtGui.QRgba64.Inst'Class);
+   procedure fill (self : access Inst; color_P : Any);
+-- procedure fill(self : access Inst;color_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure fill (self : access Inst; color_P : str);
+   procedure fill (self : access Inst; color_P : int);
+-- procedure fill(self : access Inst;pixel_P : int);
    function format_F (self : access Inst) return access QtAda6.QtGui.QImage.Format.Inst'Class;
    function fromData
-     (data_P : UNION_QtAda6_QtCore_QByteArray_bytes; format_P : bytes := "")
+     (data_P : access QtAda6.QtCore.QByteArray.Inst'Class; format_P : bytes := null)
       return access QtAda6.QtGui.QImage.Inst'Class;
+   function fromData (data_P : bytes; format_P : bytes := null) return access QtAda6.QtGui.QImage.Inst'Class;
    function hasAlphaChannel (self : access Inst) return bool;
    function height (self : access Inst) return int;
    procedure invertPixels (self : access Inst; mode_P : access QtAda6.QtGui.QImage.InvertMode.Inst'Class := null);
@@ -150,9 +159,10 @@ package QtAda6.QtGui.QImage is
    function isNull (self : access Inst) return bool;
    function load
      (self : access Inst; device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : bytes) return bool;
-   function load (self : access Inst; fileName_P : str; format_P : bytes := "") return bool;
+   function load (self : access Inst; fileName_P : str; format_P : bytes := null) return bool;
    function loadFromData
-     (self : access Inst; data_P : UNION_QtAda6_QtCore_QByteArray_bytes; format_P : bytes := "") return bool;
+     (self : access Inst; data_P : access QtAda6.QtCore.QByteArray.Inst'Class; format_P : bytes := null) return bool;
+   function loadFromData (self : access Inst; data_P : bytes; format_P : bytes := null) return bool;
    function metric
      (self : access Inst; metric_P : access QtAda6.QtGui.QPaintDevice.PaintDeviceMetric.Inst'Class) return int;
    procedure mirror (self : access Inst; horizontally_P : bool := False; vertically_P : bool := False);
@@ -179,9 +189,9 @@ package QtAda6.QtGui.QImage is
    function rgbSwapped_helper (self : access Inst) return access QtAda6.QtGui.QImage.Inst'Class;
    procedure rgbSwapped_inplace (self : access Inst);
    function save
-     (self      : access Inst; device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : bytes := "";
+     (self      : access Inst; device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : bytes := null;
       quality_P : int := 0) return bool;
-   function save (self : access Inst; fileName_P : str; format_P : bytes := ""; quality_P : int := 0) return bool;
+   function save (self : access Inst; fileName_P : str; format_P : bytes := null; quality_P : int := 0) return bool;
    function scaled
      (self         : access Inst; s_P : access QtAda6.QtCore.QSize.Inst'Class;
       aspectMode_P : access QtAda6.QtCore.Qt.AspectRatioMode.Inst'Class    := null;
@@ -199,11 +209,12 @@ package QtAda6.QtGui.QImage is
      (self : access Inst; w_P : int; mode_P : access QtAda6.QtCore.Qt.TransformationMode.Inst'Class := null)
       return access QtAda6.QtGui.QImage.Inst'Class;
    function scanLine (self : access Inst; arg_1_P : int) return access Object'Class;
-   procedure setAlphaChannel (self : access Inst; alphaChannel_P : UNION_QtAda6_QtGui_QImage_str);
+   procedure setAlphaChannel (self : access Inst; alphaChannel_P : access QtAda6.QtGui.QImage.Inst'Class);
+   procedure setAlphaChannel (self : access Inst; alphaChannel_P : str);
    procedure setColor (self : access Inst; i_P : int; c_P : int);
    procedure setColorCount (self : access Inst; arg_1_P : int);
-   procedure setColorSpace
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QColorSpace_QtAda6_QtGui_QColorSpace_NamedColorSpace);
+   procedure setColorSpace (self : access Inst; arg_1_P : access QtAda6.QtGui.QColorSpace.Inst'Class);
+   procedure setColorSpace (self : access Inst; arg_1_P : access QtAda6.QtGui.QColorSpace.NamedColorSpace.Inst'Class);
    procedure setColorTable (self : access Inst; colors_P : SEQUENCE_int);
    procedure setDevicePixelRatio (self : access Inst; scaleFactor_P : float);
    procedure setDotsPerMeterX (self : access Inst; arg_1_P : int);
@@ -212,16 +223,28 @@ package QtAda6.QtGui.QImage is
    procedure setPixel (self : access Inst; pt_P : access QtAda6.QtCore.QPoint.Inst'Class; index_or_rgb_P : int);
    procedure setPixel (self : access Inst; x_P : int; y_P : int; index_or_rgb_P : int);
    procedure setPixelColor
-     (self : access Inst; pt_P : access QtAda6.QtCore.QPoint.Inst'Class;
-      c_P  : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
+     (self : access Inst; pt_P : access QtAda6.QtCore.QPoint.Inst'Class; c_P : access QtAda6.QtGui.QColor.Inst'Class);
    procedure setPixelColor
-     (self : access Inst; x_P : int; y_P : int;
-      c_P  : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
+     (self : access Inst; pt_P : access QtAda6.QtCore.QPoint.Inst'Class; c_P : access QtAda6.QtGui.QRgba64.Inst'Class);
+   procedure setPixelColor (self : access Inst; pt_P : access QtAda6.QtCore.QPoint.Inst'Class; c_P : Any);
+   procedure setPixelColor
+     (self : access Inst; pt_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      c_P  : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure setPixelColor (self : access Inst; pt_P : access QtAda6.QtCore.QPoint.Inst'Class; c_P : str);
+   procedure setPixelColor (self : access Inst; pt_P : access QtAda6.QtCore.QPoint.Inst'Class; c_P : int);
+   procedure setPixelColor (self : access Inst; x_P : int; y_P : int; c_P : access QtAda6.QtGui.QColor.Inst'Class);
+   procedure setPixelColor (self : access Inst; x_P : int; y_P : int; c_P : access QtAda6.QtGui.QRgba64.Inst'Class);
+   procedure setPixelColor (self : access Inst; x_P : int; y_P : int; c_P : Any);
+   procedure setPixelColor
+     (self : access Inst; x_P : int; y_P : int; c_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure setPixelColor (self : access Inst; x_P : int; y_P : int; c_P : str);
+   procedure setPixelColor (self : access Inst; x_P : int; y_P : int; c_P : int);
    procedure setText (self : access Inst; key_P : str; value_P : str);
    function size (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class;
    function sizeInBytes (self : access Inst) return int;
    function smoothScaled (self : access Inst; w_P : int; h_P : int) return access QtAda6.QtGui.QImage.Inst'Class;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtGui_QImage_str);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QImage.Inst'Class);
+   procedure swap (self : access Inst; other_P : str);
    function text (self : access Inst; key_P : str := "") return str;
    function textKeys (self : access Inst) return LIST_str;
    function toImageFormat

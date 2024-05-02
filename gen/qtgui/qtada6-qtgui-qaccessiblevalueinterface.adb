@@ -21,7 +21,7 @@ package body QtAda6.QtGui.QAccessibleValueInterface is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleValueInterface");
       Args  := Tuple_New (0);
@@ -29,7 +29,7 @@ package body QtAda6.QtGui.QAccessibleValueInterface is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function currentValue (self : access Inst) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "currentValue");
       Args   := Tuple_New (0);
@@ -38,7 +38,7 @@ package body QtAda6.QtGui.QAccessibleValueInterface is
       return null;
    end currentValue;
    function maximumValue (self : access Inst) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "maximumValue");
       Args   := Tuple_New (0);
@@ -47,7 +47,7 @@ package body QtAda6.QtGui.QAccessibleValueInterface is
       return null;
    end maximumValue;
    function minimumStepSize (self : access Inst) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "minimumStepSize");
       Args   := Tuple_New (0);
@@ -56,7 +56,7 @@ package body QtAda6.QtGui.QAccessibleValueInterface is
       return null;
    end minimumStepSize;
    function minimumValue (self : access Inst) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "minimumValue");
       Args   := Tuple_New (0);
@@ -65,7 +65,7 @@ package body QtAda6.QtGui.QAccessibleValueInterface is
       return null;
    end minimumValue;
    procedure setCurrentValue (self : access Inst; value_P : Any) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentValue");
       Args   := Tuple_New (1);

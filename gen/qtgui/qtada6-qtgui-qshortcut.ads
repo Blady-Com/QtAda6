@@ -8,12 +8,13 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtGui.QKeySequence.StandardKey;
 limited with QtAda6.QtCore.Qt.ShortcutContext;
-limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtGui.QKeySequence;
+limited with QtAda6.QtCore.QKeyCombination;
+limited with QtAda6.QtCore.QEvent;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QShortcut is
    type Inst;
    type Inst_Access is access all Inst;
@@ -21,8 +22,6 @@ package QtAda6.QtGui.QShortcut is
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
    type CALLABLE is new Any;
-   type UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int is
-     new Any;
    subtype LIST_QtAda6_QtGui_QKeySequence is QtAda6.QtGui.QKeySequence.Class_Array;
    subtype SEQUENCE_QtAda6_QtGui_QKeySequence is QtAda6.QtGui.QKeySequence.Class_Array;
    procedure Finalize (Self : in out Class);
@@ -34,17 +33,39 @@ package QtAda6.QtGui.QShortcut is
       arg_2_P : access QtAda6.QtCore.QObject.Inst'Class; arg_3_P : CALLABLE;
       arg_4_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class;
    function Create
-     (arg_1_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
-      arg_2_P : access QtAda6.QtCore.QObject.Inst'Class; arg_3_P : CALLABLE;
+     (arg_1_P : access QtAda6.QtGui.QKeySequence.Inst'Class; arg_2_P : access QtAda6.QtCore.QObject.Inst'Class;
+      arg_3_P : CALLABLE; arg_4_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class;
+   function Create
+     (arg_1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class; arg_2_P : access QtAda6.QtCore.QObject.Inst'Class;
+      arg_3_P : CALLABLE; arg_4_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class;
+-- function Create(arg_1_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class;arg_2_P : access QtAda6.QtCore.QObject.Inst'Class;arg_3_P : CALLABLE;arg_4_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class;
+   function Create
+     (arg_1_P : str; arg_2_P : access QtAda6.QtCore.QObject.Inst'Class; arg_3_P : CALLABLE;
+      arg_4_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class;
+   function Create
+     (arg_1_P : int; arg_2_P : access QtAda6.QtCore.QObject.Inst'Class; arg_3_P : CALLABLE;
       arg_4_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class;
    function Create
      (key_P     : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class;
-      parent_P  : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes := ""; ambiguousMember_P : bytes := "";
+      parent_P  : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes := null; ambiguousMember_P : bytes := null;
       context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class;
    function Create
-     (key_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
-      parent_P  : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes := ""; ambiguousMember_P : bytes := "";
+     (key_P     : access QtAda6.QtGui.QKeySequence.Inst'Class; parent_P : access QtAda6.QtCore.QObject.Inst'Class;
+      member_P  : bytes                                              := null; ambiguousMember_P : bytes := null;
       context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class;
+   function Create
+     (key_P     : access QtAda6.QtCore.QKeyCombination.Inst'Class; parent_P : access QtAda6.QtCore.QObject.Inst'Class;
+      member_P  : bytes                                              := null; ambiguousMember_P : bytes := null;
+      context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class;
+-- function Create(key_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class;parent_P : access QtAda6.QtCore.QObject.Inst'Class;member_P : bytes := null;ambiguousMember_P : bytes := null;context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return Class;
+   function Create
+     (key_P             : str; parent_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes := null;
+      ambiguousMember_P : bytes := null; context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null)
+      return Class;
+   function Create
+     (key_P             : int; parent_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes := null;
+      ambiguousMember_P : bytes := null; context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null)
+      return Class;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class) return Class;
    function autoRepeat (self : access Inst) return bool;
    function context (self : access Inst) return access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class;
@@ -56,9 +77,11 @@ package QtAda6.QtGui.QShortcut is
    procedure setAutoRepeat (self : access Inst; on_P : bool);
    procedure setContext (self : access Inst; context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class);
    procedure setEnabled (self : access Inst; enable_P : bool);
-   procedure setKey
-     (self  : access Inst;
-      key_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int);
+   procedure setKey (self : access Inst; key_P : access QtAda6.QtGui.QKeySequence.Inst'Class);
+   procedure setKey (self : access Inst; key_P : access QtAda6.QtCore.QKeyCombination.Inst'Class);
+   procedure setKey (self : access Inst; key_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class);
+   procedure setKey (self : access Inst; key_P : str);
+   procedure setKey (self : access Inst; key_P : int);
    procedure setKeys (self : access Inst; key_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class);
    procedure setKeys (self : access Inst; keys_P : SEQUENCE_QtAda6_QtGui_QKeySequence);
    procedure setWhatsThis (self : access Inst; text_P : str);

@@ -26,8 +26,8 @@ package body QtAda6.QtGui.QPicture is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function Create (arg_1_P : UNION_QtAda6_QtGui_QPicture_int) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (arg_1_P : access QtAda6.QtGui.QPicture.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPicture");
       Args  := Tuple_New (1);
@@ -35,19 +35,17 @@ package body QtAda6.QtGui.QPicture is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (formatVersion_P : int := 0) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (arg_1_P : int) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPicture");
-      Args  := Tuple_New (0);
-      Dict  := Dict_New;
-      if formatVersion_P /= 0 then
-         Dict_SetItemString (Dict, "formatVersion", Long_FromLong (formatVersion_P));
-      end if;
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (arg_1_P));
+      Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPicture");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -59,7 +57,7 @@ package body QtAda6.QtGui.QPicture is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__lshift__");
@@ -74,7 +72,7 @@ package body QtAda6.QtGui.QPicture is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__rshift__");
@@ -86,8 +84,8 @@ package body QtAda6.QtGui.QPicture is
       return Ret;
    end U_rshift_U;
    function boundingRect (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "boundingRect");
       Args             := Tuple_New (0);
@@ -97,7 +95,7 @@ package body QtAda6.QtGui.QPicture is
       return Ret;
    end boundingRect;
    function data (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "data");
       Args   := Tuple_New (0);
@@ -106,7 +104,7 @@ package body QtAda6.QtGui.QPicture is
       return null;
    end data;
    function devType (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "devType");
       Args   := Tuple_New (0);
@@ -115,7 +113,7 @@ package body QtAda6.QtGui.QPicture is
       return Long_AsLong (Result);
    end devType;
    function isNull (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isNull");
       Args   := Tuple_New (0);
@@ -124,7 +122,7 @@ package body QtAda6.QtGui.QPicture is
       return To_Ada (Result);
    end isNull;
    function load (self : access Inst; dev_P : access QtAda6.QtCore.QIODevice.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "load");
       Args   := Tuple_New (1);
@@ -134,7 +132,7 @@ package body QtAda6.QtGui.QPicture is
       return To_Ada (Result);
    end load;
    function load (self : access Inst; fileName_P : str) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "load");
       Args   := Tuple_New (1);
@@ -145,7 +143,7 @@ package body QtAda6.QtGui.QPicture is
    end load;
    function metric (self : access Inst; m_P : access QtAda6.QtGui.QPaintDevice.PaintDeviceMetric.Inst'Class) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "metric");
       Args   := Tuple_New (1);
@@ -155,7 +153,7 @@ package body QtAda6.QtGui.QPicture is
       return Long_AsLong (Result);
    end metric;
    function paintEngine (self : access Inst) return access QtAda6.QtGui.QPaintEngine.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPaintEngine.Class := new QtAda6.QtGui.QPaintEngine.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "paintEngine");
@@ -166,7 +164,7 @@ package body QtAda6.QtGui.QPicture is
       return Ret;
    end paintEngine;
    function play (self : access Inst; p_P : access QtAda6.QtGui.QPainter.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "play");
       Args   := Tuple_New (1);
@@ -176,7 +174,7 @@ package body QtAda6.QtGui.QPicture is
       return To_Ada (Result);
    end play;
    function save (self : access Inst; dev_P : access QtAda6.QtCore.QIODevice.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "save");
       Args   := Tuple_New (1);
@@ -186,7 +184,7 @@ package body QtAda6.QtGui.QPicture is
       return To_Ada (Result);
    end save;
    function save (self : access Inst; fileName_P : str) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "save");
       Args   := Tuple_New (1);
@@ -196,7 +194,7 @@ package body QtAda6.QtGui.QPicture is
       return To_Ada (Result);
    end save;
    procedure setBoundingRect (self : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBoundingRect");
       Args   := Tuple_New (1);
@@ -205,16 +203,16 @@ package body QtAda6.QtGui.QPicture is
       Result := Object_Call (Method, Args, Dict, True);
    end setBoundingRect;
    procedure setData (self : access Inst; data_P : bytes) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setData");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (data_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (data_P.all)));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setData;
    function size (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "size");
       Args   := Tuple_New (0);
@@ -222,12 +220,21 @@ package body QtAda6.QtGui.QPicture is
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end size;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtGui_QPicture_int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QPicture.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end swap;
+   procedure swap (self : access Inst; other_P : int) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "swap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (other_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end swap;

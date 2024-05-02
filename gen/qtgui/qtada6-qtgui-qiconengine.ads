@@ -11,9 +11,10 @@
 limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtGui.QIcon.Mode;
 limited with QtAda6.QtGui.QIcon.State;
+limited with QtAda6.QtGui.QPixmap;
+limited with QtAda6.QtGui.QImage;
 limited with QtAda6.QtGui.QPainter;
 limited with QtAda6.QtCore.QRect;
-limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtCore.QDataStream;
 package QtAda6.QtGui.QIconEngine is
    type Inst;
@@ -21,7 +22,6 @@ package QtAda6.QtGui.QIconEngine is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is new Any;
    subtype LIST_QtAda6_QtCore_QSize is QtAda6.QtCore.QSize.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create return Class;
@@ -34,8 +34,14 @@ package QtAda6.QtGui.QIconEngine is
      (self   : access Inst; fileName_P : str; size_P : access QtAda6.QtCore.QSize.Inst'Class;
       mode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class; state_P : access QtAda6.QtGui.QIcon.State.Inst'Class);
    procedure addPixmap
-     (self   : access Inst; pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str;
+     (self   : access Inst; pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class;
       mode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class; state_P : access QtAda6.QtGui.QIcon.State.Inst'Class);
+   procedure addPixmap
+     (self   : access Inst; pixmap_P : access QtAda6.QtGui.QImage.Inst'Class;
+      mode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class; state_P : access QtAda6.QtGui.QIcon.State.Inst'Class);
+   procedure addPixmap
+     (self    : access Inst; pixmap_P : str; mode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class;
+      state_P : access QtAda6.QtGui.QIcon.State.Inst'Class);
    function availableSizes
      (self    : access Inst; mode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class := null;
       state_P : access QtAda6.QtGui.QIcon.State.Inst'Class := null) return LIST_QtAda6_QtCore_QSize;

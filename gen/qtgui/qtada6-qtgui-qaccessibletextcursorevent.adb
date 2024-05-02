@@ -23,7 +23,7 @@ package body QtAda6.QtGui.QAccessibleTextCursorEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (iface_P : access QtAda6.QtGui.QAccessibleInterface.Inst'Class; cursorPos_P : int) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTextCursorEvent");
       Args  := Tuple_New (2);
@@ -33,7 +33,7 @@ package body QtAda6.QtGui.QAccessibleTextCursorEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (obj_P : access QtAda6.QtCore.QObject.Inst'Class; cursorPos_P : int) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTextCursorEvent");
       Args  := Tuple_New (2);
@@ -43,7 +43,7 @@ package body QtAda6.QtGui.QAccessibleTextCursorEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function cursorPosition (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cursorPosition");
       Args   := Tuple_New (0);
@@ -52,7 +52,7 @@ package body QtAda6.QtGui.QAccessibleTextCursorEvent is
       return Long_AsLong (Result);
    end cursorPosition;
    procedure setCursorPosition (self : access Inst; position_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCursorPosition");
       Args   := Tuple_New (1);

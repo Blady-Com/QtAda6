@@ -11,6 +11,8 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtGui.QPixmapCache.Key;
+with QtAda6.QtGui.QPixmap;
+with QtAda6.QtGui.QImage;
 package body QtAda6.QtGui.QPixmapCache is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -22,7 +24,7 @@ package body QtAda6.QtGui.QPixmapCache is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
       Args  := Tuple_New (0);
@@ -30,7 +32,7 @@ package body QtAda6.QtGui.QPixmapCache is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function cacheLimit return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
       Method := Object_GetAttrString (Class, "cacheLimit");
@@ -40,7 +42,7 @@ package body QtAda6.QtGui.QPixmapCache is
       return Long_AsLong (Result);
    end cacheLimit;
    procedure clear is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
       Method := Object_GetAttrString (Class, "clear");
@@ -49,10 +51,10 @@ package body QtAda6.QtGui.QPixmapCache is
       Result := Object_Call (Method, Args, Dict, True);
    end clear;
    function find
-     (key_P    : access QtAda6.QtGui.QPixmapCache.Key.Inst'Class;
-      pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str) return bool
+     (key_P : access QtAda6.QtGui.QPixmapCache.Key.Inst'Class; pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class)
+      return bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
       Method := Object_GetAttrString (Class, "find");
@@ -63,8 +65,35 @@ package body QtAda6.QtGui.QPixmapCache is
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end find;
-   function find (key_P : str; pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str) return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   function find
+     (key_P : access QtAda6.QtGui.QPixmapCache.Key.Inst'Class; pixmap_P : access QtAda6.QtGui.QImage.Inst'Class)
+      return bool
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
+      Method := Object_GetAttrString (Class, "find");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if key_P /= null then key_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if pixmap_P /= null then pixmap_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end find;
+   function find (key_P : access QtAda6.QtGui.QPixmapCache.Key.Inst'Class; pixmap_P : str) return bool is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
+      Method := Object_GetAttrString (Class, "find");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if key_P /= null then key_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (pixmap_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end find;
+   function find (key_P : str; pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class) return bool is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
       Method := Object_GetAttrString (Class, "find");
@@ -75,8 +104,32 @@ package body QtAda6.QtGui.QPixmapCache is
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end find;
+   function find (key_P : str; pixmap_P : access QtAda6.QtGui.QImage.Inst'Class) return bool is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
+      Method := Object_GetAttrString (Class, "find");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (key_P));
+      Tuple_SetItem (Args, 1, (if pixmap_P /= null then pixmap_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end find;
+   function find (key_P : str; pixmap_P : str) return bool is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
+      Method := Object_GetAttrString (Class, "find");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (key_P));
+      Tuple_SetItem (Args, 1, Unicode_FromString (pixmap_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end find;
    procedure find (self : access Inst; arg_1_P : access QtAda6.QtGui.QPixmapCache.Key.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "find");
       Args   := Tuple_New (1);
@@ -85,7 +138,7 @@ package body QtAda6.QtGui.QPixmapCache is
       Result := Object_Call (Method, Args, Dict, True);
    end find;
    procedure find (self : access Inst; arg_1_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "find");
       Args   := Tuple_New (1);
@@ -93,8 +146,8 @@ package body QtAda6.QtGui.QPixmapCache is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end find;
-   function insert (key_P : str; pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str) return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   function insert (key_P : str; pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class) return bool is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
       Method := Object_GetAttrString (Class, "insert");
@@ -105,11 +158,34 @@ package body QtAda6.QtGui.QPixmapCache is
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end insert;
+   function insert (key_P : str; pixmap_P : access QtAda6.QtGui.QImage.Inst'Class) return bool is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
+      Method := Object_GetAttrString (Class, "insert");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (key_P));
+      Tuple_SetItem (Args, 1, (if pixmap_P /= null then pixmap_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end insert;
+   function insert (key_P : str; pixmap_P : str) return bool is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
+      Method := Object_GetAttrString (Class, "insert");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (key_P));
+      Tuple_SetItem (Args, 1, Unicode_FromString (pixmap_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end insert;
    function insert
-     (pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str)
-      return access QtAda6.QtGui.QPixmapCache.Key.Inst'Class
+     (pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class) return access QtAda6.QtGui.QPixmapCache.Key.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPixmapCache.Key.Class := new QtAda6.QtGui.QPixmapCache.Key.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
@@ -121,8 +197,36 @@ package body QtAda6.QtGui.QPixmapCache is
       Ret.Python_Proxy := Result;
       return Ret;
    end insert;
+   function insert
+     (pixmap_P : access QtAda6.QtGui.QImage.Inst'Class) return access QtAda6.QtGui.QPixmapCache.Key.Inst'Class
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmapCache.Key.Class := new QtAda6.QtGui.QPixmapCache.Key.Inst;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
+      Method := Object_GetAttrString (Class, "insert");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pixmap_P /= null then pixmap_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end insert;
+   function insert (pixmap_P : str) return access QtAda6.QtGui.QPixmapCache.Key.Inst'Class is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmapCache.Key.Class := new QtAda6.QtGui.QPixmapCache.Key.Inst;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
+      Method := Object_GetAttrString (Class, "insert");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (pixmap_P));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end insert;
    procedure remove (key_P : access QtAda6.QtGui.QPixmapCache.Key.Inst'Class) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
       Method := Object_GetAttrString (Class, "remove");
@@ -132,7 +236,7 @@ package body QtAda6.QtGui.QPixmapCache is
       Result := Object_Call (Method, Args, Dict, True);
    end remove;
    procedure remove (key_P : str) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
       Method := Object_GetAttrString (Class, "remove");
@@ -142,10 +246,10 @@ package body QtAda6.QtGui.QPixmapCache is
       Result := Object_Call (Method, Args, Dict, True);
    end remove;
    function replace
-     (key_P    : access QtAda6.QtGui.QPixmapCache.Key.Inst'Class;
-      pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str) return bool
+     (key_P : access QtAda6.QtGui.QPixmapCache.Key.Inst'Class; pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class)
+      return bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
       Method := Object_GetAttrString (Class, "replace");
@@ -156,8 +260,35 @@ package body QtAda6.QtGui.QPixmapCache is
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end replace;
+   function replace
+     (key_P : access QtAda6.QtGui.QPixmapCache.Key.Inst'Class; pixmap_P : access QtAda6.QtGui.QImage.Inst'Class)
+      return bool
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
+      Method := Object_GetAttrString (Class, "replace");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if key_P /= null then key_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if pixmap_P /= null then pixmap_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end replace;
+   function replace (key_P : access QtAda6.QtGui.QPixmapCache.Key.Inst'Class; pixmap_P : str) return bool is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
+      Method := Object_GetAttrString (Class, "replace");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if key_P /= null then key_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (pixmap_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end replace;
    procedure setCacheLimit (arg_1_P : int) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPixmapCache");
       Method := Object_GetAttrString (Class, "setCacheLimit");

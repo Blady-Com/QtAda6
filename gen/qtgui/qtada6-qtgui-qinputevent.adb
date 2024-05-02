@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QInputEvent;
 with QtAda6.QtCore.QEvent.Type_K;
 with QtAda6.QtGui.QInputDevice;
 with QtAda6.QtCore.Qt.KeyboardModifier;
@@ -26,7 +25,7 @@ package body QtAda6.QtGui.QInputEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QInputEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputEvent");
       Args  := Tuple_New (1);
@@ -38,7 +37,7 @@ package body QtAda6.QtGui.QInputEvent is
      (type_K_P : access QtAda6.QtCore.QEvent.Type_K.Inst'Class; m_dev_P : access QtAda6.QtGui.QInputDevice.Inst'Class;
       modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputEvent");
       Args  := Tuple_New (2);
@@ -51,7 +50,7 @@ package body QtAda6.QtGui.QInputEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function clone (self : access Inst) return access QtAda6.QtGui.QInputEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QInputEvent.Class := new QtAda6.QtGui.QInputEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
@@ -62,7 +61,7 @@ package body QtAda6.QtGui.QInputEvent is
       return Ret;
    end clone;
    function device (self : access Inst) return access QtAda6.QtGui.QInputDevice.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QInputDevice.Class := new QtAda6.QtGui.QInputDevice.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "device");
@@ -73,7 +72,7 @@ package body QtAda6.QtGui.QInputEvent is
       return Ret;
    end device;
    function deviceType (self : access Inst) return access QtAda6.QtGui.QInputDevice.DeviceType.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QInputDevice.DeviceType.Class := new QtAda6.QtGui.QInputDevice.DeviceType.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "deviceType");
@@ -84,7 +83,7 @@ package body QtAda6.QtGui.QInputEvent is
       return Ret;
    end deviceType;
    function modifiers (self : access Inst) return access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.KeyboardModifier.Class := new QtAda6.QtCore.Qt.KeyboardModifier.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "modifiers");
@@ -95,7 +94,7 @@ package body QtAda6.QtGui.QInputEvent is
       return Ret;
    end modifiers;
    procedure setModifiers (self : access Inst; modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setModifiers");
       Args   := Tuple_New (1);
@@ -104,7 +103,7 @@ package body QtAda6.QtGui.QInputEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setModifiers;
    procedure setTimestamp (self : access Inst; timestamp_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTimestamp");
       Args   := Tuple_New (1);
@@ -113,7 +112,7 @@ package body QtAda6.QtGui.QInputEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setTimestamp;
    function timestamp (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "timestamp");
       Args   := Tuple_New (0);

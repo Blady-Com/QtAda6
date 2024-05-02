@@ -21,7 +21,7 @@ package body QtAda6.QtGui.QAccessibleEditableTextInterface is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleEditableTextInterface");
       Args  := Tuple_New (0);
@@ -29,7 +29,7 @@ package body QtAda6.QtGui.QAccessibleEditableTextInterface is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure deleteText (self : access Inst; startOffset_P : int; endOffset_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "deleteText");
       Args   := Tuple_New (2);
@@ -39,7 +39,7 @@ package body QtAda6.QtGui.QAccessibleEditableTextInterface is
       Result := Object_Call (Method, Args, Dict, True);
    end deleteText;
    procedure insertText (self : access Inst; offset_P : int; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertText");
       Args   := Tuple_New (2);
@@ -49,7 +49,7 @@ package body QtAda6.QtGui.QAccessibleEditableTextInterface is
       Result := Object_Call (Method, Args, Dict, True);
    end insertText;
    procedure replaceText (self : access Inst; startOffset_P : int; endOffset_P : int; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "replaceText");
       Args   := Tuple_New (3);

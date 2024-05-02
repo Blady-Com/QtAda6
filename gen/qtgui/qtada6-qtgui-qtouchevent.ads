@@ -11,7 +11,7 @@
 limited with QtAda6.QtCore.QEvent.Type_K;
 limited with QtAda6.QtGui.QPointingDevice;
 limited with QtAda6.QtCore.Qt.KeyboardModifier;
-with QtAda6.QtGui.QEventPoint;
+limited with QtAda6.QtGui.QEventPoint;
 limited with QtAda6.QtCore.QObject;
 with QtAda6.QtGui.QPointerEvent;
 package QtAda6.QtGui.QTouchEvent is
@@ -28,7 +28,7 @@ package QtAda6.QtGui.QTouchEvent is
      (eventType_P   : access QtAda6.QtCore.QEvent.Type_K.Inst'Class;
       device_P      : access QtAda6.QtGui.QPointingDevice.Inst'Class      := null;
       modifiers_P   : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
-      touchPoints_P : SEQUENCE_QtAda6_QtGui_QEventPoint                   := (2 .. 1 => <>)) return Class;
+      touchPoints_P : SEQUENCE_QtAda6_QtGui_QEventPoint) return Class;
    function U_repr_U (self : access Inst) return access Object'Class;
    function clone (self : access Inst) return access QtAda6.QtGui.QTouchEvent.Inst'Class;
    function isBeginEvent (self : access Inst) return bool;

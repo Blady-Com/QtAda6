@@ -17,10 +17,7 @@ package QtAda6.QtGui.QOpenGLFunctions is
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
    type SEQUENCE_int is array (Positive range <>) of int;
-   type UNION_bool_LIST_Any is new Any;
-   type UNION_float_LIST_Any is new Any;
    type SEQUENCE_float is array (Positive range <>) of float;
-   type UNION_int_LIST_Any is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (context_P : access QtAda6.QtGui.QOpenGLContext.Inst'Class) return Class;
@@ -90,14 +87,14 @@ package QtAda6.QtGui.QOpenGLFunctions is
    procedure glGetAttachedShaders
      (self : access Inst; program_P : int; maxcount_P : int; count_P : SEQUENCE_int; shaders_P : SEQUENCE_int);
    function glGetAttribLocation (self : access Inst; program_P : int; name_P : bytes) return int;
-   function glGetBooleanv (self : access Inst; pname_P : int) return UNION_bool_LIST_Any;
+   function glGetBooleanv (self : access Inst; pname_P : int) return bool;
    procedure glGetBufferParameteriv (self : access Inst; target_P : int; pname_P : int; params_P : SEQUENCE_int);
    function glGetError (self : access Inst) return int;
-   function glGetFloatv (self : access Inst; arg_1_P : int) return UNION_float_LIST_Any;
+   function glGetFloatv (self : access Inst; arg_1_P : int) return float;
    procedure glGetFloatv (self : access Inst; pname_P : int; params_P : SEQUENCE_float);
    procedure glGetFramebufferAttachmentParameteriv
      (self : access Inst; target_P : int; attachment_P : int; pname_P : int; params_P : SEQUENCE_int);
-   function glGetIntegerv (self : access Inst; arg_1_P : int) return UNION_int_LIST_Any;
+   function glGetIntegerv (self : access Inst; arg_1_P : int) return int;
    procedure glGetIntegerv (self : access Inst; pname_P : int; params_P : SEQUENCE_int);
    procedure glGetProgramiv (self : access Inst; program_P : int; pname_P : int; params_P : SEQUENCE_int);
    procedure glGetRenderbufferParameteriv (self : access Inst; target_P : int; pname_P : int; params_P : SEQUENCE_int);

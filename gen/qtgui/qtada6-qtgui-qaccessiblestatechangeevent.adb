@@ -27,7 +27,7 @@ package body QtAda6.QtGui.QAccessibleStateChangeEvent is
      (iface_P : access QtAda6.QtGui.QAccessibleInterface.Inst'Class;
       state_P : access QtAda6.QtGui.QAccessible.State.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleStateChangeEvent");
       Args  := Tuple_New (2);
@@ -40,7 +40,7 @@ package body QtAda6.QtGui.QAccessibleStateChangeEvent is
      (obj_P : access QtAda6.QtCore.QObject.Inst'Class; state_P : access QtAda6.QtGui.QAccessible.State.Inst'Class)
       return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleStateChangeEvent");
       Args  := Tuple_New (2);
@@ -50,7 +50,7 @@ package body QtAda6.QtGui.QAccessibleStateChangeEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function changedStates (self : access Inst) return access QtAda6.QtGui.QAccessible.State.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessible.State.Class := new QtAda6.QtGui.QAccessible.State.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "changedStates");

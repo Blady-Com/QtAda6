@@ -12,7 +12,6 @@ with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtGui.QAccessibleActionInterface;
 with QtAda6.QtGui.QColor;
-with QtAda6.QtGui.QAccessibleInterface;
 with QtAda6.QtGui.QAccessibleEditableTextInterface;
 with QtAda6.QtGui.QAccessible.InterfaceType;
 with QtAda6.QtCore.QObject;
@@ -36,7 +35,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleInterface");
       Args  := Tuple_New (0);
@@ -44,7 +43,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function actionInterface (self : access Inst) return access QtAda6.QtGui.QAccessibleActionInterface.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleActionInterface.Class := new QtAda6.QtGui.QAccessibleActionInterface.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "actionInterface");
@@ -55,8 +54,8 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return Ret;
    end actionInterface;
    function backgroundColor (self : access Inst) return access QtAda6.QtGui.QColor.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "backgroundColor");
       Args             := Tuple_New (0);
@@ -66,7 +65,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return Ret;
    end backgroundColor;
    function child (self : access Inst; index_P : int) return access QtAda6.QtGui.QAccessibleInterface.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleInterface.Class := new QtAda6.QtGui.QAccessibleInterface.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "child");
@@ -80,7 +79,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
    function childAt
      (self : access Inst; x_P : int; y_P : int) return access QtAda6.QtGui.QAccessibleInterface.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleInterface.Class := new QtAda6.QtGui.QAccessibleInterface.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "childAt");
@@ -93,7 +92,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return Ret;
    end childAt;
    function childCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "childCount");
       Args   := Tuple_New (0);
@@ -104,8 +103,8 @@ package body QtAda6.QtGui.QAccessibleInterface is
    function editableTextInterface
      (self : access Inst) return access QtAda6.QtGui.QAccessibleEditableTextInterface.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAccessibleEditableTextInterface.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QAccessibleEditableTextInterface.Class :=
         new QtAda6.QtGui.QAccessibleEditableTextInterface.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "editableTextInterface");
@@ -116,7 +115,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return Ret;
    end editableTextInterface;
    function focusChild (self : access Inst) return access QtAda6.QtGui.QAccessibleInterface.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleInterface.Class := new QtAda6.QtGui.QAccessibleInterface.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "focusChild");
@@ -127,8 +126,8 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return Ret;
    end focusChild;
    function foregroundColor (self : access Inst) return access QtAda6.QtGui.QColor.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "foregroundColor");
       Args             := Tuple_New (0);
@@ -139,7 +138,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
    end foregroundColor;
    function indexOfChild (self : access Inst; arg_1_P : access QtAda6.QtGui.QAccessibleInterface.Inst'Class) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOfChild");
       Args   := Tuple_New (1);
@@ -151,7 +150,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
    function interface_cast
      (self : access Inst; arg_1_P : access QtAda6.QtGui.QAccessible.InterfaceType.Inst'Class) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "interface_cast");
       Args   := Tuple_New (1);
@@ -161,7 +160,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return Long_AsLong (Result);
    end interface_cast;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -170,8 +169,8 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return To_Ada (Result);
    end isValid;
    function object (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "object");
       Args             := Tuple_New (0);
@@ -181,7 +180,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return Ret;
    end object;
    function parent (self : access Inst) return access QtAda6.QtGui.QAccessibleInterface.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleInterface.Class := new QtAda6.QtGui.QAccessibleInterface.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "parent");
@@ -192,8 +191,8 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return Ret;
    end parent;
    function rect (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "rect");
       Args             := Tuple_New (0);
@@ -206,7 +205,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
      (self : access Inst; match_P : access QtAda6.QtGui.QAccessible.RelationFlag.Inst'Class := null)
       return LIST_TUPLE_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "relations");
       Args   := Tuple_New (0);
@@ -215,10 +214,29 @@ package body QtAda6.QtGui.QAccessibleInterface is
          Dict_SetItemString (Dict, "match", match_P.Python_Proxy);
       end if;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return
+        Ret : LIST_TUPLE_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag
+          (1 .. Natural (List_Size (Result)))
+      do
+         for Ind in Ret'Range loop
+            declare
+               function TI
+                 (CI : ssize_t) return TUPLE_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag
+               is
+               begin
+                  return Ret : TUPLE_QtAda6_QtGui_QAccessibleInterface_QtAda6_QtGui_QAccessible_RelationFlag do
+                     Ret.C0.Python_Proxy := Tuple_GetItem (List_GetItem (Result, CI), 0);
+                     Ret.C1.Python_Proxy := Tuple_GetItem (List_GetItem (Result, CI), 1);
+                  end return;
+               end TI;
+            begin
+               Ret (Ind) := TI (ssize_t (Ind - Ret'First));
+            end;
+         end loop;
+      end return;
    end relations;
    function role (self : access Inst) return access QtAda6.QtGui.QAccessible.Role.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessible.Role.Class := new QtAda6.QtGui.QAccessible.Role.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "role");
@@ -229,7 +247,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return Ret;
    end role;
    procedure setText (self : access Inst; t_P : access QtAda6.QtGui.QAccessible.Text.Inst'Class; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setText");
       Args   := Tuple_New (2);
@@ -239,7 +257,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
       Result := Object_Call (Method, Args, Dict, True);
    end setText;
    function state (self : access Inst) return access QtAda6.QtGui.QAccessible.State.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessible.State.Class := new QtAda6.QtGui.QAccessible.State.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "state");
@@ -251,8 +269,8 @@ package body QtAda6.QtGui.QAccessibleInterface is
    end state;
    function tableCellInterface (self : access Inst) return access QtAda6.QtGui.QAccessibleTableCellInterface.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAccessibleTableCellInterface.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QAccessibleTableCellInterface.Class :=
         new QtAda6.QtGui.QAccessibleTableCellInterface.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "tableCellInterface");
@@ -263,7 +281,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return Ret;
    end tableCellInterface;
    function text (self : access Inst; t_P : access QtAda6.QtGui.QAccessible.Text.Inst'Class) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "text");
       Args   := Tuple_New (1);
@@ -273,7 +291,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return As_String (Result);
    end text;
    function textInterface (self : access Inst) return access QtAda6.QtGui.QAccessibleTextInterface.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleTextInterface.Class := new QtAda6.QtGui.QAccessibleTextInterface.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "textInterface");
@@ -284,7 +302,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return Ret;
    end textInterface;
    function valueInterface (self : access Inst) return access QtAda6.QtGui.QAccessibleValueInterface.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleValueInterface.Class := new QtAda6.QtGui.QAccessibleValueInterface.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "valueInterface");
@@ -295,7 +313,7 @@ package body QtAda6.QtGui.QAccessibleInterface is
       return Ret;
    end valueInterface;
    procedure virtual_hook (self : access Inst; id_P : int; data_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "virtual_hook");
       Args   := Tuple_New (2);
@@ -305,8 +323,8 @@ package body QtAda6.QtGui.QAccessibleInterface is
       Result := Object_Call (Method, Args, Dict, True);
    end virtual_hook;
    function window (self : access Inst) return access QtAda6.QtGui.QWindow.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QWindow.Class := new QtAda6.QtGui.QWindow.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QWindow.Class := new QtAda6.QtGui.QWindow.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "window");
       Args             := Tuple_New (0);

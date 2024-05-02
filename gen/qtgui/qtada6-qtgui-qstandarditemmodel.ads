@@ -8,18 +8,19 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtGui.QStandardItem;
+limited with QtAda6.QtCore.QModelIndex;
+limited with QtAda6.QtCore.QPersistentModelIndex;
 limited with QtAda6.QtCore.QMimeData;
 limited with QtAda6.QtCore.Qt.DropAction;
 limited with QtAda6.QtCore.Qt.MatchFlag;
 limited with QtAda6.QtCore.Qt.ItemFlag;
 limited with QtAda6.QtCore.Qt.Orientation;
-limited with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtCore.Qt.SortOrder;
 with QtAda6.QtCore.QAbstractItemModel;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QStandardItemModel is
    type Inst;
    type Inst_Access is access all Inst;
@@ -27,7 +28,6 @@ package QtAda6.QtGui.QStandardItemModel is
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QAbstractItemModel.Inst with null record;
    subtype SEQUENCE_QtAda6_QtGui_QStandardItem is QtAda6.QtGui.QStandardItem.Class_Array;
-   type UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is new Any;
    subtype LIST_QtAda6_QtGui_QStandardItem is QtAda6.QtGui.QStandardItem.Class_Array;
    type DICT_int_Any is record
       C0 : int;
@@ -50,62 +50,89 @@ package QtAda6.QtGui.QStandardItemModel is
    procedure appendRow (self : access Inst; item_P : access QtAda6.QtGui.QStandardItem.Inst'Class);
    procedure appendRow (self : access Inst; items_P : SEQUENCE_QtAda6_QtGui_QStandardItem);
    procedure clear (self : access Inst);
+   function clearItemData (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool;
    function clearItemData
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool;
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool;
+   function columnCount (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return int;
    function columnCount
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null)
-      return int;
+     (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return int;
    function data
-     (self   : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
-      role_P : int := 0) return Any;
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class; role_P : int := 0) return Any;
+   function data
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class; role_P : int := 0)
+      return Any;
    function dropMimeData
      (self     : access Inst; data_P : access QtAda6.QtCore.QMimeData.Inst'Class;
       action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class; row_P : int; column_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool;
+      parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool;
+   function dropMimeData
+     (self     : access Inst; data_P : access QtAda6.QtCore.QMimeData.Inst'Class;
+      action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class; row_P : int; column_P : int;
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool;
    function findItems
      (self     : access Inst; text_P : str; flags_P : access QtAda6.QtCore.Qt.MatchFlag.Inst'Class := null;
       column_P : int := 0) return LIST_QtAda6_QtGui_QStandardItem;
    function flags
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
+      return access QtAda6.QtCore.Qt.ItemFlag.Inst'Class;
+   function flags
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
       return access QtAda6.QtCore.Qt.ItemFlag.Inst'Class;
    function hasChildren
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null)
-      return bool;
+     (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return bool;
+   function hasChildren
+     (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return bool;
    function headerData
      (self   : access Inst; section_P : int; orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class;
       role_P : int := 0) return Any;
    function horizontalHeaderItem
      (self : access Inst; column_P : int) return access QtAda6.QtGui.QStandardItem.Inst'Class;
    function index
+     (self : access Inst; row_P : int; column_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class;
+   function index
      (self     : access Inst; row_P : int; column_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null)
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null)
       return access QtAda6.QtCore.QModelIndex.Inst'Class;
    function indexFromItem
      (self : access Inst; item_P : access QtAda6.QtGui.QStandardItem.Inst'Class)
       return access QtAda6.QtCore.QModelIndex.Inst'Class;
    procedure insertColumn (self : access Inst; column_P : int; items_P : SEQUENCE_QtAda6_QtGui_QStandardItem);
    function insertColumn
-     (self     : access Inst; column_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null) return bool;
+     (self : access Inst; column_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return bool;
+   function insertColumn
+     (self : access Inst; column_P : int; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null)
+      return bool;
+   function insertColumns
+     (self : access Inst; column_P : int; count_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null)
+      return bool;
    function insertColumns
      (self     : access Inst; column_P : int; count_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null) return bool;
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return bool;
    procedure insertRow (self : access Inst; row_P : int; item_P : access QtAda6.QtGui.QStandardItem.Inst'Class);
    procedure insertRow (self : access Inst; row_P : int; items_P : SEQUENCE_QtAda6_QtGui_QStandardItem);
    function insertRow
-     (self     : access Inst; row_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null) return bool;
+     (self : access Inst; row_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return bool;
+   function insertRow
+     (self : access Inst; row_P : int; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null)
+      return bool;
+   function insertRows
+     (self : access Inst; row_P : int; count_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null)
+      return bool;
    function insertRows
      (self     : access Inst; row_P : int; count_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null) return bool;
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return bool;
    function invisibleRootItem (self : access Inst) return access QtAda6.QtGui.QStandardItem.Inst'Class;
    function item
      (self : access Inst; row_P : int; column_P : int := 0) return access QtAda6.QtGui.QStandardItem.Inst'Class;
+   function itemData (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return DICT_int_Any;
    function itemData
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
-      return DICT_int_Any;
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return DICT_int_Any;
    function itemFromIndex
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
+      return access QtAda6.QtGui.QStandardItem.Inst'Class;
+   function itemFromIndex
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
       return access QtAda6.QtGui.QStandardItem.Inst'Class;
    function itemPrototype (self : access Inst) return access QtAda6.QtGui.QStandardItem.Inst'Class;
    function mimeData
@@ -114,21 +141,33 @@ package QtAda6.QtGui.QStandardItemModel is
    function mimeTypes (self : access Inst) return LIST_str;
    function parent (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class;
    function parent
-     (self : access Inst; child_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; child_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class;
+   function parent
+     (self : access Inst; child_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
       return access QtAda6.QtCore.QModelIndex.Inst'Class;
    function removeColumns
+     (self : access Inst; column_P : int; count_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null)
+      return bool;
+   function removeColumns
      (self     : access Inst; column_P : int; count_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null) return bool;
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return bool;
+   function removeRows
+     (self : access Inst; row_P : int; count_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null)
+      return bool;
    function removeRows
      (self     : access Inst; row_P : int; count_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null) return bool;
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return bool;
    function roleNames (self : access Inst) return DICT_int_QtAda6_QtCore_QByteArray;
+   function rowCount (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return int;
    function rowCount
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null)
-      return int;
+     (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return int;
    procedure setColumnCount (self : access Inst; columns_P : int);
    function setData
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex; value_P : Any;
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class; value_P : Any; role_P : int := 0)
+      return bool;
+   function setData
+     (self   : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class; value_P : Any;
       role_P : int := 0) return bool;
    function setHeaderData
      (self    : access Inst; section_P : int; orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class;
@@ -140,8 +179,10 @@ package QtAda6.QtGui.QStandardItemModel is
      (self : access Inst; row_P : int; column_P : int; item_P : access QtAda6.QtGui.QStandardItem.Inst'Class);
    procedure setItem (self : access Inst; row_P : int; item_P : access QtAda6.QtGui.QStandardItem.Inst'Class);
    function setItemData
-     (self    : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
-      roles_P : DICT_int_Any) return bool;
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class; roles_P : DICT_int_Any) return bool;
+   function setItemData
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class; roles_P : DICT_int_Any)
+      return bool;
    procedure setItemPrototype (self : access Inst; item_P : access QtAda6.QtGui.QStandardItem.Inst'Class);
    procedure setItemRoleNames (self : access Inst; roleNames_P : DICT_int_QtAda6_QtCore_QByteArray);
    procedure setRowCount (self : access Inst; rows_P : int);

@@ -10,12 +10,12 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.Qt.DropAction;
 with QtAda6.QtGui.QPixmap;
 with QtAda6.QtCore.QPoint;
 with QtAda6.QtCore.QMimeData;
+with QtAda6.QtGui.QImage;
 package body QtAda6.QtGui.QDrag is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -35,7 +35,7 @@ package body QtAda6.QtGui.QDrag is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "targetChanged"));
    end targetChanged;
    function Create (dragSource_P : access QtAda6.QtCore.QObject.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QDrag");
       Args  := Tuple_New (1);
@@ -44,7 +44,7 @@ package body QtAda6.QtGui.QDrag is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure cancel is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QDrag");
       Method := Object_GetAttrString (Class, "cancel");
@@ -53,7 +53,7 @@ package body QtAda6.QtGui.QDrag is
       Result := Object_Call (Method, Args, Dict, True);
    end cancel;
    function defaultAction (self : access Inst) return access QtAda6.QtCore.Qt.DropAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "defaultAction");
@@ -67,8 +67,8 @@ package body QtAda6.QtGui.QDrag is
      (self : access Inst; action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class)
       return access QtAda6.QtGui.QPixmap.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dragCursor");
       Args   := Tuple_New (1);
@@ -83,7 +83,7 @@ package body QtAda6.QtGui.QDrag is
       defaultAction_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class)
       return access QtAda6.QtCore.Qt.DropAction.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec");
@@ -99,7 +99,7 @@ package body QtAda6.QtGui.QDrag is
      (self : access Inst; supportedActions_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class := null)
       return access QtAda6.QtCore.Qt.DropAction.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec");
@@ -116,7 +116,7 @@ package body QtAda6.QtGui.QDrag is
      (self    : access Inst; arg_1_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class;
       arg_2_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class) return access QtAda6.QtCore.Qt.DropAction.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec_");
@@ -132,7 +132,7 @@ package body QtAda6.QtGui.QDrag is
      (self : access Inst; supportedActions_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class := null)
       return access QtAda6.QtCore.Qt.DropAction.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec_");
@@ -146,8 +146,8 @@ package body QtAda6.QtGui.QDrag is
       return Ret;
    end exec_U;
    function hotSpot (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "hotSpot");
       Args             := Tuple_New (0);
@@ -157,7 +157,7 @@ package body QtAda6.QtGui.QDrag is
       return Ret;
    end hotSpot;
    function mimeData (self : access Inst) return access QtAda6.QtCore.QMimeData.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMimeData.Class := new QtAda6.QtCore.QMimeData.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "mimeData");
@@ -168,8 +168,8 @@ package body QtAda6.QtGui.QDrag is
       return Ret;
    end mimeData;
    function pixmap (self : access Inst) return access QtAda6.QtGui.QPixmap.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "pixmap");
       Args             := Tuple_New (0);
@@ -179,10 +179,10 @@ package body QtAda6.QtGui.QDrag is
       return Ret;
    end pixmap;
    procedure setDragCursor
-     (self     : access Inst; cursor_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str;
+     (self     : access Inst; cursor_P : access QtAda6.QtGui.QPixmap.Inst'Class;
       action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDragCursor");
       Args   := Tuple_New (2);
@@ -191,8 +191,33 @@ package body QtAda6.QtGui.QDrag is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setDragCursor;
+   procedure setDragCursor
+     (self     : access Inst; cursor_P : access QtAda6.QtGui.QImage.Inst'Class;
+      action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setDragCursor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if cursor_P /= null then cursor_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if action_P /= null then action_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setDragCursor;
+   procedure setDragCursor
+     (self : access Inst; cursor_P : str; action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setDragCursor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (cursor_P));
+      Tuple_SetItem (Args, 1, (if action_P /= null then action_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setDragCursor;
    procedure setHotSpot (self : access Inst; hotspot_P : access QtAda6.QtCore.QPoint.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHotSpot");
       Args   := Tuple_New (1);
@@ -201,7 +226,7 @@ package body QtAda6.QtGui.QDrag is
       Result := Object_Call (Method, Args, Dict, True);
    end setHotSpot;
    procedure setMimeData (self : access Inst; data_P : access QtAda6.QtCore.QMimeData.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMimeData");
       Args   := Tuple_New (1);
@@ -209,8 +234,8 @@ package body QtAda6.QtGui.QDrag is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setMimeData;
-   procedure setPixmap (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setPixmap (self : access Inst; arg_1_P : access QtAda6.QtGui.QPixmap.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPixmap");
       Args   := Tuple_New (1);
@@ -218,9 +243,27 @@ package body QtAda6.QtGui.QDrag is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setPixmap;
+   procedure setPixmap (self : access Inst; arg_1_P : access QtAda6.QtGui.QImage.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPixmap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPixmap;
+   procedure setPixmap (self : access Inst; arg_1_P : str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPixmap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (arg_1_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPixmap;
    function source (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "source");
       Args             := Tuple_New (0);
@@ -230,7 +273,7 @@ package body QtAda6.QtGui.QDrag is
       return Ret;
    end source;
    function supportedActions (self : access Inst) return access QtAda6.QtCore.Qt.DropAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "supportedActions");
@@ -241,8 +284,8 @@ package body QtAda6.QtGui.QDrag is
       return Ret;
    end supportedActions;
    function target (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "target");
       Args             := Tuple_New (0);

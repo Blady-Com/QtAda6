@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtGui.QUndoCommand;
 with QtAda6.QtGui.QAction;
@@ -51,7 +50,7 @@ package body QtAda6.QtGui.QUndoStack is
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "undoTextChanged"));
    end undoTextChanged;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QUndoStack");
       Args  := Tuple_New (0);
@@ -62,7 +61,7 @@ package body QtAda6.QtGui.QUndoStack is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure beginMacro (self : access Inst; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "beginMacro");
       Args   := Tuple_New (1);
@@ -71,7 +70,7 @@ package body QtAda6.QtGui.QUndoStack is
       Result := Object_Call (Method, Args, Dict, True);
    end beginMacro;
    function canRedo (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "canRedo");
       Args   := Tuple_New (0);
@@ -80,7 +79,7 @@ package body QtAda6.QtGui.QUndoStack is
       return To_Ada (Result);
    end canRedo;
    function canUndo (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "canUndo");
       Args   := Tuple_New (0);
@@ -89,7 +88,7 @@ package body QtAda6.QtGui.QUndoStack is
       return To_Ada (Result);
    end canUndo;
    function cleanIndex (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cleanIndex");
       Args   := Tuple_New (0);
@@ -98,7 +97,7 @@ package body QtAda6.QtGui.QUndoStack is
       return Long_AsLong (Result);
    end cleanIndex;
    procedure clear (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clear");
       Args   := Tuple_New (0);
@@ -106,7 +105,7 @@ package body QtAda6.QtGui.QUndoStack is
       Result := Object_Call (Method, Args, Dict, True);
    end clear;
    function command (self : access Inst; index_P : int) return access QtAda6.QtGui.QUndoCommand.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QUndoCommand.Class := new QtAda6.QtGui.QUndoCommand.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "command");
@@ -118,7 +117,7 @@ package body QtAda6.QtGui.QUndoStack is
       return Ret;
    end command;
    function count (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "count");
       Args   := Tuple_New (0);
@@ -130,8 +129,8 @@ package body QtAda6.QtGui.QUndoStack is
      (self : access Inst; parent_P : access QtAda6.QtCore.QObject.Inst'Class; prefix_P : str := "")
       return access QtAda6.QtGui.QAction.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "createRedoAction");
       Args   := Tuple_New (1);
@@ -148,8 +147,8 @@ package body QtAda6.QtGui.QUndoStack is
      (self : access Inst; parent_P : access QtAda6.QtCore.QObject.Inst'Class; prefix_P : str := "")
       return access QtAda6.QtGui.QAction.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "createUndoAction");
       Args   := Tuple_New (1);
@@ -163,7 +162,7 @@ package body QtAda6.QtGui.QUndoStack is
       return Ret;
    end createUndoAction;
    procedure endMacro (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "endMacro");
       Args   := Tuple_New (0);
@@ -171,7 +170,7 @@ package body QtAda6.QtGui.QUndoStack is
       Result := Object_Call (Method, Args, Dict, True);
    end endMacro;
    function index (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "index");
       Args   := Tuple_New (0);
@@ -180,7 +179,7 @@ package body QtAda6.QtGui.QUndoStack is
       return Long_AsLong (Result);
    end index;
    function isActive (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isActive");
       Args   := Tuple_New (0);
@@ -189,7 +188,7 @@ package body QtAda6.QtGui.QUndoStack is
       return To_Ada (Result);
    end isActive;
    function isClean (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isClean");
       Args   := Tuple_New (0);
@@ -198,7 +197,7 @@ package body QtAda6.QtGui.QUndoStack is
       return To_Ada (Result);
    end isClean;
    procedure push (self : access Inst; cmd_P : access QtAda6.QtGui.QUndoCommand.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "push");
       Args   := Tuple_New (1);
@@ -207,7 +206,7 @@ package body QtAda6.QtGui.QUndoStack is
       Result := Object_Call (Method, Args, Dict, True);
    end push;
    procedure redo (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "redo");
       Args   := Tuple_New (0);
@@ -215,7 +214,7 @@ package body QtAda6.QtGui.QUndoStack is
       Result := Object_Call (Method, Args, Dict, True);
    end redo;
    function redoText (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "redoText");
       Args   := Tuple_New (0);
@@ -224,7 +223,7 @@ package body QtAda6.QtGui.QUndoStack is
       return As_String (Result);
    end redoText;
    procedure resetClean (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resetClean");
       Args   := Tuple_New (0);
@@ -232,7 +231,7 @@ package body QtAda6.QtGui.QUndoStack is
       Result := Object_Call (Method, Args, Dict, True);
    end resetClean;
    procedure setActive (self : access Inst; active_P : bool := False) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setActive");
       Args   := Tuple_New (0);
@@ -243,7 +242,7 @@ package body QtAda6.QtGui.QUndoStack is
       Result := Object_Call (Method, Args, Dict, True);
    end setActive;
    procedure setClean (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setClean");
       Args   := Tuple_New (0);
@@ -251,7 +250,7 @@ package body QtAda6.QtGui.QUndoStack is
       Result := Object_Call (Method, Args, Dict, True);
    end setClean;
    procedure setIndex (self : access Inst; idx_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setIndex");
       Args   := Tuple_New (1);
@@ -260,7 +259,7 @@ package body QtAda6.QtGui.QUndoStack is
       Result := Object_Call (Method, Args, Dict, True);
    end setIndex;
    procedure setUndoLimit (self : access Inst; limit_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setUndoLimit");
       Args   := Tuple_New (1);
@@ -269,7 +268,7 @@ package body QtAda6.QtGui.QUndoStack is
       Result := Object_Call (Method, Args, Dict, True);
    end setUndoLimit;
    function text (self : access Inst; idx_P : int) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "text");
       Args   := Tuple_New (1);
@@ -279,7 +278,7 @@ package body QtAda6.QtGui.QUndoStack is
       return As_String (Result);
    end text;
    procedure undo (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "undo");
       Args   := Tuple_New (0);
@@ -287,7 +286,7 @@ package body QtAda6.QtGui.QUndoStack is
       Result := Object_Call (Method, Args, Dict, True);
    end undo;
    function undoLimit (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "undoLimit");
       Args   := Tuple_New (0);
@@ -296,7 +295,7 @@ package body QtAda6.QtGui.QUndoStack is
       return Long_AsLong (Result);
    end undoLimit;
    function undoText (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "undoText");
       Args   := Tuple_New (0);

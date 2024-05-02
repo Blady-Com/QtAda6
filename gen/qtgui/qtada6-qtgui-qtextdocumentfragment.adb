@@ -12,7 +12,6 @@ with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtGui.QTextDocument;
 with QtAda6.QtGui.QTextCursor;
-with QtAda6.QtGui.QTextDocumentFragment;
 with QtAda6.QtGui.QTextDocument.MarkdownFeature;
 package body QtAda6.QtGui.QTextDocumentFragment is
    use type QtAda6.int;
@@ -25,7 +24,7 @@ package body QtAda6.QtGui.QTextDocumentFragment is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocumentFragment");
       Args  := Tuple_New (0);
@@ -33,7 +32,7 @@ package body QtAda6.QtGui.QTextDocumentFragment is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (document_P : access QtAda6.QtGui.QTextDocument.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocumentFragment");
       Args  := Tuple_New (1);
@@ -42,7 +41,7 @@ package body QtAda6.QtGui.QTextDocumentFragment is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (range_K_P : access QtAda6.QtGui.QTextCursor.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocumentFragment");
       Args  := Tuple_New (1);
@@ -51,7 +50,7 @@ package body QtAda6.QtGui.QTextDocumentFragment is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (rhs_P : access QtAda6.QtGui.QTextDocumentFragment.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocumentFragment");
       Args  := Tuple_New (1);
@@ -60,7 +59,7 @@ package body QtAda6.QtGui.QTextDocumentFragment is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocumentFragment");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -72,7 +71,7 @@ package body QtAda6.QtGui.QTextDocumentFragment is
      (html_P : str; resourceProvider_P : access QtAda6.QtGui.QTextDocument.Inst'Class := null)
       return access QtAda6.QtGui.QTextDocumentFragment.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextDocumentFragment.Class := new QtAda6.QtGui.QTextDocumentFragment.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocumentFragment");
@@ -91,7 +90,7 @@ package body QtAda6.QtGui.QTextDocumentFragment is
      (markdown_P : str; features_P : access QtAda6.QtGui.QTextDocument.MarkdownFeature.Inst'Class := null)
       return access QtAda6.QtGui.QTextDocumentFragment.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextDocumentFragment.Class := new QtAda6.QtGui.QTextDocumentFragment.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocumentFragment");
@@ -107,7 +106,7 @@ package body QtAda6.QtGui.QTextDocumentFragment is
       return Ret;
    end fromMarkdown;
    function fromPlainText (plainText_P : str) return access QtAda6.QtGui.QTextDocumentFragment.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextDocumentFragment.Class := new QtAda6.QtGui.QTextDocumentFragment.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocumentFragment");
@@ -120,7 +119,7 @@ package body QtAda6.QtGui.QTextDocumentFragment is
       return Ret;
    end fromPlainText;
    function isEmpty (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEmpty");
       Args   := Tuple_New (0);
@@ -129,7 +128,7 @@ package body QtAda6.QtGui.QTextDocumentFragment is
       return To_Ada (Result);
    end isEmpty;
    function toHtml (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toHtml");
       Args   := Tuple_New (0);
@@ -140,7 +139,7 @@ package body QtAda6.QtGui.QTextDocumentFragment is
    function toMarkdown
      (self : access Inst; features_P : access QtAda6.QtGui.QTextDocument.MarkdownFeature.Inst'Class := null) return str
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toMarkdown");
       Args   := Tuple_New (0);
@@ -152,7 +151,7 @@ package body QtAda6.QtGui.QTextDocumentFragment is
       return As_String (Result);
    end toMarkdown;
    function toPlainText (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toPlainText");
       Args   := Tuple_New (0);
@@ -161,7 +160,7 @@ package body QtAda6.QtGui.QTextDocumentFragment is
       return As_String (Result);
    end toPlainText;
    function toRawText (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toRawText");
       Args   := Tuple_New (0);

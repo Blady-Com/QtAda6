@@ -9,8 +9,12 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtGui.QFontMetrics;
+limited with QtAda6.QtGui.QFont;
 limited with QtAda6.QtGui.QPaintDevice;
 limited with QtAda6.QtCore.QRectF;
+limited with QtAda6.QtCore.QRect;
+limited with QtAda6.QtGui.QTextOption;
+limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtCore.Qt.TextElideMode;
 limited with QtAda6.QtCore.QSizeF;
 package QtAda6.QtGui.QFontMetricsF is
@@ -19,26 +23,33 @@ package QtAda6.QtGui.QFontMetricsF is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtGui_QFontMetricsF_QtAda6_QtGui_QFontMetrics is new Any;
-   type UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str is new Any;
-   type UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect is new Any;
-   type UNION_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag is new Any;
+   type SEQUENCE_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function Create (arg_1_P : access QtAda6.QtGui.QFontMetrics.Inst'Class) return Class;
-   function Create (arg_1_P : UNION_QtAda6_QtGui_QFontMetricsF_QtAda6_QtGui_QFontMetrics) return Class;
-   function Create (font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str) return Class;
+   function Create (arg_1_P : access QtAda6.QtGui.QFontMetricsF.Inst'Class) return Class;
+-- function Create(arg_1_P : access QtAda6.QtGui.QFontMetrics.Inst'Class) return Class;
+   function Create (font_P : access QtAda6.QtGui.QFont.Inst'Class) return Class;
+   function Create (font_P : str) return Class;
+   function Create (font_P : SEQUENCE_str) return Class;
    function Create
-     (font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str; pd_P : access QtAda6.QtGui.QPaintDevice.Inst'Class)
-      return Class;
+     (font_P : access QtAda6.QtGui.QFont.Inst'Class; pd_P : access QtAda6.QtGui.QPaintDevice.Inst'Class) return Class;
+   function Create (font_P : str; pd_P : access QtAda6.QtGui.QPaintDevice.Inst'Class) return Class;
+   function Create (font_P : SEQUENCE_str; pd_P : access QtAda6.QtGui.QPaintDevice.Inst'Class) return Class;
    procedure U_copy_U;
    function ascent (self : access Inst) return float;
    function averageCharWidth (self : access Inst) return float;
    function boundingRect
-     (self       : access Inst; r_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect; flags_P : int; string_P : str;
-      tabstops_P : int; tabarray_P : access Object'Class := null) return access QtAda6.QtCore.QRectF.Inst'Class;
+     (self : access Inst; r_P : access QtAda6.QtCore.QRectF.Inst'Class; flags_P : int; string_P : str; tabstops_P : int;
+      tabarray_P : access Object'Class := null) return access QtAda6.QtCore.QRectF.Inst'Class;
+   function boundingRect
+     (self : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int; string_P : str; tabstops_P : int;
+      tabarray_P : access Object'Class := null) return access QtAda6.QtCore.QRectF.Inst'Class;
    function boundingRect (self : access Inst; string_P : str) return access QtAda6.QtCore.QRectF.Inst'Class;
    function boundingRect
-     (self : access Inst; text_P : str; textOption_P : UNION_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag)
+     (self : access Inst; text_P : str; textOption_P : access QtAda6.QtGui.QTextOption.Inst'Class)
+      return access QtAda6.QtCore.QRectF.Inst'Class;
+   function boundingRect
+     (self : access Inst; text_P : str; textOption_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class)
       return access QtAda6.QtCore.QRectF.Inst'Class;
    function boundingRectChar (self : access Inst; arg_1_P : int) return access QtAda6.QtCore.QRectF.Inst'Class;
    function capHeight (self : access Inst) return float;
@@ -50,8 +61,9 @@ package QtAda6.QtGui.QFontMetricsF is
    function height (self : access Inst) return float;
    function horizontalAdvance (self : access Inst; string_P : str; length_P : int := 0) return float;
    function horizontalAdvance
-     (self : access Inst; string_P : str; textOption_P : UNION_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag)
-      return float;
+     (self : access Inst; string_P : str; textOption_P : access QtAda6.QtGui.QTextOption.Inst'Class) return float;
+   function horizontalAdvance
+     (self : access Inst; string_P : str; textOption_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class) return float;
    function horizontalAdvanceChar (self : access Inst; arg_1_P : int) return float;
    function inFont (self : access Inst; arg_1_P : str) return bool;
    function inFontUcs4 (self : access Inst; ucs4_P : int) return bool;
@@ -68,10 +80,14 @@ package QtAda6.QtGui.QFontMetricsF is
      (self : access Inst; flags_P : int; str_P : str; tabstops_P : int; tabarray_P : access Object'Class := null)
       return access QtAda6.QtCore.QSizeF.Inst'Class;
    function strikeOutPos (self : access Inst) return float;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtGui_QFontMetricsF_QtAda6_QtGui_QFontMetrics);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QFontMetricsF.Inst'Class);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QFontMetrics.Inst'Class);
    function tightBoundingRect (self : access Inst; text_P : str) return access QtAda6.QtCore.QRectF.Inst'Class;
    function tightBoundingRect
-     (self : access Inst; text_P : str; textOption_P : UNION_QtAda6_QtGui_QTextOption_QtAda6_QtCore_Qt_AlignmentFlag)
+     (self : access Inst; text_P : str; textOption_P : access QtAda6.QtGui.QTextOption.Inst'Class)
+      return access QtAda6.QtCore.QRectF.Inst'Class;
+   function tightBoundingRect
+     (self : access Inst; text_P : str; textOption_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class)
       return access QtAda6.QtCore.QRectF.Inst'Class;
    function underlinePos (self : access Inst) return float;
    function xHeight (self : access Inst) return float;

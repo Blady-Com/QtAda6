@@ -11,7 +11,7 @@
 limited with QtAda6.QtCore.QEvent.Type_K;
 limited with QtAda6.QtGui.QPointingDevice;
 limited with QtAda6.QtCore.Qt.KeyboardModifier;
-with QtAda6.QtGui.QEventPoint;
+limited with QtAda6.QtGui.QEventPoint;
 limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtGui.QPointingDevice.PointerType;
 with QtAda6.QtGui.QInputEvent;
@@ -28,7 +28,7 @@ package QtAda6.QtGui.QPointerEvent is
    function Create
      (type_K_P : access QtAda6.QtCore.QEvent.Type_K.Inst'Class; dev_P : access QtAda6.QtGui.QPointingDevice.Inst'Class;
       modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class := null;
-      points_P    : SEQUENCE_QtAda6_QtGui_QEventPoint                   := (2 .. 1 => <>)) return Class;
+      points_P    : SEQUENCE_QtAda6_QtGui_QEventPoint) return Class;
    function U_repr_U (self : access Inst) return access Object'Class;
    function addPassiveGrabber
      (self      : access Inst; point_P : access QtAda6.QtGui.QEventPoint.Inst'Class;

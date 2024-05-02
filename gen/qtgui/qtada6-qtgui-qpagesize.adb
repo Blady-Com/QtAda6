@@ -13,8 +13,8 @@ with Ada.Unchecked_Deallocation;
 with QtAda6.QtGui.QPageSize.PageSizeId;
 with QtAda6.QtCore.QSize;
 with QtAda6.QtGui.QPageSize.SizeMatchPolicy;
-with QtAda6.QtGui.QPageSize.Unit;
 with QtAda6.QtCore.QSizeF;
+with QtAda6.QtGui.QPageSize.Unit;
 with QtAda6.QtCore.QRectF;
 with QtAda6.QtCore.QRect;
 package body QtAda6.QtGui.QPageSize is
@@ -28,17 +28,15 @@ package body QtAda6.QtGui.QPageSize is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
       Args  := Tuple_New (0);
       Dict  := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create
-     (other_P : UNION_QtAda6_QtGui_QPageSize_QtAda6_QtGui_QPageSize_PageSizeId_QtAda6_QtCore_QSize) return Class
-   is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (other_P : access QtAda6.QtGui.QPageSize.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
       Args  := Tuple_New (1);
@@ -46,12 +44,21 @@ package body QtAda6.QtGui.QPageSize is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (pageSizeId_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (other_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, (if pageSizeId_P /= null then pageSizeId_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (other_P : access QtAda6.QtCore.QSize.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
@@ -59,7 +66,7 @@ package body QtAda6.QtGui.QPageSize is
      (pointSize_P   : access QtAda6.QtCore.QSize.Inst'Class; name_P : str := "";
       matchPolicy_P : access QtAda6.QtGui.QPageSize.SizeMatchPolicy.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
       Args  := Tuple_New (1);
@@ -74,10 +81,29 @@ package body QtAda6.QtGui.QPageSize is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (size_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize; units_P : access QtAda6.QtGui.QPageSize.Unit.Inst'Class;
+     (size_P : access QtAda6.QtCore.QSizeF.Inst'Class; units_P : access QtAda6.QtGui.QPageSize.Unit.Inst'Class;
       name_P : str := ""; matchPolicy_P : access QtAda6.QtGui.QPageSize.SizeMatchPolicy.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if size_P /= null then size_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if units_P /= null then units_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if name_P /= "" then
+         Dict_SetItemString (Dict, "name", Unicode_FromString (name_P));
+      end if;
+      if matchPolicy_P /= null then
+         Dict_SetItemString (Dict, "matchPolicy", matchPolicy_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (size_P : access QtAda6.QtCore.QSize.Inst'Class; units_P : access QtAda6.QtGui.QPageSize.Unit.Inst'Class;
+      name_P : str := ""; matchPolicy_P : access QtAda6.QtGui.QPageSize.SizeMatchPolicy.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
       Args  := Tuple_New (2);
@@ -93,7 +119,7 @@ package body QtAda6.QtGui.QPageSize is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -104,7 +130,7 @@ package body QtAda6.QtGui.QPageSize is
    function definitionSize
      (pageSizeId_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return access QtAda6.QtCore.QSizeF.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
@@ -117,8 +143,8 @@ package body QtAda6.QtGui.QPageSize is
       return Ret;
    end definitionSize;
    function definitionSize (self : access Inst) return access QtAda6.QtCore.QSizeF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "definitionSize");
       Args             := Tuple_New (0);
@@ -131,7 +157,7 @@ package body QtAda6.QtGui.QPageSize is
      (pageSizeId_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class)
       return access QtAda6.QtGui.QPageSize.Unit.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPageSize.Unit.Class := new QtAda6.QtGui.QPageSize.Unit.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
@@ -144,7 +170,7 @@ package body QtAda6.QtGui.QPageSize is
       return Ret;
    end definitionUnits;
    function definitionUnits (self : access Inst) return access QtAda6.QtGui.QPageSize.Unit.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPageSize.Unit.Class := new QtAda6.QtGui.QPageSize.Unit.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "definitionUnits");
@@ -159,7 +185,7 @@ package body QtAda6.QtGui.QPageSize is
       matchPolicy_P : access QtAda6.QtGui.QPageSize.SizeMatchPolicy.Inst'Class := null)
       return access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPageSize.PageSizeId.Class := new QtAda6.QtGui.QPageSize.PageSizeId.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
@@ -175,7 +201,7 @@ package body QtAda6.QtGui.QPageSize is
       return Ret;
    end id;
    function id (self : access Inst) return access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPageSize.PageSizeId.Class := new QtAda6.QtGui.QPageSize.PageSizeId.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "id");
@@ -186,11 +212,32 @@ package body QtAda6.QtGui.QPageSize is
       return Ret;
    end id;
    function id
-     (size_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize; units_P : access QtAda6.QtGui.QPageSize.Unit.Inst'Class;
+     (size_P        : access QtAda6.QtCore.QSizeF.Inst'Class; units_P : access QtAda6.QtGui.QPageSize.Unit.Inst'Class;
       matchPolicy_P : access QtAda6.QtGui.QPageSize.SizeMatchPolicy.Inst'Class := null)
       return access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPageSize.PageSizeId.Class := new QtAda6.QtGui.QPageSize.PageSizeId.Inst;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
+      Method := Object_GetAttrString (Class, "id");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if size_P /= null then size_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if units_P /= null then units_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if matchPolicy_P /= null then
+         Dict_SetItemString (Dict, "matchPolicy", matchPolicy_P.Python_Proxy);
+      end if;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end id;
+   function id
+     (size_P        : access QtAda6.QtCore.QSize.Inst'Class; units_P : access QtAda6.QtGui.QPageSize.Unit.Inst'Class;
+      matchPolicy_P : access QtAda6.QtGui.QPageSize.SizeMatchPolicy.Inst'Class := null)
+      return access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPageSize.PageSizeId.Class := new QtAda6.QtGui.QPageSize.PageSizeId.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
@@ -207,7 +254,7 @@ package body QtAda6.QtGui.QPageSize is
       return Ret;
    end id;
    function id (windowsId_P : int) return access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPageSize.PageSizeId.Class := new QtAda6.QtGui.QPageSize.PageSizeId.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
@@ -219,11 +266,30 @@ package body QtAda6.QtGui.QPageSize is
       Ret.Python_Proxy := Result;
       return Ret;
    end id;
+   function isEquivalentTo (self : access Inst; other_P : access QtAda6.QtGui.QPageSize.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "isEquivalentTo");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end isEquivalentTo;
    function isEquivalentTo
-     (self : access Inst; other_P : UNION_QtAda6_QtGui_QPageSize_QtAda6_QtGui_QPageSize_PageSizeId_QtAda6_QtCore_QSize)
-      return bool
+     (self : access Inst; other_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "isEquivalentTo");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end isEquivalentTo;
+   function isEquivalentTo (self : access Inst; other_P : access QtAda6.QtCore.QSize.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEquivalentTo");
       Args   := Tuple_New (1);
@@ -233,7 +299,7 @@ package body QtAda6.QtGui.QPageSize is
       return To_Ada (Result);
    end isEquivalentTo;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -242,7 +308,7 @@ package body QtAda6.QtGui.QPageSize is
       return To_Ada (Result);
    end isValid;
    function key (pageSizeId_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
       Method := Object_GetAttrString (Class, "key");
@@ -253,7 +319,7 @@ package body QtAda6.QtGui.QPageSize is
       return As_String (Result);
    end key;
    function key (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "key");
       Args   := Tuple_New (0);
@@ -262,7 +328,7 @@ package body QtAda6.QtGui.QPageSize is
       return As_String (Result);
    end key;
    function name (pageSizeId_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
       Method := Object_GetAttrString (Class, "name");
@@ -273,7 +339,7 @@ package body QtAda6.QtGui.QPageSize is
       return As_String (Result);
    end name;
    function name (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "name");
       Args   := Tuple_New (0);
@@ -285,8 +351,8 @@ package body QtAda6.QtGui.QPageSize is
      (self : access Inst; units_P : access QtAda6.QtGui.QPageSize.Unit.Inst'Class)
       return access QtAda6.QtCore.QRectF.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rect");
       Args   := Tuple_New (1);
@@ -297,8 +363,8 @@ package body QtAda6.QtGui.QPageSize is
       return Ret;
    end rect;
    function rectPixels (self : access Inst; resolution_P : int) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rectPixels");
       Args   := Tuple_New (1);
@@ -309,8 +375,8 @@ package body QtAda6.QtGui.QPageSize is
       return Ret;
    end rectPixels;
    function rectPoints (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "rectPoints");
       Args             := Tuple_New (0);
@@ -323,7 +389,7 @@ package body QtAda6.QtGui.QPageSize is
      (pageSizeId_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class;
       units_P      : access QtAda6.QtGui.QPageSize.Unit.Inst'Class) return access QtAda6.QtCore.QSizeF.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
@@ -340,8 +406,8 @@ package body QtAda6.QtGui.QPageSize is
      (self : access Inst; units_P : access QtAda6.QtGui.QPageSize.Unit.Inst'Class)
       return access QtAda6.QtCore.QSizeF.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "size");
       Args   := Tuple_New (1);
@@ -355,7 +421,7 @@ package body QtAda6.QtGui.QPageSize is
      (pageSizeId_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class; resolution_P : int)
       return access QtAda6.QtCore.QSize.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
@@ -369,8 +435,8 @@ package body QtAda6.QtGui.QPageSize is
       return Ret;
    end sizePixels;
    function sizePixels (self : access Inst; resolution_P : int) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sizePixels");
       Args   := Tuple_New (1);
@@ -383,7 +449,7 @@ package body QtAda6.QtGui.QPageSize is
    function sizePoints
      (pageSizeId_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return access QtAda6.QtCore.QSize.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
@@ -396,8 +462,8 @@ package body QtAda6.QtGui.QPageSize is
       return Ret;
    end sizePoints;
    function sizePoints (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizePoints");
       Args             := Tuple_New (0);
@@ -406,10 +472,26 @@ package body QtAda6.QtGui.QPageSize is
       Ret.Python_Proxy := Result;
       return Ret;
    end sizePoints;
-   procedure swap
-     (self : access Inst; other_P : UNION_QtAda6_QtGui_QPageSize_QtAda6_QtGui_QPageSize_PageSizeId_QtAda6_QtCore_QSize)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QPageSize.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "swap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end swap;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "swap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end swap;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QSize.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
@@ -418,7 +500,7 @@ package body QtAda6.QtGui.QPageSize is
       Result := Object_Call (Method, Args, Dict, True);
    end swap;
    function windowsId (pageSizeId_P : access QtAda6.QtGui.QPageSize.PageSizeId.Inst'Class) return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageSize");
       Method := Object_GetAttrString (Class, "windowsId");
@@ -429,7 +511,7 @@ package body QtAda6.QtGui.QPageSize is
       return Long_AsLong (Result);
    end windowsId;
    function windowsId (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "windowsId");
       Args   := Tuple_New (0);

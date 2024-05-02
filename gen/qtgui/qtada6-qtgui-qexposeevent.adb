@@ -10,8 +10,10 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QExposeEvent;
 with QtAda6.QtGui.QRegion;
+with QtAda6.QtGui.QBitmap;
+with QtAda6.QtGui.QPolygon;
+with QtAda6.QtCore.QRect;
 package body QtAda6.QtGui.QExposeEvent is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -23,7 +25,7 @@ package body QtAda6.QtGui.QExposeEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QExposeEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QExposeEvent");
       Args  := Tuple_New (1);
@@ -31,11 +33,35 @@ package body QtAda6.QtGui.QExposeEvent is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create
-     (m_region_P : UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect)
-      return Class
-   is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (m_region_P : access QtAda6.QtGui.QRegion.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QExposeEvent");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if m_region_P /= null then m_region_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (m_region_P : access QtAda6.QtGui.QBitmap.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QExposeEvent");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if m_region_P /= null then m_region_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (m_region_P : access QtAda6.QtGui.QPolygon.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QExposeEvent");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if m_region_P /= null then m_region_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (m_region_P : access QtAda6.QtCore.QRect.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QExposeEvent");
       Args  := Tuple_New (1);
@@ -44,7 +70,7 @@ package body QtAda6.QtGui.QExposeEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function clone (self : access Inst) return access QtAda6.QtGui.QExposeEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QExposeEvent.Class := new QtAda6.QtGui.QExposeEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
@@ -55,8 +81,8 @@ package body QtAda6.QtGui.QExposeEvent is
       return Ret;
    end clone;
    function region (self : access Inst) return access QtAda6.QtGui.QRegion.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QRegion.Class := new QtAda6.QtGui.QRegion.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QRegion.Class := new QtAda6.QtGui.QRegion.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "region");
       Args             := Tuple_New (0);

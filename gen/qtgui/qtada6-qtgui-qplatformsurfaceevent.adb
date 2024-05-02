@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QPlatformSurfaceEvent;
 with QtAda6.QtGui.QPlatformSurfaceEvent.SurfaceEventType;
 package body QtAda6.QtGui.QPlatformSurfaceEvent is
    use type QtAda6.int;
@@ -23,7 +22,7 @@ package body QtAda6.QtGui.QPlatformSurfaceEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QPlatformSurfaceEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPlatformSurfaceEvent");
       Args  := Tuple_New (1);
@@ -32,7 +31,7 @@ package body QtAda6.QtGui.QPlatformSurfaceEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function clone (self : access Inst) return access QtAda6.QtGui.QPlatformSurfaceEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPlatformSurfaceEvent.Class := new QtAda6.QtGui.QPlatformSurfaceEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
@@ -45,8 +44,8 @@ package body QtAda6.QtGui.QPlatformSurfaceEvent is
    function surfaceEventType_F
      (self : access Inst) return access QtAda6.QtGui.QPlatformSurfaceEvent.SurfaceEventType.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPlatformSurfaceEvent.SurfaceEventType.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPlatformSurfaceEvent.SurfaceEventType.Class :=
         new QtAda6.QtGui.QPlatformSurfaceEvent.SurfaceEventType.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "surfaceEventType");

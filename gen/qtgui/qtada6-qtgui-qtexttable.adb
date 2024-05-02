@@ -25,7 +25,7 @@ package body QtAda6.QtGui.QTextTable is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (doc_P : access QtAda6.QtGui.QTextDocument.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextTable");
       Args  := Tuple_New (1);
@@ -34,7 +34,7 @@ package body QtAda6.QtGui.QTextTable is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure appendColumns (self : access Inst; count_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "appendColumns");
       Args   := Tuple_New (1);
@@ -43,7 +43,7 @@ package body QtAda6.QtGui.QTextTable is
       Result := Object_Call (Method, Args, Dict, True);
    end appendColumns;
    procedure appendRows (self : access Inst; count_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "appendRows");
       Args   := Tuple_New (1);
@@ -55,7 +55,7 @@ package body QtAda6.QtGui.QTextTable is
      (self : access Inst; c_P : access QtAda6.QtGui.QTextCursor.Inst'Class)
       return access QtAda6.QtGui.QTextTableCell.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextTableCell.Class := new QtAda6.QtGui.QTextTableCell.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cellAt");
@@ -67,7 +67,7 @@ package body QtAda6.QtGui.QTextTable is
       return Ret;
    end cellAt;
    function cellAt (self : access Inst; position_P : int) return access QtAda6.QtGui.QTextTableCell.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextTableCell.Class := new QtAda6.QtGui.QTextTableCell.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cellAt");
@@ -80,7 +80,7 @@ package body QtAda6.QtGui.QTextTable is
    end cellAt;
    function cellAt (self : access Inst; row_P : int; col_P : int) return access QtAda6.QtGui.QTextTableCell.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextTableCell.Class := new QtAda6.QtGui.QTextTableCell.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cellAt");
@@ -93,7 +93,7 @@ package body QtAda6.QtGui.QTextTable is
       return Ret;
    end cellAt;
    function columns (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "columns");
       Args   := Tuple_New (0);
@@ -102,7 +102,7 @@ package body QtAda6.QtGui.QTextTable is
       return Long_AsLong (Result);
    end columns;
    function format (self : access Inst) return access QtAda6.QtGui.QTextTableFormat.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextTableFormat.Class := new QtAda6.QtGui.QTextTableFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "format");
@@ -113,7 +113,7 @@ package body QtAda6.QtGui.QTextTable is
       return Ret;
    end format;
    procedure insertColumns (self : access Inst; pos_P : int; num_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertColumns");
       Args   := Tuple_New (2);
@@ -123,7 +123,7 @@ package body QtAda6.QtGui.QTextTable is
       Result := Object_Call (Method, Args, Dict, True);
    end insertColumns;
    procedure insertRows (self : access Inst; pos_P : int; num_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertRows");
       Args   := Tuple_New (2);
@@ -133,7 +133,7 @@ package body QtAda6.QtGui.QTextTable is
       Result := Object_Call (Method, Args, Dict, True);
    end insertRows;
    procedure mergeCells (self : access Inst; cursor_P : access QtAda6.QtGui.QTextCursor.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mergeCells");
       Args   := Tuple_New (1);
@@ -142,7 +142,7 @@ package body QtAda6.QtGui.QTextTable is
       Result := Object_Call (Method, Args, Dict, True);
    end mergeCells;
    procedure mergeCells (self : access Inst; row_P : int; col_P : int; numRows_P : int; numCols_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mergeCells");
       Args   := Tuple_New (4);
@@ -154,7 +154,7 @@ package body QtAda6.QtGui.QTextTable is
       Result := Object_Call (Method, Args, Dict, True);
    end mergeCells;
    procedure removeColumns (self : access Inst; pos_P : int; num_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeColumns");
       Args   := Tuple_New (2);
@@ -164,7 +164,7 @@ package body QtAda6.QtGui.QTextTable is
       Result := Object_Call (Method, Args, Dict, True);
    end removeColumns;
    procedure removeRows (self : access Inst; pos_P : int; num_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeRows");
       Args   := Tuple_New (2);
@@ -174,7 +174,7 @@ package body QtAda6.QtGui.QTextTable is
       Result := Object_Call (Method, Args, Dict, True);
    end removeRows;
    procedure resize (self : access Inst; rows_P : int; cols_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resize");
       Args   := Tuple_New (2);
@@ -187,7 +187,7 @@ package body QtAda6.QtGui.QTextTable is
      (self : access Inst; c_P : access QtAda6.QtGui.QTextCursor.Inst'Class)
       return access QtAda6.QtGui.QTextCursor.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextCursor.Class := new QtAda6.QtGui.QTextCursor.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rowEnd");
@@ -202,7 +202,7 @@ package body QtAda6.QtGui.QTextTable is
      (self : access Inst; c_P : access QtAda6.QtGui.QTextCursor.Inst'Class)
       return access QtAda6.QtGui.QTextCursor.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextCursor.Class := new QtAda6.QtGui.QTextCursor.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rowStart");
@@ -214,7 +214,7 @@ package body QtAda6.QtGui.QTextTable is
       return Ret;
    end rowStart;
    function rows (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rows");
       Args   := Tuple_New (0);
@@ -223,7 +223,7 @@ package body QtAda6.QtGui.QTextTable is
       return Long_AsLong (Result);
    end rows;
    procedure setFormat (self : access Inst; format_P : access QtAda6.QtGui.QTextTableFormat.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
       Args   := Tuple_New (1);
@@ -232,7 +232,7 @@ package body QtAda6.QtGui.QTextTable is
       Result := Object_Call (Method, Args, Dict, True);
    end setFormat;
    procedure splitCell (self : access Inst; row_P : int; col_P : int; numRows_P : int; numCols_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "splitCell");
       Args   := Tuple_New (4);

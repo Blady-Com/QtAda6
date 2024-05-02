@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QAccessible;
 with QtAda6.QtGui.QAccessibleInterface;
 with QtAda6.QtGui.QTextCursor;
 with QtAda6.QtGui.QAccessible.TextBoundaryType;
@@ -27,7 +26,7 @@ package body QtAda6.QtGui.QAccessible is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (QAccessible_P : access QtAda6.QtGui.QAccessible.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
       Args  := Tuple_New (1);
@@ -36,7 +35,7 @@ package body QtAda6.QtGui.QAccessible is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -45,7 +44,7 @@ package body QtAda6.QtGui.QAccessible is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function accessibleInterface (uniqueId_P : int) return access QtAda6.QtGui.QAccessibleInterface.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleInterface.Class := new QtAda6.QtGui.QAccessibleInterface.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
@@ -58,7 +57,7 @@ package body QtAda6.QtGui.QAccessible is
       return Ret;
    end accessibleInterface;
    procedure cleanup is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
       Method := Object_GetAttrString (Class, "cleanup");
@@ -67,7 +66,7 @@ package body QtAda6.QtGui.QAccessible is
       Result := Object_Call (Method, Args, Dict, True);
    end cleanup;
    procedure deleteAccessibleInterface (uniqueId_P : int) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
       Method := Object_GetAttrString (Class, "deleteAccessibleInterface");
@@ -77,7 +76,7 @@ package body QtAda6.QtGui.QAccessible is
       Result := Object_Call (Method, Args, Dict, True);
    end deleteAccessibleInterface;
    procedure installFactory (arg_1_P : CALLABLE) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
       Method := Object_GetAttrString (Class, "installFactory");
@@ -87,7 +86,7 @@ package body QtAda6.QtGui.QAccessible is
       Result := Object_Call (Method, Args, Dict, True);
    end installFactory;
    function isActive return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
       Method := Object_GetAttrString (Class, "isActive");
@@ -100,7 +99,7 @@ package body QtAda6.QtGui.QAccessible is
      (cursor_P       : access QtAda6.QtGui.QTextCursor.Inst'Class;
       boundaryType_P : access QtAda6.QtGui.QAccessible.TextBoundaryType.Inst'Class) return TUPLE_int_int
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
       Method := Object_GetAttrString (Class, "qAccessibleTextBoundaryHelper");
@@ -117,7 +116,7 @@ package body QtAda6.QtGui.QAccessible is
    function queryAccessibleInterface
      (arg_1_P : access QtAda6.QtCore.QObject.Inst'Class) return access QtAda6.QtGui.QAccessibleInterface.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleInterface.Class := new QtAda6.QtGui.QAccessibleInterface.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
@@ -130,7 +129,7 @@ package body QtAda6.QtGui.QAccessible is
       return Ret;
    end queryAccessibleInterface;
    function registerAccessibleInterface (iface_P : access QtAda6.QtGui.QAccessibleInterface.Inst'Class) return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
       Method := Object_GetAttrString (Class, "registerAccessibleInterface");
@@ -141,7 +140,7 @@ package body QtAda6.QtGui.QAccessible is
       return Long_AsLong (Result);
    end registerAccessibleInterface;
    procedure setActive (active_P : bool) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
       Method := Object_GetAttrString (Class, "setActive");
@@ -151,7 +150,7 @@ package body QtAda6.QtGui.QAccessible is
       Result := Object_Call (Method, Args, Dict, True);
    end setActive;
    procedure setRootObject (object_P : access QtAda6.QtCore.QObject.Inst'Class) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
       Method := Object_GetAttrString (Class, "setRootObject");
@@ -161,7 +160,7 @@ package body QtAda6.QtGui.QAccessible is
       Result := Object_Call (Method, Args, Dict, True);
    end setRootObject;
    function uniqueId (iface_P : access QtAda6.QtGui.QAccessibleInterface.Inst'Class) return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
       Method := Object_GetAttrString (Class, "uniqueId");
@@ -172,7 +171,7 @@ package body QtAda6.QtGui.QAccessible is
       return Long_AsLong (Result);
    end uniqueId;
    procedure updateAccessibility (event_P : access QtAda6.QtGui.QAccessibleEvent.Inst'Class) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessible");
       Method := Object_GetAttrString (Class, "updateAccessibility");

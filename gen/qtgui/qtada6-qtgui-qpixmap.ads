@@ -9,19 +9,25 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QSize;
+limited with QtAda6.QtGui.QImage;
 limited with QtAda6.QtCore.Qt.ImageConversionFlag;
 limited with QtAda6.QtCore.QDataStream;
 limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtGui.QBitmap;
+limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtCore.Qt.MaskMode;
+limited with QtAda6.QtGui.QRgba64;
+limited with QtAda6.QtCore.Qt.GlobalColor;
 limited with QtAda6.QtCore.QSizeF;
 limited with QtAda6.QtGui.QImageReader;
+limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtGui.QPaintDevice.PaintDeviceMetric;
 limited with QtAda6.QtGui.QPaintEngine;
 limited with QtAda6.QtCore.QIODevice;
 limited with QtAda6.QtCore.Qt.AspectRatioMode;
 limited with QtAda6.QtCore.Qt.TransformationMode;
-limited with QtAda6.QtGui.QImage;
+limited with QtAda6.QtGui.QRegion;
+limited with QtAda6.QtGui.QPolygon;
 limited with QtAda6.QtGui.QTransform;
 with QtAda6.QtGui.QPaintDevice;
 package QtAda6.QtGui.QPixmap is
@@ -30,21 +36,23 @@ package QtAda6.QtGui.QPixmap is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QPaintDevice.Inst with null record;
-   type UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is new Any;
-   type UNION_str_bytes_os_PathLike is new Any;
-   type UNION_QtAda6_QtGui_QImage_str is new Any;
-   type UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is new Any;
-   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
-   type UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect_NoneType is new Any;
-   type UNION_QtAda6_QtGui_QBitmap_str is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (arg_1_P : access QtAda6.QtCore.QSize.Inst'Class) return Class;
-   function Create (arg_1_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str) return Class;
+   function Create (arg_1_P : access QtAda6.QtGui.QPixmap.Inst'Class) return Class;
+   function Create (arg_1_P : access QtAda6.QtGui.QImage.Inst'Class) return Class;
+   function Create (arg_1_P : str) return Class;
    function Create
-     (fileName_P : UNION_str_bytes_os_PathLike; format_P : bytes := "";
+     (fileName_P : str; format_P : bytes := null;
       flags_P    : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null) return Class;
-   function Create (image_P : UNION_QtAda6_QtGui_QImage_str) return Class;
+   function Create
+     (fileName_P : bytes; format_P : bytes := null;
+      flags_P    : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null) return Class;
+   function Create
+     (fileName_P : OS.PathLike; format_P : bytes := null;
+      flags_P    : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null) return Class;
+-- function Create(image_P : access QtAda6.QtGui.QImage.Inst'Class) return Class;
+-- function Create(image_P : str) return Class;
    function Create (w_P : int; h_P : int) return Class;
    function Create (xpm_P : Iterable) return Class;
    procedure U_copy_U;
@@ -56,8 +64,11 @@ package QtAda6.QtGui.QPixmap is
       return access QtAda6.QtCore.QDataStream.Inst'Class;
    function cacheKey (self : access Inst) return int;
    function convertFromImage
-     (self    : access Inst; img_P : UNION_QtAda6_QtGui_QImage_str;
+     (self    : access Inst; img_P : access QtAda6.QtGui.QImage.Inst'Class;
       flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null) return bool;
+   function convertFromImage
+     (self : access Inst; img_P : str; flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null)
+      return bool;
    function copy
      (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class := null)
       return access QtAda6.QtGui.QPixmap.Inst'Class;
@@ -67,22 +78,47 @@ package QtAda6.QtGui.QPixmap is
    function createHeuristicMask
      (self : access Inst; clipTight_P : bool := False) return access QtAda6.QtGui.QBitmap.Inst'Class;
    function createMaskFromColor
-     (self        : access Inst;
-      maskColor_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int;
-      mode_P      : access QtAda6.QtCore.Qt.MaskMode.Inst'Class := null) return access QtAda6.QtGui.QBitmap.Inst'Class;
+     (self   : access Inst; maskColor_P : access QtAda6.QtGui.QColor.Inst'Class;
+      mode_P : access QtAda6.QtCore.Qt.MaskMode.Inst'Class := null) return access QtAda6.QtGui.QBitmap.Inst'Class;
+   function createMaskFromColor
+     (self   : access Inst; maskColor_P : access QtAda6.QtGui.QRgba64.Inst'Class;
+      mode_P : access QtAda6.QtCore.Qt.MaskMode.Inst'Class := null) return access QtAda6.QtGui.QBitmap.Inst'Class;
+   function createMaskFromColor
+     (self : access Inst; maskColor_P : Any; mode_P : access QtAda6.QtCore.Qt.MaskMode.Inst'Class := null)
+      return access QtAda6.QtGui.QBitmap.Inst'Class;
+   function createMaskFromColor
+     (self   : access Inst; maskColor_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class;
+      mode_P : access QtAda6.QtCore.Qt.MaskMode.Inst'Class := null) return access QtAda6.QtGui.QBitmap.Inst'Class;
+   function createMaskFromColor
+     (self : access Inst; maskColor_P : str; mode_P : access QtAda6.QtCore.Qt.MaskMode.Inst'Class := null)
+      return access QtAda6.QtGui.QBitmap.Inst'Class;
+   function createMaskFromColor
+     (self : access Inst; maskColor_P : int; mode_P : access QtAda6.QtCore.Qt.MaskMode.Inst'Class := null)
+      return access QtAda6.QtGui.QBitmap.Inst'Class;
    function defaultDepth return int;
    function depth (self : access Inst) return int;
    function devType (self : access Inst) return int;
    function deviceIndependentSize (self : access Inst) return access QtAda6.QtCore.QSizeF.Inst'Class;
    function devicePixelRatio (self : access Inst) return float;
-   procedure fill
-     (self        : access Inst;
-      fillColor_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int := null);
+   procedure fill (self : access Inst; fillColor_P : access QtAda6.QtGui.QColor.Inst'Class := null);
+   procedure fill (self : access Inst; fillColor_P : access QtAda6.QtGui.QRgba64.Inst'Class := null);
+   procedure fill (self : access Inst; fillColor_P : Any := null);
+   procedure fill (self : access Inst; fillColor_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class := null);
+   procedure fill (self : access Inst; fillColor_P : str := "");
+   procedure fill (self : access Inst; fillColor_P : int := 0);
    function fromImage
-     (image_P : UNION_QtAda6_QtGui_QImage_str; flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null)
+     (image_P : access QtAda6.QtGui.QImage.Inst'Class;
+      flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null)
+      return access QtAda6.QtGui.QPixmap.Inst'Class;
+   function fromImage
+     (image_P : str; flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null)
       return access QtAda6.QtGui.QPixmap.Inst'Class;
    function fromImageInPlace
-     (image_P : UNION_QtAda6_QtGui_QImage_str; flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null)
+     (image_P : access QtAda6.QtGui.QImage.Inst'Class;
+      flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null)
+      return access QtAda6.QtGui.QPixmap.Inst'Class;
+   function fromImageInPlace
+     (image_P : str; flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null)
       return access QtAda6.QtGui.QPixmap.Inst'Class;
    function fromImageReader
      (imageReader_P : access QtAda6.QtGui.QImageReader.Inst'Class;
@@ -94,14 +130,15 @@ package QtAda6.QtGui.QPixmap is
    function isNull (self : access Inst) return bool;
    function isQBitmap (self : access Inst) return bool;
    function load
-     (self    : access Inst; fileName_P : str; format_P : bytes := "";
+     (self    : access Inst; fileName_P : str; format_P : bytes := null;
       flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null) return bool;
    function loadFromData
-     (self    : access Inst; buf_P : bytes; format_P : bytes := "";
+     (self    : access Inst; buf_P : bytes; format_P : bytes := null;
       flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null) return bool;
    function loadFromData
-     (self    : access Inst; data_P : UNION_QtAda6_QtCore_QByteArray_bytes; format_P : bytes := "";
+     (self    : access Inst; data_P : access QtAda6.QtCore.QByteArray.Inst'Class; format_P : bytes := null;
       flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null) return bool;
+-- function loadFromData(self : access Inst;data_P : bytes;format_P : bytes := null;flags_P : access QtAda6.QtCore.Qt.ImageConversionFlag.Inst'Class := null) return bool;
    function mask (self : access Inst) return access QtAda6.QtGui.QBitmap.Inst'Class;
    function metric
      (self : access Inst; arg_1_P : access QtAda6.QtGui.QPaintDevice.PaintDeviceMetric.Inst'Class) return int;
@@ -129,16 +166,41 @@ package QtAda6.QtGui.QPixmap is
       return access QtAda6.QtGui.QPixmap.Inst'Class;
    procedure scroll
      (self      : access Inst; dx_P : int; dy_P : int; rect_P : access QtAda6.QtCore.QRect.Inst'Class;
-      exposed_P : UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect_NoneType :=
-        null);
+      exposed_P : access QtAda6.QtGui.QRegion.Inst'Class := null);
+   procedure scroll
+     (self      : access Inst; dx_P : int; dy_P : int; rect_P : access QtAda6.QtCore.QRect.Inst'Class;
+      exposed_P : access QtAda6.QtGui.QBitmap.Inst'Class := null);
+   procedure scroll
+     (self      : access Inst; dx_P : int; dy_P : int; rect_P : access QtAda6.QtCore.QRect.Inst'Class;
+      exposed_P : access QtAda6.QtGui.QPolygon.Inst'Class := null);
+   procedure scroll
+     (self      : access Inst; dx_P : int; dy_P : int; rect_P : access QtAda6.QtCore.QRect.Inst'Class;
+      exposed_P : access QtAda6.QtCore.QRect.Inst'Class := null);
+   procedure scroll
+     (self      : access Inst; dx_P : int; dy_P : int; rect_P : access QtAda6.QtCore.QRect.Inst'Class;
+      exposed_P : NoneType := NoneType_default_is_not_supported);
    procedure scroll
      (self      : access Inst; dx_P : int; dy_P : int; x_P : int; y_P : int; width_P : int; height_P : int;
-      exposed_P : UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect_NoneType :=
-        null);
+      exposed_P : access QtAda6.QtGui.QRegion.Inst'Class := null);
+   procedure scroll
+     (self      : access Inst; dx_P : int; dy_P : int; x_P : int; y_P : int; width_P : int; height_P : int;
+      exposed_P : access QtAda6.QtGui.QBitmap.Inst'Class := null);
+   procedure scroll
+     (self      : access Inst; dx_P : int; dy_P : int; x_P : int; y_P : int; width_P : int; height_P : int;
+      exposed_P : access QtAda6.QtGui.QPolygon.Inst'Class := null);
+   procedure scroll
+     (self      : access Inst; dx_P : int; dy_P : int; x_P : int; y_P : int; width_P : int; height_P : int;
+      exposed_P : access QtAda6.QtCore.QRect.Inst'Class := null);
+   procedure scroll
+     (self      : access Inst; dx_P : int; dy_P : int; x_P : int; y_P : int; width_P : int; height_P : int;
+      exposed_P : NoneType := NoneType_default_is_not_supported);
    procedure setDevicePixelRatio (self : access Inst; scaleFactor_P : float);
-   procedure setMask (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QBitmap_str);
+   procedure setMask (self : access Inst; arg_1_P : access QtAda6.QtGui.QBitmap.Inst'Class);
+   procedure setMask (self : access Inst; arg_1_P : str);
    function size (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QPixmap.Inst'Class);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QImage.Inst'Class);
+   procedure swap (self : access Inst; other_P : str);
    function toImage (self : access Inst) return access QtAda6.QtGui.QImage.Inst'Class;
    function transformed
      (self   : access Inst; arg_1_P : access QtAda6.QtGui.QTransform.Inst'Class;

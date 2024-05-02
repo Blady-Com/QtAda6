@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QDragMoveEvent;
 with QtAda6.QtCore.QPoint;
 with QtAda6.QtCore.Qt.DropAction;
 with QtAda6.QtCore.QMimeData;
@@ -29,7 +28,7 @@ package body QtAda6.QtGui.QDragMoveEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QDragMoveEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QDragMoveEvent");
       Args  := Tuple_New (1);
@@ -43,7 +42,7 @@ package body QtAda6.QtGui.QDragMoveEvent is
       modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
       type_K_P    : access QtAda6.QtCore.QEvent.Type_K.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QDragMoveEvent");
       Args  := Tuple_New (5);
@@ -59,7 +58,7 @@ package body QtAda6.QtGui.QDragMoveEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function U_repr_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
@@ -68,7 +67,7 @@ package body QtAda6.QtGui.QDragMoveEvent is
       return null;
    end U_repr_U;
    procedure accept_K (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "accept");
       Args   := Tuple_New (0);
@@ -76,7 +75,7 @@ package body QtAda6.QtGui.QDragMoveEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end accept_K;
    procedure accept_K (self : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "accept");
       Args   := Tuple_New (1);
@@ -85,8 +84,8 @@ package body QtAda6.QtGui.QDragMoveEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end accept_K;
    function answerRect (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "answerRect");
       Args             := Tuple_New (0);
@@ -96,7 +95,7 @@ package body QtAda6.QtGui.QDragMoveEvent is
       return Ret;
    end answerRect;
    function clone (self : access Inst) return access QtAda6.QtGui.QDragMoveEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QDragMoveEvent.Class := new QtAda6.QtGui.QDragMoveEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
@@ -107,7 +106,7 @@ package body QtAda6.QtGui.QDragMoveEvent is
       return Ret;
    end clone;
    procedure ignore (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "ignore");
       Args   := Tuple_New (0);
@@ -115,7 +114,7 @@ package body QtAda6.QtGui.QDragMoveEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end ignore;
    procedure ignore (self : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "ignore");
       Args   := Tuple_New (1);

@@ -10,8 +10,9 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QLinearGradient;
 with QtAda6.QtCore.QPointF;
+with QtAda6.QtCore.QPoint;
+with QtAda6.QtGui.QPainterPath.Element;
 package body QtAda6.QtGui.QLinearGradient is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -23,7 +24,7 @@ package body QtAda6.QtGui.QLinearGradient is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QLinearGradient");
       Args  := Tuple_New (0);
@@ -31,7 +32,7 @@ package body QtAda6.QtGui.QLinearGradient is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (QLinearGradient_P : access QtAda6.QtGui.QLinearGradient.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QLinearGradient");
       Args  := Tuple_New (1);
@@ -40,10 +41,114 @@ package body QtAda6.QtGui.QLinearGradient is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (start_P     : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
-      finalStop_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element) return Class
+     (start_P : access QtAda6.QtCore.QPointF.Inst'Class; finalStop_P : access QtAda6.QtCore.QPointF.Inst'Class)
+      return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QLinearGradient");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if start_P /= null then start_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if finalStop_P /= null then finalStop_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (start_P : access QtAda6.QtCore.QPointF.Inst'Class; finalStop_P : access QtAda6.QtCore.QPoint.Inst'Class)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QLinearGradient");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if start_P /= null then start_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if finalStop_P /= null then finalStop_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (start_P     : access QtAda6.QtCore.QPointF.Inst'Class;
+      finalStop_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QLinearGradient");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if start_P /= null then start_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if finalStop_P /= null then finalStop_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (start_P : access QtAda6.QtCore.QPoint.Inst'Class; finalStop_P : access QtAda6.QtCore.QPointF.Inst'Class)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QLinearGradient");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if start_P /= null then start_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if finalStop_P /= null then finalStop_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (start_P : access QtAda6.QtCore.QPoint.Inst'Class; finalStop_P : access QtAda6.QtCore.QPoint.Inst'Class)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QLinearGradient");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if start_P /= null then start_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if finalStop_P /= null then finalStop_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (start_P     : access QtAda6.QtCore.QPoint.Inst'Class;
+      finalStop_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QLinearGradient");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if start_P /= null then start_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if finalStop_P /= null then finalStop_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (start_P     : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      finalStop_P : access QtAda6.QtCore.QPointF.Inst'Class) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QLinearGradient");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if start_P /= null then start_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if finalStop_P /= null then finalStop_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (start_P     : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      finalStop_P : access QtAda6.QtCore.QPoint.Inst'Class) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QLinearGradient");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if start_P /= null then start_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if finalStop_P /= null then finalStop_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (start_P     : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      finalStop_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QLinearGradient");
       Args  := Tuple_New (2);
@@ -53,7 +158,7 @@ package body QtAda6.QtGui.QLinearGradient is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (xStart_P : float; yStart_P : float; xFinalStop_P : float; yFinalStop_P : float) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QLinearGradient");
       Args  := Tuple_New (4);
@@ -65,7 +170,7 @@ package body QtAda6.QtGui.QLinearGradient is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QLinearGradient");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -74,8 +179,8 @@ package body QtAda6.QtGui.QLinearGradient is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function finalStop (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "finalStop");
       Args             := Tuple_New (0);
@@ -84,10 +189,26 @@ package body QtAda6.QtGui.QLinearGradient is
       Ret.Python_Proxy := Result;
       return Ret;
    end finalStop;
-   procedure setFinalStop
-     (self : access Inst; stop_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setFinalStop (self : access Inst; stop_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setFinalStop");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if stop_P /= null then stop_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFinalStop;
+   procedure setFinalStop (self : access Inst; stop_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setFinalStop");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if stop_P /= null then stop_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFinalStop;
+   procedure setFinalStop (self : access Inst; stop_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFinalStop");
       Args   := Tuple_New (1);
@@ -96,7 +217,7 @@ package body QtAda6.QtGui.QLinearGradient is
       Result := Object_Call (Method, Args, Dict, True);
    end setFinalStop;
    procedure setFinalStop (self : access Inst; x_P : float; y_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFinalStop");
       Args   := Tuple_New (2);
@@ -105,10 +226,26 @@ package body QtAda6.QtGui.QLinearGradient is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setFinalStop;
-   procedure setStart
-     (self : access Inst; start_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setStart (self : access Inst; start_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setStart");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if start_P /= null then start_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setStart;
+   procedure setStart (self : access Inst; start_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setStart");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if start_P /= null then start_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setStart;
+   procedure setStart (self : access Inst; start_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStart");
       Args   := Tuple_New (1);
@@ -117,7 +254,7 @@ package body QtAda6.QtGui.QLinearGradient is
       Result := Object_Call (Method, Args, Dict, True);
    end setStart;
    procedure setStart (self : access Inst; x_P : float; y_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStart");
       Args   := Tuple_New (2);
@@ -127,8 +264,8 @@ package body QtAda6.QtGui.QLinearGradient is
       Result := Object_Call (Method, Args, Dict, True);
    end setStart;
    function start (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "start");
       Args             := Tuple_New (0);

@@ -27,7 +27,7 @@ package body QtAda6.QtGui.QAccessibleTableModelChangeEvent is
      (iface_P      : access QtAda6.QtGui.QAccessibleInterface.Inst'Class;
       changeType_P : access QtAda6.QtGui.QAccessibleTableModelChangeEvent.ModelChangeType.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTableModelChangeEvent");
       Args  := Tuple_New (2);
@@ -40,7 +40,7 @@ package body QtAda6.QtGui.QAccessibleTableModelChangeEvent is
      (obj_P        : access QtAda6.QtCore.QObject.Inst'Class;
       changeType_P : access QtAda6.QtGui.QAccessibleTableModelChangeEvent.ModelChangeType.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleTableModelChangeEvent");
       Args  := Tuple_New (2);
@@ -50,7 +50,7 @@ package body QtAda6.QtGui.QAccessibleTableModelChangeEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function firstColumn (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "firstColumn");
       Args   := Tuple_New (0);
@@ -59,7 +59,7 @@ package body QtAda6.QtGui.QAccessibleTableModelChangeEvent is
       return Long_AsLong (Result);
    end firstColumn;
    function firstRow (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "firstRow");
       Args   := Tuple_New (0);
@@ -68,7 +68,7 @@ package body QtAda6.QtGui.QAccessibleTableModelChangeEvent is
       return Long_AsLong (Result);
    end firstRow;
    function lastColumn (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lastColumn");
       Args   := Tuple_New (0);
@@ -77,7 +77,7 @@ package body QtAda6.QtGui.QAccessibleTableModelChangeEvent is
       return Long_AsLong (Result);
    end lastColumn;
    function lastRow (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lastRow");
       Args   := Tuple_New (0);
@@ -88,7 +88,7 @@ package body QtAda6.QtGui.QAccessibleTableModelChangeEvent is
    function modelChangeType_F
      (self : access Inst) return access QtAda6.QtGui.QAccessibleTableModelChangeEvent.ModelChangeType.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAccessibleTableModelChangeEvent.ModelChangeType.Class :=
         new QtAda6.QtGui.QAccessibleTableModelChangeEvent.ModelChangeType.Inst;
    begin
@@ -100,7 +100,7 @@ package body QtAda6.QtGui.QAccessibleTableModelChangeEvent is
       return Ret;
    end modelChangeType_F;
    procedure setFirstColumn (self : access Inst; col_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFirstColumn");
       Args   := Tuple_New (1);
@@ -109,7 +109,7 @@ package body QtAda6.QtGui.QAccessibleTableModelChangeEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setFirstColumn;
    procedure setFirstRow (self : access Inst; row_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFirstRow");
       Args   := Tuple_New (1);
@@ -118,7 +118,7 @@ package body QtAda6.QtGui.QAccessibleTableModelChangeEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setFirstRow;
    procedure setLastColumn (self : access Inst; col_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setLastColumn");
       Args   := Tuple_New (1);
@@ -127,7 +127,7 @@ package body QtAda6.QtGui.QAccessibleTableModelChangeEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setLastColumn;
    procedure setLastRow (self : access Inst; row_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setLastRow");
       Args   := Tuple_New (1);
@@ -139,7 +139,7 @@ package body QtAda6.QtGui.QAccessibleTableModelChangeEvent is
      (self         : access Inst;
       changeType_P : access QtAda6.QtGui.QAccessibleTableModelChangeEvent.ModelChangeType.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setModelChangeType");
       Args   := Tuple_New (1);

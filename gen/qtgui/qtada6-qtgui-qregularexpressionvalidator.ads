@@ -8,25 +8,26 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtCore.QRegularExpression;
 with QtAda6.QtGui.QValidator;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtGui.QRegularExpressionValidator is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QValidator.Inst with null record;
-   type UNION_QtAda6_QtCore_QRegularExpression_str is new Any;
    procedure Finalize (Self : in out Class);
    function regularExpressionChanged
      (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- regularExpressionChanged(QRegularExpression)
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function Create
-     (re_P : UNION_QtAda6_QtCore_QRegularExpression_str; parent_P : access QtAda6.QtCore.QObject.Inst'Class := null)
-      return Class;
+     (re_P     : access QtAda6.QtCore.QRegularExpression.Inst'Class;
+      parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
+   function Create (re_P : str; parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function regularExpression (self : access Inst) return access QtAda6.QtCore.QRegularExpression.Inst'Class;
-   procedure setRegularExpression (self : access Inst; re_P : UNION_QtAda6_QtCore_QRegularExpression_str);
+   procedure setRegularExpression (self : access Inst; re_P : access QtAda6.QtCore.QRegularExpression.Inst'Class);
+   procedure setRegularExpression (self : access Inst; re_P : str);
    function validate (self : access Inst; input_P : str; pos_P : int) return access Object'Class;
 end QtAda6.QtGui.QRegularExpressionValidator;

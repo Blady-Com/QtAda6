@@ -8,14 +8,20 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtGui.QIcon;
+limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtCore.QDataStream;
 limited with QtAda6.QtGui.QBrush;
 limited with QtAda6.QtCore.Qt.CheckState;
 limited with QtAda6.QtCore.Qt.ItemFlag;
 limited with QtAda6.QtGui.QFont;
-limited with QtAda6.QtGui.QIcon;
 limited with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtGui.QStandardItemModel;
+limited with QtAda6.QtCore.Qt.BrushStyle;
+limited with QtAda6.QtCore.Qt.GlobalColor;
+limited with QtAda6.QtGui.QColor;
+limited with QtAda6.QtGui.QGradient;
+limited with QtAda6.QtGui.QImage;
 limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtCore.Qt.SortOrder;
@@ -25,15 +31,13 @@ package QtAda6.QtGui.QStandardItem is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is new Any;
    subtype SEQUENCE_QtAda6_QtGui_QStandardItem is QtAda6.QtGui.QStandardItem.Class_Array;
-   type UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap is
-     new Any;
-   type UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str is new Any;
+   type SEQUENCE_str is array (Positive range <>) of str;
    subtype LIST_QtAda6_QtGui_QStandardItem is QtAda6.QtGui.QStandardItem.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str) return Class;
+   function Create (icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str) return Class;
+   function Create (icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str) return Class;
    function Create (other_P : access QtAda6.QtGui.QStandardItem.Inst'Class) return Class;
    function Create (rows_P : int; columns_P : int := 0) return Class;
    function Create (text_P : str) return Class;
@@ -91,9 +95,13 @@ package QtAda6.QtGui.QStandardItem is
    procedure setAccessibleDescription (self : access Inst; accessibleDescription_P : str);
    procedure setAccessibleText (self : access Inst; accessibleText_P : str);
    procedure setAutoTristate (self : access Inst; tristate_P : bool);
-   procedure setBackground
-     (self    : access Inst;
-      brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
+   procedure setBackground (self : access Inst; brush_P : access QtAda6.QtGui.QBrush.Inst'Class);
+   procedure setBackground (self : access Inst; brush_P : access QtAda6.QtCore.Qt.BrushStyle.Inst'Class);
+   procedure setBackground (self : access Inst; brush_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure setBackground (self : access Inst; brush_P : access QtAda6.QtGui.QColor.Inst'Class);
+   procedure setBackground (self : access Inst; brush_P : access QtAda6.QtGui.QGradient.Inst'Class);
+   procedure setBackground (self : access Inst; brush_P : access QtAda6.QtGui.QImage.Inst'Class);
+   procedure setBackground (self : access Inst; brush_P : access QtAda6.QtGui.QPixmap.Inst'Class);
    procedure setCheckState (self : access Inst; checkState_P : access QtAda6.QtCore.Qt.CheckState.Inst'Class);
    procedure setCheckable (self : access Inst; checkable_P : bool);
    procedure setChild
@@ -106,11 +114,18 @@ package QtAda6.QtGui.QStandardItem is
    procedure setEditable (self : access Inst; editable_P : bool);
    procedure setEnabled (self : access Inst; enabled_P : bool);
    procedure setFlags (self : access Inst; flags_P : access QtAda6.QtCore.Qt.ItemFlag.Inst'Class);
-   procedure setFont (self : access Inst; font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str);
-   procedure setForeground
-     (self    : access Inst;
-      brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
-   procedure setIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
+   procedure setFont (self : access Inst; font_P : access QtAda6.QtGui.QFont.Inst'Class);
+   procedure setFont (self : access Inst; font_P : str);
+   procedure setFont (self : access Inst; font_P : SEQUENCE_str);
+   procedure setForeground (self : access Inst; brush_P : access QtAda6.QtGui.QBrush.Inst'Class);
+   procedure setForeground (self : access Inst; brush_P : access QtAda6.QtCore.Qt.BrushStyle.Inst'Class);
+   procedure setForeground (self : access Inst; brush_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure setForeground (self : access Inst; brush_P : access QtAda6.QtGui.QColor.Inst'Class);
+   procedure setForeground (self : access Inst; brush_P : access QtAda6.QtGui.QGradient.Inst'Class);
+   procedure setForeground (self : access Inst; brush_P : access QtAda6.QtGui.QImage.Inst'Class);
+   procedure setForeground (self : access Inst; brush_P : access QtAda6.QtGui.QPixmap.Inst'Class);
+   procedure setIcon (self : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class);
+   procedure setIcon (self : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class);
    procedure setRowCount (self : access Inst; rows_P : int);
    procedure setSelectable (self : access Inst; selectable_P : bool);
    procedure setSizeHint (self : access Inst; sizeHint_P : access QtAda6.QtCore.QSize.Inst'Class);

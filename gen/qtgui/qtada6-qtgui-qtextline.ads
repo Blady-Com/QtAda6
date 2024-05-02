@@ -10,9 +10,11 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtGui.QTextLine.Edge;
 limited with QtAda6.QtGui.QPainter;
+limited with QtAda6.QtCore.QPointF;
+limited with QtAda6.QtCore.QPoint;
+limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtGui.QGlyphRun;
 limited with QtAda6.QtCore.QRectF;
-limited with QtAda6.QtCore.QPointF;
 limited with QtAda6.QtGui.QTextLine.CursorPosition;
 package QtAda6.QtGui.QTextLine is
    type Inst;
@@ -20,7 +22,6 @@ package QtAda6.QtGui.QTextLine is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    subtype LIST_QtAda6_QtGui_QGlyphRun is QtAda6.QtGui.QGlyphRun.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create return Class;
@@ -32,7 +33,13 @@ package QtAda6.QtGui.QTextLine is
    function descent (self : access Inst) return float;
    procedure draw
      (self       : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
-      position_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element);
+      position_P : access QtAda6.QtCore.QPointF.Inst'Class);
+   procedure draw
+     (self       : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
+      position_P : access QtAda6.QtCore.QPoint.Inst'Class);
+   procedure draw
+     (self       : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
+      position_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class);
    function glyphRuns (self : access Inst; from_U_P : int := 0; length_P : int := 0) return LIST_QtAda6_QtGui_QGlyphRun;
    function height (self : access Inst) return float;
    function horizontalAdvance (self : access Inst) return float;
@@ -48,8 +55,9 @@ package QtAda6.QtGui.QTextLine is
    procedure setLineWidth (self : access Inst; width_P : float);
    procedure setNumColumns (self : access Inst; columns_P : int);
    procedure setNumColumns (self : access Inst; columns_P : int; alignmentWidth_P : float);
-   procedure setPosition
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element);
+   procedure setPosition (self : access Inst; pos_P : access QtAda6.QtCore.QPointF.Inst'Class);
+   procedure setPosition (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class);
+   procedure setPosition (self : access Inst; pos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class);
    function textLength (self : access Inst) return int;
    function textStart (self : access Inst) return int;
    function width (self : access Inst) return float;

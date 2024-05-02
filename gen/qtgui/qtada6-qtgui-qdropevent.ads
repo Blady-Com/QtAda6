@@ -8,13 +8,14 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.QPointF;
 limited with QtAda6.QtCore.Qt.DropAction;
 limited with QtAda6.QtCore.QMimeData;
 limited with QtAda6.QtCore.Qt.MouseButton;
 limited with QtAda6.QtCore.Qt.KeyboardModifier;
 limited with QtAda6.QtCore.QEvent.Type_K;
 limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtCore.QPointF;
+limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.QEvent;
 package QtAda6.QtGui.QDropEvent is
@@ -23,11 +24,20 @@ package QtAda6.QtGui.QDropEvent is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QEvent.Inst with null record;
-   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create (arg_1_P : access QtAda6.QtGui.QDropEvent.Inst'Class) return Class;
    function Create
-     (pos_P       : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
+     (pos_P       : access QtAda6.QtCore.QPointF.Inst'Class; actions_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class;
+      data_P : access QtAda6.QtCore.QMimeData.Inst'Class; buttons_P : access QtAda6.QtCore.Qt.MouseButton.Inst'Class;
+      modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      type_K_P    : access QtAda6.QtCore.QEvent.Type_K.Inst'Class := null) return Class;
+   function Create
+     (pos_P       : access QtAda6.QtCore.QPoint.Inst'Class; actions_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class;
+      data_P : access QtAda6.QtCore.QMimeData.Inst'Class; buttons_P : access QtAda6.QtCore.Qt.MouseButton.Inst'Class;
+      modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
+      type_K_P    : access QtAda6.QtCore.QEvent.Type_K.Inst'Class := null) return Class;
+   function Create
+     (pos_P       : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
       actions_P   : access QtAda6.QtCore.Qt.DropAction.Inst'Class; data_P : access QtAda6.QtCore.QMimeData.Inst'Class;
       buttons_P   : access QtAda6.QtCore.Qt.MouseButton.Inst'Class;
       modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;

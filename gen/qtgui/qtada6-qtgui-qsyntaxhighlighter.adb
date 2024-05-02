@@ -15,6 +15,10 @@ with QtAda6.QtGui.QTextDocument;
 with QtAda6.QtGui.QTextBlock;
 with QtAda6.QtGui.QTextBlockUserData;
 with QtAda6.QtGui.QTextCharFormat;
+with QtAda6.QtGui.QColor;
+with QtAda6.QtGui.QRgba64;
+with QtAda6.QtCore.Qt.GlobalColor;
+with QtAda6.QtGui.QFont;
 package body QtAda6.QtGui.QSyntaxHighlighter is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -26,7 +30,7 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSyntaxHighlighter");
       Args  := Tuple_New (1);
@@ -35,7 +39,7 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtGui.QTextDocument.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QSyntaxHighlighter");
       Args  := Tuple_New (1);
@@ -44,7 +48,7 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function currentBlock (self : access Inst) return access QtAda6.QtGui.QTextBlock.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextBlock.Class := new QtAda6.QtGui.QTextBlock.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentBlock");
@@ -55,7 +59,7 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       return Ret;
    end currentBlock;
    function currentBlockState (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "currentBlockState");
       Args   := Tuple_New (0);
@@ -64,7 +68,7 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       return Long_AsLong (Result);
    end currentBlockState;
    function currentBlockUserData (self : access Inst) return access QtAda6.QtGui.QTextBlockUserData.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextBlockUserData.Class := new QtAda6.QtGui.QTextBlockUserData.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentBlockUserData");
@@ -75,7 +79,7 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       return Ret;
    end currentBlockUserData;
    function document (self : access Inst) return access QtAda6.QtGui.QTextDocument.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextDocument.Class := new QtAda6.QtGui.QTextDocument.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "document");
@@ -86,7 +90,7 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       return Ret;
    end document;
    function format (self : access Inst; pos_P : int) return access QtAda6.QtGui.QTextCharFormat.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextCharFormat.Class := new QtAda6.QtGui.QTextCharFormat.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "format");
@@ -98,7 +102,7 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       return Ret;
    end format;
    procedure highlightBlock (self : access Inst; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "highlightBlock");
       Args   := Tuple_New (1);
@@ -107,7 +111,7 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       Result := Object_Call (Method, Args, Dict, True);
    end highlightBlock;
    function previousBlockState (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "previousBlockState");
       Args   := Tuple_New (0);
@@ -116,7 +120,7 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       return Long_AsLong (Result);
    end previousBlockState;
    procedure rehighlight (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rehighlight");
       Args   := Tuple_New (0);
@@ -124,7 +128,7 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       Result := Object_Call (Method, Args, Dict, True);
    end rehighlight;
    procedure rehighlightBlock (self : access Inst; block_P : access QtAda6.QtGui.QTextBlock.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rehighlightBlock");
       Args   := Tuple_New (1);
@@ -133,7 +137,7 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       Result := Object_Call (Method, Args, Dict, True);
    end rehighlightBlock;
    procedure setCurrentBlockState (self : access Inst; newState_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentBlockState");
       Args   := Tuple_New (1);
@@ -142,7 +146,7 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       Result := Object_Call (Method, Args, Dict, True);
    end setCurrentBlockState;
    procedure setCurrentBlockUserData (self : access Inst; data_P : access QtAda6.QtGui.QTextBlockUserData.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentBlockUserData");
       Args   := Tuple_New (1);
@@ -151,7 +155,7 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       Result := Object_Call (Method, Args, Dict, True);
    end setCurrentBlockUserData;
    procedure setDocument (self : access Inst; doc_P : access QtAda6.QtGui.QTextDocument.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDocument");
       Args   := Tuple_New (1);
@@ -160,10 +164,9 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       Result := Object_Call (Method, Args, Dict, True);
    end setDocument;
    procedure setFormat
-     (self    : access Inst; start_P : int; count_P : int;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
+     (self : access Inst; start_P : int; count_P : int; color_P : access QtAda6.QtGui.QColor.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
       Args   := Tuple_New (3);
@@ -174,9 +177,67 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       Result := Object_Call (Method, Args, Dict, True);
    end setFormat;
    procedure setFormat
-     (self : access Inst; start_P : int; count_P : int; font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str)
+     (self : access Inst; start_P : int; count_P : int; color_P : access QtAda6.QtGui.QRgba64.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, Long_FromLong (start_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (count_P));
+      Tuple_SetItem (Args, 2, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFormat;
+   procedure setFormat (self : access Inst; start_P : int; count_P : int; color_P : Any) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, Long_FromLong (start_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (count_P));
+      Tuple_SetItem (Args, 2, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFormat;
+   procedure setFormat
+     (self : access Inst; start_P : int; count_P : int; color_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, Long_FromLong (start_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (count_P));
+      Tuple_SetItem (Args, 2, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFormat;
+   procedure setFormat (self : access Inst; start_P : int; count_P : int; color_P : str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, Long_FromLong (start_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (count_P));
+      Tuple_SetItem (Args, 2, Unicode_FromString (color_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFormat;
+   procedure setFormat (self : access Inst; start_P : int; count_P : int; color_P : int) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, Long_FromLong (start_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (count_P));
+      Tuple_SetItem (Args, 2, Long_FromLong (color_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFormat;
+   procedure setFormat (self : access Inst; start_P : int; count_P : int; font_P : access QtAda6.QtGui.QFont.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
       Args   := Tuple_New (3);
@@ -186,10 +247,25 @@ package body QtAda6.QtGui.QSyntaxHighlighter is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setFormat;
+   procedure setFormat (self : access Inst; start_P : int; count_P : int; font_P : SEQUENCE_str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, Long_FromLong (start_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (count_P));
+      List := List_New (font_P'Length);
+      for ind in font_P'Range loop
+         List_SetItem (List, ssize_t (ind - font_P'First), Unicode_FromString (font_P (ind)));
+      end loop;
+      Tuple_SetItem (Args, 2, List);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFormat;
    procedure setFormat
      (self : access Inst; start_P : int; count_P : int; format_P : access QtAda6.QtGui.QTextCharFormat.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
       Args   := Tuple_New (3);

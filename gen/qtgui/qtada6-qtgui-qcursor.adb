@@ -10,12 +10,13 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Qt.CursorShape;
-with QtAda6.QtCore.QDataStream;
 with QtAda6.QtGui.QBitmap;
+with QtAda6.QtCore.Qt.CursorShape;
+with QtAda6.QtGui.QPixmap;
+with QtAda6.QtGui.QImage;
+with QtAda6.QtCore.QDataStream;
 with QtAda6.QtCore.Qt.ReturnByValueConstant;
 with QtAda6.QtCore.QPoint;
-with QtAda6.QtGui.QPixmap;
 with QtAda6.QtGui.QScreen;
 package body QtAda6.QtGui.QCursor is
    use type QtAda6.int;
@@ -28,7 +29,7 @@ package body QtAda6.QtGui.QCursor is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
       Args  := Tuple_New (0);
@@ -36,10 +37,10 @@ package body QtAda6.QtGui.QCursor is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (bitmap_P : UNION_QtAda6_QtGui_QBitmap_str; mask_P : UNION_QtAda6_QtGui_QBitmap_str; hotX_P : int := 0;
-      hotY_P   : int := 0) return Class
+     (bitmap_P : access QtAda6.QtGui.QBitmap.Inst'Class; mask_P : access QtAda6.QtGui.QBitmap.Inst'Class;
+      hotX_P   : int := 0; hotY_P : int := 0) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
       Args  := Tuple_New (2);
@@ -55,9 +56,79 @@ package body QtAda6.QtGui.QCursor is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (cursor_P : UNION_QtAda6_QtGui_QCursor_QtAda6_QtCore_Qt_CursorShape_QtAda6_QtGui_QPixmap) return Class
+     (bitmap_P : access QtAda6.QtGui.QBitmap.Inst'Class; mask_P : str; hotX_P : int := 0; hotY_P : int := 0)
+      return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if bitmap_P /= null then bitmap_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (mask_P));
+      Dict := Dict_New;
+      if hotX_P /= 0 then
+         Dict_SetItemString (Dict, "hotX", Long_FromLong (hotX_P));
+      end if;
+      if hotY_P /= 0 then
+         Dict_SetItemString (Dict, "hotY", Long_FromLong (hotY_P));
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (bitmap_P : str; mask_P : access QtAda6.QtGui.QBitmap.Inst'Class; hotX_P : int := 0; hotY_P : int := 0)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (bitmap_P));
+      Tuple_SetItem (Args, 1, (if mask_P /= null then mask_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if hotX_P /= 0 then
+         Dict_SetItemString (Dict, "hotX", Long_FromLong (hotX_P));
+      end if;
+      if hotY_P /= 0 then
+         Dict_SetItemString (Dict, "hotY", Long_FromLong (hotY_P));
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (bitmap_P : str; mask_P : str; hotX_P : int := 0; hotY_P : int := 0) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (bitmap_P));
+      Tuple_SetItem (Args, 1, Unicode_FromString (mask_P));
+      Dict := Dict_New;
+      if hotX_P /= 0 then
+         Dict_SetItemString (Dict, "hotX", Long_FromLong (hotX_P));
+      end if;
+      if hotY_P /= 0 then
+         Dict_SetItemString (Dict, "hotY", Long_FromLong (hotY_P));
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (cursor_P : access QtAda6.QtGui.QCursor.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if cursor_P /= null then cursor_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (cursor_P : access QtAda6.QtCore.Qt.CursorShape.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if cursor_P /= null then cursor_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (cursor_P : access QtAda6.QtGui.QPixmap.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
       Args  := Tuple_New (1);
@@ -66,9 +137,9 @@ package body QtAda6.QtGui.QCursor is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str; hotX_P : int := 0; hotY_P : int := 0) return Class
+     (pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class; hotX_P : int := 0; hotY_P : int := 0) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
       Args  := Tuple_New (1);
@@ -82,17 +153,39 @@ package body QtAda6.QtGui.QCursor is
       end if;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (shape_P : access QtAda6.QtCore.Qt.CursorShape.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (pixmap_P : access QtAda6.QtGui.QImage.Inst'Class; hotX_P : int := 0; hotY_P : int := 0) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, (if shape_P /= null then shape_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 0, (if pixmap_P /= null then pixmap_P.Python_Proxy else No_Value));
       Dict := Dict_New;
+      if hotX_P /= 0 then
+         Dict_SetItemString (Dict, "hotX", Long_FromLong (hotX_P));
+      end if;
+      if hotY_P /= 0 then
+         Dict_SetItemString (Dict, "hotY", Long_FromLong (hotY_P));
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (pixmap_P : str; hotX_P : int := 0; hotY_P : int := 0) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (pixmap_P));
+      Dict := Dict_New;
+      if hotX_P /= 0 then
+         Dict_SetItemString (Dict, "hotX", Long_FromLong (hotX_P));
+      end if;
+      if hotY_P /= 0 then
+         Dict_SetItemString (Dict, "hotY", Long_FromLong (hotY_P));
+      end if;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -104,7 +197,7 @@ package body QtAda6.QtGui.QCursor is
      (self : access Inst; outS_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__lshift__");
@@ -119,7 +212,7 @@ package body QtAda6.QtGui.QCursor is
      (self : access Inst; inS_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__rshift__");
@@ -131,8 +224,8 @@ package body QtAda6.QtGui.QCursor is
       return Ret;
    end U_rshift_U;
    function bitmap (self : access Inst) return access QtAda6.QtGui.QBitmap.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "bitmap");
       Args             := Tuple_New (0);
@@ -145,8 +238,8 @@ package body QtAda6.QtGui.QCursor is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.ReturnByValueConstant.Inst'Class)
       return access QtAda6.QtGui.QBitmap.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "bitmap");
       Args   := Tuple_New (1);
@@ -157,8 +250,8 @@ package body QtAda6.QtGui.QCursor is
       return Ret;
    end bitmap;
    function hotSpot (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "hotSpot");
       Args             := Tuple_New (0);
@@ -168,8 +261,8 @@ package body QtAda6.QtGui.QCursor is
       return Ret;
    end hotSpot;
    function mask (self : access Inst) return access QtAda6.QtGui.QBitmap.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "mask");
       Args             := Tuple_New (0);
@@ -182,8 +275,8 @@ package body QtAda6.QtGui.QCursor is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.ReturnByValueConstant.Inst'Class)
       return access QtAda6.QtGui.QBitmap.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QBitmap.Class := new QtAda6.QtGui.QBitmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mask");
       Args   := Tuple_New (1);
@@ -194,8 +287,8 @@ package body QtAda6.QtGui.QCursor is
       return Ret;
    end mask;
    function pixmap (self : access Inst) return access QtAda6.QtGui.QPixmap.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "pixmap");
       Args             := Tuple_New (0);
@@ -205,7 +298,7 @@ package body QtAda6.QtGui.QCursor is
       return Ret;
    end pixmap;
    function pos return access QtAda6.QtCore.QPoint.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
@@ -217,7 +310,7 @@ package body QtAda6.QtGui.QCursor is
       return Ret;
    end pos;
    function pos (screen_P : access QtAda6.QtGui.QScreen.Inst'Class) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
@@ -230,7 +323,7 @@ package body QtAda6.QtGui.QCursor is
       return Ret;
    end pos;
    procedure setPos (p_P : access QtAda6.QtCore.QPoint.Inst'Class) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
       Method := Object_GetAttrString (Class, "setPos");
@@ -240,7 +333,7 @@ package body QtAda6.QtGui.QCursor is
       Result := Object_Call (Method, Args, Dict, True);
    end setPos;
    procedure setPos (screen_P : access QtAda6.QtGui.QScreen.Inst'Class; p_P : access QtAda6.QtCore.QPoint.Inst'Class) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
       Method := Object_GetAttrString (Class, "setPos");
@@ -251,7 +344,7 @@ package body QtAda6.QtGui.QCursor is
       Result := Object_Call (Method, Args, Dict, True);
    end setPos;
    procedure setPos (screen_P : access QtAda6.QtGui.QScreen.Inst'Class; x_P : int; y_P : int) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
       Method := Object_GetAttrString (Class, "setPos");
@@ -263,7 +356,7 @@ package body QtAda6.QtGui.QCursor is
       Result := Object_Call (Method, Args, Dict, True);
    end setPos;
    procedure setPos (x_P : int; y_P : int) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QCursor");
       Method := Object_GetAttrString (Class, "setPos");
@@ -274,7 +367,7 @@ package body QtAda6.QtGui.QCursor is
       Result := Object_Call (Method, Args, Dict, True);
    end setPos;
    procedure setShape (self : access Inst; newShape_P : access QtAda6.QtCore.Qt.CursorShape.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setShape");
       Args   := Tuple_New (1);
@@ -283,7 +376,7 @@ package body QtAda6.QtGui.QCursor is
       Result := Object_Call (Method, Args, Dict, True);
    end setShape;
    function shape (self : access Inst) return access QtAda6.QtCore.Qt.CursorShape.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.CursorShape.Class := new QtAda6.QtCore.Qt.CursorShape.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "shape");
@@ -293,10 +386,26 @@ package body QtAda6.QtGui.QCursor is
       Ret.Python_Proxy := Result;
       return Ret;
    end shape;
-   procedure swap
-     (self : access Inst; other_P : UNION_QtAda6_QtGui_QCursor_QtAda6_QtCore_Qt_CursorShape_QtAda6_QtGui_QPixmap)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QCursor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "swap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end swap;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.Qt.CursorShape.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "swap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end swap;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QPixmap.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);

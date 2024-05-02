@@ -21,7 +21,7 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleActionInterface");
       Args  := Tuple_New (0);
@@ -29,16 +29,20 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function actionNames (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "actionNames");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end actionNames;
    function decreaseAction return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleActionInterface");
       Method := Object_GetAttrString (Class, "decreaseAction");
@@ -48,7 +52,7 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       return As_String (Result);
    end decreaseAction;
    procedure doAction (self : access Inst; actionName_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "doAction");
       Args   := Tuple_New (1);
@@ -57,7 +61,7 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       Result := Object_Call (Method, Args, Dict, True);
    end doAction;
    function increaseAction return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleActionInterface");
       Method := Object_GetAttrString (Class, "increaseAction");
@@ -67,17 +71,21 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       return As_String (Result);
    end increaseAction;
    function keyBindingsForAction (self : access Inst; actionName_P : str) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "keyBindingsForAction");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, Unicode_FromString (actionName_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end keyBindingsForAction;
    function localizedActionDescription (self : access Inst; name_P : str) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "localizedActionDescription");
       Args   := Tuple_New (1);
@@ -87,7 +95,7 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       return As_String (Result);
    end localizedActionDescription;
    function localizedActionName (self : access Inst; name_P : str) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "localizedActionName");
       Args   := Tuple_New (1);
@@ -97,7 +105,7 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       return As_String (Result);
    end localizedActionName;
    function nextPageAction return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleActionInterface");
       Method := Object_GetAttrString (Class, "nextPageAction");
@@ -107,7 +115,7 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       return As_String (Result);
    end nextPageAction;
    function pressAction return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleActionInterface");
       Method := Object_GetAttrString (Class, "pressAction");
@@ -117,7 +125,7 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       return As_String (Result);
    end pressAction;
    function previousPageAction return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleActionInterface");
       Method := Object_GetAttrString (Class, "previousPageAction");
@@ -127,7 +135,7 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       return As_String (Result);
    end previousPageAction;
    function scrollDownAction return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleActionInterface");
       Method := Object_GetAttrString (Class, "scrollDownAction");
@@ -137,7 +145,7 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       return As_String (Result);
    end scrollDownAction;
    function scrollLeftAction return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleActionInterface");
       Method := Object_GetAttrString (Class, "scrollLeftAction");
@@ -147,7 +155,7 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       return As_String (Result);
    end scrollLeftAction;
    function scrollRightAction return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleActionInterface");
       Method := Object_GetAttrString (Class, "scrollRightAction");
@@ -157,7 +165,7 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       return As_String (Result);
    end scrollRightAction;
    function scrollUpAction return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleActionInterface");
       Method := Object_GetAttrString (Class, "scrollUpAction");
@@ -167,7 +175,7 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       return As_String (Result);
    end scrollUpAction;
    function setFocusAction return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleActionInterface");
       Method := Object_GetAttrString (Class, "setFocusAction");
@@ -177,7 +185,7 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       return As_String (Result);
    end setFocusAction;
    function showMenuAction return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleActionInterface");
       Method := Object_GetAttrString (Class, "showMenuAction");
@@ -187,7 +195,7 @@ package body QtAda6.QtGui.QAccessibleActionInterface is
       return As_String (Result);
    end showMenuAction;
    function toggleAction return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QAccessibleActionInterface");
       Method := Object_GetAttrString (Class, "toggleAction");

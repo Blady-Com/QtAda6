@@ -14,6 +14,9 @@ limited with QtAda6.QtGui.QPaintDevice.PaintDeviceMetric;
 limited with QtAda6.QtGui.QPaintEngine;
 limited with QtAda6.QtGui.QPaintEvent;
 limited with QtAda6.QtCore.QRect;
+limited with QtAda6.QtGui.QRegion;
+limited with QtAda6.QtGui.QBitmap;
+limited with QtAda6.QtGui.QPolygon;
 with QtAda6.QtGui.QWindow;
 with QtAda6.QtGui.QPaintDevice;
 package QtAda6.QtGui.QPaintDeviceWindow is
@@ -24,7 +27,6 @@ package QtAda6.QtGui.QPaintDeviceWindow is
    type Inst is new QtAda6.QtGui.QWindow.Inst
 --  and QtAda6.QtGui.QPaintDevice.Inst
    with null record;
-   type UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect is new Any;
    procedure Finalize (Self : in out Class);
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool;
    procedure exposeEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QExposeEvent.Inst'Class);
@@ -34,7 +36,8 @@ package QtAda6.QtGui.QPaintDeviceWindow is
    procedure paintEvent (self : access Inst; event_P : access QtAda6.QtGui.QPaintEvent.Inst'Class);
    procedure update (self : access Inst);
    procedure update (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class);
-   procedure update
-     (self     : access Inst;
-      region_P : UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect);
+   procedure update (self : access Inst; region_P : access QtAda6.QtGui.QRegion.Inst'Class);
+   procedure update (self : access Inst; region_P : access QtAda6.QtGui.QBitmap.Inst'Class);
+   procedure update (self : access Inst; region_P : access QtAda6.QtGui.QPolygon.Inst'Class);
+-- procedure update(self : access Inst;region_P : access QtAda6.QtCore.QRect.Inst'Class);
 end QtAda6.QtGui.QPaintDeviceWindow;

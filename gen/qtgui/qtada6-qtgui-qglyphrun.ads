@@ -12,6 +12,9 @@ limited with QtAda6.QtCore.QRectF;
 limited with QtAda6.QtGui.QGlyphRun.GlyphRunFlag;
 limited with QtAda6.QtCore.QPointF;
 limited with QtAda6.QtGui.QRawFont;
+limited with QtAda6.QtCore.QRect;
+limited with QtAda6.QtCore.QPoint;
+limited with QtAda6.QtGui.QPainterPath.Element;
 package QtAda6.QtGui.QGlyphRun is
    type Inst;
    type Inst_Access is access all Inst;
@@ -20,10 +23,8 @@ package QtAda6.QtGui.QGlyphRun is
    type Inst is new Shiboken.Object with null record;
    type LIST_int is array (Positive range <>) of int;
    subtype LIST_QtAda6_QtCore_QPointF is QtAda6.QtCore.QPointF.Class_Array;
-   type UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect is new Any;
    type SEQUENCE_int is array (Positive range <>) of int;
    subtype SEQUENCE_QtAda6_QtCore_QPointF is QtAda6.QtCore.QPointF.Class_Array;
-   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (other_P : access QtAda6.QtGui.QGlyphRun.Inst'Class) return Class;
@@ -37,7 +38,8 @@ package QtAda6.QtGui.QGlyphRun is
    function overline (self : access Inst) return bool;
    function positions (self : access Inst) return LIST_QtAda6_QtCore_QPointF;
    function rawFont (self : access Inst) return access QtAda6.QtGui.QRawFont.Inst'Class;
-   procedure setBoundingRect (self : access Inst; boundingRect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect);
+   procedure setBoundingRect (self : access Inst; boundingRect_P : access QtAda6.QtCore.QRectF.Inst'Class);
+   procedure setBoundingRect (self : access Inst; boundingRect_P : access QtAda6.QtCore.QRect.Inst'Class);
    procedure setFlag
      (self : access Inst; flag_P : access QtAda6.QtGui.QGlyphRun.GlyphRunFlag.Inst'Class; enabled_P : bool := False);
    procedure setFlags (self : access Inst; flags_P : access QtAda6.QtGui.QGlyphRun.GlyphRunFlag.Inst'Class);
@@ -45,9 +47,14 @@ package QtAda6.QtGui.QGlyphRun is
    procedure setOverline (self : access Inst; overline_P : bool);
    procedure setPositions (self : access Inst; positions_P : SEQUENCE_QtAda6_QtCore_QPointF);
    procedure setRawData
+     (self   : access Inst; glyphIndexArray_P : int; glyphPositionArray_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      size_P : int);
+   procedure setRawData
+     (self   : access Inst; glyphIndexArray_P : int; glyphPositionArray_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      size_P : int);
+   procedure setRawData
      (self                 : access Inst; glyphIndexArray_P : int;
-      glyphPositionArray_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
-      size_P               : int);
+      glyphPositionArray_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class; size_P : int);
    procedure setRawFont (self : access Inst; rawFont_P : access QtAda6.QtGui.QRawFont.Inst'Class);
    procedure setRightToLeft (self : access Inst; on_P : bool);
    procedure setSourceString (self : access Inst; sourceString_P : str);

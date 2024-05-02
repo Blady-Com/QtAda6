@@ -11,8 +11,10 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtGui.QPainter;
+with QtAda6.QtCore.QRectF;
 with QtAda6.QtGui.QTextDocument;
 with QtAda6.QtGui.QTextFormat;
+with QtAda6.QtCore.QRect;
 with QtAda6.QtCore.QSizeF;
 package body QtAda6.QtGui.QTextObjectInterface is
    use type QtAda6.int;
@@ -25,7 +27,7 @@ package body QtAda6.QtGui.QTextObjectInterface is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextObjectInterface");
       Args  := Tuple_New (0);
@@ -34,10 +36,27 @@ package body QtAda6.QtGui.QTextObjectInterface is
    end Create;
    procedure drawObject
      (self            : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
-      rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect; doc_P : access QtAda6.QtGui.QTextDocument.Inst'Class;
+      rect_P          : access QtAda6.QtCore.QRectF.Inst'Class; doc_P : access QtAda6.QtGui.QTextDocument.Inst'Class;
       posInDocument_P : int; format_P : access QtAda6.QtGui.QTextFormat.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "drawObject");
+      Args   := Tuple_New (5);
+      Tuple_SetItem (Args, 0, (if painter_P /= null then painter_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if rect_P /= null then rect_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if doc_P /= null then doc_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, Long_FromLong (posInDocument_P));
+      Tuple_SetItem (Args, 4, (if format_P /= null then format_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end drawObject;
+   procedure drawObject
+     (self            : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
+      rect_P          : access QtAda6.QtCore.QRect.Inst'Class; doc_P : access QtAda6.QtGui.QTextDocument.Inst'Class;
+      posInDocument_P : int; format_P : access QtAda6.QtGui.QTextFormat.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "drawObject");
       Args   := Tuple_New (5);
@@ -53,8 +72,8 @@ package body QtAda6.QtGui.QTextObjectInterface is
      (self     : access Inst; doc_P : access QtAda6.QtGui.QTextDocument.Inst'Class; posInDocument_P : int;
       format_P : access QtAda6.QtGui.QTextFormat.Inst'Class) return access QtAda6.QtCore.QSizeF.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "intrinsicSize");
       Args   := Tuple_New (3);

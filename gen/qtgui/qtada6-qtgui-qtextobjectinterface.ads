@@ -9,8 +9,10 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtGui.QPainter;
+limited with QtAda6.QtCore.QRectF;
 limited with QtAda6.QtGui.QTextDocument;
 limited with QtAda6.QtGui.QTextFormat;
+limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtCore.QSizeF;
 package QtAda6.QtGui.QTextObjectInterface is
    type Inst;
@@ -18,12 +20,15 @@ package QtAda6.QtGui.QTextObjectInterface is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    procedure drawObject
      (self            : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
-      rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect; doc_P : access QtAda6.QtGui.QTextDocument.Inst'Class;
+      rect_P          : access QtAda6.QtCore.QRectF.Inst'Class; doc_P : access QtAda6.QtGui.QTextDocument.Inst'Class;
+      posInDocument_P : int; format_P : access QtAda6.QtGui.QTextFormat.Inst'Class);
+   procedure drawObject
+     (self            : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
+      rect_P          : access QtAda6.QtCore.QRect.Inst'Class; doc_P : access QtAda6.QtGui.QTextDocument.Inst'Class;
       posInDocument_P : int; format_P : access QtAda6.QtGui.QTextFormat.Inst'Class);
    function intrinsicSize
      (self     : access Inst; doc_P : access QtAda6.QtGui.QTextDocument.Inst'Class; posInDocument_P : int;

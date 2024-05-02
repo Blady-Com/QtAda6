@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QTextBlockFormat;
 with QtAda6.QtGui.QTextFormat;
 with QtAda6.QtCore.Qt.AlignmentFlag;
 with QtAda6.QtGui.QTextBlockFormat.MarkerType;
@@ -27,7 +26,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextBlockFormat");
       Args  := Tuple_New (0);
@@ -35,7 +34,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (QTextBlockFormat_P : access QtAda6.QtGui.QTextBlockFormat.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextBlockFormat");
       Args  := Tuple_New (1);
@@ -44,7 +43,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (fmt_P : access QtAda6.QtGui.QTextFormat.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextBlockFormat");
       Args  := Tuple_New (1);
@@ -53,7 +52,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextBlockFormat");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -62,7 +61,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function alignment (self : access Inst) return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.AlignmentFlag.Class := new QtAda6.QtCore.Qt.AlignmentFlag.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "alignment");
@@ -73,7 +72,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return Ret;
    end alignment;
    function bottomMargin (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "bottomMargin");
       Args   := Tuple_New (0);
@@ -82,7 +81,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return Float_AsDouble (Result);
    end bottomMargin;
    function headingLevel (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "headingLevel");
       Args   := Tuple_New (0);
@@ -91,7 +90,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return Long_AsLong (Result);
    end headingLevel;
    function indent (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indent");
       Args   := Tuple_New (0);
@@ -100,7 +99,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return Long_AsLong (Result);
    end indent;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -109,7 +108,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return To_Ada (Result);
    end isValid;
    function leftMargin (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "leftMargin");
       Args   := Tuple_New (0);
@@ -118,7 +117,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return Float_AsDouble (Result);
    end leftMargin;
    function lineHeight (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lineHeight");
       Args   := Tuple_New (0);
@@ -127,7 +126,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return Float_AsDouble (Result);
    end lineHeight;
    function lineHeight (self : access Inst; scriptLineHeight_P : float; scaling_P : float) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lineHeight");
       Args   := Tuple_New (2);
@@ -138,7 +137,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return Float_AsDouble (Result);
    end lineHeight;
    function lineHeightType (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lineHeightType");
       Args   := Tuple_New (0);
@@ -147,8 +146,8 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return Long_AsLong (Result);
    end lineHeightType;
    function marker (self : access Inst) return access QtAda6.QtGui.QTextBlockFormat.MarkerType.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QTextBlockFormat.MarkerType.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QTextBlockFormat.MarkerType.Class :=
         new QtAda6.QtGui.QTextBlockFormat.MarkerType.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "marker");
@@ -159,7 +158,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return Ret;
    end marker;
    function nonBreakableLines (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "nonBreakableLines");
       Args   := Tuple_New (0);
@@ -168,7 +167,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return To_Ada (Result);
    end nonBreakableLines;
    function pageBreakPolicy (self : access Inst) return access QtAda6.QtGui.QTextFormat.PageBreakFlag.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextFormat.PageBreakFlag.Class := new QtAda6.QtGui.QTextFormat.PageBreakFlag.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "pageBreakPolicy");
@@ -179,7 +178,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return Ret;
    end pageBreakPolicy;
    function rightMargin (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rightMargin");
       Args   := Tuple_New (0);
@@ -188,7 +187,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return Float_AsDouble (Result);
    end rightMargin;
    procedure setAlignment (self : access Inst; alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAlignment");
       Args   := Tuple_New (1);
@@ -197,7 +196,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setAlignment;
    procedure setBottomMargin (self : access Inst; margin_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBottomMargin");
       Args   := Tuple_New (1);
@@ -206,7 +205,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setBottomMargin;
    procedure setHeadingLevel (self : access Inst; alevel_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHeadingLevel");
       Args   := Tuple_New (1);
@@ -215,7 +214,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setHeadingLevel;
    procedure setIndent (self : access Inst; indent_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setIndent");
       Args   := Tuple_New (1);
@@ -224,7 +223,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setIndent;
    procedure setLeftMargin (self : access Inst; margin_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setLeftMargin");
       Args   := Tuple_New (1);
@@ -233,7 +232,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setLeftMargin;
    procedure setLineHeight (self : access Inst; height_P : float; heightType_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setLineHeight");
       Args   := Tuple_New (2);
@@ -243,7 +242,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setLineHeight;
    procedure setMarker (self : access Inst; marker_P : access QtAda6.QtGui.QTextBlockFormat.MarkerType.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMarker");
       Args   := Tuple_New (1);
@@ -252,7 +251,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setMarker;
    procedure setNonBreakableLines (self : access Inst; b_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setNonBreakableLines");
       Args   := Tuple_New (1);
@@ -262,7 +261,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
    end setNonBreakableLines;
    procedure setPageBreakPolicy (self : access Inst; flags_P : access QtAda6.QtGui.QTextFormat.PageBreakFlag.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPageBreakPolicy");
       Args   := Tuple_New (1);
@@ -271,7 +270,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setPageBreakPolicy;
    procedure setRightMargin (self : access Inst; margin_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRightMargin");
       Args   := Tuple_New (1);
@@ -280,21 +279,21 @@ package body QtAda6.QtGui.QTextBlockFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setRightMargin;
    procedure setTabPositions (self : access Inst; tabs_P : SEQUENCE_QtAda6_QtGui_QTextOption_Tab) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabPositions");
+      Args   := Tuple_New (1);
       List   := List_New (tabs_P'Length);
       for ind in tabs_P'Range loop
          List_SetItem
            (List, ssize_t (ind - tabs_P'First), (if tabs_P (ind) /= null then tabs_P (ind).Python_Proxy else No_Value));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setTabPositions;
    procedure setTextIndent (self : access Inst; aindent_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTextIndent");
       Args   := Tuple_New (1);
@@ -303,7 +302,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setTextIndent;
    procedure setTopMargin (self : access Inst; margin_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTopMargin");
       Args   := Tuple_New (1);
@@ -312,16 +311,20 @@ package body QtAda6.QtGui.QTextBlockFormat is
       Result := Object_Call (Method, Args, Dict, True);
    end setTopMargin;
    function tabPositions (self : access Inst) return LIST_QtAda6_QtGui_QTextOption_Tab is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabPositions");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtGui_QTextOption_Tab (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end tabPositions;
    function textIndent (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "textIndent");
       Args   := Tuple_New (0);
@@ -330,7 +333,7 @@ package body QtAda6.QtGui.QTextBlockFormat is
       return Float_AsDouble (Result);
    end textIndent;
    function topMargin (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "topMargin");
       Args   := Tuple_New (0);

@@ -24,7 +24,7 @@ package body QtAda6.QtGui.QTextList is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (doc_P : access QtAda6.QtGui.QTextDocument.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextList");
       Args  := Tuple_New (1);
@@ -33,7 +33,7 @@ package body QtAda6.QtGui.QTextList is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure add (self : access Inst; block_P : access QtAda6.QtGui.QTextBlock.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "add");
       Args   := Tuple_New (1);
@@ -42,7 +42,7 @@ package body QtAda6.QtGui.QTextList is
       Result := Object_Call (Method, Args, Dict, True);
    end add;
    function count (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "count");
       Args   := Tuple_New (0);
@@ -51,7 +51,7 @@ package body QtAda6.QtGui.QTextList is
       return Long_AsLong (Result);
    end count;
    function format (self : access Inst) return access QtAda6.QtGui.QTextListFormat.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextListFormat.Class := new QtAda6.QtGui.QTextListFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "format");
@@ -62,7 +62,7 @@ package body QtAda6.QtGui.QTextList is
       return Ret;
    end format;
    function item (self : access Inst; i_P : int) return access QtAda6.QtGui.QTextBlock.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextBlock.Class := new QtAda6.QtGui.QTextBlock.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "item");
@@ -74,7 +74,7 @@ package body QtAda6.QtGui.QTextList is
       return Ret;
    end item;
    function itemNumber (self : access Inst; arg_1_P : access QtAda6.QtGui.QTextBlock.Inst'Class) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemNumber");
       Args   := Tuple_New (1);
@@ -84,7 +84,7 @@ package body QtAda6.QtGui.QTextList is
       return Long_AsLong (Result);
    end itemNumber;
    function itemText (self : access Inst; arg_1_P : access QtAda6.QtGui.QTextBlock.Inst'Class) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemText");
       Args   := Tuple_New (1);
@@ -94,7 +94,7 @@ package body QtAda6.QtGui.QTextList is
       return As_String (Result);
    end itemText;
    procedure remove (self : access Inst; arg_1_P : access QtAda6.QtGui.QTextBlock.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "remove");
       Args   := Tuple_New (1);
@@ -103,7 +103,7 @@ package body QtAda6.QtGui.QTextList is
       Result := Object_Call (Method, Args, Dict, True);
    end remove;
    procedure removeItem (self : access Inst; i_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeItem");
       Args   := Tuple_New (1);
@@ -112,7 +112,7 @@ package body QtAda6.QtGui.QTextList is
       Result := Object_Call (Method, Args, Dict, True);
    end removeItem;
    procedure setFormat (self : access Inst; format_P : access QtAda6.QtGui.QTextListFormat.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
       Args   := Tuple_New (1);

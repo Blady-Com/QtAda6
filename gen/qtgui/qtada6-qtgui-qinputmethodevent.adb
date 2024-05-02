@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QInputMethodEvent;
 with QtAda6.QtGui.QInputMethodEvent.Attribute;
 package body QtAda6.QtGui.QInputMethodEvent is
    use type QtAda6.int;
@@ -23,7 +22,7 @@ package body QtAda6.QtGui.QInputMethodEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputMethodEvent");
       Args  := Tuple_New (0);
@@ -31,7 +30,7 @@ package body QtAda6.QtGui.QInputMethodEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (arg_1_P : access QtAda6.QtGui.QInputMethodEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputMethodEvent");
       Args  := Tuple_New (1);
@@ -41,23 +40,23 @@ package body QtAda6.QtGui.QInputMethodEvent is
    end Create;
    function Create (preeditText_P : str; attributes_P : SEQUENCE_QtAda6_QtGui_QInputMethodEvent_Attribute) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QInputMethodEvent");
-      List  := List_New (attributes_P'Length);
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (preeditText_P));
+      List := List_New (attributes_P'Length);
       for ind in attributes_P'Range loop
          List_SetItem
            (List, ssize_t (ind - attributes_P'First),
             (if attributes_P (ind) /= null then attributes_P (ind).Python_Proxy else No_Value));
       end loop;
-      Args := Tuple_New (2);
-      Tuple_SetItem (Args, 0, Unicode_FromString (preeditText_P));
       Tuple_SetItem (Args, 1, List);
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function U_repr_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
@@ -66,16 +65,20 @@ package body QtAda6.QtGui.QInputMethodEvent is
       return null;
    end U_repr_U;
    function attributes (self : access Inst) return LIST_QtAda6_QtGui_QInputMethodEvent_Attribute is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "attributes");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtGui_QInputMethodEvent_Attribute (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end attributes;
    function clone (self : access Inst) return access QtAda6.QtGui.QInputMethodEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QInputMethodEvent.Class := new QtAda6.QtGui.QInputMethodEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
@@ -86,7 +89,7 @@ package body QtAda6.QtGui.QInputMethodEvent is
       return Ret;
    end clone;
    function commitString (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "commitString");
       Args   := Tuple_New (0);
@@ -95,7 +98,7 @@ package body QtAda6.QtGui.QInputMethodEvent is
       return As_String (Result);
    end commitString;
    function preeditString (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "preeditString");
       Args   := Tuple_New (0);
@@ -104,7 +107,7 @@ package body QtAda6.QtGui.QInputMethodEvent is
       return As_String (Result);
    end preeditString;
    function replacementLength (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "replacementLength");
       Args   := Tuple_New (0);
@@ -113,7 +116,7 @@ package body QtAda6.QtGui.QInputMethodEvent is
       return Long_AsLong (Result);
    end replacementLength;
    function replacementStart (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "replacementStart");
       Args   := Tuple_New (0);
@@ -124,7 +127,7 @@ package body QtAda6.QtGui.QInputMethodEvent is
    procedure setCommitString
      (self : access Inst; commitString_P : str; replaceFrom_P : int := 0; replaceLength_P : int := 0)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCommitString");
       Args   := Tuple_New (1);

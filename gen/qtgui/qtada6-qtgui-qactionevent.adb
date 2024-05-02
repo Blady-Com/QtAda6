@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QActionEvent;
 with QtAda6.QtGui.QAction;
 package body QtAda6.QtGui.QActionEvent is
    use type QtAda6.int;
@@ -23,7 +22,7 @@ package body QtAda6.QtGui.QActionEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtGui.QActionEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QActionEvent");
       Args  := Tuple_New (1);
@@ -35,7 +34,7 @@ package body QtAda6.QtGui.QActionEvent is
      (type_K_P : int; action_P : access QtAda6.QtGui.QAction.Inst'Class;
       before_P : access QtAda6.QtGui.QAction.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QActionEvent");
       Args  := Tuple_New (2);
@@ -48,8 +47,8 @@ package body QtAda6.QtGui.QActionEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function action (self : access Inst) return access QtAda6.QtGui.QAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "action");
       Args             := Tuple_New (0);
@@ -59,8 +58,8 @@ package body QtAda6.QtGui.QActionEvent is
       return Ret;
    end action;
    function before (self : access Inst) return access QtAda6.QtGui.QAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "before");
       Args             := Tuple_New (0);
@@ -70,7 +69,7 @@ package body QtAda6.QtGui.QActionEvent is
       return Ret;
    end before;
    function clone (self : access Inst) return access QtAda6.QtGui.QActionEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QActionEvent.Class := new QtAda6.QtGui.QActionEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");

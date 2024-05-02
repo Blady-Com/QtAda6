@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtGui.QPageRanges;
 with QtAda6.QtCore.QDataStream;
 with QtAda6.QtGui.QPageRanges.Range_K;
 package body QtAda6.QtGui.QPageRanges is
@@ -24,7 +23,7 @@ package body QtAda6.QtGui.QPageRanges is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageRanges");
       Args  := Tuple_New (0);
@@ -32,7 +31,7 @@ package body QtAda6.QtGui.QPageRanges is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (other_P : access QtAda6.QtGui.QPageRanges.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageRanges");
       Args  := Tuple_New (1);
@@ -41,7 +40,7 @@ package body QtAda6.QtGui.QPageRanges is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageRanges");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -53,7 +52,7 @@ package body QtAda6.QtGui.QPageRanges is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__lshift__");
@@ -68,7 +67,7 @@ package body QtAda6.QtGui.QPageRanges is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__rshift__");
@@ -80,7 +79,7 @@ package body QtAda6.QtGui.QPageRanges is
       return Ret;
    end U_rshift_U;
    procedure addPage (self : access Inst; pageNumber_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addPage");
       Args   := Tuple_New (1);
@@ -89,7 +88,7 @@ package body QtAda6.QtGui.QPageRanges is
       Result := Object_Call (Method, Args, Dict, True);
    end addPage;
    procedure addRange (self : access Inst; from_U_P : int; to_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addRange");
       Args   := Tuple_New (2);
@@ -99,7 +98,7 @@ package body QtAda6.QtGui.QPageRanges is
       Result := Object_Call (Method, Args, Dict, True);
    end addRange;
    procedure clear (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clear");
       Args   := Tuple_New (0);
@@ -107,7 +106,7 @@ package body QtAda6.QtGui.QPageRanges is
       Result := Object_Call (Method, Args, Dict, True);
    end clear;
    function contains (self : access Inst; pageNumber_P : int) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "contains");
       Args   := Tuple_New (1);
@@ -117,7 +116,7 @@ package body QtAda6.QtGui.QPageRanges is
       return To_Ada (Result);
    end contains;
    function firstPage (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "firstPage");
       Args   := Tuple_New (0);
@@ -126,7 +125,7 @@ package body QtAda6.QtGui.QPageRanges is
       return Long_AsLong (Result);
    end firstPage;
    function fromString (ranges_P : str) return access QtAda6.QtGui.QPageRanges.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPageRanges.Class := new QtAda6.QtGui.QPageRanges.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPageRanges");
@@ -139,7 +138,7 @@ package body QtAda6.QtGui.QPageRanges is
       return Ret;
    end fromString;
    function isEmpty (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEmpty");
       Args   := Tuple_New (0);
@@ -148,7 +147,7 @@ package body QtAda6.QtGui.QPageRanges is
       return To_Ada (Result);
    end isEmpty;
    function lastPage (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lastPage");
       Args   := Tuple_New (0);
@@ -157,7 +156,7 @@ package body QtAda6.QtGui.QPageRanges is
       return Long_AsLong (Result);
    end lastPage;
    procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QPageRanges.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
@@ -166,16 +165,20 @@ package body QtAda6.QtGui.QPageRanges is
       Result := Object_Call (Method, Args, Dict, True);
    end swap;
    function toRangeList (self : access Inst) return LIST_QtAda6_QtGui_QPageRanges_Range_K is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toRangeList");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtGui_QPageRanges_Range_K (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end toRangeList;
    function toString (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toString");
       Args   := Tuple_New (0);

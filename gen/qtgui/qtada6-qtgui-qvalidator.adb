@@ -10,9 +10,9 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.QLocale;
+with QtAda6.QtCore.QLocale.Language;
 package body QtAda6.QtGui.QValidator is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -28,7 +28,7 @@ package body QtAda6.QtGui.QValidator is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "changed"));
    end changed;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QValidator");
       Args  := Tuple_New (0);
@@ -39,7 +39,7 @@ package body QtAda6.QtGui.QValidator is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function fixup (self : access Inst; arg_1_P : str) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fixup");
       Args   := Tuple_New (1);
@@ -49,8 +49,8 @@ package body QtAda6.QtGui.QValidator is
       return As_String (Result);
    end fixup;
    function locale (self : access Inst) return access QtAda6.QtCore.QLocale.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QLocale.Class := new QtAda6.QtCore.QLocale.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QLocale.Class := new QtAda6.QtCore.QLocale.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "locale");
       Args             := Tuple_New (0);
@@ -59,8 +59,17 @@ package body QtAda6.QtGui.QValidator is
       Ret.Python_Proxy := Result;
       return Ret;
    end locale;
-   procedure setLocale (self : access Inst; locale_P : UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setLocale (self : access Inst; locale_P : access QtAda6.QtCore.QLocale.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setLocale");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if locale_P /= null then locale_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setLocale;
+   procedure setLocale (self : access Inst; locale_P : access QtAda6.QtCore.QLocale.Language.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setLocale");
       Args   := Tuple_New (1);
@@ -69,7 +78,7 @@ package body QtAda6.QtGui.QValidator is
       Result := Object_Call (Method, Args, Dict, True);
    end setLocale;
    function validate (self : access Inst; arg_1_P : str; arg_2_P : int) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "validate");
       Args   := Tuple_New (2);

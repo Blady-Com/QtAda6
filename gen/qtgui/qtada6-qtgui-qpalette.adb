@@ -11,12 +11,16 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.Qt.GlobalColor;
-with QtAda6.QtCore.QDataStream;
+with QtAda6.QtGui.QColor;
+with QtAda6.QtGui.QRgba64;
 with QtAda6.QtGui.QBrush;
+with QtAda6.QtCore.QDataStream;
 with QtAda6.QtGui.QPalette.ColorGroup;
 with QtAda6.QtGui.QPalette.ColorRole;
-with QtAda6.QtGui.QColor;
-with QtAda6.QtGui.QPalette;
+with QtAda6.QtCore.Qt.BrushStyle;
+with QtAda6.QtGui.QGradient;
+with QtAda6.QtGui.QImage;
+with QtAda6.QtGui.QPixmap;
 package body QtAda6.QtGui.QPalette is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -28,7 +32,7 @@ package body QtAda6.QtGui.QPalette is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
       Args  := Tuple_New (0);
@@ -36,7 +40,7 @@ package body QtAda6.QtGui.QPalette is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (button_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
       Args  := Tuple_New (1);
@@ -44,10 +48,8 @@ package body QtAda6.QtGui.QPalette is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create
-     (button_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int) return Class
-   is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (button_P : access QtAda6.QtGui.QColor.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
       Args  := Tuple_New (1);
@@ -55,11 +57,46 @@ package body QtAda6.QtGui.QPalette is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
+   function Create (button_P : access QtAda6.QtGui.QRgba64.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : Any) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : str) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (button_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : int) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (button_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
    function Create
-     (button_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int;
-      window_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int) return Class
+     (button_P : access QtAda6.QtGui.QColor.Inst'Class; window_P : access QtAda6.QtGui.QColor.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
       Args  := Tuple_New (2);
@@ -69,9 +106,378 @@ package body QtAda6.QtGui.QPalette is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (palette_P : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor) return Class
+     (button_P : access QtAda6.QtGui.QColor.Inst'Class; window_P : access QtAda6.QtGui.QRgba64.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : access QtAda6.QtGui.QColor.Inst'Class; window_P : Any) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (button_P : access QtAda6.QtGui.QColor.Inst'Class; window_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : access QtAda6.QtGui.QColor.Inst'Class; window_P : str) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (window_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : access QtAda6.QtGui.QColor.Inst'Class; window_P : int) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Long_FromLong (window_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (button_P : access QtAda6.QtGui.QRgba64.Inst'Class; window_P : access QtAda6.QtGui.QColor.Inst'Class) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (button_P : access QtAda6.QtGui.QRgba64.Inst'Class; window_P : access QtAda6.QtGui.QRgba64.Inst'Class) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : access QtAda6.QtGui.QRgba64.Inst'Class; window_P : Any) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (button_P : access QtAda6.QtGui.QRgba64.Inst'Class; window_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : access QtAda6.QtGui.QRgba64.Inst'Class; window_P : str) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (window_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : access QtAda6.QtGui.QRgba64.Inst'Class; window_P : int) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Long_FromLong (window_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : Any; window_P : access QtAda6.QtGui.QColor.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : Any; window_P : access QtAda6.QtGui.QRgba64.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : Any; window_P : Any) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : Any; window_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : Any; window_P : str) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (window_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : Any; window_P : int) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Long_FromLong (window_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (button_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class; window_P : access QtAda6.QtGui.QColor.Inst'Class)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (button_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class; window_P : access QtAda6.QtGui.QRgba64.Inst'Class)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class; window_P : Any) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (button_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class;
+      window_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class; window_P : str) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (window_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class; window_P : int) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if button_P /= null then button_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Long_FromLong (window_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : str; window_P : access QtAda6.QtGui.QColor.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (button_P));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : str; window_P : access QtAda6.QtGui.QRgba64.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (button_P));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : str; window_P : Any) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (button_P));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : str; window_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (button_P));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : str; window_P : str) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (button_P));
+      Tuple_SetItem (Args, 1, Unicode_FromString (window_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : str; window_P : int) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (button_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (window_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : int; window_P : access QtAda6.QtGui.QColor.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (button_P));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : int; window_P : access QtAda6.QtGui.QRgba64.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (button_P));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : int; window_P : Any) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (button_P));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : int; window_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (button_P));
+      Tuple_SetItem (Args, 1, (if window_P /= null then window_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : int; window_P : str) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (button_P));
+      Tuple_SetItem (Args, 1, Unicode_FromString (window_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (button_P : int; window_P : int) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (button_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (window_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (palette_P : access QtAda6.QtGui.QPalette.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
       Args  := Tuple_New (1);
@@ -80,18 +486,13 @@ package body QtAda6.QtGui.QPalette is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (windowText_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      button_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      light_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      dark_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      mid_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      text_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      bright_text_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      base_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      window_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
-      return Class
+     (windowText_P  : access QtAda6.QtGui.QBrush.Inst'Class; button_P : access QtAda6.QtGui.QBrush.Inst'Class;
+      light_P       : access QtAda6.QtGui.QBrush.Inst'Class; dark_P : access QtAda6.QtGui.QBrush.Inst'Class;
+      mid_P         : access QtAda6.QtGui.QBrush.Inst'Class; text_P : access QtAda6.QtGui.QBrush.Inst'Class;
+      bright_text_P : access QtAda6.QtGui.QBrush.Inst'Class; base_P : access QtAda6.QtGui.QBrush.Inst'Class;
+      window_P      : access QtAda6.QtGui.QBrush.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
       Args  := Tuple_New (9);
@@ -108,15 +509,12 @@ package body QtAda6.QtGui.QPalette is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (windowText_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int;
-      window_P     : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int;
-      light_P      : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int;
-      dark_P       : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int;
-      mid_P        : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int;
-      text_P       : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int;
-      base_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int) return Class
+     (windowText_P : access QtAda6.QtGui.QColor.Inst'Class; window_P : access QtAda6.QtGui.QColor.Inst'Class;
+      light_P      : access QtAda6.QtGui.QColor.Inst'Class; dark_P : access QtAda6.QtGui.QColor.Inst'Class;
+      mid_P        : access QtAda6.QtGui.QColor.Inst'Class; text_P : access QtAda6.QtGui.QColor.Inst'Class;
+      base_P       : access QtAda6.QtGui.QColor.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
       Args  := Tuple_New (7);
@@ -131,7 +529,7 @@ package body QtAda6.QtGui.QPalette is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QPalette");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -143,7 +541,7 @@ package body QtAda6.QtGui.QPalette is
      (self : access Inst; ds_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__lshift__");
@@ -158,7 +556,7 @@ package body QtAda6.QtGui.QPalette is
      (self : access Inst; ds_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__rshift__");
@@ -170,8 +568,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end U_rshift_U;
    function alternateBase (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "alternateBase");
       Args             := Tuple_New (0);
@@ -181,8 +579,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end alternateBase;
    function base (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "base");
       Args             := Tuple_New (0);
@@ -192,8 +590,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end base;
    function brightText (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "brightText");
       Args             := Tuple_New (0);
@@ -206,8 +604,8 @@ package body QtAda6.QtGui.QPalette is
      (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
       cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class) return access QtAda6.QtGui.QBrush.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "brush");
       Args   := Tuple_New (2);
@@ -222,8 +620,8 @@ package body QtAda6.QtGui.QPalette is
      (self : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class)
       return access QtAda6.QtGui.QBrush.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "brush");
       Args   := Tuple_New (1);
@@ -234,8 +632,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end brush;
    function button (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "button");
       Args             := Tuple_New (0);
@@ -245,8 +643,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end button;
    function buttonText (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "buttonText");
       Args             := Tuple_New (0);
@@ -256,7 +654,7 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end buttonText;
    function cacheKey (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cacheKey");
       Args   := Tuple_New (0);
@@ -268,8 +666,8 @@ package body QtAda6.QtGui.QPalette is
      (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
       cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class) return access QtAda6.QtGui.QColor.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "color");
       Args   := Tuple_New (2);
@@ -284,8 +682,8 @@ package body QtAda6.QtGui.QPalette is
      (self : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class)
       return access QtAda6.QtGui.QColor.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "color");
       Args   := Tuple_New (1);
@@ -296,7 +694,7 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end color;
    function currentColorGroup (self : access Inst) return access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPalette.ColorGroup.Class := new QtAda6.QtGui.QPalette.ColorGroup.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentColorGroup");
@@ -307,8 +705,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end currentColorGroup;
    function dark (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "dark");
       Args             := Tuple_New (0);
@@ -318,8 +716,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end dark;
    function highlight (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "highlight");
       Args             := Tuple_New (0);
@@ -329,8 +727,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end highlight;
    function highlightedText (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "highlightedText");
       Args             := Tuple_New (0);
@@ -343,7 +741,7 @@ package body QtAda6.QtGui.QPalette is
      (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
       cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isBrushSet");
       Args   := Tuple_New (2);
@@ -353,11 +751,28 @@ package body QtAda6.QtGui.QPalette is
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end isBrushSet;
-   function isCopyOf
-     (self : access Inst; p_P : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor)
-      return bool
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   function isCopyOf (self : access Inst; p_P : access QtAda6.QtGui.QPalette.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "isCopyOf");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if p_P /= null then p_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end isCopyOf;
+   function isCopyOf (self : access Inst; p_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "isCopyOf");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if p_P /= null then p_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end isCopyOf;
+   function isCopyOf (self : access Inst; p_P : access QtAda6.QtGui.QColor.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isCopyOf");
       Args   := Tuple_New (1);
@@ -370,7 +785,7 @@ package body QtAda6.QtGui.QPalette is
      (self  : access Inst; cr1_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
       cr2_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEqual");
       Args   := Tuple_New (2);
@@ -381,8 +796,8 @@ package body QtAda6.QtGui.QPalette is
       return To_Ada (Result);
    end isEqual;
    function light (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "light");
       Args             := Tuple_New (0);
@@ -392,8 +807,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end light;
    function link (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "link");
       Args             := Tuple_New (0);
@@ -403,8 +818,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end link;
    function linkVisited (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "linkVisited");
       Args             := Tuple_New (0);
@@ -414,8 +829,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end linkVisited;
    function mid (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "mid");
       Args             := Tuple_New (0);
@@ -425,8 +840,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end mid;
    function midlight (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "midlight");
       Args             := Tuple_New (0);
@@ -436,8 +851,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end midlight;
    function placeholderText (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "placeholderText");
       Args             := Tuple_New (0);
@@ -447,11 +862,41 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end placeholderText;
    function resolve
-     (self : access Inst; other_P : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor)
+     (self : access Inst; other_P : access QtAda6.QtGui.QPalette.Inst'Class)
       return access QtAda6.QtGui.QPalette.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPalette.Class := new QtAda6.QtGui.QPalette.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPalette.Class := new QtAda6.QtGui.QPalette.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "resolve");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end resolve;
+   function resolve
+     (self : access Inst; other_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class)
+      return access QtAda6.QtGui.QPalette.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPalette.Class := new QtAda6.QtGui.QPalette.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "resolve");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end resolve;
+   function resolve
+     (self : access Inst; other_P : access QtAda6.QtGui.QColor.Inst'Class)
+      return access QtAda6.QtGui.QPalette.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPalette.Class := new QtAda6.QtGui.QPalette.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resolve");
       Args   := Tuple_New (1);
@@ -462,7 +907,7 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end resolve;
    function resolveMask (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resolveMask");
       Args   := Tuple_New (0);
@@ -471,11 +916,95 @@ package body QtAda6.QtGui.QPalette is
       return Long_AsLong (Result);
    end resolveMask;
    procedure setBrush
+     (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
+      cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class; brush_P : access QtAda6.QtGui.QBrush.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if cg_P /= null then cg_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush
+     (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
+      cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class; brush_P : access QtAda6.QtCore.Qt.BrushStyle.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if cg_P /= null then cg_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush
      (self    : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
       cr_P    : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class;
-      brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
+      brush_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if cg_P /= null then cg_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush
+     (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
+      cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class; brush_P : access QtAda6.QtGui.QColor.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if cg_P /= null then cg_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush
+     (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
+      cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class; brush_P : access QtAda6.QtGui.QGradient.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if cg_P /= null then cg_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush
+     (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
+      cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class; brush_P : access QtAda6.QtGui.QImage.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if cg_P /= null then cg_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush
+     (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
+      cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class; brush_P : access QtAda6.QtGui.QPixmap.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
       Args   := Tuple_New (3);
@@ -487,9 +1016,87 @@ package body QtAda6.QtGui.QPalette is
    end setBrush;
    procedure setBrush
      (self    : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class;
-      brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
+      brush_P : access QtAda6.QtGui.QBrush.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush
+     (self    : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class;
+      brush_P : access QtAda6.QtCore.Qt.BrushStyle.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush
+     (self    : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class;
+      brush_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush
+     (self    : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class;
+      brush_P : access QtAda6.QtGui.QColor.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush
+     (self    : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class;
+      brush_P : access QtAda6.QtGui.QGradient.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush
+     (self    : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class;
+      brush_P : access QtAda6.QtGui.QImage.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush
+     (self    : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class;
+      brush_P : access QtAda6.QtGui.QPixmap.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
       Args   := Tuple_New (2);
@@ -499,11 +1106,10 @@ package body QtAda6.QtGui.QPalette is
       Result := Object_Call (Method, Args, Dict, True);
    end setBrush;
    procedure setColor
-     (self    : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
-      cr_P    : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
+     (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
+      cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class; color_P : access QtAda6.QtGui.QColor.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setColor");
       Args   := Tuple_New (3);
@@ -514,10 +1120,81 @@ package body QtAda6.QtGui.QPalette is
       Result := Object_Call (Method, Args, Dict, True);
    end setColor;
    procedure setColor
-     (self    : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
+     (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
+      cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class; color_P : access QtAda6.QtGui.QRgba64.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if cg_P /= null then cg_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
+   procedure setColor
+     (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
+      cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class; color_P : Any)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if cg_P /= null then cg_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
+   procedure setColor
+     (self    : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
+      cr_P    : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class;
+      color_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if cg_P /= null then cg_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
+   procedure setColor
+     (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
+      cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class; color_P : str)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if cg_P /= null then cg_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, Unicode_FromString (color_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
+   procedure setColor
+     (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
+      cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class; color_P : int)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if cg_P /= null then cg_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, Long_FromLong (color_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
+   procedure setColor
+     (self    : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class;
+      color_P : access QtAda6.QtGui.QColor.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setColor");
       Args   := Tuple_New (2);
@@ -526,19 +1203,71 @@ package body QtAda6.QtGui.QPalette is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setColor;
+   procedure setColor
+     (self    : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class;
+      color_P : access QtAda6.QtGui.QRgba64.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
+   procedure setColor (self : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class; color_P : Any) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
+   procedure setColor
+     (self    : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class;
+      color_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
+   procedure setColor (self : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class; color_P : str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (color_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
+   procedure setColor (self : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class; color_P : int) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if cr_P /= null then cr_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Long_FromLong (color_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
    procedure setColorGroup
      (self          : access Inst; cr_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class;
-      windowText_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      button_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      light_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      dark_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      mid_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      text_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      bright_text_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      base_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap;
-      window_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
+      windowText_P  : access QtAda6.QtGui.QBrush.Inst'Class; button_P : access QtAda6.QtGui.QBrush.Inst'Class;
+      light_P       : access QtAda6.QtGui.QBrush.Inst'Class; dark_P : access QtAda6.QtGui.QBrush.Inst'Class;
+      mid_P         : access QtAda6.QtGui.QBrush.Inst'Class; text_P : access QtAda6.QtGui.QBrush.Inst'Class;
+      bright_text_P : access QtAda6.QtGui.QBrush.Inst'Class; base_P : access QtAda6.QtGui.QBrush.Inst'Class;
+      window_P      : access QtAda6.QtGui.QBrush.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setColorGroup");
       Args   := Tuple_New (10);
@@ -556,7 +1285,7 @@ package body QtAda6.QtGui.QPalette is
       Result := Object_Call (Method, Args, Dict, True);
    end setColorGroup;
    procedure setCurrentColorGroup (self : access Inst; cg_P : access QtAda6.QtGui.QPalette.ColorGroup.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentColorGroup");
       Args   := Tuple_New (1);
@@ -565,7 +1294,7 @@ package body QtAda6.QtGui.QPalette is
       Result := Object_Call (Method, Args, Dict, True);
    end setCurrentColorGroup;
    procedure setResolveMask (self : access Inst; mask_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setResolveMask");
       Args   := Tuple_New (1);
@@ -574,8 +1303,8 @@ package body QtAda6.QtGui.QPalette is
       Result := Object_Call (Method, Args, Dict, True);
    end setResolveMask;
    function shadow (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "shadow");
       Args             := Tuple_New (0);
@@ -584,10 +1313,26 @@ package body QtAda6.QtGui.QPalette is
       Ret.Python_Proxy := Result;
       return Ret;
    end shadow;
-   procedure swap
-     (self : access Inst; other_P : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QPalette.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "swap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end swap;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "swap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end swap;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtGui.QColor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
@@ -596,8 +1341,8 @@ package body QtAda6.QtGui.QPalette is
       Result := Object_Call (Method, Args, Dict, True);
    end swap;
    function text (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "text");
       Args             := Tuple_New (0);
@@ -607,8 +1352,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end text;
    function toolTipBase (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toolTipBase");
       Args             := Tuple_New (0);
@@ -618,8 +1363,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end toolTipBase;
    function toolTipText (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toolTipText");
       Args             := Tuple_New (0);
@@ -629,8 +1374,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end toolTipText;
    function window (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "window");
       Args             := Tuple_New (0);
@@ -640,8 +1385,8 @@ package body QtAda6.QtGui.QPalette is
       return Ret;
    end window;
    function windowText (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "windowText");
       Args             := Tuple_New (0);

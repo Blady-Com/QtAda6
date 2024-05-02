@@ -10,8 +10,10 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtGui.QPointingDevice;
 limited with QtAda6.QtGui.QEventPoint.State;
-limited with QtAda6.QtCore.QSizeF;
 limited with QtAda6.QtCore.QPointF;
+limited with QtAda6.QtCore.QPoint;
+limited with QtAda6.QtGui.QPainterPath.Element;
+limited with QtAda6.QtCore.QSizeF;
 limited with QtAda6.QtGui.QPointingDeviceUniqueId;
 limited with QtAda6.QtGui.QVector2D;
 package QtAda6.QtGui.QEventPoint is
@@ -20,15 +22,45 @@ package QtAda6.QtGui.QEventPoint is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create (id_P : int := 0; device_P : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
    function Create (other_P : access QtAda6.QtGui.QEventPoint.Inst'Class) return Class;
    function Create
      (pointId_P        : int; state_P : access QtAda6.QtGui.QEventPoint.State.Inst'Class;
-      scenePosition_P  : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
-      globalPosition_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-      return Class;
+      scenePosition_P  : access QtAda6.QtCore.QPointF.Inst'Class;
+      globalPosition_P : access QtAda6.QtCore.QPointF.Inst'Class) return Class;
+   function Create
+     (pointId_P        : int; state_P : access QtAda6.QtGui.QEventPoint.State.Inst'Class;
+      scenePosition_P  : access QtAda6.QtCore.QPointF.Inst'Class;
+      globalPosition_P : access QtAda6.QtCore.QPoint.Inst'Class) return Class;
+   function Create
+     (pointId_P        : int; state_P : access QtAda6.QtGui.QEventPoint.State.Inst'Class;
+      scenePosition_P  : access QtAda6.QtCore.QPointF.Inst'Class;
+      globalPosition_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) return Class;
+   function Create
+     (pointId_P        : int; state_P : access QtAda6.QtGui.QEventPoint.State.Inst'Class;
+      scenePosition_P  : access QtAda6.QtCore.QPoint.Inst'Class;
+      globalPosition_P : access QtAda6.QtCore.QPointF.Inst'Class) return Class;
+   function Create
+     (pointId_P        : int; state_P : access QtAda6.QtGui.QEventPoint.State.Inst'Class;
+      scenePosition_P  : access QtAda6.QtCore.QPoint.Inst'Class;
+      globalPosition_P : access QtAda6.QtCore.QPoint.Inst'Class) return Class;
+   function Create
+     (pointId_P        : int; state_P : access QtAda6.QtGui.QEventPoint.State.Inst'Class;
+      scenePosition_P  : access QtAda6.QtCore.QPoint.Inst'Class;
+      globalPosition_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) return Class;
+   function Create
+     (pointId_P        : int; state_P : access QtAda6.QtGui.QEventPoint.State.Inst'Class;
+      scenePosition_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      globalPosition_P : access QtAda6.QtCore.QPointF.Inst'Class) return Class;
+   function Create
+     (pointId_P        : int; state_P : access QtAda6.QtGui.QEventPoint.State.Inst'Class;
+      scenePosition_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      globalPosition_P : access QtAda6.QtCore.QPoint.Inst'Class) return Class;
+   function Create
+     (pointId_P        : int; state_P : access QtAda6.QtGui.QEventPoint.State.Inst'Class;
+      scenePosition_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      globalPosition_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) return Class;
    procedure U_copy_U;
    function device (self : access Inst) return access QtAda6.QtGui.QPointingDevice.Inst'Class;
    function ellipseDiameters (self : access Inst) return access QtAda6.QtCore.QSizeF.Inst'Class;

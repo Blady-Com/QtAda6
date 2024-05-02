@@ -13,6 +13,7 @@ limited with QtAda6.QtGui.QColorSpace;
 limited with QtAda6.QtGui.QSurfaceFormat.OpenGLContextProfile;
 limited with QtAda6.QtGui.QSurfaceFormat.RenderableType;
 limited with QtAda6.QtGui.QSurfaceFormat.ColorSpace;
+limited with QtAda6.QtGui.QColorSpace.NamedColorSpace;
 limited with QtAda6.QtGui.QSurfaceFormat.SwapBehavior;
 package QtAda6.QtGui.QSurfaceFormat is
    type Inst;
@@ -20,8 +21,6 @@ package QtAda6.QtGui.QSurfaceFormat is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtGui_QSurfaceFormat_QtAda6_QtGui_QSurfaceFormat_FormatOption is new Any;
-   type UNION_QtAda6_QtGui_QColorSpace_QtAda6_QtGui_QColorSpace_NamedColorSpace is new Any;
    type TUPLE_int_int is record
       C0 : int;
       C1 : int;
@@ -29,7 +28,8 @@ package QtAda6.QtGui.QSurfaceFormat is
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (options_P : access QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst'Class) return Class;
-   function Create (other_P : UNION_QtAda6_QtGui_QSurfaceFormat_QtAda6_QtGui_QSurfaceFormat_FormatOption) return Class;
+   function Create (other_P : access QtAda6.QtGui.QSurfaceFormat.Inst'Class) return Class;
+-- function Create(other_P : access QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst'Class) return Class;
    procedure U_copy_U;
    function alphaBufferSize (self : access Inst) return int;
    function blueBufferSize (self : access Inst) return int;
@@ -49,9 +49,11 @@ package QtAda6.QtGui.QSurfaceFormat is
    procedure setBlueBufferSize (self : access Inst; size_P : int);
    procedure setColorSpace
      (self : access Inst; colorSpace_P : access QtAda6.QtGui.QSurfaceFormat.ColorSpace.Inst'Class);
+   procedure setColorSpace (self : access Inst; colorSpace_P : access QtAda6.QtGui.QColorSpace.Inst'Class);
    procedure setColorSpace
-     (self : access Inst; colorSpace_P : UNION_QtAda6_QtGui_QColorSpace_QtAda6_QtGui_QColorSpace_NamedColorSpace);
-   procedure setDefaultFormat (format_P : UNION_QtAda6_QtGui_QSurfaceFormat_QtAda6_QtGui_QSurfaceFormat_FormatOption);
+     (self : access Inst; colorSpace_P : access QtAda6.QtGui.QColorSpace.NamedColorSpace.Inst'Class);
+   procedure setDefaultFormat (format_P : access QtAda6.QtGui.QSurfaceFormat.Inst'Class);
+   procedure setDefaultFormat (format_P : access QtAda6.QtGui.QSurfaceFormat.FormatOption.Inst'Class);
    procedure setDepthBufferSize (self : access Inst; size_P : int);
    procedure setGreenBufferSize (self : access Inst; size_P : int);
    procedure setMajorVersion (self : access Inst; majorVersion_P : int);

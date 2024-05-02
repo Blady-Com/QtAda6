@@ -8,9 +8,10 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.QPointF;
 limited with QtAda6.QtGui.QPointingDevice;
 limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtCore.QPointF;
+limited with QtAda6.QtGui.QPainterPath.Element;
 with QtAda6.QtGui.QSinglePointEvent;
 package QtAda6.QtGui.QEnterEvent is
    type Inst;
@@ -18,13 +19,126 @@ package QtAda6.QtGui.QEnterEvent is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QSinglePointEvent.Inst with null record;
-   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create (arg_1_P : access QtAda6.QtGui.QEnterEvent.Inst'Class) return Class;
    function Create
-     (localPos_P  : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
-      scenePos_P  : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
-      globalPos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
+     (localPos_P  : access QtAda6.QtCore.QPointF.Inst'Class; scenePos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      globalPos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPointF.Inst'Class; scenePos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      globalPos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPointF.Inst'Class; scenePos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      globalPos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPointF.Inst'Class; scenePos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      globalPos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPointF.Inst'Class; scenePos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      globalPos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPointF.Inst'Class; scenePos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      globalPos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPointF.Inst'Class;
+      scenePos_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      globalPos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPointF.Inst'Class;
+      scenePos_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      globalPos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPointF.Inst'Class;
+      scenePos_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      globalPos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPoint.Inst'Class; scenePos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      globalPos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPoint.Inst'Class; scenePos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      globalPos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPoint.Inst'Class; scenePos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      globalPos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPoint.Inst'Class; scenePos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      globalPos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPoint.Inst'Class; scenePos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      globalPos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPoint.Inst'Class; scenePos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      globalPos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPoint.Inst'Class;
+      scenePos_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      globalPos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPoint.Inst'Class;
+      scenePos_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      globalPos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtCore.QPoint.Inst'Class;
+      scenePos_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      globalPos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      scenePos_P : access QtAda6.QtCore.QPointF.Inst'Class; globalPos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      device_P   : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      scenePos_P : access QtAda6.QtCore.QPointF.Inst'Class; globalPos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      device_P   : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      scenePos_P  : access QtAda6.QtCore.QPointF.Inst'Class;
+      globalPos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      scenePos_P : access QtAda6.QtCore.QPoint.Inst'Class; globalPos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      device_P   : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      scenePos_P : access QtAda6.QtCore.QPoint.Inst'Class; globalPos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      device_P   : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      scenePos_P  : access QtAda6.QtCore.QPoint.Inst'Class;
+      globalPos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      scenePos_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      globalPos_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      scenePos_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      globalPos_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
+   function Create
+     (localPos_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      scenePos_P  : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
+      globalPos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
       device_P    : access QtAda6.QtGui.QPointingDevice.Inst'Class := null) return Class;
    function clone (self : access Inst) return access QtAda6.QtGui.QEnterEvent.Inst'Class;
    function globalPos (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class;

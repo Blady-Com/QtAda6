@@ -25,7 +25,7 @@ package body QtAda6.QtGui.QTextDocumentWriter is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocumentWriter");
       Args  := Tuple_New (0);
@@ -33,10 +33,10 @@ package body QtAda6.QtGui.QTextDocumentWriter is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : UNION_QtAda6_QtCore_QByteArray_bytes)
+     (device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : access QtAda6.QtCore.QByteArray.Inst'Class)
       return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocumentWriter");
       Args  := Tuple_New (2);
@@ -45,8 +45,18 @@ package body QtAda6.QtGui.QTextDocumentWriter is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (fileName_P : str; format_P : UNION_QtAda6_QtCore_QByteArray_bytes := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (device_P : access QtAda6.QtCore.QIODevice.Inst'Class; format_P : bytes) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocumentWriter");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if device_P /= null then device_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Bytes_FromString (Standard.String (format_P.all)));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (fileName_P : str; format_P : access QtAda6.QtCore.QByteArray.Inst'Class := null) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocumentWriter");
       Args  := Tuple_New (1);
@@ -57,8 +67,20 @@ package body QtAda6.QtGui.QTextDocumentWriter is
       end if;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
+   function Create (fileName_P : str; format_P : bytes := null) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocumentWriter");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (fileName_P));
+      Dict := Dict_New;
+      if format_P /= null then
+         Dict_SetItemString (Dict, "format", Bytes_FromString (Standard.String (format_P.all)));
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
    function device (self : access Inst) return access QtAda6.QtCore.QIODevice.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QIODevice.Class := new QtAda6.QtCore.QIODevice.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "device");
@@ -69,7 +91,7 @@ package body QtAda6.QtGui.QTextDocumentWriter is
       return Ret;
    end device;
    function fileName (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fileName");
       Args   := Tuple_New (0);
@@ -78,7 +100,7 @@ package body QtAda6.QtGui.QTextDocumentWriter is
       return As_String (Result);
    end fileName;
    function format (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "format");
@@ -89,7 +111,7 @@ package body QtAda6.QtGui.QTextDocumentWriter is
       return Ret;
    end format;
    procedure setDevice (self : access Inst; device_P : access QtAda6.QtCore.QIODevice.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDevice");
       Args   := Tuple_New (1);
@@ -98,7 +120,7 @@ package body QtAda6.QtGui.QTextDocumentWriter is
       Result := Object_Call (Method, Args, Dict, True);
    end setDevice;
    procedure setFileName (self : access Inst; fileName_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFileName");
       Args   := Tuple_New (1);
@@ -106,8 +128,8 @@ package body QtAda6.QtGui.QTextDocumentWriter is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setFileName;
-   procedure setFormat (self : access Inst; format_P : UNION_QtAda6_QtCore_QByteArray_bytes) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setFormat (self : access Inst; format_P : access QtAda6.QtCore.QByteArray.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
       Args   := Tuple_New (1);
@@ -115,18 +137,31 @@ package body QtAda6.QtGui.QTextDocumentWriter is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setFormat;
+   procedure setFormat (self : access Inst; format_P : bytes) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (format_P.all)));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFormat;
    function supportedDocumentFormats return LIST_QtAda6_QtCore_QByteArray is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtGui_Python_Proxy, "QTextDocumentWriter");
       Method := Object_GetAttrString (Class, "supportedDocumentFormats");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtCore_QByteArray (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end supportedDocumentFormats;
    function write (self : access Inst; document_P : access QtAda6.QtGui.QTextDocument.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "write");
       Args   := Tuple_New (1);
@@ -136,7 +171,7 @@ package body QtAda6.QtGui.QTextDocumentWriter is
       return To_Ada (Result);
    end write;
    function write (self : access Inst; fragment_P : access QtAda6.QtGui.QTextDocumentFragment.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "write");
       Args   := Tuple_New (1);
