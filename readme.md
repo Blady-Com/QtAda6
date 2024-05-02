@@ -132,7 +132,7 @@ This is the very first release whose goal is mostly to get feedbacks on how it i
 Known limitations are :
 
 - Only QtCore, QtGui and QtWidgets are provided
-- Union, Signal, composed types and so on are not or partially translated
+- Signal, composed types and so on are not or partially translated
 - Class inheritance is not available on Ada side
 - No memory management
 
@@ -150,4 +150,4 @@ Post your feedbacks on [QtAda6](https://github.com/Blady-Com/QtAda6) GitHub issu
 
 QtAda6 is free software released under [CeCILL-C](http://www.cecill.info) V2.1.
 
-Pascal Pignard, September-November 2023, January-March 2024.
+Pascal Pignard, September-November 2023, January-May 2024.
