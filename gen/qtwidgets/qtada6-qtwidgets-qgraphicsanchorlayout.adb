@@ -15,8 +15,11 @@ with QtAda6.QtCore.Qt.AnchorPoint;
 with QtAda6.QtWidgets.QGraphicsAnchor;
 with QtAda6.QtCore.Qt.Orientation;
 with QtAda6.QtCore.Qt.Corner;
+with QtAda6.QtCore.QRectF;
+with QtAda6.QtCore.QRect;
 with QtAda6.QtCore.Qt.SizeHint;
 with QtAda6.QtCore.QSizeF;
+with QtAda6.QtCore.QSize;
 package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -28,7 +31,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsAnchorLayout");
       Args  := Tuple_New (0);
@@ -45,7 +48,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       secondEdge_P : access QtAda6.QtCore.Qt.AnchorPoint.Inst'Class)
       return access QtAda6.QtWidgets.QGraphicsAnchor.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QGraphicsAnchor.Class := new QtAda6.QtWidgets.QGraphicsAnchor.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addAnchor");
@@ -64,7 +67,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       secondItem_P   : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class;
       orientations_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addAnchors");
       Args   := Tuple_New (2);
@@ -82,7 +85,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       secondItem_P   : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class;
       secondCorner_P : access QtAda6.QtCore.Qt.Corner.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addCornerAnchors");
       Args   := Tuple_New (4);
@@ -100,7 +103,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       secondEdge_P : access QtAda6.QtCore.Qt.AnchorPoint.Inst'Class)
       return access QtAda6.QtWidgets.QGraphicsAnchor.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QGraphicsAnchor.Class := new QtAda6.QtWidgets.QGraphicsAnchor.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "anchor");
@@ -115,7 +118,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       return Ret;
    end anchor;
    function count (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "count");
       Args   := Tuple_New (0);
@@ -124,7 +127,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       return Long_AsLong (Result);
    end count;
    function horizontalSpacing (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "horizontalSpacing");
       Args   := Tuple_New (0);
@@ -133,7 +136,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       return Float_AsDouble (Result);
    end horizontalSpacing;
    procedure invalidate (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "invalidate");
       Args   := Tuple_New (0);
@@ -141,7 +144,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end invalidate;
    function itemAt (self : access Inst; index_P : int) return access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QGraphicsLayoutItem.Class := new QtAda6.QtWidgets.QGraphicsLayoutItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemAt");
@@ -153,7 +156,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       return Ret;
    end itemAt;
    procedure removeAt (self : access Inst; index_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeAt");
       Args   := Tuple_New (1);
@@ -161,8 +164,17 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end removeAt;
-   procedure setGeometry (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setGeometry (self : access Inst; rect_P : access QtAda6.QtCore.QRectF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setGeometry");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if rect_P /= null then rect_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setGeometry;
+   procedure setGeometry (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setGeometry");
       Args   := Tuple_New (1);
@@ -171,7 +183,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end setGeometry;
    procedure setHorizontalSpacing (self : access Inst; spacing_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHorizontalSpacing");
       Args   := Tuple_New (1);
@@ -180,7 +192,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end setHorizontalSpacing;
    procedure setSpacing (self : access Inst; spacing_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSpacing");
       Args   := Tuple_New (1);
@@ -189,7 +201,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end setSpacing;
    procedure setVerticalSpacing (self : access Inst; spacing_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVerticalSpacing");
       Args   := Tuple_New (1);
@@ -199,11 +211,28 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
    end setVerticalSpacing;
    function sizeHint
      (self         : access Inst; which_P : access QtAda6.QtCore.Qt.SizeHint.Inst'Class;
-      constraint_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize := null)
-      return access QtAda6.QtCore.QSizeF.Inst'Class
+      constraint_P : access QtAda6.QtCore.QSizeF.Inst'Class := null) return access QtAda6.QtCore.QSizeF.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "sizeHint");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if which_P /= null then which_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if constraint_P /= null then
+         Dict_SetItemString (Dict, "constraint", constraint_P.Python_Proxy);
+      end if;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end sizeHint;
+   function sizeHint
+     (self         : access Inst; which_P : access QtAda6.QtCore.Qt.SizeHint.Inst'Class;
+      constraint_P : access QtAda6.QtCore.QSize.Inst'Class := null) return access QtAda6.QtCore.QSizeF.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args   := Tuple_New (1);
@@ -217,7 +246,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchorLayout is
       return Ret;
    end sizeHint;
    function verticalSpacing (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "verticalSpacing");
       Args   := Tuple_New (0);

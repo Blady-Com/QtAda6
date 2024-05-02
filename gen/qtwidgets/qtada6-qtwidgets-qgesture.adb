@@ -14,6 +14,8 @@ with QtAda6.QtCore.QObject;
 with QtAda6.QtWidgets.QGesture.GestureCancelPolicy;
 with QtAda6.QtCore.Qt.GestureType;
 with QtAda6.QtCore.QPointF;
+with QtAda6.QtCore.QPoint;
+with QtAda6.QtGui.QPainterPath.Element;
 with QtAda6.QtCore.Qt.GestureState;
 package body QtAda6.QtWidgets.QGesture is
    use type QtAda6.int;
@@ -26,7 +28,7 @@ package body QtAda6.QtWidgets.QGesture is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGesture");
       Args  := Tuple_New (0);
@@ -39,8 +41,8 @@ package body QtAda6.QtWidgets.QGesture is
    function gestureCancelPolicy_F
      (self : access Inst) return access QtAda6.QtWidgets.QGesture.GestureCancelPolicy.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QGesture.GestureCancelPolicy.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QGesture.GestureCancelPolicy.Class :=
         new QtAda6.QtWidgets.QGesture.GestureCancelPolicy.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "gestureCancelPolicy");
@@ -51,7 +53,7 @@ package body QtAda6.QtWidgets.QGesture is
       return Ret;
    end gestureCancelPolicy_F;
    function gestureType (self : access Inst) return access QtAda6.QtCore.Qt.GestureType.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.GestureType.Class := new QtAda6.QtCore.Qt.GestureType.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "gestureType");
@@ -62,7 +64,7 @@ package body QtAda6.QtWidgets.QGesture is
       return Ret;
    end gestureType;
    function hasHotSpot (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasHotSpot");
       Args   := Tuple_New (0);
@@ -71,8 +73,8 @@ package body QtAda6.QtWidgets.QGesture is
       return To_Ada (Result);
    end hasHotSpot;
    function hotSpot (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "hotSpot");
       Args             := Tuple_New (0);
@@ -84,7 +86,7 @@ package body QtAda6.QtWidgets.QGesture is
    procedure setGestureCancelPolicy
      (self : access Inst; policy_P : access QtAda6.QtWidgets.QGesture.GestureCancelPolicy.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setGestureCancelPolicy");
       Args   := Tuple_New (1);
@@ -92,10 +94,26 @@ package body QtAda6.QtWidgets.QGesture is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setGestureCancelPolicy;
-   procedure setHotSpot
-     (self : access Inst; value_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setHotSpot (self : access Inst; value_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setHotSpot");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if value_P /= null then value_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setHotSpot;
+   procedure setHotSpot (self : access Inst; value_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setHotSpot");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if value_P /= null then value_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setHotSpot;
+   procedure setHotSpot (self : access Inst; value_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHotSpot");
       Args   := Tuple_New (1);
@@ -104,7 +122,7 @@ package body QtAda6.QtWidgets.QGesture is
       Result := Object_Call (Method, Args, Dict, True);
    end setHotSpot;
    function state (self : access Inst) return access QtAda6.QtCore.Qt.GestureState.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.GestureState.Class := new QtAda6.QtCore.Qt.GestureState.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "state");
@@ -115,7 +133,7 @@ package body QtAda6.QtWidgets.QGesture is
       return Ret;
    end state;
    procedure unsetHotSpot (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "unsetHotSpot");
       Args   := Tuple_New (0);

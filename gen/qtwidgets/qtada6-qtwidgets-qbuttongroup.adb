@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtWidgets.QAbstractButton;
 package body QtAda6.QtWidgets.QButtonGroup is
@@ -56,7 +55,7 @@ package body QtAda6.QtWidgets.QButtonGroup is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "idToggled"));
    end idToggled;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QButtonGroup");
       Args  := Tuple_New (0);
@@ -69,7 +68,7 @@ package body QtAda6.QtWidgets.QButtonGroup is
    procedure addButton
      (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QAbstractButton.Inst'Class; id_P : int := 0)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addButton");
       Args   := Tuple_New (1);
@@ -81,7 +80,7 @@ package body QtAda6.QtWidgets.QButtonGroup is
       Result := Object_Call (Method, Args, Dict, True);
    end addButton;
    function button (self : access Inst; id_P : int) return access QtAda6.QtWidgets.QAbstractButton.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QAbstractButton.Class := new QtAda6.QtWidgets.QAbstractButton.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "button");
@@ -93,16 +92,20 @@ package body QtAda6.QtWidgets.QButtonGroup is
       return Ret;
    end button;
    function buttons (self : access Inst) return LIST_QtAda6_QtWidgets_QAbstractButton is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "buttons");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtWidgets_QAbstractButton (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end buttons;
    function checkedButton (self : access Inst) return access QtAda6.QtWidgets.QAbstractButton.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QAbstractButton.Class := new QtAda6.QtWidgets.QAbstractButton.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "checkedButton");
@@ -113,7 +116,7 @@ package body QtAda6.QtWidgets.QButtonGroup is
       return Ret;
    end checkedButton;
    function checkedId (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "checkedId");
       Args   := Tuple_New (0);
@@ -122,7 +125,7 @@ package body QtAda6.QtWidgets.QButtonGroup is
       return Long_AsLong (Result);
    end checkedId;
    function exclusive (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exclusive");
       Args   := Tuple_New (0);
@@ -131,7 +134,7 @@ package body QtAda6.QtWidgets.QButtonGroup is
       return To_Ada (Result);
    end exclusive;
    function id (self : access Inst; button_P : access QtAda6.QtWidgets.QAbstractButton.Inst'Class) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "id");
       Args   := Tuple_New (1);
@@ -141,7 +144,7 @@ package body QtAda6.QtWidgets.QButtonGroup is
       return Long_AsLong (Result);
    end id;
    procedure removeButton (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QAbstractButton.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeButton");
       Args   := Tuple_New (1);
@@ -150,7 +153,7 @@ package body QtAda6.QtWidgets.QButtonGroup is
       Result := Object_Call (Method, Args, Dict, True);
    end removeButton;
    procedure setExclusive (self : access Inst; arg_1_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setExclusive");
       Args   := Tuple_New (1);
@@ -159,7 +162,7 @@ package body QtAda6.QtWidgets.QButtonGroup is
       Result := Object_Call (Method, Args, Dict, True);
    end setExclusive;
    procedure setId (self : access Inst; button_P : access QtAda6.QtWidgets.QAbstractButton.Inst'Class; id_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setId");
       Args   := Tuple_New (2);

@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtCore.QPoint;
@@ -28,25 +27,30 @@ limited with QtAda6.QtGui.QDragMoveEvent;
 limited with QtAda6.QtGui.QDropEvent;
 limited with QtAda6.QtWidgets.QTextEdit.ExtraSelection;
 limited with QtAda6.QtGui.QTextDocument.FindFlag;
+limited with QtAda6.QtCore.QRegularExpression;
 limited with QtAda6.QtGui.QFocusEvent;
 limited with QtAda6.QtGui.QInputMethodEvent;
 limited with QtAda6.QtCore.Qt.InputMethodQuery;
 limited with QtAda6.QtGui.QKeyEvent;
 limited with QtAda6.QtWidgets.QTextEdit.LineWrapMode;
+limited with QtAda6.QtCore.QUrl;
 limited with QtAda6.QtGui.QMouseEvent;
 limited with QtAda6.QtGui.QTextCursor.MoveOperation;
 limited with QtAda6.QtGui.QTextCursor.MoveMode;
 limited with QtAda6.QtGui.QPaintEvent;
 limited with QtAda6.QtGui.QPagedPaintDevice;
 limited with QtAda6.QtGui.QResizeEvent;
+limited with QtAda6.QtGui.QColor;
+limited with QtAda6.QtGui.QRgba64;
+limited with QtAda6.QtCore.Qt.GlobalColor;
 limited with QtAda6.QtCore.Qt.TextInteractionFlag;
 limited with QtAda6.QtGui.QTextOption.WrapMode;
 limited with QtAda6.QtGui.QShowEvent;
-limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtCore.QTimerEvent;
 limited with QtAda6.QtGui.QTextDocument.MarkdownFeature;
 limited with QtAda6.QtGui.QWheelEvent;
 with QtAda6.QtWidgets.QAbstractScrollArea;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QTextEdit is
    type Inst;
    type Inst_Access is access all Inst;
@@ -54,11 +58,8 @@ package QtAda6.QtWidgets.QTextEdit is
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractScrollArea.Inst with null record;
    subtype LIST_QtAda6_QtWidgets_QTextEdit_ExtraSelection is QtAda6.QtWidgets.QTextEdit.ExtraSelection.Class_Array;
-   type UNION_QtAda6_QtCore_QRegularExpression_str is new Any;
-   type UNION_QtAda6_QtCore_QUrl_str is new Any;
-   type UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str is new Any;
+   type SEQUENCE_str is array (Positive range <>) of str;
    subtype SEQUENCE_QtAda6_QtWidgets_QTextEdit_ExtraSelection is QtAda6.QtWidgets.QTextEdit.ExtraSelection.Class_Array;
-   type UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is new Any;
    procedure Finalize (Self : in out Class);
    function copyAvailable (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- copyAvailable(bool)
    function currentCharFormatChanged
@@ -113,8 +114,9 @@ package QtAda6.QtWidgets.QTextEdit is
      (self : access Inst; exp_P : str; options_P : access QtAda6.QtGui.QTextDocument.FindFlag.Inst'Class := null)
       return bool;
    function find
-     (self      : access Inst; exp_P : UNION_QtAda6_QtCore_QRegularExpression_str;
+     (self      : access Inst; exp_P : access QtAda6.QtCore.QRegularExpression.Inst'Class;
       options_P : access QtAda6.QtGui.QTextDocument.FindFlag.Inst'Class := null) return bool;
+-- function find(self : access Inst;exp_P : str;options_P : access QtAda6.QtGui.QTextDocument.FindFlag.Inst'Class := null) return bool;
    procedure focusInEvent (self : access Inst; e_P : access QtAda6.QtGui.QFocusEvent.Inst'Class);
    function focusNextPrevChild (self : access Inst; next_P : bool) return bool;
    procedure focusOutEvent (self : access Inst; e_P : access QtAda6.QtGui.QFocusEvent.Inst'Class);
@@ -137,7 +139,8 @@ package QtAda6.QtWidgets.QTextEdit is
    procedure keyReleaseEvent (self : access Inst; e_P : access QtAda6.QtGui.QKeyEvent.Inst'Class);
    function lineWrapColumnOrWidth (self : access Inst) return int;
    function lineWrapMode_F (self : access Inst) return access QtAda6.QtWidgets.QTextEdit.LineWrapMode.Inst'Class;
-   function loadResource (self : access Inst; type_K_P : int; name_P : UNION_QtAda6_QtCore_QUrl_str) return Any;
+   function loadResource (self : access Inst; type_K_P : int; name_P : access QtAda6.QtCore.QUrl.Inst'Class) return Any;
+   function loadResource (self : access Inst; type_K_P : int; name_P : str) return Any;
    procedure mergeCurrentCharFormat (self : access Inst; modifier_P : access QtAda6.QtGui.QTextCharFormat.Inst'Class);
    procedure mouseDoubleClickEvent (self : access Inst; e_P : access QtAda6.QtGui.QMouseEvent.Inst'Class);
    procedure mouseMoveEvent (self : access Inst; e_P : access QtAda6.QtGui.QMouseEvent.Inst'Class);
@@ -161,7 +164,9 @@ package QtAda6.QtWidgets.QTextEdit is
    procedure setAutoFormatting
      (self : access Inst; features_P : access QtAda6.QtWidgets.QTextEdit.AutoFormattingFlag.Inst'Class);
    procedure setCurrentCharFormat (self : access Inst; format_P : access QtAda6.QtGui.QTextCharFormat.Inst'Class);
-   procedure setCurrentFont (self : access Inst; f_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str);
+   procedure setCurrentFont (self : access Inst; f_P : access QtAda6.QtGui.QFont.Inst'Class);
+   procedure setCurrentFont (self : access Inst; f_P : str);
+   procedure setCurrentFont (self : access Inst; f_P : SEQUENCE_str);
    procedure setCursorWidth (self : access Inst; width_P : int);
    procedure setDocument (self : access Inst; document_P : access QtAda6.QtGui.QTextDocument.Inst'Class);
    procedure setDocumentTitle (self : access Inst; title_P : str);
@@ -182,12 +187,18 @@ package QtAda6.QtWidgets.QTextEdit is
    procedure setTabChangesFocus (self : access Inst; b_P : bool);
    procedure setTabStopDistance (self : access Inst; distance_P : float);
    procedure setText (self : access Inst; text_P : str);
-   procedure setTextBackgroundColor
-     (self : access Inst;
-      c_P  : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
-   procedure setTextColor
-     (self : access Inst;
-      c_P  : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
+   procedure setTextBackgroundColor (self : access Inst; c_P : access QtAda6.QtGui.QColor.Inst'Class);
+   procedure setTextBackgroundColor (self : access Inst; c_P : access QtAda6.QtGui.QRgba64.Inst'Class);
+   procedure setTextBackgroundColor (self : access Inst; c_P : Any);
+   procedure setTextBackgroundColor (self : access Inst; c_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure setTextBackgroundColor (self : access Inst; c_P : str);
+   procedure setTextBackgroundColor (self : access Inst; c_P : int);
+   procedure setTextColor (self : access Inst; c_P : access QtAda6.QtGui.QColor.Inst'Class);
+   procedure setTextColor (self : access Inst; c_P : access QtAda6.QtGui.QRgba64.Inst'Class);
+   procedure setTextColor (self : access Inst; c_P : Any);
+   procedure setTextColor (self : access Inst; c_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure setTextColor (self : access Inst; c_P : str);
+   procedure setTextColor (self : access Inst; c_P : int);
    procedure setTextCursor (self : access Inst; cursor_P : access QtAda6.QtGui.QTextCursor.Inst'Class);
    procedure setTextInteractionFlags
      (self : access Inst; flags_P : access QtAda6.QtCore.Qt.TextInteractionFlag.Inst'Class);

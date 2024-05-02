@@ -14,7 +14,6 @@ with QtAda6.QtWidgets.QGraphicsItem;
 with QtAda6.QtCore.Qt.WindowType;
 with QtAda6.QtWidgets.QGraphicsSceneContextMenuEvent;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtWidgets.QGraphicsProxyWidget;
 with QtAda6.QtWidgets.QGraphicsSceneDragDropEvent;
 with QtAda6.QtCore.QEvent;
 with QtAda6.QtCore.QObject;
@@ -29,10 +28,12 @@ with QtAda6.QtWidgets.QGraphicsSceneMouseEvent;
 with QtAda6.QtGui.QPainter;
 with QtAda6.QtWidgets.QStyleOptionGraphicsItem;
 with QtAda6.QtWidgets.QGraphicsSceneResizeEvent;
+with QtAda6.QtCore.QRectF;
+with QtAda6.QtCore.QRect;
 with QtAda6.QtGui.QShowEvent;
 with QtAda6.QtCore.Qt.SizeHint;
 with QtAda6.QtCore.QSizeF;
-with QtAda6.QtCore.QRectF;
+with QtAda6.QtCore.QSize;
 with QtAda6.QtWidgets.QGraphicsSceneWheelEvent;
 package body QtAda6.QtWidgets.QGraphicsProxyWidget is
    use type QtAda6.int;
@@ -48,7 +49,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
      (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null;
       wFlags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class    := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsProxyWidget");
       Args  := Tuple_New (0);
@@ -64,7 +65,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
    procedure contextMenuEvent
      (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneContextMenuEvent.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "contextMenuEvent");
       Args   := Tuple_New (1);
@@ -76,7 +77,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
      (self : access Inst; child_P : access QtAda6.QtWidgets.QWidget.Inst'Class)
       return access QtAda6.QtWidgets.QGraphicsProxyWidget.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QGraphicsProxyWidget.Class := new QtAda6.QtWidgets.QGraphicsProxyWidget.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "createProxyForChildWidget");
@@ -90,7 +91,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
    procedure dragEnterEvent
      (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneDragDropEvent.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dragEnterEvent");
       Args   := Tuple_New (1);
@@ -101,7 +102,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
    procedure dragLeaveEvent
      (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneDragDropEvent.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dragLeaveEvent");
       Args   := Tuple_New (1);
@@ -112,7 +113,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
    procedure dragMoveEvent
      (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneDragDropEvent.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dragMoveEvent");
       Args   := Tuple_New (1);
@@ -121,7 +122,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end dragMoveEvent;
    procedure dropEvent (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneDragDropEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dropEvent");
       Args   := Tuple_New (1);
@@ -130,7 +131,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end dropEvent;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -143,7 +144,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
      (self    : access Inst; object_P : access QtAda6.QtCore.QObject.Inst'Class;
       event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "eventFilter");
       Args   := Tuple_New (2);
@@ -154,7 +155,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       return To_Ada (Result);
    end eventFilter;
    procedure focusInEvent (self : access Inst; event_P : access QtAda6.QtGui.QFocusEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "focusInEvent");
       Args   := Tuple_New (1);
@@ -163,7 +164,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end focusInEvent;
    function focusNextPrevChild (self : access Inst; next_P : bool) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "focusNextPrevChild");
       Args   := Tuple_New (1);
@@ -173,7 +174,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       return To_Ada (Result);
    end focusNextPrevChild;
    procedure focusOutEvent (self : access Inst; event_P : access QtAda6.QtGui.QFocusEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "focusOutEvent");
       Args   := Tuple_New (1);
@@ -182,7 +183,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end focusOutEvent;
    procedure grabMouseEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "grabMouseEvent");
       Args   := Tuple_New (1);
@@ -191,7 +192,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end grabMouseEvent;
    procedure hideEvent (self : access Inst; event_P : access QtAda6.QtGui.QHideEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hideEvent");
       Args   := Tuple_New (1);
@@ -201,7 +202,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
    end hideEvent;
    procedure hoverEnterEvent (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneHoverEvent.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hoverEnterEvent");
       Args   := Tuple_New (1);
@@ -211,7 +212,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
    end hoverEnterEvent;
    procedure hoverLeaveEvent (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneHoverEvent.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hoverLeaveEvent");
       Args   := Tuple_New (1);
@@ -221,7 +222,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
    end hoverLeaveEvent;
    procedure hoverMoveEvent (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneHoverEvent.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hoverMoveEvent");
       Args   := Tuple_New (1);
@@ -230,7 +231,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end hoverMoveEvent;
    procedure inputMethodEvent (self : access Inst; event_P : access QtAda6.QtGui.QInputMethodEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "inputMethodEvent");
       Args   := Tuple_New (1);
@@ -241,7 +242,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
    function inputMethodQuery
      (self : access Inst; query_P : access QtAda6.QtCore.Qt.InputMethodQuery.Inst'Class) return Any
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "inputMethodQuery");
       Args   := Tuple_New (1);
@@ -254,7 +255,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
      (self : access Inst; change_P : access QtAda6.QtWidgets.QGraphicsItem.GraphicsItemChange.Inst'Class; value_P : Any)
       return Any
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemChange");
       Args   := Tuple_New (2);
@@ -265,7 +266,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       return null;
    end itemChange;
    procedure keyPressEvent (self : access Inst; event_P : access QtAda6.QtGui.QKeyEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "keyPressEvent");
       Args   := Tuple_New (1);
@@ -274,7 +275,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end keyPressEvent;
    procedure keyReleaseEvent (self : access Inst; event_P : access QtAda6.QtGui.QKeyEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "keyReleaseEvent");
       Args   := Tuple_New (1);
@@ -285,7 +286,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
    procedure mouseDoubleClickEvent
      (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneMouseEvent.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseDoubleClickEvent");
       Args   := Tuple_New (1);
@@ -295,7 +296,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
    end mouseDoubleClickEvent;
    procedure mouseMoveEvent (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneMouseEvent.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseMoveEvent");
       Args   := Tuple_New (1);
@@ -305,7 +306,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
    end mouseMoveEvent;
    procedure mousePressEvent (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneMouseEvent.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mousePressEvent");
       Args   := Tuple_New (1);
@@ -316,7 +317,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
    procedure mouseReleaseEvent
      (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneMouseEvent.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseReleaseEvent");
       Args   := Tuple_New (1);
@@ -328,7 +329,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
      (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class)
       return access QtAda6.QtWidgets.QGraphicsProxyWidget.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QGraphicsProxyWidget.Class := new QtAda6.QtWidgets.QGraphicsProxyWidget.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "newProxyWidget");
@@ -344,7 +345,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       option_P : access QtAda6.QtWidgets.QStyleOptionGraphicsItem.Inst'Class;
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paint");
       Args   := Tuple_New (3);
@@ -355,7 +356,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end paint;
    procedure resizeEvent (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneResizeEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resizeEvent");
       Args   := Tuple_New (1);
@@ -363,8 +364,17 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end resizeEvent;
-   procedure setGeometry (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setGeometry (self : access Inst; rect_P : access QtAda6.QtCore.QRectF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setGeometry");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if rect_P /= null then rect_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setGeometry;
+   procedure setGeometry (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setGeometry");
       Args   := Tuple_New (1);
@@ -373,7 +383,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setGeometry;
    procedure setGeometry (self : access Inst; x_P : float; y_P : float; w_P : float; h_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setGeometry");
       Args   := Tuple_New (4);
@@ -385,7 +395,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setGeometry;
    procedure setWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setWidget");
       Args   := Tuple_New (1);
@@ -394,7 +404,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setWidget;
    procedure showEvent (self : access Inst; event_P : access QtAda6.QtGui.QShowEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "showEvent");
       Args   := Tuple_New (1);
@@ -404,11 +414,28 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
    end showEvent;
    function sizeHint
      (self         : access Inst; which_P : access QtAda6.QtCore.Qt.SizeHint.Inst'Class;
-      constraint_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize := null)
-      return access QtAda6.QtCore.QSizeF.Inst'Class
+      constraint_P : access QtAda6.QtCore.QSizeF.Inst'Class := null) return access QtAda6.QtCore.QSizeF.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "sizeHint");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if which_P /= null then which_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if constraint_P /= null then
+         Dict_SetItemString (Dict, "constraint", constraint_P.Python_Proxy);
+      end if;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end sizeHint;
+   function sizeHint
+     (self         : access Inst; which_P : access QtAda6.QtCore.Qt.SizeHint.Inst'Class;
+      constraint_P : access QtAda6.QtCore.QSize.Inst'Class := null) return access QtAda6.QtCore.QSizeF.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args   := Tuple_New (1);
@@ -425,8 +452,8 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
      (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class)
       return access QtAda6.QtCore.QRectF.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "subWidgetRect");
       Args   := Tuple_New (1);
@@ -437,7 +464,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       return Ret;
    end subWidgetRect;
    function type_K (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "type");
       Args   := Tuple_New (0);
@@ -446,7 +473,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       return Long_AsLong (Result);
    end type_K;
    procedure ungrabMouseEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "ungrabMouseEvent");
       Args   := Tuple_New (1);
@@ -455,7 +482,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end ungrabMouseEvent;
    procedure wheelEvent (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneWheelEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "wheelEvent");
       Args   := Tuple_New (1);
@@ -464,7 +491,7 @@ package body QtAda6.QtWidgets.QGraphicsProxyWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end wheelEvent;
    function widget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "widget");

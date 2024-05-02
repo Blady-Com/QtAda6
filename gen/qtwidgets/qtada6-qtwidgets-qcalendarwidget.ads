@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QCalendar;
 limited with QtAda6.QtCore.QDate;
 limited with QtAda6.QtGui.QTextCharFormat;
@@ -25,6 +24,7 @@ limited with QtAda6.QtGui.QResizeEvent;
 limited with QtAda6.QtWidgets.QCalendarWidget.SelectionMode;
 limited with QtAda6.QtWidgets.QCalendarWidget.VerticalHeaderFormat;
 with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QCalendarWidget is
    type Inst;
    type Inst_Access is access all Inst;

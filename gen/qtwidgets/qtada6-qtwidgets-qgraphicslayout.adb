@@ -23,7 +23,7 @@ package body QtAda6.QtWidgets.QGraphicsLayout is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsLayout");
       Args  := Tuple_New (0);
@@ -34,7 +34,7 @@ package body QtAda6.QtWidgets.QGraphicsLayout is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure activate (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "activate");
       Args   := Tuple_New (0);
@@ -44,7 +44,7 @@ package body QtAda6.QtWidgets.QGraphicsLayout is
    procedure addChildLayoutItem
      (self : access Inst; layoutItem_P : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addChildLayoutItem");
       Args   := Tuple_New (1);
@@ -53,7 +53,7 @@ package body QtAda6.QtWidgets.QGraphicsLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end addChildLayoutItem;
    function count (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "count");
       Args   := Tuple_New (0);
@@ -62,7 +62,7 @@ package body QtAda6.QtWidgets.QGraphicsLayout is
       return Long_AsLong (Result);
    end count;
    function getContentsMargins (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "getContentsMargins");
       Args   := Tuple_New (0);
@@ -71,7 +71,7 @@ package body QtAda6.QtWidgets.QGraphicsLayout is
       return null;
    end getContentsMargins;
    function instantInvalidatePropagation return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsLayout");
       Method := Object_GetAttrString (Class, "instantInvalidatePropagation");
@@ -81,7 +81,7 @@ package body QtAda6.QtWidgets.QGraphicsLayout is
       return To_Ada (Result);
    end instantInvalidatePropagation;
    procedure invalidate (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "invalidate");
       Args   := Tuple_New (0);
@@ -89,7 +89,7 @@ package body QtAda6.QtWidgets.QGraphicsLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end invalidate;
    function isActivated (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isActivated");
       Args   := Tuple_New (0);
@@ -98,7 +98,7 @@ package body QtAda6.QtWidgets.QGraphicsLayout is
       return To_Ada (Result);
    end isActivated;
    function itemAt (self : access Inst; i_P : int) return access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QGraphicsLayoutItem.Class := new QtAda6.QtWidgets.QGraphicsLayoutItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemAt");
@@ -110,7 +110,7 @@ package body QtAda6.QtWidgets.QGraphicsLayout is
       return Ret;
    end itemAt;
    procedure removeAt (self : access Inst; index_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeAt");
       Args   := Tuple_New (1);
@@ -120,7 +120,7 @@ package body QtAda6.QtWidgets.QGraphicsLayout is
    end removeAt;
    procedure setContentsMargins (self : access Inst; left_P : float; top_P : float; right_P : float; bottom_P : float)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setContentsMargins");
       Args   := Tuple_New (4);
@@ -132,7 +132,7 @@ package body QtAda6.QtWidgets.QGraphicsLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end setContentsMargins;
    procedure setInstantInvalidatePropagation (enable_P : bool) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsLayout");
       Method := Object_GetAttrString (Class, "setInstantInvalidatePropagation");
@@ -142,7 +142,7 @@ package body QtAda6.QtWidgets.QGraphicsLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end setInstantInvalidatePropagation;
    procedure updateGeometry (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "updateGeometry");
       Args   := Tuple_New (0);
@@ -150,7 +150,7 @@ package body QtAda6.QtWidgets.QGraphicsLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end updateGeometry;
    procedure widgetEvent (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "widgetEvent");
       Args   := Tuple_New (1);

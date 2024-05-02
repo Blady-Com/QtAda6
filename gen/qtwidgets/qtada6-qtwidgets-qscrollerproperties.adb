@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtWidgets.QScrollerProperties;
 with QtAda6.QtWidgets.QScrollerProperties.ScrollMetric;
 package body QtAda6.QtWidgets.QScrollerProperties is
    use type QtAda6.int;
@@ -23,7 +22,7 @@ package body QtAda6.QtWidgets.QScrollerProperties is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScrollerProperties");
       Args  := Tuple_New (0);
@@ -31,7 +30,7 @@ package body QtAda6.QtWidgets.QScrollerProperties is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (sp_P : access QtAda6.QtWidgets.QScrollerProperties.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScrollerProperties");
       Args  := Tuple_New (1);
@@ -40,7 +39,7 @@ package body QtAda6.QtWidgets.QScrollerProperties is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScrollerProperties");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -51,7 +50,7 @@ package body QtAda6.QtWidgets.QScrollerProperties is
    function scrollMetric_F
      (self : access Inst; metric_P : access QtAda6.QtWidgets.QScrollerProperties.ScrollMetric.Inst'Class) return Any
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "scrollMetric");
       Args   := Tuple_New (1);
@@ -61,7 +60,7 @@ package body QtAda6.QtWidgets.QScrollerProperties is
       return null;
    end scrollMetric_F;
    procedure setDefaultScrollerProperties (sp_P : access QtAda6.QtWidgets.QScrollerProperties.Inst'Class) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScrollerProperties");
       Method := Object_GetAttrString (Class, "setDefaultScrollerProperties");
@@ -73,7 +72,7 @@ package body QtAda6.QtWidgets.QScrollerProperties is
    procedure setScrollMetric
      (self : access Inst; metric_P : access QtAda6.QtWidgets.QScrollerProperties.ScrollMetric.Inst'Class; value_P : Any)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setScrollMetric");
       Args   := Tuple_New (2);
@@ -83,7 +82,7 @@ package body QtAda6.QtWidgets.QScrollerProperties is
       Result := Object_Call (Method, Args, Dict, True);
    end setScrollMetric;
    procedure unsetDefaultScrollerProperties is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScrollerProperties");
       Method := Object_GetAttrString (Class, "unsetDefaultScrollerProperties");

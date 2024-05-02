@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.QTime;
 package body QtAda6.QtWidgets.QTimeEdit is
@@ -29,7 +28,7 @@ package body QtAda6.QtWidgets.QTimeEdit is
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "userTimeChanged"));
    end userTimeChanged;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTimeEdit");
       Args  := Tuple_New (0);
@@ -43,7 +42,7 @@ package body QtAda6.QtWidgets.QTimeEdit is
      (time_P : access QtAda6.QtCore.QTime.Inst'Class; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
       return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTimeEdit");
       Args  := Tuple_New (1);

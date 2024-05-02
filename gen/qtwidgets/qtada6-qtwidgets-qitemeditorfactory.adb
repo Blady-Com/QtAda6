@@ -11,7 +11,6 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtWidgets.QItemEditorFactory;
 with QtAda6.QtWidgets.QItemEditorCreatorBase;
 with QtAda6.QtCore.QByteArray;
 package body QtAda6.QtWidgets.QItemEditorFactory is
@@ -25,7 +24,7 @@ package body QtAda6.QtWidgets.QItemEditorFactory is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QItemEditorFactory");
       Args  := Tuple_New (0);
@@ -36,7 +35,7 @@ package body QtAda6.QtWidgets.QItemEditorFactory is
      (self : access Inst; userType_P : int; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class)
       return access QtAda6.QtWidgets.QWidget.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "createEditor");
@@ -49,7 +48,7 @@ package body QtAda6.QtWidgets.QItemEditorFactory is
       return Ret;
    end createEditor;
    function defaultFactory return access QtAda6.QtWidgets.QItemEditorFactory.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QItemEditorFactory.Class := new QtAda6.QtWidgets.QItemEditorFactory.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QItemEditorFactory");
@@ -63,7 +62,7 @@ package body QtAda6.QtWidgets.QItemEditorFactory is
    procedure registerEditor
      (self : access Inst; userType_P : int; creator_P : access QtAda6.QtWidgets.QItemEditorCreatorBase.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "registerEditor");
       Args   := Tuple_New (2);
@@ -73,7 +72,7 @@ package body QtAda6.QtWidgets.QItemEditorFactory is
       Result := Object_Call (Method, Args, Dict, True);
    end registerEditor;
    procedure setDefaultFactory (factory_P : access QtAda6.QtWidgets.QItemEditorFactory.Inst'Class) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QItemEditorFactory");
       Method := Object_GetAttrString (Class, "setDefaultFactory");
@@ -84,7 +83,7 @@ package body QtAda6.QtWidgets.QItemEditorFactory is
    end setDefaultFactory;
    function valuePropertyName (self : access Inst; userType_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "valuePropertyName");

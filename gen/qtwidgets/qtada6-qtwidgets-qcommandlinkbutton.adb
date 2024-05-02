@@ -26,7 +26,7 @@ package body QtAda6.QtWidgets.QCommandLinkButton is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QCommandLinkButton");
       Args  := Tuple_New (0);
@@ -39,7 +39,7 @@ package body QtAda6.QtWidgets.QCommandLinkButton is
    function Create
      (text_P : str; description_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QCommandLinkButton");
       Args  := Tuple_New (2);
@@ -52,7 +52,7 @@ package body QtAda6.QtWidgets.QCommandLinkButton is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (text_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QCommandLinkButton");
       Args  := Tuple_New (1);
@@ -64,7 +64,7 @@ package body QtAda6.QtWidgets.QCommandLinkButton is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function description (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "description");
       Args   := Tuple_New (0);
@@ -73,7 +73,7 @@ package body QtAda6.QtWidgets.QCommandLinkButton is
       return As_String (Result);
    end description;
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -83,7 +83,7 @@ package body QtAda6.QtWidgets.QCommandLinkButton is
       return To_Ada (Result);
    end event;
    function heightForWidth (self : access Inst; arg_1_P : int) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "heightForWidth");
       Args   := Tuple_New (1);
@@ -93,7 +93,7 @@ package body QtAda6.QtWidgets.QCommandLinkButton is
       return Long_AsLong (Result);
    end heightForWidth;
    procedure initStyleOption (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionButton.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "initStyleOption");
       Args   := Tuple_New (1);
@@ -102,8 +102,8 @@ package body QtAda6.QtWidgets.QCommandLinkButton is
       Result := Object_Call (Method, Args, Dict, True);
    end initStyleOption;
    function minimumSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSizeHint");
       Args             := Tuple_New (0);
@@ -113,7 +113,7 @@ package body QtAda6.QtWidgets.QCommandLinkButton is
       return Ret;
    end minimumSizeHint;
    procedure paintEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -122,7 +122,7 @@ package body QtAda6.QtWidgets.QCommandLinkButton is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure setDescription (self : access Inst; description_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDescription");
       Args   := Tuple_New (1);
@@ -131,8 +131,8 @@ package body QtAda6.QtWidgets.QCommandLinkButton is
       Result := Object_Call (Method, Args, Dict, True);
    end setDescription;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);

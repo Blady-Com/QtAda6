@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QGraphicsItem;
 with QtAda6.QtCore.QEvent;
 with QtAda6.QtCore.Qt.GestureType;
@@ -76,7 +75,7 @@ package body QtAda6.QtWidgets.QGraphicsObject is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "zChanged"));
    end zChanged;
    function Create (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsObject");
       Args  := Tuple_New (0);
@@ -87,7 +86,7 @@ package body QtAda6.QtWidgets.QGraphicsObject is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function event (self : access Inst; ev_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -100,7 +99,7 @@ package body QtAda6.QtWidgets.QGraphicsObject is
      (self    : access Inst; type_K_P : access QtAda6.QtCore.Qt.GestureType.Inst'Class;
       flags_P : access QtAda6.QtCore.Qt.GestureFlag.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "grabGesture");
       Args   := Tuple_New (1);
@@ -112,7 +111,7 @@ package body QtAda6.QtWidgets.QGraphicsObject is
       Result := Object_Call (Method, Args, Dict, True);
    end grabGesture;
    procedure ungrabGesture (self : access Inst; type_K_P : access QtAda6.QtCore.Qt.GestureType.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "ungrabGesture");
       Args   := Tuple_New (1);
@@ -121,7 +120,7 @@ package body QtAda6.QtWidgets.QGraphicsObject is
       Result := Object_Call (Method, Args, Dict, True);
    end ungrabGesture;
    procedure updateMicroFocus (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "updateMicroFocus");
       Args   := Tuple_New (0);

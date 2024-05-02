@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.QEvent;
 with QtAda6.QtGui.QFont;
@@ -18,6 +17,8 @@ with QtAda6.QtGui.QFontMetrics;
 with QtAda6.QtCore.Qt.UIEffect;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtGui.QPalette;
+with QtAda6.QtCore.Qt.GlobalColor;
+with QtAda6.QtGui.QColor;
 with QtAda6.QtWidgets.QStyle;
 with QtAda6.QtCore.QPoint;
 package body QtAda6.QtWidgets.QApplication is
@@ -35,7 +36,7 @@ package body QtAda6.QtWidgets.QApplication is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "focusChanged"));
    end focusChanged;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Args  := Tuple_New (0);
@@ -43,20 +44,20 @@ package body QtAda6.QtWidgets.QApplication is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (arg_1_P : SEQUENCE_str) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
+      Args  := Tuple_New (1);
       List  := List_New (arg_1_P'Length);
       for ind in arg_1_P'Range loop
          List_SetItem (List, ssize_t (ind - arg_1_P'First), Unicode_FromString (arg_1_P (ind)));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure aboutQt is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "aboutQt");
@@ -65,7 +66,7 @@ package body QtAda6.QtWidgets.QApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end aboutQt;
    function activeModalWidget return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
@@ -77,7 +78,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Ret;
    end activeModalWidget;
    function activePopupWidget return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
@@ -89,7 +90,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Ret;
    end activePopupWidget;
    function activeWindow return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
@@ -101,7 +102,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Ret;
    end activeWindow;
    procedure alert (widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class; duration_P : int := 0) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "alert");
@@ -114,17 +115,21 @@ package body QtAda6.QtWidgets.QApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end alert;
    function allWidgets return LIST_QtAda6_QtWidgets_QWidget is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "allWidgets");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtWidgets_QWidget (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end allWidgets;
    function autoSipEnabled (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "autoSipEnabled");
       Args   := Tuple_New (0);
@@ -133,7 +138,7 @@ package body QtAda6.QtWidgets.QApplication is
       return To_Ada (Result);
    end autoSipEnabled;
    procedure beep is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "beep");
@@ -142,7 +147,7 @@ package body QtAda6.QtWidgets.QApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end beep;
    procedure closeAllWindows is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "closeAllWindows");
@@ -151,7 +156,7 @@ package body QtAda6.QtWidgets.QApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end closeAllWindows;
    function cursorFlashTime return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "cursorFlashTime");
@@ -161,7 +166,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Long_AsLong (Result);
    end cursorFlashTime;
    function doubleClickInterval return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "doubleClickInterval");
@@ -171,7 +176,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Long_AsLong (Result);
    end doubleClickInterval;
    function event (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -181,7 +186,7 @@ package body QtAda6.QtWidgets.QApplication is
       return To_Ada (Result);
    end event;
    function exec return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "exec");
@@ -191,7 +196,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Long_AsLong (Result);
    end exec;
    function exec_U (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec_");
       Args   := Tuple_New (0);
@@ -200,7 +205,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Long_AsLong (Result);
    end exec_U;
    function focusWidget return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
@@ -212,8 +217,8 @@ package body QtAda6.QtWidgets.QApplication is
       return Ret;
    end focusWidget;
    function font return access QtAda6.QtGui.QFont.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                            : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method           := Object_GetAttrString (Class, "font");
@@ -224,8 +229,8 @@ package body QtAda6.QtWidgets.QApplication is
       return Ret;
    end font;
    function font (arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return access QtAda6.QtGui.QFont.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                            : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "font");
@@ -237,20 +242,20 @@ package body QtAda6.QtWidgets.QApplication is
       return Ret;
    end font;
    function font (className_P : bytes) return access QtAda6.QtGui.QFont.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                            : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "font");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (className_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (className_P.all)));
       Dict             := Dict_New;
       Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end font;
    function fontMetrics return access QtAda6.QtGui.QFontMetrics.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QFontMetrics.Class := new QtAda6.QtGui.QFontMetrics.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
@@ -262,7 +267,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Ret;
    end fontMetrics;
    function isEffectEnabled (arg_1_P : access QtAda6.QtCore.Qt.UIEffect.Inst'Class) return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "isEffectEnabled");
@@ -273,7 +278,7 @@ package body QtAda6.QtWidgets.QApplication is
       return To_Ada (Result);
    end isEffectEnabled;
    function keyboardInputInterval return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "keyboardInputInterval");
@@ -286,7 +291,7 @@ package body QtAda6.QtWidgets.QApplication is
      (self    : access Inst; arg_1_P : access QtAda6.QtCore.QObject.Inst'Class;
       arg_2_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "notify");
       Args   := Tuple_New (2);
@@ -297,7 +302,7 @@ package body QtAda6.QtWidgets.QApplication is
       return To_Ada (Result);
    end notify;
    function palette return access QtAda6.QtGui.QPalette.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPalette.Class := new QtAda6.QtGui.QPalette.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
@@ -311,7 +316,7 @@ package body QtAda6.QtWidgets.QApplication is
    function palette
      (arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return access QtAda6.QtGui.QPalette.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPalette.Class := new QtAda6.QtGui.QPalette.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
@@ -324,31 +329,31 @@ package body QtAda6.QtWidgets.QApplication is
       return Ret;
    end palette;
    function palette (className_P : bytes) return access QtAda6.QtGui.QPalette.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPalette.Class := new QtAda6.QtGui.QPalette.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "palette");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (className_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (className_P.all)));
       Dict             := Dict_New;
       Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end palette;
    function resolveInterface (self : access Inst; name_P : bytes; revision_P : int) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resolveInterface");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (name_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (name_P.all)));
       Tuple_SetItem (Args, 1, Long_FromLong (revision_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end resolveInterface;
    procedure setActiveWindow (act_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "setActiveWindow");
@@ -358,7 +363,7 @@ package body QtAda6.QtWidgets.QApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setActiveWindow;
    procedure setAutoSipEnabled (self : access Inst; enabled_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAutoSipEnabled");
       Args   := Tuple_New (1);
@@ -367,7 +372,7 @@ package body QtAda6.QtWidgets.QApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setAutoSipEnabled;
    procedure setCursorFlashTime (arg_1_P : int) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "setCursorFlashTime");
@@ -377,7 +382,7 @@ package body QtAda6.QtWidgets.QApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setCursorFlashTime;
    procedure setDoubleClickInterval (arg_1_P : int) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "setDoubleClickInterval");
@@ -387,7 +392,7 @@ package body QtAda6.QtWidgets.QApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setDoubleClickInterval;
    procedure setEffectEnabled (arg_1_P : access QtAda6.QtCore.Qt.UIEffect.Inst'Class; enable_P : bool := False) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "setEffectEnabled");
@@ -399,21 +404,51 @@ package body QtAda6.QtWidgets.QApplication is
       end if;
       Result := Object_Call (Method, Args, Dict, True);
    end setEffectEnabled;
-   procedure setFont (arg_1_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str; className_P : bytes := "") is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setFont (arg_1_P : access QtAda6.QtGui.QFont.Inst'Class; className_P : bytes := null) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "setFont");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       Dict := Dict_New;
-      if className_P /= "" then
-         Dict_SetItemString (Dict, "className", Bytes_FromString (String (className_P)));
+      if className_P /= null then
+         Dict_SetItemString (Dict, "className", Bytes_FromString (Standard.String (className_P.all)));
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFont;
+   procedure setFont (arg_1_P : str; className_P : bytes := null) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
+      Method := Object_GetAttrString (Class, "setFont");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (arg_1_P));
+      Dict := Dict_New;
+      if className_P /= null then
+         Dict_SetItemString (Dict, "className", Bytes_FromString (Standard.String (className_P.all)));
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFont;
+   procedure setFont (arg_1_P : SEQUENCE_str; className_P : bytes := null) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
+      Method := Object_GetAttrString (Class, "setFont");
+      Args   := Tuple_New (1);
+      List   := List_New (arg_1_P'Length);
+      for ind in arg_1_P'Range loop
+         List_SetItem (List, ssize_t (ind - arg_1_P'First), Unicode_FromString (arg_1_P (ind)));
+      end loop;
+      Tuple_SetItem (Args, 0, List);
+      Dict := Dict_New;
+      if className_P /= null then
+         Dict_SetItemString (Dict, "className", Bytes_FromString (Standard.String (className_P.all)));
       end if;
       Result := Object_Call (Method, Args, Dict, True);
    end setFont;
    procedure setKeyboardInputInterval (arg_1_P : int) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "setKeyboardInputInterval");
@@ -422,23 +457,47 @@ package body QtAda6.QtWidgets.QApplication is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setKeyboardInputInterval;
-   procedure setPalette
-     (arg_1_P : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor; className_P : bytes := "")
-   is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setPalette (arg_1_P : access QtAda6.QtGui.QPalette.Inst'Class; className_P : bytes := null) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "setPalette");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
       Dict := Dict_New;
-      if className_P /= "" then
-         Dict_SetItemString (Dict, "className", Bytes_FromString (String (className_P)));
+      if className_P /= null then
+         Dict_SetItemString (Dict, "className", Bytes_FromString (Standard.String (className_P.all)));
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPalette;
+   procedure setPalette (arg_1_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class; className_P : bytes := null) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
+      Method := Object_GetAttrString (Class, "setPalette");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if className_P /= null then
+         Dict_SetItemString (Dict, "className", Bytes_FromString (Standard.String (className_P.all)));
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPalette;
+   procedure setPalette (arg_1_P : access QtAda6.QtGui.QColor.Inst'Class; className_P : bytes := null) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
+      Method := Object_GetAttrString (Class, "setPalette");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if className_P /= null then
+         Dict_SetItemString (Dict, "className", Bytes_FromString (Standard.String (className_P.all)));
       end if;
       Result := Object_Call (Method, Args, Dict, True);
    end setPalette;
    procedure setStartDragDistance (l_P : int) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "setStartDragDistance");
@@ -448,7 +507,7 @@ package body QtAda6.QtWidgets.QApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setStartDragDistance;
    procedure setStartDragTime (ms_P : int) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "setStartDragTime");
@@ -458,7 +517,7 @@ package body QtAda6.QtWidgets.QApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setStartDragTime;
    procedure setStyle (arg_1_P : access QtAda6.QtWidgets.QStyle.Inst'Class) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "setStyle");
@@ -468,7 +527,7 @@ package body QtAda6.QtWidgets.QApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setStyle;
    function setStyle (arg_1_P : str) return access QtAda6.QtWidgets.QStyle.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QStyle.Class := new QtAda6.QtWidgets.QStyle.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
@@ -481,7 +540,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Ret;
    end setStyle;
    procedure setStyleSheet (self : access Inst; sheet_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStyleSheet");
       Args   := Tuple_New (1);
@@ -490,7 +549,7 @@ package body QtAda6.QtWidgets.QApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setStyleSheet;
    procedure setWheelScrollLines (arg_1_P : int) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "setWheelScrollLines");
@@ -500,7 +559,7 @@ package body QtAda6.QtWidgets.QApplication is
       Result := Object_Call (Method, Args, Dict, True);
    end setWheelScrollLines;
    function startDragDistance return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "startDragDistance");
@@ -510,7 +569,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Long_AsLong (Result);
    end startDragDistance;
    function startDragTime return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "startDragTime");
@@ -520,7 +579,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Long_AsLong (Result);
    end startDragTime;
    function style return access QtAda6.QtWidgets.QStyle.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QStyle.Class := new QtAda6.QtWidgets.QStyle.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
@@ -532,7 +591,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Ret;
    end style;
    function styleSheet (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "styleSheet");
       Args   := Tuple_New (0);
@@ -542,7 +601,7 @@ package body QtAda6.QtWidgets.QApplication is
    end styleSheet;
    function topLevelAt (p_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtWidgets.QWidget.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
@@ -555,7 +614,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Ret;
    end topLevelAt;
    function topLevelAt (x_P : int; y_P : int) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
@@ -569,17 +628,21 @@ package body QtAda6.QtWidgets.QApplication is
       return Ret;
    end topLevelAt;
    function topLevelWidgets return LIST_QtAda6_QtWidgets_QWidget is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "topLevelWidgets");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtWidgets_QWidget (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end topLevelWidgets;
    function wheelScrollLines return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
       Method := Object_GetAttrString (Class, "wheelScrollLines");
@@ -589,7 +652,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Long_AsLong (Result);
    end wheelScrollLines;
    function widgetAt (p_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");
@@ -602,7 +665,7 @@ package body QtAda6.QtWidgets.QApplication is
       return Ret;
    end widgetAt;
    function widgetAt (x_P : int; y_P : int) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QApplication");

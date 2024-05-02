@@ -10,8 +10,9 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtGui.QIcon;
+with QtAda6.QtGui.QPixmap;
 with QtAda6.QtCore.QEvent;
 with QtAda6.QtCore.Qt.TextElideMode;
 with QtAda6.QtGui.QHideEvent;
@@ -24,11 +25,12 @@ with QtAda6.QtGui.QResizeEvent;
 with QtAda6.QtWidgets.QTabBar.SelectionBehavior;
 with QtAda6.QtWidgets.QTabBar.Shape;
 with QtAda6.QtWidgets.QTabBar.ButtonPosition;
+with QtAda6.QtGui.QColor;
+with QtAda6.QtGui.QRgba64;
+with QtAda6.QtCore.Qt.GlobalColor;
 with QtAda6.QtGui.QShowEvent;
 with QtAda6.QtCore.QPoint;
-with QtAda6.QtGui.QIcon;
 with QtAda6.QtCore.QRect;
-with QtAda6.QtGui.QColor;
 with QtAda6.QtCore.QTimerEvent;
 with QtAda6.QtGui.QWheelEvent;
 package body QtAda6.QtWidgets.QTabBar is
@@ -64,7 +66,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "tabMoved"));
    end tabMoved;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTabBar");
       Args  := Tuple_New (0);
@@ -75,7 +77,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function accessibleTabName (self : access Inst; index_P : int) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "accessibleTabName");
       Args   := Tuple_New (1);
@@ -84,9 +86,19 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end accessibleTabName;
-   function addTab (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str) return int
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   function addTab (self : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str) return int is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "addTab");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if icon_P /= null then icon_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (text_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Long_AsLong (Result);
+   end addTab;
+   function addTab (self : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str) return int is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addTab");
       Args   := Tuple_New (2);
@@ -97,7 +109,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Long_AsLong (Result);
    end addTab;
    function addTab (self : access Inst; text_P : str) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addTab");
       Args   := Tuple_New (1);
@@ -107,7 +119,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Long_AsLong (Result);
    end addTab;
    function autoHide (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "autoHide");
       Args   := Tuple_New (0);
@@ -116,7 +128,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return To_Ada (Result);
    end autoHide;
    function changeCurrentOnDrag (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changeCurrentOnDrag");
       Args   := Tuple_New (0);
@@ -125,7 +137,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return To_Ada (Result);
    end changeCurrentOnDrag;
    procedure changeEvent (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changeEvent");
       Args   := Tuple_New (1);
@@ -134,7 +146,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end changeEvent;
    function count (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "count");
       Args   := Tuple_New (0);
@@ -143,7 +155,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Long_AsLong (Result);
    end count;
    function currentIndex (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "currentIndex");
       Args   := Tuple_New (0);
@@ -152,7 +164,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Long_AsLong (Result);
    end currentIndex;
    function documentMode (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "documentMode");
       Args   := Tuple_New (0);
@@ -161,7 +173,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return To_Ada (Result);
    end documentMode;
    function drawBase (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "drawBase");
       Args   := Tuple_New (0);
@@ -170,7 +182,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return To_Ada (Result);
    end drawBase;
    function elideMode (self : access Inst) return access QtAda6.QtCore.Qt.TextElideMode.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.TextElideMode.Class := new QtAda6.QtCore.Qt.TextElideMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "elideMode");
@@ -181,7 +193,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Ret;
    end elideMode;
    function event (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -191,7 +203,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return To_Ada (Result);
    end event;
    function expanding (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "expanding");
       Args   := Tuple_New (0);
@@ -200,7 +212,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return To_Ada (Result);
    end expanding;
    procedure hideEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QHideEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hideEvent");
       Args   := Tuple_New (1);
@@ -209,8 +221,8 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end hideEvent;
    function iconSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "iconSize");
       Args             := Tuple_New (0);
@@ -222,7 +234,7 @@ package body QtAda6.QtWidgets.QTabBar is
    procedure initStyleOption
      (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionTab.Inst'Class; tabIndex_P : int)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "initStyleOption");
       Args   := Tuple_New (2);
@@ -232,10 +244,23 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end initStyleOption;
    function insertTab
-     (self : access Inst; index_P : int; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str)
-      return int
+     (self : access Inst; index_P : int; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "insertTab");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, (if icon_P /= null then icon_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, Unicode_FromString (text_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Long_AsLong (Result);
+   end insertTab;
+   function insertTab
+     (self : access Inst; index_P : int; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str) return int
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertTab");
       Args   := Tuple_New (3);
@@ -247,7 +272,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Long_AsLong (Result);
    end insertTab;
    function insertTab (self : access Inst; index_P : int; text_P : str) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertTab");
       Args   := Tuple_New (2);
@@ -258,7 +283,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Long_AsLong (Result);
    end insertTab;
    function isMovable (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isMovable");
       Args   := Tuple_New (0);
@@ -267,7 +292,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return To_Ada (Result);
    end isMovable;
    function isTabEnabled (self : access Inst; index_P : int) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isTabEnabled");
       Args   := Tuple_New (1);
@@ -277,7 +302,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return To_Ada (Result);
    end isTabEnabled;
    function isTabVisible (self : access Inst; index_P : int) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isTabVisible");
       Args   := Tuple_New (1);
@@ -287,7 +312,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return To_Ada (Result);
    end isTabVisible;
    procedure keyPressEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QKeyEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "keyPressEvent");
       Args   := Tuple_New (1);
@@ -296,8 +321,8 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end keyPressEvent;
    function minimumSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSizeHint");
       Args             := Tuple_New (0);
@@ -307,8 +332,8 @@ package body QtAda6.QtWidgets.QTabBar is
       return Ret;
    end minimumSizeHint;
    function minimumTabSizeHint (self : access Inst; index_P : int) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "minimumTabSizeHint");
       Args   := Tuple_New (1);
@@ -319,7 +344,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Ret;
    end minimumTabSizeHint;
    procedure mouseDoubleClickEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseDoubleClickEvent");
       Args   := Tuple_New (1);
@@ -328,7 +353,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseDoubleClickEvent;
    procedure mouseMoveEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseMoveEvent");
       Args   := Tuple_New (1);
@@ -337,7 +362,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseMoveEvent;
    procedure mousePressEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mousePressEvent");
       Args   := Tuple_New (1);
@@ -346,7 +371,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end mousePressEvent;
    procedure mouseReleaseEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseReleaseEvent");
       Args   := Tuple_New (1);
@@ -355,7 +380,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseReleaseEvent;
    procedure moveTab (self : access Inst; from_U_P : int; to_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "moveTab");
       Args   := Tuple_New (2);
@@ -365,7 +390,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end moveTab;
    procedure paintEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -374,7 +399,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure removeTab (self : access Inst; index_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeTab");
       Args   := Tuple_New (1);
@@ -383,7 +408,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end removeTab;
    procedure resizeEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QResizeEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resizeEvent");
       Args   := Tuple_New (1);
@@ -394,8 +419,8 @@ package body QtAda6.QtWidgets.QTabBar is
    function selectionBehaviorOnRemove
      (self : access Inst) return access QtAda6.QtWidgets.QTabBar.SelectionBehavior.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QTabBar.SelectionBehavior.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QTabBar.SelectionBehavior.Class :=
         new QtAda6.QtWidgets.QTabBar.SelectionBehavior.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "selectionBehaviorOnRemove");
@@ -406,7 +431,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Ret;
    end selectionBehaviorOnRemove;
    procedure setAccessibleTabName (self : access Inst; index_P : int; name_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAccessibleTabName");
       Args   := Tuple_New (2);
@@ -416,7 +441,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setAccessibleTabName;
    procedure setAutoHide (self : access Inst; hide_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAutoHide");
       Args   := Tuple_New (1);
@@ -425,7 +450,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setAutoHide;
    procedure setChangeCurrentOnDrag (self : access Inst; change_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setChangeCurrentOnDrag");
       Args   := Tuple_New (1);
@@ -434,7 +459,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setChangeCurrentOnDrag;
    procedure setCurrentIndex (self : access Inst; index_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentIndex");
       Args   := Tuple_New (1);
@@ -443,7 +468,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setCurrentIndex;
    procedure setDocumentMode (self : access Inst; set_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDocumentMode");
       Args   := Tuple_New (1);
@@ -452,7 +477,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setDocumentMode;
    procedure setDrawBase (self : access Inst; drawTheBase_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDrawBase");
       Args   := Tuple_New (1);
@@ -461,7 +486,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setDrawBase;
    procedure setElideMode (self : access Inst; mode_P : access QtAda6.QtCore.Qt.TextElideMode.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setElideMode");
       Args   := Tuple_New (1);
@@ -470,7 +495,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setElideMode;
    procedure setExpanding (self : access Inst; enabled_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setExpanding");
       Args   := Tuple_New (1);
@@ -479,7 +504,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setExpanding;
    procedure setIconSize (self : access Inst; size_P : access QtAda6.QtCore.QSize.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setIconSize");
       Args   := Tuple_New (1);
@@ -488,7 +513,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setIconSize;
    procedure setMovable (self : access Inst; movable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMovable");
       Args   := Tuple_New (1);
@@ -499,7 +524,7 @@ package body QtAda6.QtWidgets.QTabBar is
    procedure setSelectionBehaviorOnRemove
      (self : access Inst; behavior_P : access QtAda6.QtWidgets.QTabBar.SelectionBehavior.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSelectionBehaviorOnRemove");
       Args   := Tuple_New (1);
@@ -508,7 +533,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setSelectionBehaviorOnRemove;
    procedure setShape (self : access Inst; shape_P : access QtAda6.QtWidgets.QTabBar.Shape.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setShape");
       Args   := Tuple_New (1);
@@ -520,7 +545,7 @@ package body QtAda6.QtWidgets.QTabBar is
      (self     : access Inst; index_P : int; position_P : access QtAda6.QtWidgets.QTabBar.ButtonPosition.Inst'Class;
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabButton");
       Args   := Tuple_New (3);
@@ -531,7 +556,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setTabButton;
    procedure setTabData (self : access Inst; index_P : int; data_P : Any) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabData");
       Args   := Tuple_New (2);
@@ -541,7 +566,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setTabData;
    procedure setTabEnabled (self : access Inst; index_P : int; enabled_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabEnabled");
       Args   := Tuple_New (2);
@@ -550,8 +575,18 @@ package body QtAda6.QtWidgets.QTabBar is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setTabEnabled;
-   procedure setTabIcon (self : access Inst; index_P : int; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setTabIcon (self : access Inst; index_P : int; icon_P : access QtAda6.QtGui.QIcon.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setTabIcon");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, (if icon_P /= null then icon_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setTabIcon;
+   procedure setTabIcon (self : access Inst; index_P : int; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabIcon");
       Args   := Tuple_New (2);
@@ -561,7 +596,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setTabIcon;
    procedure setTabText (self : access Inst; index_P : int; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabText");
       Args   := Tuple_New (2);
@@ -570,11 +605,8 @@ package body QtAda6.QtWidgets.QTabBar is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setTabText;
-   procedure setTabTextColor
-     (self    : access Inst; index_P : int;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setTabTextColor (self : access Inst; index_P : int; color_P : access QtAda6.QtGui.QColor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabTextColor");
       Args   := Tuple_New (2);
@@ -583,8 +615,60 @@ package body QtAda6.QtWidgets.QTabBar is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setTabTextColor;
+   procedure setTabTextColor (self : access Inst; index_P : int; color_P : access QtAda6.QtGui.QRgba64.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setTabTextColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setTabTextColor;
+   procedure setTabTextColor (self : access Inst; index_P : int; color_P : Any) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setTabTextColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setTabTextColor;
+   procedure setTabTextColor
+     (self : access Inst; index_P : int; color_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setTabTextColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setTabTextColor;
+   procedure setTabTextColor (self : access Inst; index_P : int; color_P : str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setTabTextColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, Unicode_FromString (color_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setTabTextColor;
+   procedure setTabTextColor (self : access Inst; index_P : int; color_P : int) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setTabTextColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (color_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setTabTextColor;
    procedure setTabToolTip (self : access Inst; index_P : int; tip_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabToolTip");
       Args   := Tuple_New (2);
@@ -594,7 +678,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setTabToolTip;
    procedure setTabVisible (self : access Inst; index_P : int; visible_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabVisible");
       Args   := Tuple_New (2);
@@ -604,7 +688,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setTabVisible;
    procedure setTabWhatsThis (self : access Inst; index_P : int; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabWhatsThis");
       Args   := Tuple_New (2);
@@ -614,7 +698,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setTabWhatsThis;
    procedure setTabsClosable (self : access Inst; closable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabsClosable");
       Args   := Tuple_New (1);
@@ -623,7 +707,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setTabsClosable;
    procedure setUsesScrollButtons (self : access Inst; useButtons_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setUsesScrollButtons");
       Args   := Tuple_New (1);
@@ -632,7 +716,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setUsesScrollButtons;
    function shape_F (self : access Inst) return access QtAda6.QtWidgets.QTabBar.Shape.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QTabBar.Shape.Class := new QtAda6.QtWidgets.QTabBar.Shape.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "shape");
@@ -643,7 +727,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Ret;
    end shape_F;
    procedure showEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QShowEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "showEvent");
       Args   := Tuple_New (1);
@@ -652,8 +736,8 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end showEvent;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -663,7 +747,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Ret;
    end sizeHint;
    function tabAt (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabAt");
       Args   := Tuple_New (1);
@@ -676,7 +760,7 @@ package body QtAda6.QtWidgets.QTabBar is
      (self : access Inst; index_P : int; position_P : access QtAda6.QtWidgets.QTabBar.ButtonPosition.Inst'Class)
       return access QtAda6.QtWidgets.QWidget.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabButton");
@@ -689,7 +773,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Ret;
    end tabButton;
    function tabData (self : access Inst; index_P : int) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabData");
       Args   := Tuple_New (1);
@@ -699,8 +783,8 @@ package body QtAda6.QtWidgets.QTabBar is
       return null;
    end tabData;
    function tabIcon (self : access Inst; index_P : int) return access QtAda6.QtGui.QIcon.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabIcon");
       Args   := Tuple_New (1);
@@ -711,7 +795,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Ret;
    end tabIcon;
    procedure tabInserted (self : access Inst; index_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabInserted");
       Args   := Tuple_New (1);
@@ -720,7 +804,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end tabInserted;
    procedure tabLayoutChange (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabLayoutChange");
       Args   := Tuple_New (0);
@@ -728,8 +812,8 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end tabLayoutChange;
    function tabRect (self : access Inst; index_P : int) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabRect");
       Args   := Tuple_New (1);
@@ -740,7 +824,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Ret;
    end tabRect;
    procedure tabRemoved (self : access Inst; index_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabRemoved");
       Args   := Tuple_New (1);
@@ -749,8 +833,8 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end tabRemoved;
    function tabSizeHint (self : access Inst; index_P : int) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabSizeHint");
       Args   := Tuple_New (1);
@@ -761,7 +845,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Ret;
    end tabSizeHint;
    function tabText (self : access Inst; index_P : int) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabText");
       Args   := Tuple_New (1);
@@ -771,8 +855,8 @@ package body QtAda6.QtWidgets.QTabBar is
       return As_String (Result);
    end tabText;
    function tabTextColor (self : access Inst; index_P : int) return access QtAda6.QtGui.QColor.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabTextColor");
       Args   := Tuple_New (1);
@@ -783,7 +867,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return Ret;
    end tabTextColor;
    function tabToolTip (self : access Inst; index_P : int) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabToolTip");
       Args   := Tuple_New (1);
@@ -793,7 +877,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return As_String (Result);
    end tabToolTip;
    function tabWhatsThis (self : access Inst; index_P : int) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabWhatsThis");
       Args   := Tuple_New (1);
@@ -803,7 +887,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return As_String (Result);
    end tabWhatsThis;
    function tabsClosable (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabsClosable");
       Args   := Tuple_New (0);
@@ -812,7 +896,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return To_Ada (Result);
    end tabsClosable;
    procedure timerEvent (self : access Inst; event_P : access QtAda6.QtCore.QTimerEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "timerEvent");
       Args   := Tuple_New (1);
@@ -821,7 +905,7 @@ package body QtAda6.QtWidgets.QTabBar is
       Result := Object_Call (Method, Args, Dict, True);
    end timerEvent;
    function usesScrollButtons (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "usesScrollButtons");
       Args   := Tuple_New (0);
@@ -830,7 +914,7 @@ package body QtAda6.QtWidgets.QTabBar is
       return To_Ada (Result);
    end usesScrollButtons;
    procedure wheelEvent (self : access Inst; event_P : access QtAda6.QtGui.QWheelEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "wheelEvent");
       Args   := Tuple_New (1);

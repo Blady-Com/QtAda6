@@ -23,7 +23,7 @@ package body QtAda6.QtWidgets.QItemEditorCreatorBase is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QItemEditorCreatorBase");
       Args  := Tuple_New (0);
@@ -34,7 +34,7 @@ package body QtAda6.QtWidgets.QItemEditorCreatorBase is
      (self : access Inst; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class)
       return access QtAda6.QtWidgets.QWidget.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "createWidget");
@@ -46,7 +46,7 @@ package body QtAda6.QtWidgets.QItemEditorCreatorBase is
       return Ret;
    end createWidget;
    function valuePropertyName (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "valuePropertyName");

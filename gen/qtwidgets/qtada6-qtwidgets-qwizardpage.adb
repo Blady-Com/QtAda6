@@ -10,11 +10,11 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtWidgets.QWizard.WizardButton;
 with QtAda6.QtWidgets.QWizard.WizardPixmap;
 with QtAda6.QtGui.QPixmap;
+with QtAda6.QtGui.QImage;
 with QtAda6.QtWidgets.QWizard;
 package body QtAda6.QtWidgets.QWizardPage is
    use type QtAda6.int;
@@ -32,7 +32,7 @@ package body QtAda6.QtWidgets.QWizardPage is
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "completeChanged"));
    end completeChanged;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWizardPage");
       Args  := Tuple_New (0);
@@ -45,7 +45,7 @@ package body QtAda6.QtWidgets.QWizardPage is
    function buttonText
      (self : access Inst; which_P : access QtAda6.QtWidgets.QWizard.WizardButton.Inst'Class) return str
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "buttonText");
       Args   := Tuple_New (1);
@@ -55,7 +55,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       return As_String (Result);
    end buttonText;
    procedure cleanupPage (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cleanupPage");
       Args   := Tuple_New (0);
@@ -63,7 +63,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       Result := Object_Call (Method, Args, Dict, True);
    end cleanupPage;
    function field (self : access Inst; name_P : str) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "field");
       Args   := Tuple_New (1);
@@ -73,7 +73,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       return null;
    end field;
    procedure initializePage (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "initializePage");
       Args   := Tuple_New (0);
@@ -81,7 +81,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       Result := Object_Call (Method, Args, Dict, True);
    end initializePage;
    function isCommitPage (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isCommitPage");
       Args   := Tuple_New (0);
@@ -90,7 +90,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       return To_Ada (Result);
    end isCommitPage;
    function isComplete (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isComplete");
       Args   := Tuple_New (0);
@@ -99,7 +99,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       return To_Ada (Result);
    end isComplete;
    function isFinalPage (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isFinalPage");
       Args   := Tuple_New (0);
@@ -108,7 +108,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       return To_Ada (Result);
    end isFinalPage;
    function nextId (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "nextId");
       Args   := Tuple_New (0);
@@ -120,8 +120,8 @@ package body QtAda6.QtWidgets.QWizardPage is
      (self : access Inst; which_P : access QtAda6.QtWidgets.QWizard.WizardPixmap.Inst'Class)
       return access QtAda6.QtGui.QPixmap.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "pixmap");
       Args   := Tuple_New (1);
@@ -132,28 +132,28 @@ package body QtAda6.QtWidgets.QWizardPage is
       return Ret;
    end pixmap;
    procedure registerField
-     (self : access Inst; name_P : str; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class; property_P : bytes := "";
-      changedSignal_P : bytes := "")
+     (self       : access Inst; name_P : str; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
+      property_P : bytes := null; changedSignal_P : bytes := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "registerField");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, Unicode_FromString (name_P));
       Tuple_SetItem (Args, 1, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
       Dict := Dict_New;
-      if property_P /= "" then
-         Dict_SetItemString (Dict, "property", Bytes_FromString (String (property_P)));
+      if property_P /= null then
+         Dict_SetItemString (Dict, "property", Bytes_FromString (Standard.String (property_P.all)));
       end if;
-      if changedSignal_P /= "" then
-         Dict_SetItemString (Dict, "changedSignal", Bytes_FromString (String (changedSignal_P)));
+      if changedSignal_P /= null then
+         Dict_SetItemString (Dict, "changedSignal", Bytes_FromString (Standard.String (changedSignal_P.all)));
       end if;
       Result := Object_Call (Method, Args, Dict, True);
    end registerField;
    procedure setButtonText
      (self : access Inst; which_P : access QtAda6.QtWidgets.QWizard.WizardButton.Inst'Class; text_P : str)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setButtonText");
       Args   := Tuple_New (2);
@@ -163,7 +163,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       Result := Object_Call (Method, Args, Dict, True);
    end setButtonText;
    procedure setCommitPage (self : access Inst; commitPage_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCommitPage");
       Args   := Tuple_New (1);
@@ -172,7 +172,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       Result := Object_Call (Method, Args, Dict, True);
    end setCommitPage;
    procedure setField (self : access Inst; name_P : str; value_P : Any) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setField");
       Args   := Tuple_New (2);
@@ -182,7 +182,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       Result := Object_Call (Method, Args, Dict, True);
    end setField;
    procedure setFinalPage (self : access Inst; finalPage_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFinalPage");
       Args   := Tuple_New (1);
@@ -192,9 +192,9 @@ package body QtAda6.QtWidgets.QWizardPage is
    end setFinalPage;
    procedure setPixmap
      (self     : access Inst; which_P : access QtAda6.QtWidgets.QWizard.WizardPixmap.Inst'Class;
-      pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str)
+      pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPixmap");
       Args   := Tuple_New (2);
@@ -203,8 +203,33 @@ package body QtAda6.QtWidgets.QWizardPage is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setPixmap;
+   procedure setPixmap
+     (self     : access Inst; which_P : access QtAda6.QtWidgets.QWizard.WizardPixmap.Inst'Class;
+      pixmap_P : access QtAda6.QtGui.QImage.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPixmap");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if which_P /= null then which_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if pixmap_P /= null then pixmap_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPixmap;
+   procedure setPixmap
+     (self : access Inst; which_P : access QtAda6.QtWidgets.QWizard.WizardPixmap.Inst'Class; pixmap_P : str)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPixmap");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if which_P /= null then which_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (pixmap_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPixmap;
    procedure setSubTitle (self : access Inst; subTitle_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSubTitle");
       Args   := Tuple_New (1);
@@ -213,7 +238,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       Result := Object_Call (Method, Args, Dict, True);
    end setSubTitle;
    procedure setTitle (self : access Inst; title_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTitle");
       Args   := Tuple_New (1);
@@ -222,7 +247,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       Result := Object_Call (Method, Args, Dict, True);
    end setTitle;
    function subTitle (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "subTitle");
       Args   := Tuple_New (0);
@@ -231,7 +256,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       return As_String (Result);
    end subTitle;
    function title (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "title");
       Args   := Tuple_New (0);
@@ -240,7 +265,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       return As_String (Result);
    end title;
    function validatePage (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "validatePage");
       Args   := Tuple_New (0);
@@ -249,7 +274,7 @@ package body QtAda6.QtWidgets.QWizardPage is
       return To_Ada (Result);
    end validatePage;
    function wizard (self : access Inst) return access QtAda6.QtWidgets.QWizard.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWizard.Class := new QtAda6.QtWidgets.QWizard.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "wizard");

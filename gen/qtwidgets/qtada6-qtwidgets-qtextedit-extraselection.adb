@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtWidgets.QTextEdit.ExtraSelection;
 package body QtAda6.QtWidgets.QTextEdit.ExtraSelection is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -22,7 +21,7 @@ package body QtAda6.QtWidgets.QTextEdit.ExtraSelection is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "ExtraSelection");
       Args  := Tuple_New (0);
@@ -30,7 +29,7 @@ package body QtAda6.QtWidgets.QTextEdit.ExtraSelection is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (ExtraSelection_P : access QtAda6.QtWidgets.QTextEdit.ExtraSelection.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "ExtraSelection");
       Args  := Tuple_New (1);
@@ -39,7 +38,7 @@ package body QtAda6.QtWidgets.QTextEdit.ExtraSelection is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "ExtraSelection");
       Method := Object_GetAttrString (Class, "__copy__");

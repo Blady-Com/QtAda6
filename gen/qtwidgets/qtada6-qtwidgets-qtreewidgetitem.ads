@@ -16,6 +16,12 @@ limited with QtAda6.QtWidgets.QTreeWidgetItem.ChildIndicatorPolicy;
 limited with QtAda6.QtCore.Qt.ItemFlag;
 limited with QtAda6.QtGui.QFont;
 limited with QtAda6.QtGui.QIcon;
+limited with QtAda6.QtCore.Qt.BrushStyle;
+limited with QtAda6.QtCore.Qt.GlobalColor;
+limited with QtAda6.QtGui.QColor;
+limited with QtAda6.QtGui.QGradient;
+limited with QtAda6.QtGui.QImage;
+limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtCore.Qt.SortOrder;
@@ -27,10 +33,6 @@ package QtAda6.QtWidgets.QTreeWidgetItem is
    type Inst is new Shiboken.Object with null record;
    type SEQUENCE_str is array (Positive range <>) of str;
    subtype SEQUENCE_QtAda6_QtWidgets_QTreeWidgetItem is QtAda6.QtWidgets.QTreeWidgetItem.Class_Array;
-   type UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap is
-     new Any;
-   type UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str is new Any;
-   type UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is new Any;
    subtype LIST_QtAda6_QtWidgets_QTreeWidgetItem is QtAda6.QtWidgets.QTreeWidgetItem.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create (other_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class) return Class;
@@ -84,9 +86,15 @@ package QtAda6.QtWidgets.QTreeWidgetItem is
    function parent (self : access Inst) return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class;
    procedure read (self : access Inst; in_U_P : access QtAda6.QtCore.QDataStream.Inst'Class);
    procedure removeChild (self : access Inst; child_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class);
+   procedure setBackground (self : access Inst; column_P : int; brush_P : access QtAda6.QtGui.QBrush.Inst'Class);
    procedure setBackground
-     (self    : access Inst; column_P : int;
-      brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
+     (self : access Inst; column_P : int; brush_P : access QtAda6.QtCore.Qt.BrushStyle.Inst'Class);
+   procedure setBackground
+     (self : access Inst; column_P : int; brush_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure setBackground (self : access Inst; column_P : int; brush_P : access QtAda6.QtGui.QColor.Inst'Class);
+   procedure setBackground (self : access Inst; column_P : int; brush_P : access QtAda6.QtGui.QGradient.Inst'Class);
+   procedure setBackground (self : access Inst; column_P : int; brush_P : access QtAda6.QtGui.QImage.Inst'Class);
+   procedure setBackground (self : access Inst; column_P : int; brush_P : access QtAda6.QtGui.QPixmap.Inst'Class);
    procedure setCheckState
      (self : access Inst; column_P : int; state_P : access QtAda6.QtCore.Qt.CheckState.Inst'Class);
    procedure setChildIndicatorPolicy
@@ -96,12 +104,21 @@ package QtAda6.QtWidgets.QTreeWidgetItem is
    procedure setExpanded (self : access Inst; expand_P : bool);
    procedure setFirstColumnSpanned (self : access Inst; span_P : bool);
    procedure setFlags (self : access Inst; flags_P : access QtAda6.QtCore.Qt.ItemFlag.Inst'Class);
-   procedure setFont (self : access Inst; column_P : int; font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str);
+   procedure setFont (self : access Inst; column_P : int; font_P : access QtAda6.QtGui.QFont.Inst'Class);
+   procedure setFont (self : access Inst; column_P : int; font_P : str);
+   procedure setFont (self : access Inst; column_P : int; font_P : SEQUENCE_str);
+   procedure setForeground (self : access Inst; column_P : int; brush_P : access QtAda6.QtGui.QBrush.Inst'Class);
    procedure setForeground
-     (self    : access Inst; column_P : int;
-      brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap);
+     (self : access Inst; column_P : int; brush_P : access QtAda6.QtCore.Qt.BrushStyle.Inst'Class);
+   procedure setForeground
+     (self : access Inst; column_P : int; brush_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure setForeground (self : access Inst; column_P : int; brush_P : access QtAda6.QtGui.QColor.Inst'Class);
+   procedure setForeground (self : access Inst; column_P : int; brush_P : access QtAda6.QtGui.QGradient.Inst'Class);
+   procedure setForeground (self : access Inst; column_P : int; brush_P : access QtAda6.QtGui.QImage.Inst'Class);
+   procedure setForeground (self : access Inst; column_P : int; brush_P : access QtAda6.QtGui.QPixmap.Inst'Class);
    procedure setHidden (self : access Inst; hide_P : bool);
-   procedure setIcon (self : access Inst; column_P : int; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
+   procedure setIcon (self : access Inst; column_P : int; icon_P : access QtAda6.QtGui.QIcon.Inst'Class);
+   procedure setIcon (self : access Inst; column_P : int; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class);
    procedure setSelected (self : access Inst; select_K_P : bool);
    procedure setSizeHint (self : access Inst; column_P : int; size_P : access QtAda6.QtCore.QSize.Inst'Class);
    procedure setStatusTip (self : access Inst; column_P : int; statusTip_P : str);

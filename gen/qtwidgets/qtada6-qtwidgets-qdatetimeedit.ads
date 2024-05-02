@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QDate;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.QDateTime;
@@ -28,6 +27,7 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtWidgets.QAbstractSpinBox.StepEnabledFlag;
 limited with QtAda6.QtGui.QWheelEvent;
 with QtAda6.QtWidgets.QAbstractSpinBox;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QDateTimeEdit is
    type Inst;
    type Inst_Access is access all Inst;

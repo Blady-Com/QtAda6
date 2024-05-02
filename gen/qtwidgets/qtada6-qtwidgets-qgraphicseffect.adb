@@ -10,9 +10,9 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.QRectF;
+with QtAda6.QtCore.QRect;
 with QtAda6.QtGui.QPainter;
 with QtAda6.QtCore.Qt.CoordinateSystem;
 with QtAda6.QtWidgets.QGraphicsEffect.ChangeFlag;
@@ -34,7 +34,7 @@ package body QtAda6.QtWidgets.QGraphicsEffect is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "enabledChanged"));
    end enabledChanged;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsEffect");
       Args  := Tuple_New (0);
@@ -45,8 +45,8 @@ package body QtAda6.QtWidgets.QGraphicsEffect is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function boundingRect (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "boundingRect");
       Args             := Tuple_New (0);
@@ -56,11 +56,26 @@ package body QtAda6.QtWidgets.QGraphicsEffect is
       return Ret;
    end boundingRect;
    function boundingRectFor
-     (self : access Inst; sourceRect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect)
+     (self : access Inst; sourceRect_P : access QtAda6.QtCore.QRectF.Inst'Class)
       return access QtAda6.QtCore.QRectF.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "boundingRectFor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if sourceRect_P /= null then sourceRect_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end boundingRectFor;
+   function boundingRectFor
+     (self : access Inst; sourceRect_P : access QtAda6.QtCore.QRect.Inst'Class)
+      return access QtAda6.QtCore.QRectF.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "boundingRectFor");
       Args   := Tuple_New (1);
@@ -71,7 +86,7 @@ package body QtAda6.QtWidgets.QGraphicsEffect is
       return Ret;
    end boundingRectFor;
    procedure draw (self : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "draw");
       Args   := Tuple_New (1);
@@ -80,7 +95,7 @@ package body QtAda6.QtWidgets.QGraphicsEffect is
       Result := Object_Call (Method, Args, Dict, True);
    end draw;
    procedure drawSource (self : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "drawSource");
       Args   := Tuple_New (1);
@@ -89,7 +104,7 @@ package body QtAda6.QtWidgets.QGraphicsEffect is
       Result := Object_Call (Method, Args, Dict, True);
    end drawSource;
    function isEnabled (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEnabled");
       Args   := Tuple_New (0);
@@ -98,7 +113,7 @@ package body QtAda6.QtWidgets.QGraphicsEffect is
       return To_Ada (Result);
    end isEnabled;
    procedure setEnabled (self : access Inst; enable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setEnabled");
       Args   := Tuple_New (1);
@@ -110,8 +125,8 @@ package body QtAda6.QtWidgets.QGraphicsEffect is
      (self : access Inst; system_P : access QtAda6.QtCore.Qt.CoordinateSystem.Inst'Class := null)
       return access QtAda6.QtCore.QRectF.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sourceBoundingRect");
       Args   := Tuple_New (0);
@@ -125,7 +140,7 @@ package body QtAda6.QtWidgets.QGraphicsEffect is
    end sourceBoundingRect;
    procedure sourceChanged (self : access Inst; flags_P : access QtAda6.QtWidgets.QGraphicsEffect.ChangeFlag.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sourceChanged");
       Args   := Tuple_New (1);
@@ -134,7 +149,7 @@ package body QtAda6.QtWidgets.QGraphicsEffect is
       Result := Object_Call (Method, Args, Dict, True);
    end sourceChanged;
    function sourceIsPixmap (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sourceIsPixmap");
       Args   := Tuple_New (0);
@@ -148,8 +163,8 @@ package body QtAda6.QtWidgets.QGraphicsEffect is
       mode_P   : access QtAda6.QtWidgets.QGraphicsEffect.PixmapPadMode.Inst'Class := null)
       return access QtAda6.QtGui.QPixmap.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sourcePixmap");
       Args   := Tuple_New (0);
@@ -168,7 +183,7 @@ package body QtAda6.QtWidgets.QGraphicsEffect is
       return Ret;
    end sourcePixmap;
    procedure update (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "update");
       Args   := Tuple_New (0);
@@ -176,7 +191,7 @@ package body QtAda6.QtWidgets.QGraphicsEffect is
       Result := Object_Call (Method, Args, Dict, True);
    end update;
    procedure updateBoundingRect (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "updateBoundingRect");
       Args   := Tuple_New (0);

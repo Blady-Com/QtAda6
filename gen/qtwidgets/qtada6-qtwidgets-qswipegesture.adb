@@ -23,7 +23,7 @@ package body QtAda6.QtWidgets.QSwipeGesture is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSwipeGesture");
       Args  := Tuple_New (0);
@@ -36,8 +36,8 @@ package body QtAda6.QtWidgets.QSwipeGesture is
    function horizontalDirection
      (self : access Inst) return access QtAda6.QtWidgets.QSwipeGesture.SwipeDirection.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QSwipeGesture.SwipeDirection.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QSwipeGesture.SwipeDirection.Class :=
         new QtAda6.QtWidgets.QSwipeGesture.SwipeDirection.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "horizontalDirection");
@@ -48,7 +48,7 @@ package body QtAda6.QtWidgets.QSwipeGesture is
       return Ret;
    end horizontalDirection;
    procedure setSwipeAngle (self : access Inst; value_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSwipeAngle");
       Args   := Tuple_New (1);
@@ -57,7 +57,7 @@ package body QtAda6.QtWidgets.QSwipeGesture is
       Result := Object_Call (Method, Args, Dict, True);
    end setSwipeAngle;
    function swipeAngle (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swipeAngle");
       Args   := Tuple_New (0);
@@ -68,8 +68,8 @@ package body QtAda6.QtWidgets.QSwipeGesture is
    function verticalDirection
      (self : access Inst) return access QtAda6.QtWidgets.QSwipeGesture.SwipeDirection.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QSwipeGesture.SwipeDirection.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QSwipeGesture.SwipeDirection.Class :=
         new QtAda6.QtWidgets.QSwipeGesture.SwipeDirection.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "verticalDirection");

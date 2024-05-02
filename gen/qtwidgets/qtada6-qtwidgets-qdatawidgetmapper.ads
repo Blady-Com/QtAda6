@@ -8,23 +8,22 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
-limited with QtAda6.QtWidgets.QAbstractItemDelegate;
 limited with QtAda6.QtCore.QByteArray;
+limited with QtAda6.QtWidgets.QAbstractItemDelegate;
 limited with QtAda6.QtCore.QAbstractItemModel;
 limited with QtAda6.QtCore.Qt.Orientation;
 limited with QtAda6.QtCore.QModelIndex;
+limited with QtAda6.QtCore.QPersistentModelIndex;
 limited with QtAda6.QtWidgets.QDataWidgetMapper.SubmitPolicy;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QDataWidgetMapper is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
-   type UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is new Any;
    procedure Finalize (Self : in out Class);
    function currentIndexChanged
      (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- currentIndexChanged(int)
@@ -32,7 +31,10 @@ package QtAda6.QtWidgets.QDataWidgetMapper is
    procedure addMapping (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class; section_P : int);
    procedure addMapping
      (self           : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class; section_P : int;
-      propertyName_P : UNION_QtAda6_QtCore_QByteArray_bytes);
+      propertyName_P : access QtAda6.QtCore.QByteArray.Inst'Class);
+   procedure addMapping
+     (self           : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class; section_P : int;
+      propertyName_P : bytes);
    procedure clearMapping (self : access Inst);
    function currentIndex (self : access Inst) return int;
    function itemDelegate (self : access Inst) return access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class;
@@ -47,14 +49,14 @@ package QtAda6.QtWidgets.QDataWidgetMapper is
    procedure revert (self : access Inst);
    function rootIndex (self : access Inst) return access QtAda6.QtCore.QModelIndex.Inst'Class;
    procedure setCurrentIndex (self : access Inst; index_P : int);
-   procedure setCurrentModelIndex
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
+   procedure setCurrentModelIndex (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class);
+   procedure setCurrentModelIndex (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class);
    procedure setItemDelegate
      (self : access Inst; delegate_P : access QtAda6.QtWidgets.QAbstractItemDelegate.Inst'Class);
    procedure setModel (self : access Inst; model_P : access QtAda6.QtCore.QAbstractItemModel.Inst'Class);
    procedure setOrientation (self : access Inst; aOrientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class);
-   procedure setRootIndex
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
+   procedure setRootIndex (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class);
+   procedure setRootIndex (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class);
    procedure setSubmitPolicy
      (self : access Inst; policy_P : access QtAda6.QtWidgets.QDataWidgetMapper.SubmitPolicy.Inst'Class);
    function submit (self : access Inst) return bool;

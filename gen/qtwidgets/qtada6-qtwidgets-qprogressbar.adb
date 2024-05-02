@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.Qt.AlignmentFlag;
 with QtAda6.QtCore.QEvent;
@@ -34,7 +33,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "valueChanged"));
    end valueChanged;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QProgressBar");
       Args  := Tuple_New (0);
@@ -45,7 +44,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function alignment (self : access Inst) return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.AlignmentFlag.Class := new QtAda6.QtCore.Qt.AlignmentFlag.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "alignment");
@@ -56,7 +55,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       return Ret;
    end alignment;
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -66,7 +65,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       return To_Ada (Result);
    end event;
    function format (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "format");
       Args   := Tuple_New (0);
@@ -76,7 +75,7 @@ package body QtAda6.QtWidgets.QProgressBar is
    end format;
    procedure initStyleOption (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionProgressBar.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "initStyleOption");
       Args   := Tuple_New (1);
@@ -85,7 +84,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       Result := Object_Call (Method, Args, Dict, True);
    end initStyleOption;
    function invertedAppearance (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "invertedAppearance");
       Args   := Tuple_New (0);
@@ -94,7 +93,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       return To_Ada (Result);
    end invertedAppearance;
    function isTextVisible (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isTextVisible");
       Args   := Tuple_New (0);
@@ -103,7 +102,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       return To_Ada (Result);
    end isTextVisible;
    function maximum (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "maximum");
       Args   := Tuple_New (0);
@@ -112,7 +111,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       return Long_AsLong (Result);
    end maximum;
    function minimum (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "minimum");
       Args   := Tuple_New (0);
@@ -121,8 +120,8 @@ package body QtAda6.QtWidgets.QProgressBar is
       return Long_AsLong (Result);
    end minimum;
    function minimumSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSizeHint");
       Args             := Tuple_New (0);
@@ -132,7 +131,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       return Ret;
    end minimumSizeHint;
    function orientation (self : access Inst) return access QtAda6.QtCore.Qt.Orientation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.Orientation.Class := new QtAda6.QtCore.Qt.Orientation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "orientation");
@@ -143,7 +142,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       return Ret;
    end orientation;
    procedure paintEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -152,7 +151,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure reset (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "reset");
       Args   := Tuple_New (0);
@@ -160,7 +159,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       Result := Object_Call (Method, Args, Dict, True);
    end reset;
    procedure resetFormat (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resetFormat");
       Args   := Tuple_New (0);
@@ -168,7 +167,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       Result := Object_Call (Method, Args, Dict, True);
    end resetFormat;
    procedure setAlignment (self : access Inst; alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAlignment");
       Args   := Tuple_New (1);
@@ -177,7 +176,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setAlignment;
    procedure setFormat (self : access Inst; format_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFormat");
       Args   := Tuple_New (1);
@@ -186,7 +185,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setFormat;
    procedure setInvertedAppearance (self : access Inst; invert_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setInvertedAppearance");
       Args   := Tuple_New (1);
@@ -195,7 +194,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setInvertedAppearance;
    procedure setMaximum (self : access Inst; maximum_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMaximum");
       Args   := Tuple_New (1);
@@ -204,7 +203,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setMaximum;
    procedure setMinimum (self : access Inst; minimum_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMinimum");
       Args   := Tuple_New (1);
@@ -213,7 +212,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setMinimum;
    procedure setOrientation (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOrientation");
       Args   := Tuple_New (1);
@@ -222,7 +221,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setOrientation;
    procedure setRange (self : access Inst; minimum_P : int; maximum_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRange");
       Args   := Tuple_New (2);
@@ -234,7 +233,7 @@ package body QtAda6.QtWidgets.QProgressBar is
    procedure setTextDirection
      (self : access Inst; textDirection_P : access QtAda6.QtWidgets.QProgressBar.Direction.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTextDirection");
       Args   := Tuple_New (1);
@@ -243,7 +242,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setTextDirection;
    procedure setTextVisible (self : access Inst; visible_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTextVisible");
       Args   := Tuple_New (1);
@@ -252,7 +251,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setTextVisible;
    procedure setValue (self : access Inst; value_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setValue");
       Args   := Tuple_New (1);
@@ -261,8 +260,8 @@ package body QtAda6.QtWidgets.QProgressBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setValue;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -272,7 +271,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       return Ret;
    end sizeHint;
    function text (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "text");
       Args   := Tuple_New (0);
@@ -281,7 +280,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       return As_String (Result);
    end text;
    function textDirection (self : access Inst) return access QtAda6.QtWidgets.QProgressBar.Direction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QProgressBar.Direction.Class := new QtAda6.QtWidgets.QProgressBar.Direction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "textDirection");
@@ -292,7 +291,7 @@ package body QtAda6.QtWidgets.QProgressBar is
       return Ret;
    end textDirection;
    function value (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "value");
       Args   := Tuple_New (0);

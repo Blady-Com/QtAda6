@@ -27,7 +27,7 @@ package body QtAda6.QtWidgets.QWhatsThis is
    function createAction
      (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return access QtAda6.QtGui.QAction.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWhatsThis");
@@ -42,7 +42,7 @@ package body QtAda6.QtWidgets.QWhatsThis is
       return Ret;
    end createAction;
    procedure enterWhatsThisMode is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWhatsThis");
       Method := Object_GetAttrString (Class, "enterWhatsThisMode");
@@ -51,7 +51,7 @@ package body QtAda6.QtWidgets.QWhatsThis is
       Result := Object_Call (Method, Args, Dict, True);
    end enterWhatsThisMode;
    procedure hideText is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWhatsThis");
       Method := Object_GetAttrString (Class, "hideText");
@@ -60,7 +60,7 @@ package body QtAda6.QtWidgets.QWhatsThis is
       Result := Object_Call (Method, Args, Dict, True);
    end hideText;
    function inWhatsThisMode return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWhatsThis");
       Method := Object_GetAttrString (Class, "inWhatsThisMode");
@@ -70,7 +70,7 @@ package body QtAda6.QtWidgets.QWhatsThis is
       return To_Ada (Result);
    end inWhatsThisMode;
    procedure leaveWhatsThisMode is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWhatsThis");
       Method := Object_GetAttrString (Class, "leaveWhatsThisMode");
@@ -82,7 +82,7 @@ package body QtAda6.QtWidgets.QWhatsThis is
      (pos_P : access QtAda6.QtCore.QPoint.Inst'Class; text_P : str;
       w_P   : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QWhatsThis");
       Method := Object_GetAttrString (Class, "showText");

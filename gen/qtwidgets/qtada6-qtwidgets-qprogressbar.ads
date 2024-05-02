@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.Qt.AlignmentFlag;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtWidgets.QStyleOptionProgressBar;
@@ -17,6 +16,7 @@ limited with QtAda6.QtCore.Qt.Orientation;
 limited with QtAda6.QtGui.QPaintEvent;
 limited with QtAda6.QtWidgets.QProgressBar.Direction;
 with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QProgressBar is
    type Inst;
    type Inst_Access is access all Inst;

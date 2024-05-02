@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.QEvent;
 with QtAda6.QtGui.QKeyEvent;
@@ -55,7 +54,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "valueChanged"));
    end valueChanged;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractSlider");
       Args  := Tuple_New (0);
@@ -66,7 +65,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure changeEvent (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changeEvent");
       Args   := Tuple_New (1);
@@ -75,7 +74,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end changeEvent;
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -85,7 +84,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       return To_Ada (Result);
    end event;
    function hasTracking (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasTracking");
       Args   := Tuple_New (0);
@@ -94,7 +93,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       return To_Ada (Result);
    end hasTracking;
    function invertedAppearance (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "invertedAppearance");
       Args   := Tuple_New (0);
@@ -103,7 +102,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       return To_Ada (Result);
    end invertedAppearance;
    function invertedControls (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "invertedControls");
       Args   := Tuple_New (0);
@@ -112,7 +111,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       return To_Ada (Result);
    end invertedControls;
    function isSliderDown (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isSliderDown");
       Args   := Tuple_New (0);
@@ -121,7 +120,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       return To_Ada (Result);
    end isSliderDown;
    procedure keyPressEvent (self : access Inst; ev_P : access QtAda6.QtGui.QKeyEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "keyPressEvent");
       Args   := Tuple_New (1);
@@ -130,7 +129,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end keyPressEvent;
    function maximum (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "maximum");
       Args   := Tuple_New (0);
@@ -139,7 +138,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       return Long_AsLong (Result);
    end maximum;
    function minimum (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "minimum");
       Args   := Tuple_New (0);
@@ -148,7 +147,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       return Long_AsLong (Result);
    end minimum;
    function orientation (self : access Inst) return access QtAda6.QtCore.Qt.Orientation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.Orientation.Class := new QtAda6.QtCore.Qt.Orientation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "orientation");
@@ -159,7 +158,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       return Ret;
    end orientation;
    function pageStep (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "pageStep");
       Args   := Tuple_New (0);
@@ -168,8 +167,8 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       return Long_AsLong (Result);
    end pageStep;
    function repeatAction (self : access Inst) return access QtAda6.QtWidgets.QAbstractSlider.SliderAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QAbstractSlider.SliderAction.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QAbstractSlider.SliderAction.Class :=
         new QtAda6.QtWidgets.QAbstractSlider.SliderAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "repeatAction");
@@ -180,7 +179,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       return Ret;
    end repeatAction;
    procedure setInvertedAppearance (self : access Inst; arg_1_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setInvertedAppearance");
       Args   := Tuple_New (1);
@@ -189,7 +188,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end setInvertedAppearance;
    procedure setInvertedControls (self : access Inst; arg_1_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setInvertedControls");
       Args   := Tuple_New (1);
@@ -198,7 +197,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end setInvertedControls;
    procedure setMaximum (self : access Inst; arg_1_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMaximum");
       Args   := Tuple_New (1);
@@ -207,7 +206,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end setMaximum;
    procedure setMinimum (self : access Inst; arg_1_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMinimum");
       Args   := Tuple_New (1);
@@ -216,7 +215,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end setMinimum;
    procedure setOrientation (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOrientation");
       Args   := Tuple_New (1);
@@ -225,7 +224,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end setOrientation;
    procedure setPageStep (self : access Inst; arg_1_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPageStep");
       Args   := Tuple_New (1);
@@ -234,7 +233,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end setPageStep;
    procedure setRange (self : access Inst; min_P : int; max_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRange");
       Args   := Tuple_New (2);
@@ -247,7 +246,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
      (self            : access Inst; action_P : access QtAda6.QtWidgets.QAbstractSlider.SliderAction.Inst'Class;
       thresholdTime_P : int := 0; repeatTime_P : int := 0)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRepeatAction");
       Args   := Tuple_New (1);
@@ -262,7 +261,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end setRepeatAction;
    procedure setSingleStep (self : access Inst; arg_1_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSingleStep");
       Args   := Tuple_New (1);
@@ -271,7 +270,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end setSingleStep;
    procedure setSliderDown (self : access Inst; arg_1_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSliderDown");
       Args   := Tuple_New (1);
@@ -280,7 +279,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end setSliderDown;
    procedure setSliderPosition (self : access Inst; arg_1_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSliderPosition");
       Args   := Tuple_New (1);
@@ -289,7 +288,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end setSliderPosition;
    procedure setTracking (self : access Inst; enable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTracking");
       Args   := Tuple_New (1);
@@ -298,7 +297,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end setTracking;
    procedure setValue (self : access Inst; arg_1_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setValue");
       Args   := Tuple_New (1);
@@ -307,7 +306,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end setValue;
    function singleStep (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "singleStep");
       Args   := Tuple_New (0);
@@ -318,7 +317,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
    procedure sliderChange_F
      (self : access Inst; change_P : access QtAda6.QtWidgets.QAbstractSlider.SliderChange.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sliderChange");
       Args   := Tuple_New (1);
@@ -327,7 +326,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end sliderChange_F;
    function sliderPosition (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sliderPosition");
       Args   := Tuple_New (0);
@@ -336,7 +335,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       return Long_AsLong (Result);
    end sliderPosition;
    procedure timerEvent (self : access Inst; arg_1_P : access QtAda6.QtCore.QTimerEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "timerEvent");
       Args   := Tuple_New (1);
@@ -347,7 +346,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
    procedure triggerAction
      (self : access Inst; action_P : access QtAda6.QtWidgets.QAbstractSlider.SliderAction.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "triggerAction");
       Args   := Tuple_New (1);
@@ -356,7 +355,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end triggerAction;
    function value (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "value");
       Args   := Tuple_New (0);
@@ -365,7 +364,7 @@ package body QtAda6.QtWidgets.QAbstractSlider is
       return Long_AsLong (Result);
    end value;
    procedure wheelEvent (self : access Inst; e_P : access QtAda6.QtGui.QWheelEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "wheelEvent");
       Args   := Tuple_New (1);

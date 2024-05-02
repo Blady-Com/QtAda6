@@ -11,6 +11,8 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtGui.QMatrix4x4;
+with QtAda6.QtGui.QTransform;
 package body QtAda6.QtWidgets.QGraphicsTransform is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -22,7 +24,7 @@ package body QtAda6.QtWidgets.QGraphicsTransform is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsTransform");
       Args  := Tuple_New (0);
@@ -32,8 +34,17 @@ package body QtAda6.QtWidgets.QGraphicsTransform is
       end if;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   procedure applyTo (self : access Inst; matrix_P : UNION_QtAda6_QtGui_QMatrix4x4_QtAda6_QtGui_QTransform) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure applyTo (self : access Inst; matrix_P : access QtAda6.QtGui.QMatrix4x4.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "applyTo");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if matrix_P /= null then matrix_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end applyTo;
+   procedure applyTo (self : access Inst; matrix_P : access QtAda6.QtGui.QTransform.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "applyTo");
       Args   := Tuple_New (1);
@@ -42,7 +53,7 @@ package body QtAda6.QtWidgets.QGraphicsTransform is
       Result := Object_Call (Method, Args, Dict, True);
    end applyTo;
    procedure update (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "update");
       Args   := Tuple_New (0);

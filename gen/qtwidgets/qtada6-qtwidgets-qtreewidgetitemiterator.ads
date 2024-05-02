@@ -8,21 +8,19 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtWidgets.QTreeWidget;
 limited with QtAda6.QtWidgets.QTreeWidgetItem;
 limited with QtAda6.QtWidgets.QTreeWidgetItemIterator.IteratorFlag;
-limited with QtAda6.QtWidgets.QTreeWidget;
 package QtAda6.QtWidgets.QTreeWidgetItemIterator is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtWidgets_QTreeWidgetItemIterator_QtAda6_QtWidgets_QTreeWidget_QtAda6_QtWidgets_QTreeWidgetItem is
-     new Any;
    procedure Finalize (Self : in out Class);
-   function Create
-     (it_P : UNION_QtAda6_QtWidgets_QTreeWidgetItemIterator_QtAda6_QtWidgets_QTreeWidget_QtAda6_QtWidgets_QTreeWidgetItem)
-      return Class;
+   function Create (it_P : access QtAda6.QtWidgets.QTreeWidgetItemIterator.Inst'Class) return Class;
+   function Create (it_P : access QtAda6.QtWidgets.QTreeWidget.Inst'Class) return Class;
+   function Create (it_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class) return Class;
    function Create
      (item_P  : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class;
       flags_P : access QtAda6.QtWidgets.QTreeWidgetItemIterator.IteratorFlag.Inst'Class := null) return Class;

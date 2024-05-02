@@ -10,8 +10,9 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.QModelIndex;
+with QtAda6.QtCore.QPersistentModelIndex;
 with QtAda6.QtCore.QMimeData;
 with QtAda6.QtCore.Qt.DropAction;
 with QtAda6.QtCore.QEvent;
@@ -21,7 +22,6 @@ with QtAda6.QtCore.QDir.Filter;
 with QtAda6.QtCore.Qt.ItemFlag;
 with QtAda6.QtCore.Qt.Orientation;
 with QtAda6.QtGui.QAbstractFileIconProvider;
-with QtAda6.QtCore.QModelIndex;
 with QtAda6.QtCore.QDateTime;
 with QtAda6.QtWidgets.QFileSystemModel.Option;
 with QtAda6.QtCore.QByteArray;
@@ -53,7 +53,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "rootPathChanged"));
    end rootPathChanged;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFileSystemModel");
       Args  := Tuple_New (0);
@@ -63,10 +63,8 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       end if;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function canFetchMore
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   function canFetchMore (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "canFetchMore");
       Args   := Tuple_New (1);
@@ -75,11 +73,35 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end canFetchMore;
-   function columnCount
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null)
-      return int
+   function canFetchMore
+     (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "canFetchMore");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end canFetchMore;
+   function columnCount (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return int
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "columnCount");
+      Args   := Tuple_New (0);
+      Dict   := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Long_AsLong (Result);
+   end columnCount;
+   function columnCount
+     (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return int
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "columnCount");
       Args   := Tuple_New (0);
@@ -91,10 +113,24 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return Long_AsLong (Result);
    end columnCount;
    function data
-     (self   : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
-      role_P : int := 0) return Any
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class; role_P : int := 0) return Any
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "data");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if role_P /= 0 then
+         Dict_SetItemString (Dict, "role", Long_FromLong (role_P));
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return null;
+   end data;
+   function data
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class; role_P : int := 0) return Any
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "data");
       Args   := Tuple_New (1);
@@ -109,9 +145,27 @@ package body QtAda6.QtWidgets.QFileSystemModel is
    function dropMimeData
      (self     : access Inst; data_P : access QtAda6.QtCore.QMimeData.Inst'Class;
       action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class; row_P : int; column_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool
+      parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "dropMimeData");
+      Args   := Tuple_New (5);
+      Tuple_SetItem (Args, 0, (if data_P /= null then data_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if action_P /= null then action_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, Long_FromLong (row_P));
+      Tuple_SetItem (Args, 3, Long_FromLong (column_P));
+      Tuple_SetItem (Args, 4, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end dropMimeData;
+   function dropMimeData
+     (self     : access Inst; data_P : access QtAda6.QtCore.QMimeData.Inst'Class;
+      action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class; row_P : int; column_P : int;
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dropMimeData");
       Args   := Tuple_New (5);
@@ -125,7 +179,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return To_Ada (Result);
    end dropMimeData;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -134,10 +188,17 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end event;
-   procedure fetchMore
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure fetchMore (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "fetchMore");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end fetchMore;
+   procedure fetchMore (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fetchMore");
       Args   := Tuple_New (1);
@@ -146,11 +207,26 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Result := Object_Call (Method, Args, Dict, True);
    end fetchMore;
    function fileIcon
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtGui.QIcon.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "fileIcon");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end fileIcon;
+   function fileIcon
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtGui.QIcon.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fileIcon");
       Args   := Tuple_New (1);
@@ -161,10 +237,10 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return Ret;
    end fileIcon;
    function fileInfo
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtCore.QFileInfo.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QFileInfo.Class := new QtAda6.QtCore.QFileInfo.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fileInfo");
@@ -175,10 +251,23 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Ret.Python_Proxy := Result;
       return Ret;
    end fileInfo;
-   function fileName
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return str
+   function fileInfo
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtCore.QFileInfo.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QFileInfo.Class := new QtAda6.QtCore.QFileInfo.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "fileInfo");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end fileInfo;
+   function fileName (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return str is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fileName");
       Args   := Tuple_New (1);
@@ -187,10 +276,28 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end fileName;
-   function filePath
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return str
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   function fileName (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return str is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "fileName");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return As_String (Result);
+   end fileName;
+   function filePath (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return str is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "filePath");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return As_String (Result);
+   end filePath;
+   function filePath (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return str is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "filePath");
       Args   := Tuple_New (1);
@@ -200,7 +307,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return As_String (Result);
    end filePath;
    function filter (self : access Inst) return access QtAda6.QtCore.QDir.Filter.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDir.Filter.Class := new QtAda6.QtCore.QDir.Filter.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "filter");
@@ -211,10 +318,10 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return Ret;
    end filter;
    function flags
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtCore.Qt.ItemFlag.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.ItemFlag.Class := new QtAda6.QtCore.Qt.ItemFlag.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "flags");
@@ -225,11 +332,38 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Ret.Python_Proxy := Result;
       return Ret;
    end flags;
-   function hasChildren
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null)
-      return bool
+   function flags
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtCore.Qt.ItemFlag.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.Qt.ItemFlag.Class := new QtAda6.QtCore.Qt.ItemFlag.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "flags");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end flags;
+   function hasChildren (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "hasChildren");
+      Args   := Tuple_New (0);
+      Dict   := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end hasChildren;
+   function hasChildren
+     (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasChildren");
       Args   := Tuple_New (0);
@@ -244,7 +378,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
      (self   : access Inst; section_P : int; orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class;
       role_P : int := 0) return Any
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "headerData");
       Args   := Tuple_New (2);
@@ -258,7 +392,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return null;
    end headerData;
    function iconProvider (self : access Inst) return access QtAda6.QtGui.QAbstractFileIconProvider.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QAbstractFileIconProvider.Class := new QtAda6.QtGui.QAbstractFileIconProvider.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "iconProvider");
@@ -271,7 +405,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
    function index
      (self : access Inst; path_P : str; column_P : int := 0) return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "index");
@@ -286,11 +420,10 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return Ret;
    end index;
    function index
-     (self     : access Inst; row_P : int; column_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null)
+     (self : access Inst; row_P : int; column_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null)
       return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "index");
@@ -305,10 +438,38 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Ret.Python_Proxy := Result;
       return Ret;
    end index;
-   function isDir
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool
+   function index
+     (self     : access Inst; row_P : int; column_P : int;
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "index");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (row_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (column_P));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end index;
+   function isDir (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "isDir");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end isDir;
+   function isDir (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isDir");
       Args   := Tuple_New (1);
@@ -318,7 +479,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return To_Ada (Result);
    end isDir;
    function isReadOnly (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isReadOnly");
       Args   := Tuple_New (0);
@@ -327,10 +488,25 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return To_Ada (Result);
    end isReadOnly;
    function lastModified
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtCore.QDateTime.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "lastModified");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end lastModified;
+   function lastModified
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtCore.QDateTime.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lastModified");
@@ -345,17 +521,17 @@ package body QtAda6.QtWidgets.QFileSystemModel is
      (self : access Inst; indexes_P : SEQUENCE_QtAda6_QtCore_QModelIndex)
       return access QtAda6.QtCore.QMimeData.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMimeData.Class := new QtAda6.QtCore.QMimeData.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mimeData");
+      Args   := Tuple_New (1);
       List   := List_New (indexes_P'Length);
       for ind in indexes_P'Range loop
          List_SetItem
            (List, ssize_t (ind - indexes_P'First),
             (if indexes_P (ind) /= null then indexes_P (ind).Python_Proxy else No_Value));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict             := Dict_New;
       Result           := Object_Call (Method, Args, Dict, True);
@@ -363,19 +539,39 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return Ret;
    end mimeData;
    function mimeTypes (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mimeTypes");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end mimeTypes;
    function mkdir
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex; name_P : str)
+     (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class; name_P : str)
       return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "mkdir");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (name_P));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end mkdir;
+   function mkdir
+     (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class; name_P : str)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mkdir");
@@ -388,7 +584,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return Ret;
    end mkdir;
    function myComputer (self : access Inst; role_P : int := 0) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "myComputer");
       Args   := Tuple_New (0);
@@ -400,7 +596,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return null;
    end myComputer;
    function nameFilterDisables (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "nameFilterDisables");
       Args   := Tuple_New (0);
@@ -409,17 +605,21 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return To_Ada (Result);
    end nameFilterDisables;
    function nameFilters (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "nameFilters");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end nameFilters;
    function options (self : access Inst) return access QtAda6.QtWidgets.QFileSystemModel.Option.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QFileSystemModel.Option.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QFileSystemModel.Option.Class :=
         new QtAda6.QtWidgets.QFileSystemModel.Option.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "options");
@@ -430,8 +630,8 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return Ret;
    end options;
    function parent (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "parent");
       Args             := Tuple_New (0);
@@ -441,10 +641,10 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return Ret;
    end parent;
    function parent
-     (self : access Inst; child_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; child_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "parent");
@@ -455,10 +655,33 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Ret.Python_Proxy := Result;
       return Ret;
    end parent;
-   function remove
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool
+   function parent
+     (self : access Inst; child_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "parent");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if child_P /= null then child_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end parent;
+   function remove (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "remove");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end remove;
+   function remove (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "remove");
       Args   := Tuple_New (1);
@@ -468,7 +691,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return To_Ada (Result);
    end remove;
    function resolveSymlinks (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resolveSymlinks");
       Args   := Tuple_New (0);
@@ -476,10 +699,18 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end resolveSymlinks;
-   function rmdir
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   function rmdir (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "rmdir");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end rmdir;
+   function rmdir (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rmdir");
       Args   := Tuple_New (1);
@@ -489,7 +720,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return To_Ada (Result);
    end rmdir;
    function roleNames (self : access Inst) return DICT_int_QtAda6_QtCore_QByteArray is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "roleNames");
       Args   := Tuple_New (0);
@@ -501,8 +732,8 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       end return;
    end roleNames;
    function rootDirectory (self : access Inst) return access QtAda6.QtCore.QDir.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QDir.Class := new QtAda6.QtCore.QDir.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QDir.Class := new QtAda6.QtCore.QDir.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "rootDirectory");
       Args             := Tuple_New (0);
@@ -512,7 +743,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return Ret;
    end rootDirectory;
    function rootPath (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rootPath");
       Args   := Tuple_New (0);
@@ -520,11 +751,22 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end rootPath;
+   function rowCount (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return int is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "rowCount");
+      Args   := Tuple_New (0);
+      Dict   := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Long_AsLong (Result);
+   end rowCount;
    function rowCount
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null)
-      return int
+     (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rowCount");
       Args   := Tuple_New (0);
@@ -536,10 +778,27 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return Long_AsLong (Result);
    end rowCount;
    function setData
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex; value_P : Any;
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class; value_P : Any; role_P : int := 0)
+      return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setData");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if value_P /= null then value_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if role_P /= 0 then
+         Dict_SetItemString (Dict, "role", Long_FromLong (role_P));
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end setData;
+   function setData
+     (self   : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class; value_P : Any;
       role_P : int := 0) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setData");
       Args   := Tuple_New (2);
@@ -553,7 +812,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return To_Ada (Result);
    end setData;
    procedure setFilter (self : access Inst; filters_P : access QtAda6.QtCore.QDir.Filter.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFilter");
       Args   := Tuple_New (1);
@@ -563,7 +822,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
    end setFilter;
    procedure setIconProvider (self : access Inst; provider_P : access QtAda6.QtGui.QAbstractFileIconProvider.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setIconProvider");
       Args   := Tuple_New (1);
@@ -572,7 +831,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setIconProvider;
    procedure setNameFilterDisables (self : access Inst; enable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setNameFilterDisables");
       Args   := Tuple_New (1);
@@ -581,14 +840,14 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setNameFilterDisables;
    procedure setNameFilters (self : access Inst; filters_P : SEQUENCE_str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setNameFilters");
+      Args   := Tuple_New (1);
       List   := List_New (filters_P'Length);
       for ind in filters_P'Range loop
          List_SetItem (List, ssize_t (ind - filters_P'First), Unicode_FromString (filters_P (ind)));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
@@ -596,7 +855,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
    procedure setOption
      (self : access Inst; option_P : access QtAda6.QtWidgets.QFileSystemModel.Option.Inst'Class; on_P : bool := False)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOption");
       Args   := Tuple_New (1);
@@ -608,7 +867,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setOption;
    procedure setOptions (self : access Inst; options_P : access QtAda6.QtWidgets.QFileSystemModel.Option.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOptions");
       Args   := Tuple_New (1);
@@ -617,7 +876,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setOptions;
    procedure setReadOnly (self : access Inst; enable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setReadOnly");
       Args   := Tuple_New (1);
@@ -626,7 +885,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setReadOnly;
    procedure setResolveSymlinks (self : access Inst; enable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setResolveSymlinks");
       Args   := Tuple_New (1);
@@ -635,7 +894,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setResolveSymlinks;
    function setRootPath (self : access Inst; path_P : str) return access QtAda6.QtCore.QModelIndex.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRootPath");
@@ -647,11 +906,10 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return Ret;
    end setRootPath;
    function sibling
-     (self  : access Inst; row_P : int; column_P : int;
-      idx_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; row_P : int; column_P : int; idx_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sibling");
@@ -664,10 +922,35 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Ret.Python_Proxy := Result;
       return Ret;
    end sibling;
-   function size
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return int
+   function sibling
+     (self : access Inst; row_P : int; column_P : int; idx_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "sibling");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, Long_FromLong (row_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (column_P));
+      Tuple_SetItem (Args, 2, (if idx_P /= null then idx_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end sibling;
+   function size (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return int is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "size");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Long_AsLong (Result);
+   end size;
+   function size (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return int is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "size");
       Args   := Tuple_New (1);
@@ -678,7 +961,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
    end size;
    procedure sort (self : access Inst; column_P : int; order_P : access QtAda6.QtCore.Qt.SortOrder.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sort");
       Args   := Tuple_New (1);
@@ -690,7 +973,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Result := Object_Call (Method, Args, Dict, True);
    end sort;
    function supportedDropActions (self : access Inst) return access QtAda6.QtCore.Qt.DropAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "supportedDropActions");
@@ -703,7 +986,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
    function testOption
      (self : access Inst; option_P : access QtAda6.QtWidgets.QFileSystemModel.Option.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "testOption");
       Args   := Tuple_New (1);
@@ -713,7 +996,7 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       return To_Ada (Result);
    end testOption;
    procedure timerEvent (self : access Inst; event_P : access QtAda6.QtCore.QTimerEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "timerEvent");
       Args   := Tuple_New (1);
@@ -721,10 +1004,18 @@ package body QtAda6.QtWidgets.QFileSystemModel is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end timerEvent;
-   function type_K
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return str
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   function type_K (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return str is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "type");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return As_String (Result);
+   end type_K;
+   function type_K (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return str is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "type");
       Args   := Tuple_New (1);

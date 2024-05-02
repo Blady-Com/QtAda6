@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.QEvent;
 with QtAda6.QtWidgets.QLCDNumber.Mode;
@@ -32,7 +31,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "overflow"));
    end overflow;
    function Create (numDigits_P : int; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLCDNumber");
       Args  := Tuple_New (1);
@@ -44,7 +43,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLCDNumber");
       Args  := Tuple_New (0);
@@ -55,7 +54,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function checkOverflow (self : access Inst; num_P : float) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "checkOverflow");
       Args   := Tuple_New (1);
@@ -65,7 +64,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       return To_Ada (Result);
    end checkOverflow;
    function checkOverflow (self : access Inst; num_P : int) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "checkOverflow");
       Args   := Tuple_New (1);
@@ -75,7 +74,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       return To_Ada (Result);
    end checkOverflow;
    function digitCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "digitCount");
       Args   := Tuple_New (0);
@@ -84,7 +83,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       return Long_AsLong (Result);
    end digitCount;
    procedure display (self : access Inst; num_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "display");
       Args   := Tuple_New (1);
@@ -93,7 +92,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       Result := Object_Call (Method, Args, Dict, True);
    end display;
    procedure display (self : access Inst; num_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "display");
       Args   := Tuple_New (1);
@@ -102,7 +101,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       Result := Object_Call (Method, Args, Dict, True);
    end display;
    procedure display (self : access Inst; str_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "display");
       Args   := Tuple_New (1);
@@ -111,7 +110,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       Result := Object_Call (Method, Args, Dict, True);
    end display;
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -121,7 +120,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       return To_Ada (Result);
    end event;
    function intValue (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "intValue");
       Args   := Tuple_New (0);
@@ -130,7 +129,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       return Long_AsLong (Result);
    end intValue;
    function mode_F (self : access Inst) return access QtAda6.QtWidgets.QLCDNumber.Mode.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QLCDNumber.Mode.Class := new QtAda6.QtWidgets.QLCDNumber.Mode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "mode");
@@ -141,7 +140,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       return Ret;
    end mode_F;
    procedure paintEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -150,8 +149,8 @@ package body QtAda6.QtWidgets.QLCDNumber is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    function segmentStyle_F (self : access Inst) return access QtAda6.QtWidgets.QLCDNumber.SegmentStyle.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QLCDNumber.SegmentStyle.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QLCDNumber.SegmentStyle.Class :=
         new QtAda6.QtWidgets.QLCDNumber.SegmentStyle.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "segmentStyle");
@@ -162,7 +161,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       return Ret;
    end segmentStyle_F;
    procedure setBinMode (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBinMode");
       Args   := Tuple_New (0);
@@ -170,7 +169,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       Result := Object_Call (Method, Args, Dict, True);
    end setBinMode;
    procedure setDecMode (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDecMode");
       Args   := Tuple_New (0);
@@ -178,7 +177,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       Result := Object_Call (Method, Args, Dict, True);
    end setDecMode;
    procedure setDigitCount (self : access Inst; nDigits_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDigitCount");
       Args   := Tuple_New (1);
@@ -187,7 +186,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       Result := Object_Call (Method, Args, Dict, True);
    end setDigitCount;
    procedure setHexMode (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHexMode");
       Args   := Tuple_New (0);
@@ -195,7 +194,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       Result := Object_Call (Method, Args, Dict, True);
    end setHexMode;
    procedure setMode (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QLCDNumber.Mode.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMode");
       Args   := Tuple_New (1);
@@ -204,7 +203,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       Result := Object_Call (Method, Args, Dict, True);
    end setMode;
    procedure setOctMode (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOctMode");
       Args   := Tuple_New (0);
@@ -213,7 +212,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
    end setOctMode;
    procedure setSegmentStyle (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QLCDNumber.SegmentStyle.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSegmentStyle");
       Args   := Tuple_New (1);
@@ -222,7 +221,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       Result := Object_Call (Method, Args, Dict, True);
    end setSegmentStyle;
    procedure setSmallDecimalPoint (self : access Inst; arg_1_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSmallDecimalPoint");
       Args   := Tuple_New (1);
@@ -231,8 +230,8 @@ package body QtAda6.QtWidgets.QLCDNumber is
       Result := Object_Call (Method, Args, Dict, True);
    end setSmallDecimalPoint;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -242,7 +241,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       return Ret;
    end sizeHint;
    function smallDecimalPoint (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "smallDecimalPoint");
       Args   := Tuple_New (0);
@@ -251,7 +250,7 @@ package body QtAda6.QtWidgets.QLCDNumber is
       return To_Ada (Result);
    end smallDecimalPoint;
    function value (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "value");
       Args   := Tuple_New (0);

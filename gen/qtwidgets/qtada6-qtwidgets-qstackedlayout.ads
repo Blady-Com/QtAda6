@@ -8,13 +8,13 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtWidgets.QLayoutItem;
 limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtWidgets.QStackedLayout.StackingMode;
 with QtAda6.QtWidgets.QLayout;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QStackedLayout is
    type Inst;
    type Inst_Access is access all Inst;

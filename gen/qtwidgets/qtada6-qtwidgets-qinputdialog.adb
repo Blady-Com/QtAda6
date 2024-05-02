@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.Qt.WindowType;
 with QtAda6.QtCore.Qt.InputMethodHint;
@@ -63,7 +62,7 @@ package body QtAda6.QtWidgets.QInputDialog is
      (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
       flags_P  : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QInputDialog");
       Args  := Tuple_New (0);
@@ -77,7 +76,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function cancelButtonText (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cancelButtonText");
       Args   := Tuple_New (0);
@@ -86,16 +85,20 @@ package body QtAda6.QtWidgets.QInputDialog is
       return As_String (Result);
    end cancelButtonText;
    function comboBoxItems (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "comboBoxItems");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end comboBoxItems;
    procedure done (self : access Inst; result_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "done");
       Args   := Tuple_New (1);
@@ -104,7 +107,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end done;
    function doubleDecimals (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "doubleDecimals");
       Args   := Tuple_New (0);
@@ -113,7 +116,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return Long_AsLong (Result);
    end doubleDecimals;
    function doubleMaximum (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "doubleMaximum");
       Args   := Tuple_New (0);
@@ -122,7 +125,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return Float_AsDouble (Result);
    end doubleMaximum;
    function doubleMinimum (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "doubleMinimum");
       Args   := Tuple_New (0);
@@ -131,7 +134,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return Float_AsDouble (Result);
    end doubleMinimum;
    function doubleStep (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "doubleStep");
       Args   := Tuple_New (0);
@@ -140,7 +143,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return Float_AsDouble (Result);
    end doubleStep;
    function doubleValue (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "doubleValue");
       Args   := Tuple_New (0);
@@ -153,7 +156,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       minValue_P : float := 0.0; maxValue_P : float := 0.0; decimals_P : int := 0;
       flags_P    : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null; step_P : float := 0.0) return TUPLE_float_bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QInputDialog");
       Method := Object_GetAttrString (Class, "getDouble");
@@ -191,7 +194,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       minValue_P : int                                           := 0; maxValue_P : int := 0; step_P : int := 0;
       flags_P    : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return TUPLE_int_bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QInputDialog");
       Method := Object_GetAttrString (Class, "getInt");
@@ -226,18 +229,18 @@ package body QtAda6.QtWidgets.QInputDialog is
       current_P : int := 0; editable_P : bool := False; flags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null;
       inputMethodHints_P : access QtAda6.QtCore.Qt.InputMethodHint.Inst'Class := null) return TUPLE_str_bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QInputDialog");
       Method := Object_GetAttrString (Class, "getItem");
-      List   := List_New (items_P'Length);
-      for ind in items_P'Range loop
-         List_SetItem (List, ssize_t (ind - items_P'First), Unicode_FromString (items_P (ind)));
-      end loop;
-      Args := Tuple_New (4);
+      Args   := Tuple_New (4);
       Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Unicode_FromString (title_P));
       Tuple_SetItem (Args, 2, Unicode_FromString (label_P));
+      List := List_New (items_P'Length);
+      for ind in items_P'Range loop
+         List_SetItem (List, ssize_t (ind - items_P'First), Unicode_FromString (items_P (ind)));
+      end loop;
       Tuple_SetItem (Args, 3, List);
       Dict := Dict_New;
       if current_P /= 0 then
@@ -263,7 +266,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       flags_P            : access QtAda6.QtCore.Qt.WindowType.Inst'Class      := null;
       inputMethodHints_P : access QtAda6.QtCore.Qt.InputMethodHint.Inst'Class := null) return TUPLE_str_bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QInputDialog");
       Method := Object_GetAttrString (Class, "getMultiLineText");
@@ -293,7 +296,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       flags_P            : access QtAda6.QtCore.Qt.WindowType.Inst'Class         := null;
       inputMethodHints_P : access QtAda6.QtCore.Qt.InputMethodHint.Inst'Class    := null) return TUPLE_str_bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QInputDialog");
       Method := Object_GetAttrString (Class, "getText");
@@ -321,7 +324,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       end return;
    end getText;
    function inputMode_F (self : access Inst) return access QtAda6.QtWidgets.QInputDialog.InputMode.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QInputDialog.InputMode.Class := new QtAda6.QtWidgets.QInputDialog.InputMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "inputMode");
@@ -332,7 +335,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return Ret;
    end inputMode_F;
    function intMaximum (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "intMaximum");
       Args   := Tuple_New (0);
@@ -341,7 +344,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return Long_AsLong (Result);
    end intMaximum;
    function intMinimum (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "intMinimum");
       Args   := Tuple_New (0);
@@ -350,7 +353,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return Long_AsLong (Result);
    end intMinimum;
    function intStep (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "intStep");
       Args   := Tuple_New (0);
@@ -359,7 +362,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return Long_AsLong (Result);
    end intStep;
    function intValue (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "intValue");
       Args   := Tuple_New (0);
@@ -368,7 +371,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return Long_AsLong (Result);
    end intValue;
    function isComboBoxEditable (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isComboBoxEditable");
       Args   := Tuple_New (0);
@@ -377,7 +380,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return To_Ada (Result);
    end isComboBoxEditable;
    function labelText (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "labelText");
       Args   := Tuple_New (0);
@@ -386,8 +389,8 @@ package body QtAda6.QtWidgets.QInputDialog is
       return As_String (Result);
    end labelText;
    function minimumSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSizeHint");
       Args             := Tuple_New (0);
@@ -397,7 +400,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return Ret;
    end minimumSizeHint;
    function okButtonText (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "okButtonText");
       Args   := Tuple_New (0);
@@ -406,7 +409,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return As_String (Result);
    end okButtonText;
    procedure open (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (0);
@@ -414,17 +417,17 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end open;
    procedure open (self : access Inst; receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if receiver_P /= null then receiver_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, Bytes_FromString (String (member_P)));
+      Tuple_SetItem (Args, 1, Bytes_FromString (Standard.String (member_P.all)));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end open;
    procedure setCancelButtonText (self : access Inst; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCancelButtonText");
       Args   := Tuple_New (1);
@@ -433,7 +436,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setCancelButtonText;
    procedure setComboBoxEditable (self : access Inst; editable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setComboBoxEditable");
       Args   := Tuple_New (1);
@@ -442,20 +445,20 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setComboBoxEditable;
    procedure setComboBoxItems (self : access Inst; items_P : SEQUENCE_str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setComboBoxItems");
+      Args   := Tuple_New (1);
       List   := List_New (items_P'Length);
       for ind in items_P'Range loop
          List_SetItem (List, ssize_t (ind - items_P'First), Unicode_FromString (items_P (ind)));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setComboBoxItems;
    procedure setDoubleDecimals (self : access Inst; decimals_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDoubleDecimals");
       Args   := Tuple_New (1);
@@ -464,7 +467,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setDoubleDecimals;
    procedure setDoubleMaximum (self : access Inst; max_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDoubleMaximum");
       Args   := Tuple_New (1);
@@ -473,7 +476,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setDoubleMaximum;
    procedure setDoubleMinimum (self : access Inst; min_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDoubleMinimum");
       Args   := Tuple_New (1);
@@ -482,7 +485,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setDoubleMinimum;
    procedure setDoubleRange (self : access Inst; min_P : float; max_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDoubleRange");
       Args   := Tuple_New (2);
@@ -492,7 +495,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setDoubleRange;
    procedure setDoubleStep (self : access Inst; step_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDoubleStep");
       Args   := Tuple_New (1);
@@ -501,7 +504,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setDoubleStep;
    procedure setDoubleValue (self : access Inst; value_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDoubleValue");
       Args   := Tuple_New (1);
@@ -510,7 +513,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setDoubleValue;
    procedure setInputMode (self : access Inst; mode_P : access QtAda6.QtWidgets.QInputDialog.InputMode.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setInputMode");
       Args   := Tuple_New (1);
@@ -519,7 +522,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setInputMode;
    procedure setIntMaximum (self : access Inst; max_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setIntMaximum");
       Args   := Tuple_New (1);
@@ -528,7 +531,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setIntMaximum;
    procedure setIntMinimum (self : access Inst; min_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setIntMinimum");
       Args   := Tuple_New (1);
@@ -537,7 +540,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setIntMinimum;
    procedure setIntRange (self : access Inst; min_P : int; max_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setIntRange");
       Args   := Tuple_New (2);
@@ -547,7 +550,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setIntRange;
    procedure setIntStep (self : access Inst; step_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setIntStep");
       Args   := Tuple_New (1);
@@ -556,7 +559,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setIntStep;
    procedure setIntValue (self : access Inst; value_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setIntValue");
       Args   := Tuple_New (1);
@@ -565,7 +568,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setIntValue;
    procedure setLabelText (self : access Inst; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setLabelText");
       Args   := Tuple_New (1);
@@ -574,7 +577,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setLabelText;
    procedure setOkButtonText (self : access Inst; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOkButtonText");
       Args   := Tuple_New (1);
@@ -586,7 +589,7 @@ package body QtAda6.QtWidgets.QInputDialog is
      (self : access Inst; option_P : access QtAda6.QtWidgets.QInputDialog.InputDialogOption.Inst'Class;
       on_P : bool := False)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOption");
       Args   := Tuple_New (1);
@@ -598,7 +601,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setOption;
    procedure setTextEchoMode (self : access Inst; mode_P : access QtAda6.QtWidgets.QLineEdit.EchoMode.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTextEchoMode");
       Args   := Tuple_New (1);
@@ -607,7 +610,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setTextEchoMode;
    procedure setTextValue (self : access Inst; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTextValue");
       Args   := Tuple_New (1);
@@ -616,7 +619,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setTextValue;
    procedure setVisible (self : access Inst; visible_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVisible");
       Args   := Tuple_New (1);
@@ -625,8 +628,8 @@ package body QtAda6.QtWidgets.QInputDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setVisible;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -638,7 +641,7 @@ package body QtAda6.QtWidgets.QInputDialog is
    function testOption
      (self : access Inst; option_P : access QtAda6.QtWidgets.QInputDialog.InputDialogOption.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "testOption");
       Args   := Tuple_New (1);
@@ -648,7 +651,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return To_Ada (Result);
    end testOption;
    function textEchoMode (self : access Inst) return access QtAda6.QtWidgets.QLineEdit.EchoMode.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QLineEdit.EchoMode.Class := new QtAda6.QtWidgets.QLineEdit.EchoMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "textEchoMode");
@@ -659,7 +662,7 @@ package body QtAda6.QtWidgets.QInputDialog is
       return Ret;
    end textEchoMode;
    function textValue (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "textValue");
       Args   := Tuple_New (0);

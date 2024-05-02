@@ -14,7 +14,6 @@ with QtAda6.QtWidgets.QSizePolicy.Policy;
 with QtAda6.QtWidgets.QSizePolicy.ControlType;
 with QtAda6.QtCore.QDataStream;
 with QtAda6.QtCore.Qt.Orientation;
-with QtAda6.QtWidgets.QSizePolicy;
 package body QtAda6.QtWidgets.QSizePolicy is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -26,7 +25,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSizePolicy");
       Args  := Tuple_New (0);
@@ -38,7 +37,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       vertical_P   : access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class;
       type_K_P     : access QtAda6.QtWidgets.QSizePolicy.ControlType.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSizePolicy");
       Args  := Tuple_New (2);
@@ -51,7 +50,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSizePolicy");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -63,7 +62,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__lshift__");
@@ -78,7 +77,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QDataStream.Inst'Class)
       return access QtAda6.QtCore.QDataStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDataStream.Class := new QtAda6.QtCore.QDataStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__rshift__");
@@ -90,8 +89,8 @@ package body QtAda6.QtWidgets.QSizePolicy is
       return Ret;
    end U_rshift_U;
    function controlType_F (self : access Inst) return access QtAda6.QtWidgets.QSizePolicy.ControlType.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QSizePolicy.ControlType.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QSizePolicy.ControlType.Class :=
         new QtAda6.QtWidgets.QSizePolicy.ControlType.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "controlType");
@@ -102,7 +101,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       return Ret;
    end controlType_F;
    function expandingDirections (self : access Inst) return access QtAda6.QtCore.Qt.Orientation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.Orientation.Class := new QtAda6.QtCore.Qt.Orientation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "expandingDirections");
@@ -113,7 +112,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       return Ret;
    end expandingDirections;
    function hasHeightForWidth (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasHeightForWidth");
       Args   := Tuple_New (0);
@@ -122,7 +121,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       return To_Ada (Result);
    end hasHeightForWidth;
    function hasWidthForHeight (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasWidthForHeight");
       Args   := Tuple_New (0);
@@ -131,7 +130,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       return To_Ada (Result);
    end hasWidthForHeight;
    function horizontalPolicy (self : access Inst) return access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QSizePolicy.Policy.Class := new QtAda6.QtWidgets.QSizePolicy.Policy.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "horizontalPolicy");
@@ -142,7 +141,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       return Ret;
    end horizontalPolicy;
    function horizontalStretch (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "horizontalStretch");
       Args   := Tuple_New (0);
@@ -151,7 +150,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       return Long_AsLong (Result);
    end horizontalStretch;
    function retainSizeWhenHidden (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "retainSizeWhenHidden");
       Args   := Tuple_New (0);
@@ -161,7 +160,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
    end retainSizeWhenHidden;
    procedure setControlType (self : access Inst; type_K_P : access QtAda6.QtWidgets.QSizePolicy.ControlType.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setControlType");
       Args   := Tuple_New (1);
@@ -170,7 +169,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       Result := Object_Call (Method, Args, Dict, True);
    end setControlType;
    procedure setHeightForWidth (self : access Inst; b_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHeightForWidth");
       Args   := Tuple_New (1);
@@ -179,7 +178,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       Result := Object_Call (Method, Args, Dict, True);
    end setHeightForWidth;
    procedure setHorizontalPolicy (self : access Inst; d_P : access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHorizontalPolicy");
       Args   := Tuple_New (1);
@@ -188,7 +187,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       Result := Object_Call (Method, Args, Dict, True);
    end setHorizontalPolicy;
    procedure setHorizontalStretch (self : access Inst; stretchFactor_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHorizontalStretch");
       Args   := Tuple_New (1);
@@ -197,7 +196,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       Result := Object_Call (Method, Args, Dict, True);
    end setHorizontalStretch;
    procedure setRetainSizeWhenHidden (self : access Inst; retainSize_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRetainSizeWhenHidden");
       Args   := Tuple_New (1);
@@ -206,7 +205,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       Result := Object_Call (Method, Args, Dict, True);
    end setRetainSizeWhenHidden;
    procedure setVerticalPolicy (self : access Inst; d_P : access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVerticalPolicy");
       Args   := Tuple_New (1);
@@ -215,7 +214,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       Result := Object_Call (Method, Args, Dict, True);
    end setVerticalPolicy;
    procedure setVerticalStretch (self : access Inst; stretchFactor_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVerticalStretch");
       Args   := Tuple_New (1);
@@ -224,7 +223,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       Result := Object_Call (Method, Args, Dict, True);
    end setVerticalStretch;
    procedure setWidthForHeight (self : access Inst; b_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setWidthForHeight");
       Args   := Tuple_New (1);
@@ -233,7 +232,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       Result := Object_Call (Method, Args, Dict, True);
    end setWidthForHeight;
    procedure transpose (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "transpose");
       Args   := Tuple_New (0);
@@ -241,7 +240,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       Result := Object_Call (Method, Args, Dict, True);
    end transpose;
    function transposed (self : access Inst) return access QtAda6.QtWidgets.QSizePolicy.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QSizePolicy.Class := new QtAda6.QtWidgets.QSizePolicy.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "transposed");
@@ -252,7 +251,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       return Ret;
    end transposed;
    function verticalPolicy (self : access Inst) return access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QSizePolicy.Policy.Class := new QtAda6.QtWidgets.QSizePolicy.Policy.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "verticalPolicy");
@@ -263,7 +262,7 @@ package body QtAda6.QtWidgets.QSizePolicy is
       return Ret;
    end verticalPolicy;
    function verticalStretch (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "verticalStretch");
       Args   := Tuple_New (0);

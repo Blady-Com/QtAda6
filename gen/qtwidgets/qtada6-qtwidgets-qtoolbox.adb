@@ -10,11 +10,11 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.Qt.WindowType;
-with QtAda6.QtCore.QEvent;
 with QtAda6.QtGui.QIcon;
+with QtAda6.QtGui.QPixmap;
+with QtAda6.QtCore.QEvent;
 with QtAda6.QtGui.QShowEvent;
 package body QtAda6.QtWidgets.QToolBox is
    use type QtAda6.int;
@@ -34,7 +34,7 @@ package body QtAda6.QtWidgets.QToolBox is
      (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
       f_P      : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolBox");
       Args  := Tuple_New (0);
@@ -49,9 +49,24 @@ package body QtAda6.QtWidgets.QToolBox is
    end Create;
    function addItem
      (self   : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
-      icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str) return int
+      icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "addItem");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if icon_P /= null then icon_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, Unicode_FromString (text_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Long_AsLong (Result);
+   end addItem;
+   function addItem
+     (self   : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
+      icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str) return int
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addItem");
       Args   := Tuple_New (3);
@@ -64,7 +79,7 @@ package body QtAda6.QtWidgets.QToolBox is
    end addItem;
    function addItem (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class; text_P : str) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addItem");
       Args   := Tuple_New (2);
@@ -75,7 +90,7 @@ package body QtAda6.QtWidgets.QToolBox is
       return Long_AsLong (Result);
    end addItem;
    procedure changeEvent (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changeEvent");
       Args   := Tuple_New (1);
@@ -84,7 +99,7 @@ package body QtAda6.QtWidgets.QToolBox is
       Result := Object_Call (Method, Args, Dict, True);
    end changeEvent;
    function count (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "count");
       Args   := Tuple_New (0);
@@ -93,7 +108,7 @@ package body QtAda6.QtWidgets.QToolBox is
       return Long_AsLong (Result);
    end count;
    function currentIndex (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "currentIndex");
       Args   := Tuple_New (0);
@@ -102,7 +117,7 @@ package body QtAda6.QtWidgets.QToolBox is
       return Long_AsLong (Result);
    end currentIndex;
    function currentWidget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentWidget");
@@ -113,7 +128,7 @@ package body QtAda6.QtWidgets.QToolBox is
       return Ret;
    end currentWidget;
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -123,7 +138,7 @@ package body QtAda6.QtWidgets.QToolBox is
       return To_Ada (Result);
    end event;
    function indexOf (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOf");
       Args   := Tuple_New (1);
@@ -134,9 +149,25 @@ package body QtAda6.QtWidgets.QToolBox is
    end indexOf;
    function insertItem
      (self   : access Inst; index_P : int; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
-      icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str) return int
+      icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "insertItem");
+      Args   := Tuple_New (4);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, (if widget_P /= null then widget_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, (if icon_P /= null then icon_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 3, Unicode_FromString (text_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Long_AsLong (Result);
+   end insertItem;
+   function insertItem
+     (self   : access Inst; index_P : int; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
+      icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str) return int
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertItem");
       Args   := Tuple_New (4);
@@ -151,7 +182,7 @@ package body QtAda6.QtWidgets.QToolBox is
    function insertItem
      (self : access Inst; index_P : int; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class; text_P : str) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertItem");
       Args   := Tuple_New (3);
@@ -163,7 +194,7 @@ package body QtAda6.QtWidgets.QToolBox is
       return Long_AsLong (Result);
    end insertItem;
    function isItemEnabled (self : access Inst; index_P : int) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isItemEnabled");
       Args   := Tuple_New (1);
@@ -173,8 +204,8 @@ package body QtAda6.QtWidgets.QToolBox is
       return To_Ada (Result);
    end isItemEnabled;
    function itemIcon (self : access Inst; index_P : int) return access QtAda6.QtGui.QIcon.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QIcon.Class := new QtAda6.QtGui.QIcon.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemIcon");
       Args   := Tuple_New (1);
@@ -185,7 +216,7 @@ package body QtAda6.QtWidgets.QToolBox is
       return Ret;
    end itemIcon;
    procedure itemInserted (self : access Inst; index_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemInserted");
       Args   := Tuple_New (1);
@@ -194,7 +225,7 @@ package body QtAda6.QtWidgets.QToolBox is
       Result := Object_Call (Method, Args, Dict, True);
    end itemInserted;
    procedure itemRemoved (self : access Inst; index_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemRemoved");
       Args   := Tuple_New (1);
@@ -203,7 +234,7 @@ package body QtAda6.QtWidgets.QToolBox is
       Result := Object_Call (Method, Args, Dict, True);
    end itemRemoved;
    function itemText (self : access Inst; index_P : int) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemText");
       Args   := Tuple_New (1);
@@ -213,7 +244,7 @@ package body QtAda6.QtWidgets.QToolBox is
       return As_String (Result);
    end itemText;
    function itemToolTip (self : access Inst; index_P : int) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemToolTip");
       Args   := Tuple_New (1);
@@ -223,7 +254,7 @@ package body QtAda6.QtWidgets.QToolBox is
       return As_String (Result);
    end itemToolTip;
    procedure removeItem (self : access Inst; index_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeItem");
       Args   := Tuple_New (1);
@@ -232,7 +263,7 @@ package body QtAda6.QtWidgets.QToolBox is
       Result := Object_Call (Method, Args, Dict, True);
    end removeItem;
    procedure setCurrentIndex (self : access Inst; index_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentIndex");
       Args   := Tuple_New (1);
@@ -241,7 +272,7 @@ package body QtAda6.QtWidgets.QToolBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setCurrentIndex;
    procedure setCurrentWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentWidget");
       Args   := Tuple_New (1);
@@ -250,7 +281,7 @@ package body QtAda6.QtWidgets.QToolBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setCurrentWidget;
    procedure setItemEnabled (self : access Inst; index_P : int; enabled_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setItemEnabled");
       Args   := Tuple_New (2);
@@ -259,8 +290,18 @@ package body QtAda6.QtWidgets.QToolBox is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setItemEnabled;
-   procedure setItemIcon (self : access Inst; index_P : int; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setItemIcon (self : access Inst; index_P : int; icon_P : access QtAda6.QtGui.QIcon.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setItemIcon");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, (if icon_P /= null then icon_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setItemIcon;
+   procedure setItemIcon (self : access Inst; index_P : int; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setItemIcon");
       Args   := Tuple_New (2);
@@ -270,7 +311,7 @@ package body QtAda6.QtWidgets.QToolBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setItemIcon;
    procedure setItemText (self : access Inst; index_P : int; text_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setItemText");
       Args   := Tuple_New (2);
@@ -280,7 +321,7 @@ package body QtAda6.QtWidgets.QToolBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setItemText;
    procedure setItemToolTip (self : access Inst; index_P : int; toolTip_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setItemToolTip");
       Args   := Tuple_New (2);
@@ -290,7 +331,7 @@ package body QtAda6.QtWidgets.QToolBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setItemToolTip;
    procedure showEvent (self : access Inst; e_P : access QtAda6.QtGui.QShowEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "showEvent");
       Args   := Tuple_New (1);
@@ -299,7 +340,7 @@ package body QtAda6.QtWidgets.QToolBox is
       Result := Object_Call (Method, Args, Dict, True);
    end showEvent;
    function widget (self : access Inst; index_P : int) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "widget");

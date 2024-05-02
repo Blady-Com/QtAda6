@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtWidgets.QTreeWidgetItem;
 with QtAda6.QtGui.QDropEvent;
@@ -20,6 +19,7 @@ with QtAda6.QtCore.QEvent;
 with QtAda6.QtCore.Qt.MatchFlag;
 with QtAda6.QtCore.QModelIndex;
 with QtAda6.QtCore.QPoint;
+with QtAda6.QtCore.QPersistentModelIndex;
 with QtAda6.QtWidgets.QAbstractItemView.ScrollHint;
 with QtAda6.QtCore.QItemSelectionModel.SelectionFlag;
 with QtAda6.QtCore.QAbstractItemModel;
@@ -81,7 +81,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
           (Python_Proxy => Object_GetAttrString (self.Python_Proxy, "itemSelectionChanged"));
    end itemSelectionChanged;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTreeWidget");
       Args  := Tuple_New (0);
@@ -92,7 +92,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure addTopLevelItem (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addTopLevelItem");
       Args   := Tuple_New (1);
@@ -101,22 +101,22 @@ package body QtAda6.QtWidgets.QTreeWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end addTopLevelItem;
    procedure addTopLevelItems (self : access Inst; items_P : SEQUENCE_QtAda6_QtWidgets_QTreeWidgetItem) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addTopLevelItems");
+      Args   := Tuple_New (1);
       List   := List_New (items_P'Length);
       for ind in items_P'Range loop
          List_SetItem
            (List, ssize_t (ind - items_P'First),
             (if items_P (ind) /= null then items_P (ind).Python_Proxy else No_Value));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end addTopLevelItems;
    procedure clear (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clear");
       Args   := Tuple_New (0);
@@ -126,7 +126,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
    procedure closePersistentEditor
      (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; column_P : int := 0)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "closePersistentEditor");
       Args   := Tuple_New (1);
@@ -138,7 +138,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end closePersistentEditor;
    procedure collapseItem (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "collapseItem");
       Args   := Tuple_New (1);
@@ -147,7 +147,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end collapseItem;
    function columnCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "columnCount");
       Args   := Tuple_New (0);
@@ -156,7 +156,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       return Long_AsLong (Result);
    end columnCount;
    function currentColumn (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "currentColumn");
       Args   := Tuple_New (0);
@@ -165,7 +165,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       return Long_AsLong (Result);
    end currentColumn;
    function currentItem (self : access Inst) return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QTreeWidgetItem.Class := new QtAda6.QtWidgets.QTreeWidgetItem.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentItem");
@@ -176,7 +176,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       return Ret;
    end currentItem;
    procedure dropEvent (self : access Inst; event_P : access QtAda6.QtGui.QDropEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dropEvent");
       Args   := Tuple_New (1);
@@ -189,7 +189,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       data_P : access QtAda6.QtCore.QMimeData.Inst'Class; action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class)
       return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dropMimeData");
       Args   := Tuple_New (4);
@@ -204,7 +204,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
    procedure editItem
      (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; column_P : int := 0)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "editItem");
       Args   := Tuple_New (1);
@@ -216,7 +216,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end editItem;
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -226,7 +226,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       return To_Ada (Result);
    end event;
    procedure expandItem (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "expandItem");
       Args   := Tuple_New (1);
@@ -238,7 +238,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
      (self : access Inst; text_P : str; flags_P : access QtAda6.QtCore.Qt.MatchFlag.Inst'Class; column_P : int := 0)
       return LIST_QtAda6_QtWidgets_QTreeWidgetItem
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "findItems");
       Args   := Tuple_New (2);
@@ -249,10 +249,14 @@ package body QtAda6.QtWidgets.QTreeWidget is
          Dict_SetItemString (Dict, "column", Long_FromLong (column_P));
       end if;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtWidgets_QTreeWidgetItem (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end findItems;
    function headerItem (self : access Inst) return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QTreeWidgetItem.Class := new QtAda6.QtWidgets.QTreeWidgetItem.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "headerItem");
@@ -266,7 +270,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
      (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; column_P : int := 0)
       return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexFromItem");
@@ -283,7 +287,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
    function indexOfTopLevelItem
      (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOfTopLevelItem");
       Args   := Tuple_New (1);
@@ -295,7 +299,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
    procedure insertTopLevelItem
      (self : access Inst; index_P : int; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertTopLevelItem");
       Args   := Tuple_New (2);
@@ -307,23 +311,23 @@ package body QtAda6.QtWidgets.QTreeWidget is
    procedure insertTopLevelItems
      (self : access Inst; index_P : int; items_P : SEQUENCE_QtAda6_QtWidgets_QTreeWidgetItem)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertTopLevelItems");
-      List   := List_New (items_P'Length);
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      List := List_New (items_P'Length);
       for ind in items_P'Range loop
          List_SetItem
            (List, ssize_t (ind - items_P'First),
             (if items_P (ind) /= null then items_P (ind).Python_Proxy else No_Value));
       end loop;
-      Args := Tuple_New (2);
-      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
       Tuple_SetItem (Args, 1, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end insertTopLevelItems;
    function invisibleRootItem (self : access Inst) return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QTreeWidgetItem.Class := new QtAda6.QtWidgets.QTreeWidgetItem.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "invisibleRootItem");
@@ -336,7 +340,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
    function isPersistentEditorOpen
      (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; column_P : int := 0) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isPersistentEditorOpen");
       Args   := Tuple_New (1);
@@ -352,7 +356,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
      (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class)
       return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QTreeWidgetItem.Class := new QtAda6.QtWidgets.QTreeWidgetItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemAbove");
@@ -367,7 +371,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
      (self : access Inst; p_P : access QtAda6.QtCore.QPoint.Inst'Class)
       return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QTreeWidgetItem.Class := new QtAda6.QtWidgets.QTreeWidgetItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemAt");
@@ -380,7 +384,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
    end itemAt;
    function itemAt (self : access Inst; x_P : int; y_P : int) return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QTreeWidgetItem.Class := new QtAda6.QtWidgets.QTreeWidgetItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemAt");
@@ -396,7 +400,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
      (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class)
       return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QTreeWidgetItem.Class := new QtAda6.QtWidgets.QTreeWidgetItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemBelow");
@@ -408,10 +412,25 @@ package body QtAda6.QtWidgets.QTreeWidget is
       return Ret;
    end itemBelow;
    function itemFromIndex
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtWidgets.QTreeWidgetItem.Class := new QtAda6.QtWidgets.QTreeWidgetItem.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "itemFromIndex");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end itemFromIndex;
+   function itemFromIndex
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QTreeWidgetItem.Class := new QtAda6.QtWidgets.QTreeWidgetItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemFromIndex");
@@ -426,7 +445,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
      (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; column_P : int)
       return access QtAda6.QtWidgets.QWidget.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemWidget");
@@ -442,17 +461,17 @@ package body QtAda6.QtWidgets.QTreeWidget is
      (self : access Inst; items_P : SEQUENCE_QtAda6_QtWidgets_QTreeWidgetItem)
       return access QtAda6.QtCore.QMimeData.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMimeData.Class := new QtAda6.QtCore.QMimeData.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mimeData");
+      Args   := Tuple_New (1);
       List   := List_New (items_P'Length);
       for ind in items_P'Range loop
          List_SetItem
            (List, ssize_t (ind - items_P'First),
             (if items_P (ind) /= null then items_P (ind).Python_Proxy else No_Value));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict             := Dict_New;
       Result           := Object_Call (Method, Args, Dict, True);
@@ -460,18 +479,22 @@ package body QtAda6.QtWidgets.QTreeWidget is
       return Ret;
    end mimeData;
    function mimeTypes (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mimeTypes");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end mimeTypes;
    procedure openPersistentEditor
      (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; column_P : int := 0)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "openPersistentEditor");
       Args   := Tuple_New (1);
@@ -485,7 +508,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
    procedure removeItemWidget
      (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; column_P : int)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeItemWidget");
       Args   := Tuple_New (2);
@@ -498,7 +521,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
      (self   : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class;
       hint_P : access QtAda6.QtWidgets.QAbstractItemView.ScrollHint.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "scrollToItem");
       Args   := Tuple_New (1);
@@ -510,16 +533,20 @@ package body QtAda6.QtWidgets.QTreeWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end scrollToItem;
    function selectedItems (self : access Inst) return LIST_QtAda6_QtWidgets_QTreeWidgetItem is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "selectedItems");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtWidgets_QTreeWidgetItem (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end selectedItems;
    procedure setColumnCount (self : access Inst; columns_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setColumnCount");
       Args   := Tuple_New (1);
@@ -528,7 +555,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setColumnCount;
    procedure setCurrentItem (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentItem");
       Args   := Tuple_New (1);
@@ -539,7 +566,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
    procedure setCurrentItem
      (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; column_P : int)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentItem");
       Args   := Tuple_New (2);
@@ -552,7 +579,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
      (self      : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; column_P : int;
       command_P : access QtAda6.QtCore.QItemSelectionModel.SelectionFlag.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentItem");
       Args   := Tuple_New (3);
@@ -563,7 +590,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setCurrentItem;
    procedure setHeaderItem (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHeaderItem");
       Args   := Tuple_New (1);
@@ -572,7 +599,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setHeaderItem;
    procedure setHeaderLabel (self : access Inst; label_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHeaderLabel");
       Args   := Tuple_New (1);
@@ -581,14 +608,14 @@ package body QtAda6.QtWidgets.QTreeWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setHeaderLabel;
    procedure setHeaderLabels (self : access Inst; labels_P : SEQUENCE_str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHeaderLabels");
+      Args   := Tuple_New (1);
       List   := List_New (labels_P'Length);
       for ind in labels_P'Range loop
          List_SetItem (List, ssize_t (ind - labels_P'First), Unicode_FromString (labels_P (ind)));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
@@ -597,7 +624,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
      (self     : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class; column_P : int;
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setItemWidget");
       Args   := Tuple_New (3);
@@ -608,7 +635,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setItemWidget;
    procedure setModel (self : access Inst; model_P : access QtAda6.QtCore.QAbstractItemModel.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setModel");
       Args   := Tuple_New (1);
@@ -619,7 +646,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
    procedure setSelectionModel
      (self : access Inst; selectionModel_P : access QtAda6.QtCore.QItemSelectionModel.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSelectionModel");
       Args   := Tuple_New (1);
@@ -628,7 +655,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setSelectionModel;
    function sortColumn (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sortColumn");
       Args   := Tuple_New (0);
@@ -637,7 +664,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       return Long_AsLong (Result);
    end sortColumn;
    procedure sortItems (self : access Inst; column_P : int; order_P : access QtAda6.QtCore.Qt.SortOrder.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sortItems");
       Args   := Tuple_New (2);
@@ -647,7 +674,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end sortItems;
    function supportedDropActions (self : access Inst) return access QtAda6.QtCore.Qt.DropAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "supportedDropActions");
@@ -660,7 +687,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
    function takeTopLevelItem
      (self : access Inst; index_P : int) return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QTreeWidgetItem.Class := new QtAda6.QtWidgets.QTreeWidgetItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "takeTopLevelItem");
@@ -673,7 +700,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
    end takeTopLevelItem;
    function topLevelItem (self : access Inst; index_P : int) return access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QTreeWidgetItem.Class := new QtAda6.QtWidgets.QTreeWidgetItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "topLevelItem");
@@ -685,7 +712,7 @@ package body QtAda6.QtWidgets.QTreeWidget is
       return Ret;
    end topLevelItem;
    function topLevelItemCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "topLevelItemCount");
       Args   := Tuple_New (0);
@@ -697,8 +724,8 @@ package body QtAda6.QtWidgets.QTreeWidget is
      (self : access Inst; item_P : access QtAda6.QtWidgets.QTreeWidgetItem.Inst'Class)
       return access QtAda6.QtCore.QRect.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "visualItemRect");
       Args   := Tuple_New (1);

@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtGui.QActionEvent;
 limited with QtAda6.QtCore.Qt.ArrowType;
@@ -25,6 +24,7 @@ limited with QtAda6.QtWidgets.QToolButton.ToolButtonPopupMode;
 limited with QtAda6.QtCore.Qt.ToolButtonStyle;
 limited with QtAda6.QtCore.QTimerEvent;
 with QtAda6.QtWidgets.QAbstractButton;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QToolButton is
    type Inst;
    type Inst_Access is access all Inst;

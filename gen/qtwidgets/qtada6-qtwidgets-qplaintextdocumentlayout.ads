@@ -15,7 +15,10 @@ limited with QtAda6.QtCore.QSizeF;
 limited with QtAda6.QtGui.QPainter;
 limited with QtAda6.QtGui.QAbstractTextDocumentLayout.PaintContext;
 limited with QtAda6.QtGui.QTextFrame;
+limited with QtAda6.QtCore.QPointF;
 limited with QtAda6.QtCore.Qt.HitTestAccuracy;
+limited with QtAda6.QtCore.QPoint;
+limited with QtAda6.QtGui.QPainterPath.Element;
 with QtAda6.QtGui.QAbstractTextDocumentLayout;
 package QtAda6.QtWidgets.QPlainTextDocumentLayout is
    type Inst;
@@ -23,7 +26,6 @@ package QtAda6.QtWidgets.QPlainTextDocumentLayout is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QAbstractTextDocumentLayout.Inst with null record;
-   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create (document_P : access QtAda6.QtGui.QTextDocument.Inst'Class) return Class;
    function blockBoundingRect
@@ -40,7 +42,13 @@ package QtAda6.QtWidgets.QPlainTextDocumentLayout is
      (self : access Inst; arg_1_P : access QtAda6.QtGui.QTextFrame.Inst'Class)
       return access QtAda6.QtCore.QRectF.Inst'Class;
    function hitTest
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
+     (self    : access Inst; arg_1_P : access QtAda6.QtCore.QPointF.Inst'Class;
+      arg_2_P : access QtAda6.QtCore.Qt.HitTestAccuracy.Inst'Class) return int;
+   function hitTest
+     (self    : access Inst; arg_1_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      arg_2_P : access QtAda6.QtCore.Qt.HitTestAccuracy.Inst'Class) return int;
+   function hitTest
+     (self    : access Inst; arg_1_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class;
       arg_2_P : access QtAda6.QtCore.Qt.HitTestAccuracy.Inst'Class) return int;
    function pageCount (self : access Inst) return int;
    procedure requestUpdate (self : access Inst);

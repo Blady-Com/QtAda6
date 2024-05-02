@@ -20,10 +20,14 @@ limited with QtAda6.QtWidgets.QStyle.ComplexControl;
 limited with QtAda6.QtWidgets.QStyleOptionComplex;
 limited with QtAda6.QtGui.QPainter;
 limited with QtAda6.QtWidgets.QStyle.ControlElement;
+limited with QtAda6.QtGui.QPixmap;
+limited with QtAda6.QtGui.QImage;
+limited with QtAda6.QtGui.QPalette;
 limited with QtAda6.QtGui.QPalette.ColorRole;
+limited with QtAda6.QtCore.Qt.GlobalColor;
+limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtWidgets.QStyle.PrimitiveElement;
 limited with QtAda6.QtGui.QIcon.Mode;
-limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtWidgets.QStyle.SubControl;
 limited with QtAda6.QtGui.QFontMetrics;
@@ -32,7 +36,6 @@ limited with QtAda6.QtWidgets.QApplication;
 limited with QtAda6.QtWidgets.QStyle.ContentsType;
 limited with QtAda6.QtWidgets.QStyle.StandardPixmap;
 limited with QtAda6.QtGui.QIcon;
-limited with QtAda6.QtGui.QPalette;
 limited with QtAda6.QtWidgets.QStyle.StyleHint;
 limited with QtAda6.QtWidgets.QStyleHintReturn;
 limited with QtAda6.QtWidgets.QStyle.SubElement;
@@ -43,8 +46,6 @@ package QtAda6.QtWidgets.QStyle is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   type UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is new Any;
-   type UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function alignedRect
@@ -68,20 +69,42 @@ package QtAda6.QtWidgets.QStyle is
    procedure drawItemPixmap
      (self     : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
       rect_P   : access QtAda6.QtCore.QRect.Inst'Class; alignment_P : int;
-      pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str);
-   procedure drawItemText
+      pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class);
+   procedure drawItemPixmap
+     (self     : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
+      rect_P   : access QtAda6.QtCore.QRect.Inst'Class; alignment_P : int;
+      pixmap_P : access QtAda6.QtGui.QImage.Inst'Class);
+   procedure drawItemPixmap
      (self   : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
-      rect_P : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int;
-      pal_P  : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor; enabled_P : bool;
-      text_P : str; textRole_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class := null);
+      rect_P : access QtAda6.QtCore.QRect.Inst'Class; alignment_P : int; pixmap_P : str);
+   procedure drawItemText
+     (self      : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
+      rect_P    : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int; pal_P : access QtAda6.QtGui.QPalette.Inst'Class;
+      enabled_P : bool; text_P : str; textRole_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class := null);
+   procedure drawItemText
+     (self       : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
+      rect_P     : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int;
+      pal_P      : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class; enabled_P : bool; text_P : str;
+      textRole_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class := null);
+   procedure drawItemText
+     (self      : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
+      rect_P    : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int; pal_P : access QtAda6.QtGui.QColor.Inst'Class;
+      enabled_P : bool; text_P : str; textRole_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class := null);
    procedure drawPrimitive
      (self     : access Inst; pe_P : access QtAda6.QtWidgets.QStyle.PrimitiveElement.Inst'Class;
       opt_P    : access QtAda6.QtWidgets.QStyleOption.Inst'Class; p_P : access QtAda6.QtGui.QPainter.Inst'Class;
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null);
    function generatedIconPixmap
      (self     : access Inst; iconMode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class;
-      pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str;
-      opt_P    : access QtAda6.QtWidgets.QStyleOption.Inst'Class) return access QtAda6.QtGui.QPixmap.Inst'Class;
+      pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class; opt_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class)
+      return access QtAda6.QtGui.QPixmap.Inst'Class;
+   function generatedIconPixmap
+     (self     : access Inst; iconMode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class;
+      pixmap_P : access QtAda6.QtGui.QImage.Inst'Class; opt_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class)
+      return access QtAda6.QtGui.QPixmap.Inst'Class;
+   function generatedIconPixmap
+     (self  : access Inst; iconMode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class; pixmap_P : str;
+      opt_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class) return access QtAda6.QtGui.QPixmap.Inst'Class;
    function hitTestComplexControl
      (self     : access Inst; cc_P : access QtAda6.QtWidgets.QStyle.ComplexControl.Inst'Class;
       opt_P    : access QtAda6.QtWidgets.QStyleOptionComplex.Inst'Class; pt_P : access QtAda6.QtCore.QPoint.Inst'Class;
@@ -89,7 +112,13 @@ package QtAda6.QtWidgets.QStyle is
       return access QtAda6.QtWidgets.QStyle.SubControl.Inst'Class;
    function itemPixmapRect
      (self     : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int;
-      pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str) return access QtAda6.QtCore.QRect.Inst'Class;
+      pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class) return access QtAda6.QtCore.QRect.Inst'Class;
+   function itemPixmapRect
+     (self     : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int;
+      pixmap_P : access QtAda6.QtGui.QImage.Inst'Class) return access QtAda6.QtCore.QRect.Inst'Class;
+   function itemPixmapRect
+     (self : access Inst; r_P : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int; pixmap_P : str)
+      return access QtAda6.QtCore.QRect.Inst'Class;
    function itemTextRect
      (self : access Inst; fm_P : access QtAda6.QtGui.QFontMetrics.Inst'Class;
       r_P  : access QtAda6.QtCore.QRect.Inst'Class; flags_P : int; enabled_P : bool; text_P : str)
@@ -106,8 +135,9 @@ package QtAda6.QtWidgets.QStyle is
       option_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class := null;
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class      := null) return int;
    procedure polish (self : access Inst; application_P : access QtAda6.QtWidgets.QApplication.Inst'Class);
-   procedure polish
-     (self : access Inst; palette_P : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor);
+   procedure polish (self : access Inst; palette_P : access QtAda6.QtGui.QPalette.Inst'Class);
+   procedure polish (self : access Inst; palette_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure polish (self : access Inst; palette_P : access QtAda6.QtGui.QColor.Inst'Class);
    procedure polish (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    function proxy (self : access Inst) return access QtAda6.QtWidgets.QStyle.Inst'Class;
    function sizeFromContents

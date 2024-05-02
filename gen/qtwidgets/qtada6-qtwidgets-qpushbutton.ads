@@ -8,7 +8,9 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtGui.QIcon;
 limited with QtAda6.QtWidgets.QWidget;
+limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtGui.QFocusEvent;
 limited with QtAda6.QtCore.QPoint;
@@ -25,10 +27,12 @@ package QtAda6.QtWidgets.QPushButton is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractButton.Inst with null record;
-   type UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is new Any;
    procedure Finalize (Self : in out Class);
    function Create
-     (icon_P   : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
+     (icon_P   : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str;
+      parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
+   function Create
+     (icon_P   : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str;
       parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function Create (text_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;

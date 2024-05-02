@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtWidgets.QMdiArea.WindowOrder;
 with QtAda6.QtWidgets.QMdiSubWindow;
@@ -22,6 +21,12 @@ with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.QSize;
 with QtAda6.QtGui.QPaintEvent;
 with QtAda6.QtGui.QResizeEvent;
+with QtAda6.QtCore.Qt.BrushStyle;
+with QtAda6.QtCore.Qt.GlobalColor;
+with QtAda6.QtGui.QColor;
+with QtAda6.QtGui.QGradient;
+with QtAda6.QtGui.QImage;
+with QtAda6.QtGui.QPixmap;
 with QtAda6.QtWidgets.QMdiArea.AreaOption;
 with QtAda6.QtWidgets.QTabWidget.TabPosition;
 with QtAda6.QtWidgets.QTabWidget.TabShape;
@@ -44,7 +49,7 @@ package body QtAda6.QtWidgets.QMdiArea is
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "subWindowActivated"));
    end subWindowActivated;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMdiArea");
       Args  := Tuple_New (0);
@@ -55,7 +60,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure activateNextSubWindow (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "activateNextSubWindow");
       Args   := Tuple_New (0);
@@ -63,7 +68,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end activateNextSubWindow;
    procedure activatePreviousSubWindow (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "activatePreviousSubWindow");
       Args   := Tuple_New (0);
@@ -71,7 +76,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end activatePreviousSubWindow;
    function activationOrder (self : access Inst) return access QtAda6.QtWidgets.QMdiArea.WindowOrder.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QMdiArea.WindowOrder.Class := new QtAda6.QtWidgets.QMdiArea.WindowOrder.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "activationOrder");
@@ -82,7 +87,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       return Ret;
    end activationOrder;
    function activeSubWindow (self : access Inst) return access QtAda6.QtWidgets.QMdiSubWindow.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QMdiSubWindow.Class := new QtAda6.QtWidgets.QMdiSubWindow.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "activeSubWindow");
@@ -97,7 +102,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       flags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null)
       return access QtAda6.QtWidgets.QMdiSubWindow.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QMdiSubWindow.Class := new QtAda6.QtWidgets.QMdiSubWindow.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addSubWindow");
@@ -112,8 +117,8 @@ package body QtAda6.QtWidgets.QMdiArea is
       return Ret;
    end addSubWindow;
    function background (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "background");
       Args             := Tuple_New (0);
@@ -123,7 +128,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       return Ret;
    end background;
    procedure cascadeSubWindows (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cascadeSubWindows");
       Args   := Tuple_New (0);
@@ -131,7 +136,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end cascadeSubWindows;
    procedure childEvent (self : access Inst; childEvent_P : access QtAda6.QtCore.QChildEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "childEvent");
       Args   := Tuple_New (1);
@@ -140,7 +145,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end childEvent;
    procedure closeActiveSubWindow (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "closeActiveSubWindow");
       Args   := Tuple_New (0);
@@ -148,7 +153,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end closeActiveSubWindow;
    procedure closeAllSubWindows (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "closeAllSubWindows");
       Args   := Tuple_New (0);
@@ -156,7 +161,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end closeAllSubWindows;
    function currentSubWindow (self : access Inst) return access QtAda6.QtWidgets.QMdiSubWindow.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QMdiSubWindow.Class := new QtAda6.QtWidgets.QMdiSubWindow.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentSubWindow");
@@ -167,7 +172,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       return Ret;
    end currentSubWindow;
    function documentMode (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "documentMode");
       Args   := Tuple_New (0);
@@ -176,7 +181,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       return To_Ada (Result);
    end documentMode;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -189,7 +194,7 @@ package body QtAda6.QtWidgets.QMdiArea is
      (self    : access Inst; object_P : access QtAda6.QtCore.QObject.Inst'Class;
       event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "eventFilter");
       Args   := Tuple_New (2);
@@ -200,8 +205,8 @@ package body QtAda6.QtWidgets.QMdiArea is
       return To_Ada (Result);
    end eventFilter;
    function minimumSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSizeHint");
       Args             := Tuple_New (0);
@@ -211,7 +216,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       return Ret;
    end minimumSizeHint;
    procedure paintEvent (self : access Inst; paintEvent_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -220,7 +225,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure removeSubWindow (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeSubWindow");
       Args   := Tuple_New (1);
@@ -229,7 +234,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end removeSubWindow;
    procedure resizeEvent (self : access Inst; resizeEvent_P : access QtAda6.QtGui.QResizeEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resizeEvent");
       Args   := Tuple_New (1);
@@ -238,7 +243,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end resizeEvent;
    procedure scrollContentsBy (self : access Inst; dx_P : int; dy_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "scrollContentsBy");
       Args   := Tuple_New (2);
@@ -249,7 +254,7 @@ package body QtAda6.QtWidgets.QMdiArea is
    end scrollContentsBy;
    procedure setActivationOrder (self : access Inst; order_P : access QtAda6.QtWidgets.QMdiArea.WindowOrder.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setActivationOrder");
       Args   := Tuple_New (1);
@@ -258,7 +263,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setActivationOrder;
    procedure setActiveSubWindow (self : access Inst; window_P : access QtAda6.QtWidgets.QMdiSubWindow.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setActiveSubWindow");
       Args   := Tuple_New (1);
@@ -266,11 +271,62 @@ package body QtAda6.QtWidgets.QMdiArea is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setActiveSubWindow;
-   procedure setBackground
-     (self         : access Inst;
-      background_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setBackground (self : access Inst; background_P : access QtAda6.QtGui.QBrush.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBackground");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if background_P /= null then background_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBackground;
+   procedure setBackground (self : access Inst; background_P : access QtAda6.QtCore.Qt.BrushStyle.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBackground");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if background_P /= null then background_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBackground;
+   procedure setBackground (self : access Inst; background_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBackground");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if background_P /= null then background_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBackground;
+   procedure setBackground (self : access Inst; background_P : access QtAda6.QtGui.QColor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBackground");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if background_P /= null then background_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBackground;
+   procedure setBackground (self : access Inst; background_P : access QtAda6.QtGui.QGradient.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBackground");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if background_P /= null then background_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBackground;
+   procedure setBackground (self : access Inst; background_P : access QtAda6.QtGui.QImage.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBackground");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if background_P /= null then background_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBackground;
+   procedure setBackground (self : access Inst; background_P : access QtAda6.QtGui.QPixmap.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBackground");
       Args   := Tuple_New (1);
@@ -279,7 +335,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setBackground;
    procedure setDocumentMode (self : access Inst; enabled_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDocumentMode");
       Args   := Tuple_New (1);
@@ -290,7 +346,7 @@ package body QtAda6.QtWidgets.QMdiArea is
    procedure setOption
      (self : access Inst; option_P : access QtAda6.QtWidgets.QMdiArea.AreaOption.Inst'Class; on_P : bool := False)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOption");
       Args   := Tuple_New (1);
@@ -303,7 +359,7 @@ package body QtAda6.QtWidgets.QMdiArea is
    end setOption;
    procedure setTabPosition (self : access Inst; position_P : access QtAda6.QtWidgets.QTabWidget.TabPosition.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabPosition");
       Args   := Tuple_New (1);
@@ -312,7 +368,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setTabPosition;
    procedure setTabShape (self : access Inst; shape_P : access QtAda6.QtWidgets.QTabWidget.TabShape.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabShape");
       Args   := Tuple_New (1);
@@ -321,7 +377,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setTabShape;
    procedure setTabsClosable (self : access Inst; closable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabsClosable");
       Args   := Tuple_New (1);
@@ -330,7 +386,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setTabsClosable;
    procedure setTabsMovable (self : access Inst; movable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTabsMovable");
       Args   := Tuple_New (1);
@@ -339,7 +395,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setTabsMovable;
    procedure setViewMode (self : access Inst; mode_P : access QtAda6.QtWidgets.QMdiArea.ViewMode.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setViewMode");
       Args   := Tuple_New (1);
@@ -348,7 +404,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setViewMode;
    procedure setupViewport (self : access Inst; viewport_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setupViewport");
       Args   := Tuple_New (1);
@@ -357,7 +413,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setupViewport;
    procedure showEvent (self : access Inst; showEvent_P : access QtAda6.QtGui.QShowEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "showEvent");
       Args   := Tuple_New (1);
@@ -366,8 +422,8 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end showEvent;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -380,7 +436,7 @@ package body QtAda6.QtWidgets.QMdiArea is
      (self : access Inst; order_P : access QtAda6.QtWidgets.QMdiArea.WindowOrder.Inst'Class := null)
       return LIST_QtAda6_QtWidgets_QMdiSubWindow
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "subWindowList");
       Args   := Tuple_New (0);
@@ -389,10 +445,14 @@ package body QtAda6.QtWidgets.QMdiArea is
          Dict_SetItemString (Dict, "order", order_P.Python_Proxy);
       end if;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtWidgets_QMdiSubWindow (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end subWindowList;
    function tabPosition (self : access Inst) return access QtAda6.QtWidgets.QTabWidget.TabPosition.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QTabWidget.TabPosition.Class := new QtAda6.QtWidgets.QTabWidget.TabPosition.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "tabPosition");
@@ -403,7 +463,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       return Ret;
    end tabPosition;
    function tabShape (self : access Inst) return access QtAda6.QtWidgets.QTabWidget.TabShape.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QTabWidget.TabShape.Class := new QtAda6.QtWidgets.QTabWidget.TabShape.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "tabShape");
@@ -414,7 +474,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       return Ret;
    end tabShape;
    function tabsClosable (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabsClosable");
       Args   := Tuple_New (0);
@@ -423,7 +483,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       return To_Ada (Result);
    end tabsClosable;
    function tabsMovable (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tabsMovable");
       Args   := Tuple_New (0);
@@ -434,7 +494,7 @@ package body QtAda6.QtWidgets.QMdiArea is
    function testOption
      (self : access Inst; opton_P : access QtAda6.QtWidgets.QMdiArea.AreaOption.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "testOption");
       Args   := Tuple_New (1);
@@ -444,7 +504,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       return To_Ada (Result);
    end testOption;
    procedure tileSubWindows (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tileSubWindows");
       Args   := Tuple_New (0);
@@ -452,7 +512,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end tileSubWindows;
    procedure timerEvent (self : access Inst; timerEvent_P : access QtAda6.QtCore.QTimerEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "timerEvent");
       Args   := Tuple_New (1);
@@ -461,7 +521,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       Result := Object_Call (Method, Args, Dict, True);
    end timerEvent;
    function viewMode_F (self : access Inst) return access QtAda6.QtWidgets.QMdiArea.ViewMode.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QMdiArea.ViewMode.Class := new QtAda6.QtWidgets.QMdiArea.ViewMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "viewMode");
@@ -472,7 +532,7 @@ package body QtAda6.QtWidgets.QMdiArea is
       return Ret;
    end viewMode_F;
    function viewportEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "viewportEvent");
       Args   := Tuple_New (1);

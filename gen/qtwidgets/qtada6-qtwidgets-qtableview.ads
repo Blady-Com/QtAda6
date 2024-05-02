@@ -9,10 +9,11 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtWidgets.QWidget;
+limited with QtAda6.QtCore.QModelIndex;
+limited with QtAda6.QtCore.QPersistentModelIndex;
 limited with QtAda6.QtCore.Qt.PenStyle;
 limited with QtAda6.QtWidgets.QHeaderView;
 limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtWidgets.QStyleOptionViewItem;
 limited with QtAda6.QtWidgets.QAbstractItemView.CursorAction;
 limited with QtAda6.QtCore.Qt.KeyboardModifier;
@@ -34,7 +35,6 @@ package QtAda6.QtWidgets.QTableView is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractItemView.Inst with null record;
-   type UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is new Any;
    subtype LIST_QtAda6_QtCore_QModelIndex is QtAda6.QtCore.QModelIndex.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
@@ -47,8 +47,17 @@ package QtAda6.QtWidgets.QTableView is
    function columnViewportPosition (self : access Inst; column_P : int) return int;
    function columnWidth (self : access Inst; column_P : int) return int;
    procedure currentChanged
-     (self       : access Inst; current_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
-      previous_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
+     (self       : access Inst; current_P : access QtAda6.QtCore.QModelIndex.Inst'Class;
+      previous_P : access QtAda6.QtCore.QModelIndex.Inst'Class);
+   procedure currentChanged
+     (self       : access Inst; current_P : access QtAda6.QtCore.QModelIndex.Inst'Class;
+      previous_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class);
+   procedure currentChanged
+     (self       : access Inst; current_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class;
+      previous_P : access QtAda6.QtCore.QModelIndex.Inst'Class);
+   procedure currentChanged
+     (self       : access Inst; current_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class;
+      previous_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class);
    procedure doItemsLayout (self : access Inst);
    function gridStyle (self : access Inst) return access QtAda6.QtCore.Qt.PenStyle.Inst'Class;
    procedure hideColumn (self : access Inst; column_P : int);
@@ -63,8 +72,9 @@ package QtAda6.QtWidgets.QTableView is
      (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionViewItem.Inst'Class);
    function isColumnHidden (self : access Inst; column_P : int) return bool;
    function isCornerButtonEnabled (self : access Inst) return bool;
+   function isIndexHidden (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool;
    function isIndexHidden
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool;
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool;
    function isRowHidden (self : access Inst; row_P : int) return bool;
    function isSortingEnabled (self : access Inst) return bool;
    function moveCursor
@@ -85,7 +95,10 @@ package QtAda6.QtWidgets.QTableView is
    function rowViewportPosition (self : access Inst; row_P : int) return int;
    procedure scrollContentsBy (self : access Inst; dx_P : int; dy_P : int);
    procedure scrollTo
-     (self   : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
+     (self   : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class;
+      hint_P : access QtAda6.QtWidgets.QAbstractItemView.ScrollHint.Inst'Class := null);
+   procedure scrollTo
+     (self   : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class;
       hint_P : access QtAda6.QtWidgets.QAbstractItemView.ScrollHint.Inst'Class := null);
    procedure selectColumn (self : access Inst; column_P : int);
    procedure selectRow (self : access Inst; row_P : int);
@@ -99,8 +112,8 @@ package QtAda6.QtWidgets.QTableView is
    procedure setGridStyle (self : access Inst; style_P : access QtAda6.QtCore.Qt.PenStyle.Inst'Class);
    procedure setHorizontalHeader (self : access Inst; header_P : access QtAda6.QtWidgets.QHeaderView.Inst'Class);
    procedure setModel (self : access Inst; model_P : access QtAda6.QtCore.QAbstractItemModel.Inst'Class);
-   procedure setRootIndex
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex);
+   procedure setRootIndex (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class);
+   procedure setRootIndex (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class);
    procedure setRowHeight (self : access Inst; row_P : int; height_P : int);
    procedure setRowHidden (self : access Inst; row_P : int; hide_P : bool);
    procedure setSelection
@@ -126,7 +139,10 @@ package QtAda6.QtWidgets.QTableView is
    procedure verticalScrollbarAction (self : access Inst; action_P : int);
    function viewportSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class;
    function visualRect
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
+      return access QtAda6.QtCore.QRect.Inst'Class;
+   function visualRect
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
       return access QtAda6.QtCore.QRect.Inst'Class;
    function visualRegionForSelection
      (self : access Inst; selection_P : access QtAda6.QtCore.QItemSelection.Inst'Class)

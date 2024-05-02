@@ -14,6 +14,13 @@ with QtAda6.QtWidgets.QGraphicsItem;
 with QtAda6.QtGui.QBrush;
 with QtAda6.QtGui.QPainterPath;
 with QtAda6.QtGui.QPen;
+with QtAda6.QtCore.Qt.BrushStyle;
+with QtAda6.QtCore.Qt.GlobalColor;
+with QtAda6.QtGui.QColor;
+with QtAda6.QtGui.QGradient;
+with QtAda6.QtGui.QImage;
+with QtAda6.QtGui.QPixmap;
+with QtAda6.QtCore.Qt.PenStyle;
 package body QtAda6.QtWidgets.QAbstractGraphicsShapeItem is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -25,7 +32,7 @@ package body QtAda6.QtWidgets.QAbstractGraphicsShapeItem is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractGraphicsShapeItem");
       Args  := Tuple_New (0);
@@ -36,8 +43,8 @@ package body QtAda6.QtWidgets.QAbstractGraphicsShapeItem is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function brush (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "brush");
       Args             := Tuple_New (0);
@@ -47,7 +54,7 @@ package body QtAda6.QtWidgets.QAbstractGraphicsShapeItem is
       return Ret;
    end brush;
    function isObscuredBy (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isObscuredBy");
       Args   := Tuple_New (1);
@@ -57,7 +64,7 @@ package body QtAda6.QtWidgets.QAbstractGraphicsShapeItem is
       return To_Ada (Result);
    end isObscuredBy;
    function opaqueArea (self : access Inst) return access QtAda6.QtGui.QPainterPath.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPainterPath.Class := new QtAda6.QtGui.QPainterPath.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "opaqueArea");
@@ -68,8 +75,8 @@ package body QtAda6.QtWidgets.QAbstractGraphicsShapeItem is
       return Ret;
    end opaqueArea;
    function pen (self : access Inst) return access QtAda6.QtGui.QPen.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPen.Class := new QtAda6.QtGui.QPen.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QPen.Class := new QtAda6.QtGui.QPen.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "pen");
       Args             := Tuple_New (0);
@@ -78,11 +85,8 @@ package body QtAda6.QtWidgets.QAbstractGraphicsShapeItem is
       Ret.Python_Proxy := Result;
       return Ret;
    end pen;
-   procedure setBrush
-     (self    : access Inst;
-      brush_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setBrush (self : access Inst; brush_P : access QtAda6.QtGui.QBrush.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
       Args   := Tuple_New (1);
@@ -90,9 +94,80 @@ package body QtAda6.QtWidgets.QAbstractGraphicsShapeItem is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setBrush;
-   procedure setPen (self : access Inst; pen_P : UNION_QtAda6_QtGui_QPen_QtAda6_QtCore_Qt_PenStyle_QtAda6_QtGui_QColor)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setBrush (self : access Inst; brush_P : access QtAda6.QtCore.Qt.BrushStyle.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush (self : access Inst; brush_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush (self : access Inst; brush_P : access QtAda6.QtGui.QColor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush (self : access Inst; brush_P : access QtAda6.QtGui.QGradient.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush (self : access Inst; brush_P : access QtAda6.QtGui.QImage.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setBrush (self : access Inst; brush_P : access QtAda6.QtGui.QPixmap.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setBrush");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if brush_P /= null then brush_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setBrush;
+   procedure setPen (self : access Inst; pen_P : access QtAda6.QtGui.QPen.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPen");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pen_P /= null then pen_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPen;
+   procedure setPen (self : access Inst; pen_P : access QtAda6.QtCore.Qt.PenStyle.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPen");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pen_P /= null then pen_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPen;
+   procedure setPen (self : access Inst; pen_P : access QtAda6.QtGui.QColor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPen");
       Args   := Tuple_New (1);

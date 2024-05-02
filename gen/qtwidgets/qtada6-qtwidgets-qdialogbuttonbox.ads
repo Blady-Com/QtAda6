@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QDialogButtonBox.StandardButton;
 limited with QtAda6.QtCore.Qt.Orientation;
 limited with QtAda6.QtWidgets.QAbstractButton;
@@ -16,6 +15,7 @@ limited with QtAda6.QtWidgets.QDialogButtonBox.ButtonRole;
 limited with QtAda6.QtWidgets.QPushButton;
 limited with QtAda6.QtCore.QEvent;
 with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QDialogButtonBox is
    type Inst;
    type Inst_Access is access all Inst;

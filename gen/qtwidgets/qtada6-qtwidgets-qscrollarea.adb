@@ -27,7 +27,7 @@ package body QtAda6.QtWidgets.QScrollArea is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScrollArea");
       Args  := Tuple_New (0);
@@ -38,7 +38,7 @@ package body QtAda6.QtWidgets.QScrollArea is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function alignment (self : access Inst) return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.AlignmentFlag.Class := new QtAda6.QtCore.Qt.AlignmentFlag.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "alignment");
@@ -49,7 +49,7 @@ package body QtAda6.QtWidgets.QScrollArea is
       return Ret;
    end alignment;
    procedure ensureVisible (self : access Inst; x_P : int; y_P : int; xmargin_P : int := 0; ymargin_P : int := 0) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "ensureVisible");
       Args   := Tuple_New (2);
@@ -68,7 +68,7 @@ package body QtAda6.QtWidgets.QScrollArea is
      (self      : access Inst; childWidget_P : access QtAda6.QtWidgets.QWidget.Inst'Class; xmargin_P : int := 0;
       ymargin_P : int := 0)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "ensureWidgetVisible");
       Args   := Tuple_New (1);
@@ -83,7 +83,7 @@ package body QtAda6.QtWidgets.QScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end ensureWidgetVisible;
    function event (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -96,7 +96,7 @@ package body QtAda6.QtWidgets.QScrollArea is
      (self    : access Inst; arg_1_P : access QtAda6.QtCore.QObject.Inst'Class;
       arg_2_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "eventFilter");
       Args   := Tuple_New (2);
@@ -107,7 +107,7 @@ package body QtAda6.QtWidgets.QScrollArea is
       return To_Ada (Result);
    end eventFilter;
    function focusNextPrevChild (self : access Inst; next_P : bool) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "focusNextPrevChild");
       Args   := Tuple_New (1);
@@ -117,7 +117,7 @@ package body QtAda6.QtWidgets.QScrollArea is
       return To_Ada (Result);
    end focusNextPrevChild;
    procedure resizeEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QResizeEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resizeEvent");
       Args   := Tuple_New (1);
@@ -126,7 +126,7 @@ package body QtAda6.QtWidgets.QScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end resizeEvent;
    procedure scrollContentsBy (self : access Inst; dx_P : int; dy_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "scrollContentsBy");
       Args   := Tuple_New (2);
@@ -136,7 +136,7 @@ package body QtAda6.QtWidgets.QScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end scrollContentsBy;
    procedure setAlignment (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAlignment");
       Args   := Tuple_New (1);
@@ -145,7 +145,7 @@ package body QtAda6.QtWidgets.QScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setAlignment;
    procedure setWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setWidget");
       Args   := Tuple_New (1);
@@ -154,7 +154,7 @@ package body QtAda6.QtWidgets.QScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setWidget;
    procedure setWidgetResizable (self : access Inst; resizable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setWidgetResizable");
       Args   := Tuple_New (1);
@@ -163,8 +163,8 @@ package body QtAda6.QtWidgets.QScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setWidgetResizable;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -174,7 +174,7 @@ package body QtAda6.QtWidgets.QScrollArea is
       return Ret;
    end sizeHint;
    function takeWidget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "takeWidget");
@@ -185,8 +185,8 @@ package body QtAda6.QtWidgets.QScrollArea is
       return Ret;
    end takeWidget;
    function viewportSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "viewportSizeHint");
       Args             := Tuple_New (0);
@@ -196,7 +196,7 @@ package body QtAda6.QtWidgets.QScrollArea is
       return Ret;
    end viewportSizeHint;
    function widget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "widget");
@@ -207,7 +207,7 @@ package body QtAda6.QtWidgets.QScrollArea is
       return Ret;
    end widget;
    function widgetResizable (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "widgetResizable");
       Args   := Tuple_New (0);

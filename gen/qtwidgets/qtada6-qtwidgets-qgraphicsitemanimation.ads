@@ -10,6 +10,8 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtWidgets.QGraphicsItem;
 limited with QtAda6.QtCore.QPointF;
+limited with QtAda6.QtCore.QPoint;
+limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtCore.QTimeLine;
 limited with QtAda6.QtGui.QTransform;
 with QtAda6.QtCore.QObject;
@@ -19,9 +21,16 @@ package QtAda6.QtWidgets.QGraphicsItemAnimation is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
+   type TUPLE_float_QtAda6_QtCore_QPointF is record
+      C0 : float;
+      C1 : access QtAda6.QtCore.QPointF.Inst'Class;
+   end record;
    type LIST_TUPLE_float_QtAda6_QtCore_QPointF is array (Positive range <>) of TUPLE_float_QtAda6_QtCore_QPointF;
+   type TUPLE_float_float is record
+      C0 : float;
+      C1 : float;
+   end record;
    type LIST_TUPLE_float_float is array (Positive range <>) of TUPLE_float_float;
-   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
    procedure Finalize (Self : in out Class);
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    procedure afterAnimationStep (self : access Inst; step_P : float);
@@ -36,9 +45,9 @@ package QtAda6.QtWidgets.QGraphicsItemAnimation is
    function rotationList (self : access Inst) return LIST_TUPLE_float_float;
    function scaleList (self : access Inst) return LIST_TUPLE_float_QtAda6_QtCore_QPointF;
    procedure setItem (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class);
-   procedure setPosAt
-     (self  : access Inst; step_P : float;
-      pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element);
+   procedure setPosAt (self : access Inst; step_P : float; pos_P : access QtAda6.QtCore.QPointF.Inst'Class);
+   procedure setPosAt (self : access Inst; step_P : float; pos_P : access QtAda6.QtCore.QPoint.Inst'Class);
+   procedure setPosAt (self : access Inst; step_P : float; pos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class);
    procedure setRotationAt (self : access Inst; step_P : float; angle_P : float);
    procedure setScaleAt (self : access Inst; step_P : float; sx_P : float; sy_P : float);
    procedure setShearAt (self : access Inst; step_P : float; sh_P : float; sv_P : float);

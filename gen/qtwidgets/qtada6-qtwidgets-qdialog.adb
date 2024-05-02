@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.Qt.WindowType;
 with QtAda6.QtGui.QCloseEvent;
@@ -47,7 +46,7 @@ package body QtAda6.QtWidgets.QDialog is
      (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
       f_P      : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDialog");
       Args  := Tuple_New (0);
@@ -61,7 +60,7 @@ package body QtAda6.QtWidgets.QDialog is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure accept_K (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "accept");
       Args   := Tuple_New (0);
@@ -69,7 +68,7 @@ package body QtAda6.QtWidgets.QDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end accept_K;
    procedure adjustPosition (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "adjustPosition");
       Args   := Tuple_New (1);
@@ -78,7 +77,7 @@ package body QtAda6.QtWidgets.QDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end adjustPosition;
    procedure closeEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QCloseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "closeEvent");
       Args   := Tuple_New (1);
@@ -87,7 +86,7 @@ package body QtAda6.QtWidgets.QDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end closeEvent;
    procedure contextMenuEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QContextMenuEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "contextMenuEvent");
       Args   := Tuple_New (1);
@@ -96,7 +95,7 @@ package body QtAda6.QtWidgets.QDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end contextMenuEvent;
    procedure done (self : access Inst; arg_1_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "done");
       Args   := Tuple_New (1);
@@ -108,7 +107,7 @@ package body QtAda6.QtWidgets.QDialog is
      (self    : access Inst; arg_1_P : access QtAda6.QtCore.QObject.Inst'Class;
       arg_2_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "eventFilter");
       Args   := Tuple_New (2);
@@ -119,7 +118,7 @@ package body QtAda6.QtWidgets.QDialog is
       return To_Ada (Result);
    end eventFilter;
    function exec (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec");
       Args   := Tuple_New (0);
@@ -128,7 +127,7 @@ package body QtAda6.QtWidgets.QDialog is
       return Long_AsLong (Result);
    end exec;
    function exec_U (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec_");
       Args   := Tuple_New (0);
@@ -137,7 +136,7 @@ package body QtAda6.QtWidgets.QDialog is
       return Long_AsLong (Result);
    end exec_U;
    function isSizeGripEnabled (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isSizeGripEnabled");
       Args   := Tuple_New (0);
@@ -146,7 +145,7 @@ package body QtAda6.QtWidgets.QDialog is
       return To_Ada (Result);
    end isSizeGripEnabled;
    procedure keyPressEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QKeyEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "keyPressEvent");
       Args   := Tuple_New (1);
@@ -155,8 +154,8 @@ package body QtAda6.QtWidgets.QDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end keyPressEvent;
    function minimumSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSizeHint");
       Args             := Tuple_New (0);
@@ -166,7 +165,7 @@ package body QtAda6.QtWidgets.QDialog is
       return Ret;
    end minimumSizeHint;
    procedure open (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (0);
@@ -174,7 +173,7 @@ package body QtAda6.QtWidgets.QDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end open;
    procedure reject (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "reject");
       Args   := Tuple_New (0);
@@ -182,7 +181,7 @@ package body QtAda6.QtWidgets.QDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end reject;
    procedure resizeEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QResizeEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resizeEvent");
       Args   := Tuple_New (1);
@@ -191,7 +190,7 @@ package body QtAda6.QtWidgets.QDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end resizeEvent;
    function result (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "result");
       Args   := Tuple_New (0);
@@ -200,7 +199,7 @@ package body QtAda6.QtWidgets.QDialog is
       return Long_AsLong (Result);
    end result;
    procedure setModal (self : access Inst; modal_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setModal");
       Args   := Tuple_New (1);
@@ -209,7 +208,7 @@ package body QtAda6.QtWidgets.QDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setModal;
    procedure setResult (self : access Inst; r_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setResult");
       Args   := Tuple_New (1);
@@ -218,7 +217,7 @@ package body QtAda6.QtWidgets.QDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setResult;
    procedure setSizeGripEnabled (self : access Inst; arg_1_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSizeGripEnabled");
       Args   := Tuple_New (1);
@@ -227,7 +226,7 @@ package body QtAda6.QtWidgets.QDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setSizeGripEnabled;
    procedure setVisible (self : access Inst; visible_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVisible");
       Args   := Tuple_New (1);
@@ -236,7 +235,7 @@ package body QtAda6.QtWidgets.QDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setVisible;
    procedure showEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QShowEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "showEvent");
       Args   := Tuple_New (1);
@@ -245,8 +244,8 @@ package body QtAda6.QtWidgets.QDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end showEvent;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);

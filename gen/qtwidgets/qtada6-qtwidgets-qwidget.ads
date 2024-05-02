@@ -8,11 +8,15 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.Qt.WindowType;
 limited with QtAda6.QtGui.QActionEvent;
 limited with QtAda6.QtGui.QAction;
+limited with QtAda6.QtGui.QIcon;
+limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtCore.Qt.ConnectionType;
+limited with QtAda6.QtGui.QKeySequence;
+limited with QtAda6.QtCore.QKeyCombination;
+limited with QtAda6.QtGui.QKeySequence.StandardKey;
 limited with QtAda6.QtGui.QPalette.ColorRole;
 limited with QtAda6.QtGui.QBackingStore;
 limited with QtAda6.QtCore.QSize;
@@ -36,9 +40,9 @@ limited with QtAda6.QtCore.Qt.FocusPolicy;
 limited with QtAda6.QtGui.QFont;
 limited with QtAda6.QtGui.QFontInfo;
 limited with QtAda6.QtGui.QFontMetrics;
-limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtCore.Qt.GestureType;
 limited with QtAda6.QtCore.Qt.GestureFlag;
+limited with QtAda6.QtCore.Qt.CursorShape;
 limited with QtAda6.QtCore.Qt.ShortcutContext;
 limited with QtAda6.QtWidgets.QGraphicsEffect;
 limited with QtAda6.QtWidgets.QGraphicsProxyWidget;
@@ -52,19 +56,25 @@ limited with QtAda6.QtWidgets.QLayout;
 limited with QtAda6.QtCore.Qt.LayoutDirection;
 limited with QtAda6.QtCore.QLocale;
 limited with QtAda6.QtCore.QPointF;
+limited with QtAda6.QtGui.QPainterPath.Element;
 limited with QtAda6.QtGui.QPaintDevice.PaintDeviceMetric;
 limited with QtAda6.QtGui.QMouseEvent;
 limited with QtAda6.QtGui.QMoveEvent;
+limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtCore.Qt.WindowState;
 limited with QtAda6.QtGui.QPaintEngine;
 limited with QtAda6.QtGui.QPaintEvent;
 limited with QtAda6.QtGui.QPalette;
 limited with QtAda6.QtWidgets.QWidget.RenderFlag;
+limited with QtAda6.QtGui.QBitmap;
+limited with QtAda6.QtGui.QPolygon;
 limited with QtAda6.QtGui.QResizeEvent;
-limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtGui.QScreen;
 limited with QtAda6.QtCore.Qt.WidgetAttribute;
 limited with QtAda6.QtCore.Qt.FocusReason;
+limited with QtAda6.QtCore.QLocale.Language;
+limited with QtAda6.QtCore.Qt.GlobalColor;
+limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtWidgets.QSizePolicy;
 limited with QtAda6.QtWidgets.QSizePolicy.Policy;
 limited with QtAda6.QtWidgets.QStyle;
@@ -72,9 +82,9 @@ limited with QtAda6.QtCore.Qt.WindowModality;
 limited with QtAda6.QtGui.QShowEvent;
 limited with QtAda6.QtGui.QTabletEvent;
 limited with QtAda6.QtGui.QWheelEvent;
-limited with QtAda6.QtGui.QIcon;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtGui.QPaintDevice;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QWidget is
    type Inst;
    type Inst_Access is access all Inst;
@@ -84,18 +94,8 @@ package QtAda6.QtWidgets.QWidget is
 --  and QtAda6.QtGui.QPaintDevice.Inst
    with null record;
    subtype LIST_QtAda6_QtGui_QAction is QtAda6.QtGui.QAction.Class_Array;
-   type UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is new Any;
-   type UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int is
-     new Any;
    subtype SEQUENCE_QtAda6_QtGui_QAction is QtAda6.QtGui.QAction.Class_Array;
-   type UNION_QtAda6_QtGui_QCursor_QtAda6_QtCore_Qt_CursorShape_QtAda6_QtGui_QPixmap is new Any;
-   type UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element is new Any;
-   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
-   type UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect is new Any;
-   type UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str is new Any;
-   type UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language is new Any;
-   type UNION_QtAda6_QtGui_QBitmap_str is new Any;
-   type UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor is new Any;
+   type SEQUENCE_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function customContextMenuRequested
      (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- customContextMenuRequested(QPoint)
@@ -116,27 +116,146 @@ package QtAda6.QtWidgets.QWidget is
    procedure activateWindow (self : access Inst);
    procedure addAction (self : access Inst; action_P : access QtAda6.QtGui.QAction.Inst'Class);
    function addAction
-     (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str)
+     (self : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
+     (self : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str; callable_P : access Object'Class)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str;
       callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str;
       receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str;
+      receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
+      type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtGui.QKeySequence.Inst'Class) return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtCore.QKeyCombination.Inst'Class) return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str; shortcut_P : str)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str; shortcut_P : int)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtGui.QKeySequence.Inst'Class) return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtCore.QKeyCombination.Inst'Class) return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str; shortcut_P : str)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str; shortcut_P : int)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtGui.QKeySequence.Inst'Class; callable_P : access Object'Class)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtCore.QKeyCombination.Inst'Class; callable_P : access Object'Class)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class; callable_P : access Object'Class)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str; shortcut_P : str;
       callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str; shortcut_P : int;
+      callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtGui.QKeySequence.Inst'Class; callable_P : access Object'Class)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtCore.QKeyCombination.Inst'Class; callable_P : access Object'Class)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class; callable_P : access Object'Class)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str; shortcut_P : str;
+      callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str; shortcut_P : int;
+      callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtGui.QKeySequence.Inst'Class; receiver_P : access QtAda6.QtCore.QObject.Inst'Class;
+      member_P   : bytes; type_K_P : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
+      type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class;
+      receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
+      type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str; shortcut_P : str;
+      receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
+      type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str; shortcut_P : int;
+      receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
+      type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtGui.QKeySequence.Inst'Class; receiver_P : access QtAda6.QtCore.QObject.Inst'Class;
+      member_P   : bytes; type_K_P : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
+      type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str;
+      shortcut_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class;
+      receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
+      type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str; shortcut_P : str;
+      receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
+      type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str; shortcut_P : int;
       receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
       return access QtAda6.QtGui.QAction.Inst'Class;
@@ -148,18 +267,55 @@ package QtAda6.QtWidgets.QWidget is
       type_K_P : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int)
+     (self : access Inst; text_P : str; shortcut_P : access QtAda6.QtGui.QKeySequence.Inst'Class)
       return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
+     (self : access Inst; text_P : str; shortcut_P : access QtAda6.QtCore.QKeyCombination.Inst'Class)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self : access Inst; text_P : str; shortcut_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self : access Inst; text_P : str; shortcut_P : str) return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self : access Inst; text_P : str; shortcut_P : int) return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; text_P : str; shortcut_P : access QtAda6.QtGui.QKeySequence.Inst'Class;
       callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
    function addAction
-     (self       : access Inst; text_P : str;
-      shortcut_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
+     (self       : access Inst; text_P : str; shortcut_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; text_P : str; shortcut_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class;
+      callable_P : access Object'Class) return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self : access Inst; text_P : str; shortcut_P : str; callable_P : access Object'Class)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self : access Inst; text_P : str; shortcut_P : int; callable_P : access Object'Class)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; text_P : str; shortcut_P : access QtAda6.QtGui.QKeySequence.Inst'Class;
       receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
       type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; text_P : str; shortcut_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
+      type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self       : access Inst; text_P : str; shortcut_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class;
+      receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes;
+      type_K_P   : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self     : access Inst; text_P : str; shortcut_P : str; receiver_P : access QtAda6.QtCore.QObject.Inst'Class;
+      member_P : bytes; type_K_P : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
+      return access QtAda6.QtGui.QAction.Inst'Class;
+   function addAction
+     (self     : access Inst; text_P : str; shortcut_P : int; receiver_P : access QtAda6.QtCore.QObject.Inst'Class;
+      member_P : bytes; type_K_P : access QtAda6.QtCore.Qt.ConnectionType.Inst'Class := null)
       return access QtAda6.QtGui.QAction.Inst'Class;
    procedure addActions (self : access Inst; actions_P : SEQUENCE_QtAda6_QtGui_QAction);
    procedure adjustSize (self : access Inst);
@@ -224,12 +380,24 @@ package QtAda6.QtWidgets.QWidget is
       flags_P : access QtAda6.QtCore.Qt.GestureFlag.Inst'Class := null);
    procedure grabKeyboard (self : access Inst);
    procedure grabMouse (self : access Inst);
-   procedure grabMouse
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QCursor_QtAda6_QtCore_Qt_CursorShape_QtAda6_QtGui_QPixmap);
+   procedure grabMouse (self : access Inst; arg_1_P : access QtAda6.QtGui.QCursor.Inst'Class);
+   procedure grabMouse (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.CursorShape.Inst'Class);
+   procedure grabMouse (self : access Inst; arg_1_P : access QtAda6.QtGui.QPixmap.Inst'Class);
    function grabShortcut
-     (self      : access Inst;
-      key_P : UNION_QtAda6_QtGui_QKeySequence_QtAda6_QtCore_QKeyCombination_QtAda6_QtGui_QKeySequence_StandardKey_str_int;
+     (self      : access Inst; key_P : access QtAda6.QtGui.QKeySequence.Inst'Class;
       context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return int;
+   function grabShortcut
+     (self      : access Inst; key_P : access QtAda6.QtCore.QKeyCombination.Inst'Class;
+      context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return int;
+   function grabShortcut
+     (self      : access Inst; key_P : access QtAda6.QtGui.QKeySequence.StandardKey.Inst'Class;
+      context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null) return int;
+   function grabShortcut
+     (self : access Inst; key_P : str; context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null)
+      return int;
+   function grabShortcut
+     (self : access Inst; key_P : int; context_P : access QtAda6.QtCore.Qt.ShortcutContext.Inst'Class := null)
+      return int;
    function graphicsEffect (self : access Inst) return access QtAda6.QtWidgets.QGraphicsEffect.Inst'Class;
    function graphicsProxyWidget (self : access Inst) return access QtAda6.QtWidgets.QGraphicsProxyWidget.Inst'Class;
    function hasFocus (self : access Inst) return bool;
@@ -280,38 +448,72 @@ package QtAda6.QtWidgets.QWidget is
       arg_2_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtCore.QPoint.Inst'Class;
    function mapFrom
      (self    : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
-      arg_2_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-      return access QtAda6.QtCore.QPointF.Inst'Class;
+      arg_2_P : access QtAda6.QtCore.QPointF.Inst'Class) return access QtAda6.QtCore.QPointF.Inst'Class;
+   function mapFrom
+     (self    : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
+      arg_2_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtCore.QPointF.Inst'Class;
+   function mapFrom
+     (self    : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
+      arg_2_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapFromGlobal
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QPoint.Inst'Class)
       return access QtAda6.QtCore.QPoint.Inst'Class;
    function mapFromGlobal
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; arg_1_P : access QtAda6.QtCore.QPointF.Inst'Class)
+      return access QtAda6.QtCore.QPointF.Inst'Class;
+   function mapFromGlobal
+     (self : access Inst; arg_1_P : access QtAda6.QtCore.QPoint.Inst'Class)
+      return access QtAda6.QtCore.QPointF.Inst'Class;
+   function mapFromGlobal
+     (self : access Inst; arg_1_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapFromParent
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QPoint.Inst'Class)
       return access QtAda6.QtCore.QPoint.Inst'Class;
    function mapFromParent
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; arg_1_P : access QtAda6.QtCore.QPointF.Inst'Class)
+      return access QtAda6.QtCore.QPointF.Inst'Class;
+   function mapFromParent
+     (self : access Inst; arg_1_P : access QtAda6.QtCore.QPoint.Inst'Class)
+      return access QtAda6.QtCore.QPointF.Inst'Class;
+   function mapFromParent
+     (self : access Inst; arg_1_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapTo
      (self    : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
       arg_2_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtCore.QPoint.Inst'Class;
    function mapTo
      (self    : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
-      arg_2_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-      return access QtAda6.QtCore.QPointF.Inst'Class;
+      arg_2_P : access QtAda6.QtCore.QPointF.Inst'Class) return access QtAda6.QtCore.QPointF.Inst'Class;
+   function mapTo
+     (self    : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
+      arg_2_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtCore.QPointF.Inst'Class;
+   function mapTo
+     (self    : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
+      arg_2_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapToGlobal
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QPoint.Inst'Class)
       return access QtAda6.QtCore.QPoint.Inst'Class;
    function mapToGlobal
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; arg_1_P : access QtAda6.QtCore.QPointF.Inst'Class)
+      return access QtAda6.QtCore.QPointF.Inst'Class;
+   function mapToGlobal
+     (self : access Inst; arg_1_P : access QtAda6.QtCore.QPoint.Inst'Class)
+      return access QtAda6.QtCore.QPointF.Inst'Class;
+   function mapToGlobal
+     (self : access Inst; arg_1_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function mapToParent
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QPoint.Inst'Class)
       return access QtAda6.QtCore.QPoint.Inst'Class;
    function mapToParent
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+     (self : access Inst; arg_1_P : access QtAda6.QtCore.QPointF.Inst'Class)
+      return access QtAda6.QtCore.QPointF.Inst'Class;
+   function mapToParent
+     (self : access Inst; arg_1_P : access QtAda6.QtCore.QPoint.Inst'Class)
+      return access QtAda6.QtCore.QPointF.Inst'Class;
+   function mapToParent
+     (self : access Inst; arg_1_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class)
       return access QtAda6.QtCore.QPointF.Inst'Class;
    function mask (self : access Inst) return access QtAda6.QtGui.QRegion.Inst'Class;
    function maximumHeight (self : access Inst) return int;
@@ -332,8 +534,9 @@ package QtAda6.QtWidgets.QWidget is
    procedure move (self : access Inst; x_P : int; y_P : int);
    procedure moveEvent (self : access Inst; event_P : access QtAda6.QtGui.QMoveEvent.Inst'Class);
    function nativeEvent
-     (self : access Inst; eventType_P : UNION_QtAda6_QtCore_QByteArray_bytes; message_P : int)
+     (self : access Inst; eventType_P : access QtAda6.QtCore.QByteArray.Inst'Class; message_P : int)
       return access Object'Class;
+   function nativeEvent (self : access Inst; eventType_P : bytes; message_P : int) return access Object'Class;
    function nativeParentWidget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class;
    function nextInFocusChain (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class;
    function normalGeometry (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class;
@@ -357,25 +560,55 @@ package QtAda6.QtWidgets.QWidget is
    procedure render
      (self           : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
       targetOffset_P : access QtAda6.QtCore.QPoint.Inst'Class;
-      sourceRegion_P : UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect :=
-        null;
-      renderFlags_P : access QtAda6.QtWidgets.QWidget.RenderFlag.Inst'Class := null);
+      sourceRegion_P : access QtAda6.QtGui.QRegion.Inst'Class                := null;
+      renderFlags_P  : access QtAda6.QtWidgets.QWidget.RenderFlag.Inst'Class := null);
+   procedure render
+     (self           : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
+      targetOffset_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      sourceRegion_P : access QtAda6.QtGui.QBitmap.Inst'Class                := null;
+      renderFlags_P  : access QtAda6.QtWidgets.QWidget.RenderFlag.Inst'Class := null);
+   procedure render
+     (self           : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
+      targetOffset_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      sourceRegion_P : access QtAda6.QtGui.QPolygon.Inst'Class               := null;
+      renderFlags_P  : access QtAda6.QtWidgets.QWidget.RenderFlag.Inst'Class := null);
+   procedure render
+     (self           : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
+      targetOffset_P : access QtAda6.QtCore.QPoint.Inst'Class;
+      sourceRegion_P : access QtAda6.QtCore.QRect.Inst'Class                 := null;
+      renderFlags_P  : access QtAda6.QtWidgets.QWidget.RenderFlag.Inst'Class := null);
    procedure render
      (self           : access Inst; target_P : access QtAda6.QtGui.QPaintDevice.Inst'Class;
-      targetOffset_P : access QtAda6.QtCore.QPoint.Inst'Class := null;
-      sourceRegion_P : UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect :=
-        null;
-      renderFlags_P : access QtAda6.QtWidgets.QWidget.RenderFlag.Inst'Class := null);
+      targetOffset_P : access QtAda6.QtCore.QPoint.Inst'Class                := null;
+      sourceRegion_P : access QtAda6.QtGui.QRegion.Inst'Class                := null;
+      renderFlags_P  : access QtAda6.QtWidgets.QWidget.RenderFlag.Inst'Class := null);
+   procedure render
+     (self           : access Inst; target_P : access QtAda6.QtGui.QPaintDevice.Inst'Class;
+      targetOffset_P : access QtAda6.QtCore.QPoint.Inst'Class                := null;
+      sourceRegion_P : access QtAda6.QtGui.QBitmap.Inst'Class                := null;
+      renderFlags_P  : access QtAda6.QtWidgets.QWidget.RenderFlag.Inst'Class := null);
+   procedure render
+     (self           : access Inst; target_P : access QtAda6.QtGui.QPaintDevice.Inst'Class;
+      targetOffset_P : access QtAda6.QtCore.QPoint.Inst'Class                := null;
+      sourceRegion_P : access QtAda6.QtGui.QPolygon.Inst'Class               := null;
+      renderFlags_P  : access QtAda6.QtWidgets.QWidget.RenderFlag.Inst'Class := null);
+   procedure render
+     (self           : access Inst; target_P : access QtAda6.QtGui.QPaintDevice.Inst'Class;
+      targetOffset_P : access QtAda6.QtCore.QPoint.Inst'Class                := null;
+      sourceRegion_P : access QtAda6.QtCore.QRect.Inst'Class                 := null;
+      renderFlags_P  : access QtAda6.QtWidgets.QWidget.RenderFlag.Inst'Class := null);
    procedure repaint (self : access Inst);
    procedure repaint (self : access Inst; arg_1_P : access QtAda6.QtCore.QRect.Inst'Class);
-   procedure repaint
-     (self    : access Inst;
-      arg_1_P : UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect);
+   procedure repaint (self : access Inst; arg_1_P : access QtAda6.QtGui.QRegion.Inst'Class);
+   procedure repaint (self : access Inst; arg_1_P : access QtAda6.QtGui.QBitmap.Inst'Class);
+   procedure repaint (self : access Inst; arg_1_P : access QtAda6.QtGui.QPolygon.Inst'Class);
+-- procedure repaint(self : access Inst;arg_1_P : access QtAda6.QtCore.QRect.Inst'Class);
    procedure repaint (self : access Inst; x_P : int; y_P : int; w_P : int; h_P : int);
    procedure resize (self : access Inst; arg_1_P : access QtAda6.QtCore.QSize.Inst'Class);
    procedure resize (self : access Inst; w_P : int; h_P : int);
    procedure resizeEvent (self : access Inst; event_P : access QtAda6.QtGui.QResizeEvent.Inst'Class);
-   function restoreGeometry (self : access Inst; geometry_P : UNION_QtAda6_QtCore_QByteArray_bytes) return bool;
+   function restoreGeometry (self : access Inst; geometry_P : access QtAda6.QtCore.QByteArray.Inst'Class) return bool;
+   function restoreGeometry (self : access Inst; geometry_P : bytes) return bool;
    function saveGeometry (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function screen (self : access Inst) return access QtAda6.QtGui.QScreen.Inst'Class;
    procedure scroll (self : access Inst; dx_P : int; dy_P : int);
@@ -392,8 +625,9 @@ package QtAda6.QtWidgets.QWidget is
    procedure setContentsMargins (self : access Inst; left_P : int; top_P : int; right_P : int; bottom_P : int);
    procedure setContentsMargins (self : access Inst; margins_P : access QtAda6.QtCore.QMargins.Inst'Class);
    procedure setContextMenuPolicy (self : access Inst; policy_P : access QtAda6.QtCore.Qt.ContextMenuPolicy.Inst'Class);
-   procedure setCursor
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QCursor_QtAda6_QtCore_Qt_CursorShape_QtAda6_QtGui_QPixmap);
+   procedure setCursor (self : access Inst; arg_1_P : access QtAda6.QtGui.QCursor.Inst'Class);
+   procedure setCursor (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.CursorShape.Inst'Class);
+   procedure setCursor (self : access Inst; arg_1_P : access QtAda6.QtGui.QPixmap.Inst'Class);
    procedure setDisabled (self : access Inst; arg_1_P : bool);
    procedure setEnabled (self : access Inst; arg_1_P : bool);
    procedure setFixedHeight (self : access Inst; h_P : int);
@@ -404,7 +638,9 @@ package QtAda6.QtWidgets.QWidget is
    procedure setFocus (self : access Inst; reason_P : access QtAda6.QtCore.Qt.FocusReason.Inst'Class);
    procedure setFocusPolicy (self : access Inst; policy_P : access QtAda6.QtCore.Qt.FocusPolicy.Inst'Class);
    procedure setFocusProxy (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
-   procedure setFont (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str);
+   procedure setFont (self : access Inst; arg_1_P : access QtAda6.QtGui.QFont.Inst'Class);
+   procedure setFont (self : access Inst; arg_1_P : str);
+   procedure setFont (self : access Inst; arg_1_P : SEQUENCE_str);
    procedure setForegroundRole (self : access Inst; arg_1_P : access QtAda6.QtGui.QPalette.ColorRole.Inst'Class);
    procedure setGeometry (self : access Inst; arg_1_P : access QtAda6.QtCore.QRect.Inst'Class);
    procedure setGeometry (self : access Inst; x_P : int; y_P : int; w_P : int; h_P : int);
@@ -413,11 +649,14 @@ package QtAda6.QtWidgets.QWidget is
    procedure setInputMethodHints (self : access Inst; hints_P : access QtAda6.QtCore.Qt.InputMethodHint.Inst'Class);
    procedure setLayout (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QLayout.Inst'Class);
    procedure setLayoutDirection (self : access Inst; direction_P : access QtAda6.QtCore.Qt.LayoutDirection.Inst'Class);
-   procedure setLocale (self : access Inst; locale_P : UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language);
-   procedure setMask (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QBitmap_str);
-   procedure setMask
-     (self    : access Inst;
-      arg_1_P : UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect);
+   procedure setLocale (self : access Inst; locale_P : access QtAda6.QtCore.QLocale.Inst'Class);
+   procedure setLocale (self : access Inst; locale_P : access QtAda6.QtCore.QLocale.Language.Inst'Class);
+   procedure setMask (self : access Inst; arg_1_P : access QtAda6.QtGui.QBitmap.Inst'Class);
+   procedure setMask (self : access Inst; arg_1_P : str);
+   procedure setMask (self : access Inst; arg_1_P : access QtAda6.QtGui.QRegion.Inst'Class);
+-- procedure setMask(self : access Inst;arg_1_P : access QtAda6.QtGui.QBitmap.Inst'Class);
+   procedure setMask (self : access Inst; arg_1_P : access QtAda6.QtGui.QPolygon.Inst'Class);
+   procedure setMask (self : access Inst; arg_1_P : access QtAda6.QtCore.QRect.Inst'Class);
    procedure setMaximumHeight (self : access Inst; maxh_P : int);
    procedure setMaximumSize (self : access Inst; arg_1_P : access QtAda6.QtCore.QSize.Inst'Class);
    procedure setMaximumSize (self : access Inst; maxw_P : int; maxh_P : int);
@@ -427,8 +666,9 @@ package QtAda6.QtWidgets.QWidget is
    procedure setMinimumSize (self : access Inst; minw_P : int; minh_P : int);
    procedure setMinimumWidth (self : access Inst; minw_P : int);
    procedure setMouseTracking (self : access Inst; enable_P : bool);
-   procedure setPalette
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor);
+   procedure setPalette (self : access Inst; arg_1_P : access QtAda6.QtGui.QPalette.Inst'Class);
+   procedure setPalette (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure setPalette (self : access Inst; arg_1_P : access QtAda6.QtGui.QColor.Inst'Class);
    procedure setParent (self : access Inst; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    procedure setParent
      (self : access Inst; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
@@ -457,7 +697,8 @@ package QtAda6.QtWidgets.QWidget is
    procedure setWindowFlag
      (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class; on_P : bool := False);
    procedure setWindowFlags (self : access Inst; type_K_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class);
-   procedure setWindowIcon (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
+   procedure setWindowIcon (self : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class);
+   procedure setWindowIcon (self : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class);
    procedure setWindowIconText (self : access Inst; arg_1_P : str);
    procedure setWindowModality
      (self : access Inst; windowModality_P : access QtAda6.QtCore.Qt.WindowModality.Inst'Class);
@@ -494,9 +735,10 @@ package QtAda6.QtWidgets.QWidget is
    procedure unsetLocale (self : access Inst);
    procedure update (self : access Inst);
    procedure update (self : access Inst; arg_1_P : access QtAda6.QtCore.QRect.Inst'Class);
-   procedure update
-     (self    : access Inst;
-      arg_1_P : UNION_QtAda6_QtGui_QRegion_QtAda6_QtGui_QBitmap_QtAda6_QtGui_QPolygon_QtAda6_QtCore_QRect);
+   procedure update (self : access Inst; arg_1_P : access QtAda6.QtGui.QRegion.Inst'Class);
+   procedure update (self : access Inst; arg_1_P : access QtAda6.QtGui.QBitmap.Inst'Class);
+   procedure update (self : access Inst; arg_1_P : access QtAda6.QtGui.QPolygon.Inst'Class);
+-- procedure update(self : access Inst;arg_1_P : access QtAda6.QtCore.QRect.Inst'Class);
    procedure update (self : access Inst; x_P : int; y_P : int; w_P : int; h_P : int);
    procedure updateGeometry (self : access Inst);
    procedure updateMicroFocus

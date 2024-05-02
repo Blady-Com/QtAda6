@@ -21,8 +21,17 @@ package body QtAda6.QtWidgets.QTileRules is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function Create (QTileRules_P : UNION_QtAda6_QtWidgets_QTileRules_QtAda6_QtCore_Qt_TileRule) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (QTileRules_P : access QtAda6.QtWidgets.QTileRules.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTileRules");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if QTileRules_P /= null then QTileRules_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (QTileRules_P : access QtAda6.QtCore.Qt.TileRule.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTileRules");
       Args  := Tuple_New (1);
@@ -34,7 +43,7 @@ package body QtAda6.QtWidgets.QTileRules is
      (horizontalRule_P : access QtAda6.QtCore.Qt.TileRule.Inst'Class;
       verticalRule_P   : access QtAda6.QtCore.Qt.TileRule.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTileRules");
       Args  := Tuple_New (2);
@@ -43,19 +52,8 @@ package body QtAda6.QtWidgets.QTileRules is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (rule_P : access QtAda6.QtCore.Qt.TileRule.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
-   begin
-      Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTileRules");
-      Args  := Tuple_New (0);
-      Dict  := Dict_New;
-      if rule_P /= null then
-         Dict_SetItemString (Dict, "rule", rule_P.Python_Proxy);
-      end if;
-      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
-   end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTileRules");
       Method := Object_GetAttrString (Class, "__copy__");

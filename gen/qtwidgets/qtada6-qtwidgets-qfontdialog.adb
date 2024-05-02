@@ -10,10 +10,9 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
+with QtAda6.QtGui.QFont;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.QEvent;
-with QtAda6.QtGui.QFont;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtWidgets.QFontDialog.FontDialogOption;
 package body QtAda6.QtWidgets.QFontDialog is
@@ -36,10 +35,10 @@ package body QtAda6.QtWidgets.QFontDialog is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "fontSelected"));
    end fontSelected;
    function Create
-     (initial_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str;
-      parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class
+     (initial_P : access QtAda6.QtGui.QFont.Inst'Class; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
+      return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFontDialog");
       Args  := Tuple_New (1);
@@ -50,8 +49,38 @@ package body QtAda6.QtWidgets.QFontDialog is
       end if;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
+   function Create (initial_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFontDialog");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (initial_P));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (initial_P : SEQUENCE_str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFontDialog");
+      Args  := Tuple_New (1);
+      List  := List_New (initial_P'Length);
+      for ind in initial_P'Range loop
+         List_SetItem (List, ssize_t (ind - initial_P'First), Unicode_FromString (initial_P (ind)));
+      end loop;
+      Tuple_SetItem (Args, 0, List);
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFontDialog");
       Args  := Tuple_New (0);
@@ -62,7 +91,7 @@ package body QtAda6.QtWidgets.QFontDialog is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure changeEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changeEvent");
       Args   := Tuple_New (1);
@@ -71,8 +100,8 @@ package body QtAda6.QtWidgets.QFontDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end changeEvent;
    function currentFont (self : access Inst) return access QtAda6.QtGui.QFont.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentFont");
       Args             := Tuple_New (0);
@@ -82,7 +111,7 @@ package body QtAda6.QtWidgets.QFontDialog is
       return Ret;
    end currentFont;
    procedure done (self : access Inst; result_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "done");
       Args   := Tuple_New (1);
@@ -94,7 +123,7 @@ package body QtAda6.QtWidgets.QFontDialog is
      (self    : access Inst; object_P : access QtAda6.QtCore.QObject.Inst'Class;
       event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "eventFilter");
       Args   := Tuple_New (2);
@@ -105,11 +134,11 @@ package body QtAda6.QtWidgets.QFontDialog is
       return To_Ada (Result);
    end eventFilter;
    function getFont
-     (initial_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str;
-      parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class                      := null; title_P : str := "";
-      options_P : access QtAda6.QtWidgets.QFontDialog.FontDialogOption.Inst'Class := null) return TUPLE
+     (initial_P : access QtAda6.QtGui.QFont.Inst'Class; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null;
+      title_P   : str := ""; options_P : access QtAda6.QtWidgets.QFontDialog.FontDialogOption.Inst'Class := null)
+      return TUPLE
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFontDialog");
       Method := Object_GetAttrString (Class, "getFont");
@@ -128,8 +157,58 @@ package body QtAda6.QtWidgets.QFontDialog is
       Result := Object_Call (Method, Args, Dict, True);
       return (null record);
    end getFont;
+   function getFont
+     (initial_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null; title_P : str := "";
+      options_P : access QtAda6.QtWidgets.QFontDialog.FontDialogOption.Inst'Class := null) return TUPLE
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFontDialog");
+      Method := Object_GetAttrString (Class, "getFont");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (initial_P));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      if title_P /= "" then
+         Dict_SetItemString (Dict, "title", Unicode_FromString (title_P));
+      end if;
+      if options_P /= null then
+         Dict_SetItemString (Dict, "options", options_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return (null record);
+   end getFont;
+   function getFont
+     (initial_P : SEQUENCE_str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null; title_P : str := "";
+      options_P : access QtAda6.QtWidgets.QFontDialog.FontDialogOption.Inst'Class := null) return TUPLE
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFontDialog");
+      Method := Object_GetAttrString (Class, "getFont");
+      Args   := Tuple_New (1);
+      List   := List_New (initial_P'Length);
+      for ind in initial_P'Range loop
+         List_SetItem (List, ssize_t (ind - initial_P'First), Unicode_FromString (initial_P (ind)));
+      end loop;
+      Tuple_SetItem (Args, 0, List);
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      if title_P /= "" then
+         Dict_SetItemString (Dict, "title", Unicode_FromString (title_P));
+      end if;
+      if options_P /= null then
+         Dict_SetItemString (Dict, "options", options_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return (null record);
+   end getFont;
    function getFont (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return TUPLE is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFontDialog");
       Method := Object_GetAttrString (Class, "getFont");
@@ -142,7 +221,7 @@ package body QtAda6.QtWidgets.QFontDialog is
       return (null record);
    end getFont;
    procedure open (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (0);
@@ -150,18 +229,18 @@ package body QtAda6.QtWidgets.QFontDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end open;
    procedure open (self : access Inst; receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if receiver_P /= null then receiver_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, Bytes_FromString (String (member_P)));
+      Tuple_SetItem (Args, 1, Bytes_FromString (Standard.String (member_P.all)));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end open;
    function options (self : access Inst) return access QtAda6.QtWidgets.QFontDialog.FontDialogOption.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QFontDialog.FontDialogOption.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QFontDialog.FontDialogOption.Class :=
         new QtAda6.QtWidgets.QFontDialog.FontDialogOption.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "options");
@@ -172,8 +251,8 @@ package body QtAda6.QtWidgets.QFontDialog is
       return Ret;
    end options;
    function selectedFont (self : access Inst) return access QtAda6.QtGui.QFont.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "selectedFont");
       Args             := Tuple_New (0);
@@ -182,8 +261,8 @@ package body QtAda6.QtWidgets.QFontDialog is
       Ret.Python_Proxy := Result;
       return Ret;
    end selectedFont;
-   procedure setCurrentFont (self : access Inst; font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setCurrentFont (self : access Inst; font_P : access QtAda6.QtGui.QFont.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentFont");
       Args   := Tuple_New (1);
@@ -191,11 +270,33 @@ package body QtAda6.QtWidgets.QFontDialog is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setCurrentFont;
+   procedure setCurrentFont (self : access Inst; font_P : str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setCurrentFont");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (font_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCurrentFont;
+   procedure setCurrentFont (self : access Inst; font_P : SEQUENCE_str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setCurrentFont");
+      Args   := Tuple_New (1);
+      List   := List_New (font_P'Length);
+      for ind in font_P'Range loop
+         List_SetItem (List, ssize_t (ind - font_P'First), Unicode_FromString (font_P (ind)));
+      end loop;
+      Tuple_SetItem (Args, 0, List);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCurrentFont;
    procedure setOption
      (self : access Inst; option_P : access QtAda6.QtWidgets.QFontDialog.FontDialogOption.Inst'Class;
       on_P : bool := False)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOption");
       Args   := Tuple_New (1);
@@ -209,7 +310,7 @@ package body QtAda6.QtWidgets.QFontDialog is
    procedure setOptions
      (self : access Inst; options_P : access QtAda6.QtWidgets.QFontDialog.FontDialogOption.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOptions");
       Args   := Tuple_New (1);
@@ -218,7 +319,7 @@ package body QtAda6.QtWidgets.QFontDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setOptions;
    procedure setVisible (self : access Inst; visible_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVisible");
       Args   := Tuple_New (1);
@@ -229,7 +330,7 @@ package body QtAda6.QtWidgets.QFontDialog is
    function testOption
      (self : access Inst; option_P : access QtAda6.QtWidgets.QFontDialog.FontDialogOption.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "testOption");
       Args   := Tuple_New (1);

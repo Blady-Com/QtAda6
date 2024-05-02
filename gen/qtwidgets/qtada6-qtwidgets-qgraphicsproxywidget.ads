@@ -26,10 +26,12 @@ limited with QtAda6.QtWidgets.QGraphicsSceneMouseEvent;
 limited with QtAda6.QtGui.QPainter;
 limited with QtAda6.QtWidgets.QStyleOptionGraphicsItem;
 limited with QtAda6.QtWidgets.QGraphicsSceneResizeEvent;
+limited with QtAda6.QtCore.QRectF;
+limited with QtAda6.QtCore.QRect;
 limited with QtAda6.QtGui.QShowEvent;
 limited with QtAda6.QtCore.Qt.SizeHint;
 limited with QtAda6.QtCore.QSizeF;
-limited with QtAda6.QtCore.QRectF;
+limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtWidgets.QGraphicsSceneWheelEvent;
 with QtAda6.QtWidgets.QGraphicsWidget;
 package QtAda6.QtWidgets.QGraphicsProxyWidget is
@@ -38,8 +40,6 @@ package QtAda6.QtWidgets.QGraphicsProxyWidget is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QGraphicsWidget.Inst with null record;
-   type UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect is new Any;
-   type UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize is new Any;
    procedure Finalize (Self : in out Class);
    function Create
      (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null;
@@ -93,14 +93,17 @@ package QtAda6.QtWidgets.QGraphicsProxyWidget is
       option_P : access QtAda6.QtWidgets.QStyleOptionGraphicsItem.Inst'Class;
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    procedure resizeEvent (self : access Inst; event_P : access QtAda6.QtWidgets.QGraphicsSceneResizeEvent.Inst'Class);
-   procedure setGeometry (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect);
+   procedure setGeometry (self : access Inst; rect_P : access QtAda6.QtCore.QRectF.Inst'Class);
+   procedure setGeometry (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class);
    procedure setGeometry (self : access Inst; x_P : float; y_P : float; w_P : float; h_P : float);
    procedure setWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    procedure showEvent (self : access Inst; event_P : access QtAda6.QtGui.QShowEvent.Inst'Class);
    function sizeHint
      (self         : access Inst; which_P : access QtAda6.QtCore.Qt.SizeHint.Inst'Class;
-      constraint_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize := null)
-      return access QtAda6.QtCore.QSizeF.Inst'Class;
+      constraint_P : access QtAda6.QtCore.QSizeF.Inst'Class := null) return access QtAda6.QtCore.QSizeF.Inst'Class;
+   function sizeHint
+     (self         : access Inst; which_P : access QtAda6.QtCore.Qt.SizeHint.Inst'Class;
+      constraint_P : access QtAda6.QtCore.QSize.Inst'Class := null) return access QtAda6.QtCore.QSizeF.Inst'Class;
    function subWidgetRect
      (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class)
       return access QtAda6.QtCore.QRectF.Inst'Class;

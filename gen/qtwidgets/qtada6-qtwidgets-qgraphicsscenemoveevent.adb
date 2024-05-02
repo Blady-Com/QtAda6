@@ -11,6 +11,8 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QPointF;
+with QtAda6.QtCore.QPoint;
+with QtAda6.QtGui.QPainterPath.Element;
 package body QtAda6.QtWidgets.QGraphicsSceneMoveEvent is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -22,7 +24,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneMoveEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsSceneMoveEvent");
       Args  := Tuple_New (0);
@@ -30,8 +32,8 @@ package body QtAda6.QtWidgets.QGraphicsSceneMoveEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function newPos (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "newPos");
       Args             := Tuple_New (0);
@@ -41,8 +43,8 @@ package body QtAda6.QtWidgets.QGraphicsSceneMoveEvent is
       return Ret;
    end newPos;
    function oldPos (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "oldPos");
       Args             := Tuple_New (0);
@@ -51,10 +53,8 @@ package body QtAda6.QtWidgets.QGraphicsSceneMoveEvent is
       Ret.Python_Proxy := Result;
       return Ret;
    end oldPos;
-   procedure setNewPos
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setNewPos (self : access Inst; pos_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setNewPos");
       Args   := Tuple_New (1);
@@ -62,10 +62,44 @@ package body QtAda6.QtWidgets.QGraphicsSceneMoveEvent is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setNewPos;
-   procedure setOldPos
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setNewPos (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setNewPos");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setNewPos;
+   procedure setNewPos (self : access Inst; pos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setNewPos");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setNewPos;
+   procedure setOldPos (self : access Inst; pos_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setOldPos");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setOldPos;
+   procedure setOldPos (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setOldPos");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setOldPos;
+   procedure setOldPos (self : access Inst; pos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOldPos");
       Args   := Tuple_New (1);

@@ -8,7 +8,8 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
+limited with QtAda6.QtGui.QIcon;
+limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.Qt.TextElideMode;
 limited with QtAda6.QtGui.QHideEvent;
@@ -21,22 +22,22 @@ limited with QtAda6.QtGui.QResizeEvent;
 limited with QtAda6.QtWidgets.QTabBar.SelectionBehavior;
 limited with QtAda6.QtWidgets.QTabBar.Shape;
 limited with QtAda6.QtWidgets.QTabBar.ButtonPosition;
+limited with QtAda6.QtGui.QColor;
+limited with QtAda6.QtGui.QRgba64;
+limited with QtAda6.QtCore.Qt.GlobalColor;
 limited with QtAda6.QtGui.QShowEvent;
 limited with QtAda6.QtCore.QPoint;
-limited with QtAda6.QtGui.QIcon;
 limited with QtAda6.QtCore.QRect;
-limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtCore.QTimerEvent;
 limited with QtAda6.QtGui.QWheelEvent;
 with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QTabBar is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
-   type UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap is new Any;
-   type UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int is new Any;
    procedure Finalize (Self : in out Class);
    function currentChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- currentChanged(int)
    function tabBarClicked (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- tabBarClicked(int)
@@ -47,8 +48,8 @@ package QtAda6.QtWidgets.QTabBar is
    function tabMoved (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- tabMoved(int,int)
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class;
    function accessibleTabName (self : access Inst; index_P : int) return str;
-   function addTab
-     (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str) return int;
+   function addTab (self : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str) return int;
+   function addTab (self : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str) return int;
    function addTab (self : access Inst; text_P : str) return int;
    function autoHide (self : access Inst) return bool;
    function changeCurrentOnDrag (self : access Inst) return bool;
@@ -65,8 +66,9 @@ package QtAda6.QtWidgets.QTabBar is
    procedure initStyleOption
      (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionTab.Inst'Class; tabIndex_P : int);
    function insertTab
-     (self : access Inst; index_P : int; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; text_P : str)
-      return int;
+     (self : access Inst; index_P : int; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; text_P : str) return int;
+   function insertTab
+     (self : access Inst; index_P : int; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; text_P : str) return int;
    function insertTab (self : access Inst; index_P : int; text_P : str) return int;
    function isMovable (self : access Inst) return bool;
    function isTabEnabled (self : access Inst; index_P : int) return bool;
@@ -102,11 +104,16 @@ package QtAda6.QtWidgets.QTabBar is
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    procedure setTabData (self : access Inst; index_P : int; data_P : Any);
    procedure setTabEnabled (self : access Inst; index_P : int; enabled_P : bool);
-   procedure setTabIcon (self : access Inst; index_P : int; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap);
+   procedure setTabIcon (self : access Inst; index_P : int; icon_P : access QtAda6.QtGui.QIcon.Inst'Class);
+   procedure setTabIcon (self : access Inst; index_P : int; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class);
    procedure setTabText (self : access Inst; index_P : int; text_P : str);
+   procedure setTabTextColor (self : access Inst; index_P : int; color_P : access QtAda6.QtGui.QColor.Inst'Class);
+   procedure setTabTextColor (self : access Inst; index_P : int; color_P : access QtAda6.QtGui.QRgba64.Inst'Class);
+   procedure setTabTextColor (self : access Inst; index_P : int; color_P : Any);
    procedure setTabTextColor
-     (self    : access Inst; index_P : int;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int);
+     (self : access Inst; index_P : int; color_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure setTabTextColor (self : access Inst; index_P : int; color_P : str);
+   procedure setTabTextColor (self : access Inst; index_P : int; color_P : int);
    procedure setTabToolTip (self : access Inst; index_P : int; tip_P : str);
    procedure setTabVisible (self : access Inst; index_P : int; visible_P : bool);
    procedure setTabWhatsThis (self : access Inst; index_P : int; text_P : str);

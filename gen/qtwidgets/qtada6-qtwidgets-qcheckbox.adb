@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.Qt.CheckState;
 with QtAda6.QtCore.QEvent;
@@ -34,7 +33,7 @@ package body QtAda6.QtWidgets.QCheckBox is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "stateChanged"));
    end stateChanged;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QCheckBox");
       Args  := Tuple_New (0);
@@ -45,7 +44,7 @@ package body QtAda6.QtWidgets.QCheckBox is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (text_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QCheckBox");
       Args  := Tuple_New (1);
@@ -57,7 +56,7 @@ package body QtAda6.QtWidgets.QCheckBox is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function checkState (self : access Inst) return access QtAda6.QtCore.Qt.CheckState.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.CheckState.Class := new QtAda6.QtCore.Qt.CheckState.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "checkState");
@@ -68,7 +67,7 @@ package body QtAda6.QtWidgets.QCheckBox is
       return Ret;
    end checkState;
    procedure checkStateSet (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "checkStateSet");
       Args   := Tuple_New (0);
@@ -76,7 +75,7 @@ package body QtAda6.QtWidgets.QCheckBox is
       Result := Object_Call (Method, Args, Dict, True);
    end checkStateSet;
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -86,7 +85,7 @@ package body QtAda6.QtWidgets.QCheckBox is
       return To_Ada (Result);
    end event;
    function hitButton (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hitButton");
       Args   := Tuple_New (1);
@@ -96,7 +95,7 @@ package body QtAda6.QtWidgets.QCheckBox is
       return To_Ada (Result);
    end hitButton;
    procedure initStyleOption (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionButton.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "initStyleOption");
       Args   := Tuple_New (1);
@@ -105,7 +104,7 @@ package body QtAda6.QtWidgets.QCheckBox is
       Result := Object_Call (Method, Args, Dict, True);
    end initStyleOption;
    function isTristate (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isTristate");
       Args   := Tuple_New (0);
@@ -114,8 +113,8 @@ package body QtAda6.QtWidgets.QCheckBox is
       return To_Ada (Result);
    end isTristate;
    function minimumSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSizeHint");
       Args             := Tuple_New (0);
@@ -125,7 +124,7 @@ package body QtAda6.QtWidgets.QCheckBox is
       return Ret;
    end minimumSizeHint;
    procedure mouseMoveEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseMoveEvent");
       Args   := Tuple_New (1);
@@ -134,7 +133,7 @@ package body QtAda6.QtWidgets.QCheckBox is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseMoveEvent;
    procedure nextCheckState (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "nextCheckState");
       Args   := Tuple_New (0);
@@ -142,7 +141,7 @@ package body QtAda6.QtWidgets.QCheckBox is
       Result := Object_Call (Method, Args, Dict, True);
    end nextCheckState;
    procedure paintEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -151,7 +150,7 @@ package body QtAda6.QtWidgets.QCheckBox is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure setCheckState (self : access Inst; state_P : access QtAda6.QtCore.Qt.CheckState.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCheckState");
       Args   := Tuple_New (1);
@@ -160,7 +159,7 @@ package body QtAda6.QtWidgets.QCheckBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setCheckState;
    procedure setTristate (self : access Inst; y_P : bool := False) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTristate");
       Args   := Tuple_New (0);
@@ -171,8 +170,8 @@ package body QtAda6.QtWidgets.QCheckBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setTristate;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);

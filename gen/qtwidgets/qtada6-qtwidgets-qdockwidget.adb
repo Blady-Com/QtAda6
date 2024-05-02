@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.Qt.WindowType;
 with QtAda6.QtCore.Qt.DockWidgetArea;
@@ -59,7 +58,7 @@ package body QtAda6.QtWidgets.QDockWidget is
      (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
       flags_P  : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDockWidget");
       Args  := Tuple_New (0);
@@ -76,7 +75,7 @@ package body QtAda6.QtWidgets.QDockWidget is
      (title_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null;
       flags_P : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDockWidget");
       Args  := Tuple_New (1);
@@ -91,7 +90,7 @@ package body QtAda6.QtWidgets.QDockWidget is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function allowedAreas (self : access Inst) return access QtAda6.QtCore.Qt.DockWidgetArea.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DockWidgetArea.Class := new QtAda6.QtCore.Qt.DockWidgetArea.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "allowedAreas");
@@ -102,7 +101,7 @@ package body QtAda6.QtWidgets.QDockWidget is
       return Ret;
    end allowedAreas;
    procedure changeEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changeEvent");
       Args   := Tuple_New (1);
@@ -111,7 +110,7 @@ package body QtAda6.QtWidgets.QDockWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end changeEvent;
    procedure closeEvent (self : access Inst; event_P : access QtAda6.QtGui.QCloseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "closeEvent");
       Args   := Tuple_New (1);
@@ -120,7 +119,7 @@ package body QtAda6.QtWidgets.QDockWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end closeEvent;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -130,8 +129,8 @@ package body QtAda6.QtWidgets.QDockWidget is
       return To_Ada (Result);
    end event;
    function features (self : access Inst) return access QtAda6.QtWidgets.QDockWidget.DockWidgetFeature.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QDockWidget.DockWidgetFeature.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QDockWidget.DockWidgetFeature.Class :=
         new QtAda6.QtWidgets.QDockWidget.DockWidgetFeature.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "features");
@@ -143,7 +142,7 @@ package body QtAda6.QtWidgets.QDockWidget is
    end features;
    procedure initStyleOption (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionDockWidget.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "initStyleOption");
       Args   := Tuple_New (1);
@@ -153,7 +152,7 @@ package body QtAda6.QtWidgets.QDockWidget is
    end initStyleOption;
    function isAreaAllowed (self : access Inst; area_P : access QtAda6.QtCore.Qt.DockWidgetArea.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isAreaAllowed");
       Args   := Tuple_New (1);
@@ -163,7 +162,7 @@ package body QtAda6.QtWidgets.QDockWidget is
       return To_Ada (Result);
    end isAreaAllowed;
    function isFloating (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isFloating");
       Args   := Tuple_New (0);
@@ -172,7 +171,7 @@ package body QtAda6.QtWidgets.QDockWidget is
       return To_Ada (Result);
    end isFloating;
    procedure paintEvent (self : access Inst; event_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -181,7 +180,7 @@ package body QtAda6.QtWidgets.QDockWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure setAllowedAreas (self : access Inst; areas_P : access QtAda6.QtCore.Qt.DockWidgetArea.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAllowedAreas");
       Args   := Tuple_New (1);
@@ -192,7 +191,7 @@ package body QtAda6.QtWidgets.QDockWidget is
    procedure setFeatures
      (self : access Inst; features_P : access QtAda6.QtWidgets.QDockWidget.DockWidgetFeature.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFeatures");
       Args   := Tuple_New (1);
@@ -201,7 +200,7 @@ package body QtAda6.QtWidgets.QDockWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setFeatures;
    procedure setFloating (self : access Inst; floating_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFloating");
       Args   := Tuple_New (1);
@@ -210,7 +209,7 @@ package body QtAda6.QtWidgets.QDockWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setFloating;
    procedure setTitleBarWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTitleBarWidget");
       Args   := Tuple_New (1);
@@ -219,7 +218,7 @@ package body QtAda6.QtWidgets.QDockWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setTitleBarWidget;
    procedure setWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setWidget");
       Args   := Tuple_New (1);
@@ -228,7 +227,7 @@ package body QtAda6.QtWidgets.QDockWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setWidget;
    function titleBarWidget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "titleBarWidget");
@@ -239,8 +238,8 @@ package body QtAda6.QtWidgets.QDockWidget is
       return Ret;
    end titleBarWidget;
    function toggleViewAction (self : access Inst) return access QtAda6.QtGui.QAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toggleViewAction");
       Args             := Tuple_New (0);
@@ -250,7 +249,7 @@ package body QtAda6.QtWidgets.QDockWidget is
       return Ret;
    end toggleViewAction;
    function widget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "widget");

@@ -40,7 +40,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QAbstractScrollArea");
       Args  := Tuple_New (0);
@@ -54,7 +54,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
      (self        : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
       alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addScrollBarWidget");
       Args   := Tuple_New (2);
@@ -64,7 +64,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end addScrollBarWidget;
    procedure contextMenuEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QContextMenuEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "contextMenuEvent");
       Args   := Tuple_New (1);
@@ -73,7 +73,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end contextMenuEvent;
    function cornerWidget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "cornerWidget");
@@ -84,7 +84,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       return Ret;
    end cornerWidget;
    procedure dragEnterEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QDragEnterEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dragEnterEvent");
       Args   := Tuple_New (1);
@@ -93,7 +93,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end dragEnterEvent;
    procedure dragLeaveEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QDragLeaveEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dragLeaveEvent");
       Args   := Tuple_New (1);
@@ -102,7 +102,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end dragLeaveEvent;
    procedure dragMoveEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QDragMoveEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dragMoveEvent");
       Args   := Tuple_New (1);
@@ -111,7 +111,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end dragMoveEvent;
    procedure dropEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QDropEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dropEvent");
       Args   := Tuple_New (1);
@@ -120,7 +120,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end dropEvent;
    function event (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -133,7 +133,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
      (self    : access Inst; arg_1_P : access QtAda6.QtCore.QObject.Inst'Class;
       arg_2_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "eventFilter");
       Args   := Tuple_New (2);
@@ -144,7 +144,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       return To_Ada (Result);
    end eventFilter;
    function horizontalScrollBar (self : access Inst) return access QtAda6.QtWidgets.QScrollBar.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QScrollBar.Class := new QtAda6.QtWidgets.QScrollBar.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "horizontalScrollBar");
@@ -155,7 +155,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       return Ret;
    end horizontalScrollBar;
    function horizontalScrollBarPolicy (self : access Inst) return access QtAda6.QtCore.Qt.ScrollBarPolicy.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.ScrollBarPolicy.Class := new QtAda6.QtCore.Qt.ScrollBarPolicy.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "horizontalScrollBarPolicy");
@@ -166,7 +166,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       return Ret;
    end horizontalScrollBarPolicy;
    procedure keyPressEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QKeyEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "keyPressEvent");
       Args   := Tuple_New (1);
@@ -175,8 +175,8 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end keyPressEvent;
    function maximumViewportSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "maximumViewportSize");
       Args             := Tuple_New (0);
@@ -186,8 +186,8 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       return Ret;
    end maximumViewportSize;
    function minimumSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSizeHint");
       Args             := Tuple_New (0);
@@ -197,7 +197,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       return Ret;
    end minimumSizeHint;
    procedure mouseDoubleClickEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseDoubleClickEvent");
       Args   := Tuple_New (1);
@@ -206,7 +206,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseDoubleClickEvent;
    procedure mouseMoveEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseMoveEvent");
       Args   := Tuple_New (1);
@@ -215,7 +215,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseMoveEvent;
    procedure mousePressEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mousePressEvent");
       Args   := Tuple_New (1);
@@ -224,7 +224,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end mousePressEvent;
    procedure mouseReleaseEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseReleaseEvent");
       Args   := Tuple_New (1);
@@ -233,7 +233,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseReleaseEvent;
    procedure paintEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -242,7 +242,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure resizeEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QResizeEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resizeEvent");
       Args   := Tuple_New (1);
@@ -254,17 +254,21 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
      (self : access Inst; alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class)
       return LIST_QtAda6_QtWidgets_QWidget
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "scrollBarWidgets");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if alignment_P /= null then alignment_P.Python_Proxy else No_Value));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtWidgets_QWidget (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end scrollBarWidgets;
    procedure scrollContentsBy (self : access Inst; dx_P : int; dy_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "scrollContentsBy");
       Args   := Tuple_New (2);
@@ -274,7 +278,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end scrollContentsBy;
    procedure setCornerWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCornerWidget");
       Args   := Tuple_New (1);
@@ -283,7 +287,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setCornerWidget;
    procedure setHorizontalScrollBar (self : access Inst; scrollbar_P : access QtAda6.QtWidgets.QScrollBar.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHorizontalScrollBar");
       Args   := Tuple_New (1);
@@ -294,7 +298,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
    procedure setHorizontalScrollBarPolicy
      (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.ScrollBarPolicy.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHorizontalScrollBarPolicy");
       Args   := Tuple_New (1);
@@ -305,7 +309,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
    procedure setSizeAdjustPolicy
      (self : access Inst; policy_P : access QtAda6.QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSizeAdjustPolicy");
       Args   := Tuple_New (1);
@@ -314,7 +318,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setSizeAdjustPolicy;
    procedure setVerticalScrollBar (self : access Inst; scrollbar_P : access QtAda6.QtWidgets.QScrollBar.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVerticalScrollBar");
       Args   := Tuple_New (1);
@@ -325,7 +329,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
    procedure setVerticalScrollBarPolicy
      (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.ScrollBarPolicy.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVerticalScrollBarPolicy");
       Args   := Tuple_New (1);
@@ -334,7 +338,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setVerticalScrollBarPolicy;
    procedure setViewport (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setViewport");
       Args   := Tuple_New (1);
@@ -343,7 +347,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setViewport;
    procedure setViewportMargins (self : access Inst; left_P : int; top_P : int; right_P : int; bottom_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setViewportMargins");
       Args   := Tuple_New (4);
@@ -355,7 +359,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setViewportMargins;
    procedure setViewportMargins (self : access Inst; margins_P : access QtAda6.QtCore.QMargins.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setViewportMargins");
       Args   := Tuple_New (1);
@@ -364,7 +368,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       Result := Object_Call (Method, Args, Dict, True);
    end setViewportMargins;
    procedure setupViewport (self : access Inst; viewport_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setupViewport");
       Args   := Tuple_New (1);
@@ -375,8 +379,8 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
    function sizeAdjustPolicy_F
      (self : access Inst) return access QtAda6.QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.Class :=
         new QtAda6.QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeAdjustPolicy");
@@ -387,8 +391,8 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       return Ret;
    end sizeAdjustPolicy_F;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -398,7 +402,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       return Ret;
    end sizeHint;
    function verticalScrollBar (self : access Inst) return access QtAda6.QtWidgets.QScrollBar.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QScrollBar.Class := new QtAda6.QtWidgets.QScrollBar.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "verticalScrollBar");
@@ -409,7 +413,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       return Ret;
    end verticalScrollBar;
    function verticalScrollBarPolicy (self : access Inst) return access QtAda6.QtCore.Qt.ScrollBarPolicy.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.ScrollBarPolicy.Class := new QtAda6.QtCore.Qt.ScrollBarPolicy.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "verticalScrollBarPolicy");
@@ -420,7 +424,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       return Ret;
    end verticalScrollBarPolicy;
    function viewport (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "viewport");
@@ -431,7 +435,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       return Ret;
    end viewport;
    function viewportEvent (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "viewportEvent");
       Args   := Tuple_New (1);
@@ -441,7 +445,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       return To_Ada (Result);
    end viewportEvent;
    function viewportMargins (self : access Inst) return access QtAda6.QtCore.QMargins.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMargins.Class := new QtAda6.QtCore.QMargins.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "viewportMargins");
@@ -452,8 +456,8 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       return Ret;
    end viewportMargins;
    function viewportSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "viewportSizeHint");
       Args             := Tuple_New (0);
@@ -463,7 +467,7 @@ package body QtAda6.QtWidgets.QAbstractScrollArea is
       return Ret;
    end viewportSizeHint;
    procedure wheelEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QWheelEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "wheelEvent");
       Args   := Tuple_New (1);

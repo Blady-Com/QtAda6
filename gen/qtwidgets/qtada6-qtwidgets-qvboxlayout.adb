@@ -22,7 +22,7 @@ package body QtAda6.QtWidgets.QVBoxLayout is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QVBoxLayout");
       Args  := Tuple_New (0);
@@ -30,7 +30,7 @@ package body QtAda6.QtWidgets.QVBoxLayout is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QVBoxLayout");
       Args  := Tuple_New (1);

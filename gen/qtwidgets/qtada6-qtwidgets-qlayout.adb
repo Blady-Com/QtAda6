@@ -11,7 +11,6 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtWidgets.QLayout;
 with QtAda6.QtWidgets.QLayoutItem;
 with QtAda6.QtCore.QRect;
 with QtAda6.QtCore.QChildEvent;
@@ -34,7 +33,7 @@ package body QtAda6.QtWidgets.QLayout is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLayout");
       Args  := Tuple_New (0);
@@ -45,7 +44,7 @@ package body QtAda6.QtWidgets.QLayout is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function activate (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "activate");
       Args   := Tuple_New (0);
@@ -54,7 +53,7 @@ package body QtAda6.QtWidgets.QLayout is
       return To_Ada (Result);
    end activate;
    procedure addChildLayout (self : access Inst; l_P : access QtAda6.QtWidgets.QLayout.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addChildLayout");
       Args   := Tuple_New (1);
@@ -63,7 +62,7 @@ package body QtAda6.QtWidgets.QLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end addChildLayout;
    procedure addChildWidget (self : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addChildWidget");
       Args   := Tuple_New (1);
@@ -72,7 +71,7 @@ package body QtAda6.QtWidgets.QLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end addChildWidget;
    procedure addItem (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QLayoutItem.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addItem");
       Args   := Tuple_New (1);
@@ -81,7 +80,7 @@ package body QtAda6.QtWidgets.QLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end addItem;
    procedure addWidget (self : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addWidget");
       Args   := Tuple_New (1);
@@ -90,7 +89,7 @@ package body QtAda6.QtWidgets.QLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end addWidget;
    function adoptLayout (self : access Inst; layout_P : access QtAda6.QtWidgets.QLayout.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "adoptLayout");
       Args   := Tuple_New (1);
@@ -102,8 +101,8 @@ package body QtAda6.QtWidgets.QLayout is
    function alignmentRect
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QRect.Inst'Class) return access QtAda6.QtCore.QRect.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "alignmentRect");
       Args   := Tuple_New (1);
@@ -114,7 +113,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end alignmentRect;
    procedure childEvent (self : access Inst; e_P : access QtAda6.QtCore.QChildEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "childEvent");
       Args   := Tuple_New (1);
@@ -126,7 +125,7 @@ package body QtAda6.QtWidgets.QLayout is
      (w_P : access QtAda6.QtWidgets.QWidget.Inst'Class; s_P : access QtAda6.QtCore.QSize.Inst'Class)
       return access QtAda6.QtCore.QSize.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QLayout");
@@ -140,7 +139,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end closestAcceptableSize;
    function contentsMargins (self : access Inst) return access QtAda6.QtCore.QMargins.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMargins.Class := new QtAda6.QtCore.QMargins.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "contentsMargins");
@@ -151,8 +150,8 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end contentsMargins;
    function contentsRect (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "contentsRect");
       Args             := Tuple_New (0);
@@ -162,8 +161,8 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end contentsRect;
    function controlTypes (self : access Inst) return access QtAda6.QtWidgets.QSizePolicy.ControlType.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QSizePolicy.ControlType.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QSizePolicy.ControlType.Class :=
         new QtAda6.QtWidgets.QSizePolicy.ControlType.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "controlTypes");
@@ -174,7 +173,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end controlTypes;
    function count (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "count");
       Args   := Tuple_New (0);
@@ -183,7 +182,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Long_AsLong (Result);
    end count;
    function expandingDirections (self : access Inst) return access QtAda6.QtCore.Qt.Orientation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.Orientation.Class := new QtAda6.QtCore.Qt.Orientation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "expandingDirections");
@@ -194,8 +193,8 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end expandingDirections;
    function geometry (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "geometry");
       Args             := Tuple_New (0);
@@ -205,7 +204,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end geometry;
    function getContentsMargins (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "getContentsMargins");
       Args   := Tuple_New (0);
@@ -214,7 +213,7 @@ package body QtAda6.QtWidgets.QLayout is
       return null;
    end getContentsMargins;
    function indexOf (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QLayoutItem.Inst'Class) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOf");
       Args   := Tuple_New (1);
@@ -224,7 +223,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Long_AsLong (Result);
    end indexOf;
    function indexOf (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOf");
       Args   := Tuple_New (1);
@@ -234,7 +233,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Long_AsLong (Result);
    end indexOf;
    procedure invalidate (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "invalidate");
       Args   := Tuple_New (0);
@@ -242,7 +241,7 @@ package body QtAda6.QtWidgets.QLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end invalidate;
    function isEmpty (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEmpty");
       Args   := Tuple_New (0);
@@ -251,7 +250,7 @@ package body QtAda6.QtWidgets.QLayout is
       return To_Ada (Result);
    end isEmpty;
    function isEnabled (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEnabled");
       Args   := Tuple_New (0);
@@ -260,7 +259,7 @@ package body QtAda6.QtWidgets.QLayout is
       return To_Ada (Result);
    end isEnabled;
    function itemAt (self : access Inst; index_P : int) return access QtAda6.QtWidgets.QLayoutItem.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QLayoutItem.Class := new QtAda6.QtWidgets.QLayoutItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemAt");
@@ -272,7 +271,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end itemAt;
    function layout (self : access Inst) return access QtAda6.QtWidgets.QLayout.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QLayout.Class := new QtAda6.QtWidgets.QLayout.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "layout");
@@ -283,8 +282,8 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end layout;
    function maximumSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "maximumSize");
       Args             := Tuple_New (0);
@@ -294,7 +293,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end maximumSize;
    function menuBar (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "menuBar");
@@ -305,8 +304,8 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end menuBar;
    function minimumSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSize");
       Args             := Tuple_New (0);
@@ -316,7 +315,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end minimumSize;
    function parentWidget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "parentWidget");
@@ -327,7 +326,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end parentWidget;
    procedure removeItem (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QLayoutItem.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeItem");
       Args   := Tuple_New (1);
@@ -336,7 +335,7 @@ package body QtAda6.QtWidgets.QLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end removeItem;
    procedure removeWidget (self : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeWidget");
       Args   := Tuple_New (1);
@@ -350,7 +349,7 @@ package body QtAda6.QtWidgets.QLayout is
       options_P : access QtAda6.QtCore.Qt.FindChildOption.Inst'Class := null)
       return access QtAda6.QtWidgets.QLayoutItem.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QLayoutItem.Class := new QtAda6.QtWidgets.QLayoutItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "replaceWidget");
@@ -366,7 +365,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end replaceWidget;
    procedure setAlignment (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAlignment");
       Args   := Tuple_New (1);
@@ -378,7 +377,7 @@ package body QtAda6.QtWidgets.QLayout is
      (self        : access Inst; l_P : access QtAda6.QtWidgets.QLayout.Inst'Class;
       alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAlignment");
       Args   := Tuple_New (2);
@@ -392,7 +391,7 @@ package body QtAda6.QtWidgets.QLayout is
      (self        : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
       alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAlignment");
       Args   := Tuple_New (2);
@@ -403,7 +402,7 @@ package body QtAda6.QtWidgets.QLayout is
       return To_Ada (Result);
    end setAlignment;
    procedure setContentsMargins (self : access Inst; left_P : int; top_P : int; right_P : int; bottom_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setContentsMargins");
       Args   := Tuple_New (4);
@@ -415,7 +414,7 @@ package body QtAda6.QtWidgets.QLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end setContentsMargins;
    procedure setContentsMargins (self : access Inst; margins_P : access QtAda6.QtCore.QMargins.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setContentsMargins");
       Args   := Tuple_New (1);
@@ -424,7 +423,7 @@ package body QtAda6.QtWidgets.QLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end setContentsMargins;
    procedure setEnabled (self : access Inst; arg_1_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setEnabled");
       Args   := Tuple_New (1);
@@ -433,7 +432,7 @@ package body QtAda6.QtWidgets.QLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end setEnabled;
    procedure setGeometry (self : access Inst; arg_1_P : access QtAda6.QtCore.QRect.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setGeometry");
       Args   := Tuple_New (1);
@@ -442,7 +441,7 @@ package body QtAda6.QtWidgets.QLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end setGeometry;
    procedure setMenuBar (self : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMenuBar");
       Args   := Tuple_New (1);
@@ -452,7 +451,7 @@ package body QtAda6.QtWidgets.QLayout is
    end setMenuBar;
    procedure setSizeConstraint (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QLayout.SizeConstraint.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSizeConstraint");
       Args   := Tuple_New (1);
@@ -461,7 +460,7 @@ package body QtAda6.QtWidgets.QLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end setSizeConstraint;
    procedure setSpacing (self : access Inst; arg_1_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSpacing");
       Args   := Tuple_New (1);
@@ -470,7 +469,7 @@ package body QtAda6.QtWidgets.QLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end setSpacing;
    function sizeConstraint_F (self : access Inst) return access QtAda6.QtWidgets.QLayout.SizeConstraint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QLayout.SizeConstraint.Class := new QtAda6.QtWidgets.QLayout.SizeConstraint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeConstraint");
@@ -481,7 +480,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end sizeConstraint_F;
    function spacing (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "spacing");
       Args   := Tuple_New (0);
@@ -490,7 +489,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Long_AsLong (Result);
    end spacing;
    function takeAt (self : access Inst; index_P : int) return access QtAda6.QtWidgets.QLayoutItem.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QLayoutItem.Class := new QtAda6.QtWidgets.QLayoutItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "takeAt");
@@ -502,7 +501,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end takeAt;
    function totalHeightForWidth (self : access Inst; w_P : int) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "totalHeightForWidth");
       Args   := Tuple_New (1);
@@ -512,8 +511,8 @@ package body QtAda6.QtWidgets.QLayout is
       return Long_AsLong (Result);
    end totalHeightForWidth;
    function totalMaximumSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "totalMaximumSize");
       Args             := Tuple_New (0);
@@ -523,7 +522,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end totalMaximumSize;
    function totalMinimumHeightForWidth (self : access Inst; w_P : int) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "totalMinimumHeightForWidth");
       Args   := Tuple_New (1);
@@ -533,8 +532,8 @@ package body QtAda6.QtWidgets.QLayout is
       return Long_AsLong (Result);
    end totalMinimumHeightForWidth;
    function totalMinimumSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "totalMinimumSize");
       Args             := Tuple_New (0);
@@ -544,8 +543,8 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end totalMinimumSize;
    function totalSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "totalSizeHint");
       Args             := Tuple_New (0);
@@ -555,7 +554,7 @@ package body QtAda6.QtWidgets.QLayout is
       return Ret;
    end totalSizeHint;
    procedure unsetContentsMargins (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "unsetContentsMargins");
       Args   := Tuple_New (0);
@@ -563,7 +562,7 @@ package body QtAda6.QtWidgets.QLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end unsetContentsMargins;
    procedure update (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "update");
       Args   := Tuple_New (0);
@@ -571,7 +570,7 @@ package body QtAda6.QtWidgets.QLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end update;
    procedure widgetEvent (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "widgetEvent");
       Args   := Tuple_New (1);

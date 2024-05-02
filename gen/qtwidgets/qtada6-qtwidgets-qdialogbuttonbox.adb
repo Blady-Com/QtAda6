@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QDialogButtonBox.StandardButton;
 with QtAda6.QtCore.Qt.Orientation;
 with QtAda6.QtWidgets.QWidget;
@@ -49,7 +48,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
       orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class;
       parent_P      : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDialogButtonBox");
       Args  := Tuple_New (2);
@@ -65,7 +64,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
      (buttons_P : access QtAda6.QtWidgets.QDialogButtonBox.StandardButton.Inst'Class;
       parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDialogButtonBox");
       Args  := Tuple_New (1);
@@ -80,7 +79,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
      (orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class;
       parent_P      : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDialogButtonBox");
       Args  := Tuple_New (1);
@@ -92,7 +91,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QDialogButtonBox");
       Args  := Tuple_New (0);
@@ -106,7 +105,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
      (self   : access Inst; button_P : access QtAda6.QtWidgets.QAbstractButton.Inst'Class;
       role_P : access QtAda6.QtWidgets.QDialogButtonBox.ButtonRole.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addButton");
       Args   := Tuple_New (2);
@@ -119,7 +118,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
      (self : access Inst; button_P : access QtAda6.QtWidgets.QDialogButtonBox.StandardButton.Inst'Class)
       return access QtAda6.QtWidgets.QPushButton.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QPushButton.Class := new QtAda6.QtWidgets.QPushButton.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addButton");
@@ -134,7 +133,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
      (self : access Inst; text_P : str; role_P : access QtAda6.QtWidgets.QDialogButtonBox.ButtonRole.Inst'Class)
       return access QtAda6.QtWidgets.QPushButton.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QPushButton.Class := new QtAda6.QtWidgets.QPushButton.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addButton");
@@ -150,7 +149,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
      (self : access Inst; which_P : access QtAda6.QtWidgets.QDialogButtonBox.StandardButton.Inst'Class)
       return access QtAda6.QtWidgets.QPushButton.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QPushButton.Class := new QtAda6.QtWidgets.QPushButton.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "button");
@@ -165,8 +164,8 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
      (self : access Inst; button_P : access QtAda6.QtWidgets.QAbstractButton.Inst'Class)
       return access QtAda6.QtWidgets.QDialogButtonBox.ButtonRole.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QDialogButtonBox.ButtonRole.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QDialogButtonBox.ButtonRole.Class :=
         new QtAda6.QtWidgets.QDialogButtonBox.ButtonRole.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "buttonRole");
@@ -178,16 +177,20 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
       return Ret;
    end buttonRole_F;
    function buttons (self : access Inst) return LIST_QtAda6_QtWidgets_QAbstractButton is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "buttons");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtWidgets_QAbstractButton (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end buttons;
    function centerButtons (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "centerButtons");
       Args   := Tuple_New (0);
@@ -196,7 +199,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
       return To_Ada (Result);
    end centerButtons;
    procedure changeEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changeEvent");
       Args   := Tuple_New (1);
@@ -205,7 +208,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
       Result := Object_Call (Method, Args, Dict, True);
    end changeEvent;
    procedure clear (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clear");
       Args   := Tuple_New (0);
@@ -213,7 +216,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
       Result := Object_Call (Method, Args, Dict, True);
    end clear;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -223,7 +226,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
       return To_Ada (Result);
    end event;
    function orientation (self : access Inst) return access QtAda6.QtCore.Qt.Orientation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.Orientation.Class := new QtAda6.QtCore.Qt.Orientation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "orientation");
@@ -234,7 +237,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
       return Ret;
    end orientation;
    procedure removeButton (self : access Inst; button_P : access QtAda6.QtWidgets.QAbstractButton.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeButton");
       Args   := Tuple_New (1);
@@ -243,7 +246,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
       Result := Object_Call (Method, Args, Dict, True);
    end removeButton;
    procedure setCenterButtons (self : access Inst; center_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCenterButtons");
       Args   := Tuple_New (1);
@@ -252,7 +255,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setCenterButtons;
    procedure setOrientation (self : access Inst; orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOrientation");
       Args   := Tuple_New (1);
@@ -263,7 +266,7 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
    procedure setStandardButtons
      (self : access Inst; buttons_P : access QtAda6.QtWidgets.QDialogButtonBox.StandardButton.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStandardButtons");
       Args   := Tuple_New (1);
@@ -275,8 +278,8 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
      (self : access Inst; button_P : access QtAda6.QtWidgets.QAbstractButton.Inst'Class)
       return access QtAda6.QtWidgets.QDialogButtonBox.StandardButton.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QDialogButtonBox.StandardButton.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QDialogButtonBox.StandardButton.Class :=
         new QtAda6.QtWidgets.QDialogButtonBox.StandardButton.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "standardButton");
@@ -290,8 +293,8 @@ package body QtAda6.QtWidgets.QDialogButtonBox is
    function standardButtons
      (self : access Inst) return access QtAda6.QtWidgets.QDialogButtonBox.StandardButton.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QDialogButtonBox.StandardButton.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QDialogButtonBox.StandardButton.Class :=
         new QtAda6.QtWidgets.QDialogButtonBox.StandardButton.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "standardButtons");

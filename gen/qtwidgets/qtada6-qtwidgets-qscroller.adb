@@ -10,13 +10,15 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtWidgets.QScroller;
+with QtAda6.QtCore.QRectF;
+with QtAda6.QtCore.QRect;
 with QtAda6.QtCore.QPointF;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtWidgets.QScroller.ScrollerGestureType;
 with QtAda6.QtCore.Qt.GestureType;
 with QtAda6.QtWidgets.QScroller.Input;
+with QtAda6.QtCore.QPoint;
+with QtAda6.QtGui.QPainterPath.Element;
 with QtAda6.QtWidgets.QScrollerProperties;
 with QtAda6.QtWidgets.QScroller.State;
 package body QtAda6.QtWidgets.QScroller is
@@ -40,19 +42,23 @@ package body QtAda6.QtWidgets.QScroller is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "stateChanged"));
    end stateChanged;
    function activeScrollers return LIST_QtAda6_QtWidgets_QScroller is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScroller");
       Method := Object_GetAttrString (Class, "activeScrollers");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtWidgets_QScroller (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end activeScrollers;
    procedure ensureVisible
-     (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect; xmargin_P : float; ymargin_P : float)
+     (self : access Inst; rect_P : access QtAda6.QtCore.QRectF.Inst'Class; xmargin_P : float; ymargin_P : float)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "ensureVisible");
       Args   := Tuple_New (3);
@@ -63,10 +69,38 @@ package body QtAda6.QtWidgets.QScroller is
       Result := Object_Call (Method, Args, Dict, True);
    end ensureVisible;
    procedure ensureVisible
-     (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect; xmargin_P : float; ymargin_P : float;
+     (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class; xmargin_P : float; ymargin_P : float)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "ensureVisible");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if rect_P /= null then rect_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Float_FromDouble (xmargin_P));
+      Tuple_SetItem (Args, 2, Float_FromDouble (ymargin_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end ensureVisible;
+   procedure ensureVisible
+     (self         : access Inst; rect_P : access QtAda6.QtCore.QRectF.Inst'Class; xmargin_P : float; ymargin_P : float;
       scrollTime_P : int)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "ensureVisible");
+      Args   := Tuple_New (4);
+      Tuple_SetItem (Args, 0, (if rect_P /= null then rect_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Float_FromDouble (xmargin_P));
+      Tuple_SetItem (Args, 2, Float_FromDouble (ymargin_P));
+      Tuple_SetItem (Args, 3, Long_FromLong (scrollTime_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end ensureVisible;
+   procedure ensureVisible
+     (self         : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class; xmargin_P : float; ymargin_P : float;
+      scrollTime_P : int)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "ensureVisible");
       Args   := Tuple_New (4);
@@ -78,8 +112,8 @@ package body QtAda6.QtWidgets.QScroller is
       Result := Object_Call (Method, Args, Dict, True);
    end ensureVisible;
    function finalPosition (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "finalPosition");
       Args             := Tuple_New (0);
@@ -93,7 +127,7 @@ package body QtAda6.QtWidgets.QScroller is
       gestureType_P : access QtAda6.QtWidgets.QScroller.ScrollerGestureType.Inst'Class := null)
       return access QtAda6.QtCore.Qt.GestureType.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.GestureType.Class := new QtAda6.QtCore.Qt.GestureType.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScroller");
@@ -111,7 +145,7 @@ package body QtAda6.QtWidgets.QScroller is
    function grabbedGesture
      (target_P : access QtAda6.QtCore.QObject.Inst'Class) return access QtAda6.QtCore.Qt.GestureType.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.GestureType.Class := new QtAda6.QtCore.Qt.GestureType.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScroller");
@@ -124,11 +158,44 @@ package body QtAda6.QtWidgets.QScroller is
       return Ret;
    end grabbedGesture;
    function handleInput
-     (self        : access Inst; input_P : access QtAda6.QtWidgets.QScroller.Input.Inst'Class;
-      position_P  : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
-      timestamp_P : int := 0) return bool
+     (self       : access Inst; input_P : access QtAda6.QtWidgets.QScroller.Input.Inst'Class;
+      position_P : access QtAda6.QtCore.QPointF.Inst'Class; timestamp_P : int := 0) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "handleInput");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if input_P /= null then input_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if position_P /= null then position_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if timestamp_P /= 0 then
+         Dict_SetItemString (Dict, "timestamp", Long_FromLong (timestamp_P));
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end handleInput;
+   function handleInput
+     (self       : access Inst; input_P : access QtAda6.QtWidgets.QScroller.Input.Inst'Class;
+      position_P : access QtAda6.QtCore.QPoint.Inst'Class; timestamp_P : int := 0) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "handleInput");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if input_P /= null then input_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if position_P /= null then position_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if timestamp_P /= 0 then
+         Dict_SetItemString (Dict, "timestamp", Long_FromLong (timestamp_P));
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end handleInput;
+   function handleInput
+     (self       : access Inst; input_P : access QtAda6.QtWidgets.QScroller.Input.Inst'Class;
+      position_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class; timestamp_P : int := 0) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "handleInput");
       Args   := Tuple_New (2);
@@ -142,7 +209,7 @@ package body QtAda6.QtWidgets.QScroller is
       return To_Ada (Result);
    end handleInput;
    function hasScroller (target_P : access QtAda6.QtCore.QObject.Inst'Class) return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScroller");
       Method := Object_GetAttrString (Class, "hasScroller");
@@ -153,8 +220,8 @@ package body QtAda6.QtWidgets.QScroller is
       return To_Ada (Result);
    end hasScroller;
    function pixelPerMeter (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "pixelPerMeter");
       Args             := Tuple_New (0);
@@ -164,17 +231,15 @@ package body QtAda6.QtWidgets.QScroller is
       return Ret;
    end pixelPerMeter;
    procedure resendPrepareEvent (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resendPrepareEvent");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end resendPrepareEvent;
-   procedure scrollTo
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure scrollTo (self : access Inst; pos_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "scrollTo");
       Args   := Tuple_New (1);
@@ -182,11 +247,48 @@ package body QtAda6.QtWidgets.QScroller is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end scrollTo;
+   procedure scrollTo (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "scrollTo");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end scrollTo;
+   procedure scrollTo (self : access Inst; pos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "scrollTo");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end scrollTo;
+   procedure scrollTo (self : access Inst; pos_P : access QtAda6.QtCore.QPointF.Inst'Class; scrollTime_P : int) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "scrollTo");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Long_FromLong (scrollTime_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end scrollTo;
+   procedure scrollTo (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class; scrollTime_P : int) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "scrollTo");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Long_FromLong (scrollTime_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end scrollTo;
    procedure scrollTo
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element;
-      scrollTime_P : int)
+     (self : access Inst; pos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class; scrollTime_P : int)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "scrollTo");
       Args   := Tuple_New (2);
@@ -198,7 +300,7 @@ package body QtAda6.QtWidgets.QScroller is
    function scroller
      (target_P : access QtAda6.QtCore.QObject.Inst'Class) return access QtAda6.QtWidgets.QScroller.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QScroller.Class := new QtAda6.QtWidgets.QScroller.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScroller");
@@ -211,7 +313,7 @@ package body QtAda6.QtWidgets.QScroller is
       return Ret;
    end scroller;
    function scrollerProperties (self : access Inst) return access QtAda6.QtWidgets.QScrollerProperties.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QScrollerProperties.Class := new QtAda6.QtWidgets.QScrollerProperties.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "scrollerProperties");
@@ -223,7 +325,7 @@ package body QtAda6.QtWidgets.QScroller is
    end scrollerProperties;
    procedure setScrollerProperties (self : access Inst; prop_P : access QtAda6.QtWidgets.QScrollerProperties.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setScrollerProperties");
       Args   := Tuple_New (1);
@@ -232,7 +334,7 @@ package body QtAda6.QtWidgets.QScroller is
       Result := Object_Call (Method, Args, Dict, True);
    end setScrollerProperties;
    procedure setSnapPositionsX (self : access Inst; first_P : float; interval_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSnapPositionsX");
       Args   := Tuple_New (2);
@@ -242,20 +344,20 @@ package body QtAda6.QtWidgets.QScroller is
       Result := Object_Call (Method, Args, Dict, True);
    end setSnapPositionsX;
    procedure setSnapPositionsX (self : access Inst; positions_P : SEQUENCE_float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSnapPositionsX");
+      Args   := Tuple_New (1);
       List   := List_New (positions_P'Length);
       for ind in positions_P'Range loop
          List_SetItem (List, ssize_t (ind - positions_P'First), Float_FromDouble (positions_P (ind)));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setSnapPositionsX;
    procedure setSnapPositionsY (self : access Inst; first_P : float; interval_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSnapPositionsY");
       Args   := Tuple_New (2);
@@ -265,20 +367,20 @@ package body QtAda6.QtWidgets.QScroller is
       Result := Object_Call (Method, Args, Dict, True);
    end setSnapPositionsY;
    procedure setSnapPositionsY (self : access Inst; positions_P : SEQUENCE_float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSnapPositionsY");
+      Args   := Tuple_New (1);
       List   := List_New (positions_P'Length);
       for ind in positions_P'Range loop
          List_SetItem (List, ssize_t (ind - positions_P'First), Float_FromDouble (positions_P (ind)));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setSnapPositionsY;
    function state_F (self : access Inst) return access QtAda6.QtWidgets.QScroller.State.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QScroller.State.Class := new QtAda6.QtWidgets.QScroller.State.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "state");
@@ -289,7 +391,7 @@ package body QtAda6.QtWidgets.QScroller is
       return Ret;
    end state_F;
    procedure stop (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "stop");
       Args   := Tuple_New (0);
@@ -297,8 +399,8 @@ package body QtAda6.QtWidgets.QScroller is
       Result := Object_Call (Method, Args, Dict, True);
    end stop;
    function target (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "target");
       Args             := Tuple_New (0);
@@ -308,7 +410,7 @@ package body QtAda6.QtWidgets.QScroller is
       return Ret;
    end target;
    procedure ungrabGesture (target_P : access QtAda6.QtCore.QObject.Inst'Class) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QScroller");
       Method := Object_GetAttrString (Class, "ungrabGesture");
@@ -318,8 +420,8 @@ package body QtAda6.QtWidgets.QScroller is
       Result := Object_Call (Method, Args, Dict, True);
    end ungrabGesture;
    function velocity (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "velocity");
       Args             := Tuple_New (0);

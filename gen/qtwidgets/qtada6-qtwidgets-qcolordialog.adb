@@ -10,10 +10,11 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
-with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtCore.QEvent;
 with QtAda6.QtGui.QColor;
+with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtGui.QRgba64;
+with QtAda6.QtCore.Qt.GlobalColor;
+with QtAda6.QtCore.QEvent;
 with QtAda6.QtWidgets.QColorDialog.ColorDialogOption;
 with QtAda6.QtCore.QObject;
 package body QtAda6.QtWidgets.QColorDialog is
@@ -36,10 +37,10 @@ package body QtAda6.QtWidgets.QColorDialog is
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "currentColorChanged"));
    end currentColorChanged;
    function Create
-     (initial_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int;
-      parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class
+     (initial_P : access QtAda6.QtGui.QColor.Inst'Class; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
+      return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
       Args  := Tuple_New (1);
@@ -50,8 +51,74 @@ package body QtAda6.QtWidgets.QColorDialog is
       end if;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
+   function Create
+     (initial_P : access QtAda6.QtGui.QRgba64.Inst'Class; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
+      return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if initial_P /= null then initial_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (initial_P : Any; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if initial_P /= null then initial_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (initial_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class;
+      parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if initial_P /= null then initial_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (initial_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (initial_P));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (initial_P : int; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (initial_P));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
       Args  := Tuple_New (0);
@@ -62,7 +129,7 @@ package body QtAda6.QtWidgets.QColorDialog is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure changeEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changeEvent");
       Args   := Tuple_New (1);
@@ -71,8 +138,8 @@ package body QtAda6.QtWidgets.QColorDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end changeEvent;
    function currentColor (self : access Inst) return access QtAda6.QtGui.QColor.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentColor");
       Args             := Tuple_New (0);
@@ -82,7 +149,7 @@ package body QtAda6.QtWidgets.QColorDialog is
       return Ret;
    end currentColor;
    function customColor (index_P : int) return access QtAda6.QtGui.QColor.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
@@ -95,7 +162,7 @@ package body QtAda6.QtWidgets.QColorDialog is
       return Ret;
    end customColor;
    function customCount return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
       Method := Object_GetAttrString (Class, "customCount");
@@ -105,7 +172,7 @@ package body QtAda6.QtWidgets.QColorDialog is
       return Long_AsLong (Result);
    end customCount;
    procedure done (self : access Inst; result_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "done");
       Args   := Tuple_New (1);
@@ -114,12 +181,12 @@ package body QtAda6.QtWidgets.QColorDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end done;
    function getColor
-     (initial_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int := null;
-      parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class := null; title_P : str := "";
-      options_P : access QtAda6.QtWidgets.QColorDialog.ColorDialogOption.Inst'Class                       := null)
+     (initial_P : access QtAda6.QtGui.QColor.Inst'Class                             := null;
+      parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class                        := null; title_P : str := "";
+      options_P : access QtAda6.QtWidgets.QColorDialog.ColorDialogOption.Inst'Class := null)
       return access QtAda6.QtGui.QColor.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
@@ -142,8 +209,150 @@ package body QtAda6.QtWidgets.QColorDialog is
       Ret.Python_Proxy := Result;
       return Ret;
    end getColor;
+   function getColor
+     (initial_P : access QtAda6.QtGui.QRgba64.Inst'Class                            := null;
+      parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class                        := null; title_P : str := "";
+      options_P : access QtAda6.QtWidgets.QColorDialog.ColorDialogOption.Inst'Class := null)
+      return access QtAda6.QtGui.QColor.Inst'Class
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "getColor");
+      Args   := Tuple_New (0);
+      Dict   := Dict_New;
+      if initial_P /= null then
+         Dict_SetItemString (Dict, "initial", initial_P.Python_Proxy);
+      end if;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      if title_P /= "" then
+         Dict_SetItemString (Dict, "title", Unicode_FromString (title_P));
+      end if;
+      if options_P /= null then
+         Dict_SetItemString (Dict, "options", options_P.Python_Proxy);
+      end if;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end getColor;
+   function getColor
+     (initial_P : Any := null; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null; title_P : str := "";
+      options_P : access QtAda6.QtWidgets.QColorDialog.ColorDialogOption.Inst'Class := null)
+      return access QtAda6.QtGui.QColor.Inst'Class
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "getColor");
+      Args   := Tuple_New (0);
+      Dict   := Dict_New;
+      if initial_P /= null then
+         Dict_SetItemString (Dict, "initial", initial_P.Python_Proxy);
+      end if;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      if title_P /= "" then
+         Dict_SetItemString (Dict, "title", Unicode_FromString (title_P));
+      end if;
+      if options_P /= null then
+         Dict_SetItemString (Dict, "options", options_P.Python_Proxy);
+      end if;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end getColor;
+   function getColor
+     (initial_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class                    := null;
+      parent_P  : access QtAda6.QtWidgets.QWidget.Inst'Class                        := null; title_P : str := "";
+      options_P : access QtAda6.QtWidgets.QColorDialog.ColorDialogOption.Inst'Class := null)
+      return access QtAda6.QtGui.QColor.Inst'Class
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "getColor");
+      Args   := Tuple_New (0);
+      Dict   := Dict_New;
+      if initial_P /= null then
+         Dict_SetItemString (Dict, "initial", initial_P.Python_Proxy);
+      end if;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      if title_P /= "" then
+         Dict_SetItemString (Dict, "title", Unicode_FromString (title_P));
+      end if;
+      if options_P /= null then
+         Dict_SetItemString (Dict, "options", options_P.Python_Proxy);
+      end if;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end getColor;
+   function getColor
+     (initial_P : str := ""; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null; title_P : str := "";
+      options_P : access QtAda6.QtWidgets.QColorDialog.ColorDialogOption.Inst'Class := null)
+      return access QtAda6.QtGui.QColor.Inst'Class
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "getColor");
+      Args   := Tuple_New (0);
+      Dict   := Dict_New;
+      if initial_P /= "" then
+         Dict_SetItemString (Dict, "initial", Unicode_FromString (initial_P));
+      end if;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      if title_P /= "" then
+         Dict_SetItemString (Dict, "title", Unicode_FromString (title_P));
+      end if;
+      if options_P /= null then
+         Dict_SetItemString (Dict, "options", options_P.Python_Proxy);
+      end if;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end getColor;
+   function getColor
+     (initial_P : int := 0; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null; title_P : str := "";
+      options_P : access QtAda6.QtWidgets.QColorDialog.ColorDialogOption.Inst'Class := null)
+      return access QtAda6.QtGui.QColor.Inst'Class
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "getColor");
+      Args   := Tuple_New (0);
+      Dict   := Dict_New;
+      if initial_P /= 0 then
+         Dict_SetItemString (Dict, "initial", Long_FromLong (initial_P));
+      end if;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      if title_P /= "" then
+         Dict_SetItemString (Dict, "title", Unicode_FromString (title_P));
+      end if;
+      if options_P /= null then
+         Dict_SetItemString (Dict, "options", options_P.Python_Proxy);
+      end if;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end getColor;
    procedure open (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (0);
@@ -151,18 +360,18 @@ package body QtAda6.QtWidgets.QColorDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end open;
    procedure open (self : access Inst; receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if receiver_P /= null then receiver_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, Bytes_FromString (String (member_P)));
+      Tuple_SetItem (Args, 1, Bytes_FromString (Standard.String (member_P.all)));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end open;
    function options (self : access Inst) return access QtAda6.QtWidgets.QColorDialog.ColorDialogOption.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QColorDialog.ColorDialogOption.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QColorDialog.ColorDialogOption.Class :=
         new QtAda6.QtWidgets.QColorDialog.ColorDialogOption.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "options");
@@ -173,8 +382,8 @@ package body QtAda6.QtWidgets.QColorDialog is
       return Ret;
    end options;
    function selectedColor (self : access Inst) return access QtAda6.QtGui.QColor.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "selectedColor");
       Args             := Tuple_New (0);
@@ -183,11 +392,8 @@ package body QtAda6.QtWidgets.QColorDialog is
       Ret.Python_Proxy := Result;
       return Ret;
    end selectedColor;
-   procedure setCurrentColor
-     (self    : access Inst;
-      color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setCurrentColor (self : access Inst; color_P : access QtAda6.QtGui.QColor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentColor");
       Args   := Tuple_New (1);
@@ -195,10 +401,53 @@ package body QtAda6.QtWidgets.QColorDialog is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setCurrentColor;
-   procedure setCustomColor
-     (index_P : int; color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
-   is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setCurrentColor (self : access Inst; color_P : access QtAda6.QtGui.QRgba64.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setCurrentColor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCurrentColor;
+   procedure setCurrentColor (self : access Inst; color_P : Any) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setCurrentColor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCurrentColor;
+   procedure setCurrentColor (self : access Inst; color_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setCurrentColor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCurrentColor;
+   procedure setCurrentColor (self : access Inst; color_P : str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setCurrentColor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (color_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCurrentColor;
+   procedure setCurrentColor (self : access Inst; color_P : int) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setCurrentColor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (color_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCurrentColor;
+   procedure setCustomColor (index_P : int; color_P : access QtAda6.QtGui.QColor.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
       Method := Object_GetAttrString (Class, "setCustomColor");
@@ -208,11 +457,66 @@ package body QtAda6.QtWidgets.QColorDialog is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setCustomColor;
+   procedure setCustomColor (index_P : int; color_P : access QtAda6.QtGui.QRgba64.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "setCustomColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCustomColor;
+   procedure setCustomColor (index_P : int; color_P : Any) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "setCustomColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCustomColor;
+   procedure setCustomColor (index_P : int; color_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "setCustomColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCustomColor;
+   procedure setCustomColor (index_P : int; color_P : str) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "setCustomColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, Unicode_FromString (color_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCustomColor;
+   procedure setCustomColor (index_P : int; color_P : int) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "setCustomColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (color_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCustomColor;
    procedure setOption
      (self : access Inst; option_P : access QtAda6.QtWidgets.QColorDialog.ColorDialogOption.Inst'Class;
       on_P : bool := False)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOption");
       Args   := Tuple_New (1);
@@ -226,7 +530,7 @@ package body QtAda6.QtWidgets.QColorDialog is
    procedure setOptions
      (self : access Inst; options_P : access QtAda6.QtWidgets.QColorDialog.ColorDialogOption.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOptions");
       Args   := Tuple_New (1);
@@ -234,10 +538,8 @@ package body QtAda6.QtWidgets.QColorDialog is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setOptions;
-   procedure setStandardColor
-     (index_P : int; color_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
-   is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setStandardColor (index_P : int; color_P : access QtAda6.QtGui.QColor.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
       Method := Object_GetAttrString (Class, "setStandardColor");
@@ -247,8 +549,63 @@ package body QtAda6.QtWidgets.QColorDialog is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setStandardColor;
+   procedure setStandardColor (index_P : int; color_P : access QtAda6.QtGui.QRgba64.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "setStandardColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setStandardColor;
+   procedure setStandardColor (index_P : int; color_P : Any) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "setStandardColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setStandardColor;
+   procedure setStandardColor (index_P : int; color_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "setStandardColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, (if color_P /= null then color_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setStandardColor;
+   procedure setStandardColor (index_P : int; color_P : str) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "setStandardColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, Unicode_FromString (color_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setStandardColor;
+   procedure setStandardColor (index_P : int; color_P : int) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
+      Method := Object_GetAttrString (Class, "setStandardColor");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (index_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (color_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setStandardColor;
    procedure setVisible (self : access Inst; visible_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVisible");
       Args   := Tuple_New (1);
@@ -257,7 +614,7 @@ package body QtAda6.QtWidgets.QColorDialog is
       Result := Object_Call (Method, Args, Dict, True);
    end setVisible;
    function standardColor (index_P : int) return access QtAda6.QtGui.QColor.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QColorDialog");
@@ -272,7 +629,7 @@ package body QtAda6.QtWidgets.QColorDialog is
    function testOption
      (self : access Inst; option_P : access QtAda6.QtWidgets.QColorDialog.ColorDialogOption.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "testOption");
       Args   := Tuple_New (1);

@@ -13,6 +13,8 @@ with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtWidgets.QGraphicsItem;
 with QtAda6.QtCore.QPointF;
+with QtAda6.QtCore.QPoint;
+with QtAda6.QtGui.QPainterPath.Element;
 with QtAda6.QtCore.QTimeLine;
 with QtAda6.QtGui.QTransform;
 package body QtAda6.QtWidgets.QGraphicsItemAnimation is
@@ -26,7 +28,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItemAnimation");
       Args  := Tuple_New (0);
@@ -37,7 +39,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure afterAnimationStep (self : access Inst; step_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "afterAnimationStep");
       Args   := Tuple_New (1);
@@ -46,7 +48,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       Result := Object_Call (Method, Args, Dict, True);
    end afterAnimationStep;
    procedure beforeAnimationStep (self : access Inst; step_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "beforeAnimationStep");
       Args   := Tuple_New (1);
@@ -55,7 +57,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       Result := Object_Call (Method, Args, Dict, True);
    end beforeAnimationStep;
    procedure clear (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clear");
       Args   := Tuple_New (0);
@@ -63,7 +65,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       Result := Object_Call (Method, Args, Dict, True);
    end clear;
    function horizontalScaleAt (self : access Inst; step_P : float) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "horizontalScaleAt");
       Args   := Tuple_New (1);
@@ -73,7 +75,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       return Float_AsDouble (Result);
    end horizontalScaleAt;
    function horizontalShearAt (self : access Inst; step_P : float) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "horizontalShearAt");
       Args   := Tuple_New (1);
@@ -83,7 +85,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       return Float_AsDouble (Result);
    end horizontalShearAt;
    function item (self : access Inst) return access QtAda6.QtWidgets.QGraphicsItem.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QGraphicsItem.Class := new QtAda6.QtWidgets.QGraphicsItem.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "item");
@@ -94,8 +96,8 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       return Ret;
    end item;
    function posAt (self : access Inst; step_P : float) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "posAt");
       Args   := Tuple_New (1);
@@ -106,16 +108,30 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       return Ret;
    end posAt;
    function posList (self : access Inst) return LIST_TUPLE_float_QtAda6_QtCore_QPointF is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "posList");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_TUPLE_float_QtAda6_QtCore_QPointF (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            declare
+               function TI (CI : ssize_t) return TUPLE_float_QtAda6_QtCore_QPointF is
+               begin
+                  return Ret : TUPLE_float_QtAda6_QtCore_QPointF do
+                     Ret.C0              := Float_AsDouble (Tuple_GetItem (List_GetItem (Result, CI), 0));
+                     Ret.C1.Python_Proxy := Tuple_GetItem (List_GetItem (Result, CI), 1);
+                  end return;
+               end TI;
+            begin
+               Ret (Ind) := TI (ssize_t (Ind - Ret'First));
+            end;
+         end loop;
+      end return;
    end posList;
    function rotationAt (self : access Inst; step_P : float) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rotationAt");
       Args   := Tuple_New (1);
@@ -125,25 +141,53 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       return Float_AsDouble (Result);
    end rotationAt;
    function rotationList (self : access Inst) return LIST_TUPLE_float_float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rotationList");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_TUPLE_float_float (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            declare
+               function TI (CI : ssize_t) return TUPLE_float_float is
+               begin
+                  return Ret : TUPLE_float_float do
+                     Ret.C0 := Float_AsDouble (Tuple_GetItem (List_GetItem (Result, CI), 0));
+                     Ret.C1 := Float_AsDouble (Tuple_GetItem (List_GetItem (Result, CI), 1));
+                  end return;
+               end TI;
+            begin
+               Ret (Ind) := TI (ssize_t (Ind - Ret'First));
+            end;
+         end loop;
+      end return;
    end rotationList;
    function scaleList (self : access Inst) return LIST_TUPLE_float_QtAda6_QtCore_QPointF is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "scaleList");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_TUPLE_float_QtAda6_QtCore_QPointF (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            declare
+               function TI (CI : ssize_t) return TUPLE_float_QtAda6_QtCore_QPointF is
+               begin
+                  return Ret : TUPLE_float_QtAda6_QtCore_QPointF do
+                     Ret.C0              := Float_AsDouble (Tuple_GetItem (List_GetItem (Result, CI), 0));
+                     Ret.C1.Python_Proxy := Tuple_GetItem (List_GetItem (Result, CI), 1);
+                  end return;
+               end TI;
+            begin
+               Ret (Ind) := TI (ssize_t (Ind - Ret'First));
+            end;
+         end loop;
+      end return;
    end scaleList;
    procedure setItem (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setItem");
       Args   := Tuple_New (1);
@@ -151,11 +195,29 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setItem;
-   procedure setPosAt
-     (self  : access Inst; step_P : float;
-      pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
+   procedure setPosAt (self : access Inst; step_P : float; pos_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPosAt");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Float_FromDouble (step_P));
+      Tuple_SetItem (Args, 1, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPosAt;
+   procedure setPosAt (self : access Inst; step_P : float; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPosAt");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Float_FromDouble (step_P));
+      Tuple_SetItem (Args, 1, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPosAt;
+   procedure setPosAt (self : access Inst; step_P : float; pos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPosAt");
       Args   := Tuple_New (2);
@@ -165,7 +227,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       Result := Object_Call (Method, Args, Dict, True);
    end setPosAt;
    procedure setRotationAt (self : access Inst; step_P : float; angle_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRotationAt");
       Args   := Tuple_New (2);
@@ -175,7 +237,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       Result := Object_Call (Method, Args, Dict, True);
    end setRotationAt;
    procedure setScaleAt (self : access Inst; step_P : float; sx_P : float; sy_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setScaleAt");
       Args   := Tuple_New (3);
@@ -186,7 +248,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       Result := Object_Call (Method, Args, Dict, True);
    end setScaleAt;
    procedure setShearAt (self : access Inst; step_P : float; sh_P : float; sv_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setShearAt");
       Args   := Tuple_New (3);
@@ -197,7 +259,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       Result := Object_Call (Method, Args, Dict, True);
    end setShearAt;
    procedure setStep (self : access Inst; x_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStep");
       Args   := Tuple_New (1);
@@ -206,7 +268,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       Result := Object_Call (Method, Args, Dict, True);
    end setStep;
    procedure setTimeLine (self : access Inst; timeLine_P : access QtAda6.QtCore.QTimeLine.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTimeLine");
       Args   := Tuple_New (1);
@@ -215,7 +277,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       Result := Object_Call (Method, Args, Dict, True);
    end setTimeLine;
    procedure setTranslationAt (self : access Inst; step_P : float; dx_P : float; dy_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTranslationAt");
       Args   := Tuple_New (3);
@@ -226,16 +288,30 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       Result := Object_Call (Method, Args, Dict, True);
    end setTranslationAt;
    function shearList (self : access Inst) return LIST_TUPLE_float_QtAda6_QtCore_QPointF is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "shearList");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_TUPLE_float_QtAda6_QtCore_QPointF (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            declare
+               function TI (CI : ssize_t) return TUPLE_float_QtAda6_QtCore_QPointF is
+               begin
+                  return Ret : TUPLE_float_QtAda6_QtCore_QPointF do
+                     Ret.C0              := Float_AsDouble (Tuple_GetItem (List_GetItem (Result, CI), 0));
+                     Ret.C1.Python_Proxy := Tuple_GetItem (List_GetItem (Result, CI), 1);
+                  end return;
+               end TI;
+            begin
+               Ret (Ind) := TI (ssize_t (Ind - Ret'First));
+            end;
+         end loop;
+      end return;
    end shearList;
    function timeLine (self : access Inst) return access QtAda6.QtCore.QTimeLine.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTimeLine.Class := new QtAda6.QtCore.QTimeLine.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "timeLine");
@@ -246,7 +322,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       return Ret;
    end timeLine;
    function transformAt (self : access Inst; step_P : float) return access QtAda6.QtGui.QTransform.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTransform.Class := new QtAda6.QtGui.QTransform.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "transformAt");
@@ -258,16 +334,30 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       return Ret;
    end transformAt;
    function translationList (self : access Inst) return LIST_TUPLE_float_QtAda6_QtCore_QPointF is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "translationList");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_TUPLE_float_QtAda6_QtCore_QPointF (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            declare
+               function TI (CI : ssize_t) return TUPLE_float_QtAda6_QtCore_QPointF is
+               begin
+                  return Ret : TUPLE_float_QtAda6_QtCore_QPointF do
+                     Ret.C0              := Float_AsDouble (Tuple_GetItem (List_GetItem (Result, CI), 0));
+                     Ret.C1.Python_Proxy := Tuple_GetItem (List_GetItem (Result, CI), 1);
+                  end return;
+               end TI;
+            begin
+               Ret (Ind) := TI (ssize_t (Ind - Ret'First));
+            end;
+         end loop;
+      end return;
    end translationList;
    function verticalScaleAt (self : access Inst; step_P : float) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "verticalScaleAt");
       Args   := Tuple_New (1);
@@ -277,7 +367,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       return Float_AsDouble (Result);
    end verticalScaleAt;
    function verticalShearAt (self : access Inst; step_P : float) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "verticalShearAt");
       Args   := Tuple_New (1);
@@ -287,7 +377,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       return Float_AsDouble (Result);
    end verticalShearAt;
    function xTranslationAt (self : access Inst; step_P : float) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "xTranslationAt");
       Args   := Tuple_New (1);
@@ -297,7 +387,7 @@ package body QtAda6.QtWidgets.QGraphicsItemAnimation is
       return Float_AsDouble (Result);
    end xTranslationAt;
    function yTranslationAt (self : access Inst; step_P : float) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "yTranslationAt");
       Args   := Tuple_New (1);

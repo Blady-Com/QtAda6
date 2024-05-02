@@ -23,7 +23,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (type_K_P : access QtAda6.QtCore.QEvent.Type_K.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsSceneEvent");
       Args  := Tuple_New (1);
@@ -32,7 +32,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure setTimestamp (self : access Inst; ts_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTimestamp");
       Args   := Tuple_New (1);
@@ -41,7 +41,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setTimestamp;
    function timestamp (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "timestamp");
       Args   := Tuple_New (0);
@@ -50,7 +50,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneEvent is
       return Long_AsLong (Result);
    end timestamp;
    function widget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "widget");

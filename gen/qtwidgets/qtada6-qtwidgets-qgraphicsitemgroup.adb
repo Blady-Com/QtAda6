@@ -27,7 +27,7 @@ package body QtAda6.QtWidgets.QGraphicsItemGroup is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsItemGroup");
       Args  := Tuple_New (0);
@@ -38,7 +38,7 @@ package body QtAda6.QtWidgets.QGraphicsItemGroup is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure addToGroup (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addToGroup");
       Args   := Tuple_New (1);
@@ -47,8 +47,8 @@ package body QtAda6.QtWidgets.QGraphicsItemGroup is
       Result := Object_Call (Method, Args, Dict, True);
    end addToGroup;
    function boundingRect (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "boundingRect");
       Args             := Tuple_New (0);
@@ -58,7 +58,7 @@ package body QtAda6.QtWidgets.QGraphicsItemGroup is
       return Ret;
    end boundingRect;
    function isObscuredBy (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isObscuredBy");
       Args   := Tuple_New (1);
@@ -68,7 +68,7 @@ package body QtAda6.QtWidgets.QGraphicsItemGroup is
       return To_Ada (Result);
    end isObscuredBy;
    function opaqueArea (self : access Inst) return access QtAda6.QtGui.QPainterPath.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPainterPath.Class := new QtAda6.QtGui.QPainterPath.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "opaqueArea");
@@ -83,7 +83,7 @@ package body QtAda6.QtWidgets.QGraphicsItemGroup is
       option_P : access QtAda6.QtWidgets.QStyleOptionGraphicsItem.Inst'Class;
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paint");
       Args   := Tuple_New (2);
@@ -96,7 +96,7 @@ package body QtAda6.QtWidgets.QGraphicsItemGroup is
       Result := Object_Call (Method, Args, Dict, True);
    end paint;
    procedure removeFromGroup (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeFromGroup");
       Args   := Tuple_New (1);
@@ -105,7 +105,7 @@ package body QtAda6.QtWidgets.QGraphicsItemGroup is
       Result := Object_Call (Method, Args, Dict, True);
    end removeFromGroup;
    function type_K (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "type");
       Args   := Tuple_New (0);

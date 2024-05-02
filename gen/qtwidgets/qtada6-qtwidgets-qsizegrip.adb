@@ -30,7 +30,7 @@ package body QtAda6.QtWidgets.QSizeGrip is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSizeGrip");
       Args  := Tuple_New (1);
@@ -39,7 +39,7 @@ package body QtAda6.QtWidgets.QSizeGrip is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function event (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -52,7 +52,7 @@ package body QtAda6.QtWidgets.QSizeGrip is
      (self    : access Inst; arg_1_P : access QtAda6.QtCore.QObject.Inst'Class;
       arg_2_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "eventFilter");
       Args   := Tuple_New (2);
@@ -63,7 +63,7 @@ package body QtAda6.QtWidgets.QSizeGrip is
       return To_Ada (Result);
    end eventFilter;
    procedure hideEvent (self : access Inst; hideEvent_P : access QtAda6.QtGui.QHideEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hideEvent");
       Args   := Tuple_New (1);
@@ -72,7 +72,7 @@ package body QtAda6.QtWidgets.QSizeGrip is
       Result := Object_Call (Method, Args, Dict, True);
    end hideEvent;
    procedure mouseMoveEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseMoveEvent");
       Args   := Tuple_New (1);
@@ -81,7 +81,7 @@ package body QtAda6.QtWidgets.QSizeGrip is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseMoveEvent;
    procedure mousePressEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mousePressEvent");
       Args   := Tuple_New (1);
@@ -90,7 +90,7 @@ package body QtAda6.QtWidgets.QSizeGrip is
       Result := Object_Call (Method, Args, Dict, True);
    end mousePressEvent;
    procedure mouseReleaseEvent (self : access Inst; mouseEvent_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseReleaseEvent");
       Args   := Tuple_New (1);
@@ -99,7 +99,7 @@ package body QtAda6.QtWidgets.QSizeGrip is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseReleaseEvent;
    procedure moveEvent (self : access Inst; moveEvent_P : access QtAda6.QtGui.QMoveEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "moveEvent");
       Args   := Tuple_New (1);
@@ -108,7 +108,7 @@ package body QtAda6.QtWidgets.QSizeGrip is
       Result := Object_Call (Method, Args, Dict, True);
    end moveEvent;
    procedure paintEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -117,7 +117,7 @@ package body QtAda6.QtWidgets.QSizeGrip is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure setVisible (self : access Inst; arg_1_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVisible");
       Args   := Tuple_New (1);
@@ -126,7 +126,7 @@ package body QtAda6.QtWidgets.QSizeGrip is
       Result := Object_Call (Method, Args, Dict, True);
    end setVisible;
    procedure showEvent (self : access Inst; showEvent_P : access QtAda6.QtGui.QShowEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "showEvent");
       Args   := Tuple_New (1);
@@ -135,8 +135,8 @@ package body QtAda6.QtWidgets.QSizeGrip is
       Result := Object_Call (Method, Args, Dict, True);
    end showEvent;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);

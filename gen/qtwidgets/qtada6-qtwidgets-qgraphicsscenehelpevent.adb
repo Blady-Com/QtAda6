@@ -13,6 +13,7 @@ with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QEvent.Type_K;
 with QtAda6.QtCore.QPointF;
 with QtAda6.QtCore.QPoint;
+with QtAda6.QtGui.QPainterPath.Element;
 package body QtAda6.QtWidgets.QGraphicsSceneHelpEvent is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -24,7 +25,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneHelpEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (type_K_P : access QtAda6.QtCore.QEvent.Type_K.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsSceneHelpEvent");
       Args  := Tuple_New (0);
@@ -35,8 +36,8 @@ package body QtAda6.QtWidgets.QGraphicsSceneHelpEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function scenePos (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "scenePos");
       Args             := Tuple_New (0);
@@ -46,8 +47,8 @@ package body QtAda6.QtWidgets.QGraphicsSceneHelpEvent is
       return Ret;
    end scenePos;
    function screenPos (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "screenPos");
       Args             := Tuple_New (0);
@@ -56,10 +57,26 @@ package body QtAda6.QtWidgets.QGraphicsSceneHelpEvent is
       Ret.Python_Proxy := Result;
       return Ret;
    end screenPos;
-   procedure setScenePos
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setScenePos (self : access Inst; pos_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setScenePos");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setScenePos;
+   procedure setScenePos (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setScenePos");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setScenePos;
+   procedure setScenePos (self : access Inst; pos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setScenePos");
       Args   := Tuple_New (1);
@@ -68,7 +85,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneHelpEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setScenePos;
    procedure setScreenPos (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setScreenPos");
       Args   := Tuple_New (1);

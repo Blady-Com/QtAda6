@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.QPoint;
 with QtAda6.QtGui.QAction;
@@ -74,7 +73,7 @@ package body QtAda6.QtWidgets.QToolBar is
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "visibilityChanged"));
    end visibilityChanged;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolBar");
       Args  := Tuple_New (0);
@@ -85,7 +84,7 @@ package body QtAda6.QtWidgets.QToolBar is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (title_P : str; parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolBar");
       Args  := Tuple_New (1);
@@ -99,8 +98,8 @@ package body QtAda6.QtWidgets.QToolBar is
    function actionAt
      (self : access Inst; p_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtGui.QAction.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "actionAt");
       Args   := Tuple_New (1);
@@ -111,8 +110,8 @@ package body QtAda6.QtWidgets.QToolBar is
       return Ret;
    end actionAt;
    function actionAt (self : access Inst; x_P : int; y_P : int) return access QtAda6.QtGui.QAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "actionAt");
       Args   := Tuple_New (2);
@@ -124,7 +123,7 @@ package body QtAda6.QtWidgets.QToolBar is
       return Ret;
    end actionAt;
    procedure actionEvent (self : access Inst; event_P : access QtAda6.QtGui.QActionEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "actionEvent");
       Args   := Tuple_New (1);
@@ -136,8 +135,8 @@ package body QtAda6.QtWidgets.QToolBar is
      (self : access Inst; action_P : access QtAda6.QtGui.QAction.Inst'Class)
       return access QtAda6.QtCore.QRect.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "actionGeometry");
       Args   := Tuple_New (1);
@@ -148,8 +147,8 @@ package body QtAda6.QtWidgets.QToolBar is
       return Ret;
    end actionGeometry;
    function addSeparator (self : access Inst) return access QtAda6.QtGui.QAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "addSeparator");
       Args             := Tuple_New (0);
@@ -162,8 +161,8 @@ package body QtAda6.QtWidgets.QToolBar is
      (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class)
       return access QtAda6.QtGui.QAction.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addWidget");
       Args   := Tuple_New (1);
@@ -174,7 +173,7 @@ package body QtAda6.QtWidgets.QToolBar is
       return Ret;
    end addWidget;
    function allowedAreas (self : access Inst) return access QtAda6.QtCore.Qt.ToolBarArea.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.ToolBarArea.Class := new QtAda6.QtCore.Qt.ToolBarArea.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "allowedAreas");
@@ -185,7 +184,7 @@ package body QtAda6.QtWidgets.QToolBar is
       return Ret;
    end allowedAreas;
    procedure changeEvent (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changeEvent");
       Args   := Tuple_New (1);
@@ -194,7 +193,7 @@ package body QtAda6.QtWidgets.QToolBar is
       Result := Object_Call (Method, Args, Dict, True);
    end changeEvent;
    procedure clear (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clear");
       Args   := Tuple_New (0);
@@ -202,7 +201,7 @@ package body QtAda6.QtWidgets.QToolBar is
       Result := Object_Call (Method, Args, Dict, True);
    end clear;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -212,8 +211,8 @@ package body QtAda6.QtWidgets.QToolBar is
       return To_Ada (Result);
    end event;
    function iconSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "iconSize");
       Args             := Tuple_New (0);
@@ -223,7 +222,7 @@ package body QtAda6.QtWidgets.QToolBar is
       return Ret;
    end iconSize;
    procedure initStyleOption (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionToolBar.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "initStyleOption");
       Args   := Tuple_New (1);
@@ -235,8 +234,8 @@ package body QtAda6.QtWidgets.QToolBar is
      (self : access Inst; before_P : access QtAda6.QtGui.QAction.Inst'Class)
       return access QtAda6.QtGui.QAction.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertSeparator");
       Args   := Tuple_New (1);
@@ -250,8 +249,8 @@ package body QtAda6.QtWidgets.QToolBar is
      (self     : access Inst; before_P : access QtAda6.QtGui.QAction.Inst'Class;
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return access QtAda6.QtGui.QAction.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertWidget");
       Args   := Tuple_New (2);
@@ -263,7 +262,7 @@ package body QtAda6.QtWidgets.QToolBar is
       return Ret;
    end insertWidget;
    function isAreaAllowed (self : access Inst; area_P : access QtAda6.QtCore.Qt.ToolBarArea.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isAreaAllowed");
       Args   := Tuple_New (1);
@@ -273,7 +272,7 @@ package body QtAda6.QtWidgets.QToolBar is
       return To_Ada (Result);
    end isAreaAllowed;
    function isFloatable (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isFloatable");
       Args   := Tuple_New (0);
@@ -282,7 +281,7 @@ package body QtAda6.QtWidgets.QToolBar is
       return To_Ada (Result);
    end isFloatable;
    function isFloating (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isFloating");
       Args   := Tuple_New (0);
@@ -291,7 +290,7 @@ package body QtAda6.QtWidgets.QToolBar is
       return To_Ada (Result);
    end isFloating;
    function isMovable (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isMovable");
       Args   := Tuple_New (0);
@@ -300,7 +299,7 @@ package body QtAda6.QtWidgets.QToolBar is
       return To_Ada (Result);
    end isMovable;
    function orientation (self : access Inst) return access QtAda6.QtCore.Qt.Orientation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.Orientation.Class := new QtAda6.QtCore.Qt.Orientation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "orientation");
@@ -311,7 +310,7 @@ package body QtAda6.QtWidgets.QToolBar is
       return Ret;
    end orientation;
    procedure paintEvent (self : access Inst; event_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -320,7 +319,7 @@ package body QtAda6.QtWidgets.QToolBar is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure setAllowedAreas (self : access Inst; areas_P : access QtAda6.QtCore.Qt.ToolBarArea.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAllowedAreas");
       Args   := Tuple_New (1);
@@ -329,7 +328,7 @@ package body QtAda6.QtWidgets.QToolBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setAllowedAreas;
    procedure setFloatable (self : access Inst; floatable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFloatable");
       Args   := Tuple_New (1);
@@ -338,7 +337,7 @@ package body QtAda6.QtWidgets.QToolBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setFloatable;
    procedure setIconSize (self : access Inst; iconSize_P : access QtAda6.QtCore.QSize.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setIconSize");
       Args   := Tuple_New (1);
@@ -347,7 +346,7 @@ package body QtAda6.QtWidgets.QToolBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setIconSize;
    procedure setMovable (self : access Inst; movable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMovable");
       Args   := Tuple_New (1);
@@ -356,7 +355,7 @@ package body QtAda6.QtWidgets.QToolBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setMovable;
    procedure setOrientation (self : access Inst; orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOrientation");
       Args   := Tuple_New (1);
@@ -367,7 +366,7 @@ package body QtAda6.QtWidgets.QToolBar is
    procedure setToolButtonStyle
      (self : access Inst; toolButtonStyle_P : access QtAda6.QtCore.Qt.ToolButtonStyle.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setToolButtonStyle");
       Args   := Tuple_New (1);
@@ -376,8 +375,8 @@ package body QtAda6.QtWidgets.QToolBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setToolButtonStyle;
    function toggleViewAction (self : access Inst) return access QtAda6.QtGui.QAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toggleViewAction");
       Args             := Tuple_New (0);
@@ -387,7 +386,7 @@ package body QtAda6.QtWidgets.QToolBar is
       return Ret;
    end toggleViewAction;
    function toolButtonStyle (self : access Inst) return access QtAda6.QtCore.Qt.ToolButtonStyle.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.ToolButtonStyle.Class := new QtAda6.QtCore.Qt.ToolButtonStyle.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toolButtonStyle");
@@ -401,7 +400,7 @@ package body QtAda6.QtWidgets.QToolBar is
      (self : access Inst; action_P : access QtAda6.QtGui.QAction.Inst'Class)
       return access QtAda6.QtWidgets.QWidget.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "widgetForAction");

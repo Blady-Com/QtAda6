@@ -10,10 +10,11 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtGui.QColor;
 with QtAda6.QtGui.QPainter;
+with QtAda6.QtGui.QRgba64;
+with QtAda6.QtCore.Qt.GlobalColor;
 package body QtAda6.QtWidgets.QGraphicsColorizeEffect is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -34,7 +35,7 @@ package body QtAda6.QtWidgets.QGraphicsColorizeEffect is
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "strengthChanged"));
    end strengthChanged;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsColorizeEffect");
       Args  := Tuple_New (0);
@@ -45,8 +46,8 @@ package body QtAda6.QtWidgets.QGraphicsColorizeEffect is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function color (self : access Inst) return access QtAda6.QtGui.QColor.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QColor.Class := new QtAda6.QtGui.QColor.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "color");
       Args             := Tuple_New (0);
@@ -56,7 +57,7 @@ package body QtAda6.QtWidgets.QGraphicsColorizeEffect is
       return Ret;
    end color;
    procedure draw (self : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "draw");
       Args   := Tuple_New (1);
@@ -64,10 +65,8 @@ package body QtAda6.QtWidgets.QGraphicsColorizeEffect is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end draw;
-   procedure setColor
-     (self : access Inst; c_P : UNION_QtAda6_QtGui_QColor_QtAda6_QtGui_QRgba64_Any_QtAda6_QtCore_Qt_GlobalColor_str_int)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setColor (self : access Inst; c_P : access QtAda6.QtGui.QColor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setColor");
       Args   := Tuple_New (1);
@@ -75,8 +74,53 @@ package body QtAda6.QtWidgets.QGraphicsColorizeEffect is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setColor;
+   procedure setColor (self : access Inst; c_P : access QtAda6.QtGui.QRgba64.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if c_P /= null then c_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
+   procedure setColor (self : access Inst; c_P : Any) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if c_P /= null then c_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
+   procedure setColor (self : access Inst; c_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if c_P /= null then c_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
+   procedure setColor (self : access Inst; c_P : str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (c_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
+   procedure setColor (self : access Inst; c_P : int) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setColor");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (c_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setColor;
    procedure setStrength (self : access Inst; strength_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStrength");
       Args   := Tuple_New (1);
@@ -85,7 +129,7 @@ package body QtAda6.QtWidgets.QGraphicsColorizeEffect is
       Result := Object_Call (Method, Args, Dict, True);
    end setStrength;
    function strength (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "strength");
       Args   := Tuple_New (0);

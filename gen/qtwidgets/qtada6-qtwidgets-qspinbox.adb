@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.QEvent;
 with QtAda6.QtWidgets.QAbstractSpinBox.StepType;
@@ -33,7 +32,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "valueChanged"));
    end valueChanged;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSpinBox");
       Args  := Tuple_New (0);
@@ -44,7 +43,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function cleanText (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cleanText");
       Args   := Tuple_New (0);
@@ -53,7 +52,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       return As_String (Result);
    end cleanText;
    function displayIntegerBase (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "displayIntegerBase");
       Args   := Tuple_New (0);
@@ -62,7 +61,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       return Long_AsLong (Result);
    end displayIntegerBase;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -72,7 +71,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       return To_Ada (Result);
    end event;
    function fixup (self : access Inst; str_P : str) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fixup");
       Args   := Tuple_New (1);
@@ -82,7 +81,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       return As_String (Result);
    end fixup;
    function maximum (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "maximum");
       Args   := Tuple_New (0);
@@ -91,7 +90,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       return Long_AsLong (Result);
    end maximum;
    function minimum (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "minimum");
       Args   := Tuple_New (0);
@@ -100,7 +99,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       return Long_AsLong (Result);
    end minimum;
    function prefix (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "prefix");
       Args   := Tuple_New (0);
@@ -109,7 +108,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       return As_String (Result);
    end prefix;
    procedure setDisplayIntegerBase (self : access Inst; base_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDisplayIntegerBase");
       Args   := Tuple_New (1);
@@ -118,7 +117,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setDisplayIntegerBase;
    procedure setMaximum (self : access Inst; max_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMaximum");
       Args   := Tuple_New (1);
@@ -127,7 +126,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setMaximum;
    procedure setMinimum (self : access Inst; min_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMinimum");
       Args   := Tuple_New (1);
@@ -136,7 +135,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setMinimum;
    procedure setPrefix (self : access Inst; prefix_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPrefix");
       Args   := Tuple_New (1);
@@ -145,7 +144,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setPrefix;
    procedure setRange (self : access Inst; min_P : int; max_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRange");
       Args   := Tuple_New (2);
@@ -155,7 +154,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setRange;
    procedure setSingleStep (self : access Inst; val_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSingleStep");
       Args   := Tuple_New (1);
@@ -165,7 +164,7 @@ package body QtAda6.QtWidgets.QSpinBox is
    end setSingleStep;
    procedure setStepType (self : access Inst; stepType_P : access QtAda6.QtWidgets.QAbstractSpinBox.StepType.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStepType");
       Args   := Tuple_New (1);
@@ -174,7 +173,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setStepType;
    procedure setSuffix (self : access Inst; suffix_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSuffix");
       Args   := Tuple_New (1);
@@ -183,7 +182,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setSuffix;
    procedure setValue (self : access Inst; val_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setValue");
       Args   := Tuple_New (1);
@@ -192,7 +191,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setValue;
    function singleStep (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "singleStep");
       Args   := Tuple_New (0);
@@ -201,8 +200,8 @@ package body QtAda6.QtWidgets.QSpinBox is
       return Long_AsLong (Result);
    end singleStep;
    function stepType (self : access Inst) return access QtAda6.QtWidgets.QAbstractSpinBox.StepType.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QAbstractSpinBox.StepType.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QAbstractSpinBox.StepType.Class :=
         new QtAda6.QtWidgets.QAbstractSpinBox.StepType.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "stepType");
@@ -213,7 +212,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       return Ret;
    end stepType;
    function suffix (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "suffix");
       Args   := Tuple_New (0);
@@ -222,7 +221,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       return As_String (Result);
    end suffix;
    function textFromValue (self : access Inst; val_P : int) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "textFromValue");
       Args   := Tuple_New (1);
@@ -232,7 +231,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       return As_String (Result);
    end textFromValue;
    function validate (self : access Inst; input_P : str; pos_P : int) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "validate");
       Args   := Tuple_New (2);
@@ -243,7 +242,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       return null;
    end validate;
    function value (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "value");
       Args   := Tuple_New (0);
@@ -252,7 +251,7 @@ package body QtAda6.QtWidgets.QSpinBox is
       return Long_AsLong (Result);
    end value;
    function valueFromText (self : access Inst; text_P : str) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "valueFromText");
       Args   := Tuple_New (1);

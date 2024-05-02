@@ -12,6 +12,8 @@ with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtGui.QFont;
 with QtAda6.QtGui.QPalette;
+with QtAda6.QtCore.Qt.GlobalColor;
+with QtAda6.QtGui.QColor;
 with QtAda6.QtCore.QPoint;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.QRect;
@@ -26,8 +28,8 @@ package body QtAda6.QtWidgets.QToolTip is
       Free (Inst_Access (Self));
    end Finalize;
    function font return access QtAda6.QtGui.QFont.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                            : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolTip");
       Method           := Object_GetAttrString (Class, "font");
@@ -38,7 +40,7 @@ package body QtAda6.QtWidgets.QToolTip is
       return Ret;
    end font;
    procedure hideText is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolTip");
       Method := Object_GetAttrString (Class, "hideText");
@@ -47,7 +49,7 @@ package body QtAda6.QtWidgets.QToolTip is
       Result := Object_Call (Method, Args, Dict, True);
    end hideText;
    function isVisible return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolTip");
       Method := Object_GetAttrString (Class, "isVisible");
@@ -57,7 +59,7 @@ package body QtAda6.QtWidgets.QToolTip is
       return To_Ada (Result);
    end isVisible;
    function palette return access QtAda6.QtGui.QPalette.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPalette.Class := new QtAda6.QtGui.QPalette.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolTip");
@@ -68,8 +70,8 @@ package body QtAda6.QtWidgets.QToolTip is
       Ret.Python_Proxy := Result;
       return Ret;
    end palette;
-   procedure setFont (arg_1_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setFont (arg_1_P : access QtAda6.QtGui.QFont.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolTip");
       Method := Object_GetAttrString (Class, "setFont");
@@ -78,8 +80,52 @@ package body QtAda6.QtWidgets.QToolTip is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setFont;
-   procedure setPalette (arg_1_P : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setFont (arg_1_P : str) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolTip");
+      Method := Object_GetAttrString (Class, "setFont");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (arg_1_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFont;
+   procedure setFont (arg_1_P : SEQUENCE_str) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolTip");
+      Method := Object_GetAttrString (Class, "setFont");
+      Args   := Tuple_New (1);
+      List   := List_New (arg_1_P'Length);
+      for ind in arg_1_P'Range loop
+         List_SetItem (List, ssize_t (ind - arg_1_P'First), Unicode_FromString (arg_1_P (ind)));
+      end loop;
+      Tuple_SetItem (Args, 0, List);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setFont;
+   procedure setPalette (arg_1_P : access QtAda6.QtGui.QPalette.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolTip");
+      Method := Object_GetAttrString (Class, "setPalette");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPalette;
+   procedure setPalette (arg_1_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolTip");
+      Method := Object_GetAttrString (Class, "setPalette");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPalette;
+   procedure setPalette (arg_1_P : access QtAda6.QtGui.QColor.Inst'Class) is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolTip");
       Method := Object_GetAttrString (Class, "setPalette");
@@ -93,7 +139,7 @@ package body QtAda6.QtWidgets.QToolTip is
       w_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null; rect_P : access QtAda6.QtCore.QRect.Inst'Class := null;
       msecShowTime_P : int                                        := 0)
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolTip");
       Method := Object_GetAttrString (Class, "showText");
@@ -113,7 +159,7 @@ package body QtAda6.QtWidgets.QToolTip is
       Result := Object_Call (Method, Args, Dict, True);
    end showText;
    function text return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QToolTip");
       Method := Object_GetAttrString (Class, "text");

@@ -22,7 +22,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchor is
       Free (Inst_Access (Self));
    end Finalize;
    procedure setSizePolicy (self : access Inst; policy_P : access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSizePolicy");
       Args   := Tuple_New (1);
@@ -31,7 +31,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchor is
       Result := Object_Call (Method, Args, Dict, True);
    end setSizePolicy;
    procedure setSpacing (self : access Inst; spacing_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSpacing");
       Args   := Tuple_New (1);
@@ -40,7 +40,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchor is
       Result := Object_Call (Method, Args, Dict, True);
    end setSpacing;
    function sizePolicy (self : access Inst) return access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QSizePolicy.Policy.Class := new QtAda6.QtWidgets.QSizePolicy.Policy.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizePolicy");
@@ -51,7 +51,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchor is
       return Ret;
    end sizePolicy;
    function spacing (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "spacing");
       Args   := Tuple_New (0);
@@ -60,7 +60,7 @@ package body QtAda6.QtWidgets.QGraphicsAnchor is
       return Float_AsDouble (Result);
    end spacing;
    procedure unsetSpacing (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "unsetSpacing");
       Args   := Tuple_New (0);

@@ -13,8 +13,11 @@ with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.Qt.Orientation;
 with QtAda6.QtWidgets.QGraphicsLayoutItem;
 with QtAda6.QtCore.Qt.AlignmentFlag;
+with QtAda6.QtCore.QRectF;
+with QtAda6.QtCore.QRect;
 with QtAda6.QtCore.Qt.SizeHint;
 with QtAda6.QtCore.QSizeF;
+with QtAda6.QtCore.QSize;
 package body QtAda6.QtWidgets.QGraphicsLinearLayout is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -29,7 +32,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
      (orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class;
       parent_P      : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsLinearLayout");
       Args  := Tuple_New (1);
@@ -41,7 +44,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsLinearLayout");
       Args  := Tuple_New (0);
@@ -52,7 +55,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure addItem (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addItem");
       Args   := Tuple_New (1);
@@ -61,7 +64,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end addItem;
    procedure addStretch (self : access Inst; stretch_P : int := 0) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addStretch");
       Args   := Tuple_New (0);
@@ -75,7 +78,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
      (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class)
       return access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.AlignmentFlag.Class := new QtAda6.QtCore.Qt.AlignmentFlag.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "alignment");
@@ -87,7 +90,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       return Ret;
    end alignment;
    function count (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "count");
       Args   := Tuple_New (0);
@@ -96,7 +99,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       return Long_AsLong (Result);
    end count;
    procedure dump (self : access Inst; indent_P : int := 0) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dump");
       Args   := Tuple_New (0);
@@ -109,7 +112,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
    procedure insertItem
      (self : access Inst; index_P : int; item_P : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertItem");
       Args   := Tuple_New (2);
@@ -119,7 +122,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end insertItem;
    procedure insertStretch (self : access Inst; index_P : int; stretch_P : int := 0) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertStretch");
       Args   := Tuple_New (1);
@@ -131,7 +134,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end insertStretch;
    procedure invalidate (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "invalidate");
       Args   := Tuple_New (0);
@@ -139,7 +142,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end invalidate;
    function itemAt (self : access Inst; index_P : int) return access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QGraphicsLayoutItem.Class := new QtAda6.QtWidgets.QGraphicsLayoutItem.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemAt");
@@ -151,7 +154,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       return Ret;
    end itemAt;
    function itemSpacing (self : access Inst; index_P : int) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "itemSpacing");
       Args   := Tuple_New (1);
@@ -161,7 +164,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       return Float_AsDouble (Result);
    end itemSpacing;
    function orientation (self : access Inst) return access QtAda6.QtCore.Qt.Orientation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.Orientation.Class := new QtAda6.QtCore.Qt.Orientation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "orientation");
@@ -172,7 +175,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       return Ret;
    end orientation;
    procedure removeAt (self : access Inst; index_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeAt");
       Args   := Tuple_New (1);
@@ -181,7 +184,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end removeAt;
    procedure removeItem (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeItem");
       Args   := Tuple_New (1);
@@ -193,7 +196,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
      (self        : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class;
       alignment_P : access QtAda6.QtCore.Qt.AlignmentFlag.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAlignment");
       Args   := Tuple_New (2);
@@ -202,8 +205,17 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setAlignment;
-   procedure setGeometry (self : access Inst; rect_P : UNION_QtAda6_QtCore_QRectF_QtAda6_QtCore_QRect) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setGeometry (self : access Inst; rect_P : access QtAda6.QtCore.QRectF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setGeometry");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if rect_P /= null then rect_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setGeometry;
+   procedure setGeometry (self : access Inst; rect_P : access QtAda6.QtCore.QRect.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setGeometry");
       Args   := Tuple_New (1);
@@ -212,7 +224,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end setGeometry;
    procedure setItemSpacing (self : access Inst; index_P : int; spacing_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setItemSpacing");
       Args   := Tuple_New (2);
@@ -222,7 +234,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end setItemSpacing;
    procedure setOrientation (self : access Inst; orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOrientation");
       Args   := Tuple_New (1);
@@ -231,7 +243,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       Result := Object_Call (Method, Args, Dict, True);
    end setOrientation;
    procedure setSpacing (self : access Inst; spacing_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSpacing");
       Args   := Tuple_New (1);
@@ -242,7 +254,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
    procedure setStretchFactor
      (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class; stretch_P : int)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStretchFactor");
       Args   := Tuple_New (2);
@@ -253,11 +265,28 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
    end setStretchFactor;
    function sizeHint
      (self         : access Inst; which_P : access QtAda6.QtCore.Qt.SizeHint.Inst'Class;
-      constraint_P : UNION_QtAda6_QtCore_QSizeF_QtAda6_QtCore_QSize := null)
-      return access QtAda6.QtCore.QSizeF.Inst'Class
+      constraint_P : access QtAda6.QtCore.QSizeF.Inst'Class := null) return access QtAda6.QtCore.QSizeF.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "sizeHint");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if which_P /= null then which_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if constraint_P /= null then
+         Dict_SetItemString (Dict, "constraint", constraint_P.Python_Proxy);
+      end if;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end sizeHint;
+   function sizeHint
+     (self         : access Inst; which_P : access QtAda6.QtCore.Qt.SizeHint.Inst'Class;
+      constraint_P : access QtAda6.QtCore.QSize.Inst'Class := null) return access QtAda6.QtCore.QSizeF.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QSizeF.Class := new QtAda6.QtCore.QSizeF.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args   := Tuple_New (1);
@@ -271,7 +300,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
       return Ret;
    end sizeHint;
    function spacing (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "spacing");
       Args   := Tuple_New (0);
@@ -282,7 +311,7 @@ package body QtAda6.QtWidgets.QGraphicsLinearLayout is
    function stretchFactor
      (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsLayoutItem.Inst'Class) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "stretchFactor");
       Args   := Tuple_New (1);

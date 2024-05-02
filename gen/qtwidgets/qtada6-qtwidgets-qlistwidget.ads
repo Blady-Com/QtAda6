@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtWidgets.QListWidgetItem;
 limited with QtAda6.QtGui.QDropEvent;
@@ -18,6 +17,7 @@ limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.Qt.MatchFlag;
 limited with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtCore.QPoint;
+limited with QtAda6.QtCore.QPersistentModelIndex;
 limited with QtAda6.QtWidgets.QAbstractItemView.ScrollHint;
 limited with QtAda6.QtCore.QItemSelectionModel.SelectionFlag;
 limited with QtAda6.QtCore.QAbstractItemModel;
@@ -25,6 +25,7 @@ limited with QtAda6.QtCore.QItemSelectionModel;
 limited with QtAda6.QtCore.Qt.SortOrder;
 limited with QtAda6.QtCore.QRect;
 with QtAda6.QtWidgets.QListView;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QListWidget is
    type Inst;
    type Inst_Access is access all Inst;
@@ -33,7 +34,6 @@ package QtAda6.QtWidgets.QListWidget is
    type Inst is new QtAda6.QtWidgets.QListView.Inst with null record;
    type SEQUENCE_str is array (Positive range <>) of str;
    subtype LIST_QtAda6_QtWidgets_QListWidgetItem is QtAda6.QtWidgets.QListWidgetItem.Class_Array;
-   type UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is new Any;
    subtype SEQUENCE_QtAda6_QtWidgets_QListWidgetItem is QtAda6.QtWidgets.QListWidgetItem.Class_Array;
    type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
@@ -91,7 +91,10 @@ package QtAda6.QtWidgets.QListWidget is
       return access QtAda6.QtWidgets.QListWidgetItem.Inst'Class;
    function itemAt (self : access Inst; x_P : int; y_P : int) return access QtAda6.QtWidgets.QListWidgetItem.Inst'Class;
    function itemFromIndex
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
+      return access QtAda6.QtWidgets.QListWidgetItem.Inst'Class;
+   function itemFromIndex
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
       return access QtAda6.QtWidgets.QListWidgetItem.Inst'Class;
    function itemWidget
      (self : access Inst; item_P : access QtAda6.QtWidgets.QListWidgetItem.Inst'Class)

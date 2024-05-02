@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtWidgets.QTableWidgetSelectionRange;
 package body QtAda6.QtWidgets.QTableWidgetSelectionRange is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -22,7 +21,7 @@ package body QtAda6.QtWidgets.QTableWidgetSelectionRange is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTableWidgetSelectionRange");
       Args  := Tuple_New (0);
@@ -32,7 +31,7 @@ package body QtAda6.QtWidgets.QTableWidgetSelectionRange is
    function Create
      (QTableWidgetSelectionRange_P : access QtAda6.QtWidgets.QTableWidgetSelectionRange.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTableWidgetSelectionRange");
       Args  := Tuple_New (1);
@@ -43,7 +42,7 @@ package body QtAda6.QtWidgets.QTableWidgetSelectionRange is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (top_P : int; left_P : int; bottom_P : int; right_P : int) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTableWidgetSelectionRange");
       Args  := Tuple_New (4);
@@ -55,7 +54,7 @@ package body QtAda6.QtWidgets.QTableWidgetSelectionRange is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QTableWidgetSelectionRange");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -64,7 +63,7 @@ package body QtAda6.QtWidgets.QTableWidgetSelectionRange is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function bottomRow (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "bottomRow");
       Args   := Tuple_New (0);
@@ -73,7 +72,7 @@ package body QtAda6.QtWidgets.QTableWidgetSelectionRange is
       return Long_AsLong (Result);
    end bottomRow;
    function columnCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "columnCount");
       Args   := Tuple_New (0);
@@ -82,7 +81,7 @@ package body QtAda6.QtWidgets.QTableWidgetSelectionRange is
       return Long_AsLong (Result);
    end columnCount;
    function leftColumn (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "leftColumn");
       Args   := Tuple_New (0);
@@ -91,7 +90,7 @@ package body QtAda6.QtWidgets.QTableWidgetSelectionRange is
       return Long_AsLong (Result);
    end leftColumn;
    function rightColumn (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rightColumn");
       Args   := Tuple_New (0);
@@ -100,7 +99,7 @@ package body QtAda6.QtWidgets.QTableWidgetSelectionRange is
       return Long_AsLong (Result);
    end rightColumn;
    function rowCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rowCount");
       Args   := Tuple_New (0);
@@ -109,7 +108,7 @@ package body QtAda6.QtWidgets.QTableWidgetSelectionRange is
       return Long_AsLong (Result);
    end rowCount;
    function topRow (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "topRow");
       Args   := Tuple_New (0);

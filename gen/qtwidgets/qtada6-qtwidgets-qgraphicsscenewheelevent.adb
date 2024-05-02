@@ -17,6 +17,7 @@ with QtAda6.QtCore.Qt.Orientation;
 with QtAda6.QtCore.Qt.ScrollPhase;
 with QtAda6.QtCore.QPoint;
 with QtAda6.QtCore.QPointF;
+with QtAda6.QtGui.QPainterPath.Element;
 package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -28,7 +29,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (type_K_P : access QtAda6.QtCore.QEvent.Type_K.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsSceneWheelEvent");
       Args  := Tuple_New (0);
@@ -39,7 +40,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function buttons (self : access Inst) return access QtAda6.QtCore.Qt.MouseButton.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.MouseButton.Class := new QtAda6.QtCore.Qt.MouseButton.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "buttons");
@@ -50,7 +51,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       return Ret;
    end buttons;
    function delta_K (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "delta");
       Args   := Tuple_New (0);
@@ -59,7 +60,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       return Long_AsLong (Result);
    end delta_K;
    function isInverted (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isInverted");
       Args   := Tuple_New (0);
@@ -68,7 +69,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       return To_Ada (Result);
    end isInverted;
    function modifiers (self : access Inst) return access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.KeyboardModifier.Class := new QtAda6.QtCore.Qt.KeyboardModifier.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "modifiers");
@@ -79,7 +80,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       return Ret;
    end modifiers;
    function orientation (self : access Inst) return access QtAda6.QtCore.Qt.Orientation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.Orientation.Class := new QtAda6.QtCore.Qt.Orientation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "orientation");
@@ -90,7 +91,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       return Ret;
    end orientation;
    function phase (self : access Inst) return access QtAda6.QtCore.Qt.ScrollPhase.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.ScrollPhase.Class := new QtAda6.QtCore.Qt.ScrollPhase.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "phase");
@@ -101,8 +102,8 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       return Ret;
    end phase;
    function pixelDelta (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "pixelDelta");
       Args             := Tuple_New (0);
@@ -112,8 +113,8 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       return Ret;
    end pixelDelta;
    function pos (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "pos");
       Args             := Tuple_New (0);
@@ -123,8 +124,8 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       return Ret;
    end pos;
    function scenePos (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "scenePos");
       Args             := Tuple_New (0);
@@ -134,8 +135,8 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       return Ret;
    end scenePos;
    function screenPos (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "screenPos");
       Args             := Tuple_New (0);
@@ -145,7 +146,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       return Ret;
    end screenPos;
    procedure setButtons (self : access Inst; buttons_P : access QtAda6.QtCore.Qt.MouseButton.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setButtons");
       Args   := Tuple_New (1);
@@ -154,7 +155,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setButtons;
    procedure setDelta (self : access Inst; delta_K_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDelta");
       Args   := Tuple_New (1);
@@ -163,7 +164,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setDelta;
    procedure setInverted (self : access Inst; inverted_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setInverted");
       Args   := Tuple_New (1);
@@ -172,7 +173,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setInverted;
    procedure setModifiers (self : access Inst; modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setModifiers");
       Args   := Tuple_New (1);
@@ -181,7 +182,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setModifiers;
    procedure setOrientation (self : access Inst; orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOrientation");
       Args   := Tuple_New (1);
@@ -190,7 +191,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setOrientation;
    procedure setPhase (self : access Inst; scrollPhase_P : access QtAda6.QtCore.Qt.ScrollPhase.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPhase");
       Args   := Tuple_New (1);
@@ -199,7 +200,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setPhase;
    procedure setPixelDelta (self : access Inst; delta_K_P : access QtAda6.QtCore.QPoint.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPixelDelta");
       Args   := Tuple_New (1);
@@ -207,10 +208,8 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setPixelDelta;
-   procedure setPos
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setPos (self : access Inst; pos_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPos");
       Args   := Tuple_New (1);
@@ -218,10 +217,44 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setPos;
-   procedure setScenePos
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setPos (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPos");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPos;
+   procedure setPos (self : access Inst; pos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPos");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPos;
+   procedure setScenePos (self : access Inst; pos_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setScenePos");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setScenePos;
+   procedure setScenePos (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setScenePos");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setScenePos;
+   procedure setScenePos (self : access Inst; pos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setScenePos");
       Args   := Tuple_New (1);
@@ -230,7 +263,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneWheelEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setScenePos;
    procedure setScreenPos (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setScreenPos");
       Args   := Tuple_New (1);

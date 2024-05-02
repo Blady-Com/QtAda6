@@ -10,13 +10,14 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.QPoint;
 with QtAda6.QtGui.QAction;
 with QtAda6.QtGui.QActionEvent;
 with QtAda6.QtCore.QRect;
+with QtAda6.QtGui.QIcon;
 with QtAda6.QtWidgets.QMenu;
+with QtAda6.QtGui.QPixmap;
 with QtAda6.QtCore.QEvent;
 with QtAda6.QtCore.Qt.Corner;
 with QtAda6.QtCore.QObject;
@@ -47,7 +48,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "triggered"));
    end triggered;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QMenuBar");
       Args  := Tuple_New (0);
@@ -61,8 +62,8 @@ package body QtAda6.QtWidgets.QMenuBar is
      (self : access Inst; arg_1_P : access QtAda6.QtCore.QPoint.Inst'Class)
       return access QtAda6.QtGui.QAction.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "actionAt");
       Args   := Tuple_New (1);
@@ -73,7 +74,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       return Ret;
    end actionAt;
    procedure actionEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QActionEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "actionEvent");
       Args   := Tuple_New (1);
@@ -84,8 +85,8 @@ package body QtAda6.QtWidgets.QMenuBar is
    function actionGeometry
      (self : access Inst; arg_1_P : access QtAda6.QtGui.QAction.Inst'Class) return access QtAda6.QtCore.QRect.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "actionGeometry");
       Args   := Tuple_New (1);
@@ -96,8 +97,8 @@ package body QtAda6.QtWidgets.QMenuBar is
       return Ret;
    end actionGeometry;
    function activeAction (self : access Inst) return access QtAda6.QtGui.QAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "activeAction");
       Args             := Tuple_New (0);
@@ -107,10 +108,26 @@ package body QtAda6.QtWidgets.QMenuBar is
       return Ret;
    end activeAction;
    function addMenu
-     (self : access Inst; icon_P : UNION_QtAda6_QtGui_QIcon_QtAda6_QtGui_QPixmap; title_P : str)
+     (self : access Inst; icon_P : access QtAda6.QtGui.QIcon.Inst'Class; title_P : str)
       return access QtAda6.QtWidgets.QMenu.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtWidgets.QMenu.Class := new QtAda6.QtWidgets.QMenu.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "addMenu");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if icon_P /= null then icon_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Unicode_FromString (title_P));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end addMenu;
+   function addMenu
+     (self : access Inst; icon_P : access QtAda6.QtGui.QPixmap.Inst'Class; title_P : str)
+      return access QtAda6.QtWidgets.QMenu.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QMenu.Class := new QtAda6.QtWidgets.QMenu.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addMenu");
@@ -126,8 +143,8 @@ package body QtAda6.QtWidgets.QMenuBar is
      (self : access Inst; menu_P : access QtAda6.QtWidgets.QMenu.Inst'Class)
       return access QtAda6.QtGui.QAction.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addMenu");
       Args   := Tuple_New (1);
@@ -138,7 +155,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       return Ret;
    end addMenu;
    function addMenu (self : access Inst; title_P : str) return access QtAda6.QtWidgets.QMenu.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QMenu.Class := new QtAda6.QtWidgets.QMenu.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addMenu");
@@ -150,8 +167,8 @@ package body QtAda6.QtWidgets.QMenuBar is
       return Ret;
    end addMenu;
    function addSeparator (self : access Inst) return access QtAda6.QtGui.QAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "addSeparator");
       Args             := Tuple_New (0);
@@ -161,7 +178,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       return Ret;
    end addSeparator;
    procedure changeEvent (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changeEvent");
       Args   := Tuple_New (1);
@@ -170,7 +187,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       Result := Object_Call (Method, Args, Dict, True);
    end changeEvent;
    procedure clear (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clear");
       Args   := Tuple_New (0);
@@ -181,7 +198,7 @@ package body QtAda6.QtWidgets.QMenuBar is
      (self : access Inst; corner_P : access QtAda6.QtCore.Qt.Corner.Inst'Class := null)
       return access QtAda6.QtWidgets.QWidget.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cornerWidget");
@@ -195,7 +212,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       return Ret;
    end cornerWidget;
    function event (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -208,7 +225,7 @@ package body QtAda6.QtWidgets.QMenuBar is
      (self    : access Inst; arg_1_P : access QtAda6.QtCore.QObject.Inst'Class;
       arg_2_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "eventFilter");
       Args   := Tuple_New (2);
@@ -219,7 +236,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       return To_Ada (Result);
    end eventFilter;
    procedure focusInEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QFocusEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "focusInEvent");
       Args   := Tuple_New (1);
@@ -228,7 +245,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       Result := Object_Call (Method, Args, Dict, True);
    end focusInEvent;
    procedure focusOutEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QFocusEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "focusOutEvent");
       Args   := Tuple_New (1);
@@ -237,7 +254,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       Result := Object_Call (Method, Args, Dict, True);
    end focusOutEvent;
    function heightForWidth (self : access Inst; arg_1_P : int) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "heightForWidth");
       Args   := Tuple_New (1);
@@ -250,7 +267,7 @@ package body QtAda6.QtWidgets.QMenuBar is
      (self     : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionMenuItem.Inst'Class;
       action_P : access QtAda6.QtGui.QAction.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "initStyleOption");
       Args   := Tuple_New (2);
@@ -263,8 +280,8 @@ package body QtAda6.QtWidgets.QMenuBar is
      (self   : access Inst; before_P : access QtAda6.QtGui.QAction.Inst'Class;
       menu_P : access QtAda6.QtWidgets.QMenu.Inst'Class) return access QtAda6.QtGui.QAction.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertMenu");
       Args   := Tuple_New (2);
@@ -279,8 +296,8 @@ package body QtAda6.QtWidgets.QMenuBar is
      (self : access Inst; before_P : access QtAda6.QtGui.QAction.Inst'Class)
       return access QtAda6.QtGui.QAction.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QAction.Class := new QtAda6.QtGui.QAction.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertSeparator");
       Args   := Tuple_New (1);
@@ -291,7 +308,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       return Ret;
    end insertSeparator;
    function isDefaultUp (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isDefaultUp");
       Args   := Tuple_New (0);
@@ -300,7 +317,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       return To_Ada (Result);
    end isDefaultUp;
    function isNativeMenuBar (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isNativeMenuBar");
       Args   := Tuple_New (0);
@@ -309,7 +326,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       return To_Ada (Result);
    end isNativeMenuBar;
    procedure keyPressEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QKeyEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "keyPressEvent");
       Args   := Tuple_New (1);
@@ -318,7 +335,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       Result := Object_Call (Method, Args, Dict, True);
    end keyPressEvent;
    procedure leaveEvent (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "leaveEvent");
       Args   := Tuple_New (1);
@@ -327,8 +344,8 @@ package body QtAda6.QtWidgets.QMenuBar is
       Result := Object_Call (Method, Args, Dict, True);
    end leaveEvent;
    function minimumSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSizeHint");
       Args             := Tuple_New (0);
@@ -338,7 +355,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       return Ret;
    end minimumSizeHint;
    procedure mouseMoveEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseMoveEvent");
       Args   := Tuple_New (1);
@@ -347,7 +364,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseMoveEvent;
    procedure mousePressEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mousePressEvent");
       Args   := Tuple_New (1);
@@ -356,7 +373,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       Result := Object_Call (Method, Args, Dict, True);
    end mousePressEvent;
    procedure mouseReleaseEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseReleaseEvent");
       Args   := Tuple_New (1);
@@ -365,7 +382,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseReleaseEvent;
    procedure paintEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -374,7 +391,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure resizeEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QResizeEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resizeEvent");
       Args   := Tuple_New (1);
@@ -383,7 +400,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       Result := Object_Call (Method, Args, Dict, True);
    end resizeEvent;
    procedure setActiveAction (self : access Inst; action_P : access QtAda6.QtGui.QAction.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setActiveAction");
       Args   := Tuple_New (1);
@@ -395,7 +412,7 @@ package body QtAda6.QtWidgets.QMenuBar is
      (self     : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class;
       corner_P : access QtAda6.QtCore.Qt.Corner.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCornerWidget");
       Args   := Tuple_New (1);
@@ -407,7 +424,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setCornerWidget;
    procedure setDefaultUp (self : access Inst; arg_1_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDefaultUp");
       Args   := Tuple_New (1);
@@ -416,7 +433,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setDefaultUp;
    procedure setNativeMenuBar (self : access Inst; nativeMenuBar_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setNativeMenuBar");
       Args   := Tuple_New (1);
@@ -425,7 +442,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setNativeMenuBar;
    procedure setVisible (self : access Inst; visible_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVisible");
       Args   := Tuple_New (1);
@@ -434,8 +451,8 @@ package body QtAda6.QtWidgets.QMenuBar is
       Result := Object_Call (Method, Args, Dict, True);
    end setVisible;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -445,7 +462,7 @@ package body QtAda6.QtWidgets.QMenuBar is
       return Ret;
    end sizeHint;
    procedure timerEvent (self : access Inst; arg_1_P : access QtAda6.QtCore.QTimerEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "timerEvent");
       Args   := Tuple_New (1);

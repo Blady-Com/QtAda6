@@ -11,13 +11,16 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtWidgets.QGraphicsItem;
+with QtAda6.QtGui.QPixmap;
+with QtAda6.QtGui.QImage;
 with QtAda6.QtCore.QRectF;
 with QtAda6.QtCore.QPointF;
+with QtAda6.QtCore.QPoint;
+with QtAda6.QtGui.QPainterPath.Element;
 with QtAda6.QtGui.QPainterPath;
 with QtAda6.QtGui.QPainter;
 with QtAda6.QtWidgets.QStyleOptionGraphicsItem;
 with QtAda6.QtWidgets.QWidget;
-with QtAda6.QtGui.QPixmap;
 with QtAda6.QtWidgets.QGraphicsPixmapItem.ShapeMode;
 with QtAda6.QtCore.Qt.TransformationMode;
 package body QtAda6.QtWidgets.QGraphicsPixmapItem is
@@ -31,7 +34,7 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsPixmapItem");
       Args  := Tuple_New (0);
@@ -42,10 +45,10 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str;
+     (pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class;
       parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsPixmapItem");
       Args  := Tuple_New (1);
@@ -56,9 +59,36 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       end if;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
+   function Create
+     (pixmap_P : access QtAda6.QtGui.QImage.Inst'Class;
+      parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsPixmapItem");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pixmap_P /= null then pixmap_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (pixmap_P : str; parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsPixmapItem");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (pixmap_P));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
    function boundingRect (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "boundingRect");
       Args             := Tuple_New (0);
@@ -67,11 +97,28 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       Ret.Python_Proxy := Result;
       return Ret;
    end boundingRect;
-   function contains
-     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-      return bool
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   function contains (self : access Inst; point_P : access QtAda6.QtCore.QPointF.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "contains");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if point_P /= null then point_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end contains;
+   function contains (self : access Inst; point_P : access QtAda6.QtCore.QPoint.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "contains");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if point_P /= null then point_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end contains;
+   function contains (self : access Inst; point_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "contains");
       Args   := Tuple_New (1);
@@ -81,7 +128,7 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       return To_Ada (Result);
    end contains;
    function extension (self : access Inst; variant_P : Any) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "extension");
       Args   := Tuple_New (1);
@@ -91,7 +138,7 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       return null;
    end extension;
    function isObscuredBy (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isObscuredBy");
       Args   := Tuple_New (1);
@@ -101,8 +148,8 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       return To_Ada (Result);
    end isObscuredBy;
    function offset (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "offset");
       Args             := Tuple_New (0);
@@ -112,7 +159,7 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       return Ret;
    end offset;
    function opaqueArea (self : access Inst) return access QtAda6.QtGui.QPainterPath.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPainterPath.Class := new QtAda6.QtGui.QPainterPath.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "opaqueArea");
@@ -127,7 +174,7 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       option_P : access QtAda6.QtWidgets.QStyleOptionGraphicsItem.Inst'Class;
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paint");
       Args   := Tuple_New (3);
@@ -138,8 +185,8 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       Result := Object_Call (Method, Args, Dict, True);
    end paint;
    function pixmap (self : access Inst) return access QtAda6.QtGui.QPixmap.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtGui.QPixmap.Class := new QtAda6.QtGui.QPixmap.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "pixmap");
       Args             := Tuple_New (0);
@@ -148,10 +195,26 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       Ret.Python_Proxy := Result;
       return Ret;
    end pixmap;
-   procedure setOffset
-     (self : access Inst; offset_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setOffset (self : access Inst; offset_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setOffset");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if offset_P /= null then offset_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setOffset;
+   procedure setOffset (self : access Inst; offset_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setOffset");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if offset_P /= null then offset_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setOffset;
+   procedure setOffset (self : access Inst; offset_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOffset");
       Args   := Tuple_New (1);
@@ -160,7 +223,7 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       Result := Object_Call (Method, Args, Dict, True);
    end setOffset;
    procedure setOffset (self : access Inst; x_P : float; y_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOffset");
       Args   := Tuple_New (2);
@@ -169,8 +232,8 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setOffset;
-   procedure setPixmap (self : access Inst; pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setPixmap (self : access Inst; pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPixmap");
       Args   := Tuple_New (1);
@@ -178,10 +241,28 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setPixmap;
+   procedure setPixmap (self : access Inst; pixmap_P : access QtAda6.QtGui.QImage.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPixmap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pixmap_P /= null then pixmap_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPixmap;
+   procedure setPixmap (self : access Inst; pixmap_P : str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPixmap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (pixmap_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPixmap;
    procedure setShapeMode
      (self : access Inst; mode_P : access QtAda6.QtWidgets.QGraphicsPixmapItem.ShapeMode.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setShapeMode");
       Args   := Tuple_New (1);
@@ -191,7 +272,7 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
    end setShapeMode;
    procedure setTransformationMode (self : access Inst; mode_P : access QtAda6.QtCore.Qt.TransformationMode.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTransformationMode");
       Args   := Tuple_New (1);
@@ -200,7 +281,7 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       Result := Object_Call (Method, Args, Dict, True);
    end setTransformationMode;
    function shape (self : access Inst) return access QtAda6.QtGui.QPainterPath.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPainterPath.Class := new QtAda6.QtGui.QPainterPath.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "shape");
@@ -211,8 +292,8 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       return Ret;
    end shape;
    function shapeMode_F (self : access Inst) return access QtAda6.QtWidgets.QGraphicsPixmapItem.ShapeMode.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QGraphicsPixmapItem.ShapeMode.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QGraphicsPixmapItem.ShapeMode.Class :=
         new QtAda6.QtWidgets.QGraphicsPixmapItem.ShapeMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "shapeMode");
@@ -223,7 +304,7 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       return Ret;
    end shapeMode_F;
    function transformationMode (self : access Inst) return access QtAda6.QtCore.Qt.TransformationMode.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.TransformationMode.Class := new QtAda6.QtCore.Qt.TransformationMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "transformationMode");
@@ -234,7 +315,7 @@ package body QtAda6.QtWidgets.QGraphicsPixmapItem is
       return Ret;
    end transformationMode;
    function type_K (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "type");
       Args   := Tuple_New (0);

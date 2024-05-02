@@ -13,6 +13,9 @@ with Ada.Unchecked_Deallocation;
 with QtAda6.QtWidgets.QGraphicsItem;
 with QtAda6.QtGui.QPainterPath;
 with QtAda6.QtCore.QRectF;
+with QtAda6.QtCore.QPointF;
+with QtAda6.QtCore.QPoint;
+with QtAda6.QtGui.QPainterPath.Element;
 with QtAda6.QtGui.QPainter;
 with QtAda6.QtWidgets.QStyleOptionGraphicsItem;
 with QtAda6.QtWidgets.QWidget;
@@ -27,7 +30,7 @@ package body QtAda6.QtWidgets.QGraphicsPathItem is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsPathItem");
       Args  := Tuple_New (0);
@@ -41,7 +44,7 @@ package body QtAda6.QtWidgets.QGraphicsPathItem is
      (path_P   : access QtAda6.QtGui.QPainterPath.Inst'Class;
       parent_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsPathItem");
       Args  := Tuple_New (1);
@@ -53,8 +56,8 @@ package body QtAda6.QtWidgets.QGraphicsPathItem is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function boundingRect (self : access Inst) return access QtAda6.QtCore.QRectF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QRectF.Class := new QtAda6.QtCore.QRectF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "boundingRect");
       Args             := Tuple_New (0);
@@ -63,11 +66,28 @@ package body QtAda6.QtWidgets.QGraphicsPathItem is
       Ret.Python_Proxy := Result;
       return Ret;
    end boundingRect;
-   function contains
-     (self : access Inst; point_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-      return bool
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   function contains (self : access Inst; point_P : access QtAda6.QtCore.QPointF.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "contains");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if point_P /= null then point_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end contains;
+   function contains (self : access Inst; point_P : access QtAda6.QtCore.QPoint.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "contains");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if point_P /= null then point_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end contains;
+   function contains (self : access Inst; point_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "contains");
       Args   := Tuple_New (1);
@@ -77,7 +97,7 @@ package body QtAda6.QtWidgets.QGraphicsPathItem is
       return To_Ada (Result);
    end contains;
    function extension (self : access Inst; variant_P : Any) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "extension");
       Args   := Tuple_New (1);
@@ -87,7 +107,7 @@ package body QtAda6.QtWidgets.QGraphicsPathItem is
       return null;
    end extension;
    function isObscuredBy (self : access Inst; item_P : access QtAda6.QtWidgets.QGraphicsItem.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isObscuredBy");
       Args   := Tuple_New (1);
@@ -97,7 +117,7 @@ package body QtAda6.QtWidgets.QGraphicsPathItem is
       return To_Ada (Result);
    end isObscuredBy;
    function opaqueArea (self : access Inst) return access QtAda6.QtGui.QPainterPath.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPainterPath.Class := new QtAda6.QtGui.QPainterPath.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "opaqueArea");
@@ -112,7 +132,7 @@ package body QtAda6.QtWidgets.QGraphicsPathItem is
       option_P : access QtAda6.QtWidgets.QStyleOptionGraphicsItem.Inst'Class;
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paint");
       Args   := Tuple_New (2);
@@ -125,7 +145,7 @@ package body QtAda6.QtWidgets.QGraphicsPathItem is
       Result := Object_Call (Method, Args, Dict, True);
    end paint;
    function path (self : access Inst) return access QtAda6.QtGui.QPainterPath.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPainterPath.Class := new QtAda6.QtGui.QPainterPath.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "path");
@@ -136,7 +156,7 @@ package body QtAda6.QtWidgets.QGraphicsPathItem is
       return Ret;
    end path;
    procedure setPath (self : access Inst; path_P : access QtAda6.QtGui.QPainterPath.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPath");
       Args   := Tuple_New (1);
@@ -145,7 +165,7 @@ package body QtAda6.QtWidgets.QGraphicsPathItem is
       Result := Object_Call (Method, Args, Dict, True);
    end setPath;
    function shape (self : access Inst) return access QtAda6.QtGui.QPainterPath.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QPainterPath.Class := new QtAda6.QtGui.QPainterPath.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "shape");
@@ -156,7 +176,7 @@ package body QtAda6.QtWidgets.QGraphicsPathItem is
       return Ret;
    end shape;
    function type_K (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "type");
       Args   := Tuple_New (0);

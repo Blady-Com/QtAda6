@@ -12,6 +12,8 @@ with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.QPointF;
+with QtAda6.QtCore.QPoint;
+with QtAda6.QtGui.QPainterPath.Element;
 package body QtAda6.QtWidgets.QPanGesture is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -23,7 +25,7 @@ package body QtAda6.QtWidgets.QPanGesture is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QPanGesture");
       Args  := Tuple_New (0);
@@ -34,7 +36,7 @@ package body QtAda6.QtWidgets.QPanGesture is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function acceleration (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "acceleration");
       Args   := Tuple_New (0);
@@ -43,8 +45,8 @@ package body QtAda6.QtWidgets.QPanGesture is
       return Float_AsDouble (Result);
    end acceleration;
    function delta_K (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "delta");
       Args             := Tuple_New (0);
@@ -54,8 +56,8 @@ package body QtAda6.QtWidgets.QPanGesture is
       return Ret;
    end delta_K;
    function lastOffset (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "lastOffset");
       Args             := Tuple_New (0);
@@ -65,8 +67,8 @@ package body QtAda6.QtWidgets.QPanGesture is
       return Ret;
    end lastOffset;
    function offset (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "offset");
       Args             := Tuple_New (0);
@@ -76,7 +78,7 @@ package body QtAda6.QtWidgets.QPanGesture is
       return Ret;
    end offset;
    procedure setAcceleration (self : access Inst; value_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAcceleration");
       Args   := Tuple_New (1);
@@ -84,10 +86,8 @@ package body QtAda6.QtWidgets.QPanGesture is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setAcceleration;
-   procedure setLastOffset
-     (self : access Inst; value_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setLastOffset (self : access Inst; value_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setLastOffset");
       Args   := Tuple_New (1);
@@ -95,10 +95,44 @@ package body QtAda6.QtWidgets.QPanGesture is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setLastOffset;
-   procedure setOffset
-     (self : access Inst; value_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setLastOffset (self : access Inst; value_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setLastOffset");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if value_P /= null then value_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setLastOffset;
+   procedure setLastOffset (self : access Inst; value_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setLastOffset");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if value_P /= null then value_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setLastOffset;
+   procedure setOffset (self : access Inst; value_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setOffset");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if value_P /= null then value_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setOffset;
+   procedure setOffset (self : access Inst; value_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setOffset");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if value_P /= null then value_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setOffset;
+   procedure setOffset (self : access Inst; value_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOffset");
       Args   := Tuple_New (1);

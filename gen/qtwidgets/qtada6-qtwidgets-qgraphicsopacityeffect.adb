@@ -10,10 +10,15 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtGui.QPainter;
 with QtAda6.QtGui.QBrush;
+with QtAda6.QtCore.Qt.BrushStyle;
+with QtAda6.QtCore.Qt.GlobalColor;
+with QtAda6.QtGui.QColor;
+with QtAda6.QtGui.QGradient;
+with QtAda6.QtGui.QImage;
+with QtAda6.QtGui.QPixmap;
 package body QtAda6.QtWidgets.QGraphicsOpacityEffect is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -34,7 +39,7 @@ package body QtAda6.QtWidgets.QGraphicsOpacityEffect is
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "opacityMaskChanged"));
    end opacityMaskChanged;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsOpacityEffect");
       Args  := Tuple_New (0);
@@ -45,7 +50,7 @@ package body QtAda6.QtWidgets.QGraphicsOpacityEffect is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure draw (self : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "draw");
       Args   := Tuple_New (1);
@@ -54,7 +59,7 @@ package body QtAda6.QtWidgets.QGraphicsOpacityEffect is
       Result := Object_Call (Method, Args, Dict, True);
    end draw;
    function opacity (self : access Inst) return float is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "opacity");
       Args   := Tuple_New (0);
@@ -63,8 +68,8 @@ package body QtAda6.QtWidgets.QGraphicsOpacityEffect is
       return Float_AsDouble (Result);
    end opacity;
    function opacityMask (self : access Inst) return access QtAda6.QtGui.QBrush.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QBrush.Class := new QtAda6.QtGui.QBrush.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "opacityMask");
       Args             := Tuple_New (0);
@@ -74,7 +79,7 @@ package body QtAda6.QtWidgets.QGraphicsOpacityEffect is
       return Ret;
    end opacityMask;
    procedure setOpacity (self : access Inst; opacity_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOpacity");
       Args   := Tuple_New (1);
@@ -82,11 +87,62 @@ package body QtAda6.QtWidgets.QGraphicsOpacityEffect is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setOpacity;
-   procedure setOpacityMask
-     (self   : access Inst;
-      mask_P : UNION_QtAda6_QtGui_QBrush_QtAda6_QtCore_Qt_BrushStyle_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor_QtAda6_QtGui_QGradient_QtAda6_QtGui_QImage_QtAda6_QtGui_QPixmap)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setOpacityMask (self : access Inst; mask_P : access QtAda6.QtGui.QBrush.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setOpacityMask");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if mask_P /= null then mask_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setOpacityMask;
+   procedure setOpacityMask (self : access Inst; mask_P : access QtAda6.QtCore.Qt.BrushStyle.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setOpacityMask");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if mask_P /= null then mask_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setOpacityMask;
+   procedure setOpacityMask (self : access Inst; mask_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setOpacityMask");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if mask_P /= null then mask_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setOpacityMask;
+   procedure setOpacityMask (self : access Inst; mask_P : access QtAda6.QtGui.QColor.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setOpacityMask");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if mask_P /= null then mask_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setOpacityMask;
+   procedure setOpacityMask (self : access Inst; mask_P : access QtAda6.QtGui.QGradient.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setOpacityMask");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if mask_P /= null then mask_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setOpacityMask;
+   procedure setOpacityMask (self : access Inst; mask_P : access QtAda6.QtGui.QImage.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setOpacityMask");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if mask_P /= null then mask_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setOpacityMask;
+   procedure setOpacityMask (self : access Inst; mask_P : access QtAda6.QtGui.QPixmap.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOpacityMask");
       Args   := Tuple_New (1);

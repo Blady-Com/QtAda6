@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.QCalendar;
 with QtAda6.QtCore.QDate;
@@ -56,7 +55,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "selectionChanged"));
    end selectionChanged;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QCalendarWidget");
       Args  := Tuple_New (0);
@@ -67,7 +66,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function calendar (self : access Inst) return access QtAda6.QtCore.QCalendar.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QCalendar.Class := new QtAda6.QtCore.QCalendar.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "calendar");
@@ -78,7 +77,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return Ret;
    end calendar;
    function dateEditAcceptDelay (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dateEditAcceptDelay");
       Args   := Tuple_New (0);
@@ -87,7 +86,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return Long_AsLong (Result);
    end dateEditAcceptDelay;
    function dateTextFormat (self : access Inst) return DICT_QtAda6_QtCore_QDate_QtAda6_QtGui_QTextCharFormat is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dateTextFormat");
       Args   := Tuple_New (0);
@@ -102,7 +101,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
      (self : access Inst; date_P : access QtAda6.QtCore.QDate.Inst'Class)
       return access QtAda6.QtGui.QTextCharFormat.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextCharFormat.Class := new QtAda6.QtGui.QTextCharFormat.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dateTextFormat");
@@ -114,7 +113,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return Ret;
    end dateTextFormat;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -127,7 +126,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
      (self    : access Inst; watched_P : access QtAda6.QtCore.QObject.Inst'Class;
       event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "eventFilter");
       Args   := Tuple_New (2);
@@ -138,7 +137,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return To_Ada (Result);
    end eventFilter;
    function firstDayOfWeek (self : access Inst) return access QtAda6.QtCore.Qt.DayOfWeek.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DayOfWeek.Class := new QtAda6.QtCore.Qt.DayOfWeek.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "firstDayOfWeek");
@@ -149,7 +148,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return Ret;
    end firstDayOfWeek;
    function headerTextFormat (self : access Inst) return access QtAda6.QtGui.QTextCharFormat.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextCharFormat.Class := new QtAda6.QtGui.QTextCharFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "headerTextFormat");
@@ -162,7 +161,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
    function horizontalHeaderFormat_F
      (self : access Inst) return access QtAda6.QtWidgets.QCalendarWidget.HorizontalHeaderFormat.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QCalendarWidget.HorizontalHeaderFormat.Class :=
         new QtAda6.QtWidgets.QCalendarWidget.HorizontalHeaderFormat.Inst;
    begin
@@ -174,7 +173,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return Ret;
    end horizontalHeaderFormat_F;
    function isDateEditEnabled (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isDateEditEnabled");
       Args   := Tuple_New (0);
@@ -183,7 +182,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return To_Ada (Result);
    end isDateEditEnabled;
    function isGridVisible (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isGridVisible");
       Args   := Tuple_New (0);
@@ -192,7 +191,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return To_Ada (Result);
    end isGridVisible;
    function isNavigationBarVisible (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isNavigationBarVisible");
       Args   := Tuple_New (0);
@@ -201,7 +200,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return To_Ada (Result);
    end isNavigationBarVisible;
    procedure keyPressEvent (self : access Inst; event_P : access QtAda6.QtGui.QKeyEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "keyPressEvent");
       Args   := Tuple_New (1);
@@ -210,8 +209,8 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end keyPressEvent;
    function maximumDate (self : access Inst) return access QtAda6.QtCore.QDate.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QDate.Class := new QtAda6.QtCore.QDate.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QDate.Class := new QtAda6.QtCore.QDate.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "maximumDate");
       Args             := Tuple_New (0);
@@ -221,8 +220,8 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return Ret;
    end maximumDate;
    function minimumDate (self : access Inst) return access QtAda6.QtCore.QDate.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QDate.Class := new QtAda6.QtCore.QDate.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QDate.Class := new QtAda6.QtCore.QDate.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumDate");
       Args             := Tuple_New (0);
@@ -232,8 +231,8 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return Ret;
    end minimumDate;
    function minimumSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSizeHint");
       Args             := Tuple_New (0);
@@ -243,7 +242,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return Ret;
    end minimumSizeHint;
    function monthShown (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "monthShown");
       Args   := Tuple_New (0);
@@ -252,7 +251,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return Long_AsLong (Result);
    end monthShown;
    procedure mousePressEvent (self : access Inst; event_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mousePressEvent");
       Args   := Tuple_New (1);
@@ -264,7 +263,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
      (self   : access Inst; painter_P : access QtAda6.QtGui.QPainter.Inst'Class;
       rect_P : access QtAda6.QtCore.QRect.Inst'Class; date_P : access QtAda6.QtCore.QDate.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintCell");
       Args   := Tuple_New (3);
@@ -275,7 +274,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end paintCell;
    procedure resizeEvent (self : access Inst; event_P : access QtAda6.QtGui.QResizeEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resizeEvent");
       Args   := Tuple_New (1);
@@ -284,8 +283,8 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end resizeEvent;
    function selectedDate (self : access Inst) return access QtAda6.QtCore.QDate.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QDate.Class := new QtAda6.QtCore.QDate.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QDate.Class := new QtAda6.QtCore.QDate.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "selectedDate");
       Args             := Tuple_New (0);
@@ -296,8 +295,8 @@ package body QtAda6.QtWidgets.QCalendarWidget is
    end selectedDate;
    function selectionMode_F (self : access Inst) return access QtAda6.QtWidgets.QCalendarWidget.SelectionMode.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QCalendarWidget.SelectionMode.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QCalendarWidget.SelectionMode.Class :=
         new QtAda6.QtWidgets.QCalendarWidget.SelectionMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "selectionMode");
@@ -308,7 +307,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return Ret;
    end selectionMode_F;
    procedure setCalendar (self : access Inst; calendar_P : access QtAda6.QtCore.QCalendar.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCalendar");
       Args   := Tuple_New (1);
@@ -317,7 +316,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setCalendar;
    procedure setCurrentPage (self : access Inst; year_P : int; month_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentPage");
       Args   := Tuple_New (2);
@@ -327,7 +326,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setCurrentPage;
    procedure setDateEditAcceptDelay (self : access Inst; delay_K_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDateEditAcceptDelay");
       Args   := Tuple_New (1);
@@ -336,7 +335,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setDateEditAcceptDelay;
    procedure setDateEditEnabled (self : access Inst; enable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDateEditEnabled");
       Args   := Tuple_New (1);
@@ -347,7 +346,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
    procedure setDateRange
      (self : access Inst; min_P : access QtAda6.QtCore.QDate.Inst'Class; max_P : access QtAda6.QtCore.QDate.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDateRange");
       Args   := Tuple_New (2);
@@ -360,7 +359,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
      (self     : access Inst; date_P : access QtAda6.QtCore.QDate.Inst'Class;
       format_P : access QtAda6.QtGui.QTextCharFormat.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDateTextFormat");
       Args   := Tuple_New (2);
@@ -370,7 +369,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setDateTextFormat;
    procedure setFirstDayOfWeek (self : access Inst; dayOfWeek_P : access QtAda6.QtCore.Qt.DayOfWeek.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFirstDayOfWeek");
       Args   := Tuple_New (1);
@@ -379,7 +378,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setFirstDayOfWeek;
    procedure setGridVisible (self : access Inst; show_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setGridVisible");
       Args   := Tuple_New (1);
@@ -388,7 +387,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setGridVisible;
    procedure setHeaderTextFormat (self : access Inst; format_P : access QtAda6.QtGui.QTextCharFormat.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHeaderTextFormat");
       Args   := Tuple_New (1);
@@ -399,7 +398,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
    procedure setHorizontalHeaderFormat
      (self : access Inst; format_P : access QtAda6.QtWidgets.QCalendarWidget.HorizontalHeaderFormat.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHorizontalHeaderFormat");
       Args   := Tuple_New (1);
@@ -408,7 +407,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setHorizontalHeaderFormat;
    procedure setMaximumDate (self : access Inst; date_P : access QtAda6.QtCore.QDate.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMaximumDate");
       Args   := Tuple_New (1);
@@ -417,7 +416,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setMaximumDate;
    procedure setMinimumDate (self : access Inst; date_P : access QtAda6.QtCore.QDate.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMinimumDate");
       Args   := Tuple_New (1);
@@ -426,7 +425,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setMinimumDate;
    procedure setNavigationBarVisible (self : access Inst; visible_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setNavigationBarVisible");
       Args   := Tuple_New (1);
@@ -435,7 +434,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setNavigationBarVisible;
    procedure setSelectedDate (self : access Inst; date_P : access QtAda6.QtCore.QDate.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSelectedDate");
       Args   := Tuple_New (1);
@@ -446,7 +445,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
    procedure setSelectionMode
      (self : access Inst; mode_P : access QtAda6.QtWidgets.QCalendarWidget.SelectionMode.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSelectionMode");
       Args   := Tuple_New (1);
@@ -457,7 +456,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
    procedure setVerticalHeaderFormat
      (self : access Inst; format_P : access QtAda6.QtWidgets.QCalendarWidget.VerticalHeaderFormat.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setVerticalHeaderFormat");
       Args   := Tuple_New (1);
@@ -469,7 +468,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
      (self     : access Inst; dayOfWeek_P : access QtAda6.QtCore.Qt.DayOfWeek.Inst'Class;
       format_P : access QtAda6.QtGui.QTextCharFormat.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setWeekdayTextFormat");
       Args   := Tuple_New (2);
@@ -479,7 +478,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setWeekdayTextFormat;
    procedure showNextMonth (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "showNextMonth");
       Args   := Tuple_New (0);
@@ -487,7 +486,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end showNextMonth;
    procedure showNextYear (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "showNextYear");
       Args   := Tuple_New (0);
@@ -495,7 +494,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end showNextYear;
    procedure showPreviousMonth (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "showPreviousMonth");
       Args   := Tuple_New (0);
@@ -503,7 +502,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end showPreviousMonth;
    procedure showPreviousYear (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "showPreviousYear");
       Args   := Tuple_New (0);
@@ -511,7 +510,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end showPreviousYear;
    procedure showSelectedDate (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "showSelectedDate");
       Args   := Tuple_New (0);
@@ -519,7 +518,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end showSelectedDate;
    procedure showToday (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "showToday");
       Args   := Tuple_New (0);
@@ -527,8 +526,8 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end showToday;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -538,7 +537,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return Ret;
    end sizeHint;
    procedure updateCell (self : access Inst; date_P : access QtAda6.QtCore.QDate.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "updateCell");
       Args   := Tuple_New (1);
@@ -547,7 +546,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end updateCell;
    procedure updateCells (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "updateCells");
       Args   := Tuple_New (0);
@@ -557,8 +556,8 @@ package body QtAda6.QtWidgets.QCalendarWidget is
    function verticalHeaderFormat_F
      (self : access Inst) return access QtAda6.QtWidgets.QCalendarWidget.VerticalHeaderFormat.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QCalendarWidget.VerticalHeaderFormat.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtWidgets.QCalendarWidget.VerticalHeaderFormat.Class :=
         new QtAda6.QtWidgets.QCalendarWidget.VerticalHeaderFormat.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "verticalHeaderFormat");
@@ -572,7 +571,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
      (self : access Inst; dayOfWeek_P : access QtAda6.QtCore.Qt.DayOfWeek.Inst'Class)
       return access QtAda6.QtGui.QTextCharFormat.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtGui.QTextCharFormat.Class := new QtAda6.QtGui.QTextCharFormat.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "weekdayTextFormat");
@@ -584,7 +583,7 @@ package body QtAda6.QtWidgets.QCalendarWidget is
       return Ret;
    end weekdayTextFormat;
    function yearShown (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "yearShown");
       Args   := Tuple_New (0);

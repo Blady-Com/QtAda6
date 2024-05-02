@@ -32,7 +32,7 @@ package body QtAda6.QtWidgets.QSlider is
      (orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class;
       parent_P      : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSlider");
       Args  := Tuple_New (1);
@@ -44,7 +44,7 @@ package body QtAda6.QtWidgets.QSlider is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSlider");
       Args  := Tuple_New (0);
@@ -55,7 +55,7 @@ package body QtAda6.QtWidgets.QSlider is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -65,7 +65,7 @@ package body QtAda6.QtWidgets.QSlider is
       return To_Ada (Result);
    end event;
    procedure initStyleOption (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionSlider.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "initStyleOption");
       Args   := Tuple_New (1);
@@ -74,8 +74,8 @@ package body QtAda6.QtWidgets.QSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end initStyleOption;
    function minimumSizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSizeHint");
       Args             := Tuple_New (0);
@@ -85,7 +85,7 @@ package body QtAda6.QtWidgets.QSlider is
       return Ret;
    end minimumSizeHint;
    procedure mouseMoveEvent (self : access Inst; ev_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseMoveEvent");
       Args   := Tuple_New (1);
@@ -94,7 +94,7 @@ package body QtAda6.QtWidgets.QSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseMoveEvent;
    procedure mousePressEvent (self : access Inst; ev_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mousePressEvent");
       Args   := Tuple_New (1);
@@ -103,7 +103,7 @@ package body QtAda6.QtWidgets.QSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end mousePressEvent;
    procedure mouseReleaseEvent (self : access Inst; ev_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseReleaseEvent");
       Args   := Tuple_New (1);
@@ -112,7 +112,7 @@ package body QtAda6.QtWidgets.QSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseReleaseEvent;
    procedure paintEvent (self : access Inst; ev_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -121,7 +121,7 @@ package body QtAda6.QtWidgets.QSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure setTickInterval (self : access Inst; ti_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTickInterval");
       Args   := Tuple_New (1);
@@ -131,7 +131,7 @@ package body QtAda6.QtWidgets.QSlider is
    end setTickInterval;
    procedure setTickPosition (self : access Inst; position_P : access QtAda6.QtWidgets.QSlider.TickPosition.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTickPosition");
       Args   := Tuple_New (1);
@@ -140,8 +140,8 @@ package body QtAda6.QtWidgets.QSlider is
       Result := Object_Call (Method, Args, Dict, True);
    end setTickPosition;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -151,7 +151,7 @@ package body QtAda6.QtWidgets.QSlider is
       return Ret;
    end sizeHint;
    function tickInterval (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tickInterval");
       Args   := Tuple_New (0);
@@ -160,7 +160,7 @@ package body QtAda6.QtWidgets.QSlider is
       return Long_AsLong (Result);
    end tickInterval;
    function tickPosition_F (self : access Inst) return access QtAda6.QtWidgets.QSlider.TickPosition.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QSlider.TickPosition.Class := new QtAda6.QtWidgets.QSlider.TickPosition.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "tickPosition");

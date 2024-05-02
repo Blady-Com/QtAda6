@@ -15,7 +15,6 @@ with QtAda6.QtCore.Qt.Orientation;
 with QtAda6.QtCore.QRect;
 with QtAda6.QtCore.QSize;
 with QtAda6.QtWidgets.QSizePolicy;
-with QtAda6.QtWidgets.QSpacerItem;
 package body QtAda6.QtWidgets.QSpacerItem is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -30,7 +29,7 @@ package body QtAda6.QtWidgets.QSpacerItem is
      (w_P     : int; h_P : int; hData_P : access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class := null;
       vData_P : access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSpacerItem");
       Args  := Tuple_New (2);
@@ -49,7 +48,7 @@ package body QtAda6.QtWidgets.QSpacerItem is
      (self : access Inst; w_P : int; h_P : int; hData_P : access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class := null;
       vData_P : access QtAda6.QtWidgets.QSizePolicy.Policy.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changeSize");
       Args   := Tuple_New (2);
@@ -65,7 +64,7 @@ package body QtAda6.QtWidgets.QSpacerItem is
       Result := Object_Call (Method, Args, Dict, True);
    end changeSize;
    function expandingDirections (self : access Inst) return access QtAda6.QtCore.Qt.Orientation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.Orientation.Class := new QtAda6.QtCore.Qt.Orientation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "expandingDirections");
@@ -76,8 +75,8 @@ package body QtAda6.QtWidgets.QSpacerItem is
       return Ret;
    end expandingDirections;
    function geometry (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "geometry");
       Args             := Tuple_New (0);
@@ -87,7 +86,7 @@ package body QtAda6.QtWidgets.QSpacerItem is
       return Ret;
    end geometry;
    function isEmpty (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEmpty");
       Args   := Tuple_New (0);
@@ -96,8 +95,8 @@ package body QtAda6.QtWidgets.QSpacerItem is
       return To_Ada (Result);
    end isEmpty;
    function maximumSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "maximumSize");
       Args             := Tuple_New (0);
@@ -107,8 +106,8 @@ package body QtAda6.QtWidgets.QSpacerItem is
       return Ret;
    end maximumSize;
    function minimumSize (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "minimumSize");
       Args             := Tuple_New (0);
@@ -118,7 +117,7 @@ package body QtAda6.QtWidgets.QSpacerItem is
       return Ret;
    end minimumSize;
    procedure setGeometry (self : access Inst; arg_1_P : access QtAda6.QtCore.QRect.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setGeometry");
       Args   := Tuple_New (1);
@@ -127,8 +126,8 @@ package body QtAda6.QtWidgets.QSpacerItem is
       Result := Object_Call (Method, Args, Dict, True);
    end setGeometry;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -138,7 +137,7 @@ package body QtAda6.QtWidgets.QSpacerItem is
       return Ret;
    end sizeHint;
    function sizePolicy (self : access Inst) return access QtAda6.QtWidgets.QSizePolicy.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QSizePolicy.Class := new QtAda6.QtWidgets.QSizePolicy.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizePolicy");
@@ -149,7 +148,7 @@ package body QtAda6.QtWidgets.QSpacerItem is
       return Ret;
    end sizePolicy;
    function spacerItem (self : access Inst) return access QtAda6.QtWidgets.QSpacerItem.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QSpacerItem.Class := new QtAda6.QtWidgets.QSpacerItem.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "spacerItem");

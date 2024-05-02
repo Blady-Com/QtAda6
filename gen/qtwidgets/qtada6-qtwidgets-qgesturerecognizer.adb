@@ -14,7 +14,6 @@ with QtAda6.QtCore.QObject;
 with QtAda6.QtWidgets.QGesture;
 with QtAda6.QtCore.QEvent;
 with QtAda6.QtWidgets.QGestureRecognizer.ResultFlag;
-with QtAda6.QtWidgets.QGestureRecognizer;
 with QtAda6.QtCore.Qt.GestureType;
 package body QtAda6.QtWidgets.QGestureRecognizer is
    use type QtAda6.int;
@@ -27,7 +26,7 @@ package body QtAda6.QtWidgets.QGestureRecognizer is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGestureRecognizer");
       Args  := Tuple_New (0);
@@ -38,7 +37,7 @@ package body QtAda6.QtWidgets.QGestureRecognizer is
      (self : access Inst; target_P : access QtAda6.QtCore.QObject.Inst'Class)
       return access QtAda6.QtWidgets.QGesture.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QGesture.Class := new QtAda6.QtWidgets.QGesture.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "create");
@@ -54,8 +53,8 @@ package body QtAda6.QtWidgets.QGestureRecognizer is
       watched_P : access QtAda6.QtCore.QObject.Inst'Class; event_P : access QtAda6.QtCore.QEvent.Inst'Class)
       return access QtAda6.QtWidgets.QGestureRecognizer.ResultFlag.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QGestureRecognizer.ResultFlag.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QGestureRecognizer.ResultFlag.Class :=
         new QtAda6.QtWidgets.QGestureRecognizer.ResultFlag.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "recognize");
@@ -72,7 +71,7 @@ package body QtAda6.QtWidgets.QGestureRecognizer is
      (recognizer_P : access QtAda6.QtWidgets.QGestureRecognizer.Inst'Class)
       return access QtAda6.QtCore.Qt.GestureType.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.GestureType.Class := new QtAda6.QtCore.Qt.GestureType.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGestureRecognizer");
@@ -85,7 +84,7 @@ package body QtAda6.QtWidgets.QGestureRecognizer is
       return Ret;
    end registerRecognizer;
    procedure reset (self : access Inst; state_P : access QtAda6.QtWidgets.QGesture.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "reset");
       Args   := Tuple_New (1);
@@ -94,7 +93,7 @@ package body QtAda6.QtWidgets.QGestureRecognizer is
       Result := Object_Call (Method, Args, Dict, True);
    end reset;
    procedure unregisterRecognizer (type_K_P : access QtAda6.QtCore.Qt.GestureType.Inst'Class) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGestureRecognizer");
       Method := Object_GetAttrString (Class, "unregisterRecognizer");

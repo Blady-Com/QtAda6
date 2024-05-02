@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtGui.QTextBlock;
@@ -28,12 +27,14 @@ limited with QtAda6.QtGui.QDragMoveEvent;
 limited with QtAda6.QtGui.QDropEvent;
 limited with QtAda6.QtWidgets.QTextEdit.ExtraSelection;
 limited with QtAda6.QtGui.QTextDocument.FindFlag;
+limited with QtAda6.QtCore.QRegularExpression;
 limited with QtAda6.QtGui.QFocusEvent;
 limited with QtAda6.QtGui.QAbstractTextDocumentLayout.PaintContext;
 limited with QtAda6.QtGui.QInputMethodEvent;
 limited with QtAda6.QtCore.Qt.InputMethodQuery;
 limited with QtAda6.QtGui.QKeyEvent;
 limited with QtAda6.QtWidgets.QPlainTextEdit.LineWrapMode;
+limited with QtAda6.QtCore.QUrl;
 limited with QtAda6.QtGui.QMouseEvent;
 limited with QtAda6.QtGui.QTextCursor.MoveOperation;
 limited with QtAda6.QtGui.QTextCursor.MoveMode;
@@ -46,6 +47,7 @@ limited with QtAda6.QtGui.QShowEvent;
 limited with QtAda6.QtCore.QTimerEvent;
 limited with QtAda6.QtGui.QWheelEvent;
 with QtAda6.QtWidgets.QAbstractScrollArea;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QPlainTextEdit is
    type Inst;
    type Inst_Access is access all Inst;
@@ -53,8 +55,6 @@ package QtAda6.QtWidgets.QPlainTextEdit is
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QAbstractScrollArea.Inst with null record;
    subtype LIST_QtAda6_QtWidgets_QTextEdit_ExtraSelection is QtAda6.QtWidgets.QTextEdit.ExtraSelection.Class_Array;
-   type UNION_QtAda6_QtCore_QRegularExpression_str is new Any;
-   type UNION_QtAda6_QtCore_QUrl_str is new Any;
    subtype SEQUENCE_QtAda6_QtWidgets_QTextEdit_ExtraSelection is QtAda6.QtWidgets.QTextEdit.ExtraSelection.Class_Array;
    procedure Finalize (Self : in out Class);
    function blockCountChanged
@@ -121,8 +121,9 @@ package QtAda6.QtWidgets.QPlainTextEdit is
      (self : access Inst; exp_P : str; options_P : access QtAda6.QtGui.QTextDocument.FindFlag.Inst'Class := null)
       return bool;
    function find
-     (self      : access Inst; exp_P : UNION_QtAda6_QtCore_QRegularExpression_str;
+     (self      : access Inst; exp_P : access QtAda6.QtCore.QRegularExpression.Inst'Class;
       options_P : access QtAda6.QtGui.QTextDocument.FindFlag.Inst'Class := null) return bool;
+-- function find(self : access Inst;exp_P : str;options_P : access QtAda6.QtGui.QTextDocument.FindFlag.Inst'Class := null) return bool;
    function firstVisibleBlock (self : access Inst) return access QtAda6.QtGui.QTextBlock.Inst'Class;
    procedure focusInEvent (self : access Inst; e_P : access QtAda6.QtGui.QFocusEvent.Inst'Class);
    function focusNextPrevChild (self : access Inst; next_P : bool) return bool;
@@ -141,7 +142,8 @@ package QtAda6.QtWidgets.QPlainTextEdit is
    procedure keyPressEvent (self : access Inst; e_P : access QtAda6.QtGui.QKeyEvent.Inst'Class);
    procedure keyReleaseEvent (self : access Inst; e_P : access QtAda6.QtGui.QKeyEvent.Inst'Class);
    function lineWrapMode_F (self : access Inst) return access QtAda6.QtWidgets.QPlainTextEdit.LineWrapMode.Inst'Class;
-   function loadResource (self : access Inst; type_K_P : int; name_P : UNION_QtAda6_QtCore_QUrl_str) return Any;
+   function loadResource (self : access Inst; type_K_P : int; name_P : access QtAda6.QtCore.QUrl.Inst'Class) return Any;
+   function loadResource (self : access Inst; type_K_P : int; name_P : str) return Any;
    function maximumBlockCount (self : access Inst) return int;
    procedure mergeCurrentCharFormat (self : access Inst; modifier_P : access QtAda6.QtGui.QTextCharFormat.Inst'Class);
    procedure mouseDoubleClickEvent (self : access Inst; e_P : access QtAda6.QtGui.QMouseEvent.Inst'Class);

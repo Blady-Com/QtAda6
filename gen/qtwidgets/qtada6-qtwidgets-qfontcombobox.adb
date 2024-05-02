@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtGui.QFont;
 with QtAda6.QtCore.QEvent;
@@ -33,7 +32,7 @@ package body QtAda6.QtWidgets.QFontComboBox is
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "currentFontChanged"));
    end currentFontChanged;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFontComboBox");
       Args  := Tuple_New (0);
@@ -44,8 +43,8 @@ package body QtAda6.QtWidgets.QFontComboBox is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function currentFont (self : access Inst) return access QtAda6.QtGui.QFont.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QFont.Class := new QtAda6.QtGui.QFont.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentFont");
       Args             := Tuple_New (0);
@@ -55,7 +54,7 @@ package body QtAda6.QtWidgets.QFontComboBox is
       return Ret;
    end currentFont;
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -65,8 +64,8 @@ package body QtAda6.QtWidgets.QFontComboBox is
       return To_Ada (Result);
    end event;
    function fontFilters (self : access Inst) return access QtAda6.QtWidgets.QFontComboBox.FontFilter.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtWidgets.QFontComboBox.FontFilter.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtWidgets.QFontComboBox.FontFilter.Class :=
         new QtAda6.QtWidgets.QFontComboBox.FontFilter.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "fontFilters");
@@ -77,7 +76,7 @@ package body QtAda6.QtWidgets.QFontComboBox is
       return Ret;
    end fontFilters;
    function sampleTextForFont (self : access Inst; fontFamily_P : str) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sampleTextForFont");
       Args   := Tuple_New (1);
@@ -89,7 +88,7 @@ package body QtAda6.QtWidgets.QFontComboBox is
    function sampleTextForSystem
      (self : access Inst; writingSystem_P : access QtAda6.QtGui.QFontDatabase.WritingSystem.Inst'Class) return str
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sampleTextForSystem");
       Args   := Tuple_New (1);
@@ -98,8 +97,8 @@ package body QtAda6.QtWidgets.QFontComboBox is
       Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end sampleTextForSystem;
-   procedure setCurrentFont (self : access Inst; f_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setCurrentFont (self : access Inst; f_P : access QtAda6.QtGui.QFont.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentFont");
       Args   := Tuple_New (1);
@@ -107,9 +106,30 @@ package body QtAda6.QtWidgets.QFontComboBox is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setCurrentFont;
-   procedure setDisplayFont (self : access Inst; fontFamily_P : str; font_P : UNION_QtAda6_QtGui_QFont_str_SEQUENCE_str)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setCurrentFont (self : access Inst; f_P : str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setCurrentFont");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (f_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCurrentFont;
+   procedure setCurrentFont (self : access Inst; f_P : SEQUENCE_str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setCurrentFont");
+      Args   := Tuple_New (1);
+      List   := List_New (f_P'Length);
+      for ind in f_P'Range loop
+         List_SetItem (List, ssize_t (ind - f_P'First), Unicode_FromString (f_P (ind)));
+      end loop;
+      Tuple_SetItem (Args, 0, List);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setCurrentFont;
+   procedure setDisplayFont (self : access Inst; fontFamily_P : str; font_P : access QtAda6.QtGui.QFont.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDisplayFont");
       Args   := Tuple_New (2);
@@ -118,10 +138,34 @@ package body QtAda6.QtWidgets.QFontComboBox is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setDisplayFont;
+   procedure setDisplayFont (self : access Inst; fontFamily_P : str; font_P : str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setDisplayFont");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (fontFamily_P));
+      Tuple_SetItem (Args, 1, Unicode_FromString (font_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setDisplayFont;
+   procedure setDisplayFont (self : access Inst; fontFamily_P : str; font_P : SEQUENCE_str) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setDisplayFont");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Unicode_FromString (fontFamily_P));
+      List := List_New (font_P'Length);
+      for ind in font_P'Range loop
+         List_SetItem (List, ssize_t (ind - font_P'First), Unicode_FromString (font_P (ind)));
+      end loop;
+      Tuple_SetItem (Args, 1, List);
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setDisplayFont;
    procedure setFontFilters
      (self : access Inst; filters_P : access QtAda6.QtWidgets.QFontComboBox.FontFilter.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFontFilters");
       Args   := Tuple_New (1);
@@ -130,7 +174,7 @@ package body QtAda6.QtWidgets.QFontComboBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setFontFilters;
    procedure setSampleTextForFont (self : access Inst; fontFamily_P : str; sampleText_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSampleTextForFont");
       Args   := Tuple_New (2);
@@ -143,7 +187,7 @@ package body QtAda6.QtWidgets.QFontComboBox is
      (self         : access Inst; writingSystem_P : access QtAda6.QtGui.QFontDatabase.WritingSystem.Inst'Class;
       sampleText_P : str)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSampleTextForSystem");
       Args   := Tuple_New (2);
@@ -154,7 +198,7 @@ package body QtAda6.QtWidgets.QFontComboBox is
    end setSampleTextForSystem;
    procedure setWritingSystem (self : access Inst; arg_1_P : access QtAda6.QtGui.QFontDatabase.WritingSystem.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setWritingSystem");
       Args   := Tuple_New (1);
@@ -163,8 +207,8 @@ package body QtAda6.QtWidgets.QFontComboBox is
       Result := Object_Call (Method, Args, Dict, True);
    end setWritingSystem;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -174,8 +218,8 @@ package body QtAda6.QtWidgets.QFontComboBox is
       return Ret;
    end sizeHint;
    function writingSystem (self : access Inst) return access QtAda6.QtGui.QFontDatabase.WritingSystem.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtGui.QFontDatabase.WritingSystem.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtGui.QFontDatabase.WritingSystem.Class :=
         new QtAda6.QtGui.QFontDatabase.WritingSystem.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "writingSystem");

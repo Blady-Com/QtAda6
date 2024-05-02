@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.Qt.WindowType;
 limited with QtAda6.QtCore.Qt.DockWidgetArea;
 limited with QtAda6.QtWidgets.QDockWidget;
@@ -29,6 +28,7 @@ limited with QtAda6.QtWidgets.QTabWidget.TabPosition;
 limited with QtAda6.QtWidgets.QTabWidget.TabShape;
 limited with QtAda6.QtCore.Qt.ToolButtonStyle;
 with QtAda6.QtWidgets.QWidget;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QMainWindow is
    type Inst;
    type Inst_Access is access all Inst;
@@ -37,7 +37,6 @@ package QtAda6.QtWidgets.QMainWindow is
    type Inst is new QtAda6.QtWidgets.QWidget.Inst with null record;
    subtype SEQUENCE_QtAda6_QtWidgets_QDockWidget is QtAda6.QtWidgets.QDockWidget.Class_Array;
    type SEQUENCE_int is array (Positive range <>) of int;
-   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    subtype LIST_QtAda6_QtWidgets_QDockWidget is QtAda6.QtWidgets.QDockWidget.Class_Array;
    procedure Finalize (Self : in out Class);
    function iconSizeChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- iconSizeChanged(QSize)
@@ -92,7 +91,8 @@ package QtAda6.QtWidgets.QMainWindow is
    function restoreDockWidget
      (self : access Inst; dockwidget_P : access QtAda6.QtWidgets.QDockWidget.Inst'Class) return bool;
    function restoreState
-     (self : access Inst; state_P : UNION_QtAda6_QtCore_QByteArray_bytes; version_P : int := 0) return bool;
+     (self : access Inst; state_P : access QtAda6.QtCore.QByteArray.Inst'Class; version_P : int := 0) return bool;
+   function restoreState (self : access Inst; state_P : bytes; version_P : int := 0) return bool;
    function saveState (self : access Inst; version_P : int := 0) return access QtAda6.QtCore.QByteArray.Inst'Class;
    procedure setAnimated (self : access Inst; enabled_P : bool);
    procedure setCentralWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);

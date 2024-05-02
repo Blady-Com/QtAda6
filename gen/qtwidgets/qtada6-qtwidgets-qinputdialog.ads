@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.Qt.WindowType;
 limited with QtAda6.QtCore.Qt.InputMethodHint;
@@ -18,6 +17,7 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtWidgets.QInputDialog.InputDialogOption;
 with QtAda6.QtWidgets.QDialog;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QInputDialog is
    type Inst;
    type Inst_Access is access all Inst;

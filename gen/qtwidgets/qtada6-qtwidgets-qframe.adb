@@ -34,7 +34,7 @@ package body QtAda6.QtWidgets.QFrame is
      (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class    := null;
       f_P      : access QtAda6.QtCore.Qt.WindowType.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QFrame");
       Args  := Tuple_New (0);
@@ -48,7 +48,7 @@ package body QtAda6.QtWidgets.QFrame is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure changeEvent (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "changeEvent");
       Args   := Tuple_New (1);
@@ -57,7 +57,7 @@ package body QtAda6.QtWidgets.QFrame is
       Result := Object_Call (Method, Args, Dict, True);
    end changeEvent;
    procedure drawFrame (self : access Inst; arg_1_P : access QtAda6.QtGui.QPainter.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "drawFrame");
       Args   := Tuple_New (1);
@@ -66,7 +66,7 @@ package body QtAda6.QtWidgets.QFrame is
       Result := Object_Call (Method, Args, Dict, True);
    end drawFrame;
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -76,8 +76,8 @@ package body QtAda6.QtWidgets.QFrame is
       return To_Ada (Result);
    end event;
    function frameRect (self : access Inst) return access QtAda6.QtCore.QRect.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRect.Class := new QtAda6.QtCore.QRect.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "frameRect");
       Args             := Tuple_New (0);
@@ -87,7 +87,7 @@ package body QtAda6.QtWidgets.QFrame is
       return Ret;
    end frameRect;
    function frameShadow (self : access Inst) return access QtAda6.QtWidgets.QFrame.Shadow.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QFrame.Shadow.Class := new QtAda6.QtWidgets.QFrame.Shadow.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "frameShadow");
@@ -98,7 +98,7 @@ package body QtAda6.QtWidgets.QFrame is
       return Ret;
    end frameShadow;
    function frameShape (self : access Inst) return access QtAda6.QtWidgets.QFrame.Shape.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QFrame.Shape.Class := new QtAda6.QtWidgets.QFrame.Shape.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "frameShape");
@@ -109,7 +109,7 @@ package body QtAda6.QtWidgets.QFrame is
       return Ret;
    end frameShape;
    function frameStyle (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "frameStyle");
       Args   := Tuple_New (0);
@@ -118,7 +118,7 @@ package body QtAda6.QtWidgets.QFrame is
       return Long_AsLong (Result);
    end frameStyle;
    function frameWidth (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "frameWidth");
       Args   := Tuple_New (0);
@@ -127,7 +127,7 @@ package body QtAda6.QtWidgets.QFrame is
       return Long_AsLong (Result);
    end frameWidth;
    procedure initStyleOption (self : access Inst; option_P : access QtAda6.QtWidgets.QStyleOptionFrame.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "initStyleOption");
       Args   := Tuple_New (1);
@@ -136,7 +136,7 @@ package body QtAda6.QtWidgets.QFrame is
       Result := Object_Call (Method, Args, Dict, True);
    end initStyleOption;
    function lineWidth (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lineWidth");
       Args   := Tuple_New (0);
@@ -145,7 +145,7 @@ package body QtAda6.QtWidgets.QFrame is
       return Long_AsLong (Result);
    end lineWidth;
    function midLineWidth (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "midLineWidth");
       Args   := Tuple_New (0);
@@ -154,7 +154,7 @@ package body QtAda6.QtWidgets.QFrame is
       return Long_AsLong (Result);
    end midLineWidth;
    procedure paintEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -163,7 +163,7 @@ package body QtAda6.QtWidgets.QFrame is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure setFrameRect (self : access Inst; arg_1_P : access QtAda6.QtCore.QRect.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFrameRect");
       Args   := Tuple_New (1);
@@ -172,7 +172,7 @@ package body QtAda6.QtWidgets.QFrame is
       Result := Object_Call (Method, Args, Dict, True);
    end setFrameRect;
    procedure setFrameShadow (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QFrame.Shadow.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFrameShadow");
       Args   := Tuple_New (1);
@@ -181,7 +181,7 @@ package body QtAda6.QtWidgets.QFrame is
       Result := Object_Call (Method, Args, Dict, True);
    end setFrameShadow;
    procedure setFrameShape (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QFrame.Shape.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFrameShape");
       Args   := Tuple_New (1);
@@ -190,7 +190,7 @@ package body QtAda6.QtWidgets.QFrame is
       Result := Object_Call (Method, Args, Dict, True);
    end setFrameShape;
    procedure setFrameStyle (self : access Inst; arg_1_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFrameStyle");
       Args   := Tuple_New (1);
@@ -199,7 +199,7 @@ package body QtAda6.QtWidgets.QFrame is
       Result := Object_Call (Method, Args, Dict, True);
    end setFrameStyle;
    procedure setLineWidth (self : access Inst; arg_1_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setLineWidth");
       Args   := Tuple_New (1);
@@ -208,7 +208,7 @@ package body QtAda6.QtWidgets.QFrame is
       Result := Object_Call (Method, Args, Dict, True);
    end setLineWidth;
    procedure setMidLineWidth (self : access Inst; arg_1_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMidLineWidth");
       Args   := Tuple_New (1);
@@ -217,8 +217,8 @@ package body QtAda6.QtWidgets.QFrame is
       Result := Object_Call (Method, Args, Dict, True);
    end setMidLineWidth;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);

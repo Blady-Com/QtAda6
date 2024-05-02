@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.Qt.Orientation;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.QEvent;
@@ -18,13 +17,13 @@ limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtGui.QResizeEvent;
 limited with QtAda6.QtCore.QByteArray;
 with QtAda6.QtWidgets.QFrame;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QSplitter is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QFrame.Inst with null record;
-   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    type SEQUENCE_int is array (Positive range <>) of int;
    type LIST_int is array (Positive range <>) of int;
    procedure Finalize (Self : in out Class);
@@ -56,7 +55,8 @@ package QtAda6.QtWidgets.QSplitter is
      (self : access Inst; index_P : int; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class)
       return access QtAda6.QtWidgets.QWidget.Inst'Class;
    procedure resizeEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QResizeEvent.Inst'Class);
-   function restoreState (self : access Inst; state_P : UNION_QtAda6_QtCore_QByteArray_bytes) return bool;
+   function restoreState (self : access Inst; state_P : access QtAda6.QtCore.QByteArray.Inst'Class) return bool;
+   function restoreState (self : access Inst; state_P : bytes) return bool;
    function saveState (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class;
    procedure setChildrenCollapsible (self : access Inst; arg_1_P : bool);
    procedure setCollapsible (self : access Inst; index_P : int; arg_2_P : bool);

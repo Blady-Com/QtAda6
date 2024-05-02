@@ -17,12 +17,16 @@ limited with QtAda6.QtWidgets.QStyleOption;
 limited with QtAda6.QtWidgets.QStyle.PrimitiveElement;
 limited with QtAda6.QtGui.QIcon.Mode;
 limited with QtAda6.QtGui.QPixmap;
+limited with QtAda6.QtGui.QImage;
 limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtWidgets.QStyle.SubControl;
 limited with QtAda6.QtWidgets.QSizePolicy.ControlType;
 limited with QtAda6.QtCore.Qt.Orientation;
 limited with QtAda6.QtWidgets.QStyle.PixelMetric;
 limited with QtAda6.QtWidgets.QApplication;
+limited with QtAda6.QtGui.QPalette;
+limited with QtAda6.QtCore.Qt.GlobalColor;
+limited with QtAda6.QtGui.QColor;
 limited with QtAda6.QtWidgets.QStyle.ContentsType;
 limited with QtAda6.QtCore.QSize;
 limited with QtAda6.QtWidgets.QStyle.StandardPixmap;
@@ -38,8 +42,6 @@ package QtAda6.QtWidgets.QCommonStyle is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtWidgets.QStyle.Inst with null record;
-   type UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is new Any;
-   type UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    procedure drawComplexControl
@@ -56,8 +58,15 @@ package QtAda6.QtWidgets.QCommonStyle is
       w_P   : access QtAda6.QtWidgets.QWidget.Inst'Class := null);
    function generatedIconPixmap
      (self     : access Inst; iconMode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class;
-      pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str;
-      opt_P    : access QtAda6.QtWidgets.QStyleOption.Inst'Class) return access QtAda6.QtGui.QPixmap.Inst'Class;
+      pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class; opt_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class)
+      return access QtAda6.QtGui.QPixmap.Inst'Class;
+   function generatedIconPixmap
+     (self     : access Inst; iconMode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class;
+      pixmap_P : access QtAda6.QtGui.QImage.Inst'Class; opt_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class)
+      return access QtAda6.QtGui.QPixmap.Inst'Class;
+   function generatedIconPixmap
+     (self  : access Inst; iconMode_P : access QtAda6.QtGui.QIcon.Mode.Inst'Class; pixmap_P : str;
+      opt_P : access QtAda6.QtWidgets.QStyleOption.Inst'Class) return access QtAda6.QtGui.QPixmap.Inst'Class;
    function hitTestComplexControl
      (self  : access Inst; cc_P : access QtAda6.QtWidgets.QStyle.ComplexControl.Inst'Class;
       opt_P : access QtAda6.QtWidgets.QStyleOptionComplex.Inst'Class; pt_P : access QtAda6.QtCore.QPoint.Inst'Class;
@@ -74,9 +83,12 @@ package QtAda6.QtWidgets.QCommonStyle is
       opt_P    : access QtAda6.QtWidgets.QStyleOption.Inst'Class := null;
       widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class      := null) return int;
    procedure polish (self : access Inst; app_P : access QtAda6.QtWidgets.QApplication.Inst'Class);
-   procedure polish
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor);
--- procedure polish(self : access Inst;palette_P : UNION_QtAda6_QtGui_QPalette_QtAda6_QtCore_Qt_GlobalColor_QtAda6_QtGui_QColor);
+   procedure polish (self : access Inst; arg_1_P : access QtAda6.QtGui.QPalette.Inst'Class);
+   procedure polish (self : access Inst; arg_1_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+   procedure polish (self : access Inst; arg_1_P : access QtAda6.QtGui.QColor.Inst'Class);
+-- procedure polish(self : access Inst;palette_P : access QtAda6.QtGui.QPalette.Inst'Class);
+-- procedure polish(self : access Inst;palette_P : access QtAda6.QtCore.Qt.GlobalColor.Inst'Class);
+-- procedure polish(self : access Inst;palette_P : access QtAda6.QtGui.QColor.Inst'Class);
    procedure polish (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    function sizeFromContents
      (self     : access Inst; ct_P : access QtAda6.QtWidgets.QStyle.ContentsType.Inst'Class;

@@ -17,6 +17,7 @@ with QtAda6.QtCore.QMimeData;
 with QtAda6.QtCore.Qt.KeyboardModifier;
 with QtAda6.QtCore.QPointF;
 with QtAda6.QtCore.QPoint;
+with QtAda6.QtGui.QPainterPath.Element;
 with QtAda6.QtWidgets.QWidget;
 package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
    use type QtAda6.int;
@@ -29,7 +30,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (type_K_P : access QtAda6.QtCore.QEvent.Type_K.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QGraphicsSceneDragDropEvent");
       Args  := Tuple_New (0);
@@ -40,7 +41,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure acceptProposedAction (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "acceptProposedAction");
       Args   := Tuple_New (0);
@@ -48,7 +49,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end acceptProposedAction;
    function buttons (self : access Inst) return access QtAda6.QtCore.Qt.MouseButton.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.MouseButton.Class := new QtAda6.QtCore.Qt.MouseButton.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "buttons");
@@ -59,7 +60,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       return Ret;
    end buttons;
    function dropAction (self : access Inst) return access QtAda6.QtCore.Qt.DropAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "dropAction");
@@ -70,7 +71,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       return Ret;
    end dropAction;
    function mimeData (self : access Inst) return access QtAda6.QtCore.QMimeData.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMimeData.Class := new QtAda6.QtCore.QMimeData.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "mimeData");
@@ -81,7 +82,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       return Ret;
    end mimeData;
    function modifiers (self : access Inst) return access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.KeyboardModifier.Class := new QtAda6.QtCore.Qt.KeyboardModifier.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "modifiers");
@@ -92,8 +93,8 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       return Ret;
    end modifiers;
    function pos (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "pos");
       Args             := Tuple_New (0);
@@ -103,7 +104,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       return Ret;
    end pos;
    function possibleActions (self : access Inst) return access QtAda6.QtCore.Qt.DropAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "possibleActions");
@@ -114,7 +115,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       return Ret;
    end possibleActions;
    function proposedAction (self : access Inst) return access QtAda6.QtCore.Qt.DropAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "proposedAction");
@@ -125,8 +126,8 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       return Ret;
    end proposedAction;
    function scenePos (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "scenePos");
       Args             := Tuple_New (0);
@@ -136,8 +137,8 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       return Ret;
    end scenePos;
    function screenPos (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "screenPos");
       Args             := Tuple_New (0);
@@ -147,7 +148,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       return Ret;
    end screenPos;
    procedure setButtons (self : access Inst; buttons_P : access QtAda6.QtCore.Qt.MouseButton.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setButtons");
       Args   := Tuple_New (1);
@@ -156,7 +157,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setButtons;
    procedure setDropAction (self : access Inst; action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDropAction");
       Args   := Tuple_New (1);
@@ -165,7 +166,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setDropAction;
    procedure setModifiers (self : access Inst; modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setModifiers");
       Args   := Tuple_New (1);
@@ -173,10 +174,26 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setModifiers;
-   procedure setPos
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setPos (self : access Inst; pos_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPos");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPos;
+   procedure setPos (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPos");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPos;
+   procedure setPos (self : access Inst; pos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPos");
       Args   := Tuple_New (1);
@@ -185,7 +202,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setPos;
    procedure setPossibleActions (self : access Inst; actions_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPossibleActions");
       Args   := Tuple_New (1);
@@ -194,7 +211,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setPossibleActions;
    procedure setProposedAction (self : access Inst; action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setProposedAction");
       Args   := Tuple_New (1);
@@ -202,10 +219,26 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setProposedAction;
-   procedure setScenePos
-     (self : access Inst; pos_P : UNION_QtAda6_QtCore_QPointF_QtAda6_QtCore_QPoint_QtAda6_QtGui_QPainterPath_Element)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setScenePos (self : access Inst; pos_P : access QtAda6.QtCore.QPointF.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setScenePos");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setScenePos;
+   procedure setScenePos (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setScenePos");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if pos_P /= null then pos_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setScenePos;
+   procedure setScenePos (self : access Inst; pos_P : access QtAda6.QtGui.QPainterPath.Element.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setScenePos");
       Args   := Tuple_New (1);
@@ -214,7 +247,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setScenePos;
    procedure setScreenPos (self : access Inst; pos_P : access QtAda6.QtCore.QPoint.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setScreenPos");
       Args   := Tuple_New (1);
@@ -223,7 +256,7 @@ package body QtAda6.QtWidgets.QGraphicsSceneDragDropEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setScreenPos;
    function source (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "source");

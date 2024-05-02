@@ -21,7 +21,7 @@ package body QtAda6.QtWidgets.QStyleHintReturnVariant is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStyleHintReturnVariant");
       Args  := Tuple_New (0);

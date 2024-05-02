@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtWidgets.QWidget;
 limited with QtAda6.QtCore.Qt.WindowType;
 limited with QtAda6.QtWidgets.QWizardPage;
@@ -20,10 +19,12 @@ limited with QtAda6.QtGui.QPaintEvent;
 limited with QtAda6.QtWidgets.QWizard.WizardPixmap;
 limited with QtAda6.QtGui.QPixmap;
 limited with QtAda6.QtGui.QResizeEvent;
+limited with QtAda6.QtGui.QImage;
 limited with QtAda6.QtCore.Qt.TextFormat;
 limited with QtAda6.QtWidgets.QWizard.WizardStyle;
 limited with QtAda6.QtCore.QSize;
 with QtAda6.QtWidgets.QDialog;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtWidgets.QWizard is
    type Inst;
    type Inst_Access is access all Inst;
@@ -32,7 +33,6 @@ package QtAda6.QtWidgets.QWizard is
    type Inst is new QtAda6.QtWidgets.QDialog.Inst with null record;
    type LIST_int is array (Positive range <>) of int;
    subtype SEQUENCE_QtAda6_QtWidgets_QWizard_WizardButton is QtAda6.QtWidgets.QWizard.WizardButton.Class_Array;
-   type UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str is new Any;
    procedure Finalize (Self : in out Class);
    function currentIdChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- currentIdChanged(int)
    function customButtonClicked
@@ -85,7 +85,12 @@ package QtAda6.QtWidgets.QWizard is
    procedure setPage (self : access Inst; id_P : int; page_P : access QtAda6.QtWidgets.QWizardPage.Inst'Class);
    procedure setPixmap
      (self     : access Inst; which_P : access QtAda6.QtWidgets.QWizard.WizardPixmap.Inst'Class;
-      pixmap_P : UNION_QtAda6_QtGui_QPixmap_QtAda6_QtGui_QImage_str);
+      pixmap_P : access QtAda6.QtGui.QPixmap.Inst'Class);
+   procedure setPixmap
+     (self     : access Inst; which_P : access QtAda6.QtWidgets.QWizard.WizardPixmap.Inst'Class;
+      pixmap_P : access QtAda6.QtGui.QImage.Inst'Class);
+   procedure setPixmap
+     (self : access Inst; which_P : access QtAda6.QtWidgets.QWizard.WizardPixmap.Inst'Class; pixmap_P : str);
    procedure setSideWidget (self : access Inst; widget_P : access QtAda6.QtWidgets.QWidget.Inst'Class);
    procedure setStartId (self : access Inst; id_P : int);
    procedure setSubTitleFormat (self : access Inst; format_P : access QtAda6.QtCore.Qt.TextFormat.Inst'Class);

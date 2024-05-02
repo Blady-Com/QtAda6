@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtWidgets.QWidget;
 with QtAda6.QtCore.QEvent;
 package body QtAda6.QtWidgets.QStackedWidget is
@@ -32,7 +31,7 @@ package body QtAda6.QtWidgets.QStackedWidget is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "widgetRemoved"));
    end widgetRemoved;
    function Create (parent_P : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QStackedWidget");
       Args  := Tuple_New (0);
@@ -43,7 +42,7 @@ package body QtAda6.QtWidgets.QStackedWidget is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function addWidget (self : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addWidget");
       Args   := Tuple_New (1);
@@ -53,7 +52,7 @@ package body QtAda6.QtWidgets.QStackedWidget is
       return Long_AsLong (Result);
    end addWidget;
    function count (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "count");
       Args   := Tuple_New (0);
@@ -62,7 +61,7 @@ package body QtAda6.QtWidgets.QStackedWidget is
       return Long_AsLong (Result);
    end count;
    function currentIndex (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "currentIndex");
       Args   := Tuple_New (0);
@@ -71,7 +70,7 @@ package body QtAda6.QtWidgets.QStackedWidget is
       return Long_AsLong (Result);
    end currentIndex;
    function currentWidget (self : access Inst) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentWidget");
@@ -82,7 +81,7 @@ package body QtAda6.QtWidgets.QStackedWidget is
       return Ret;
    end currentWidget;
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -92,7 +91,7 @@ package body QtAda6.QtWidgets.QStackedWidget is
       return To_Ada (Result);
    end event;
    function indexOf (self : access Inst; arg_1_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOf");
       Args   := Tuple_New (1);
@@ -104,7 +103,7 @@ package body QtAda6.QtWidgets.QStackedWidget is
    function insertWidget
      (self : access Inst; index_P : int; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertWidget");
       Args   := Tuple_New (2);
@@ -115,7 +114,7 @@ package body QtAda6.QtWidgets.QStackedWidget is
       return Long_AsLong (Result);
    end insertWidget;
    procedure removeWidget (self : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeWidget");
       Args   := Tuple_New (1);
@@ -124,7 +123,7 @@ package body QtAda6.QtWidgets.QStackedWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end removeWidget;
    procedure setCurrentIndex (self : access Inst; index_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentIndex");
       Args   := Tuple_New (1);
@@ -133,7 +132,7 @@ package body QtAda6.QtWidgets.QStackedWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setCurrentIndex;
    procedure setCurrentWidget (self : access Inst; w_P : access QtAda6.QtWidgets.QWidget.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setCurrentWidget");
       Args   := Tuple_New (1);
@@ -142,7 +141,7 @@ package body QtAda6.QtWidgets.QStackedWidget is
       Result := Object_Call (Method, Args, Dict, True);
    end setCurrentWidget;
    function widget (self : access Inst; arg_1_P : int) return access QtAda6.QtWidgets.QWidget.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QWidget.Class := new QtAda6.QtWidgets.QWidget.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "widget");

@@ -31,7 +31,7 @@ package body QtAda6.QtWidgets.QSplitterHandle is
      (o_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class; parent_P : access QtAda6.QtWidgets.QSplitter.Inst'Class)
       return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtWidgets_Python_Proxy, "QSplitterHandle");
       Args  := Tuple_New (2);
@@ -41,7 +41,7 @@ package body QtAda6.QtWidgets.QSplitterHandle is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function closestLegalPosition (self : access Inst; p_P : int) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "closestLegalPosition");
       Args   := Tuple_New (1);
@@ -51,7 +51,7 @@ package body QtAda6.QtWidgets.QSplitterHandle is
       return Long_AsLong (Result);
    end closestLegalPosition;
    function event (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -61,7 +61,7 @@ package body QtAda6.QtWidgets.QSplitterHandle is
       return To_Ada (Result);
    end event;
    procedure mouseMoveEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseMoveEvent");
       Args   := Tuple_New (1);
@@ -70,7 +70,7 @@ package body QtAda6.QtWidgets.QSplitterHandle is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseMoveEvent;
    procedure mousePressEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mousePressEvent");
       Args   := Tuple_New (1);
@@ -79,7 +79,7 @@ package body QtAda6.QtWidgets.QSplitterHandle is
       Result := Object_Call (Method, Args, Dict, True);
    end mousePressEvent;
    procedure mouseReleaseEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QMouseEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mouseReleaseEvent");
       Args   := Tuple_New (1);
@@ -88,7 +88,7 @@ package body QtAda6.QtWidgets.QSplitterHandle is
       Result := Object_Call (Method, Args, Dict, True);
    end mouseReleaseEvent;
    procedure moveSplitter (self : access Inst; p_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "moveSplitter");
       Args   := Tuple_New (1);
@@ -97,7 +97,7 @@ package body QtAda6.QtWidgets.QSplitterHandle is
       Result := Object_Call (Method, Args, Dict, True);
    end moveSplitter;
    function opaqueResize (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "opaqueResize");
       Args   := Tuple_New (0);
@@ -106,7 +106,7 @@ package body QtAda6.QtWidgets.QSplitterHandle is
       return To_Ada (Result);
    end opaqueResize;
    function orientation (self : access Inst) return access QtAda6.QtCore.Qt.Orientation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.Orientation.Class := new QtAda6.QtCore.Qt.Orientation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "orientation");
@@ -117,7 +117,7 @@ package body QtAda6.QtWidgets.QSplitterHandle is
       return Ret;
    end orientation;
    procedure paintEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "paintEvent");
       Args   := Tuple_New (1);
@@ -126,7 +126,7 @@ package body QtAda6.QtWidgets.QSplitterHandle is
       Result := Object_Call (Method, Args, Dict, True);
    end paintEvent;
    procedure resizeEvent (self : access Inst; arg_1_P : access QtAda6.QtGui.QResizeEvent.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resizeEvent");
       Args   := Tuple_New (1);
@@ -135,7 +135,7 @@ package body QtAda6.QtWidgets.QSplitterHandle is
       Result := Object_Call (Method, Args, Dict, True);
    end resizeEvent;
    procedure setOrientation (self : access Inst; o_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOrientation");
       Args   := Tuple_New (1);
@@ -144,8 +144,8 @@ package body QtAda6.QtWidgets.QSplitterHandle is
       Result := Object_Call (Method, Args, Dict, True);
    end setOrientation;
    function sizeHint (self : access Inst) return access QtAda6.QtCore.QSize.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sizeHint");
       Args             := Tuple_New (0);
@@ -155,7 +155,7 @@ package body QtAda6.QtWidgets.QSplitterHandle is
       return Ret;
    end sizeHint;
    function splitter (self : access Inst) return access QtAda6.QtWidgets.QSplitter.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtWidgets.QSplitter.Class := new QtAda6.QtWidgets.QSplitter.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "splitter");
