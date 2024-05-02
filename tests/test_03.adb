@@ -43,18 +43,18 @@ begin
       QtAda6.Initialize;
 
       Put_Line ("PySide version: " & QtAda6.Version);
-      Put_Line ("QtCore version: " & QtAda6.From_bytes (QtAda6.QtCore.qVersion));
+      Put_Line ("QtCore version: " & QtAda6.QtCore.qVersion);
 
       declare
          use Py;
          --  4. declare QTAda6 objects and initialize them
          --      app = QGuiApplication(sys.argv)
          --      clock = AnalogClockWindow()
-         app              : QtAda6.QtGui.QGuiApplication.Class := QtAda6.QtGui.QGuiApplication.Create ((1 => ""));
-         clock            : Test_03_AnalogClockWindow.Class    := Test_03_AnalogClockWindow.Create;
-         CodeB            : Handle;
-         Args             : Handle;
-         Result           : Handle;
+         app    : QtAda6.QtGui.QGuiApplication.Class := QtAda6.QtGui.QGuiApplication.Create ((1 => ""));
+         clock  : Test_03_AnalogClockWindow.Class    := Test_03_AnalogClockWindow.Create;
+         CodeB  : Handle;
+         Args   : Handle;
+         Result : Handle;
 
          -- Local render subprogram for callback usage
          procedure L_Render (p : access QtAda6.QtGui.QPainter.Inst'Class) is
@@ -91,11 +91,9 @@ begin
          -- Set callback which will be called by test_03_module
          Py.Test_03_Module.Set (L_Render'Unrestricted_Access);
 
-         CodeB   := Compile ("import test_03_acw" & LF &
-                               "def B():" & LF &
-                               "   test_03_acw.Code()", "hello.py");
-         Args    := Tuple_New (0);
-         Result  := Object_CallObject (CodeB, Args, True);
+         CodeB  := Compile ("import test_03_acw" & LF & "def B():" & LF & "   test_03_acw.Code()", "hello.py");
+         Args   := Tuple_New (0);
+         Result := Object_CallObject (CodeB, Args, True);
 
          Put_Line (QtAda6.Image (QtAda6.QtCore.QCoreApplication.exec));
 
