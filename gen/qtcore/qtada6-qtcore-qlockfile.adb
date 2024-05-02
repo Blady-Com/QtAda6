@@ -22,7 +22,7 @@ package body QtAda6.QtCore.QLockFile is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (fileName_P : str) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLockFile");
       Args  := Tuple_New (1);
@@ -31,7 +31,7 @@ package body QtAda6.QtCore.QLockFile is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function error (self : access Inst) return access QtAda6.QtCore.QLockFile.LockError.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QLockFile.LockError.Class := new QtAda6.QtCore.QLockFile.LockError.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "error");
@@ -42,7 +42,7 @@ package body QtAda6.QtCore.QLockFile is
       return Ret;
    end error;
    function fileName (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fileName");
       Args   := Tuple_New (0);
@@ -51,7 +51,7 @@ package body QtAda6.QtCore.QLockFile is
       return As_String (Result);
    end fileName;
    function getLockInfo (self : access Inst) return TUPLE_bool_int_str_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "getLockInfo");
       Args   := Tuple_New (0);
@@ -65,7 +65,7 @@ package body QtAda6.QtCore.QLockFile is
       end return;
    end getLockInfo;
    function isLocked (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isLocked");
       Args   := Tuple_New (0);
@@ -74,7 +74,7 @@ package body QtAda6.QtCore.QLockFile is
       return To_Ada (Result);
    end isLocked;
    function lock (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lock");
       Args   := Tuple_New (0);
@@ -83,7 +83,7 @@ package body QtAda6.QtCore.QLockFile is
       return To_Ada (Result);
    end lock;
    function removeStaleLockFile (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeStaleLockFile");
       Args   := Tuple_New (0);
@@ -92,7 +92,7 @@ package body QtAda6.QtCore.QLockFile is
       return To_Ada (Result);
    end removeStaleLockFile;
    procedure setStaleLockTime (self : access Inst; arg_1_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStaleLockTime");
       Args   := Tuple_New (1);
@@ -101,7 +101,7 @@ package body QtAda6.QtCore.QLockFile is
       Result := Object_Call (Method, Args, Dict, True);
    end setStaleLockTime;
    function staleLockTime (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "staleLockTime");
       Args   := Tuple_New (0);
@@ -110,7 +110,7 @@ package body QtAda6.QtCore.QLockFile is
       return Long_AsLong (Result);
    end staleLockTime;
    function tryLock (self : access Inst; timeout_P : int := 0) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tryLock");
       Args   := Tuple_New (0);
@@ -122,7 +122,7 @@ package body QtAda6.QtCore.QLockFile is
       return To_Ada (Result);
    end tryLock;
    procedure unlock (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "unlock");
       Args   := Tuple_New (0);

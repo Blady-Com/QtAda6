@@ -21,14 +21,14 @@ package QtAda6.QtCore.QRegularExpression is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QRegularExpression_str is new Any;
    type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create
      (pattern_P : str; options_P : access QtAda6.QtCore.QRegularExpression.PatternOption.Inst'Class := null)
       return Class;
-   function Create (re_P : UNION_QtAda6_QtCore_QRegularExpression_str) return Class;
+   function Create (re_P : access QtAda6.QtCore.QRegularExpression.Inst'Class) return Class;
+   function Create (re_P : str) return Class;
    procedure U_copy_U;
    function anchoredPattern (expression_P : str) return str;
    function captureCount (self : access Inst) return int;
@@ -69,7 +69,8 @@ package QtAda6.QtCore.QRegularExpression is
    procedure setPattern (self : access Inst; pattern_P : str);
    procedure setPatternOptions
      (self : access Inst; options_P : access QtAda6.QtCore.QRegularExpression.PatternOption.Inst'Class);
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QRegularExpression_str);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QRegularExpression.Inst'Class);
+   procedure swap (self : access Inst; other_P : str);
    function wildcardToRegularExpression
      (str_P : str; options_P : access QtAda6.QtCore.QRegularExpression.WildcardConversionOption.Inst'Class := null)
       return str;

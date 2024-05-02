@@ -15,29 +15,41 @@ package QtAda6.QtCore.QBitArray is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QBitArray_int is new Any;
    type TUPLE_int_bool is record
       C0 : int;
       C1 : bool;
    end record;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (other_P : UNION_QtAda6_QtCore_QBitArray_int) return Class;
+   function Create (other_P : access QtAda6.QtCore.QBitArray.Inst'Class) return Class;
+   function Create (other_P : int) return Class;
    function Create (size_P : int; val_P : bool := False) return Class;
    function U_and_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QBitArray_int) return access QtAda6.QtCore.QBitArray.Inst'Class;
+     (self : access Inst; arg_2_P : access QtAda6.QtCore.QBitArray.Inst'Class)
+      return access QtAda6.QtCore.QBitArray.Inst'Class;
+   function U_and_U (self : access Inst; arg_2_P : int) return access QtAda6.QtCore.QBitArray.Inst'Class;
    procedure U_copy_U;
    function U_iand_U
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtCore_QBitArray_int) return access QtAda6.QtCore.QBitArray.Inst'Class;
+     (self : access Inst; arg_1_P : access QtAda6.QtCore.QBitArray.Inst'Class)
+      return access QtAda6.QtCore.QBitArray.Inst'Class;
+   function U_iand_U (self : access Inst; arg_1_P : int) return access QtAda6.QtCore.QBitArray.Inst'Class;
    function U_invert_U (self : access Inst) return access QtAda6.QtCore.QBitArray.Inst'Class;
    function U_ior_U
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtCore_QBitArray_int) return access QtAda6.QtCore.QBitArray.Inst'Class;
+     (self : access Inst; arg_1_P : access QtAda6.QtCore.QBitArray.Inst'Class)
+      return access QtAda6.QtCore.QBitArray.Inst'Class;
+   function U_ior_U (self : access Inst; arg_1_P : int) return access QtAda6.QtCore.QBitArray.Inst'Class;
    function U_ixor_U
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtCore_QBitArray_int) return access QtAda6.QtCore.QBitArray.Inst'Class;
+     (self : access Inst; arg_1_P : access QtAda6.QtCore.QBitArray.Inst'Class)
+      return access QtAda6.QtCore.QBitArray.Inst'Class;
+   function U_ixor_U (self : access Inst; arg_1_P : int) return access QtAda6.QtCore.QBitArray.Inst'Class;
    function U_or_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QBitArray_int) return access QtAda6.QtCore.QBitArray.Inst'Class;
+     (self : access Inst; arg_2_P : access QtAda6.QtCore.QBitArray.Inst'Class)
+      return access QtAda6.QtCore.QBitArray.Inst'Class;
+   function U_or_U (self : access Inst; arg_2_P : int) return access QtAda6.QtCore.QBitArray.Inst'Class;
    function U_xor_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QBitArray_int) return access QtAda6.QtCore.QBitArray.Inst'Class;
+     (self : access Inst; arg_2_P : access QtAda6.QtCore.QBitArray.Inst'Class)
+      return access QtAda6.QtCore.QBitArray.Inst'Class;
+   function U_xor_U (self : access Inst; arg_2_P : int) return access QtAda6.QtCore.QBitArray.Inst'Class;
    function at_K (self : access Inst; i_P : int) return bool;
    function bits (self : access Inst) return bytes;
    procedure clear (self : access Inst);
@@ -53,7 +65,8 @@ package QtAda6.QtCore.QBitArray is
    procedure setBit (self : access Inst; i_P : int);
    procedure setBit (self : access Inst; i_P : int; val_P : bool);
    function size (self : access Inst) return int;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QBitArray_int);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QBitArray.Inst'Class);
+   procedure swap (self : access Inst; other_P : int);
    function testBit (self : access Inst; i_P : int) return bool;
    function toUInt32
      (self : access Inst; endianness_P : access QtAda6.QtCore.QSysInfo.Endian.Inst'Class) return TUPLE_int_bool;

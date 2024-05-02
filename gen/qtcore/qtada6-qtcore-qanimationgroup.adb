@@ -24,7 +24,7 @@ package body QtAda6.QtCore.QAnimationGroup is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QAnimationGroup");
       Args  := Tuple_New (0);
@@ -35,7 +35,7 @@ package body QtAda6.QtCore.QAnimationGroup is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure addAnimation (self : access Inst; animation_P : access QtAda6.QtCore.QAbstractAnimation.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addAnimation");
       Args   := Tuple_New (1);
@@ -44,7 +44,7 @@ package body QtAda6.QtCore.QAnimationGroup is
       Result := Object_Call (Method, Args, Dict, True);
    end addAnimation;
    function animationAt (self : access Inst; index_P : int) return access QtAda6.QtCore.QAbstractAnimation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QAbstractAnimation.Class := new QtAda6.QtCore.QAbstractAnimation.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "animationAt");
@@ -56,7 +56,7 @@ package body QtAda6.QtCore.QAnimationGroup is
       return Ret;
    end animationAt;
    function animationCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "animationCount");
       Args   := Tuple_New (0);
@@ -65,7 +65,7 @@ package body QtAda6.QtCore.QAnimationGroup is
       return Long_AsLong (Result);
    end animationCount;
    procedure clear (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clear");
       Args   := Tuple_New (0);
@@ -73,7 +73,7 @@ package body QtAda6.QtCore.QAnimationGroup is
       Result := Object_Call (Method, Args, Dict, True);
    end clear;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -85,7 +85,7 @@ package body QtAda6.QtCore.QAnimationGroup is
    function indexOfAnimation
      (self : access Inst; animation_P : access QtAda6.QtCore.QAbstractAnimation.Inst'Class) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOfAnimation");
       Args   := Tuple_New (1);
@@ -97,7 +97,7 @@ package body QtAda6.QtCore.QAnimationGroup is
    procedure insertAnimation
      (self : access Inst; index_P : int; animation_P : access QtAda6.QtCore.QAbstractAnimation.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertAnimation");
       Args   := Tuple_New (2);
@@ -107,7 +107,7 @@ package body QtAda6.QtCore.QAnimationGroup is
       Result := Object_Call (Method, Args, Dict, True);
    end insertAnimation;
    procedure removeAnimation (self : access Inst; animation_P : access QtAda6.QtCore.QAbstractAnimation.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeAnimation");
       Args   := Tuple_New (1);
@@ -117,7 +117,7 @@ package body QtAda6.QtCore.QAnimationGroup is
    end removeAnimation;
    function takeAnimation (self : access Inst; index_P : int) return access QtAda6.QtCore.QAbstractAnimation.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QAbstractAnimation.Class := new QtAda6.QtCore.QAbstractAnimation.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "takeAnimation");

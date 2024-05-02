@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QGenericReturnArgument;
 package body QtAda6.QtCore.QGenericReturnArgument is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -22,7 +21,7 @@ package body QtAda6.QtCore.QGenericReturnArgument is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (QGenericReturnArgument_P : access QtAda6.QtCore.QGenericReturnArgument.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QGenericReturnArgument");
       Args  := Tuple_New (1);
@@ -31,14 +30,14 @@ package body QtAda6.QtCore.QGenericReturnArgument is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (aName_P : bytes := ""; aData_P : int := 0) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (aName_P : bytes := null; aData_P : int := 0) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QGenericReturnArgument");
       Args  := Tuple_New (0);
       Dict  := Dict_New;
-      if aName_P /= "" then
-         Dict_SetItemString (Dict, "aName", Bytes_FromString (String (aName_P)));
+      if aName_P /= null then
+         Dict_SetItemString (Dict, "aName", Bytes_FromString (Standard.String (aName_P.all)));
       end if;
       if aData_P /= 0 then
          Dict_SetItemString (Dict, "aData", Long_FromLong (aData_P));
@@ -46,7 +45,7 @@ package body QtAda6.QtCore.QGenericReturnArgument is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QGenericReturnArgument");
       Method := Object_GetAttrString (Class, "__copy__");

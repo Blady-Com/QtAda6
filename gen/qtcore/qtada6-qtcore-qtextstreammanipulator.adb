@@ -22,7 +22,7 @@ package body QtAda6.QtCore.QTextStreamManipulator is
       Free (Inst_Access (Self));
    end Finalize;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextStreamManipulator");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -31,7 +31,7 @@ package body QtAda6.QtCore.QTextStreamManipulator is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    procedure exec (self : access Inst; s_P : access QtAda6.QtCore.QTextStream.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec");
       Args   := Tuple_New (1);
@@ -40,7 +40,7 @@ package body QtAda6.QtCore.QTextStreamManipulator is
       Result := Object_Call (Method, Args, Dict, True);
    end exec;
    procedure exec_U (self : access Inst; arg_1_P : access QtAda6.QtCore.QTextStream.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec_");
       Args   := Tuple_New (1);

@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QPoint;
 with QtAda6.QtCore.QPointF;
 package body QtAda6.QtCore.QPoint is
    use type QtAda6.int;
@@ -23,7 +22,7 @@ package body QtAda6.QtCore.QPoint is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPoint");
       Args  := Tuple_New (0);
@@ -31,7 +30,7 @@ package body QtAda6.QtCore.QPoint is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (QPoint_P : access QtAda6.QtCore.QPoint.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPoint");
       Args  := Tuple_New (1);
@@ -40,7 +39,7 @@ package body QtAda6.QtCore.QPoint is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (xpos_P : int; ypos_P : int) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPoint");
       Args  := Tuple_New (2);
@@ -52,8 +51,8 @@ package body QtAda6.QtCore.QPoint is
    function U_add_U
      (self : access Inst; p2_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtCore.QPoint.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__add__");
       Args   := Tuple_New (1);
@@ -64,7 +63,7 @@ package body QtAda6.QtCore.QPoint is
       return Ret;
    end U_add_U;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPoint");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -75,8 +74,8 @@ package body QtAda6.QtCore.QPoint is
    function U_iadd_U
      (self : access Inst; p_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtCore.QPoint.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__iadd__");
       Args   := Tuple_New (1);
@@ -87,8 +86,8 @@ package body QtAda6.QtCore.QPoint is
       return Ret;
    end U_iadd_U;
    function U_imul_U (self : access Inst; factor_P : float) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__imul__");
       Args   := Tuple_New (1);
@@ -99,8 +98,8 @@ package body QtAda6.QtCore.QPoint is
       return Ret;
    end U_imul_U;
    function U_imul_U (self : access Inst; factor_P : int) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__imul__");
       Args   := Tuple_New (1);
@@ -113,8 +112,8 @@ package body QtAda6.QtCore.QPoint is
    function U_isub_U
      (self : access Inst; p_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtCore.QPoint.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__isub__");
       Args   := Tuple_New (1);
@@ -125,8 +124,8 @@ package body QtAda6.QtCore.QPoint is
       return Ret;
    end U_isub_U;
    function U_mul_U (self : access Inst; factor_P : float) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__mul__");
       Args   := Tuple_New (1);
@@ -137,8 +136,8 @@ package body QtAda6.QtCore.QPoint is
       return Ret;
    end U_mul_U;
    function U_mul_U (self : access Inst; factor_P : int) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__mul__");
       Args   := Tuple_New (1);
@@ -149,8 +148,8 @@ package body QtAda6.QtCore.QPoint is
       return Ret;
    end U_mul_U;
    function U_neg_U (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "__neg__");
       Args             := Tuple_New (0);
@@ -160,8 +159,8 @@ package body QtAda6.QtCore.QPoint is
       return Ret;
    end U_neg_U;
    function U_pos_U (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "__pos__");
       Args             := Tuple_New (0);
@@ -171,7 +170,7 @@ package body QtAda6.QtCore.QPoint is
       return Ret;
    end U_pos_U;
    function U_reduce_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__reduce__");
       Args   := Tuple_New (0);
@@ -180,7 +179,7 @@ package body QtAda6.QtCore.QPoint is
       return null;
    end U_reduce_U;
    function U_repr_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
@@ -191,8 +190,8 @@ package body QtAda6.QtCore.QPoint is
    function U_sub_U
      (self : access Inst; p2_P : access QtAda6.QtCore.QPoint.Inst'Class) return access QtAda6.QtCore.QPoint.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__sub__");
       Args   := Tuple_New (1);
@@ -205,7 +204,7 @@ package body QtAda6.QtCore.QPoint is
    function dotProduct
      (p1_P : access QtAda6.QtCore.QPoint.Inst'Class; p2_P : access QtAda6.QtCore.QPoint.Inst'Class) return int
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPoint");
       Method := Object_GetAttrString (Class, "dotProduct");
@@ -217,7 +216,7 @@ package body QtAda6.QtCore.QPoint is
       return Long_AsLong (Result);
    end dotProduct;
    function isNull (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isNull");
       Args   := Tuple_New (0);
@@ -226,7 +225,7 @@ package body QtAda6.QtCore.QPoint is
       return To_Ada (Result);
    end isNull;
    function manhattanLength (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "manhattanLength");
       Args   := Tuple_New (0);
@@ -235,7 +234,7 @@ package body QtAda6.QtCore.QPoint is
       return Long_AsLong (Result);
    end manhattanLength;
    procedure setX (self : access Inst; x_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setX");
       Args   := Tuple_New (1);
@@ -244,7 +243,7 @@ package body QtAda6.QtCore.QPoint is
       Result := Object_Call (Method, Args, Dict, True);
    end setX;
    procedure setY (self : access Inst; y_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setY");
       Args   := Tuple_New (1);
@@ -253,8 +252,8 @@ package body QtAda6.QtCore.QPoint is
       Result := Object_Call (Method, Args, Dict, True);
    end setY;
    function toPointF (self : access Inst) return access QtAda6.QtCore.QPointF.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPointF.Class := new QtAda6.QtCore.QPointF.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toPointF");
       Args             := Tuple_New (0);
@@ -264,7 +263,7 @@ package body QtAda6.QtCore.QPoint is
       return Ret;
    end toPointF;
    function toTuple (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toTuple");
       Args   := Tuple_New (0);
@@ -273,8 +272,8 @@ package body QtAda6.QtCore.QPoint is
       return null;
    end toTuple;
    function transposed (self : access Inst) return access QtAda6.QtCore.QPoint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QPoint.Class := new QtAda6.QtCore.QPoint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "transposed");
       Args             := Tuple_New (0);
@@ -284,7 +283,7 @@ package body QtAda6.QtCore.QPoint is
       return Ret;
    end transposed;
    function x (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "x");
       Args   := Tuple_New (0);
@@ -293,7 +292,7 @@ package body QtAda6.QtCore.QPoint is
       return Long_AsLong (Result);
    end x;
    function y (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "y");
       Args   := Tuple_New (0);

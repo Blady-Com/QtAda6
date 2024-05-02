@@ -10,10 +10,9 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Qt.Key;
 with QtAda6.QtCore.Qt.KeyboardModifier;
+with QtAda6.QtCore.Qt.Key;
 with QtAda6.QtCore.Qt.Modifier;
-with QtAda6.QtCore.QKeyCombination;
 package body QtAda6.QtCore.QKeyCombination is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -24,10 +23,8 @@ package body QtAda6.QtCore.QKeyCombination is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function Create
-     (arg_1_P : UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key) return Class
-   is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (arg_1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QKeyCombination");
       Args  := Tuple_New (1);
@@ -35,22 +32,29 @@ package body QtAda6.QtCore.QKeyCombination is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (key_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (arg_1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QKeyCombination");
-      Args  := Tuple_New (0);
-      Dict  := Dict_New;
-      if key_P /= null then
-         Dict_SetItemString (Dict, "key", key_P.Python_Proxy);
-      end if;
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (arg_1_P : access QtAda6.QtCore.Qt.Key.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QKeyCombination");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if arg_1_P /= null then arg_1_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
      (modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
       key_P       : access QtAda6.QtCore.Qt.Key.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QKeyCombination");
       Args  := Tuple_New (1);
@@ -65,7 +69,7 @@ package body QtAda6.QtCore.QKeyCombination is
      (modifiers_P : access QtAda6.QtCore.Qt.Modifier.Inst'Class; key_P : access QtAda6.QtCore.Qt.Key.Inst'Class)
       return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QKeyCombination");
       Args  := Tuple_New (2);
@@ -75,7 +79,7 @@ package body QtAda6.QtCore.QKeyCombination is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QKeyCombination");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -84,7 +88,7 @@ package body QtAda6.QtCore.QKeyCombination is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function fromCombined (combined_P : int) return access QtAda6.QtCore.QKeyCombination.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QKeyCombination.Class := new QtAda6.QtCore.QKeyCombination.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QKeyCombination");
@@ -97,8 +101,8 @@ package body QtAda6.QtCore.QKeyCombination is
       return Ret;
    end fromCombined;
    function key (self : access Inst) return access QtAda6.QtCore.Qt.Key.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.Qt.Key.Class := new QtAda6.QtCore.Qt.Key.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.Qt.Key.Class := new QtAda6.QtCore.Qt.Key.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "key");
       Args             := Tuple_New (0);
@@ -108,7 +112,7 @@ package body QtAda6.QtCore.QKeyCombination is
       return Ret;
    end key;
    function keyboardModifiers (self : access Inst) return access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.KeyboardModifier.Class := new QtAda6.QtCore.Qt.KeyboardModifier.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "keyboardModifiers");
@@ -119,7 +123,7 @@ package body QtAda6.QtCore.QKeyCombination is
       return Ret;
    end keyboardModifiers;
    function toCombined (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toCombined");
       Args   := Tuple_New (0);

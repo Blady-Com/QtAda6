@@ -21,7 +21,7 @@ package body QtAda6.QtCore.QMessageLogContext is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMessageLogContext");
       Args  := Tuple_New (0);
@@ -30,14 +30,14 @@ package body QtAda6.QtCore.QMessageLogContext is
    end Create;
    function Create (fileName_P : bytes; lineNumber_P : int; functionName_P : bytes; categoryName_P : bytes) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMessageLogContext");
       Args  := Tuple_New (4);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (fileName_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (fileName_P.all)));
       Tuple_SetItem (Args, 1, Long_FromLong (lineNumber_P));
-      Tuple_SetItem (Args, 2, Bytes_FromString (String (functionName_P)));
-      Tuple_SetItem (Args, 3, Bytes_FromString (String (categoryName_P)));
+      Tuple_SetItem (Args, 2, Bytes_FromString (Standard.String (functionName_P.all)));
+      Tuple_SetItem (Args, 3, Bytes_FromString (Standard.String (categoryName_P.all)));
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;

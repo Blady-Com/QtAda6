@@ -22,7 +22,7 @@ package body QtAda6.QtCore.QStringConverterBase.State is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (f_P : access QtAda6.QtCore.QStringConverterBase.Flag.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "State");
       Args  := Tuple_New (0);
@@ -33,7 +33,7 @@ package body QtAda6.QtCore.QStringConverterBase.State is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure clear (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clear");
       Args   := Tuple_New (0);
@@ -41,7 +41,7 @@ package body QtAda6.QtCore.QStringConverterBase.State is
       Result := Object_Call (Method, Args, Dict, True);
    end clear;
    procedure reset (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "reset");
       Args   := Tuple_New (0);

@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QCollatorSortKey;
 package body QtAda6.QtCore.QCollatorSortKey is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -22,7 +21,7 @@ package body QtAda6.QtCore.QCollatorSortKey is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (other_P : access QtAda6.QtCore.QCollatorSortKey.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCollatorSortKey");
       Args  := Tuple_New (1);
@@ -31,7 +30,7 @@ package body QtAda6.QtCore.QCollatorSortKey is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function compare (self : access Inst; key_P : access QtAda6.QtCore.QCollatorSortKey.Inst'Class) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "compare");
       Args   := Tuple_New (1);
@@ -41,7 +40,7 @@ package body QtAda6.QtCore.QCollatorSortKey is
       return Long_AsLong (Result);
    end compare;
    procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QCollatorSortKey.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);

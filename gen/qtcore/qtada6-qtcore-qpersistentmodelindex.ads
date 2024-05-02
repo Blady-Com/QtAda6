@@ -8,21 +8,21 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtCore.Qt.ItemFlag;
 limited with QtAda6.QtCore.QAbstractItemModel;
-limited with QtAda6.QtCore.QModelIndex;
 package QtAda6.QtCore.QPersistentModelIndex is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is new Any;
-   type UNION_QtAda6_QtCore_QPersistentModelIndex_QtAda6_QtCore_QModelIndex is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
-   function Create (index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return Class;
-   function Create (other_P : UNION_QtAda6_QtCore_QPersistentModelIndex_QtAda6_QtCore_QModelIndex) return Class;
+   function Create (index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return Class;
+   function Create (index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return Class;
+-- function Create(other_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return Class;
+-- function Create(other_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return Class;
    procedure U_copy_U;
    function column (self : access Inst) return int;
    function constInternalPointer (self : access Inst) return int;
@@ -36,5 +36,6 @@ package QtAda6.QtCore.QPersistentModelIndex is
    function row (self : access Inst) return int;
    function sibling
      (self : access Inst; row_P : int; column_P : int) return access QtAda6.QtCore.QModelIndex.Inst'Class;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QPersistentModelIndex_QtAda6_QtCore_QModelIndex);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QModelIndex.Inst'Class);
 end QtAda6.QtCore.QPersistentModelIndex;

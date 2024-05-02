@@ -21,7 +21,7 @@ package body QtAda6.QtCore.QCalendar.SystemId is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "SystemId");
       Args  := Tuple_New (0);
@@ -29,7 +29,7 @@ package body QtAda6.QtCore.QCalendar.SystemId is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function index (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "index");
       Args   := Tuple_New (0);
@@ -38,7 +38,7 @@ package body QtAda6.QtCore.QCalendar.SystemId is
       return Long_AsLong (Result);
    end index;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);

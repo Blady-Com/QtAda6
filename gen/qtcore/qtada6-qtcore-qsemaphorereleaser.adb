@@ -11,7 +11,6 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QSemaphore;
-with QtAda6.QtCore.QSemaphoreReleaser;
 package body QtAda6.QtCore.QSemaphoreReleaser is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -23,7 +22,7 @@ package body QtAda6.QtCore.QSemaphoreReleaser is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSemaphoreReleaser");
       Args  := Tuple_New (0);
@@ -31,7 +30,7 @@ package body QtAda6.QtCore.QSemaphoreReleaser is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (sem_P : access QtAda6.QtCore.QSemaphore.Inst'Class; n_P : int := 0) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSemaphoreReleaser");
       Args  := Tuple_New (1);
@@ -43,7 +42,7 @@ package body QtAda6.QtCore.QSemaphoreReleaser is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function cancel (self : access Inst) return access QtAda6.QtCore.QSemaphore.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QSemaphore.Class := new QtAda6.QtCore.QSemaphore.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "cancel");
@@ -54,7 +53,7 @@ package body QtAda6.QtCore.QSemaphoreReleaser is
       return Ret;
    end cancel;
    function semaphore (self : access Inst) return access QtAda6.QtCore.QSemaphore.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QSemaphore.Class := new QtAda6.QtCore.QSemaphore.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "semaphore");
@@ -65,7 +64,7 @@ package body QtAda6.QtCore.QSemaphoreReleaser is
       return Ret;
    end semaphore;
    procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QSemaphoreReleaser.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);

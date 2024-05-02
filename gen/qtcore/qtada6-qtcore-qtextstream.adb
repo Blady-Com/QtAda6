@@ -10,15 +10,16 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
+with QtAda6.QtCore.QByteArray;
 with QtAda6.QtCore.QIODeviceBase.OpenModeFlag;
 with QtAda6.QtCore.QIODevice;
-with QtAda6.QtCore.QTextStream;
 with QtAda6.QtCore.QTextStreamManipulator;
 with QtAda6.QtCore.QStringConverter.Encoding;
 with QtAda6.QtCore.QTextStream.FieldAlignment;
 with QtAda6.QtCore.QLocale;
 with QtAda6.QtCore.QTextStream.NumberFlag;
 with QtAda6.QtCore.QTextStream.RealNumberNotation;
+with QtAda6.QtCore.QLocale.Language;
 with QtAda6.QtCore.QTextStream.Status;
 package body QtAda6.QtCore.QTextStream is
    use type QtAda6.int;
@@ -31,7 +32,7 @@ package body QtAda6.QtCore.QTextStream is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextStream");
       Args  := Tuple_New (0);
@@ -39,10 +40,10 @@ package body QtAda6.QtCore.QTextStream is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (array_K_P  : UNION_QtAda6_QtCore_QByteArray_bytes;
+     (array_K_P  : access QtAda6.QtCore.QByteArray.Inst'Class;
       openMode_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextStream");
       Args  := Tuple_New (1);
@@ -53,8 +54,22 @@ package body QtAda6.QtCore.QTextStream is
       end if;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
+   function Create
+     (array_K_P : bytes; openMode_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class := null) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextStream");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (array_K_P.all)));
+      Dict := Dict_New;
+      if openMode_P /= null then
+         Dict_SetItemString (Dict, "openMode", openMode_P.Python_Proxy);
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
    function Create (device_P : access QtAda6.QtCore.QIODevice.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextStream");
       Args  := Tuple_New (1);
@@ -63,10 +78,10 @@ package body QtAda6.QtCore.QTextStream is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function U_lshift_U
-     (self : access Inst; array_K_P : UNION_QtAda6_QtCore_QByteArray_bytes)
+     (self : access Inst; array_K_P : access QtAda6.QtCore.QByteArray.Inst'Class)
       return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__lshift__");
@@ -77,8 +92,20 @@ package body QtAda6.QtCore.QTextStream is
       Ret.Python_Proxy := Result;
       return Ret;
    end U_lshift_U;
+   function U_lshift_U (self : access Inst; array_K_P : bytes) return access QtAda6.QtCore.QTextStream.Inst'Class is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "__lshift__");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (array_K_P.all)));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end U_lshift_U;
    function U_lshift_U (self : access Inst; ch_P : str) return access QtAda6.QtCore.QTextStream.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__lshift__");
@@ -90,7 +117,7 @@ package body QtAda6.QtCore.QTextStream is
       return Ret;
    end U_lshift_U;
    function U_lshift_U (self : access Inst; ch_P : int) return access QtAda6.QtCore.QTextStream.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__lshift__");
@@ -102,7 +129,7 @@ package body QtAda6.QtCore.QTextStream is
       return Ret;
    end U_lshift_U;
    function U_lshift_U (self : access Inst; f_P : float) return access QtAda6.QtCore.QTextStream.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__lshift__");
@@ -117,7 +144,7 @@ package body QtAda6.QtCore.QTextStream is
      (self : access Inst; m_P : access QtAda6.QtCore.QTextStreamManipulator.Inst'Class)
       return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__lshift__");
@@ -129,10 +156,10 @@ package body QtAda6.QtCore.QTextStream is
       return Ret;
    end U_lshift_U;
    function U_rshift_U
-     (self : access Inst; array_K_P : UNION_QtAda6_QtCore_QByteArray_bytes)
+     (self : access Inst; array_K_P : access QtAda6.QtCore.QByteArray.Inst'Class)
       return access QtAda6.QtCore.QTextStream.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__rshift__");
@@ -143,8 +170,20 @@ package body QtAda6.QtCore.QTextStream is
       Ret.Python_Proxy := Result;
       return Ret;
    end U_rshift_U;
+   function U_rshift_U (self : access Inst; array_K_P : bytes) return access QtAda6.QtCore.QTextStream.Inst'Class is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QTextStream.Class := new QtAda6.QtCore.QTextStream.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "__rshift__");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (array_K_P.all)));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end U_rshift_U;
    function atEnd (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "atEnd");
       Args   := Tuple_New (0);
@@ -153,7 +192,7 @@ package body QtAda6.QtCore.QTextStream is
       return To_Ada (Result);
    end atEnd;
    function autoDetectUnicode (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "autoDetectUnicode");
       Args   := Tuple_New (0);
@@ -162,7 +201,7 @@ package body QtAda6.QtCore.QTextStream is
       return To_Ada (Result);
    end autoDetectUnicode;
    function device (self : access Inst) return access QtAda6.QtCore.QIODevice.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QIODevice.Class := new QtAda6.QtCore.QIODevice.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "device");
@@ -173,7 +212,7 @@ package body QtAda6.QtCore.QTextStream is
       return Ret;
    end device;
    function encoding (self : access Inst) return access QtAda6.QtCore.QStringConverter.Encoding.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QStringConverter.Encoding.Class := new QtAda6.QtCore.QStringConverter.Encoding.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "encoding");
@@ -184,8 +223,8 @@ package body QtAda6.QtCore.QTextStream is
       return Ret;
    end encoding;
    function fieldAlignment_F (self : access Inst) return access QtAda6.QtCore.QTextStream.FieldAlignment.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QTextStream.FieldAlignment.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QTextStream.FieldAlignment.Class :=
         new QtAda6.QtCore.QTextStream.FieldAlignment.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "fieldAlignment");
@@ -196,7 +235,7 @@ package body QtAda6.QtCore.QTextStream is
       return Ret;
    end fieldAlignment_F;
    function fieldWidth (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fieldWidth");
       Args   := Tuple_New (0);
@@ -205,7 +244,7 @@ package body QtAda6.QtCore.QTextStream is
       return Long_AsLong (Result);
    end fieldWidth;
    procedure flush (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "flush");
       Args   := Tuple_New (0);
@@ -213,7 +252,7 @@ package body QtAda6.QtCore.QTextStream is
       Result := Object_Call (Method, Args, Dict, True);
    end flush;
    function generateByteOrderMark (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "generateByteOrderMark");
       Args   := Tuple_New (0);
@@ -222,7 +261,7 @@ package body QtAda6.QtCore.QTextStream is
       return To_Ada (Result);
    end generateByteOrderMark;
    function integerBase (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "integerBase");
       Args   := Tuple_New (0);
@@ -231,8 +270,8 @@ package body QtAda6.QtCore.QTextStream is
       return Long_AsLong (Result);
    end integerBase;
    function locale (self : access Inst) return access QtAda6.QtCore.QLocale.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QLocale.Class := new QtAda6.QtCore.QLocale.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QLocale.Class := new QtAda6.QtCore.QLocale.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "locale");
       Args             := Tuple_New (0);
@@ -242,7 +281,7 @@ package body QtAda6.QtCore.QTextStream is
       return Ret;
    end locale;
    function numberFlags (self : access Inst) return access QtAda6.QtCore.QTextStream.NumberFlag.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTextStream.NumberFlag.Class := new QtAda6.QtCore.QTextStream.NumberFlag.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "numberFlags");
@@ -253,7 +292,7 @@ package body QtAda6.QtCore.QTextStream is
       return Ret;
    end numberFlags;
    function padChar (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "padChar");
       Args   := Tuple_New (0);
@@ -262,7 +301,7 @@ package body QtAda6.QtCore.QTextStream is
       return As_String (Result);
    end padChar;
    function pos (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "pos");
       Args   := Tuple_New (0);
@@ -271,7 +310,7 @@ package body QtAda6.QtCore.QTextStream is
       return Long_AsLong (Result);
    end pos;
    function read (self : access Inst; maxlen_P : int) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "read");
       Args   := Tuple_New (1);
@@ -281,7 +320,7 @@ package body QtAda6.QtCore.QTextStream is
       return As_String (Result);
    end read;
    function readAll (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "readAll");
       Args   := Tuple_New (0);
@@ -290,7 +329,7 @@ package body QtAda6.QtCore.QTextStream is
       return As_String (Result);
    end readAll;
    function readLine (self : access Inst; maxlen_P : int := 0) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "readLine");
       Args   := Tuple_New (0);
@@ -302,7 +341,7 @@ package body QtAda6.QtCore.QTextStream is
       return As_String (Result);
    end readLine;
    function readLineInto (self : access Inst; maxlen_P : int := 0) return TUPLE_bool_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "readLineInto");
       Args   := Tuple_New (0);
@@ -319,8 +358,8 @@ package body QtAda6.QtCore.QTextStream is
    function realNumberNotation_F
      (self : access Inst) return access QtAda6.QtCore.QTextStream.RealNumberNotation.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QTextStream.RealNumberNotation.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QTextStream.RealNumberNotation.Class :=
         new QtAda6.QtCore.QTextStream.RealNumberNotation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "realNumberNotation");
@@ -331,7 +370,7 @@ package body QtAda6.QtCore.QTextStream is
       return Ret;
    end realNumberNotation_F;
    function realNumberPrecision (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "realNumberPrecision");
       Args   := Tuple_New (0);
@@ -340,7 +379,7 @@ package body QtAda6.QtCore.QTextStream is
       return Long_AsLong (Result);
    end realNumberPrecision;
    procedure reset (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "reset");
       Args   := Tuple_New (0);
@@ -348,7 +387,7 @@ package body QtAda6.QtCore.QTextStream is
       Result := Object_Call (Method, Args, Dict, True);
    end reset;
    procedure resetStatus (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resetStatus");
       Args   := Tuple_New (0);
@@ -356,7 +395,7 @@ package body QtAda6.QtCore.QTextStream is
       Result := Object_Call (Method, Args, Dict, True);
    end resetStatus;
    function seek (self : access Inst; pos_P : int) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "seek");
       Args   := Tuple_New (1);
@@ -366,7 +405,7 @@ package body QtAda6.QtCore.QTextStream is
       return To_Ada (Result);
    end seek;
    procedure setAutoDetectUnicode (self : access Inst; enabled_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAutoDetectUnicode");
       Args   := Tuple_New (1);
@@ -375,7 +414,7 @@ package body QtAda6.QtCore.QTextStream is
       Result := Object_Call (Method, Args, Dict, True);
    end setAutoDetectUnicode;
    procedure setDevice (self : access Inst; device_P : access QtAda6.QtCore.QIODevice.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDevice");
       Args   := Tuple_New (1);
@@ -384,7 +423,7 @@ package body QtAda6.QtCore.QTextStream is
       Result := Object_Call (Method, Args, Dict, True);
    end setDevice;
    procedure setEncoding (self : access Inst; encoding_P : access QtAda6.QtCore.QStringConverter.Encoding.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setEncoding");
       Args   := Tuple_New (1);
@@ -395,7 +434,7 @@ package body QtAda6.QtCore.QTextStream is
    procedure setFieldAlignment
      (self : access Inst; alignment_P : access QtAda6.QtCore.QTextStream.FieldAlignment.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFieldAlignment");
       Args   := Tuple_New (1);
@@ -404,7 +443,7 @@ package body QtAda6.QtCore.QTextStream is
       Result := Object_Call (Method, Args, Dict, True);
    end setFieldAlignment;
    procedure setFieldWidth (self : access Inst; width_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFieldWidth");
       Args   := Tuple_New (1);
@@ -413,7 +452,7 @@ package body QtAda6.QtCore.QTextStream is
       Result := Object_Call (Method, Args, Dict, True);
    end setFieldWidth;
    procedure setGenerateByteOrderMark (self : access Inst; generate_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setGenerateByteOrderMark");
       Args   := Tuple_New (1);
@@ -422,7 +461,7 @@ package body QtAda6.QtCore.QTextStream is
       Result := Object_Call (Method, Args, Dict, True);
    end setGenerateByteOrderMark;
    procedure setIntegerBase (self : access Inst; base_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setIntegerBase");
       Args   := Tuple_New (1);
@@ -430,8 +469,17 @@ package body QtAda6.QtCore.QTextStream is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setIntegerBase;
-   procedure setLocale (self : access Inst; locale_P : UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setLocale (self : access Inst; locale_P : access QtAda6.QtCore.QLocale.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setLocale");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if locale_P /= null then locale_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setLocale;
+   procedure setLocale (self : access Inst; locale_P : access QtAda6.QtCore.QLocale.Language.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setLocale");
       Args   := Tuple_New (1);
@@ -440,7 +488,7 @@ package body QtAda6.QtCore.QTextStream is
       Result := Object_Call (Method, Args, Dict, True);
    end setLocale;
    procedure setNumberFlags (self : access Inst; flags_P : access QtAda6.QtCore.QTextStream.NumberFlag.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setNumberFlags");
       Args   := Tuple_New (1);
@@ -449,7 +497,7 @@ package body QtAda6.QtCore.QTextStream is
       Result := Object_Call (Method, Args, Dict, True);
    end setNumberFlags;
    procedure setPadChar (self : access Inst; ch_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPadChar");
       Args   := Tuple_New (1);
@@ -460,7 +508,7 @@ package body QtAda6.QtCore.QTextStream is
    procedure setRealNumberNotation
      (self : access Inst; notation_P : access QtAda6.QtCore.QTextStream.RealNumberNotation.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRealNumberNotation");
       Args   := Tuple_New (1);
@@ -469,7 +517,7 @@ package body QtAda6.QtCore.QTextStream is
       Result := Object_Call (Method, Args, Dict, True);
    end setRealNumberNotation;
    procedure setRealNumberPrecision (self : access Inst; precision_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRealNumberPrecision");
       Args   := Tuple_New (1);
@@ -478,7 +526,7 @@ package body QtAda6.QtCore.QTextStream is
       Result := Object_Call (Method, Args, Dict, True);
    end setRealNumberPrecision;
    procedure setStatus (self : access Inst; status_P : access QtAda6.QtCore.QTextStream.Status.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStatus");
       Args   := Tuple_New (1);
@@ -487,7 +535,7 @@ package body QtAda6.QtCore.QTextStream is
       Result := Object_Call (Method, Args, Dict, True);
    end setStatus;
    procedure skipWhiteSpace (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "skipWhiteSpace");
       Args   := Tuple_New (0);
@@ -495,7 +543,7 @@ package body QtAda6.QtCore.QTextStream is
       Result := Object_Call (Method, Args, Dict, True);
    end skipWhiteSpace;
    function status_F (self : access Inst) return access QtAda6.QtCore.QTextStream.Status.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTextStream.Status.Class := new QtAda6.QtCore.QTextStream.Status.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "status");
@@ -506,12 +554,16 @@ package body QtAda6.QtCore.QTextStream is
       return Ret;
    end status_F;
    function string (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "string");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end string;
 end QtAda6.QtCore.QTextStream;

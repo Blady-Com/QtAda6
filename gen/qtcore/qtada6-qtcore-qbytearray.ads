@@ -17,35 +17,41 @@ package QtAda6.QtCore.QByteArray is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    subtype LIST_QtAda6_QtCore_QByteArray is QtAda6.QtCore.QByteArray.Class_Array;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (arg_1_P : bytearray) return Class;
    function Create (arg_1_P : bytes) return Class;
    function Create (arg_1_P : bytes; size_P : int := 0) return Class;
-   function Create (arg_1_P : UNION_QtAda6_QtCore_QByteArray_bytes) return Class;
+   function Create (arg_1_P : access QtAda6.QtCore.QByteArray.Inst'Class) return Class;
+-- function Create(arg_1_P : bytes) return Class;
    function Create (size_P : int; c_P : int) return Class;
    function U_add_U (self : access Inst; a2_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function U_add_U
-     (self : access Inst; a2_P : UNION_QtAda6_QtCore_QByteArray_bytes)
+     (self : access Inst; a2_P : access QtAda6.QtCore.QByteArray.Inst'Class)
       return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function U_add_U (self : access Inst; a2_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function U_add_U (self : access Inst; arg_1_P : bytearray) return access QtAda6.QtCore.QByteArray.Inst'Class;
    procedure U_add_U (self : access Inst; arg_1_P : bytes);
 -- function U_add_U(self : access Inst;rhs_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
-   function U_add_U (self : access Inst; rhs_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
--- function U_add_U(self : access Inst;rhs_P : UNION_QtAda6_QtCore_QByteArray_bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
+-- function U_add_U(self : access Inst;rhs_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
+-- function U_add_U(self : access Inst;rhs_P : access QtAda6.QtCore.QByteArray.Inst'Class) return access QtAda6.QtCore.QByteArray.Inst'Class;
+-- function U_add_U(self : access Inst;rhs_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function U_add_U (self : access Inst; s_P : str) return str;
    procedure U_copy_U;
    function U_iadd_U
-     (self : access Inst; a_P : UNION_QtAda6_QtCore_QByteArray_bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
+     (self : access Inst; a_P : access QtAda6.QtCore.QByteArray.Inst'Class)
+      return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function U_iadd_U (self : access Inst; a_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function U_iadd_U (self : access Inst; arg_1_P : bytearray) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function U_iadd_U (self : access Inst; c_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function U_reduce_U (self : access Inst) return access Object'Class;
    function U_repr_U (self : access Inst) return access Object'Class;
    function U_str_U (self : access Inst) return access Object'Class;
    function append
-     (self : access Inst; a_P : UNION_QtAda6_QtCore_QByteArray_bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
+     (self : access Inst; a_P : access QtAda6.QtCore.QByteArray.Inst'Class)
+      return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function append (self : access Inst; a_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function append (self : access Inst; c_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function append (self : access Inst; count_P : int; c_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function append (self : access Inst; s_P : bytes; len_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
@@ -58,56 +64,77 @@ package QtAda6.QtCore.QByteArray is
    function chopped (self : access Inst; len_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    procedure clear (self : access Inst);
    function compare
-     (self : access Inst; a_P : UNION_QtAda6_QtCore_QByteArray_bytes;
+     (self : access Inst; a_P : access QtAda6.QtCore.QByteArray.Inst'Class;
       cs_P : access QtAda6.QtCore.Qt.CaseSensitivity.Inst'Class := null) return int;
-   function contains (self : access Inst; bv_P : UNION_QtAda6_QtCore_QByteArray_bytes) return bool;
+   function compare
+     (self : access Inst; a_P : bytes; cs_P : access QtAda6.QtCore.Qt.CaseSensitivity.Inst'Class := null) return int;
+   function contains (self : access Inst; bv_P : access QtAda6.QtCore.QByteArray.Inst'Class) return bool;
+   function contains (self : access Inst; bv_P : bytes) return bool;
    function contains (self : access Inst; c_P : int) return bool;
    function count (self : access Inst) return int;
-   function count (self : access Inst; bv_P : UNION_QtAda6_QtCore_QByteArray_bytes) return int;
+   function count (self : access Inst; bv_P : access QtAda6.QtCore.QByteArray.Inst'Class) return int;
+   function count (self : access Inst; bv_P : bytes) return int;
    function count (self : access Inst; c_P : int) return int;
    function data (self : access Inst) return bytes;
-   function endsWith (self : access Inst; bv_P : UNION_QtAda6_QtCore_QByteArray_bytes) return bool;
+   function endsWith (self : access Inst; bv_P : access QtAda6.QtCore.QByteArray.Inst'Class) return bool;
+   function endsWith (self : access Inst; bv_P : bytes) return bool;
    function endsWith (self : access Inst; c_P : int) return bool;
    function erase (self : access Inst; first_P : bytes; last_P : bytes) return bytes;
    function erase (self : access Inst; it_P : bytes) return bytes;
    function fill (self : access Inst; c_P : int; size_P : int := 0) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function first (self : access Inst; n_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function fromBase64
-     (base64_P  : UNION_QtAda6_QtCore_QByteArray_bytes;
+     (base64_P  : access QtAda6.QtCore.QByteArray.Inst'Class;
       options_P : access QtAda6.QtCore.QByteArray.Base64Option.Inst'Class := null)
+      return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function fromBase64
+     (base64_P : bytes; options_P : access QtAda6.QtCore.QByteArray.Base64Option.Inst'Class := null)
       return access QtAda6.QtCore.QByteArray.Inst'Class;
    function fromBase64Encoding
-     (base64_P  : UNION_QtAda6_QtCore_QByteArray_bytes;
+     (base64_P  : access QtAda6.QtCore.QByteArray.Inst'Class;
       options_P : access QtAda6.QtCore.QByteArray.Base64Option.Inst'Class := null)
       return access QtAda6.QtCore.QByteArray.FromBase64Result.Inst'Class;
+   function fromBase64Encoding
+     (base64_P : bytes; options_P : access QtAda6.QtCore.QByteArray.Base64Option.Inst'Class := null)
+      return access QtAda6.QtCore.QByteArray.FromBase64Result.Inst'Class;
    function fromHex
-     (hexEncoded_P : UNION_QtAda6_QtCore_QByteArray_bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
+     (hexEncoded_P : access QtAda6.QtCore.QByteArray.Inst'Class) return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function fromHex (hexEncoded_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function fromPercentEncoding
-     (pctEncoded_P : UNION_QtAda6_QtCore_QByteArray_bytes; percent_P : int := 0)
+     (pctEncoded_P : access QtAda6.QtCore.QByteArray.Inst'Class; percent_P : int := 0)
       return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function fromPercentEncoding
+     (pctEncoded_P : bytes; percent_P : int := 0) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function fromRawData (data_P : bytes; size_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function fromStdString (s_P : str) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function front (self : access Inst) return int;
-   function indexOf (self : access Inst; bv_P : UNION_QtAda6_QtCore_QByteArray_bytes; from_U_P : int := 0) return int;
+   function indexOf
+     (self : access Inst; bv_P : access QtAda6.QtCore.QByteArray.Inst'Class; from_U_P : int := 0) return int;
+   function indexOf (self : access Inst; bv_P : bytes; from_U_P : int := 0) return int;
    function indexOf (self : access Inst; c_P : int; from_U_P : int := 0) return int;
    function insert (self : access Inst; i_P : int; c_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function insert
      (self : access Inst; i_P : int; count_P : int; c_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function insert
-     (self : access Inst; i_P : int; data_P : UNION_QtAda6_QtCore_QByteArray_bytes)
+     (self : access Inst; i_P : int; data_P : access QtAda6.QtCore.QByteArray.Inst'Class)
       return access QtAda6.QtCore.QByteArray.Inst'Class;
-   function insert (self : access Inst; i_P : int; s_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function insert (self : access Inst; i_P : int; data_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
+-- function insert(self : access Inst;i_P : int;s_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function insert
      (self : access Inst; i_P : int; s_P : bytes; len_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function isEmpty (self : access Inst) return bool;
    function isLower (self : access Inst) return bool;
    function isNull (self : access Inst) return bool;
-   function isSharedWith (self : access Inst; other_P : UNION_QtAda6_QtCore_QByteArray_bytes) return bool;
+   function isSharedWith (self : access Inst; other_P : access QtAda6.QtCore.QByteArray.Inst'Class) return bool;
+   function isSharedWith (self : access Inst; other_P : bytes) return bool;
    function isUpper (self : access Inst) return bool;
    function isValidUtf8 (self : access Inst) return bool;
    function last (self : access Inst; n_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
-   function lastIndexOf (self : access Inst; bv_P : UNION_QtAda6_QtCore_QByteArray_bytes) return int;
-   function lastIndexOf (self : access Inst; bv_P : UNION_QtAda6_QtCore_QByteArray_bytes; from_U_P : int) return int;
+   function lastIndexOf (self : access Inst; bv_P : access QtAda6.QtCore.QByteArray.Inst'Class) return int;
+   function lastIndexOf (self : access Inst; bv_P : bytes) return int;
+   function lastIndexOf
+     (self : access Inst; bv_P : access QtAda6.QtCore.QByteArray.Inst'Class; from_U_P : int) return int;
+   function lastIndexOf (self : access Inst; bv_P : bytes; from_U_P : int) return int;
    function lastIndexOf (self : access Inst; c_P : int; from_U_P : int := 0) return int;
    function left (self : access Inst; len_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function leftJustified
@@ -121,12 +148,16 @@ package QtAda6.QtCore.QByteArray is
 -- function number(arg_1_P : int;base_P : int := 0) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function percentDecoded (self : access Inst; percent_P : int := 0) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function prepend
-     (self : access Inst; a_P : UNION_QtAda6_QtCore_QByteArray_bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
+     (self : access Inst; a_P : access QtAda6.QtCore.QByteArray.Inst'Class)
+      return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function prepend (self : access Inst; a_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function prepend (self : access Inst; c_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function prepend (self : access Inst; count_P : int; c_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function prepend (self : access Inst; s_P : bytes; len_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
-   procedure push_back (self : access Inst; a_P : UNION_QtAda6_QtCore_QByteArray_bytes);
-   procedure push_front (self : access Inst; a_P : UNION_QtAda6_QtCore_QByteArray_bytes);
+   procedure push_back (self : access Inst; a_P : access QtAda6.QtCore.QByteArray.Inst'Class);
+   procedure push_back (self : access Inst; a_P : bytes);
+   procedure push_front (self : access Inst; a_P : access QtAda6.QtCore.QByteArray.Inst'Class);
+   procedure push_front (self : access Inst; a_P : bytes);
    function remove (self : access Inst; index_P : int; len_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function removeAt (self : access Inst; pos_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function removeFirst (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class;
@@ -138,17 +169,29 @@ package QtAda6.QtCore.QByteArray is
    function replace
      (self : access Inst; before_P : int; after_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function replace
-     (self : access Inst; before_P : int; after_P : UNION_QtAda6_QtCore_QByteArray_bytes)
+     (self : access Inst; before_P : int; after_P : access QtAda6.QtCore.QByteArray.Inst'Class)
       return access QtAda6.QtCore.QByteArray.Inst'Class;
    function replace
-     (self    : access Inst; before_P : UNION_QtAda6_QtCore_QByteArray_bytes;
-      after_P : UNION_QtAda6_QtCore_QByteArray_bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
+     (self : access Inst; before_P : int; after_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function replace
+     (self    : access Inst; before_P : access QtAda6.QtCore.QByteArray.Inst'Class;
+      after_P : access QtAda6.QtCore.QByteArray.Inst'Class) return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function replace
+     (self : access Inst; before_P : access QtAda6.QtCore.QByteArray.Inst'Class; after_P : bytes)
+      return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function replace
+     (self : access Inst; before_P : bytes; after_P : access QtAda6.QtCore.QByteArray.Inst'Class)
+      return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function replace
+     (self : access Inst; before_P : bytes; after_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function replace
      (self : access Inst; index_P : int; len_P : int; s_P : bytes; alen_P : int)
       return access QtAda6.QtCore.QByteArray.Inst'Class;
    function replace
-     (self : access Inst; index_P : int; len_P : int; s_P : UNION_QtAda6_QtCore_QByteArray_bytes)
+     (self : access Inst; index_P : int; len_P : int; s_P : access QtAda6.QtCore.QByteArray.Inst'Class)
       return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function replace
+     (self : access Inst; index_P : int; len_P : int; s_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class;
    procedure reserve (self : access Inst; size_P : int);
    procedure resize (self : access Inst; size_P : int);
    procedure resize (self : access Inst; size_P : int; c_P : int);
@@ -170,9 +213,11 @@ package QtAda6.QtCore.QByteArray is
    function sliced (self : access Inst; pos_P : int; n_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function split (self : access Inst; sep_P : int) return LIST_QtAda6_QtCore_QByteArray;
    procedure squeeze (self : access Inst);
-   function startsWith (self : access Inst; bv_P : UNION_QtAda6_QtCore_QByteArray_bytes) return bool;
+   function startsWith (self : access Inst; bv_P : access QtAda6.QtCore.QByteArray.Inst'Class) return bool;
+   function startsWith (self : access Inst; bv_P : bytes) return bool;
    function startsWith (self : access Inst; c_P : int) return bool;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QByteArray_bytes);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QByteArray.Inst'Class);
+   procedure swap (self : access Inst; other_P : bytes);
    function toBase64
      (self : access Inst; options_P : access QtAda6.QtCore.QByteArray.Base64Option.Inst'Class := null)
       return access QtAda6.QtCore.QByteArray.Inst'Class;
@@ -184,8 +229,17 @@ package QtAda6.QtCore.QByteArray is
    function toLongLong (self : access Inst; base_P : int := 0) return int;
    function toLower (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function toPercentEncoding
-     (self      : access Inst; exclude_P : UNION_QtAda6_QtCore_QByteArray_bytes := null;
-      include_P : UNION_QtAda6_QtCore_QByteArray_bytes := null; percent_P : int := 0)
+     (self      : access Inst; exclude_P : access QtAda6.QtCore.QByteArray.Inst'Class := null;
+      include_P : access QtAda6.QtCore.QByteArray.Inst'Class := null; percent_P : int := 0)
+      return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function toPercentEncoding
+     (self : access Inst; exclude_P : access QtAda6.QtCore.QByteArray.Inst'Class := null; include_P : bytes := null;
+      percent_P : int := 0) return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function toPercentEncoding
+     (self : access Inst; exclude_P : bytes := null; include_P : access QtAda6.QtCore.QByteArray.Inst'Class := null;
+      percent_P : int := 0) return access QtAda6.QtCore.QByteArray.Inst'Class;
+   function toPercentEncoding
+     (self : access Inst; exclude_P : bytes := null; include_P : bytes := null; percent_P : int := 0)
       return access QtAda6.QtCore.QByteArray.Inst'Class;
    function toShort (self : access Inst; base_P : int := 0) return int;
    function toStdString (self : access Inst) return str;

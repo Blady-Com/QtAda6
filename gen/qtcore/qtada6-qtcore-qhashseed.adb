@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QHashSeed;
 package body QtAda6.QtCore.QHashSeed is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -21,8 +20,8 @@ package body QtAda6.QtCore.QHashSeed is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function Create (QHashSeed_P : UNION_QtAda6_QtCore_QHashSeed_int) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (QHashSeed_P : access QtAda6.QtCore.QHashSeed.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QHashSeed");
       Args  := Tuple_New (1);
@@ -30,19 +29,17 @@ package body QtAda6.QtCore.QHashSeed is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (d_P : int := 0) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (QHashSeed_P : int) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QHashSeed");
-      Args  := Tuple_New (0);
-      Dict  := Dict_New;
-      if d_P /= 0 then
-         Dict_SetItemString (Dict, "d", Long_FromLong (d_P));
-      end if;
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (QHashSeed_P));
+      Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QHashSeed");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -51,7 +48,7 @@ package body QtAda6.QtCore.QHashSeed is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function globalSeed return access QtAda6.QtCore.QHashSeed.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QHashSeed.Class := new QtAda6.QtCore.QHashSeed.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QHashSeed");
@@ -63,7 +60,7 @@ package body QtAda6.QtCore.QHashSeed is
       return Ret;
    end globalSeed;
    procedure resetRandomGlobalSeed is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QHashSeed");
       Method := Object_GetAttrString (Class, "resetRandomGlobalSeed");
@@ -72,7 +69,7 @@ package body QtAda6.QtCore.QHashSeed is
       Result := Object_Call (Method, Args, Dict, True);
    end resetRandomGlobalSeed;
    procedure setDeterministicGlobalSeed is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QHashSeed");
       Method := Object_GetAttrString (Class, "setDeterministicGlobalSeed");

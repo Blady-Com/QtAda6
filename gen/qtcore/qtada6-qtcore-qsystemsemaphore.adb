@@ -26,7 +26,7 @@ package body QtAda6.QtCore.QSystemSemaphore is
      (key_P  : str; initialValue_P : int := 0;
       mode_P : access QtAda6.QtCore.QSystemSemaphore.AccessMode.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSystemSemaphore");
       Args  := Tuple_New (1);
@@ -41,7 +41,7 @@ package body QtAda6.QtCore.QSystemSemaphore is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function acquire (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "acquire");
       Args   := Tuple_New (0);
@@ -50,8 +50,8 @@ package body QtAda6.QtCore.QSystemSemaphore is
       return To_Ada (Result);
    end acquire;
    function error (self : access Inst) return access QtAda6.QtCore.QSystemSemaphore.SystemSemaphoreError.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSystemSemaphore.SystemSemaphoreError.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QSystemSemaphore.SystemSemaphoreError.Class :=
         new QtAda6.QtCore.QSystemSemaphore.SystemSemaphoreError.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "error");
@@ -62,7 +62,7 @@ package body QtAda6.QtCore.QSystemSemaphore is
       return Ret;
    end error;
    function errorString (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "errorString");
       Args   := Tuple_New (0);
@@ -71,7 +71,7 @@ package body QtAda6.QtCore.QSystemSemaphore is
       return As_String (Result);
    end errorString;
    function key (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "key");
       Args   := Tuple_New (0);
@@ -80,7 +80,7 @@ package body QtAda6.QtCore.QSystemSemaphore is
       return As_String (Result);
    end key;
    function release (self : access Inst; n_P : int := 0) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "release");
       Args   := Tuple_New (0);
@@ -95,7 +95,7 @@ package body QtAda6.QtCore.QSystemSemaphore is
      (self   : access Inst; key_P : str; initialValue_P : int := 0;
       mode_P : access QtAda6.QtCore.QSystemSemaphore.AccessMode.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setKey");
       Args   := Tuple_New (1);

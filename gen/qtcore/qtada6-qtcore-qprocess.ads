@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtCore.QProcess.ProcessChannel;
 limited with QtAda6.QtCore.QProcess.ProcessError;
@@ -18,8 +17,10 @@ limited with QtAda6.QtCore.QIODeviceBase.OpenModeFlag;
 limited with QtAda6.QtCore.QProcess.ProcessChannelMode;
 limited with QtAda6.QtCore.QProcessEnvironment;
 limited with QtAda6.QtCore.QByteArray;
+limited with QtAda6.QtCore.QProcessEnvironment.Initialization;
 limited with QtAda6.QtCore.QProcess.ProcessState;
 with QtAda6.QtCore.QIODevice;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QProcess is
    type Inst;
    type Inst_Access is access all Inst;
@@ -28,7 +29,6 @@ package QtAda6.QtCore.QProcess is
    type Inst is new QtAda6.QtCore.QIODevice.Inst with null record;
    type LIST_str is array (Positive range <>) of str;
    type SEQUENCE_str is array (Positive range <>) of str;
-   type UNION_QtAda6_QtCore_QProcessEnvironment_QtAda6_QtCore_QProcessEnvironment_Initialization is new Any;
    type TUPLE is null record;
    type TUPLE_bool_int is record
       C0 : bool;
@@ -54,7 +54,7 @@ package QtAda6.QtCore.QProcess is
    procedure closeWriteChannel (self : access Inst);
    function environment (self : access Inst) return LIST_str;
    function error (self : access Inst) return access QtAda6.QtCore.QProcess.ProcessError.Inst'Class;
-   function execute (program_P : str; arguments_P : SEQUENCE_str := (2 .. 1 => <>)) return int;
+   function execute (program_P : str; arguments_P : SEQUENCE_str) return int;
    function exitCode (self : access Inst) return int;
    function exitStatus_F (self : access Inst) return access QtAda6.QtCore.QProcess.ExitStatus.Inst'Class;
    function inputChannelMode_F (self : access Inst) return access QtAda6.QtCore.QProcess.InputChannelMode.Inst'Class;
@@ -79,8 +79,9 @@ package QtAda6.QtCore.QProcess is
    procedure setProcessChannelMode
      (self : access Inst; mode_P : access QtAda6.QtCore.QProcess.ProcessChannelMode.Inst'Class);
    procedure setProcessEnvironment
-     (self          : access Inst;
-      environment_P : UNION_QtAda6_QtCore_QProcessEnvironment_QtAda6_QtCore_QProcessEnvironment_Initialization);
+     (self : access Inst; environment_P : access QtAda6.QtCore.QProcessEnvironment.Inst'Class);
+   procedure setProcessEnvironment
+     (self : access Inst; environment_P : access QtAda6.QtCore.QProcessEnvironment.Initialization.Inst'Class);
    procedure setProcessState (self : access Inst; state_P : access QtAda6.QtCore.QProcess.ProcessState.Inst'Class);
    procedure setProgram (self : access Inst; program_P : str);
    procedure setReadChannel (self : access Inst; channel_P : access QtAda6.QtCore.QProcess.ProcessChannel.Inst'Class);
@@ -96,12 +97,11 @@ package QtAda6.QtCore.QProcess is
    function splitCommand (command_P : str) return LIST_str;
    procedure start (self : access Inst; mode_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class := null);
    procedure start
-     (self   : access Inst; program_P : str; arguments_P : SEQUENCE_str := (2 .. 1 => <>);
+     (self   : access Inst; program_P : str; arguments_P : SEQUENCE_str;
       mode_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class := null);
    procedure startCommand
      (self : access Inst; command_P : str; mode_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class := null);
-   function startDetached
-     (program_P : str; arguments_P : SEQUENCE_str := (2 .. 1 => <>); workingDirectory_P : str := "") return TUPLE;
+   function startDetached (program_P : str; arguments_P : SEQUENCE_str; workingDirectory_P : str := "") return TUPLE;
    function startDetached (self : access Inst) return TUPLE_bool_int;
    function state (self : access Inst) return access QtAda6.QtCore.QProcess.ProcessState.Inst'Class;
    function systemEnvironment return LIST_str;

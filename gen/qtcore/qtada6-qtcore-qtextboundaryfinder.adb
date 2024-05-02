@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QTextBoundaryFinder;
 with QtAda6.QtCore.QTextBoundaryFinder.BoundaryType;
 with QtAda6.QtCore.QTextBoundaryFinder.BoundaryReason;
 package body QtAda6.QtCore.QTextBoundaryFinder is
@@ -24,7 +23,7 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextBoundaryFinder");
       Args  := Tuple_New (0);
@@ -32,7 +31,7 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (other_P : access QtAda6.QtCore.QTextBoundaryFinder.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextBoundaryFinder");
       Args  := Tuple_New (1);
@@ -41,18 +40,18 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (type_K_P : access QtAda6.QtCore.QTextBoundaryFinder.BoundaryType.Inst'Class; str_P : str; buffer_P : bytes := "";
-      bufferSize_P : int := 0) return Class
+     (type_K_P : access QtAda6.QtCore.QTextBoundaryFinder.BoundaryType.Inst'Class; str_P : str;
+      buffer_P : bytes := null; bufferSize_P : int := 0) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextBoundaryFinder");
       Args  := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 1, Unicode_FromString (str_P));
       Dict := Dict_New;
-      if buffer_P /= "" then
-         Dict_SetItemString (Dict, "buffer", Bytes_FromString (String (buffer_P)));
+      if buffer_P /= null then
+         Dict_SetItemString (Dict, "buffer", Bytes_FromString (Standard.String (buffer_P.all)));
       end if;
       if bufferSize_P /= 0 then
          Dict_SetItemString (Dict, "bufferSize", Long_FromLong (bufferSize_P));
@@ -62,7 +61,7 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
    function Create
      (type_K_P : access QtAda6.QtCore.QTextBoundaryFinder.BoundaryType.Inst'Class; string_P : str) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextBoundaryFinder");
       Args  := Tuple_New (2);
@@ -72,7 +71,7 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTextBoundaryFinder");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -83,8 +82,8 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
    function boundaryReasons
      (self : access Inst) return access QtAda6.QtCore.QTextBoundaryFinder.BoundaryReason.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QTextBoundaryFinder.BoundaryReason.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QTextBoundaryFinder.BoundaryReason.Class :=
         new QtAda6.QtCore.QTextBoundaryFinder.BoundaryReason.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "boundaryReasons");
@@ -95,7 +94,7 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
       return Ret;
    end boundaryReasons;
    function isAtBoundary (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isAtBoundary");
       Args   := Tuple_New (0);
@@ -104,7 +103,7 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
       return To_Ada (Result);
    end isAtBoundary;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -113,7 +112,7 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
       return To_Ada (Result);
    end isValid;
    function position (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "position");
       Args   := Tuple_New (0);
@@ -122,7 +121,7 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
       return Long_AsLong (Result);
    end position;
    procedure setPosition (self : access Inst; position_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPosition");
       Args   := Tuple_New (1);
@@ -131,7 +130,7 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
       Result := Object_Call (Method, Args, Dict, True);
    end setPosition;
    function string (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "string");
       Args   := Tuple_New (0);
@@ -140,7 +139,7 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
       return As_String (Result);
    end string;
    procedure toEnd (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toEnd");
       Args   := Tuple_New (0);
@@ -148,7 +147,7 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
       Result := Object_Call (Method, Args, Dict, True);
    end toEnd;
    function toNextBoundary (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toNextBoundary");
       Args   := Tuple_New (0);
@@ -157,7 +156,7 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
       return Long_AsLong (Result);
    end toNextBoundary;
    function toPreviousBoundary (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toPreviousBoundary");
       Args   := Tuple_New (0);
@@ -166,7 +165,7 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
       return Long_AsLong (Result);
    end toPreviousBoundary;
    procedure toStart (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toStart");
       Args   := Tuple_New (0);
@@ -174,8 +173,8 @@ package body QtAda6.QtCore.QTextBoundaryFinder is
       Result := Object_Call (Method, Args, Dict, True);
    end toStart;
    function type_K (self : access Inst) return access QtAda6.QtCore.QTextBoundaryFinder.BoundaryType.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QTextBoundaryFinder.BoundaryType.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QTextBoundaryFinder.BoundaryType.Class :=
         new QtAda6.QtCore.QTextBoundaryFinder.BoundaryType.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "type");

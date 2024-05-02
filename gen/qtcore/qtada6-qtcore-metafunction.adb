@@ -21,7 +21,7 @@ package body QtAda6.QtCore.MetaFunction is
       Free (Inst_Access (Self));
    end Finalize;
    function U_call_U (self : access Inst; args_P : Any) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__call__");
       Args   := Tuple_New (1);

@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.QProcess.ProcessChannel;
 with QtAda6.QtCore.QProcess.ProcessError;
@@ -20,8 +19,8 @@ with QtAda6.QtCore.QIODeviceBase.OpenModeFlag;
 with QtAda6.QtCore.QProcess.ProcessChannelMode;
 with QtAda6.QtCore.QProcessEnvironment;
 with QtAda6.QtCore.QByteArray;
+with QtAda6.QtCore.QProcessEnvironment.Initialization;
 with QtAda6.QtCore.QProcess.ProcessState;
-with QtAda6.QtCore.QProcess;
 package body QtAda6.QtCore.QProcess is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -61,7 +60,7 @@ package body QtAda6.QtCore.QProcess is
       return new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "stateChanged"));
    end stateChanged;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
       Args  := Tuple_New (0);
@@ -72,16 +71,20 @@ package body QtAda6.QtCore.QProcess is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function arguments (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "arguments");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end arguments;
    function bytesToWrite (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "bytesToWrite");
       Args   := Tuple_New (0);
@@ -90,7 +93,7 @@ package body QtAda6.QtCore.QProcess is
       return Long_AsLong (Result);
    end bytesToWrite;
    procedure close (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "close");
       Args   := Tuple_New (0);
@@ -99,7 +102,7 @@ package body QtAda6.QtCore.QProcess is
    end close;
    procedure closeReadChannel (self : access Inst; channel_P : access QtAda6.QtCore.QProcess.ProcessChannel.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "closeReadChannel");
       Args   := Tuple_New (1);
@@ -108,7 +111,7 @@ package body QtAda6.QtCore.QProcess is
       Result := Object_Call (Method, Args, Dict, True);
    end closeReadChannel;
    procedure closeWriteChannel (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "closeWriteChannel");
       Args   := Tuple_New (0);
@@ -116,16 +119,20 @@ package body QtAda6.QtCore.QProcess is
       Result := Object_Call (Method, Args, Dict, True);
    end closeWriteChannel;
    function environment (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "environment");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end environment;
    function error (self : access Inst) return access QtAda6.QtCore.QProcess.ProcessError.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QProcess.ProcessError.Class := new QtAda6.QtCore.QProcess.ProcessError.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "error");
@@ -135,26 +142,26 @@ package body QtAda6.QtCore.QProcess is
       Ret.Python_Proxy := Result;
       return Ret;
    end error;
-   function execute (program_P : str; arguments_P : SEQUENCE_str := (2 .. 1 => <>)) return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   function execute (program_P : str; arguments_P : SEQUENCE_str) return int is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
       Method := Object_GetAttrString (Class, "execute");
-      List   := List_New (arguments_P'Length);
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (program_P));
+      Dict := Dict_New;
+      List := List_New (arguments_P'Length);
       for ind in arguments_P'Range loop
          List_SetItem (List, ssize_t (ind - arguments_P'First), Unicode_FromString (arguments_P (ind)));
       end loop;
-      Args := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Unicode_FromString (program_P));
-      Dict := Dict_New;
-      if arguments_P /= (2 .. 1 => <>) then
+      if arguments_P'Length > 0 then
          Dict_SetItemString (Dict, "arguments", List);
       end if;
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end execute;
    function exitCode (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exitCode");
       Args   := Tuple_New (0);
@@ -163,7 +170,7 @@ package body QtAda6.QtCore.QProcess is
       return Long_AsLong (Result);
    end exitCode;
    function exitStatus_F (self : access Inst) return access QtAda6.QtCore.QProcess.ExitStatus.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QProcess.ExitStatus.Class := new QtAda6.QtCore.QProcess.ExitStatus.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "exitStatus");
@@ -174,7 +181,7 @@ package body QtAda6.QtCore.QProcess is
       return Ret;
    end exitStatus_F;
    function inputChannelMode_F (self : access Inst) return access QtAda6.QtCore.QProcess.InputChannelMode.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QProcess.InputChannelMode.Class := new QtAda6.QtCore.QProcess.InputChannelMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "inputChannelMode");
@@ -185,7 +192,7 @@ package body QtAda6.QtCore.QProcess is
       return Ret;
    end inputChannelMode_F;
    function isSequential (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isSequential");
       Args   := Tuple_New (0);
@@ -194,7 +201,7 @@ package body QtAda6.QtCore.QProcess is
       return To_Ada (Result);
    end isSequential;
    procedure kill (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "kill");
       Args   := Tuple_New (0);
@@ -202,7 +209,7 @@ package body QtAda6.QtCore.QProcess is
       Result := Object_Call (Method, Args, Dict, True);
    end kill;
    function nullDevice return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
       Method := Object_GetAttrString (Class, "nullDevice");
@@ -214,7 +221,7 @@ package body QtAda6.QtCore.QProcess is
    function open
      (self : access Inst; mode_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class := null) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (0);
@@ -227,8 +234,8 @@ package body QtAda6.QtCore.QProcess is
    end open;
    function processChannelMode_F (self : access Inst) return access QtAda6.QtCore.QProcess.ProcessChannelMode.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QProcess.ProcessChannelMode.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QProcess.ProcessChannelMode.Class :=
         new QtAda6.QtCore.QProcess.ProcessChannelMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "processChannelMode");
@@ -239,7 +246,7 @@ package body QtAda6.QtCore.QProcess is
       return Ret;
    end processChannelMode_F;
    function processEnvironment (self : access Inst) return access QtAda6.QtCore.QProcessEnvironment.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QProcessEnvironment.Class := new QtAda6.QtCore.QProcessEnvironment.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "processEnvironment");
@@ -250,7 +257,7 @@ package body QtAda6.QtCore.QProcess is
       return Ret;
    end processEnvironment;
    function processId (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "processId");
       Args   := Tuple_New (0);
@@ -259,7 +266,7 @@ package body QtAda6.QtCore.QProcess is
       return Long_AsLong (Result);
    end processId;
    function program (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "program");
       Args   := Tuple_New (0);
@@ -268,7 +275,7 @@ package body QtAda6.QtCore.QProcess is
       return As_String (Result);
    end program;
    function readAllStandardError (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "readAllStandardError");
@@ -279,7 +286,7 @@ package body QtAda6.QtCore.QProcess is
       return Ret;
    end readAllStandardError;
    function readAllStandardOutput (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "readAllStandardOutput");
@@ -290,7 +297,7 @@ package body QtAda6.QtCore.QProcess is
       return Ret;
    end readAllStandardOutput;
    function readChannel (self : access Inst) return access QtAda6.QtCore.QProcess.ProcessChannel.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QProcess.ProcessChannel.Class := new QtAda6.QtCore.QProcess.ProcessChannel.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "readChannel");
@@ -301,7 +308,7 @@ package body QtAda6.QtCore.QProcess is
       return Ret;
    end readChannel;
    function readData (self : access Inst; maxlen_P : int) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "readData");
       Args   := Tuple_New (1);
@@ -311,27 +318,27 @@ package body QtAda6.QtCore.QProcess is
       return null;
    end readData;
    procedure setArguments (self : access Inst; arguments_P : SEQUENCE_str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setArguments");
+      Args   := Tuple_New (1);
       List   := List_New (arguments_P'Length);
       for ind in arguments_P'Range loop
          List_SetItem (List, ssize_t (ind - arguments_P'First), Unicode_FromString (arguments_P (ind)));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setArguments;
    procedure setEnvironment (self : access Inst; environment_P : SEQUENCE_str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setEnvironment");
+      Args   := Tuple_New (1);
       List   := List_New (environment_P'Length);
       for ind in environment_P'Range loop
          List_SetItem (List, ssize_t (ind - environment_P'First), Unicode_FromString (environment_P (ind)));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
@@ -339,7 +346,7 @@ package body QtAda6.QtCore.QProcess is
    procedure setInputChannelMode
      (self : access Inst; mode_P : access QtAda6.QtCore.QProcess.InputChannelMode.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setInputChannelMode");
       Args   := Tuple_New (1);
@@ -350,7 +357,7 @@ package body QtAda6.QtCore.QProcess is
    procedure setProcessChannelMode
      (self : access Inst; mode_P : access QtAda6.QtCore.QProcess.ProcessChannelMode.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setProcessChannelMode");
       Args   := Tuple_New (1);
@@ -359,10 +366,20 @@ package body QtAda6.QtCore.QProcess is
       Result := Object_Call (Method, Args, Dict, True);
    end setProcessChannelMode;
    procedure setProcessEnvironment
-     (self          : access Inst;
-      environment_P : UNION_QtAda6_QtCore_QProcessEnvironment_QtAda6_QtCore_QProcessEnvironment_Initialization)
+     (self : access Inst; environment_P : access QtAda6.QtCore.QProcessEnvironment.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setProcessEnvironment");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if environment_P /= null then environment_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setProcessEnvironment;
+   procedure setProcessEnvironment
+     (self : access Inst; environment_P : access QtAda6.QtCore.QProcessEnvironment.Initialization.Inst'Class)
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setProcessEnvironment");
       Args   := Tuple_New (1);
@@ -371,7 +388,7 @@ package body QtAda6.QtCore.QProcess is
       Result := Object_Call (Method, Args, Dict, True);
    end setProcessEnvironment;
    procedure setProcessState (self : access Inst; state_P : access QtAda6.QtCore.QProcess.ProcessState.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setProcessState");
       Args   := Tuple_New (1);
@@ -380,7 +397,7 @@ package body QtAda6.QtCore.QProcess is
       Result := Object_Call (Method, Args, Dict, True);
    end setProcessState;
    procedure setProgram (self : access Inst; program_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setProgram");
       Args   := Tuple_New (1);
@@ -389,7 +406,7 @@ package body QtAda6.QtCore.QProcess is
       Result := Object_Call (Method, Args, Dict, True);
    end setProgram;
    procedure setReadChannel (self : access Inst; channel_P : access QtAda6.QtCore.QProcess.ProcessChannel.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setReadChannel");
       Args   := Tuple_New (1);
@@ -400,7 +417,7 @@ package body QtAda6.QtCore.QProcess is
    procedure setStandardErrorFile
      (self : access Inst; fileName_P : str; mode_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStandardErrorFile");
       Args   := Tuple_New (1);
@@ -412,7 +429,7 @@ package body QtAda6.QtCore.QProcess is
       Result := Object_Call (Method, Args, Dict, True);
    end setStandardErrorFile;
    procedure setStandardInputFile (self : access Inst; fileName_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStandardInputFile");
       Args   := Tuple_New (1);
@@ -423,7 +440,7 @@ package body QtAda6.QtCore.QProcess is
    procedure setStandardOutputFile
      (self : access Inst; fileName_P : str; mode_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStandardOutputFile");
       Args   := Tuple_New (1);
@@ -435,7 +452,7 @@ package body QtAda6.QtCore.QProcess is
       Result := Object_Call (Method, Args, Dict, True);
    end setStandardOutputFile;
    procedure setStandardOutputProcess (self : access Inst; destination_P : access QtAda6.QtCore.QProcess.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setStandardOutputProcess");
       Args   := Tuple_New (1);
@@ -444,7 +461,7 @@ package body QtAda6.QtCore.QProcess is
       Result := Object_Call (Method, Args, Dict, True);
    end setStandardOutputProcess;
    procedure setWorkingDirectory (self : access Inst; dir_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setWorkingDirectory");
       Args   := Tuple_New (1);
@@ -453,7 +470,7 @@ package body QtAda6.QtCore.QProcess is
       Result := Object_Call (Method, Args, Dict, True);
    end setWorkingDirectory;
    function splitCommand (command_P : str) return LIST_str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
       Method := Object_GetAttrString (Class, "splitCommand");
@@ -461,10 +478,14 @@ package body QtAda6.QtCore.QProcess is
       Tuple_SetItem (Args, 0, Unicode_FromString (command_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end splitCommand;
    procedure start (self : access Inst; mode_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class := null) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "start");
       Args   := Tuple_New (0);
@@ -475,20 +496,20 @@ package body QtAda6.QtCore.QProcess is
       Result := Object_Call (Method, Args, Dict, True);
    end start;
    procedure start
-     (self   : access Inst; program_P : str; arguments_P : SEQUENCE_str := (2 .. 1 => <>);
+     (self   : access Inst; program_P : str; arguments_P : SEQUENCE_str;
       mode_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "start");
-      List   := List_New (arguments_P'Length);
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (program_P));
+      Dict := Dict_New;
+      List := List_New (arguments_P'Length);
       for ind in arguments_P'Range loop
          List_SetItem (List, ssize_t (ind - arguments_P'First), Unicode_FromString (arguments_P (ind)));
       end loop;
-      Args := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Unicode_FromString (program_P));
-      Dict := Dict_New;
-      if arguments_P /= (2 .. 1 => <>) then
+      if arguments_P'Length > 0 then
          Dict_SetItemString (Dict, "arguments", List);
       end if;
       if mode_P /= null then
@@ -499,7 +520,7 @@ package body QtAda6.QtCore.QProcess is
    procedure startCommand
      (self : access Inst; command_P : str; mode_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "startCommand");
       Args   := Tuple_New (1);
@@ -510,21 +531,19 @@ package body QtAda6.QtCore.QProcess is
       end if;
       Result := Object_Call (Method, Args, Dict, True);
    end startCommand;
-   function startDetached
-     (program_P : str; arguments_P : SEQUENCE_str := (2 .. 1 => <>); workingDirectory_P : str := "") return TUPLE
-   is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   function startDetached (program_P : str; arguments_P : SEQUENCE_str; workingDirectory_P : str := "") return TUPLE is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
       Method := Object_GetAttrString (Class, "startDetached");
-      List   := List_New (arguments_P'Length);
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (program_P));
+      Dict := Dict_New;
+      List := List_New (arguments_P'Length);
       for ind in arguments_P'Range loop
          List_SetItem (List, ssize_t (ind - arguments_P'First), Unicode_FromString (arguments_P (ind)));
       end loop;
-      Args := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Unicode_FromString (program_P));
-      Dict := Dict_New;
-      if arguments_P /= (2 .. 1 => <>) then
+      if arguments_P'Length > 0 then
          Dict_SetItemString (Dict, "arguments", List);
       end if;
       if workingDirectory_P /= "" then
@@ -534,7 +553,7 @@ package body QtAda6.QtCore.QProcess is
       return (null record);
    end startDetached;
    function startDetached (self : access Inst) return TUPLE_bool_int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "startDetached");
       Args   := Tuple_New (0);
@@ -546,7 +565,7 @@ package body QtAda6.QtCore.QProcess is
       end return;
    end startDetached;
    function state (self : access Inst) return access QtAda6.QtCore.QProcess.ProcessState.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QProcess.ProcessState.Class := new QtAda6.QtCore.QProcess.ProcessState.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "state");
@@ -557,17 +576,21 @@ package body QtAda6.QtCore.QProcess is
       return Ret;
    end state;
    function systemEnvironment return LIST_str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QProcess");
       Method := Object_GetAttrString (Class, "systemEnvironment");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end systemEnvironment;
    procedure terminate_K (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "terminate");
       Args   := Tuple_New (0);
@@ -575,7 +598,7 @@ package body QtAda6.QtCore.QProcess is
       Result := Object_Call (Method, Args, Dict, True);
    end terminate_K;
    function waitForBytesWritten (self : access Inst; msecs_P : int := 0) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "waitForBytesWritten");
       Args   := Tuple_New (0);
@@ -587,7 +610,7 @@ package body QtAda6.QtCore.QProcess is
       return To_Ada (Result);
    end waitForBytesWritten;
    function waitForFinished (self : access Inst; msecs_P : int := 0) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "waitForFinished");
       Args   := Tuple_New (0);
@@ -599,7 +622,7 @@ package body QtAda6.QtCore.QProcess is
       return To_Ada (Result);
    end waitForFinished;
    function waitForReadyRead (self : access Inst; msecs_P : int := 0) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "waitForReadyRead");
       Args   := Tuple_New (0);
@@ -611,7 +634,7 @@ package body QtAda6.QtCore.QProcess is
       return To_Ada (Result);
    end waitForReadyRead;
    function waitForStarted (self : access Inst; msecs_P : int := 0) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "waitForStarted");
       Args   := Tuple_New (0);
@@ -623,7 +646,7 @@ package body QtAda6.QtCore.QProcess is
       return To_Ada (Result);
    end waitForStarted;
    function workingDirectory (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "workingDirectory");
       Args   := Tuple_New (0);
@@ -632,11 +655,11 @@ package body QtAda6.QtCore.QProcess is
       return As_String (Result);
    end workingDirectory;
    function writeData (self : access Inst; data_P : bytes; len_P : int) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "writeData");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (data_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (data_P.all)));
       Tuple_SetItem (Args, 1, Long_FromLong (len_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);

@@ -20,8 +20,14 @@ package QtAda6.QtCore.QJsonValue is
       C0 : str;
       C1 : access QtAda6.QtCore.QJsonValue.Inst'Class;
    end record;
-   type UNION_QtAda6_QtCore_QJsonValue_QtAda6_QtCore_QJsonValue_Type_K_bool_QtAda6_QtCore_QJsonArray_DICT_str_QtAda6_QtCore_QJsonValue_str_bytes_float_int is
-     new Any;
+   type DICT_str_QtAda6_QtCore_QJsonValue_str_bytes_float_int is record
+      C0 : str;
+      C1 : access QtAda6.QtCore.QJsonValue.Inst'Class;
+      C2 : str;
+      C3 : bytes;
+      C4 : float;
+      C5 : int;
+   end record;
    procedure Finalize (Self : in out Class);
    function Create (a_P : access QtAda6.QtCore.QJsonArray.Inst'Class) return Class;
    function Create (arg_1_P : access QtAda6.QtCore.QJsonValue.Type_K.Inst'Class := null) return Class;
@@ -29,9 +35,11 @@ package QtAda6.QtCore.QJsonValue is
    function Create (n_P : float) return Class;
    function Create (n_P : int) return Class;
    function Create (o_P : DICT_str_QtAda6_QtCore_QJsonValue) return Class;
-   function Create
-     (other_P : UNION_QtAda6_QtCore_QJsonValue_QtAda6_QtCore_QJsonValue_Type_K_bool_QtAda6_QtCore_QJsonArray_DICT_str_QtAda6_QtCore_QJsonValue_str_bytes_float_int)
-      return Class;
+   function Create (other_P : access QtAda6.QtCore.QJsonValue.Inst'Class) return Class;
+-- function Create(other_P : access QtAda6.QtCore.QJsonValue.Type_K.Inst'Class) return Class;
+-- function Create(other_P : bool) return Class;
+-- function Create(other_P : access QtAda6.QtCore.QJsonArray.Inst'Class) return Class;
+   function Create (other_P : DICT_str_QtAda6_QtCore_QJsonValue_str_bytes_float_int) return Class;
    function Create (s_P : str) return Class;
    function Create (s_P : bytes) return Class;
 -- function Create(v_P : int) return Class;
@@ -44,9 +52,11 @@ package QtAda6.QtCore.QJsonValue is
    function isObject (self : access Inst) return bool;
    function isString (self : access Inst) return bool;
    function isUndefined (self : access Inst) return bool;
-   procedure swap
-     (self    : access Inst;
-      other_P : UNION_QtAda6_QtCore_QJsonValue_QtAda6_QtCore_QJsonValue_Type_K_bool_QtAda6_QtCore_QJsonArray_DICT_str_QtAda6_QtCore_QJsonValue_str_bytes_float_int);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QJsonValue.Inst'Class);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QJsonValue.Type_K.Inst'Class);
+   procedure swap (self : access Inst; other_P : bool);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QJsonArray.Inst'Class);
+   procedure swap (self : access Inst; other_P : DICT_str_QtAda6_QtCore_QJsonValue_str_bytes_float_int);
    function toArray (self : access Inst) return access QtAda6.QtCore.QJsonArray.Inst'Class;
    function toArray
      (self : access Inst; defaultValue_P : access QtAda6.QtCore.QJsonArray.Inst'Class)

@@ -23,7 +23,7 @@ package body QtAda6.QtCore.QPauseAnimation is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (msecs_P : int; parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPauseAnimation");
       Args  := Tuple_New (1);
@@ -35,7 +35,7 @@ package body QtAda6.QtCore.QPauseAnimation is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPauseAnimation");
       Args  := Tuple_New (0);
@@ -46,7 +46,7 @@ package body QtAda6.QtCore.QPauseAnimation is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function duration (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "duration");
       Args   := Tuple_New (0);
@@ -55,7 +55,7 @@ package body QtAda6.QtCore.QPauseAnimation is
       return Long_AsLong (Result);
    end duration;
    function event (self : access Inst; e_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -65,7 +65,7 @@ package body QtAda6.QtCore.QPauseAnimation is
       return To_Ada (Result);
    end event;
    procedure setDuration (self : access Inst; msecs_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDuration");
       Args   := Tuple_New (1);
@@ -74,7 +74,7 @@ package body QtAda6.QtCore.QPauseAnimation is
       Result := Object_Call (Method, Args, Dict, True);
    end setDuration;
    procedure updateCurrentTime (self : access Inst; arg_1_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "updateCurrentTime");
       Args   := Tuple_New (1);

@@ -10,6 +10,7 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
+with QtAda6.QtCore.QByteArray;
 with QtAda6.QtCore.QIODevice;
 with QtAda6.QtCore.QCborSimpleType;
 with QtAda6.QtCore.QCborKnownTags;
@@ -24,8 +25,8 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
-   function Create (data_P : UNION_QtAda6_QtCore_QByteArray_bytes) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (data_P : access QtAda6.QtCore.QByteArray.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborStreamWriter");
       Args  := Tuple_New (1);
@@ -33,8 +34,17 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
+   function Create (data_P : bytes) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborStreamWriter");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (data_P.all)));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
    function Create (device_P : access QtAda6.QtCore.QIODevice.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCborStreamWriter");
       Args  := Tuple_New (1);
@@ -43,7 +53,7 @@ package body QtAda6.QtCore.QCborStreamWriter is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure append (self : access Inst; b_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "append");
       Args   := Tuple_New (1);
@@ -51,8 +61,8 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end append;
-   procedure append (self : access Inst; ba_P : UNION_QtAda6_QtCore_QByteArray_bytes) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure append (self : access Inst; ba_P : access QtAda6.QtCore.QByteArray.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "append");
       Args   := Tuple_New (1);
@@ -60,8 +70,17 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end append;
+   procedure append (self : access Inst; ba_P : bytes) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "append");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (ba_P.all)));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end append;
    procedure append (self : access Inst; d_P : float) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "append");
       Args   := Tuple_New (1);
@@ -70,7 +89,7 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Result := Object_Call (Method, Args, Dict, True);
    end append;
    procedure append (self : access Inst; i_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "append");
       Args   := Tuple_New (1);
@@ -79,7 +98,7 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Result := Object_Call (Method, Args, Dict, True);
    end append;
    procedure append (self : access Inst; st_P : access QtAda6.QtCore.QCborSimpleType.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "append");
       Args   := Tuple_New (1);
@@ -88,7 +107,7 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Result := Object_Call (Method, Args, Dict, True);
    end append;
    procedure append (self : access Inst; str_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "append");
       Args   := Tuple_New (1);
@@ -97,11 +116,11 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Result := Object_Call (Method, Args, Dict, True);
    end append;
    procedure append (self : access Inst; str_P : bytes; size_P : int := 0) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "append");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (str_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (str_P.all)));
       Dict := Dict_New;
       if size_P /= 0 then
          Dict_SetItemString (Dict, "size", Long_FromLong (size_P));
@@ -109,7 +128,7 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Result := Object_Call (Method, Args, Dict, True);
    end append;
    procedure append (self : access Inst; tag_P : access QtAda6.QtCore.QCborKnownTags.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "append");
       Args   := Tuple_New (1);
@@ -118,7 +137,7 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Result := Object_Call (Method, Args, Dict, True);
    end append;
    procedure append (self : access Inst; tag_P : access QtAda6.QtCore.QCborTag.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "append");
       Args   := Tuple_New (1);
@@ -127,17 +146,17 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Result := Object_Call (Method, Args, Dict, True);
    end append;
    procedure appendByteString (self : access Inst; data_P : bytes; len_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "appendByteString");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (data_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (data_P.all)));
       Tuple_SetItem (Args, 1, Long_FromLong (len_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end appendByteString;
    procedure appendNull (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "appendNull");
       Args   := Tuple_New (0);
@@ -145,17 +164,17 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Result := Object_Call (Method, Args, Dict, True);
    end appendNull;
    procedure appendTextString (self : access Inst; utf8_P : bytes; len_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "appendTextString");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (utf8_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (utf8_P.all)));
       Tuple_SetItem (Args, 1, Long_FromLong (len_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end appendTextString;
    procedure appendUndefined (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "appendUndefined");
       Args   := Tuple_New (0);
@@ -163,7 +182,7 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Result := Object_Call (Method, Args, Dict, True);
    end appendUndefined;
    function device (self : access Inst) return access QtAda6.QtCore.QIODevice.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QIODevice.Class := new QtAda6.QtCore.QIODevice.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "device");
@@ -174,7 +193,7 @@ package body QtAda6.QtCore.QCborStreamWriter is
       return Ret;
    end device;
    function endArray (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "endArray");
       Args   := Tuple_New (0);
@@ -183,7 +202,7 @@ package body QtAda6.QtCore.QCborStreamWriter is
       return To_Ada (Result);
    end endArray;
    function endMap (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "endMap");
       Args   := Tuple_New (0);
@@ -192,7 +211,7 @@ package body QtAda6.QtCore.QCborStreamWriter is
       return To_Ada (Result);
    end endMap;
    procedure setDevice (self : access Inst; device_P : access QtAda6.QtCore.QIODevice.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDevice");
       Args   := Tuple_New (1);
@@ -201,7 +220,7 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Result := Object_Call (Method, Args, Dict, True);
    end setDevice;
    procedure startArray (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "startArray");
       Args   := Tuple_New (0);
@@ -209,7 +228,7 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Result := Object_Call (Method, Args, Dict, True);
    end startArray;
    procedure startArray (self : access Inst; count_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "startArray");
       Args   := Tuple_New (1);
@@ -218,7 +237,7 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Result := Object_Call (Method, Args, Dict, True);
    end startArray;
    procedure startMap (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "startMap");
       Args   := Tuple_New (0);
@@ -226,7 +245,7 @@ package body QtAda6.QtCore.QCborStreamWriter is
       Result := Object_Call (Method, Args, Dict, True);
    end startMap;
    procedure startMap (self : access Inst; count_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "startMap");
       Args   := Tuple_New (1);

@@ -17,6 +17,6 @@ package QtAda6.QtCore.QGenericReturnArgument is
    type Inst is new QtAda6.QtCore.QGenericArgument.Inst with null record;
    procedure Finalize (Self : in out Class);
    function Create (QGenericReturnArgument_P : access QtAda6.QtCore.QGenericReturnArgument.Inst'Class) return Class;
-   function Create (aName_P : bytes := ""; aData_P : int := 0) return Class;
+   function Create (aName_P : bytes := null; aData_P : int := 0) return Class;
    procedure U_copy_U;
 end QtAda6.QtCore.QGenericReturnArgument;

@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QRegularExpressionMatch;
 with QtAda6.QtCore.QRegularExpression.MatchOption;
 with QtAda6.QtCore.QRegularExpression.MatchType;
 with QtAda6.QtCore.QRegularExpression;
@@ -25,7 +24,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QRegularExpressionMatch");
       Args  := Tuple_New (0);
@@ -33,7 +32,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (match_P : access QtAda6.QtCore.QRegularExpressionMatch.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QRegularExpressionMatch");
       Args  := Tuple_New (1);
@@ -42,7 +41,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QRegularExpressionMatch");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -51,7 +50,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function captured (self : access Inst; name_P : str) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "captured");
       Args   := Tuple_New (1);
@@ -61,7 +60,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return As_String (Result);
    end captured;
    function captured (self : access Inst; nth_P : int := 0) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "captured");
       Args   := Tuple_New (0);
@@ -73,7 +72,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return As_String (Result);
    end captured;
    function capturedEnd (self : access Inst; name_P : str) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "capturedEnd");
       Args   := Tuple_New (1);
@@ -83,7 +82,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return Long_AsLong (Result);
    end capturedEnd;
    function capturedEnd (self : access Inst; nth_P : int := 0) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "capturedEnd");
       Args   := Tuple_New (0);
@@ -95,7 +94,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return Long_AsLong (Result);
    end capturedEnd;
    function capturedLength (self : access Inst; name_P : str) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "capturedLength");
       Args   := Tuple_New (1);
@@ -105,7 +104,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return Long_AsLong (Result);
    end capturedLength;
    function capturedLength (self : access Inst; nth_P : int := 0) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "capturedLength");
       Args   := Tuple_New (0);
@@ -117,7 +116,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return Long_AsLong (Result);
    end capturedLength;
    function capturedStart (self : access Inst; name_P : str) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "capturedStart");
       Args   := Tuple_New (1);
@@ -127,7 +126,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return Long_AsLong (Result);
    end capturedStart;
    function capturedStart (self : access Inst; nth_P : int := 0) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "capturedStart");
       Args   := Tuple_New (0);
@@ -139,16 +138,20 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return Long_AsLong (Result);
    end capturedStart;
    function capturedTexts (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "capturedTexts");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end capturedTexts;
    function capturedView (self : access Inst; name_P : str) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "capturedView");
       Args   := Tuple_New (1);
@@ -158,7 +161,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return As_String (Result);
    end capturedView;
    function capturedView (self : access Inst; nth_P : int := 0) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "capturedView");
       Args   := Tuple_New (0);
@@ -170,7 +173,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return As_String (Result);
    end capturedView;
    function hasCaptured (self : access Inst; name_P : str) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasCaptured");
       Args   := Tuple_New (1);
@@ -180,7 +183,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return To_Ada (Result);
    end hasCaptured;
    function hasCaptured (self : access Inst; nth_P : int) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasCaptured");
       Args   := Tuple_New (1);
@@ -190,7 +193,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return To_Ada (Result);
    end hasCaptured;
    function hasMatch (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasMatch");
       Args   := Tuple_New (0);
@@ -199,7 +202,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return To_Ada (Result);
    end hasMatch;
    function hasPartialMatch (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasPartialMatch");
       Args   := Tuple_New (0);
@@ -208,7 +211,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return To_Ada (Result);
    end hasPartialMatch;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -217,7 +220,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return To_Ada (Result);
    end isValid;
    function lastCapturedIndex (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lastCapturedIndex");
       Args   := Tuple_New (0);
@@ -226,8 +229,8 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return Long_AsLong (Result);
    end lastCapturedIndex;
    function matchOptions (self : access Inst) return access QtAda6.QtCore.QRegularExpression.MatchOption.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRegularExpression.MatchOption.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRegularExpression.MatchOption.Class :=
         new QtAda6.QtCore.QRegularExpression.MatchOption.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "matchOptions");
@@ -238,8 +241,8 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return Ret;
    end matchOptions;
    function matchType (self : access Inst) return access QtAda6.QtCore.QRegularExpression.MatchType.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QRegularExpression.MatchType.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QRegularExpression.MatchType.Class :=
         new QtAda6.QtCore.QRegularExpression.MatchType.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "matchType");
@@ -250,7 +253,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return Ret;
    end matchType;
    function regularExpression (self : access Inst) return access QtAda6.QtCore.QRegularExpression.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QRegularExpression.Class := new QtAda6.QtCore.QRegularExpression.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "regularExpression");
@@ -261,7 +264,7 @@ package body QtAda6.QtCore.QRegularExpressionMatch is
       return Ret;
    end regularExpression;
    procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QRegularExpressionMatch.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);

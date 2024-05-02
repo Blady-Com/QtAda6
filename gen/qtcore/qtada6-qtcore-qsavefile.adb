@@ -23,7 +23,7 @@ package body QtAda6.QtCore.QSaveFile is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (name_P : str) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSaveFile");
       Args  := Tuple_New (1);
@@ -32,7 +32,7 @@ package body QtAda6.QtCore.QSaveFile is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (name_P : str; parent_P : access QtAda6.QtCore.QObject.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSaveFile");
       Args  := Tuple_New (2);
@@ -42,7 +42,7 @@ package body QtAda6.QtCore.QSaveFile is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSaveFile");
       Args  := Tuple_New (0);
@@ -53,7 +53,7 @@ package body QtAda6.QtCore.QSaveFile is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure cancelWriting (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cancelWriting");
       Args   := Tuple_New (0);
@@ -61,7 +61,7 @@ package body QtAda6.QtCore.QSaveFile is
       Result := Object_Call (Method, Args, Dict, True);
    end cancelWriting;
    procedure close (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "close");
       Args   := Tuple_New (0);
@@ -69,7 +69,7 @@ package body QtAda6.QtCore.QSaveFile is
       Result := Object_Call (Method, Args, Dict, True);
    end close;
    function commit (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "commit");
       Args   := Tuple_New (0);
@@ -78,7 +78,7 @@ package body QtAda6.QtCore.QSaveFile is
       return To_Ada (Result);
    end commit;
    function directWriteFallback (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "directWriteFallback");
       Args   := Tuple_New (0);
@@ -87,7 +87,7 @@ package body QtAda6.QtCore.QSaveFile is
       return To_Ada (Result);
    end directWriteFallback;
    function fileName (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fileName");
       Args   := Tuple_New (0);
@@ -97,7 +97,7 @@ package body QtAda6.QtCore.QSaveFile is
    end fileName;
    function open (self : access Inst; flags_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (1);
@@ -107,7 +107,7 @@ package body QtAda6.QtCore.QSaveFile is
       return To_Ada (Result);
    end open;
    procedure setDirectWriteFallback (self : access Inst; enabled_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDirectWriteFallback");
       Args   := Tuple_New (1);
@@ -116,7 +116,7 @@ package body QtAda6.QtCore.QSaveFile is
       Result := Object_Call (Method, Args, Dict, True);
    end setDirectWriteFallback;
    procedure setFileName (self : access Inst; name_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFileName");
       Args   := Tuple_New (1);
@@ -125,11 +125,11 @@ package body QtAda6.QtCore.QSaveFile is
       Result := Object_Call (Method, Args, Dict, True);
    end setFileName;
    function writeData (self : access Inst; data_P : bytes; len_P : int) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "writeData");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (data_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (data_P.all)));
       Tuple_SetItem (Args, 1, Long_FromLong (len_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);

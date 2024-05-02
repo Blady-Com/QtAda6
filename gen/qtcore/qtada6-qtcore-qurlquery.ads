@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.QUrl;
 limited with QtAda6.QtCore.QUrl.ComponentFormattingOption;
 package QtAda6.QtCore.QUrlQuery is
    type Inst;
@@ -15,11 +16,10 @@ package QtAda6.QtCore.QUrlQuery is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QUrl_str is new Any;
    type LIST_str is array (Positive range <>) of str;
    type TUPLE_str_str is record
+      C0 : str;
       C1 : str;
-      C2 : str;
    end record;
    type LIST_TUPLE_str_str is array (Positive range <>) of TUPLE_str_str;
    type SEQUENCE_TUPLE_str_str is array (Positive range <>) of TUPLE_str_str;
@@ -27,7 +27,8 @@ package QtAda6.QtCore.QUrlQuery is
    function Create return Class;
    function Create (other_P : access QtAda6.QtCore.QUrlQuery.Inst'Class) return Class;
    function Create (queryString_P : str) return Class;
-   function Create (url_P : UNION_QtAda6_QtCore_QUrl_str) return Class;
+   function Create (url_P : access QtAda6.QtCore.QUrl.Inst'Class) return Class;
+-- function Create(url_P : str) return Class;
    procedure U_copy_U;
    procedure addQueryItem (self : access Inst; key_P : str; value_P : str);
    function allQueryItemValues

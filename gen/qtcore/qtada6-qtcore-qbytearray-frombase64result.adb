@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QByteArray.FromBase64Result;
 package body QtAda6.QtCore.QByteArray.FromBase64Result is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -22,7 +21,7 @@ package body QtAda6.QtCore.QByteArray.FromBase64Result is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "FromBase64Result");
       Args  := Tuple_New (0);
@@ -30,7 +29,7 @@ package body QtAda6.QtCore.QByteArray.FromBase64Result is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (FromBase64Result_P : access QtAda6.QtCore.QByteArray.FromBase64Result.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "FromBase64Result");
       Args  := Tuple_New (1);
@@ -39,7 +38,7 @@ package body QtAda6.QtCore.QByteArray.FromBase64Result is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "FromBase64Result");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -48,7 +47,7 @@ package body QtAda6.QtCore.QByteArray.FromBase64Result is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QByteArray.FromBase64Result.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);

@@ -12,10 +12,9 @@ with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QJsonArray;
 with QtAda6.QtCore.QJsonValue;
-with QtAda6.QtCore.QJsonDocument;
+with QtAda6.QtCore.QByteArray;
 with QtAda6.QtCore.QJsonParseError;
 with QtAda6.QtCore.QJsonDocument.JsonFormat;
-with QtAda6.QtCore.QByteArray;
 package body QtAda6.QtCore.QJsonDocument is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -27,7 +26,7 @@ package body QtAda6.QtCore.QJsonDocument is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QJsonDocument");
       Args  := Tuple_New (0);
@@ -35,7 +34,7 @@ package body QtAda6.QtCore.QJsonDocument is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (array_K_P : access QtAda6.QtCore.QJsonArray.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QJsonDocument");
       Args  := Tuple_New (1);
@@ -44,19 +43,19 @@ package body QtAda6.QtCore.QJsonDocument is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (object_P : DICT_str_QtAda6_QtCore_QJsonValue) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QJsonDocument");
+      Args  := Tuple_New (1);
       Tuple := Tuple_New (2);
       Tuple_SetItem (Tuple, 0, Unicode_FromString (object_P.C0));
       Tuple_SetItem (Tuple, 1, (if object_P.C1 /= null then object_P.C1.Python_Proxy else No_Value));
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, Tuple);
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (other_P : access QtAda6.QtCore.QJsonDocument.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QJsonDocument");
       Args  := Tuple_New (1);
@@ -65,7 +64,7 @@ package body QtAda6.QtCore.QJsonDocument is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QJsonDocument");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -74,7 +73,7 @@ package body QtAda6.QtCore.QJsonDocument is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function array_K (self : access Inst) return access QtAda6.QtCore.QJsonArray.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QJsonArray.Class := new QtAda6.QtCore.QJsonArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "array");
@@ -85,10 +84,11 @@ package body QtAda6.QtCore.QJsonDocument is
       return Ret;
    end array_K;
    function fromJson
-     (json_P : UNION_QtAda6_QtCore_QByteArray_bytes; error_P : access QtAda6.QtCore.QJsonParseError.Inst'Class := null)
+     (json_P  : access QtAda6.QtCore.QByteArray.Inst'Class;
+      error_P : access QtAda6.QtCore.QJsonParseError.Inst'Class := null)
       return access QtAda6.QtCore.QJsonDocument.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QJsonDocument.Class := new QtAda6.QtCore.QJsonDocument.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QJsonDocument");
@@ -103,8 +103,27 @@ package body QtAda6.QtCore.QJsonDocument is
       Ret.Python_Proxy := Result;
       return Ret;
    end fromJson;
+   function fromJson
+     (json_P : bytes; error_P : access QtAda6.QtCore.QJsonParseError.Inst'Class := null)
+      return access QtAda6.QtCore.QJsonDocument.Inst'Class
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QJsonDocument.Class := new QtAda6.QtCore.QJsonDocument.Inst;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QJsonDocument");
+      Method := Object_GetAttrString (Class, "fromJson");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (json_P.all)));
+      Dict := Dict_New;
+      if error_P /= null then
+         Dict_SetItemString (Dict, "error", error_P.Python_Proxy);
+      end if;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end fromJson;
    function fromVariant (variant_P : Any) return access QtAda6.QtCore.QJsonDocument.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QJsonDocument.Class := new QtAda6.QtCore.QJsonDocument.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QJsonDocument");
@@ -117,7 +136,7 @@ package body QtAda6.QtCore.QJsonDocument is
       return Ret;
    end fromVariant;
    function isArray (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isArray");
       Args   := Tuple_New (0);
@@ -126,7 +145,7 @@ package body QtAda6.QtCore.QJsonDocument is
       return To_Ada (Result);
    end isArray;
    function isEmpty (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEmpty");
       Args   := Tuple_New (0);
@@ -135,7 +154,7 @@ package body QtAda6.QtCore.QJsonDocument is
       return To_Ada (Result);
    end isEmpty;
    function isNull (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isNull");
       Args   := Tuple_New (0);
@@ -144,7 +163,7 @@ package body QtAda6.QtCore.QJsonDocument is
       return To_Ada (Result);
    end isNull;
    function isObject (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isObject");
       Args   := Tuple_New (0);
@@ -153,7 +172,7 @@ package body QtAda6.QtCore.QJsonDocument is
       return To_Ada (Result);
    end isObject;
    function object (self : access Inst) return DICT_str_QtAda6_QtCore_QJsonValue is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "object");
       Args   := Tuple_New (0);
@@ -165,7 +184,7 @@ package body QtAda6.QtCore.QJsonDocument is
       end return;
    end object;
    procedure setArray (self : access Inst; array_K_P : access QtAda6.QtCore.QJsonArray.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setArray");
       Args   := Tuple_New (1);
@@ -174,19 +193,19 @@ package body QtAda6.QtCore.QJsonDocument is
       Result := Object_Call (Method, Args, Dict, True);
    end setArray;
    procedure setObject (self : access Inst; object_P : DICT_str_QtAda6_QtCore_QJsonValue) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setObject");
+      Args   := Tuple_New (1);
       Tuple  := Tuple_New (2);
       Tuple_SetItem (Tuple, 0, Unicode_FromString (object_P.C0));
       Tuple_SetItem (Tuple, 1, (if object_P.C1 /= null then object_P.C1.Python_Proxy else No_Value));
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, Tuple);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setObject;
    procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QJsonDocument.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
@@ -198,7 +217,7 @@ package body QtAda6.QtCore.QJsonDocument is
      (self : access Inst; format_P : access QtAda6.QtCore.QJsonDocument.JsonFormat.Inst'Class := null)
       return access QtAda6.QtCore.QByteArray.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toJson");
@@ -212,7 +231,7 @@ package body QtAda6.QtCore.QJsonDocument is
       return Ret;
    end toJson;
    function toVariant (self : access Inst) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toVariant");
       Args   := Tuple_New (0);

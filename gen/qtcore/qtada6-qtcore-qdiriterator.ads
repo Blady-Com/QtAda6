@@ -8,6 +8,7 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
+limited with QtAda6.QtCore.QDir;
 limited with QtAda6.QtCore.QDirIterator.IteratorFlag;
 limited with QtAda6.QtCore.QDir.Filter;
 limited with QtAda6.QtCore.QFileInfo;
@@ -17,17 +18,17 @@ package QtAda6.QtCore.QDirIterator is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QDir_str is new Any;
    type SEQUENCE_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function Create
-     (dir_P : UNION_QtAda6_QtCore_QDir_str; flags_P : access QtAda6.QtCore.QDirIterator.IteratorFlag.Inst'Class := null)
-      return Class;
+     (dir_P   : access QtAda6.QtCore.QDir.Inst'Class;
+      flags_P : access QtAda6.QtCore.QDirIterator.IteratorFlag.Inst'Class := null) return Class;
+   function Create
+     (dir_P : str; flags_P : access QtAda6.QtCore.QDirIterator.IteratorFlag.Inst'Class := null) return Class;
    function Create
      (path_P  : str; filter_P : access QtAda6.QtCore.QDir.Filter.Inst'Class;
       flags_P : access QtAda6.QtCore.QDirIterator.IteratorFlag.Inst'Class := null) return Class;
-   function Create
-     (path_P : str; flags_P : access QtAda6.QtCore.QDirIterator.IteratorFlag.Inst'Class := null) return Class;
+-- function Create(path_P : str;flags_P : access QtAda6.QtCore.QDirIterator.IteratorFlag.Inst'Class := null) return Class;
    function Create
      (path_P  : str; nameFilters_P : SEQUENCE_str; filters_P : access QtAda6.QtCore.QDir.Filter.Inst'Class := null;
       flags_P : access QtAda6.QtCore.QDirIterator.IteratorFlag.Inst'Class := null) return Class;

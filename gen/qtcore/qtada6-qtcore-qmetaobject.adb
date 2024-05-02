@@ -14,7 +14,6 @@ with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.QMetaMethod;
 with QtAda6.QtCore.QMetaClassInfo;
 with QtAda6.QtCore.QMetaEnum;
-with QtAda6.QtCore.QMetaObject;
 with QtAda6.QtCore.Qt.ConnectionType;
 with QtAda6.QtCore.QGenericReturnArgument;
 with QtAda6.QtCore.QGenericArgument;
@@ -34,7 +33,7 @@ package body QtAda6.QtCore.QMetaObject is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Args  := Tuple_New (0);
@@ -42,7 +41,7 @@ package body QtAda6.QtCore.QMetaObject is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function U_repr_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
@@ -54,8 +53,8 @@ package body QtAda6.QtCore.QMetaObject is
      (self : access Inst; obj_P : access QtAda6.QtCore.QObject.Inst'Class)
       return access QtAda6.QtCore.QObject.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "cast");
       Args   := Tuple_New (1);
@@ -69,7 +68,7 @@ package body QtAda6.QtCore.QMetaObject is
      (signal_P : access QtAda6.QtCore.QMetaMethod.Inst'Class; method_P : access QtAda6.QtCore.QMetaMethod.Inst'Class)
       return bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "checkConnectArgs");
@@ -81,19 +80,19 @@ package body QtAda6.QtCore.QMetaObject is
       return To_Ada (Result);
    end checkConnectArgs;
    function checkConnectArgs (signal_P : bytes; method_P : bytes) return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "checkConnectArgs");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (signal_P)));
-      Tuple_SetItem (Args, 1, Bytes_FromString (String (method_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (signal_P.all)));
+      Tuple_SetItem (Args, 1, Bytes_FromString (Standard.String (method_P.all)));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end checkConnectArgs;
    function classInfo (self : access Inst; index_P : int) return access QtAda6.QtCore.QMetaClassInfo.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMetaClassInfo.Class := new QtAda6.QtCore.QMetaClassInfo.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "classInfo");
@@ -105,7 +104,7 @@ package body QtAda6.QtCore.QMetaObject is
       return Ret;
    end classInfo;
    function classInfoCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "classInfoCount");
       Args   := Tuple_New (0);
@@ -114,7 +113,7 @@ package body QtAda6.QtCore.QMetaObject is
       return Long_AsLong (Result);
    end classInfoCount;
    function classInfoOffset (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "classInfoOffset");
       Args   := Tuple_New (0);
@@ -123,16 +122,16 @@ package body QtAda6.QtCore.QMetaObject is
       return Long_AsLong (Result);
    end classInfoOffset;
    function className (self : access Inst) return bytes is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "className");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return bytes (String'(Bytes_AsString (Result)));
+      return new Standard.String'(Bytes_AsString (Result));
    end className;
    procedure connectSlotsByName (o_P : access QtAda6.QtCore.QObject.Inst'Class) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "connectSlotsByName");
@@ -142,7 +141,7 @@ package body QtAda6.QtCore.QMetaObject is
       Result := Object_Call (Method, Args, Dict, True);
    end connectSlotsByName;
    function constructor (self : access Inst; index_P : int) return access QtAda6.QtCore.QMetaMethod.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMetaMethod.Class := new QtAda6.QtCore.QMetaMethod.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "constructor");
@@ -154,7 +153,7 @@ package body QtAda6.QtCore.QMetaObject is
       return Ret;
    end constructor;
    function constructorCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "constructorCount");
       Args   := Tuple_New (0);
@@ -166,7 +165,7 @@ package body QtAda6.QtCore.QMetaObject is
      (sender_P   : access QtAda6.QtCore.QObject.Inst'Class; signal_index_P : int;
       receiver_P : access QtAda6.QtCore.QObject.Inst'Class; method_index_P : int) return bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "disconnect");
@@ -183,7 +182,7 @@ package body QtAda6.QtCore.QMetaObject is
      (sender_P   : access QtAda6.QtCore.QObject.Inst'Class; signal_index_P : int;
       receiver_P : access QtAda6.QtCore.QObject.Inst'Class; method_index_P : int) return bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "disconnectOne");
@@ -197,7 +196,7 @@ package body QtAda6.QtCore.QMetaObject is
       return To_Ada (Result);
    end disconnectOne;
    function enumerator (self : access Inst; index_P : int) return access QtAda6.QtCore.QMetaEnum.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMetaEnum.Class := new QtAda6.QtCore.QMetaEnum.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "enumerator");
@@ -209,7 +208,7 @@ package body QtAda6.QtCore.QMetaObject is
       return Ret;
    end enumerator;
    function enumeratorCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "enumeratorCount");
       Args   := Tuple_New (0);
@@ -218,7 +217,7 @@ package body QtAda6.QtCore.QMetaObject is
       return Long_AsLong (Result);
    end enumeratorCount;
    function enumeratorOffset (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "enumeratorOffset");
       Args   := Tuple_New (0);
@@ -227,77 +226,77 @@ package body QtAda6.QtCore.QMetaObject is
       return Long_AsLong (Result);
    end enumeratorOffset;
    function indexOfClassInfo (self : access Inst; name_P : bytes) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOfClassInfo");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (name_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (name_P.all)));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end indexOfClassInfo;
    function indexOfConstructor (self : access Inst; constructor_P : bytes) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOfConstructor");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (constructor_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (constructor_P.all)));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end indexOfConstructor;
    function indexOfEnumerator (self : access Inst; name_P : bytes) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOfEnumerator");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (name_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (name_P.all)));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end indexOfEnumerator;
    function indexOfMethod (self : access Inst; method_P : bytes) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOfMethod");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (method_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (method_P.all)));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end indexOfMethod;
    function indexOfProperty (self : access Inst; name_P : bytes) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOfProperty");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (name_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (name_P.all)));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end indexOfProperty;
    function indexOfSignal (self : access Inst; signal_P : bytes) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOfSignal");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (signal_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (signal_P.all)));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end indexOfSignal;
    function indexOfSlot (self : access Inst; slot_P : bytes) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexOfSlot");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (slot_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (slot_P.all)));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end indexOfSlot;
    function inherits (self : access Inst; metaObject_P : access QtAda6.QtCore.QMetaObject.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "inherits");
       Args   := Tuple_New (1);
@@ -321,13 +320,13 @@ package body QtAda6.QtCore.QMetaObject is
       val8_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
       val9_P  : access QtAda6.QtCore.QGenericArgument.Inst'Class := null) return bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "invokeMethod");
       Args   := Tuple_New (4);
       Tuple_SetItem (Args, 0, (if obj_P /= null then obj_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, Bytes_FromString (String (member_P)));
+      Tuple_SetItem (Args, 1, Bytes_FromString (Standard.String (member_P.all)));
       Tuple_SetItem (Args, 2, (if arg_3_P /= null then arg_3_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 3, (if ret_P /= null then ret_P.Python_Proxy else No_Value));
       Dict := Dict_New;
@@ -378,13 +377,13 @@ package body QtAda6.QtCore.QMetaObject is
       val8_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
       val9_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null) return bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "invokeMethod");
       Args   := Tuple_New (3);
       Tuple_SetItem (Args, 0, (if obj_P /= null then obj_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, Bytes_FromString (String (member_P)));
+      Tuple_SetItem (Args, 1, Bytes_FromString (Standard.String (member_P.all)));
       Tuple_SetItem (Args, 2, (if ret_P /= null then ret_P.Python_Proxy else No_Value));
       Dict := Dict_New;
       if val0_P /= null then
@@ -434,13 +433,13 @@ package body QtAda6.QtCore.QMetaObject is
       val8_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
       val9_P   : access QtAda6.QtCore.QGenericArgument.Inst'Class := null) return bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "invokeMethod");
       Args   := Tuple_New (4);
       Tuple_SetItem (Args, 0, (if obj_P /= null then obj_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, Bytes_FromString (String (member_P)));
+      Tuple_SetItem (Args, 1, Bytes_FromString (Standard.String (member_P.all)));
       Tuple_SetItem (Args, 2, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 3, (if val0_P /= null then val0_P.Python_Proxy else No_Value));
       Dict := Dict_New;
@@ -487,13 +486,13 @@ package body QtAda6.QtCore.QMetaObject is
       val8_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
       val9_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null) return bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "invokeMethod");
       Args   := Tuple_New (3);
       Tuple_SetItem (Args, 0, (if obj_P /= null then obj_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, Bytes_FromString (String (member_P)));
+      Tuple_SetItem (Args, 1, Bytes_FromString (Standard.String (member_P.all)));
       Tuple_SetItem (Args, 2, (if val0_P /= null then val0_P.Python_Proxy else No_Value));
       Dict := Dict_New;
       if val1_P /= null then
@@ -533,13 +532,13 @@ package body QtAda6.QtCore.QMetaObject is
       val1_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null;
       val2_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null) return access Object'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "invokeMethod");
       Args   := Tuple_New (3);
       Tuple_SetItem (Args, 0, (if object_P /= null then object_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, Bytes_FromString (String (member_P)));
+      Tuple_SetItem (Args, 1, Bytes_FromString (Standard.String (member_P.all)));
       Tuple_SetItem (Args, 2, (if ret_P /= null then ret_P.Python_Proxy else No_Value));
       Dict := Dict_New;
       if val0_P /= null then
@@ -562,13 +561,13 @@ package body QtAda6.QtCore.QMetaObject is
       val1_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null;
       val2_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null) return access Object'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "invokeMethod");
       Args   := Tuple_New (4);
       Tuple_SetItem (Args, 0, (if object_P /= null then object_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, Bytes_FromString (String (member_P)));
+      Tuple_SetItem (Args, 1, Bytes_FromString (Standard.String (member_P.all)));
       Tuple_SetItem (Args, 2, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
       Tuple_SetItem (Args, 3, (if ret_P /= null then ret_P.Python_Proxy else No_Value));
       Dict := Dict_New;
@@ -591,13 +590,13 @@ package body QtAda6.QtCore.QMetaObject is
       val1_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null;
       val2_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null) return bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "invokeMethod");
       Args   := Tuple_New (3);
       Tuple_SetItem (Args, 0, (if object_P /= null then object_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, Bytes_FromString (String (member_P)));
+      Tuple_SetItem (Args, 1, Bytes_FromString (Standard.String (member_P.all)));
       Tuple_SetItem (Args, 2, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
       Dict := Dict_New;
       if val0_P /= null then
@@ -618,13 +617,13 @@ package body QtAda6.QtCore.QMetaObject is
       val1_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null;
       val2_P   : access QtAda6.QtCore.QGenericArgumentHolder.Inst'Class := null) return bool
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "invokeMethod");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if object_P /= null then object_P.Python_Proxy else No_Value));
-      Tuple_SetItem (Args, 1, Bytes_FromString (String (member_P)));
+      Tuple_SetItem (Args, 1, Bytes_FromString (Standard.String (member_P.all)));
       Dict := Dict_New;
       if val0_P /= null then
          Dict_SetItemString (Dict, "val0", val0_P.Python_Proxy);
@@ -639,7 +638,7 @@ package body QtAda6.QtCore.QMetaObject is
       return To_Ada (Result);
    end invokeMethod;
    function metaType (self : access Inst) return access QtAda6.QtCore.QMetaType.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMetaType.Class := new QtAda6.QtCore.QMetaType.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "metaType");
@@ -650,7 +649,7 @@ package body QtAda6.QtCore.QMetaObject is
       return Ret;
    end metaType;
    function method (self : access Inst; index_P : int) return access QtAda6.QtCore.QMetaMethod.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMetaMethod.Class := new QtAda6.QtCore.QMetaMethod.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "method");
@@ -662,7 +661,7 @@ package body QtAda6.QtCore.QMetaObject is
       return Ret;
    end method;
    function methodCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "methodCount");
       Args   := Tuple_New (0);
@@ -671,7 +670,7 @@ package body QtAda6.QtCore.QMetaObject is
       return Long_AsLong (Result);
    end methodCount;
    function methodOffset (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "methodOffset");
       Args   := Tuple_New (0);
@@ -691,8 +690,8 @@ package body QtAda6.QtCore.QMetaObject is
       val8_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null;
       val9_P : access QtAda6.QtCore.QGenericArgument.Inst'Class := null) return access QtAda6.QtCore.QObject.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "newInstance");
       Args   := Tuple_New (1);
@@ -730,33 +729,33 @@ package body QtAda6.QtCore.QMetaObject is
       return Ret;
    end newInstance;
    function normalizedSignature (method_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "normalizedSignature");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (method_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (method_P.all)));
       Dict             := Dict_New;
       Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end normalizedSignature;
    function normalizedType (type_K_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMetaObject");
       Method := Object_GetAttrString (Class, "normalizedType");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (type_K_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (type_K_P.all)));
       Dict             := Dict_New;
       Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end normalizedType;
    function property (self : access Inst; index_P : int) return access QtAda6.QtCore.QMetaProperty.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMetaProperty.Class := new QtAda6.QtCore.QMetaProperty.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "property");
@@ -768,7 +767,7 @@ package body QtAda6.QtCore.QMetaObject is
       return Ret;
    end property;
    function propertyCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "propertyCount");
       Args   := Tuple_New (0);
@@ -777,7 +776,7 @@ package body QtAda6.QtCore.QMetaObject is
       return Long_AsLong (Result);
    end propertyCount;
    function propertyOffset (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "propertyOffset");
       Args   := Tuple_New (0);
@@ -786,7 +785,7 @@ package body QtAda6.QtCore.QMetaObject is
       return Long_AsLong (Result);
    end propertyOffset;
    function superClass (self : access Inst) return access QtAda6.QtCore.QMetaObject.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMetaObject.Class := new QtAda6.QtCore.QMetaObject.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "superClass");
@@ -797,7 +796,7 @@ package body QtAda6.QtCore.QMetaObject is
       return Ret;
    end superClass;
    function userProperty (self : access Inst) return access QtAda6.QtCore.QMetaProperty.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMetaProperty.Class := new QtAda6.QtCore.QMetaProperty.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "userProperty");

@@ -14,7 +14,6 @@ with QtAda6.QtCore.Qt.TimeSpec;
 with QtAda6.QtCore.QDate;
 with QtAda6.QtCore.QTime;
 with QtAda6.QtCore.QTimeZone;
-with QtAda6.QtCore.QDateTime;
 with QtAda6.QtCore.Qt.DateFormat;
 with QtAda6.QtCore.QCalendar;
 package body QtAda6.QtCore.QDateTime is
@@ -28,7 +27,7 @@ package body QtAda6.QtCore.QDateTime is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
       Args  := Tuple_New (0);
@@ -38,7 +37,7 @@ package body QtAda6.QtCore.QDateTime is
    function Create
      (arg_1_P : int; arg_2_P : int; arg_3_P : int; arg_4_P : int; arg_5_P : int; arg_6_P : int) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
       Args  := Tuple_New (6);
@@ -55,7 +54,7 @@ package body QtAda6.QtCore.QDateTime is
      (arg_1_P : int; arg_2_P : int; arg_3_P : int; arg_4_P : int; arg_5_P : int; arg_6_P : int; arg_7_P : int;
       arg_8_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
       Args  := Tuple_New (7);
@@ -76,7 +75,7 @@ package body QtAda6.QtCore.QDateTime is
      (arg_1_P : int; arg_2_P : int; arg_3_P : int; arg_4_P : int; arg_5_P : int; arg_6_P : int; arg_7_P : int;
       arg_8_P : int := 0) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
       Args  := Tuple_New (7);
@@ -96,7 +95,7 @@ package body QtAda6.QtCore.QDateTime is
    function Create
      (date_P : access QtAda6.QtCore.QDate.Inst'Class; time_P : access QtAda6.QtCore.QTime.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
       Args  := Tuple_New (2);
@@ -109,7 +108,7 @@ package body QtAda6.QtCore.QDateTime is
      (date_P : access QtAda6.QtCore.QDate.Inst'Class; time_P : access QtAda6.QtCore.QTime.Inst'Class;
       spec_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class; offsetSeconds_P : int := 0) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
       Args  := Tuple_New (3);
@@ -126,7 +125,7 @@ package body QtAda6.QtCore.QDateTime is
      (date_P     : access QtAda6.QtCore.QDate.Inst'Class; time_P : access QtAda6.QtCore.QTime.Inst'Class;
       timeZone_P : access QtAda6.QtCore.QTimeZone.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
       Args  := Tuple_New (3);
@@ -137,7 +136,7 @@ package body QtAda6.QtCore.QDateTime is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (other_P : access QtAda6.QtCore.QDateTime.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
       Args  := Tuple_New (1);
@@ -146,7 +145,7 @@ package body QtAda6.QtCore.QDateTime is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -155,7 +154,7 @@ package body QtAda6.QtCore.QDateTime is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function U_reduce_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__reduce__");
       Args   := Tuple_New (0);
@@ -164,7 +163,7 @@ package body QtAda6.QtCore.QDateTime is
       return null;
    end U_reduce_U;
    function U_repr_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
@@ -173,7 +172,7 @@ package body QtAda6.QtCore.QDateTime is
       return null;
    end U_repr_U;
    function addDays (self : access Inst; days_P : int) return access QtAda6.QtCore.QDateTime.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addDays");
@@ -185,7 +184,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end addDays;
    function addMSecs (self : access Inst; msecs_P : int) return access QtAda6.QtCore.QDateTime.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addMSecs");
@@ -197,7 +196,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end addMSecs;
    function addMonths (self : access Inst; months_P : int) return access QtAda6.QtCore.QDateTime.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addMonths");
@@ -209,7 +208,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end addMonths;
    function addSecs (self : access Inst; secs_P : int) return access QtAda6.QtCore.QDateTime.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addSecs");
@@ -221,7 +220,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end addSecs;
    function addYears (self : access Inst; years_P : int) return access QtAda6.QtCore.QDateTime.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addYears");
@@ -233,7 +232,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end addYears;
    function currentDateTime return access QtAda6.QtCore.QDateTime.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
@@ -247,7 +246,7 @@ package body QtAda6.QtCore.QDateTime is
    function currentDateTime
      (zone_P : access QtAda6.QtCore.QTimeZone.Inst'Class) return access QtAda6.QtCore.QDateTime.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
@@ -260,7 +259,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end currentDateTime;
    function currentDateTimeUtc return access QtAda6.QtCore.QDateTime.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
@@ -272,7 +271,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end currentDateTimeUtc;
    function currentMSecsSinceEpoch return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
       Method := Object_GetAttrString (Class, "currentMSecsSinceEpoch");
@@ -282,7 +281,7 @@ package body QtAda6.QtCore.QDateTime is
       return Long_AsLong (Result);
    end currentMSecsSinceEpoch;
    function currentSecsSinceEpoch return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
       Method := Object_GetAttrString (Class, "currentSecsSinceEpoch");
@@ -292,8 +291,8 @@ package body QtAda6.QtCore.QDateTime is
       return Long_AsLong (Result);
    end currentSecsSinceEpoch;
    function date (self : access Inst) return access QtAda6.QtCore.QDate.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QDate.Class := new QtAda6.QtCore.QDate.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QDate.Class := new QtAda6.QtCore.QDate.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "date");
       Args             := Tuple_New (0);
@@ -303,7 +302,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end date;
    function daysTo (self : access Inst; arg_1_P : access QtAda6.QtCore.QDateTime.Inst'Class) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "daysTo");
       Args   := Tuple_New (1);
@@ -313,7 +312,7 @@ package body QtAda6.QtCore.QDateTime is
       return Long_AsLong (Result);
    end daysTo;
    function fromMSecsSinceEpoch (msecs_P : int) return access QtAda6.QtCore.QDateTime.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
@@ -329,7 +328,7 @@ package body QtAda6.QtCore.QDateTime is
      (msecs_P : int; spec_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class; offsetFromUtc_P : int := 0)
       return access QtAda6.QtCore.QDateTime.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
@@ -349,7 +348,7 @@ package body QtAda6.QtCore.QDateTime is
      (msecs_P : int; timeZone_P : access QtAda6.QtCore.QTimeZone.Inst'Class)
       return access QtAda6.QtCore.QDateTime.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
@@ -363,7 +362,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end fromMSecsSinceEpoch;
    function fromSecsSinceEpoch (secs_P : int) return access QtAda6.QtCore.QDateTime.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
@@ -379,7 +378,7 @@ package body QtAda6.QtCore.QDateTime is
      (secs_P : int; spec_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class; offsetFromUtc_P : int := 0)
       return access QtAda6.QtCore.QDateTime.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
@@ -399,7 +398,7 @@ package body QtAda6.QtCore.QDateTime is
      (secs_P : int; timeZone_P : access QtAda6.QtCore.QTimeZone.Inst'Class)
       return access QtAda6.QtCore.QDateTime.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
@@ -416,7 +415,7 @@ package body QtAda6.QtCore.QDateTime is
      (string_P : str; format_P : access QtAda6.QtCore.Qt.DateFormat.Inst'Class := null)
       return access QtAda6.QtCore.QDateTime.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
@@ -435,7 +434,7 @@ package body QtAda6.QtCore.QDateTime is
      (string_P : str; format_P : str; cal_P : access QtAda6.QtCore.QCalendar.Inst'Class := null)
       return access QtAda6.QtCore.QDateTime.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QDateTime");
@@ -452,7 +451,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end fromString;
    function isDaylightTime (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isDaylightTime");
       Args   := Tuple_New (0);
@@ -461,7 +460,7 @@ package body QtAda6.QtCore.QDateTime is
       return To_Ada (Result);
    end isDaylightTime;
    function isNull (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isNull");
       Args   := Tuple_New (0);
@@ -470,7 +469,7 @@ package body QtAda6.QtCore.QDateTime is
       return To_Ada (Result);
    end isNull;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -479,7 +478,7 @@ package body QtAda6.QtCore.QDateTime is
       return To_Ada (Result);
    end isValid;
    function msecsTo (self : access Inst; arg_1_P : access QtAda6.QtCore.QDateTime.Inst'Class) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "msecsTo");
       Args   := Tuple_New (1);
@@ -489,7 +488,7 @@ package body QtAda6.QtCore.QDateTime is
       return Long_AsLong (Result);
    end msecsTo;
    function offsetFromUtc (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "offsetFromUtc");
       Args   := Tuple_New (0);
@@ -498,7 +497,7 @@ package body QtAda6.QtCore.QDateTime is
       return Long_AsLong (Result);
    end offsetFromUtc;
    function secsTo (self : access Inst; arg_1_P : access QtAda6.QtCore.QDateTime.Inst'Class) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "secsTo");
       Args   := Tuple_New (1);
@@ -508,7 +507,7 @@ package body QtAda6.QtCore.QDateTime is
       return Long_AsLong (Result);
    end secsTo;
    procedure setDate (self : access Inst; date_P : access QtAda6.QtCore.QDate.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDate");
       Args   := Tuple_New (1);
@@ -517,7 +516,7 @@ package body QtAda6.QtCore.QDateTime is
       Result := Object_Call (Method, Args, Dict, True);
    end setDate;
    procedure setMSecsSinceEpoch (self : access Inst; msecs_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setMSecsSinceEpoch");
       Args   := Tuple_New (1);
@@ -526,7 +525,7 @@ package body QtAda6.QtCore.QDateTime is
       Result := Object_Call (Method, Args, Dict, True);
    end setMSecsSinceEpoch;
    procedure setOffsetFromUtc (self : access Inst; offsetSeconds_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setOffsetFromUtc");
       Args   := Tuple_New (1);
@@ -535,7 +534,7 @@ package body QtAda6.QtCore.QDateTime is
       Result := Object_Call (Method, Args, Dict, True);
    end setOffsetFromUtc;
    procedure setSecsSinceEpoch (self : access Inst; secs_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSecsSinceEpoch");
       Args   := Tuple_New (1);
@@ -544,7 +543,7 @@ package body QtAda6.QtCore.QDateTime is
       Result := Object_Call (Method, Args, Dict, True);
    end setSecsSinceEpoch;
    procedure setTime (self : access Inst; time_P : access QtAda6.QtCore.QTime.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTime");
       Args   := Tuple_New (1);
@@ -553,7 +552,7 @@ package body QtAda6.QtCore.QDateTime is
       Result := Object_Call (Method, Args, Dict, True);
    end setTime;
    procedure setTimeSpec (self : access Inst; spec_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTimeSpec");
       Args   := Tuple_New (1);
@@ -562,7 +561,7 @@ package body QtAda6.QtCore.QDateTime is
       Result := Object_Call (Method, Args, Dict, True);
    end setTimeSpec;
    procedure setTimeZone (self : access Inst; toZone_P : access QtAda6.QtCore.QTimeZone.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setTimeZone");
       Args   := Tuple_New (1);
@@ -571,7 +570,7 @@ package body QtAda6.QtCore.QDateTime is
       Result := Object_Call (Method, Args, Dict, True);
    end setTimeZone;
    procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QDateTime.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
@@ -580,8 +579,8 @@ package body QtAda6.QtCore.QDateTime is
       Result := Object_Call (Method, Args, Dict, True);
    end swap;
    function time (self : access Inst) return access QtAda6.QtCore.QTime.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QTime.Class := new QtAda6.QtCore.QTime.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QTime.Class := new QtAda6.QtCore.QTime.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "time");
       Args             := Tuple_New (0);
@@ -591,7 +590,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end time;
    function timeRepresentation (self : access Inst) return access QtAda6.QtCore.QTimeZone.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTimeZone.Class := new QtAda6.QtCore.QTimeZone.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "timeRepresentation");
@@ -602,7 +601,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end timeRepresentation;
    function timeSpec (self : access Inst) return access QtAda6.QtCore.Qt.TimeSpec.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.TimeSpec.Class := new QtAda6.QtCore.Qt.TimeSpec.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "timeSpec");
@@ -613,7 +612,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end timeSpec;
    function timeZone (self : access Inst) return access QtAda6.QtCore.QTimeZone.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTimeZone.Class := new QtAda6.QtCore.QTimeZone.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "timeZone");
@@ -624,7 +623,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end timeZone;
    function timeZoneAbbreviation (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "timeZoneAbbreviation");
       Args   := Tuple_New (0);
@@ -633,7 +632,7 @@ package body QtAda6.QtCore.QDateTime is
       return As_String (Result);
    end timeZoneAbbreviation;
    function toLocalTime (self : access Inst) return access QtAda6.QtCore.QDateTime.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toLocalTime");
@@ -644,7 +643,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end toLocalTime;
    function toMSecsSinceEpoch (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toMSecsSinceEpoch");
       Args   := Tuple_New (0);
@@ -654,7 +653,7 @@ package body QtAda6.QtCore.QDateTime is
    end toMSecsSinceEpoch;
    function toOffsetFromUtc (self : access Inst; offsetSeconds_P : int) return access QtAda6.QtCore.QDateTime.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toOffsetFromUtc");
@@ -666,7 +665,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end toOffsetFromUtc;
    function toPython (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toPython");
       Args   := Tuple_New (0);
@@ -675,7 +674,7 @@ package body QtAda6.QtCore.QDateTime is
       return null;
    end toPython;
    function toSecsSinceEpoch (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toSecsSinceEpoch");
       Args   := Tuple_New (0);
@@ -685,7 +684,7 @@ package body QtAda6.QtCore.QDateTime is
    end toSecsSinceEpoch;
    function toString (self : access Inst; format_P : access QtAda6.QtCore.Qt.DateFormat.Inst'Class := null) return str
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toString");
       Args   := Tuple_New (0);
@@ -699,7 +698,7 @@ package body QtAda6.QtCore.QDateTime is
    function toString
      (self : access Inst; format_P : str; cal_P : access QtAda6.QtCore.QCalendar.Inst'Class := null) return str
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toString");
       Args   := Tuple_New (1);
@@ -715,7 +714,7 @@ package body QtAda6.QtCore.QDateTime is
      (self : access Inst; spec_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class)
       return access QtAda6.QtCore.QDateTime.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toTimeSpec");
@@ -730,7 +729,7 @@ package body QtAda6.QtCore.QDateTime is
      (self : access Inst; toZone_P : access QtAda6.QtCore.QTimeZone.Inst'Class)
       return access QtAda6.QtCore.QDateTime.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toTimeZone");
@@ -742,7 +741,7 @@ package body QtAda6.QtCore.QDateTime is
       return Ret;
    end toTimeZone;
    function toUTC (self : access Inst) return access QtAda6.QtCore.QDateTime.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QDateTime.Class := new QtAda6.QtCore.QDateTime.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "toUTC");

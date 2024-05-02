@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QOperatingSystemVersionBase;
 with QtAda6.QtCore.QOperatingSystemVersionBase.OSType;
 with QtAda6.QtCore.QVersionNumber;
 package body QtAda6.QtCore.QOperatingSystemVersionBase is
@@ -24,7 +23,7 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QOperatingSystemVersionBase");
       Args  := Tuple_New (0);
@@ -34,7 +33,7 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
    function Create
      (QOperatingSystemVersionBase_P : access QtAda6.QtCore.QOperatingSystemVersionBase.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QOperatingSystemVersionBase");
       Args  := Tuple_New (1);
@@ -48,7 +47,7 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
      (osType_P : access QtAda6.QtCore.QOperatingSystemVersionBase.OSType.Inst'Class; vmajor_P : int;
       vminor_P : int := 0; vmicro_P : int := 0) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QOperatingSystemVersionBase");
       Args  := Tuple_New (2);
@@ -64,7 +63,7 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QOperatingSystemVersionBase");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -76,7 +75,7 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
      (v1_P : access QtAda6.QtCore.QOperatingSystemVersionBase.Inst'Class;
       v2_P : access QtAda6.QtCore.QOperatingSystemVersionBase.Inst'Class) return int
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QOperatingSystemVersionBase");
       Method := Object_GetAttrString (Class, "compare");
@@ -88,8 +87,8 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
       return Long_AsLong (Result);
    end compare;
    function current return access QtAda6.QtCore.QOperatingSystemVersionBase.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                            : constant QtAda6.QtCore.QOperatingSystemVersionBase.Class :=
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                                 : constant QtAda6.QtCore.QOperatingSystemVersionBase.Class :=
         new QtAda6.QtCore.QOperatingSystemVersionBase.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QOperatingSystemVersionBase");
@@ -101,7 +100,7 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
       return Ret;
    end current;
    function currentType return access QtAda6.QtCore.QOperatingSystemVersionBase.OSType.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QOperatingSystemVersionBase.OSType.Class :=
         new QtAda6.QtCore.QOperatingSystemVersionBase.OSType.Inst;
    begin
@@ -114,7 +113,7 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
       return Ret;
    end currentType;
    function majorVersion (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "majorVersion");
       Args   := Tuple_New (0);
@@ -123,7 +122,7 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
       return Long_AsLong (Result);
    end majorVersion;
    function microVersion (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "microVersion");
       Args   := Tuple_New (0);
@@ -132,7 +131,7 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
       return Long_AsLong (Result);
    end microVersion;
    function minorVersion (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "minorVersion");
       Args   := Tuple_New (0);
@@ -141,7 +140,7 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
       return Long_AsLong (Result);
    end minorVersion;
    function name (osversion_P : access QtAda6.QtCore.QOperatingSystemVersionBase.Inst'Class) return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QOperatingSystemVersionBase");
       Method := Object_GetAttrString (Class, "name");
@@ -152,7 +151,7 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
       return As_String (Result);
    end name;
    function name (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "name");
       Args   := Tuple_New (0);
@@ -161,7 +160,7 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
       return As_String (Result);
    end name;
    function segmentCount (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "segmentCount");
       Args   := Tuple_New (0);
@@ -170,8 +169,8 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
       return Long_AsLong (Result);
    end segmentCount;
    function type_K (self : access Inst) return access QtAda6.QtCore.QOperatingSystemVersionBase.OSType.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QOperatingSystemVersionBase.OSType.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QOperatingSystemVersionBase.OSType.Class :=
         new QtAda6.QtCore.QOperatingSystemVersionBase.OSType.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "type");
@@ -182,7 +181,7 @@ package body QtAda6.QtCore.QOperatingSystemVersionBase is
       return Ret;
    end type_K;
    function version (self : access Inst) return access QtAda6.QtCore.QVersionNumber.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QVersionNumber.Class := new QtAda6.QtCore.QVersionNumber.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "version");

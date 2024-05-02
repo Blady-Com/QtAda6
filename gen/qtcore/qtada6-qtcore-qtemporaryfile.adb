@@ -12,7 +12,6 @@ with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.QFile;
-with QtAda6.QtCore.QTemporaryFile;
 with QtAda6.QtCore.QIODeviceBase.OpenModeFlag;
 package body QtAda6.QtCore.QTemporaryFile is
    use type QtAda6.int;
@@ -25,7 +24,7 @@ package body QtAda6.QtCore.QTemporaryFile is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTemporaryFile");
       Args  := Tuple_New (0);
@@ -33,7 +32,7 @@ package body QtAda6.QtCore.QTemporaryFile is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTemporaryFile");
       Args  := Tuple_New (1);
@@ -42,7 +41,7 @@ package body QtAda6.QtCore.QTemporaryFile is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (templateName_P : str) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTemporaryFile");
       Args  := Tuple_New (1);
@@ -51,7 +50,7 @@ package body QtAda6.QtCore.QTemporaryFile is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (templateName_P : str; parent_P : access QtAda6.QtCore.QObject.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTemporaryFile");
       Args  := Tuple_New (2);
@@ -61,7 +60,7 @@ package body QtAda6.QtCore.QTemporaryFile is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function autoRemove (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "autoRemove");
       Args   := Tuple_New (0);
@@ -72,7 +71,7 @@ package body QtAda6.QtCore.QTemporaryFile is
    function createNativeFile
      (file_P : access QtAda6.QtCore.QFile.Inst'Class) return access QtAda6.QtCore.QTemporaryFile.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTemporaryFile.Class := new QtAda6.QtCore.QTemporaryFile.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTemporaryFile");
@@ -85,7 +84,7 @@ package body QtAda6.QtCore.QTemporaryFile is
       return Ret;
    end createNativeFile;
    function createNativeFile (fileName_P : str) return access QtAda6.QtCore.QTemporaryFile.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTemporaryFile.Class := new QtAda6.QtCore.QTemporaryFile.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTemporaryFile");
@@ -98,7 +97,7 @@ package body QtAda6.QtCore.QTemporaryFile is
       return Ret;
    end createNativeFile;
    function fileName (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fileName");
       Args   := Tuple_New (0);
@@ -107,7 +106,7 @@ package body QtAda6.QtCore.QTemporaryFile is
       return As_String (Result);
    end fileName;
    function fileTemplate (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fileTemplate");
       Args   := Tuple_New (0);
@@ -116,7 +115,7 @@ package body QtAda6.QtCore.QTemporaryFile is
       return As_String (Result);
    end fileTemplate;
    function open (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (0);
@@ -126,7 +125,7 @@ package body QtAda6.QtCore.QTemporaryFile is
    end open;
    function open (self : access Inst; flags_P : access QtAda6.QtCore.QIODeviceBase.OpenModeFlag.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "open");
       Args   := Tuple_New (1);
@@ -135,18 +134,38 @@ package body QtAda6.QtCore.QTemporaryFile is
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end open;
-   function rename (self : access Inst; newName_P : UNION_str_bytes_os_PathLike) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   function rename (self : access Inst; newName_P : str) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rename");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, (if newName_P /= null then newName_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 0, Unicode_FromString (newName_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end rename;
+   function rename (self : access Inst; newName_P : bytes) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "rename");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (newName_P.all)));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end rename;
+   function rename (self : access Inst; newName_P : OS.PathLike) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "rename");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, OS.PathLike_conv_A2P_is_not_supported);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end rename;
    procedure setAutoRemove (self : access Inst; b_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAutoRemove");
       Args   := Tuple_New (1);
@@ -155,7 +174,7 @@ package body QtAda6.QtCore.QTemporaryFile is
       Result := Object_Call (Method, Args, Dict, True);
    end setAutoRemove;
    procedure setFileTemplate (self : access Inst; name_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFileTemplate");
       Args   := Tuple_New (1);

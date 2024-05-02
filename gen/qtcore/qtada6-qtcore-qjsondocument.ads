@@ -10,9 +10,9 @@
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QJsonArray;
 limited with QtAda6.QtCore.QJsonValue;
+limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtCore.QJsonParseError;
 limited with QtAda6.QtCore.QJsonDocument.JsonFormat;
-limited with QtAda6.QtCore.QByteArray;
 package QtAda6.QtCore.QJsonDocument is
    type Inst;
    type Inst_Access is access all Inst;
@@ -23,7 +23,6 @@ package QtAda6.QtCore.QJsonDocument is
       C0 : str;
       C1 : access QtAda6.QtCore.QJsonValue.Inst'Class;
    end record;
-   type UNION_QtAda6_QtCore_QByteArray_bytes is new Any;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (array_K_P : access QtAda6.QtCore.QJsonArray.Inst'Class) return Class;
@@ -32,7 +31,11 @@ package QtAda6.QtCore.QJsonDocument is
    procedure U_copy_U;
    function array_K (self : access Inst) return access QtAda6.QtCore.QJsonArray.Inst'Class;
    function fromJson
-     (json_P : UNION_QtAda6_QtCore_QByteArray_bytes; error_P : access QtAda6.QtCore.QJsonParseError.Inst'Class := null)
+     (json_P  : access QtAda6.QtCore.QByteArray.Inst'Class;
+      error_P : access QtAda6.QtCore.QJsonParseError.Inst'Class := null)
+      return access QtAda6.QtCore.QJsonDocument.Inst'Class;
+   function fromJson
+     (json_P : bytes; error_P : access QtAda6.QtCore.QJsonParseError.Inst'Class := null)
       return access QtAda6.QtCore.QJsonDocument.Inst'Class;
    function fromVariant (variant_P : Any) return access QtAda6.QtCore.QJsonDocument.Inst'Class;
    function isArray (self : access Inst) return bool;

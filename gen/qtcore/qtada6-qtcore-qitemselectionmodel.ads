@@ -8,19 +8,19 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QAbstractItemModel;
 limited with QtAda6.QtCore.QModelIndex;
+limited with QtAda6.QtCore.QPersistentModelIndex;
 limited with QtAda6.QtCore.QItemSelection;
 limited with QtAda6.QtCore.QItemSelectionModel.SelectionFlag;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QItemSelectionModel is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   type UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is new Any;
    subtype LIST_QtAda6_QtCore_QModelIndex is QtAda6.QtCore.QModelIndex.Class_Array;
    procedure Finalize (Self : in out Class);
    function currentChanged
@@ -42,28 +42,40 @@ package QtAda6.QtCore.QItemSelectionModel is
    procedure clearCurrentIndex (self : access Inst);
    procedure clearSelection (self : access Inst);
    function columnIntersectsSelection
-     (self     : access Inst; column_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null) return bool;
+     (self : access Inst; column_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return bool;
+   function columnIntersectsSelection
+     (self : access Inst; column_P : int; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null)
+      return bool;
    function currentIndex (self : access Inst) return access QtAda6.QtCore.QModelIndex.Inst'Class;
    procedure emitSelectionChanged
      (self           : access Inst; newSelection_P : access QtAda6.QtCore.QItemSelection.Inst'Class;
       oldSelection_P : access QtAda6.QtCore.QItemSelection.Inst'Class);
    function hasSelection (self : access Inst) return bool;
    function isColumnSelected
-     (self     : access Inst; column_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null) return bool;
+     (self : access Inst; column_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return bool;
+   function isColumnSelected
+     (self : access Inst; column_P : int; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null)
+      return bool;
    function isRowSelected
-     (self     : access Inst; row_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null) return bool;
+     (self : access Inst; row_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return bool;
+   function isRowSelected
+     (self : access Inst; row_P : int; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null)
+      return bool;
+   function isSelected (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool;
    function isSelected
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool;
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool;
    function model (self : access Inst) return access QtAda6.QtCore.QAbstractItemModel.Inst'Class;
    procedure reset (self : access Inst);
    function rowIntersectsSelection
-     (self     : access Inst; row_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null) return bool;
+     (self : access Inst; row_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return bool;
+   function rowIntersectsSelection
+     (self : access Inst; row_P : int; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null)
+      return bool;
    procedure select_K
-     (self      : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
+     (self      : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class;
+      command_P : access QtAda6.QtCore.QItemSelectionModel.SelectionFlag.Inst'Class);
+   procedure select_K
+     (self      : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class;
       command_P : access QtAda6.QtCore.QItemSelectionModel.SelectionFlag.Inst'Class);
    procedure select_K
      (self      : access Inst; selection_P : access QtAda6.QtCore.QItemSelection.Inst'Class;
@@ -73,7 +85,10 @@ package QtAda6.QtCore.QItemSelectionModel is
    function selectedRows (self : access Inst; column_P : int := 0) return LIST_QtAda6_QtCore_QModelIndex;
    function selection (self : access Inst) return access QtAda6.QtCore.QItemSelection.Inst'Class;
    procedure setCurrentIndex
-     (self      : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
+     (self      : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class;
+      command_P : access QtAda6.QtCore.QItemSelectionModel.SelectionFlag.Inst'Class);
+   procedure setCurrentIndex
+     (self      : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class;
       command_P : access QtAda6.QtCore.QItemSelectionModel.SelectionFlag.Inst'Class);
    procedure setModel (self : access Inst; model_P : access QtAda6.QtCore.QAbstractItemModel.Inst'Class);
 end QtAda6.QtCore.QItemSelectionModel;

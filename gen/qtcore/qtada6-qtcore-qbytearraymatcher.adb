@@ -22,15 +22,15 @@ package body QtAda6.QtCore.QByteArrayMatcher is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QByteArrayMatcher");
       Args  := Tuple_New (0);
       Dict  := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (other_P : UNION_QtAda6_QtCore_QByteArrayMatcher_bytes) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (other_P : access QtAda6.QtCore.QByteArrayMatcher.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QByteArrayMatcher");
       Args  := Tuple_New (1);
@@ -38,20 +38,29 @@ package body QtAda6.QtCore.QByteArrayMatcher is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (pattern_P : bytes; length_P : int := 0) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (other_P : bytes) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QByteArrayMatcher");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (pattern_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (other_P.all)));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (pattern_P : bytes; length_P : int := 0) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QByteArrayMatcher");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (pattern_P.all)));
       Dict := Dict_New;
       if length_P /= 0 then
          Dict_SetItemString (Dict, "length", Long_FromLong (length_P));
       end if;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (pattern_P : UNION_QtAda6_QtCore_QByteArray_bytes) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (pattern_P : access QtAda6.QtCore.QByteArray.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QByteArrayMatcher");
       Args  := Tuple_New (1);
@@ -60,7 +69,7 @@ package body QtAda6.QtCore.QByteArrayMatcher is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QByteArrayMatcher");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -68,9 +77,10 @@ package body QtAda6.QtCore.QByteArrayMatcher is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
-   function indexIn (self : access Inst; data_P : UNION_QtAda6_QtCore_QByteArray_bytes; from_U_P : int := 0) return int
+   function indexIn
+     (self : access Inst; data_P : access QtAda6.QtCore.QByteArray.Inst'Class; from_U_P : int := 0) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexIn");
       Args   := Tuple_New (1);
@@ -82,12 +92,25 @@ package body QtAda6.QtCore.QByteArrayMatcher is
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end indexIn;
+   function indexIn (self : access Inst; data_P : bytes; from_U_P : int := 0) return int is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "indexIn");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (data_P.all)));
+      Dict := Dict_New;
+      if from_U_P /= 0 then
+         Dict_SetItemString (Dict, "from_", Long_FromLong (from_U_P));
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Long_AsLong (Result);
+   end indexIn;
    function indexIn (self : access Inst; str_P : bytes; len_P : int; from_U_P : int := 0) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexIn");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (str_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (str_P.all)));
       Tuple_SetItem (Args, 1, Long_FromLong (len_P));
       Dict := Dict_New;
       if from_U_P /= 0 then
@@ -97,7 +120,7 @@ package body QtAda6.QtCore.QByteArrayMatcher is
       return Long_AsLong (Result);
    end indexIn;
    function pattern (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "pattern");
@@ -107,12 +130,21 @@ package body QtAda6.QtCore.QByteArrayMatcher is
       Ret.Python_Proxy := Result;
       return Ret;
    end pattern;
-   procedure setPattern (self : access Inst; pattern_P : UNION_QtAda6_QtCore_QByteArray_bytes) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure setPattern (self : access Inst; pattern_P : access QtAda6.QtCore.QByteArray.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setPattern");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if pattern_P /= null then pattern_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end setPattern;
+   procedure setPattern (self : access Inst; pattern_P : bytes) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setPattern");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (pattern_P.all)));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end setPattern;

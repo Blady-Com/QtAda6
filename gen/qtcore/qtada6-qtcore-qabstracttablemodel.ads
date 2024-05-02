@@ -11,8 +11,9 @@
 limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtCore.QMimeData;
 limited with QtAda6.QtCore.Qt.DropAction;
-limited with QtAda6.QtCore.Qt.ItemFlag;
 limited with QtAda6.QtCore.QModelIndex;
+limited with QtAda6.QtCore.QPersistentModelIndex;
+limited with QtAda6.QtCore.Qt.ItemFlag;
 with QtAda6.QtCore.QAbstractItemModel;
 package QtAda6.QtCore.QAbstractTableModel is
    type Inst;
@@ -20,28 +21,43 @@ package QtAda6.QtCore.QAbstractTableModel is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QAbstractItemModel.Inst with null record;
-   type UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex is new Any;
    procedure Finalize (Self : in out Class);
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
    function dropMimeData
      (self     : access Inst; data_P : access QtAda6.QtCore.QMimeData.Inst'Class;
       action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class; row_P : int; column_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool;
+      parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool;
+   function dropMimeData
+     (self     : access Inst; data_P : access QtAda6.QtCore.QMimeData.Inst'Class;
+      action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class; row_P : int; column_P : int;
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool;
    function flags
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtCore.Qt.ItemFlag.Inst'Class;
+   function flags
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtCore.Qt.ItemFlag.Inst'Class;
+   function hasChildren (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool;
    function hasChildren
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool;
+     (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool;
+   function index
+     (self : access Inst; row_P : int; column_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class;
    function index
      (self     : access Inst; row_P : int; column_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null)
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null)
       return access QtAda6.QtCore.QModelIndex.Inst'Class;
    function parent (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class;
    function parent
-     (self : access Inst; child_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; child_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class;
+   function parent
+     (self : access Inst; child_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
       return access QtAda6.QtCore.QModelIndex.Inst'Class;
    function sibling
-     (self  : access Inst; row_P : int; column_P : int;
-      idx_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; row_P : int; column_P : int; idx_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class;
+   function sibling
+     (self : access Inst; row_P : int; column_P : int; idx_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
       return access QtAda6.QtCore.QModelIndex.Inst'Class;
 end QtAda6.QtCore.QAbstractTableModel;

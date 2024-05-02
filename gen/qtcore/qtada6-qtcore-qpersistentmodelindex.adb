@@ -10,9 +10,9 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
+with QtAda6.QtCore.QModelIndex;
 with QtAda6.QtCore.Qt.ItemFlag;
 with QtAda6.QtCore.QAbstractItemModel;
-with QtAda6.QtCore.QModelIndex;
 package body QtAda6.QtCore.QPersistentModelIndex is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -24,15 +24,15 @@ package body QtAda6.QtCore.QPersistentModelIndex is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPersistentModelIndex");
       Args  := Tuple_New (0);
       Dict  := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPersistentModelIndex");
       Args  := Tuple_New (1);
@@ -40,17 +40,17 @@ package body QtAda6.QtCore.QPersistentModelIndex is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (other_P : UNION_QtAda6_QtCore_QPersistentModelIndex_QtAda6_QtCore_QModelIndex) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPersistentModelIndex");
       Args  := Tuple_New (1);
-      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPersistentModelIndex");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -59,7 +59,7 @@ package body QtAda6.QtCore.QPersistentModelIndex is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function column (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "column");
       Args   := Tuple_New (0);
@@ -68,7 +68,7 @@ package body QtAda6.QtCore.QPersistentModelIndex is
       return Long_AsLong (Result);
    end column;
    function constInternalPointer (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "constInternalPointer");
       Args   := Tuple_New (0);
@@ -77,7 +77,7 @@ package body QtAda6.QtCore.QPersistentModelIndex is
       return Long_AsLong (Result);
    end constInternalPointer;
    function data (self : access Inst; role_P : int := 0) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "data");
       Args   := Tuple_New (0);
@@ -89,7 +89,7 @@ package body QtAda6.QtCore.QPersistentModelIndex is
       return null;
    end data;
    function flags (self : access Inst) return access QtAda6.QtCore.Qt.ItemFlag.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.ItemFlag.Class := new QtAda6.QtCore.Qt.ItemFlag.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "flags");
@@ -100,7 +100,7 @@ package body QtAda6.QtCore.QPersistentModelIndex is
       return Ret;
    end flags;
    function internalId (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "internalId");
       Args   := Tuple_New (0);
@@ -109,7 +109,7 @@ package body QtAda6.QtCore.QPersistentModelIndex is
       return Long_AsLong (Result);
    end internalId;
    function internalPointer (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "internalPointer");
       Args   := Tuple_New (0);
@@ -118,7 +118,7 @@ package body QtAda6.QtCore.QPersistentModelIndex is
       return Long_AsLong (Result);
    end internalPointer;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -127,7 +127,7 @@ package body QtAda6.QtCore.QPersistentModelIndex is
       return To_Ada (Result);
    end isValid;
    function model (self : access Inst) return access QtAda6.QtCore.QAbstractItemModel.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QAbstractItemModel.Class := new QtAda6.QtCore.QAbstractItemModel.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "model");
@@ -138,7 +138,7 @@ package body QtAda6.QtCore.QPersistentModelIndex is
       return Ret;
    end model;
    function parent (self : access Inst) return access QtAda6.QtCore.QModelIndex.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "parent");
@@ -149,7 +149,7 @@ package body QtAda6.QtCore.QPersistentModelIndex is
       return Ret;
    end parent;
    function row (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "row");
       Args   := Tuple_New (0);
@@ -159,7 +159,7 @@ package body QtAda6.QtCore.QPersistentModelIndex is
    end row;
    function sibling (self : access Inst; row_P : int; column_P : int) return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sibling");
@@ -171,8 +171,17 @@ package body QtAda6.QtCore.QPersistentModelIndex is
       Ret.Python_Proxy := Result;
       return Ret;
    end sibling;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QPersistentModelIndex_QtAda6_QtCore_QModelIndex) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "swap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if other_P /= null then other_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end swap;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QModelIndex.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);

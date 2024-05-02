@@ -8,10 +8,10 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QSocketNotifier.Type_K;
 limited with QtAda6.QtCore.QEvent;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QSocketNotifier is
    type Inst;
    type Inst_Access is access all Inst;

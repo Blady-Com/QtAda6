@@ -10,6 +10,7 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
+with QtAda6.QtCore.QByteArray;
 package body QtAda6.QtCore.QAbstractNativeEventFilter is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -21,7 +22,7 @@ package body QtAda6.QtCore.QAbstractNativeEventFilter is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QAbstractNativeEventFilter");
       Args  := Tuple_New (0);
@@ -29,14 +30,25 @@ package body QtAda6.QtCore.QAbstractNativeEventFilter is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function nativeEventFilter
-     (self : access Inst; eventType_P : UNION_QtAda6_QtCore_QByteArray_bytes; message_P : int)
+     (self : access Inst; eventType_P : access QtAda6.QtCore.QByteArray.Inst'Class; message_P : int)
       return access Object'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "nativeEventFilter");
       Args   := Tuple_New (2);
       Tuple_SetItem (Args, 0, (if eventType_P /= null then eventType_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Long_FromLong (message_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return null;
+   end nativeEventFilter;
+   function nativeEventFilter (self : access Inst; eventType_P : bytes; message_P : int) return access Object'Class is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "nativeEventFilter");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (eventType_P.all)));
       Tuple_SetItem (Args, 1, Long_FromLong (message_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);

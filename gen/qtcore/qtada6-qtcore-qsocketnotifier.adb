@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QSocketNotifier.Type_K;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.QEvent;
@@ -32,7 +31,7 @@ package body QtAda6.QtCore.QSocketNotifier is
      (arg_1_P  : access Object'Class; arg_2_P : access QtAda6.QtCore.QSocketNotifier.Type_K.Inst'Class;
       parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSocketNotifier");
       Args  := Tuple_New (2);
@@ -48,7 +47,7 @@ package body QtAda6.QtCore.QSocketNotifier is
      (arg_1_P  : access QtAda6.QtCore.QSocketNotifier.Type_K.Inst'Class;
       parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSocketNotifier");
       Args  := Tuple_New (1);
@@ -63,7 +62,7 @@ package body QtAda6.QtCore.QSocketNotifier is
      (socket_P : int; arg_2_P : access QtAda6.QtCore.QSocketNotifier.Type_K.Inst'Class;
       parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSocketNotifier");
       Args  := Tuple_New (2);
@@ -76,7 +75,7 @@ package body QtAda6.QtCore.QSocketNotifier is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function event (self : access Inst; arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -86,7 +85,7 @@ package body QtAda6.QtCore.QSocketNotifier is
       return To_Ada (Result);
    end event;
    function isEnabled (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEnabled");
       Args   := Tuple_New (0);
@@ -95,7 +94,7 @@ package body QtAda6.QtCore.QSocketNotifier is
       return To_Ada (Result);
    end isEnabled;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -104,7 +103,7 @@ package body QtAda6.QtCore.QSocketNotifier is
       return To_Ada (Result);
    end isValid;
    procedure setEnabled (self : access Inst; arg_1_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setEnabled");
       Args   := Tuple_New (1);
@@ -113,7 +112,7 @@ package body QtAda6.QtCore.QSocketNotifier is
       Result := Object_Call (Method, Args, Dict, True);
    end setEnabled;
    procedure setSocket (self : access Inst; socket_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSocket");
       Args   := Tuple_New (1);
@@ -122,7 +121,7 @@ package body QtAda6.QtCore.QSocketNotifier is
       Result := Object_Call (Method, Args, Dict, True);
    end setSocket;
    function socket (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "socket");
       Args   := Tuple_New (0);
@@ -131,7 +130,7 @@ package body QtAda6.QtCore.QSocketNotifier is
       return Long_AsLong (Result);
    end socket;
    function type_K_F (self : access Inst) return access QtAda6.QtCore.QSocketNotifier.Type_K.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QSocketNotifier.Type_K.Class := new QtAda6.QtCore.QSocketNotifier.Type_K.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "type");

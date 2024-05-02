@@ -10,11 +10,12 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QTimeZone;
+with QtAda6.QtCore.QByteArray;
 with QtAda6.QtCore.QLocale.Country;
 with QtAda6.QtCore.QDateTime;
-with QtAda6.QtCore.QByteArray;
 with QtAda6.QtCore.QTimeZone.NameType;
+with QtAda6.QtCore.QLocale;
+with QtAda6.QtCore.QLocale.Language;
 with QtAda6.QtCore.QTimeZone.TimeType;
 with QtAda6.QtCore.Qt.TimeSpec;
 with QtAda6.QtCore.QTimeZone.OffsetData;
@@ -29,15 +30,15 @@ package body QtAda6.QtCore.QTimeZone is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
       Args  := Tuple_New (0);
       Dict  := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (ianaId_P : UNION_QtAda6_QtCore_QByteArray_bytes) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (ianaId_P : access QtAda6.QtCore.QByteArray.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
       Args  := Tuple_New (1);
@@ -45,8 +46,17 @@ package body QtAda6.QtCore.QTimeZone is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
+   function Create (ianaId_P : bytes) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (ianaId_P.all)));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
    function Create (offsetSeconds_P : int) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
       Args  := Tuple_New (1);
@@ -55,7 +65,7 @@ package body QtAda6.QtCore.QTimeZone is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (other_P : access QtAda6.QtCore.QTimeZone.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
       Args  := Tuple_New (1);
@@ -64,10 +74,10 @@ package body QtAda6.QtCore.QTimeZone is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (zoneId_P    : UNION_QtAda6_QtCore_QByteArray_bytes; offsetSeconds_P : int; name_P : str; abbreviation_P : str;
+     (zoneId_P : access QtAda6.QtCore.QByteArray.Inst'Class; offsetSeconds_P : int; name_P : str; abbreviation_P : str;
       territory_P : access QtAda6.QtCore.QLocale.Country.Inst'Class := null; comment_P : str := "") return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
       Args  := Tuple_New (4);
@@ -84,8 +94,29 @@ package body QtAda6.QtCore.QTimeZone is
       end if;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
+   function Create
+     (zoneId_P    : bytes; offsetSeconds_P : int; name_P : str; abbreviation_P : str;
+      territory_P : access QtAda6.QtCore.QLocale.Country.Inst'Class := null; comment_P : str := "") return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
+      Args  := Tuple_New (4);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (zoneId_P.all)));
+      Tuple_SetItem (Args, 1, Long_FromLong (offsetSeconds_P));
+      Tuple_SetItem (Args, 2, Unicode_FromString (name_P));
+      Tuple_SetItem (Args, 3, Unicode_FromString (abbreviation_P));
+      Dict := Dict_New;
+      if territory_P /= null then
+         Dict_SetItemString (Dict, "territory", territory_P.Python_Proxy);
+      end if;
+      if comment_P /= "" then
+         Dict_SetItemString (Dict, "comment", Unicode_FromString (comment_P));
+      end if;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -94,7 +125,7 @@ package body QtAda6.QtCore.QTimeZone is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function abbreviation (self : access Inst; atDateTime_P : access QtAda6.QtCore.QDateTime.Inst'Class) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "abbreviation");
       Args   := Tuple_New (1);
@@ -104,7 +135,7 @@ package body QtAda6.QtCore.QTimeZone is
       return As_String (Result);
    end abbreviation;
    function asBackendZone (self : access Inst) return access QtAda6.QtCore.QTimeZone.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTimeZone.Class := new QtAda6.QtCore.QTimeZone.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "asBackendZone");
@@ -115,17 +146,21 @@ package body QtAda6.QtCore.QTimeZone is
       return Ret;
    end asBackendZone;
    function availableTimeZoneIds return LIST_QtAda6_QtCore_QByteArray is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
       Method := Object_GetAttrString (Class, "availableTimeZoneIds");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtCore_QByteArray (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end availableTimeZoneIds;
    function availableTimeZoneIds (offsetSeconds_P : int) return LIST_QtAda6_QtCore_QByteArray is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
       Method := Object_GetAttrString (Class, "availableTimeZoneIds");
@@ -133,12 +168,16 @@ package body QtAda6.QtCore.QTimeZone is
       Tuple_SetItem (Args, 0, Long_FromLong (offsetSeconds_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtCore_QByteArray (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end availableTimeZoneIds;
    function availableTimeZoneIds
      (territory_P : access QtAda6.QtCore.QLocale.Country.Inst'Class) return LIST_QtAda6_QtCore_QByteArray
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
       Method := Object_GetAttrString (Class, "availableTimeZoneIds");
@@ -146,10 +185,14 @@ package body QtAda6.QtCore.QTimeZone is
       Tuple_SetItem (Args, 0, (if territory_P /= null then territory_P.Python_Proxy else No_Value));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtCore_QByteArray (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end availableTimeZoneIds;
    function comment (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "comment");
       Args   := Tuple_New (0);
@@ -158,7 +201,7 @@ package body QtAda6.QtCore.QTimeZone is
       return As_String (Result);
    end comment;
    function country (self : access Inst) return access QtAda6.QtCore.QLocale.Country.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QLocale.Country.Class := new QtAda6.QtCore.QLocale.Country.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "country");
@@ -170,7 +213,7 @@ package body QtAda6.QtCore.QTimeZone is
    end country;
    function daylightTimeOffset (self : access Inst; atDateTime_P : access QtAda6.QtCore.QDateTime.Inst'Class) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "daylightTimeOffset");
       Args   := Tuple_New (1);
@@ -181,10 +224,30 @@ package body QtAda6.QtCore.QTimeZone is
    end daylightTimeOffset;
    function displayName
      (self       : access Inst; atDateTime_P : access QtAda6.QtCore.QDateTime.Inst'Class;
-      nameType_P : access QtAda6.QtCore.QTimeZone.NameType.Inst'Class         := null;
-      locale_P   : UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language := null) return str
+      nameType_P : access QtAda6.QtCore.QTimeZone.NameType.Inst'Class := null;
+      locale_P   : access QtAda6.QtCore.QLocale.Inst'Class            := null) return str
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "displayName");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if atDateTime_P /= null then atDateTime_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if nameType_P /= null then
+         Dict_SetItemString (Dict, "nameType", nameType_P.Python_Proxy);
+      end if;
+      if locale_P /= null then
+         Dict_SetItemString (Dict, "locale", locale_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return As_String (Result);
+   end displayName;
+   function displayName
+     (self       : access Inst; atDateTime_P : access QtAda6.QtCore.QDateTime.Inst'Class;
+      nameType_P : access QtAda6.QtCore.QTimeZone.NameType.Inst'Class := null;
+      locale_P   : access QtAda6.QtCore.QLocale.Language.Inst'Class   := null) return str
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "displayName");
       Args   := Tuple_New (1);
@@ -201,10 +264,30 @@ package body QtAda6.QtCore.QTimeZone is
    end displayName;
    function displayName
      (self       : access Inst; timeType_P : access QtAda6.QtCore.QTimeZone.TimeType.Inst'Class;
-      nameType_P : access QtAda6.QtCore.QTimeZone.NameType.Inst'Class         := null;
-      locale_P   : UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language := null) return str
+      nameType_P : access QtAda6.QtCore.QTimeZone.NameType.Inst'Class := null;
+      locale_P   : access QtAda6.QtCore.QLocale.Inst'Class            := null) return str
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "displayName");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if timeType_P /= null then timeType_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if nameType_P /= null then
+         Dict_SetItemString (Dict, "nameType", nameType_P.Python_Proxy);
+      end if;
+      if locale_P /= null then
+         Dict_SetItemString (Dict, "locale", locale_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return As_String (Result);
+   end displayName;
+   function displayName
+     (self       : access Inst; timeType_P : access QtAda6.QtCore.QTimeZone.TimeType.Inst'Class;
+      nameType_P : access QtAda6.QtCore.QTimeZone.NameType.Inst'Class := null;
+      locale_P   : access QtAda6.QtCore.QLocale.Language.Inst'Class   := null) return str
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "displayName");
       Args   := Tuple_New (1);
@@ -220,7 +303,7 @@ package body QtAda6.QtCore.QTimeZone is
       return As_String (Result);
    end displayName;
    function fixedSecondsAheadOfUtc (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fixedSecondsAheadOfUtc");
       Args   := Tuple_New (0);
@@ -229,7 +312,7 @@ package body QtAda6.QtCore.QTimeZone is
       return Long_AsLong (Result);
    end fixedSecondsAheadOfUtc;
    function fromSecondsAheadOfUtc (offset_P : int) return access QtAda6.QtCore.QTimeZone.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTimeZone.Class := new QtAda6.QtCore.QTimeZone.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
@@ -242,7 +325,7 @@ package body QtAda6.QtCore.QTimeZone is
       return Ret;
    end fromSecondsAheadOfUtc;
    function hasDaylightTime (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasDaylightTime");
       Args   := Tuple_New (0);
@@ -251,7 +334,7 @@ package body QtAda6.QtCore.QTimeZone is
       return To_Ada (Result);
    end hasDaylightTime;
    function hasTransitions (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasTransitions");
       Args   := Tuple_New (0);
@@ -260,9 +343,9 @@ package body QtAda6.QtCore.QTimeZone is
       return To_Ada (Result);
    end hasTransitions;
    function ianaIdToWindowsId
-     (ianaId_P : UNION_QtAda6_QtCore_QByteArray_bytes) return access QtAda6.QtCore.QByteArray.Inst'Class
+     (ianaId_P : access QtAda6.QtCore.QByteArray.Inst'Class) return access QtAda6.QtCore.QByteArray.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
@@ -274,8 +357,21 @@ package body QtAda6.QtCore.QTimeZone is
       Ret.Python_Proxy := Result;
       return Ret;
    end ianaIdToWindowsId;
+   function ianaIdToWindowsId (ianaId_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
+      Method := Object_GetAttrString (Class, "ianaIdToWindowsId");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (ianaId_P.all)));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end ianaIdToWindowsId;
    function id (self : access Inst) return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "id");
@@ -286,7 +382,7 @@ package body QtAda6.QtCore.QTimeZone is
       return Ret;
    end id;
    function isDaylightTime (self : access Inst; atDateTime_P : access QtAda6.QtCore.QDateTime.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isDaylightTime");
       Args   := Tuple_New (1);
@@ -295,8 +391,8 @@ package body QtAda6.QtCore.QTimeZone is
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end isDaylightTime;
-   function isTimeZoneIdAvailable (ianaId_P : UNION_QtAda6_QtCore_QByteArray_bytes) return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   function isTimeZoneIdAvailable (ianaId_P : access QtAda6.QtCore.QByteArray.Inst'Class) return bool is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
       Method := Object_GetAttrString (Class, "isTimeZoneIdAvailable");
@@ -306,8 +402,19 @@ package body QtAda6.QtCore.QTimeZone is
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end isTimeZoneIdAvailable;
+   function isTimeZoneIdAvailable (ianaId_P : bytes) return bool is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
+      Method := Object_GetAttrString (Class, "isTimeZoneIdAvailable");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (ianaId_P.all)));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end isTimeZoneIdAvailable;
    function isUtcOrFixedOffset (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isUtcOrFixedOffset");
       Args   := Tuple_New (0);
@@ -316,7 +423,7 @@ package body QtAda6.QtCore.QTimeZone is
       return To_Ada (Result);
    end isUtcOrFixedOffset;
    function isUtcOrFixedOffset (spec_P : access QtAda6.QtCore.Qt.TimeSpec.Inst'Class) return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
       Method := Object_GetAttrString (Class, "isUtcOrFixedOffset");
@@ -327,7 +434,7 @@ package body QtAda6.QtCore.QTimeZone is
       return To_Ada (Result);
    end isUtcOrFixedOffset;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -339,7 +446,7 @@ package body QtAda6.QtCore.QTimeZone is
      (self : access Inst; afterDateTime_P : access QtAda6.QtCore.QDateTime.Inst'Class)
       return access QtAda6.QtCore.QTimeZone.OffsetData.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTimeZone.OffsetData.Class := new QtAda6.QtCore.QTimeZone.OffsetData.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "nextTransition");
@@ -354,7 +461,7 @@ package body QtAda6.QtCore.QTimeZone is
      (self : access Inst; forDateTime_P : access QtAda6.QtCore.QDateTime.Inst'Class)
       return access QtAda6.QtCore.QTimeZone.OffsetData.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTimeZone.OffsetData.Class := new QtAda6.QtCore.QTimeZone.OffsetData.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "offsetData");
@@ -366,7 +473,7 @@ package body QtAda6.QtCore.QTimeZone is
       return Ret;
    end offsetData_F;
    function offsetFromUtc (self : access Inst; atDateTime_P : access QtAda6.QtCore.QDateTime.Inst'Class) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "offsetFromUtc");
       Args   := Tuple_New (1);
@@ -379,7 +486,7 @@ package body QtAda6.QtCore.QTimeZone is
      (self : access Inst; beforeDateTime_P : access QtAda6.QtCore.QDateTime.Inst'Class)
       return access QtAda6.QtCore.QTimeZone.OffsetData.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTimeZone.OffsetData.Class := new QtAda6.QtCore.QTimeZone.OffsetData.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "previousTransition");
@@ -392,7 +499,7 @@ package body QtAda6.QtCore.QTimeZone is
    end previousTransition;
    function standardTimeOffset (self : access Inst; atDateTime_P : access QtAda6.QtCore.QDateTime.Inst'Class) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "standardTimeOffset");
       Args   := Tuple_New (1);
@@ -402,7 +509,7 @@ package body QtAda6.QtCore.QTimeZone is
       return Long_AsLong (Result);
    end standardTimeOffset;
    procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QTimeZone.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
@@ -411,7 +518,7 @@ package body QtAda6.QtCore.QTimeZone is
       Result := Object_Call (Method, Args, Dict, True);
    end swap;
    function systemTimeZone return access QtAda6.QtCore.QTimeZone.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTimeZone.Class := new QtAda6.QtCore.QTimeZone.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
@@ -423,7 +530,7 @@ package body QtAda6.QtCore.QTimeZone is
       return Ret;
    end systemTimeZone;
    function systemTimeZoneId return access QtAda6.QtCore.QByteArray.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
@@ -435,7 +542,7 @@ package body QtAda6.QtCore.QTimeZone is
       return Ret;
    end systemTimeZoneId;
    function territory (self : access Inst) return access QtAda6.QtCore.QLocale.Country.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QLocale.Country.Class := new QtAda6.QtCore.QLocale.Country.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "territory");
@@ -446,7 +553,7 @@ package body QtAda6.QtCore.QTimeZone is
       return Ret;
    end territory;
    function timeSpec (self : access Inst) return access QtAda6.QtCore.Qt.TimeSpec.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.TimeSpec.Class := new QtAda6.QtCore.Qt.TimeSpec.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "timeSpec");
@@ -460,7 +567,7 @@ package body QtAda6.QtCore.QTimeZone is
      (self         : access Inst; fromDateTime_P : access QtAda6.QtCore.QDateTime.Inst'Class;
       toDateTime_P : access QtAda6.QtCore.QDateTime.Inst'Class) return LIST_QtAda6_QtCore_QTimeZone_OffsetData
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "transitions");
       Args   := Tuple_New (2);
@@ -468,10 +575,14 @@ package body QtAda6.QtCore.QTimeZone is
       Tuple_SetItem (Args, 1, (if toDateTime_P /= null then toDateTime_P.Python_Proxy else No_Value));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtCore_QTimeZone_OffsetData (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end transitions;
    function utc return access QtAda6.QtCore.QTimeZone.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QTimeZone.Class := new QtAda6.QtCore.QTimeZone.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
@@ -483,25 +594,38 @@ package body QtAda6.QtCore.QTimeZone is
       return Ret;
    end utc;
    function windowsIdToDefaultIanaId
-     (windowsId_P : UNION_QtAda6_QtCore_QByteArray_bytes) return access QtAda6.QtCore.QByteArray.Inst'Class
+     (windowsId_P : access QtAda6.QtCore.QByteArray.Inst'Class) return access QtAda6.QtCore.QByteArray.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
       Method := Object_GetAttrString (Class, "windowsIdToDefaultIanaId");
       Args   := Tuple_New (1);
       Tuple_SetItem (Args, 0, (if windowsId_P /= null then windowsId_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end windowsIdToDefaultIanaId;
+   function windowsIdToDefaultIanaId (windowsId_P : bytes) return access QtAda6.QtCore.QByteArray.Inst'Class is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
+      Method := Object_GetAttrString (Class, "windowsIdToDefaultIanaId");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (windowsId_P.all)));
       Dict             := Dict_New;
       Result           := Object_Call (Method, Args, Dict, True);
       Ret.Python_Proxy := Result;
       return Ret;
    end windowsIdToDefaultIanaId;
    function windowsIdToDefaultIanaId
-     (windowsId_P : UNION_QtAda6_QtCore_QByteArray_bytes; territory_P : access QtAda6.QtCore.QLocale.Country.Inst'Class)
-      return access QtAda6.QtCore.QByteArray.Inst'Class
+     (windowsId_P : access QtAda6.QtCore.QByteArray.Inst'Class;
+      territory_P : access QtAda6.QtCore.QLocale.Country.Inst'Class) return access QtAda6.QtCore.QByteArray.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
@@ -514,9 +638,27 @@ package body QtAda6.QtCore.QTimeZone is
       Ret.Python_Proxy := Result;
       return Ret;
    end windowsIdToDefaultIanaId;
-   function windowsIdToIanaIds (windowsId_P : UNION_QtAda6_QtCore_QByteArray_bytes) return LIST_QtAda6_QtCore_QByteArray
+   function windowsIdToDefaultIanaId
+     (windowsId_P : bytes; territory_P : access QtAda6.QtCore.QLocale.Country.Inst'Class)
+      return access QtAda6.QtCore.QByteArray.Inst'Class
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QByteArray.Class := new QtAda6.QtCore.QByteArray.Inst;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
+      Method := Object_GetAttrString (Class, "windowsIdToDefaultIanaId");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (windowsId_P.all)));
+      Tuple_SetItem (Args, 1, (if territory_P /= null then territory_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end windowsIdToDefaultIanaId;
+   function windowsIdToIanaIds
+     (windowsId_P : access QtAda6.QtCore.QByteArray.Inst'Class) return LIST_QtAda6_QtCore_QByteArray
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
       Method := Object_GetAttrString (Class, "windowsIdToIanaIds");
@@ -524,13 +666,32 @@ package body QtAda6.QtCore.QTimeZone is
       Tuple_SetItem (Args, 0, (if windowsId_P /= null then windowsId_P.Python_Proxy else No_Value));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtCore_QByteArray (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
+   end windowsIdToIanaIds;
+   function windowsIdToIanaIds (windowsId_P : bytes) return LIST_QtAda6_QtCore_QByteArray is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
+      Method := Object_GetAttrString (Class, "windowsIdToIanaIds");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (windowsId_P.all)));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Ret : LIST_QtAda6_QtCore_QByteArray (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end windowsIdToIanaIds;
    function windowsIdToIanaIds
-     (windowsId_P : UNION_QtAda6_QtCore_QByteArray_bytes; territory_P : access QtAda6.QtCore.QLocale.Country.Inst'Class)
-      return LIST_QtAda6_QtCore_QByteArray
+     (windowsId_P : access QtAda6.QtCore.QByteArray.Inst'Class;
+      territory_P : access QtAda6.QtCore.QLocale.Country.Inst'Class) return LIST_QtAda6_QtCore_QByteArray
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
       Method := Object_GetAttrString (Class, "windowsIdToIanaIds");
@@ -539,6 +700,29 @@ package body QtAda6.QtCore.QTimeZone is
       Tuple_SetItem (Args, 1, (if territory_P /= null then territory_P.Python_Proxy else No_Value));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtCore_QByteArray (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
+   end windowsIdToIanaIds;
+   function windowsIdToIanaIds
+     (windowsId_P : bytes; territory_P : access QtAda6.QtCore.QLocale.Country.Inst'Class)
+      return LIST_QtAda6_QtCore_QByteArray
+   is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QTimeZone");
+      Method := Object_GetAttrString (Class, "windowsIdToIanaIds");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (windowsId_P.all)));
+      Tuple_SetItem (Args, 1, (if territory_P /= null then territory_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Ret : LIST_QtAda6_QtCore_QByteArray (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end windowsIdToIanaIds;
 end QtAda6.QtCore.QTimeZone;

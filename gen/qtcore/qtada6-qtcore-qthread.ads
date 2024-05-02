@@ -8,19 +8,20 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.QAbstractEventDispatcher;
 limited with QtAda6.QtCore.QThread.Priority;
+limited with QtAda6.QtCore.QDeadlineTimer;
+limited with QtAda6.QtCore.QDeadlineTimer.ForeverConstant;
+limited with QtAda6.QtCore.Qt.TimerType;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QThread is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   type UNION_QtAda6_QtCore_QDeadlineTimer_QtAda6_QtCore_QDeadlineTimer_ForeverConstant_QtAda6_QtCore_Qt_TimerType_int is
-     new Any;
    procedure Finalize (Self : in out Class);
    function finished (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- finished()
    function started (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- started()
@@ -51,11 +52,12 @@ package QtAda6.QtCore.QThread is
    procedure start (self : access Inst; priority_P : access QtAda6.QtCore.QThread.Priority.Inst'Class := null);
    procedure terminate_K (self : access Inst);
    procedure usleep (arg_1_P : int);
+   function wait (self : access Inst; deadline_P : access QtAda6.QtCore.QDeadlineTimer.Inst'Class := null) return bool;
    function wait
-     (self       : access Inst;
-      deadline_P : UNION_QtAda6_QtCore_QDeadlineTimer_QtAda6_QtCore_QDeadlineTimer_ForeverConstant_QtAda6_QtCore_Qt_TimerType_int :=
-        null)
+     (self : access Inst; deadline_P : access QtAda6.QtCore.QDeadlineTimer.ForeverConstant.Inst'Class := null)
       return bool;
-   function wait (self : access Inst; time_P : int) return bool;
+   function wait (self : access Inst; deadline_P : access QtAda6.QtCore.Qt.TimerType.Inst'Class := null) return bool;
+   function wait (self : access Inst; deadline_P : int := 0) return bool;
+-- function wait(self : access Inst;time_P : int) return bool;
    procedure yieldCurrentThread;
 end QtAda6.QtCore.QThread;

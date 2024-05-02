@@ -8,8 +8,8 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Qt.Key;
 limited with QtAda6.QtCore.Qt.KeyboardModifier;
+limited with QtAda6.QtCore.Qt.Key;
 limited with QtAda6.QtCore.Qt.Modifier;
 package QtAda6.QtCore.QKeyCombination is
    type Inst;
@@ -17,12 +17,11 @@ package QtAda6.QtCore.QKeyCombination is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key is new Any;
    procedure Finalize (Self : in out Class);
-   function Create
-     (arg_1_P : UNION_QtAda6_QtCore_QKeyCombination_QtAda6_QtCore_Qt_KeyboardModifier_QtAda6_QtCore_Qt_Key)
-      return Class;
-   function Create (key_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null) return Class;
+   function Create (arg_1_P : access QtAda6.QtCore.QKeyCombination.Inst'Class) return Class;
+   function Create (arg_1_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class) return Class;
+   function Create (arg_1_P : access QtAda6.QtCore.Qt.Key.Inst'Class) return Class;
+-- function Create(key_P : access QtAda6.QtCore.Qt.Key.Inst'Class := null) return Class;
    function Create
      (modifiers_P : access QtAda6.QtCore.Qt.KeyboardModifier.Inst'Class;
       key_P       : access QtAda6.QtCore.Qt.Key.Inst'Class := null) return Class;

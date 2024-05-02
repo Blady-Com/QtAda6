@@ -17,7 +17,6 @@ package QtAda6.QtCore.QFileSelector is
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
    type LIST_str is array (Positive range <>) of str;
-   type UNION_QtAda6_QtCore_QUrl_str is new Any;
    type SEQUENCE_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class;
@@ -25,6 +24,8 @@ package QtAda6.QtCore.QFileSelector is
    function extraSelectors (self : access Inst) return LIST_str;
    function select_K (self : access Inst; filePath_P : str) return str;
    function select_K
-     (self : access Inst; filePath_P : UNION_QtAda6_QtCore_QUrl_str) return access QtAda6.QtCore.QUrl.Inst'Class;
+     (self : access Inst; filePath_P : access QtAda6.QtCore.QUrl.Inst'Class)
+      return access QtAda6.QtCore.QUrl.Inst'Class;
+   function select_K (self : access Inst; filePath_P : str) return access QtAda6.QtCore.QUrl.Inst'Class;
    procedure setExtraSelectors (self : access Inst; list_P : SEQUENCE_str);
 end QtAda6.QtCore.QFileSelector;

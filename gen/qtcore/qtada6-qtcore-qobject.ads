@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QChildEvent;
 limited with QtAda6.QtCore.Qt.ConnectionType;
 limited with QtAda6.QtCore.QMetaObject.Connection;
@@ -16,10 +15,12 @@ limited with QtAda6.QtCore.QMetaMethod;
 limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.QByteArray;
 limited with QtAda6.QtCore.Qt.FindChildOption;
+limited with QtAda6.QtCore.QRegularExpression;
 limited with QtAda6.QtCore.QMetaObject;
 limited with QtAda6.QtCore.QThread;
 limited with QtAda6.QtCore.Qt.TimerType;
 limited with QtAda6.QtCore.QTimerEvent;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QObject is
    type Inst;
    type Inst_Access is access all Inst;
@@ -29,7 +30,6 @@ package QtAda6.QtCore.QObject is
    subtype LIST_QtAda6_QtCore_QObject is QtAda6.QtCore.QObject.Class_Array;
    type CALLABLE is new Any;
    subtype LIST_QtAda6_QtCore_QByteArray is QtAda6.QtCore.QByteArray.Class_Array;
-   type UNION_QtAda6_QtCore_QRegularExpression_str is new Any;
    procedure Finalize (Self : in out Class);
    function destroyed (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- destroyed()
    function objectNameChanged
@@ -72,7 +72,7 @@ package QtAda6.QtCore.QObject is
      (arg_1_P : access QtAda6.QtCore.QObject.Inst'Class; arg_2_P : bytes; arg_3_P : CALLABLE) return bool;
    function disconnect (self : access Inst; arg_1_P : bytes; arg_2_P : CALLABLE) return bool;
    function disconnect
-     (self : access Inst; receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes := "") return bool;
+     (self : access Inst; receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes := null) return bool;
    function disconnect
      (self : access Inst; signal_P : bytes; receiver_P : access QtAda6.QtCore.QObject.Inst'Class; member_P : bytes)
       return bool;
@@ -99,8 +99,9 @@ package QtAda6.QtCore.QObject is
      (self      : access Inst; type_K_P : Type_K_T; name_P : str := "";
       options_P : access QtAda6.QtCore.Qt.FindChildOption.Inst'Class := null) return Iterable;
    function findChildren
-     (self      : access Inst; type_K_P : Type_K_T; pattern_P : UNION_QtAda6_QtCore_QRegularExpression_str;
+     (self      : access Inst; type_K_P : Type_K_T; pattern_P : access QtAda6.QtCore.QRegularExpression.Inst'Class;
       options_P : access QtAda6.QtCore.Qt.FindChildOption.Inst'Class := null) return Iterable;
+-- function findChildren(self : access Inst;type_K_P : type_K_T;pattern_P : str;options_P : access QtAda6.QtCore.Qt.FindChildOption.Inst'Class := null) return Iterable;
    function inherits (self : access Inst; classname_P : bytes) return bool;
    procedure installEventFilter (self : access Inst; filterObj_P : access QtAda6.QtCore.QObject.Inst'Class);
    function isQuickItemType (self : access Inst) return bool;

@@ -12,7 +12,6 @@ with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.Qt.TimerType;
-with QtAda6.QtCore.QBasicTimer;
 package body QtAda6.QtCore.QBasicTimer is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -24,7 +23,7 @@ package body QtAda6.QtCore.QBasicTimer is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QBasicTimer");
       Args  := Tuple_New (0);
@@ -32,7 +31,7 @@ package body QtAda6.QtCore.QBasicTimer is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function isActive (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isActive");
       Args   := Tuple_New (0);
@@ -41,7 +40,7 @@ package body QtAda6.QtCore.QBasicTimer is
       return To_Ada (Result);
    end isActive;
    procedure start (self : access Inst; msec_P : int; obj_P : access QtAda6.QtCore.QObject.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "start");
       Args   := Tuple_New (2);
@@ -54,7 +53,7 @@ package body QtAda6.QtCore.QBasicTimer is
      (self  : access Inst; msec_P : int; timerType_P : access QtAda6.QtCore.Qt.TimerType.Inst'Class;
       obj_P : access QtAda6.QtCore.QObject.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "start");
       Args   := Tuple_New (3);
@@ -65,7 +64,7 @@ package body QtAda6.QtCore.QBasicTimer is
       Result := Object_Call (Method, Args, Dict, True);
    end start;
    procedure stop (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "stop");
       Args   := Tuple_New (0);
@@ -73,7 +72,7 @@ package body QtAda6.QtCore.QBasicTimer is
       Result := Object_Call (Method, Args, Dict, True);
    end stop;
    procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QBasicTimer.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
@@ -82,7 +81,7 @@ package body QtAda6.QtCore.QBasicTimer is
       Result := Object_Call (Method, Args, Dict, True);
    end swap;
    function timerId (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "timerId");
       Args   := Tuple_New (0);

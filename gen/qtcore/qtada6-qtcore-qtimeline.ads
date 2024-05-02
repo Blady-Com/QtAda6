@@ -8,19 +8,19 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QTimeLine.Direction;
 limited with QtAda6.QtCore.QEasingCurve;
+limited with QtAda6.QtCore.QEasingCurve.Type_K;
 limited with QtAda6.QtCore.QTimeLine.State;
 limited with QtAda6.QtCore.QTimerEvent;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QTimeLine is
    type Inst;
    type Inst_Access is access all Inst;
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtCore.QObject.Inst with null record;
-   type UNION_QtAda6_QtCore_QEasingCurve_QtAda6_QtCore_QEasingCurve_Type_K is new Any;
    procedure Finalize (Self : in out Class);
    function finished (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- finished()
    function frameChanged (self : access Inst) return access QtAda6.QtCore.Signal.Inst'Class;-- frameChanged(int)
@@ -41,8 +41,8 @@ package QtAda6.QtCore.QTimeLine is
    procedure setCurrentTime (self : access Inst; msec_P : int);
    procedure setDirection (self : access Inst; direction_P : access QtAda6.QtCore.QTimeLine.Direction.Inst'Class);
    procedure setDuration (self : access Inst; duration_P : int);
-   procedure setEasingCurve
-     (self : access Inst; curve_P : UNION_QtAda6_QtCore_QEasingCurve_QtAda6_QtCore_QEasingCurve_Type_K);
+   procedure setEasingCurve (self : access Inst; curve_P : access QtAda6.QtCore.QEasingCurve.Inst'Class);
+   procedure setEasingCurve (self : access Inst; curve_P : access QtAda6.QtCore.QEasingCurve.Type_K.Inst'Class);
    procedure setEndFrame (self : access Inst; frame_P : int);
    procedure setFrameRange (self : access Inst; startFrame_P : int; endFrame_P : int);
    procedure setLoopCount (self : access Inst; count_P : int);

@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QObject;
 limited with QtAda6.QtCore.QPauseAnimation;
 limited with QtAda6.QtCore.QAbstractAnimation;
@@ -16,6 +15,7 @@ limited with QtAda6.QtCore.QEvent;
 limited with QtAda6.QtCore.QAbstractAnimation.Direction;
 limited with QtAda6.QtCore.QAbstractAnimation.State;
 with QtAda6.QtCore.QAnimationGroup;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QSequentialAnimationGroup is
    type Inst;
    type Inst_Access is access all Inst;

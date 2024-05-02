@@ -24,7 +24,7 @@ package body QtAda6.QtCore.QSharedMemory is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (key_P : str; parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSharedMemory");
       Args  := Tuple_New (1);
@@ -36,7 +36,7 @@ package body QtAda6.QtCore.QSharedMemory is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSharedMemory");
       Args  := Tuple_New (0);
@@ -49,7 +49,7 @@ package body QtAda6.QtCore.QSharedMemory is
    function attach
      (self : access Inst; mode_P : access QtAda6.QtCore.QSharedMemory.AccessMode.Inst'Class := null) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "attach");
       Args   := Tuple_New (0);
@@ -61,7 +61,7 @@ package body QtAda6.QtCore.QSharedMemory is
       return To_Ada (Result);
    end attach;
    function constData (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "constData");
       Args   := Tuple_New (0);
@@ -73,7 +73,7 @@ package body QtAda6.QtCore.QSharedMemory is
      (self : access Inst; size_P : int; mode_P : access QtAda6.QtCore.QSharedMemory.AccessMode.Inst'Class := null)
       return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "create");
       Args   := Tuple_New (1);
@@ -86,7 +86,7 @@ package body QtAda6.QtCore.QSharedMemory is
       return To_Ada (Result);
    end create;
    function data (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "data");
       Args   := Tuple_New (0);
@@ -95,7 +95,7 @@ package body QtAda6.QtCore.QSharedMemory is
       return Long_AsLong (Result);
    end data;
    function detach (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "detach");
       Args   := Tuple_New (0);
@@ -104,8 +104,8 @@ package body QtAda6.QtCore.QSharedMemory is
       return To_Ada (Result);
    end detach;
    function error (self : access Inst) return access QtAda6.QtCore.QSharedMemory.SharedMemoryError.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSharedMemory.SharedMemoryError.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSharedMemory.SharedMemoryError.Class :=
         new QtAda6.QtCore.QSharedMemory.SharedMemoryError.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "error");
@@ -116,7 +116,7 @@ package body QtAda6.QtCore.QSharedMemory is
       return Ret;
    end error;
    function errorString (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "errorString");
       Args   := Tuple_New (0);
@@ -125,7 +125,7 @@ package body QtAda6.QtCore.QSharedMemory is
       return As_String (Result);
    end errorString;
    function isAttached (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isAttached");
       Args   := Tuple_New (0);
@@ -134,7 +134,7 @@ package body QtAda6.QtCore.QSharedMemory is
       return To_Ada (Result);
    end isAttached;
    function key (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "key");
       Args   := Tuple_New (0);
@@ -143,7 +143,7 @@ package body QtAda6.QtCore.QSharedMemory is
       return As_String (Result);
    end key;
    function lock (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lock");
       Args   := Tuple_New (0);
@@ -152,7 +152,7 @@ package body QtAda6.QtCore.QSharedMemory is
       return To_Ada (Result);
    end lock;
    function nativeKey (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "nativeKey");
       Args   := Tuple_New (0);
@@ -161,7 +161,7 @@ package body QtAda6.QtCore.QSharedMemory is
       return As_String (Result);
    end nativeKey;
    procedure setKey (self : access Inst; key_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setKey");
       Args   := Tuple_New (1);
@@ -170,7 +170,7 @@ package body QtAda6.QtCore.QSharedMemory is
       Result := Object_Call (Method, Args, Dict, True);
    end setKey;
    procedure setNativeKey (self : access Inst; key_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setNativeKey");
       Args   := Tuple_New (1);
@@ -179,7 +179,7 @@ package body QtAda6.QtCore.QSharedMemory is
       Result := Object_Call (Method, Args, Dict, True);
    end setNativeKey;
    function size (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "size");
       Args   := Tuple_New (0);
@@ -188,7 +188,7 @@ package body QtAda6.QtCore.QSharedMemory is
       return Long_AsLong (Result);
    end size;
    function unlock (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "unlock");
       Args   := Tuple_New (0);

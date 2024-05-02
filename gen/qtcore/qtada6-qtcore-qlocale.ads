@@ -30,7 +30,6 @@ package QtAda6.QtCore.QLocale is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language is new Any;
    subtype LIST_QtAda6_QtCore_QLocale_Country is QtAda6.QtCore.QLocale.Country.Class_Array;
    type SEQUENCE_str is array (Positive range <>) of str;
    subtype LIST_QtAda6_QtCore_QLocale is QtAda6.QtCore.QLocale.Class_Array;
@@ -55,7 +54,8 @@ package QtAda6.QtCore.QLocale is
      (language_P  : access QtAda6.QtCore.QLocale.Language.Inst'Class;
       territory_P : access QtAda6.QtCore.QLocale.Country.Inst'Class) return Class;
    function Create (name_P : str) return Class;
-   function Create (other_P : UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language) return Class;
+   function Create (other_P : access QtAda6.QtCore.QLocale.Inst'Class) return Class;
+   function Create (other_P : access QtAda6.QtCore.QLocale.Language.Inst'Class) return Class;
    procedure U_copy_U;
    function amText (self : access Inst) return str;
    function bcp47Name (self : access Inst) return str;
@@ -117,7 +117,8 @@ package QtAda6.QtCore.QLocale is
    function script_F (self : access Inst) return access QtAda6.QtCore.QLocale.Script.Inst'Class;
    function scriptToCode (script_P : access QtAda6.QtCore.QLocale.Script.Inst'Class) return str;
    function scriptToString (script_P : access QtAda6.QtCore.QLocale.Script.Inst'Class) return str;
-   procedure setDefault (locale_P : UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language);
+   procedure setDefault (locale_P : access QtAda6.QtCore.QLocale.Inst'Class);
+   procedure setDefault (locale_P : access QtAda6.QtCore.QLocale.Language.Inst'Class);
    procedure setNumberOptions (self : access Inst; options_P : access QtAda6.QtCore.QLocale.NumberOption.Inst'Class);
    function standaloneDayName
      (self : access Inst; arg_1_P : int; format_P : access QtAda6.QtCore.QLocale.FormatType.Inst'Class := null)
@@ -125,7 +126,8 @@ package QtAda6.QtCore.QLocale is
    function standaloneMonthName
      (self : access Inst; arg_1_P : int; format_P : access QtAda6.QtCore.QLocale.FormatType.Inst'Class := null)
       return str;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QLocale_QtAda6_QtCore_QLocale_Language);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QLocale.Inst'Class);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QLocale.Language.Inst'Class);
    function system return access QtAda6.QtCore.QLocale.Inst'Class;
    function territory (self : access Inst) return access QtAda6.QtCore.QLocale.Country.Inst'Class;
    function territoryToCode (territory_P : access QtAda6.QtCore.QLocale.Country.Inst'Class) return str;

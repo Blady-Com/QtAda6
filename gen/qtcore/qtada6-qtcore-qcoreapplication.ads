@@ -8,7 +8,6 @@
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
-limited with QtAda6.QtCore.Signal;
 limited with QtAda6.QtCore.QPermission;
 limited with QtAda6.QtCore.Qt.PermissionStatus;
 limited with QtAda6.QtCore.QEvent;
@@ -18,6 +17,7 @@ limited with QtAda6.QtCore.QTranslator;
 limited with QtAda6.QtCore.QEventLoop.ProcessEventsFlag;
 limited with QtAda6.QtCore.Qt.ApplicationAttribute;
 with QtAda6.QtCore.QObject;
+with QtAda6.QtCore.Signal;
 package QtAda6.QtCore.QCoreApplication is
    type Inst;
    type Inst_Access is access all Inst;
@@ -94,5 +94,5 @@ package QtAda6.QtCore.QCoreApplication is
    procedure shutdown (self : access Inst);
    function startingUp return bool;
    function testAttribute (attribute_P : access QtAda6.QtCore.Qt.ApplicationAttribute.Inst'Class) return bool;
-   function translate (context_P : bytes; key_P : bytes; disambiguation_P : bytes := ""; n_P : int := 0) return str;
+   function translate (context_P : bytes; key_P : bytes; disambiguation_P : bytes := null; n_P : int := 0) return str;
 end QtAda6.QtCore.QCoreApplication;

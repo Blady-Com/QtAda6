@@ -9,7 +9,7 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.SignalInstance;
+limited with QtAda6.QtCore.SignalInstance;
 package QtAda6.QtCore.Signal is
    type Inst;
    type Inst_Access is access all Inst;

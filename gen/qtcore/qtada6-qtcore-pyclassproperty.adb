@@ -24,7 +24,7 @@ package body QtAda6.QtCore.PyClassProperty is
      (fget_P : CALLABLE_Any_Any      := null; fset_P : CALLABLE_Any_Any_NoneType := null;
       fdel_P : CALLABLE_Any_NoneType := null; doc_P : str := "") return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "PyClassProperty");
       Args  := Tuple_New (0);

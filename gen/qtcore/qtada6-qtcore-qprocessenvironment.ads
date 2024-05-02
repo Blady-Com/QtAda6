@@ -15,27 +15,24 @@ package QtAda6.QtCore.QProcessEnvironment is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QProcessEnvironment_QtAda6_QtCore_QProcessEnvironment_Initialization is new Any;
    type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (arg_1_P : access QtAda6.QtCore.QProcessEnvironment.Initialization.Inst'Class) return Class;
-   function Create
-     (other_P : UNION_QtAda6_QtCore_QProcessEnvironment_QtAda6_QtCore_QProcessEnvironment_Initialization) return Class;
+   function Create (other_P : access QtAda6.QtCore.QProcessEnvironment.Inst'Class) return Class;
+-- function Create(other_P : access QtAda6.QtCore.QProcessEnvironment.Initialization.Inst'Class) return Class;
    procedure U_copy_U;
    procedure clear (self : access Inst);
    function contains (self : access Inst; name_P : str) return bool;
    function inheritsFromParent (self : access Inst) return bool;
-   procedure insert
-     (self : access Inst;
-      e_P  : UNION_QtAda6_QtCore_QProcessEnvironment_QtAda6_QtCore_QProcessEnvironment_Initialization);
+   procedure insert (self : access Inst; e_P : access QtAda6.QtCore.QProcessEnvironment.Inst'Class);
+   procedure insert (self : access Inst; e_P : access QtAda6.QtCore.QProcessEnvironment.Initialization.Inst'Class);
    procedure insert (self : access Inst; name_P : str; value_P : str);
    function isEmpty (self : access Inst) return bool;
    function keys (self : access Inst) return LIST_str;
    procedure remove (self : access Inst; name_P : str);
-   procedure swap
-     (self    : access Inst;
-      other_P : UNION_QtAda6_QtCore_QProcessEnvironment_QtAda6_QtCore_QProcessEnvironment_Initialization);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QProcessEnvironment.Inst'Class);
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QProcessEnvironment.Initialization.Inst'Class);
    function systemEnvironment return access QtAda6.QtCore.QProcessEnvironment.Inst'Class;
    function toStringList (self : access Inst) return LIST_str;
    function value (self : access Inst; name_P : str; defaultValue_P : str := "") return str;

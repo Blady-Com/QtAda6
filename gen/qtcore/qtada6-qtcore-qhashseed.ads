@@ -14,10 +14,10 @@ package QtAda6.QtCore.QHashSeed is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type UNION_QtAda6_QtCore_QHashSeed_int is new Any;
    procedure Finalize (Self : in out Class);
-   function Create (QHashSeed_P : UNION_QtAda6_QtCore_QHashSeed_int) return Class;
-   function Create (d_P : int := 0) return Class;
+   function Create (QHashSeed_P : access QtAda6.QtCore.QHashSeed.Inst'Class) return Class;
+   function Create (QHashSeed_P : int) return Class;
+-- function Create(d_P : int := 0) return Class;
    procedure U_copy_U;
    function globalSeed return access QtAda6.QtCore.QHashSeed.Inst'Class;
    procedure resetRandomGlobalSeed;

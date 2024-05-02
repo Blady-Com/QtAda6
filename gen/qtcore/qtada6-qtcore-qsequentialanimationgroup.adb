@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.QPauseAnimation;
 with QtAda6.QtCore.QAbstractAnimation;
@@ -34,7 +33,7 @@ package body QtAda6.QtCore.QSequentialAnimationGroup is
           (Python_Proxy => Object_GetAttrString (self.Python_Proxy, "currentAnimationChanged"));
    end currentAnimationChanged;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSequentialAnimationGroup");
       Args  := Tuple_New (0);
@@ -45,7 +44,7 @@ package body QtAda6.QtCore.QSequentialAnimationGroup is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function addPause (self : access Inst; msecs_P : int) return access QtAda6.QtCore.QPauseAnimation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QPauseAnimation.Class := new QtAda6.QtCore.QPauseAnimation.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "addPause");
@@ -57,7 +56,7 @@ package body QtAda6.QtCore.QSequentialAnimationGroup is
       return Ret;
    end addPause;
    function currentAnimation (self : access Inst) return access QtAda6.QtCore.QAbstractAnimation.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QAbstractAnimation.Class := new QtAda6.QtCore.QAbstractAnimation.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "currentAnimation");
@@ -68,7 +67,7 @@ package body QtAda6.QtCore.QSequentialAnimationGroup is
       return Ret;
    end currentAnimation;
    function duration (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "duration");
       Args   := Tuple_New (0);
@@ -77,7 +76,7 @@ package body QtAda6.QtCore.QSequentialAnimationGroup is
       return Long_AsLong (Result);
    end duration;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -89,7 +88,7 @@ package body QtAda6.QtCore.QSequentialAnimationGroup is
    function insertPause
      (self : access Inst; index_P : int; msecs_P : int) return access QtAda6.QtCore.QPauseAnimation.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QPauseAnimation.Class := new QtAda6.QtCore.QPauseAnimation.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertPause");
@@ -102,7 +101,7 @@ package body QtAda6.QtCore.QSequentialAnimationGroup is
       return Ret;
    end insertPause;
    procedure updateCurrentTime (self : access Inst; arg_1_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "updateCurrentTime");
       Args   := Tuple_New (1);
@@ -113,7 +112,7 @@ package body QtAda6.QtCore.QSequentialAnimationGroup is
    procedure updateDirection
      (self : access Inst; direction_P : access QtAda6.QtCore.QAbstractAnimation.Direction.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "updateDirection");
       Args   := Tuple_New (1);
@@ -125,7 +124,7 @@ package body QtAda6.QtCore.QSequentialAnimationGroup is
      (self       : access Inst; newState_P : access QtAda6.QtCore.QAbstractAnimation.State.Inst'Class;
       oldState_P : access QtAda6.QtCore.QAbstractAnimation.State.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "updateState");
       Args   := Tuple_New (2);

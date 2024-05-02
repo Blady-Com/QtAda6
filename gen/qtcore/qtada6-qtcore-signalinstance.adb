@@ -21,7 +21,7 @@ package body QtAda6.QtCore.SignalInstance is
       Free (Inst_Access (Self));
    end Finalize;
    procedure connect (self : access Inst; slot_P : access Object'Class; type_K_P : Type_K_T := null) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "connect");
       Args   := Tuple_New (1);
@@ -33,7 +33,7 @@ package body QtAda6.QtCore.SignalInstance is
       Result := Object_Call (Method, Args, Dict, True);
    end connect;
    procedure disconnect (self : access Inst; slot_P : access Object'Class := null) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "disconnect");
       Args   := Tuple_New (0);
@@ -44,7 +44,7 @@ package body QtAda6.QtCore.SignalInstance is
       Result := Object_Call (Method, Args, Dict, True);
    end disconnect;
    procedure emit (self : access Inst; args_P : Any) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "emit");
       Args   := Tuple_New (1);

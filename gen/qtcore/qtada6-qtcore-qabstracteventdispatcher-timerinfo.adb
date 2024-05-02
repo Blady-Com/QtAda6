@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QAbstractEventDispatcher.TimerInfo;
 with QtAda6.QtCore.Qt.TimerType;
 package body QtAda6.QtCore.QAbstractEventDispatcher.TimerInfo is
    use type QtAda6.int;
@@ -23,7 +22,7 @@ package body QtAda6.QtCore.QAbstractEventDispatcher.TimerInfo is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (TimerInfo_P : access QtAda6.QtCore.QAbstractEventDispatcher.TimerInfo.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "TimerInfo");
       Args  := Tuple_New (1);
@@ -32,7 +31,7 @@ package body QtAda6.QtCore.QAbstractEventDispatcher.TimerInfo is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (id_P : int; i_P : int; t_P : access QtAda6.QtCore.Qt.TimerType.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "TimerInfo");
       Args  := Tuple_New (3);
@@ -43,7 +42,7 @@ package body QtAda6.QtCore.QAbstractEventDispatcher.TimerInfo is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "TimerInfo");
       Method := Object_GetAttrString (Class, "__copy__");

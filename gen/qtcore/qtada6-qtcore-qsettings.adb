@@ -29,7 +29,7 @@ package body QtAda6.QtCore.QSettings is
      (fileName_P : str; format_P : access QtAda6.QtCore.QSettings.Format.Inst'Class;
       parent_P   : access QtAda6.QtCore.QObject.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSettings");
       Args  := Tuple_New (2);
@@ -46,7 +46,7 @@ package body QtAda6.QtCore.QSettings is
       scope_P  : access QtAda6.QtCore.QSettings.Scope.Inst'Class; organization_P : str; application_P : str := "";
       parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSettings");
       Args  := Tuple_New (3);
@@ -66,7 +66,7 @@ package body QtAda6.QtCore.QSettings is
      (organization_P : str; application_P : str := ""; parent_P : access QtAda6.QtCore.QObject.Inst'Class := null)
       return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSettings");
       Args  := Tuple_New (1);
@@ -81,7 +81,7 @@ package body QtAda6.QtCore.QSettings is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSettings");
       Args  := Tuple_New (0);
@@ -95,7 +95,7 @@ package body QtAda6.QtCore.QSettings is
      (scope_P  : access QtAda6.QtCore.QSettings.Scope.Inst'Class; organization_P : str; application_P : str := "";
       parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSettings");
       Args  := Tuple_New (2);
@@ -114,7 +114,7 @@ package body QtAda6.QtCore.QSettings is
      (scope_P  : access QtAda6.QtCore.QSettings.Scope.Inst'Class;
       parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSettings");
       Args  := Tuple_New (1);
@@ -126,16 +126,20 @@ package body QtAda6.QtCore.QSettings is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function allKeys (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "allKeys");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end allKeys;
    function applicationName (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "applicationName");
       Args   := Tuple_New (0);
@@ -144,7 +148,7 @@ package body QtAda6.QtCore.QSettings is
       return As_String (Result);
    end applicationName;
    procedure beginGroup (self : access Inst; prefix_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "beginGroup");
       Args   := Tuple_New (1);
@@ -153,7 +157,7 @@ package body QtAda6.QtCore.QSettings is
       Result := Object_Call (Method, Args, Dict, True);
    end beginGroup;
    function beginReadArray (self : access Inst; prefix_P : str) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "beginReadArray");
       Args   := Tuple_New (1);
@@ -163,7 +167,7 @@ package body QtAda6.QtCore.QSettings is
       return Long_AsLong (Result);
    end beginReadArray;
    procedure beginWriteArray (self : access Inst; prefix_P : str; size_P : int := 0) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "beginWriteArray");
       Args   := Tuple_New (1);
@@ -175,25 +179,33 @@ package body QtAda6.QtCore.QSettings is
       Result := Object_Call (Method, Args, Dict, True);
    end beginWriteArray;
    function childGroups (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "childGroups");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end childGroups;
    function childKeys (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "childKeys");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end childKeys;
    procedure clear (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clear");
       Args   := Tuple_New (0);
@@ -201,7 +213,7 @@ package body QtAda6.QtCore.QSettings is
       Result := Object_Call (Method, Args, Dict, True);
    end clear;
    function contains (self : access Inst; key_P : str) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "contains");
       Args   := Tuple_New (1);
@@ -211,7 +223,7 @@ package body QtAda6.QtCore.QSettings is
       return To_Ada (Result);
    end contains;
    function defaultFormat return access QtAda6.QtCore.QSettings.Format.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QSettings.Format.Class := new QtAda6.QtCore.QSettings.Format.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSettings");
@@ -223,7 +235,7 @@ package body QtAda6.QtCore.QSettings is
       return Ret;
    end defaultFormat;
    procedure endArray (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "endArray");
       Args   := Tuple_New (0);
@@ -231,7 +243,7 @@ package body QtAda6.QtCore.QSettings is
       Result := Object_Call (Method, Args, Dict, True);
    end endArray;
    procedure endGroup (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "endGroup");
       Args   := Tuple_New (0);
@@ -239,7 +251,7 @@ package body QtAda6.QtCore.QSettings is
       Result := Object_Call (Method, Args, Dict, True);
    end endGroup;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -249,7 +261,7 @@ package body QtAda6.QtCore.QSettings is
       return To_Ada (Result);
    end event;
    function fallbacksEnabled (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fallbacksEnabled");
       Args   := Tuple_New (0);
@@ -258,7 +270,7 @@ package body QtAda6.QtCore.QSettings is
       return To_Ada (Result);
    end fallbacksEnabled;
    function fileName (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fileName");
       Args   := Tuple_New (0);
@@ -267,7 +279,7 @@ package body QtAda6.QtCore.QSettings is
       return As_String (Result);
    end fileName;
    function format_F (self : access Inst) return access QtAda6.QtCore.QSettings.Format.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QSettings.Format.Class := new QtAda6.QtCore.QSettings.Format.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "format");
@@ -278,7 +290,7 @@ package body QtAda6.QtCore.QSettings is
       return Ret;
    end format_F;
    function group (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "group");
       Args   := Tuple_New (0);
@@ -287,7 +299,7 @@ package body QtAda6.QtCore.QSettings is
       return As_String (Result);
    end group;
    function isAtomicSyncRequired (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isAtomicSyncRequired");
       Args   := Tuple_New (0);
@@ -296,7 +308,7 @@ package body QtAda6.QtCore.QSettings is
       return To_Ada (Result);
    end isAtomicSyncRequired;
    function isWritable (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isWritable");
       Args   := Tuple_New (0);
@@ -305,7 +317,7 @@ package body QtAda6.QtCore.QSettings is
       return To_Ada (Result);
    end isWritable;
    function organizationName (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "organizationName");
       Args   := Tuple_New (0);
@@ -314,7 +326,7 @@ package body QtAda6.QtCore.QSettings is
       return As_String (Result);
    end organizationName;
    procedure remove (self : access Inst; key_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "remove");
       Args   := Tuple_New (1);
@@ -323,7 +335,7 @@ package body QtAda6.QtCore.QSettings is
       Result := Object_Call (Method, Args, Dict, True);
    end remove;
    function scope_F (self : access Inst) return access QtAda6.QtCore.QSettings.Scope.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QSettings.Scope.Class := new QtAda6.QtCore.QSettings.Scope.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "scope");
@@ -334,7 +346,7 @@ package body QtAda6.QtCore.QSettings is
       return Ret;
    end scope_F;
    procedure setArrayIndex (self : access Inst; i_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setArrayIndex");
       Args   := Tuple_New (1);
@@ -343,7 +355,7 @@ package body QtAda6.QtCore.QSettings is
       Result := Object_Call (Method, Args, Dict, True);
    end setArrayIndex;
    procedure setAtomicSyncRequired (self : access Inst; enable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAtomicSyncRequired");
       Args   := Tuple_New (1);
@@ -352,7 +364,7 @@ package body QtAda6.QtCore.QSettings is
       Result := Object_Call (Method, Args, Dict, True);
    end setAtomicSyncRequired;
    procedure setDefaultFormat (format_P : access QtAda6.QtCore.QSettings.Format.Inst'Class) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSettings");
       Method := Object_GetAttrString (Class, "setDefaultFormat");
@@ -362,7 +374,7 @@ package body QtAda6.QtCore.QSettings is
       Result := Object_Call (Method, Args, Dict, True);
    end setDefaultFormat;
    procedure setFallbacksEnabled (self : access Inst; b_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFallbacksEnabled");
       Args   := Tuple_New (1);
@@ -374,7 +386,7 @@ package body QtAda6.QtCore.QSettings is
      (format_P : access QtAda6.QtCore.QSettings.Format.Inst'Class;
       scope_P  : access QtAda6.QtCore.QSettings.Scope.Inst'Class; path_P : str)
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSettings");
       Method := Object_GetAttrString (Class, "setPath");
@@ -386,7 +398,7 @@ package body QtAda6.QtCore.QSettings is
       Result := Object_Call (Method, Args, Dict, True);
    end setPath;
    procedure setValue (self : access Inst; key_P : str; value_P : Any) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setValue");
       Args   := Tuple_New (2);
@@ -396,7 +408,7 @@ package body QtAda6.QtCore.QSettings is
       Result := Object_Call (Method, Args, Dict, True);
    end setValue;
    function status_F (self : access Inst) return access QtAda6.QtCore.QSettings.Status.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QSettings.Status.Class := new QtAda6.QtCore.QSettings.Status.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "status");
@@ -407,7 +419,7 @@ package body QtAda6.QtCore.QSettings is
       return Ret;
    end status_F;
    procedure sync (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sync");
       Args   := Tuple_New (0);
@@ -418,7 +430,7 @@ package body QtAda6.QtCore.QSettings is
      (self : access Inst; arg_1_P : str; defaultValue_P : Any := null; type_K_P : access Object'Class := null)
       return access Object'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "value");
       Args   := Tuple_New (1);
@@ -434,7 +446,7 @@ package body QtAda6.QtCore.QSettings is
       return null;
    end value;
    function value (self : access Inst; key_P : str) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "value");
       Args   := Tuple_New (1);

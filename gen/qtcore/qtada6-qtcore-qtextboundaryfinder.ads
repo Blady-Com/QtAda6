@@ -20,8 +20,8 @@ package QtAda6.QtCore.QTextBoundaryFinder is
    function Create return Class;
    function Create (other_P : access QtAda6.QtCore.QTextBoundaryFinder.Inst'Class) return Class;
    function Create
-     (type_K_P : access QtAda6.QtCore.QTextBoundaryFinder.BoundaryType.Inst'Class; str_P : str; buffer_P : bytes := "";
-      bufferSize_P : int := 0) return Class;
+     (type_K_P : access QtAda6.QtCore.QTextBoundaryFinder.BoundaryType.Inst'Class; str_P : str;
+      buffer_P : bytes := null; bufferSize_P : int := 0) return Class;
    function Create
      (type_K_P : access QtAda6.QtCore.QTextBoundaryFinder.BoundaryType.Inst'Class; string_P : str) return Class;
    procedure U_copy_U;

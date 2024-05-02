@@ -23,17 +23,17 @@ package body QtAda6.QtCore.QLibraryInfo is
       Free (Inst_Access (Self));
    end Finalize;
    function build return bytes is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLibraryInfo");
       Method := Object_GetAttrString (Class, "build");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return bytes (String'(Bytes_AsString (Result)));
+      return new Standard.String'(Bytes_AsString (Result));
    end build;
    function isDebugBuild return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLibraryInfo");
       Method := Object_GetAttrString (Class, "isDebugBuild");
@@ -43,7 +43,7 @@ package body QtAda6.QtCore.QLibraryInfo is
       return To_Ada (Result);
    end isDebugBuild;
    function isSharedBuild return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLibraryInfo");
       Method := Object_GetAttrString (Class, "isSharedBuild");
@@ -53,7 +53,7 @@ package body QtAda6.QtCore.QLibraryInfo is
       return To_Ada (Result);
    end isSharedBuild;
    function location (location_P : access QtAda6.QtCore.QLibraryInfo.LibraryPath.Inst'Class) return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLibraryInfo");
       Method := Object_GetAttrString (Class, "location");
@@ -64,7 +64,7 @@ package body QtAda6.QtCore.QLibraryInfo is
       return As_String (Result);
    end location;
    function path (p_P : access QtAda6.QtCore.QLibraryInfo.LibraryPath.Inst'Class) return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLibraryInfo");
       Method := Object_GetAttrString (Class, "path");
@@ -75,7 +75,7 @@ package body QtAda6.QtCore.QLibraryInfo is
       return As_String (Result);
    end path;
    function platformPluginArguments (platformName_P : str) return LIST_str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLibraryInfo");
       Method := Object_GetAttrString (Class, "platformPluginArguments");
@@ -83,10 +83,14 @@ package body QtAda6.QtCore.QLibraryInfo is
       Tuple_SetItem (Args, 0, Unicode_FromString (platformName_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end platformPluginArguments;
    function version return access QtAda6.QtCore.QVersionNumber.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QVersionNumber.Class := new QtAda6.QtCore.QVersionNumber.Inst;
    begin
       Class            := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLibraryInfo");

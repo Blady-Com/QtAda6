@@ -20,7 +20,7 @@ package QtAda6.QtCore.QStandardPaths is
    type LIST_str is array (Positive range <>) of str;
    procedure Finalize (Self : in out Class);
    function displayName (type_K_P : access QtAda6.QtCore.QStandardPaths.StandardLocation.Inst'Class) return str;
-   function findExecutable (executableName_P : str; paths_P : SEQUENCE_str := (2 .. 1 => <>)) return str;
+   function findExecutable (executableName_P : str; paths_P : SEQUENCE_str) return str;
    function isTestModeEnabled return bool;
    function locate
      (type_K_P  : access QtAda6.QtCore.QStandardPaths.StandardLocation.Inst'Class; fileName_P : str;

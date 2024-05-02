@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QCalendarPermission;
 with QtAda6.QtCore.QCalendarPermission.AccessMode;
 package body QtAda6.QtCore.QCalendarPermission is
    use type QtAda6.int;
@@ -23,7 +22,7 @@ package body QtAda6.QtCore.QCalendarPermission is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCalendarPermission");
       Args  := Tuple_New (0);
@@ -31,7 +30,7 @@ package body QtAda6.QtCore.QCalendarPermission is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (other_P : access QtAda6.QtCore.QCalendarPermission.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCalendarPermission");
       Args  := Tuple_New (1);
@@ -40,7 +39,7 @@ package body QtAda6.QtCore.QCalendarPermission is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QCalendarPermission");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -49,8 +48,8 @@ package body QtAda6.QtCore.QCalendarPermission is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function accessMode_F (self : access Inst) return access QtAda6.QtCore.QCalendarPermission.AccessMode.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QCalendarPermission.AccessMode.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QCalendarPermission.AccessMode.Class :=
         new QtAda6.QtCore.QCalendarPermission.AccessMode.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "accessMode");
@@ -62,7 +61,7 @@ package body QtAda6.QtCore.QCalendarPermission is
    end accessMode_F;
    procedure setAccessMode (self : access Inst; mode_P : access QtAda6.QtCore.QCalendarPermission.AccessMode.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAccessMode");
       Args   := Tuple_New (1);
@@ -71,7 +70,7 @@ package body QtAda6.QtCore.QCalendarPermission is
       Result := Object_Call (Method, Args, Dict, True);
    end setAccessMode;
    procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QCalendarPermission.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);

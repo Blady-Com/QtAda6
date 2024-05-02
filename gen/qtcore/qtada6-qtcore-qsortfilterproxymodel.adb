@@ -10,9 +10,9 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.QModelIndex;
+with QtAda6.QtCore.QPersistentModelIndex;
 with QtAda6.QtCore.QMimeData;
 with QtAda6.QtCore.Qt.DropAction;
 with QtAda6.QtCore.Qt.CaseSensitivity;
@@ -81,7 +81,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
         new QtAda6.QtCore.Signal.Inst'(Python_Proxy => Object_GetAttrString (self.Python_Proxy, "sortRoleChanged"));
    end sortRoleChanged;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSortFilterProxyModel");
       Args  := Tuple_New (0);
@@ -92,7 +92,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function autoAcceptChildRows (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "autoAcceptChildRows");
       Args   := Tuple_New (0);
@@ -101,10 +101,10 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return To_Ada (Result);
    end autoAcceptChildRows;
    function buddy
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "buddy");
@@ -115,10 +115,23 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Ret.Python_Proxy := Result;
       return Ret;
    end buddy;
-   function canFetchMore
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool
+   function buddy
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "buddy");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end buddy;
+   function canFetchMore (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "canFetchMore");
       Args   := Tuple_New (1);
@@ -127,11 +140,35 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end canFetchMore;
-   function columnCount
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null)
-      return int
+   function canFetchMore
+     (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "canFetchMore");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end canFetchMore;
+   function columnCount (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return int
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "columnCount");
+      Args   := Tuple_New (0);
+      Dict   := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Long_AsLong (Result);
+   end columnCount;
+   function columnCount
+     (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return int
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "columnCount");
       Args   := Tuple_New (0);
@@ -143,10 +180,24 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Long_AsLong (Result);
    end columnCount;
    function data
-     (self   : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
-      role_P : int := 0) return Any
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class; role_P : int := 0) return Any
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "data");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if role_P /= 0 then
+         Dict_SetItemString (Dict, "role", Long_FromLong (role_P));
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return null;
+   end data;
+   function data
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class; role_P : int := 0) return Any
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "data");
       Args   := Tuple_New (1);
@@ -161,9 +212,27 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
    function dropMimeData
      (self     : access Inst; data_P : access QtAda6.QtCore.QMimeData.Inst'Class;
       action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class; row_P : int; column_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool
+      parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "dropMimeData");
+      Args   := Tuple_New (5);
+      Tuple_SetItem (Args, 0, (if data_P /= null then data_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if action_P /= null then action_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 2, Long_FromLong (row_P));
+      Tuple_SetItem (Args, 3, Long_FromLong (column_P));
+      Tuple_SetItem (Args, 4, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end dropMimeData;
+   function dropMimeData
+     (self     : access Inst; data_P : access QtAda6.QtCore.QMimeData.Inst'Class;
+      action_P : access QtAda6.QtCore.Qt.DropAction.Inst'Class; row_P : int; column_P : int;
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dropMimeData");
       Args   := Tuple_New (5);
@@ -177,7 +246,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return To_Ada (Result);
    end dropMimeData;
    function dynamicSortFilter (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "dynamicSortFilter");
       Args   := Tuple_New (0);
@@ -185,10 +254,17 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end dynamicSortFilter;
-   procedure fetchMore
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
-   is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure fetchMore (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "fetchMore");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if parent_P /= null then parent_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end fetchMore;
+   procedure fetchMore (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fetchMore");
       Args   := Tuple_New (1);
@@ -197,10 +273,24 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end fetchMore;
    function filterAcceptsColumn
-     (self            : access Inst; source_column_P : int;
-      source_parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool
+     (self : access Inst; source_column_P : int; source_parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
+      return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "filterAcceptsColumn");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (source_column_P));
+      Tuple_SetItem (Args, 1, (if source_parent_P /= null then source_parent_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end filterAcceptsColumn;
+   function filterAcceptsColumn
+     (self            : access Inst; source_column_P : int;
+      source_parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "filterAcceptsColumn");
       Args   := Tuple_New (2);
@@ -211,10 +301,23 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return To_Ada (Result);
    end filterAcceptsColumn;
    function filterAcceptsRow
-     (self            : access Inst; source_row_P : int;
-      source_parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool
+     (self : access Inst; source_row_P : int; source_parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "filterAcceptsRow");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (source_row_P));
+      Tuple_SetItem (Args, 1, (if source_parent_P /= null then source_parent_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end filterAcceptsRow;
+   function filterAcceptsRow
+     (self : access Inst; source_row_P : int; source_parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "filterAcceptsRow");
       Args   := Tuple_New (2);
@@ -225,7 +328,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return To_Ada (Result);
    end filterAcceptsRow;
    function filterCaseSensitivity (self : access Inst) return access QtAda6.QtCore.Qt.CaseSensitivity.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.CaseSensitivity.Class := new QtAda6.QtCore.Qt.CaseSensitivity.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "filterCaseSensitivity");
@@ -236,7 +339,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Ret;
    end filterCaseSensitivity;
    function filterKeyColumn (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "filterKeyColumn");
       Args   := Tuple_New (0);
@@ -245,7 +348,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Long_AsLong (Result);
    end filterKeyColumn;
    function filterRegularExpression (self : access Inst) return access QtAda6.QtCore.QRegularExpression.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QRegularExpression.Class := new QtAda6.QtCore.QRegularExpression.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "filterRegularExpression");
@@ -256,7 +359,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Ret;
    end filterRegularExpression;
    function filterRole (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "filterRole");
       Args   := Tuple_New (0);
@@ -265,10 +368,10 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Long_AsLong (Result);
    end filterRole;
    function flags
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtCore.Qt.ItemFlag.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.ItemFlag.Class := new QtAda6.QtCore.Qt.ItemFlag.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "flags");
@@ -279,11 +382,38 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Ret.Python_Proxy := Result;
       return Ret;
    end flags;
-   function hasChildren
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null)
-      return bool
+   function flags
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtCore.Qt.ItemFlag.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.Qt.ItemFlag.Class := new QtAda6.QtCore.Qt.ItemFlag.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "flags");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end flags;
+   function hasChildren (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "hasChildren");
+      Args   := Tuple_New (0);
+      Dict   := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end hasChildren;
+   function hasChildren
+     (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "hasChildren");
       Args   := Tuple_New (0);
@@ -298,7 +428,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
      (self   : access Inst; section_P : int; orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class;
       role_P : int := 0) return Any
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "headerData");
       Args   := Tuple_New (2);
@@ -312,11 +442,30 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return null;
    end headerData;
    function index
-     (self     : access Inst; row_P : int; column_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null)
+     (self : access Inst; row_P : int; column_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null)
       return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "index");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (row_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (column_P));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end index;
+   function index
+     (self     : access Inst; row_P : int; column_P : int;
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "index");
@@ -332,10 +481,27 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Ret;
    end index;
    function insertColumns
-     (self     : access Inst; column_P : int; count_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null) return bool
+     (self : access Inst; column_P : int; count_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null)
+      return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "insertColumns");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (column_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (count_P));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end insertColumns;
+   function insertColumns
+     (self     : access Inst; column_P : int; count_P : int;
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertColumns");
       Args   := Tuple_New (2);
@@ -349,10 +515,27 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return To_Ada (Result);
    end insertColumns;
    function insertRows
-     (self     : access Inst; row_P : int; count_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null) return bool
+     (self : access Inst; row_P : int; count_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null)
+      return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "insertRows");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (row_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (count_P));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end insertRows;
+   function insertRows
+     (self     : access Inst; row_P : int; count_P : int;
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "insertRows");
       Args   := Tuple_New (2);
@@ -366,7 +549,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return To_Ada (Result);
    end insertRows;
    procedure invalidate (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "invalidate");
       Args   := Tuple_New (0);
@@ -374,7 +557,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end invalidate;
    procedure invalidateColumnsFilter (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "invalidateColumnsFilter");
       Args   := Tuple_New (0);
@@ -382,7 +565,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end invalidateColumnsFilter;
    procedure invalidateFilter (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "invalidateFilter");
       Args   := Tuple_New (0);
@@ -390,7 +573,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end invalidateFilter;
    procedure invalidateRowsFilter (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "invalidateRowsFilter");
       Args   := Tuple_New (0);
@@ -398,7 +581,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end invalidateRowsFilter;
    function isRecursiveFilteringEnabled (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isRecursiveFilteringEnabled");
       Args   := Tuple_New (0);
@@ -407,7 +590,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return To_Ada (Result);
    end isRecursiveFilteringEnabled;
    function isSortLocaleAware (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isSortLocaleAware");
       Args   := Tuple_New (0);
@@ -416,10 +599,52 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return To_Ada (Result);
    end isSortLocaleAware;
    function lessThan
-     (self           : access Inst; source_left_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
-      source_right_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool
+     (self           : access Inst; source_left_P : access QtAda6.QtCore.QModelIndex.Inst'Class;
+      source_right_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "lessThan");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if source_left_P /= null then source_left_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if source_right_P /= null then source_right_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end lessThan;
+   function lessThan
+     (self           : access Inst; source_left_P : access QtAda6.QtCore.QModelIndex.Inst'Class;
+      source_right_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "lessThan");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if source_left_P /= null then source_left_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if source_right_P /= null then source_right_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end lessThan;
+   function lessThan
+     (self           : access Inst; source_left_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class;
+      source_right_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "lessThan");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if source_left_P /= null then source_left_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if source_right_P /= null then source_right_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end lessThan;
+   function lessThan
+     (self           : access Inst; source_left_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class;
+      source_right_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "lessThan");
       Args   := Tuple_New (2);
@@ -430,10 +655,25 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return To_Ada (Result);
    end lessThan;
    function mapFromSource
-     (self : access Inst; sourceIndex_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; sourceIndex_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "mapFromSource");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if sourceIndex_P /= null then sourceIndex_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end mapFromSource;
+   function mapFromSource
+     (self : access Inst; sourceIndex_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mapFromSource");
@@ -448,7 +688,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
      (self : access Inst; sourceSelection_P : access QtAda6.QtCore.QItemSelection.Inst'Class)
       return access QtAda6.QtCore.QItemSelection.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QItemSelection.Class := new QtAda6.QtCore.QItemSelection.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mapSelectionFromSource");
@@ -463,7 +703,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
      (self : access Inst; proxySelection_P : access QtAda6.QtCore.QItemSelection.Inst'Class)
       return access QtAda6.QtCore.QItemSelection.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QItemSelection.Class := new QtAda6.QtCore.QItemSelection.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mapSelectionToSource");
@@ -475,10 +715,25 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Ret;
    end mapSelectionToSource;
    function mapToSource
-     (self : access Inst; proxyIndex_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; proxyIndex_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "mapToSource");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if proxyIndex_P /= null then proxyIndex_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end mapToSource;
+   function mapToSource
+     (self : access Inst; proxyIndex_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mapToSource");
@@ -490,11 +745,11 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Ret;
    end mapToSource;
    function match
-     (self : access Inst; start_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex; role_P : int;
-      value_P : Any; hits_P : int := 0; flags_P : access QtAda6.QtCore.Qt.MatchFlag.Inst'Class := null)
+     (self   : access Inst; start_P : access QtAda6.QtCore.QModelIndex.Inst'Class; role_P : int; value_P : Any;
+      hits_P : int := 0; flags_P : access QtAda6.QtCore.Qt.MatchFlag.Inst'Class := null)
       return LIST_QtAda6_QtCore_QModelIndex
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "match");
       Args   := Tuple_New (3);
@@ -509,23 +764,53 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
          Dict_SetItemString (Dict, "flags", flags_P.Python_Proxy);
       end if;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtCore_QModelIndex (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
+   end match;
+   function match
+     (self : access Inst; start_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class; role_P : int; value_P : Any;
+      hits_P : int := 0; flags_P : access QtAda6.QtCore.Qt.MatchFlag.Inst'Class := null)
+      return LIST_QtAda6_QtCore_QModelIndex
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "match");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, (if start_P /= null then start_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, Long_FromLong (role_P));
+      Tuple_SetItem (Args, 2, (if value_P /= null then value_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if hits_P /= 0 then
+         Dict_SetItemString (Dict, "hits", Long_FromLong (hits_P));
+      end if;
+      if flags_P /= null then
+         Dict_SetItemString (Dict, "flags", flags_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Ret : LIST_QtAda6_QtCore_QModelIndex (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end match;
    function mimeData
      (self : access Inst; indexes_P : SEQUENCE_QtAda6_QtCore_QModelIndex)
       return access QtAda6.QtCore.QMimeData.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QMimeData.Class := new QtAda6.QtCore.QMimeData.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mimeData");
+      Args   := Tuple_New (1);
       List   := List_New (indexes_P'Length);
       for ind in indexes_P'Range loop
          List_SetItem
            (List, ssize_t (ind - indexes_P'First),
             (if indexes_P (ind) /= null then indexes_P (ind).Python_Proxy else No_Value));
       end loop;
-      Args := Tuple_New (1);
       Tuple_SetItem (Args, 0, List);
       Dict             := Dict_New;
       Result           := Object_Call (Method, Args, Dict, True);
@@ -533,17 +818,21 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Ret;
    end mimeData;
    function mimeTypes (self : access Inst) return LIST_str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "mimeTypes");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end mimeTypes;
    function parent (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "parent");
       Args             := Tuple_New (0);
@@ -553,10 +842,25 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Ret;
    end parent;
    function parent
-     (self : access Inst; child_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; child_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "parent");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if child_P /= null then child_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end parent;
+   function parent
+     (self : access Inst; child_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "parent");
@@ -568,10 +872,27 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Ret;
    end parent;
    function removeColumns
-     (self     : access Inst; column_P : int; count_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null) return bool
+     (self : access Inst; column_P : int; count_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null)
+      return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "removeColumns");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (column_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (count_P));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end removeColumns;
+   function removeColumns
+     (self     : access Inst; column_P : int; count_P : int;
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeColumns");
       Args   := Tuple_New (2);
@@ -585,10 +906,10 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return To_Ada (Result);
    end removeColumns;
    function removeRows
-     (self     : access Inst; row_P : int; count_P : int;
-      parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null) return bool
+     (self : access Inst; row_P : int; count_P : int; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null)
+      return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "removeRows");
       Args   := Tuple_New (2);
@@ -601,11 +922,39 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
       return To_Ada (Result);
    end removeRows;
-   function rowCount
-     (self : access Inst; parent_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex := null)
-      return int
+   function removeRows
+     (self     : access Inst; row_P : int; count_P : int;
+      parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "removeRows");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, Long_FromLong (row_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (count_P));
+      Dict := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end removeRows;
+   function rowCount (self : access Inst; parent_P : access QtAda6.QtCore.QModelIndex.Inst'Class := null) return int is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "rowCount");
+      Args   := Tuple_New (0);
+      Dict   := Dict_New;
+      if parent_P /= null then
+         Dict_SetItemString (Dict, "parent", parent_P.Python_Proxy);
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return Long_AsLong (Result);
+   end rowCount;
+   function rowCount
+     (self : access Inst; parent_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class := null) return int
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "rowCount");
       Args   := Tuple_New (0);
@@ -617,7 +966,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Long_AsLong (Result);
    end rowCount;
    procedure setAutoAcceptChildRows (self : access Inst; accept_K_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAutoAcceptChildRows");
       Args   := Tuple_New (1);
@@ -626,10 +975,27 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setAutoAcceptChildRows;
    function setData
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex; value_P : Any;
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class; value_P : Any; role_P : int := 0)
+      return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "setData");
+      Args   := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if value_P /= null then value_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      if role_P /= 0 then
+         Dict_SetItemString (Dict, "role", Long_FromLong (role_P));
+      end if;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end setData;
+   function setData
+     (self   : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class; value_P : Any;
       role_P : int := 0) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setData");
       Args   := Tuple_New (2);
@@ -643,7 +1009,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return To_Ada (Result);
    end setData;
    procedure setDynamicSortFilter (self : access Inst; enable_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setDynamicSortFilter");
       Args   := Tuple_New (1);
@@ -652,7 +1018,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setDynamicSortFilter;
    procedure setFilterCaseSensitivity (self : access Inst; cs_P : access QtAda6.QtCore.Qt.CaseSensitivity.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFilterCaseSensitivity");
       Args   := Tuple_New (1);
@@ -661,7 +1027,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setFilterCaseSensitivity;
    procedure setFilterFixedString (self : access Inst; pattern_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFilterFixedString");
       Args   := Tuple_New (1);
@@ -670,7 +1036,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setFilterFixedString;
    procedure setFilterKeyColumn (self : access Inst; column_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFilterKeyColumn");
       Args   := Tuple_New (1);
@@ -679,7 +1045,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setFilterKeyColumn;
    procedure setFilterRegularExpression (self : access Inst; pattern_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFilterRegularExpression");
       Args   := Tuple_New (1);
@@ -688,9 +1054,9 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setFilterRegularExpression;
    procedure setFilterRegularExpression
-     (self : access Inst; regularExpression_P : UNION_QtAda6_QtCore_QRegularExpression_str)
+     (self : access Inst; regularExpression_P : access QtAda6.QtCore.QRegularExpression.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFilterRegularExpression");
       Args   := Tuple_New (1);
@@ -699,7 +1065,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setFilterRegularExpression;
    procedure setFilterRole (self : access Inst; role_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFilterRole");
       Args   := Tuple_New (1);
@@ -708,7 +1074,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setFilterRole;
    procedure setFilterWildcard (self : access Inst; pattern_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFilterWildcard");
       Args   := Tuple_New (1);
@@ -720,7 +1086,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
      (self    : access Inst; section_P : int; orientation_P : access QtAda6.QtCore.Qt.Orientation.Inst'Class;
       value_P : Any; role_P : int := 0) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setHeaderData");
       Args   := Tuple_New (3);
@@ -735,7 +1101,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return To_Ada (Result);
    end setHeaderData;
    procedure setRecursiveFilteringEnabled (self : access Inst; recursive_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setRecursiveFilteringEnabled");
       Args   := Tuple_New (1);
@@ -744,7 +1110,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setRecursiveFilteringEnabled;
    procedure setSortCaseSensitivity (self : access Inst; cs_P : access QtAda6.QtCore.Qt.CaseSensitivity.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSortCaseSensitivity");
       Args   := Tuple_New (1);
@@ -753,7 +1119,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setSortCaseSensitivity;
    procedure setSortLocaleAware (self : access Inst; on_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSortLocaleAware");
       Args   := Tuple_New (1);
@@ -762,7 +1128,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setSortLocaleAware;
    procedure setSortRole (self : access Inst; role_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSortRole");
       Args   := Tuple_New (1);
@@ -771,7 +1137,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setSortRole;
    procedure setSourceModel (self : access Inst; sourceModel_P : access QtAda6.QtCore.QAbstractItemModel.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setSourceModel");
       Args   := Tuple_New (1);
@@ -780,11 +1146,27 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end setSourceModel;
    function sibling
-     (self  : access Inst; row_P : int; column_P : int;
-      idx_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; row_P : int; column_P : int; idx_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtCore.QModelIndex.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "sibling");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, Long_FromLong (row_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (column_P));
+      Tuple_SetItem (Args, 2, (if idx_P /= null then idx_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end sibling;
+   function sibling
+     (self : access Inst; row_P : int; column_P : int; idx_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtCore.QModelIndex.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sibling");
@@ -799,7 +1181,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
    end sibling;
    procedure sort (self : access Inst; column_P : int; order_P : access QtAda6.QtCore.Qt.SortOrder.Inst'Class := null)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sort");
       Args   := Tuple_New (1);
@@ -811,7 +1193,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       Result := Object_Call (Method, Args, Dict, True);
    end sort;
    function sortCaseSensitivity (self : access Inst) return access QtAda6.QtCore.Qt.CaseSensitivity.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.CaseSensitivity.Class := new QtAda6.QtCore.Qt.CaseSensitivity.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sortCaseSensitivity");
@@ -822,7 +1204,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Ret;
    end sortCaseSensitivity;
    function sortColumn (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sortColumn");
       Args   := Tuple_New (0);
@@ -831,7 +1213,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Long_AsLong (Result);
    end sortColumn;
    function sortOrder (self : access Inst) return access QtAda6.QtCore.Qt.SortOrder.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.SortOrder.Class := new QtAda6.QtCore.Qt.SortOrder.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "sortOrder");
@@ -842,7 +1224,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Ret;
    end sortOrder;
    function sortRole (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "sortRole");
       Args   := Tuple_New (0);
@@ -851,11 +1233,26 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Long_AsLong (Result);
    end sortRole;
    function span
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex)
+     (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
       return access QtAda6.QtCore.QSize.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "span");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end span;
+   function span
+     (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class)
+      return access QtAda6.QtCore.QSize.Inst'Class
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QSize.Class := new QtAda6.QtCore.QSize.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "span");
       Args   := Tuple_New (1);
@@ -866,7 +1263,7 @@ package body QtAda6.QtCore.QSortFilterProxyModel is
       return Ret;
    end span;
    function supportedDropActions (self : access Inst) return access QtAda6.QtCore.Qt.DropAction.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Qt.DropAction.Class := new QtAda6.QtCore.Qt.DropAction.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "supportedDropActions");

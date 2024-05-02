@@ -21,7 +21,7 @@ package body QtAda6.QtCore.QMutex is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QMutex");
       Args  := Tuple_New (0);
@@ -29,7 +29,7 @@ package body QtAda6.QtCore.QMutex is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function tryLock (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tryLock");
       Args   := Tuple_New (0);
@@ -38,7 +38,7 @@ package body QtAda6.QtCore.QMutex is
       return To_Ada (Result);
    end tryLock;
    function tryLock (self : access Inst; timeout_P : int) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "tryLock");
       Args   := Tuple_New (1);
@@ -48,7 +48,7 @@ package body QtAda6.QtCore.QMutex is
       return To_Ada (Result);
    end tryLock;
    function try_lock (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "try_lock");
       Args   := Tuple_New (0);

@@ -23,7 +23,7 @@ package body QtAda6.QtCore.QStandardPaths is
       Free (Inst_Access (Self));
    end Finalize;
    function displayName (type_K_P : access QtAda6.QtCore.QStandardPaths.StandardLocation.Inst'Class) return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "displayName");
@@ -33,26 +33,26 @@ package body QtAda6.QtCore.QStandardPaths is
       Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end displayName;
-   function findExecutable (executableName_P : str; paths_P : SEQUENCE_str := (2 .. 1 => <>)) return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+   function findExecutable (executableName_P : str; paths_P : SEQUENCE_str) return str is
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "findExecutable");
-      List   := List_New (paths_P'Length);
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Unicode_FromString (executableName_P));
+      Dict := Dict_New;
+      List := List_New (paths_P'Length);
       for ind in paths_P'Range loop
          List_SetItem (List, ssize_t (ind - paths_P'First), Unicode_FromString (paths_P (ind)));
       end loop;
-      Args := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Unicode_FromString (executableName_P));
-      Dict := Dict_New;
-      if paths_P /= (2 .. 1 => <>) then
+      if paths_P'Length > 0 then
          Dict_SetItemString (Dict, "paths", List);
       end if;
       Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end findExecutable;
    function isTestModeEnabled return bool is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "isTestModeEnabled");
@@ -65,7 +65,7 @@ package body QtAda6.QtCore.QStandardPaths is
      (type_K_P  : access QtAda6.QtCore.QStandardPaths.StandardLocation.Inst'Class; fileName_P : str;
       options_P : access QtAda6.QtCore.QStandardPaths.LocateOption.Inst'Class := null) return str
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "locate");
@@ -83,7 +83,7 @@ package body QtAda6.QtCore.QStandardPaths is
      (type_K_P  : access QtAda6.QtCore.QStandardPaths.StandardLocation.Inst'Class; fileName_P : str;
       options_P : access QtAda6.QtCore.QStandardPaths.LocateOption.Inst'Class := null) return LIST_str
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "locateAll");
@@ -95,10 +95,14 @@ package body QtAda6.QtCore.QStandardPaths is
          Dict_SetItemString (Dict, "options", options_P.Python_Proxy);
       end if;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end locateAll;
    procedure setTestModeEnabled (testMode_P : bool) is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "setTestModeEnabled");
@@ -110,7 +114,7 @@ package body QtAda6.QtCore.QStandardPaths is
    function standardLocations
      (type_K_P : access QtAda6.QtCore.QStandardPaths.StandardLocation.Inst'Class) return LIST_str
    is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "standardLocations");
@@ -118,10 +122,14 @@ package body QtAda6.QtCore.QStandardPaths is
       Tuple_SetItem (Args, 0, (if type_K_P /= null then type_K_P.Python_Proxy else No_Value));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+         end loop;
+      end return;
    end standardLocations;
    function writableLocation (type_K_P : access QtAda6.QtCore.QStandardPaths.StandardLocation.Inst'Class) return str is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QStandardPaths");
       Method := Object_GetAttrString (Class, "writableLocation");

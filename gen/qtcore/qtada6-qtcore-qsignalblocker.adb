@@ -11,7 +11,6 @@
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
 with QtAda6.QtCore.QObject;
-with QtAda6.QtCore.QSignalBlocker;
 package body QtAda6.QtCore.QSignalBlocker is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -23,7 +22,7 @@ package body QtAda6.QtCore.QSignalBlocker is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (o_P : access QtAda6.QtCore.QObject.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QSignalBlocker");
       Args  := Tuple_New (1);
@@ -32,7 +31,7 @@ package body QtAda6.QtCore.QSignalBlocker is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function U_enter_U (self : access Inst) return access QtAda6.QtCore.QSignalBlocker.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QSignalBlocker.Class := new QtAda6.QtCore.QSignalBlocker.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "__enter__");
@@ -45,7 +44,7 @@ package body QtAda6.QtCore.QSignalBlocker is
    procedure U_exit_U
      (self : access Inst; arg_1_P : access Object'Class; arg_2_P : access Object'Class; arg_3_P : access Object'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__exit__");
       Args   := Tuple_New (3);
@@ -56,7 +55,7 @@ package body QtAda6.QtCore.QSignalBlocker is
       Result := Object_Call (Method, Args, Dict, True);
    end U_exit_U;
    procedure reblock (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "reblock");
       Args   := Tuple_New (0);
@@ -64,7 +63,7 @@ package body QtAda6.QtCore.QSignalBlocker is
       Result := Object_Call (Method, Args, Dict, True);
    end reblock;
    procedure unblock (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "unblock");
       Args   := Tuple_New (0);

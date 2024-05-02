@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QLocationPermission;
 with QtAda6.QtCore.QLocationPermission.Accuracy;
 with QtAda6.QtCore.QLocationPermission.Availability;
 package body QtAda6.QtCore.QLocationPermission is
@@ -24,7 +23,7 @@ package body QtAda6.QtCore.QLocationPermission is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLocationPermission");
       Args  := Tuple_New (0);
@@ -32,7 +31,7 @@ package body QtAda6.QtCore.QLocationPermission is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (other_P : access QtAda6.QtCore.QLocationPermission.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLocationPermission");
       Args  := Tuple_New (1);
@@ -41,7 +40,7 @@ package body QtAda6.QtCore.QLocationPermission is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QLocationPermission");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -50,8 +49,8 @@ package body QtAda6.QtCore.QLocationPermission is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function accuracy_F (self : access Inst) return access QtAda6.QtCore.QLocationPermission.Accuracy.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QLocationPermission.Accuracy.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QLocationPermission.Accuracy.Class :=
         new QtAda6.QtCore.QLocationPermission.Accuracy.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "accuracy");
@@ -63,8 +62,8 @@ package body QtAda6.QtCore.QLocationPermission is
    end accuracy_F;
    function availability_F (self : access Inst) return access QtAda6.QtCore.QLocationPermission.Availability.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QLocationPermission.Availability.Class :=
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret                                          : constant QtAda6.QtCore.QLocationPermission.Availability.Class :=
         new QtAda6.QtCore.QLocationPermission.Availability.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "availability");
@@ -76,7 +75,7 @@ package body QtAda6.QtCore.QLocationPermission is
    end availability_F;
    procedure setAccuracy (self : access Inst; accuracy_P : access QtAda6.QtCore.QLocationPermission.Accuracy.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAccuracy");
       Args   := Tuple_New (1);
@@ -87,7 +86,7 @@ package body QtAda6.QtCore.QLocationPermission is
    procedure setAvailability
      (self : access Inst; availability_P : access QtAda6.QtCore.QLocationPermission.Availability.Inst'Class)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAvailability");
       Args   := Tuple_New (1);
@@ -96,7 +95,7 @@ package body QtAda6.QtCore.QLocationPermission is
       Result := Object_Call (Method, Args, Dict, True);
    end setAvailability;
    procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QLocationPermission.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);

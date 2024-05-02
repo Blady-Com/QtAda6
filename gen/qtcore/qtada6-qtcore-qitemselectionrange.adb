@@ -10,9 +10,8 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QItemSelectionRange;
-with QtAda6.QtCore.QPersistentModelIndex;
 with QtAda6.QtCore.QModelIndex;
+with QtAda6.QtCore.QPersistentModelIndex;
 with QtAda6.QtCore.QAbstractItemModel;
 package body QtAda6.QtCore.QItemSelectionRange is
    use type QtAda6.int;
@@ -25,7 +24,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QItemSelectionRange");
       Args  := Tuple_New (0);
@@ -33,7 +32,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (QItemSelectionRange_P : access QtAda6.QtCore.QItemSelectionRange.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QItemSelectionRange");
       Args  := Tuple_New (1);
@@ -41,8 +40,17 @@ package body QtAda6.QtCore.QItemSelectionRange is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QItemSelectionRange");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create (index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QItemSelectionRange");
       Args  := Tuple_New (1);
@@ -51,10 +59,49 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create
-     (topL_P    : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex;
-      bottomR_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return Class
+     (topL_P : access QtAda6.QtCore.QModelIndex.Inst'Class; bottomR_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
+      return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QItemSelectionRange");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if topL_P /= null then topL_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if bottomR_P /= null then bottomR_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (topL_P    : access QtAda6.QtCore.QModelIndex.Inst'Class;
+      bottomR_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QItemSelectionRange");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if topL_P /= null then topL_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if bottomR_P /= null then bottomR_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (topL_P    : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class;
+      bottomR_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QItemSelectionRange");
+      Args  := Tuple_New (2);
+      Tuple_SetItem (Args, 0, (if topL_P /= null then topL_P.Python_Proxy else No_Value));
+      Tuple_SetItem (Args, 1, (if bottomR_P /= null then bottomR_P.Python_Proxy else No_Value));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
+   function Create
+     (topL_P    : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class;
+      bottomR_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return Class
+   is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QItemSelectionRange");
       Args  := Tuple_New (2);
@@ -64,7 +111,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QItemSelectionRange");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -73,7 +120,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function bottom (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "bottom");
       Args   := Tuple_New (0);
@@ -82,7 +129,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return Long_AsLong (Result);
    end bottom;
    function bottomRight (self : access Inst) return access QtAda6.QtCore.QPersistentModelIndex.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QPersistentModelIndex.Class := new QtAda6.QtCore.QPersistentModelIndex.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "bottomRight");
@@ -92,10 +139,19 @@ package body QtAda6.QtCore.QItemSelectionRange is
       Ret.Python_Proxy := Result;
       return Ret;
    end bottomRight;
-   function contains
-     (self : access Inst; index_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool
+   function contains (self : access Inst; index_P : access QtAda6.QtCore.QModelIndex.Inst'Class) return bool is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "contains");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, (if index_P /= null then index_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end contains;
+   function contains (self : access Inst; index_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "contains");
       Args   := Tuple_New (1);
@@ -105,10 +161,25 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return To_Ada (Result);
    end contains;
    function contains
-     (self          : access Inst; row_P : int; column_P : int;
-      parentIndex_P : UNION_QtAda6_QtCore_QModelIndex_QtAda6_QtCore_QPersistentModelIndex) return bool
+     (self : access Inst; row_P : int; column_P : int; parentIndex_P : access QtAda6.QtCore.QModelIndex.Inst'Class)
+      return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "contains");
+      Args   := Tuple_New (3);
+      Tuple_SetItem (Args, 0, Long_FromLong (row_P));
+      Tuple_SetItem (Args, 1, Long_FromLong (column_P));
+      Tuple_SetItem (Args, 2, (if parentIndex_P /= null then parentIndex_P.Python_Proxy else No_Value));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+      return To_Ada (Result);
+   end contains;
+   function contains
+     (self          : access Inst; row_P : int; column_P : int;
+      parentIndex_P : access QtAda6.QtCore.QPersistentModelIndex.Inst'Class) return bool
+   is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "contains");
       Args   := Tuple_New (3);
@@ -120,7 +191,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return To_Ada (Result);
    end contains;
    function height (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "height");
       Args   := Tuple_New (0);
@@ -129,19 +200,23 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return Long_AsLong (Result);
    end height;
    function indexes (self : access Inst) return LIST_QtAda6_QtCore_QModelIndex is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "indexes");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtCore_QModelIndex (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end indexes;
    function intersected
      (self : access Inst; other_P : access QtAda6.QtCore.QItemSelectionRange.Inst'Class)
       return access QtAda6.QtCore.QItemSelectionRange.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QItemSelectionRange.Class := new QtAda6.QtCore.QItemSelectionRange.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "intersected");
@@ -154,7 +229,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
    end intersected;
    function intersects (self : access Inst; other_P : access QtAda6.QtCore.QItemSelectionRange.Inst'Class) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "intersects");
       Args   := Tuple_New (1);
@@ -164,7 +239,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return To_Ada (Result);
    end intersects;
    function isEmpty (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEmpty");
       Args   := Tuple_New (0);
@@ -173,7 +248,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return To_Ada (Result);
    end isEmpty;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);
@@ -182,7 +257,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return To_Ada (Result);
    end isValid;
    function left (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "left");
       Args   := Tuple_New (0);
@@ -191,7 +266,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return Long_AsLong (Result);
    end left;
    function model (self : access Inst) return access QtAda6.QtCore.QAbstractItemModel.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QAbstractItemModel.Class := new QtAda6.QtCore.QAbstractItemModel.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "model");
@@ -202,7 +277,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return Ret;
    end model;
    function parent (self : access Inst) return access QtAda6.QtCore.QModelIndex.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QModelIndex.Class := new QtAda6.QtCore.QModelIndex.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "parent");
@@ -213,7 +288,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return Ret;
    end parent;
    function right (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "right");
       Args   := Tuple_New (0);
@@ -222,7 +297,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return Long_AsLong (Result);
    end right;
    procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QItemSelectionRange.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
@@ -231,7 +306,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       Result := Object_Call (Method, Args, Dict, True);
    end swap;
    function top (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "top");
       Args   := Tuple_New (0);
@@ -240,7 +315,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return Long_AsLong (Result);
    end top;
    function topLeft (self : access Inst) return access QtAda6.QtCore.QPersistentModelIndex.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QPersistentModelIndex.Class := new QtAda6.QtCore.QPersistentModelIndex.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "topLeft");
@@ -251,7 +326,7 @@ package body QtAda6.QtCore.QItemSelectionRange is
       return Ret;
    end topLeft;
    function width (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "width");
       Args   := Tuple_New (0);

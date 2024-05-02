@@ -24,7 +24,7 @@ package body QtAda6.QtCore.QEventLoop is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QEventLoop");
       Args  := Tuple_New (0);
@@ -35,7 +35,7 @@ package body QtAda6.QtCore.QEventLoop is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function event (self : access Inst; event_P : access QtAda6.QtCore.QEvent.Inst'Class) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "event");
       Args   := Tuple_New (1);
@@ -47,7 +47,7 @@ package body QtAda6.QtCore.QEventLoop is
    function exec
      (self : access Inst; flags_P : access QtAda6.QtCore.QEventLoop.ProcessEventsFlag.Inst'Class := null) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec");
       Args   := Tuple_New (0);
@@ -61,7 +61,7 @@ package body QtAda6.QtCore.QEventLoop is
    function exec_U
      (self : access Inst; flags_P : access QtAda6.QtCore.QEventLoop.ProcessEventsFlag.Inst'Class := null) return int
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exec_");
       Args   := Tuple_New (0);
@@ -73,7 +73,7 @@ package body QtAda6.QtCore.QEventLoop is
       return Long_AsLong (Result);
    end exec_U;
    procedure exit_K (self : access Inst; returnCode_P : int := 0) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "exit");
       Args   := Tuple_New (0);
@@ -84,7 +84,7 @@ package body QtAda6.QtCore.QEventLoop is
       Result := Object_Call (Method, Args, Dict, True);
    end exit_K;
    function isRunning (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isRunning");
       Args   := Tuple_New (0);
@@ -95,7 +95,7 @@ package body QtAda6.QtCore.QEventLoop is
    procedure processEvents
      (self : access Inst; flags_P : access QtAda6.QtCore.QEventLoop.ProcessEventsFlag.Inst'Class; maximumTime_P : int)
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "processEvents");
       Args   := Tuple_New (2);
@@ -107,7 +107,7 @@ package body QtAda6.QtCore.QEventLoop is
    function processEvents
      (self : access Inst; flags_P : access QtAda6.QtCore.QEventLoop.ProcessEventsFlag.Inst'Class := null) return bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "processEvents");
       Args   := Tuple_New (0);
@@ -119,7 +119,7 @@ package body QtAda6.QtCore.QEventLoop is
       return To_Ada (Result);
    end processEvents;
    procedure quit (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "quit");
       Args   := Tuple_New (0);
@@ -127,7 +127,7 @@ package body QtAda6.QtCore.QEventLoop is
       Result := Object_Call (Method, Args, Dict, True);
    end quit;
    procedure wakeUp (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "wakeUp");
       Args   := Tuple_New (0);

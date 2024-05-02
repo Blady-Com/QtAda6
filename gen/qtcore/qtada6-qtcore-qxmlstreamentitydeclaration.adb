@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QXmlStreamEntityDeclaration;
 package body QtAda6.QtCore.QXmlStreamEntityDeclaration is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -22,7 +21,7 @@ package body QtAda6.QtCore.QXmlStreamEntityDeclaration is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QXmlStreamEntityDeclaration");
       Args  := Tuple_New (0);
@@ -32,7 +31,7 @@ package body QtAda6.QtCore.QXmlStreamEntityDeclaration is
    function Create
      (QXmlStreamEntityDeclaration_P : access QtAda6.QtCore.QXmlStreamEntityDeclaration.Inst'Class) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QXmlStreamEntityDeclaration");
       Args  := Tuple_New (1);
@@ -43,7 +42,7 @@ package body QtAda6.QtCore.QXmlStreamEntityDeclaration is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QXmlStreamEntityDeclaration");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -52,7 +51,7 @@ package body QtAda6.QtCore.QXmlStreamEntityDeclaration is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function name (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "name");
       Args   := Tuple_New (0);
@@ -61,7 +60,7 @@ package body QtAda6.QtCore.QXmlStreamEntityDeclaration is
       return As_String (Result);
    end name;
    function notationName (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "notationName");
       Args   := Tuple_New (0);
@@ -70,7 +69,7 @@ package body QtAda6.QtCore.QXmlStreamEntityDeclaration is
       return As_String (Result);
    end notationName;
    function publicId (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "publicId");
       Args   := Tuple_New (0);
@@ -79,7 +78,7 @@ package body QtAda6.QtCore.QXmlStreamEntityDeclaration is
       return As_String (Result);
    end publicId;
    function systemId (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "systemId");
       Args   := Tuple_New (0);
@@ -88,7 +87,7 @@ package body QtAda6.QtCore.QXmlStreamEntityDeclaration is
       return As_String (Result);
    end systemId;
    function value (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "value");
       Args   := Tuple_New (0);

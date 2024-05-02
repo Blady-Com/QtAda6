@@ -21,7 +21,7 @@ package body QtAda6.QtCore.Slot is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (types_P : Type_K_T; name_P : str := ""; result_P : str := "") return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Slot");
       Args  := Tuple_New (1);
@@ -36,7 +36,7 @@ package body QtAda6.QtCore.Slot is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function U_call_U (self : access Inst; function_K_P : CALLABLE) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__call__");
       Args   := Tuple_New (1);

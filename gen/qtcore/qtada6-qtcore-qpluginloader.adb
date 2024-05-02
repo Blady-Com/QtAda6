@@ -24,7 +24,7 @@ package body QtAda6.QtCore.QPluginLoader is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (fileName_P : str; parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPluginLoader");
       Args  := Tuple_New (1);
@@ -36,7 +36,7 @@ package body QtAda6.QtCore.QPluginLoader is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (parent_P : access QtAda6.QtCore.QObject.Inst'Class := null) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPluginLoader");
       Args  := Tuple_New (0);
@@ -47,7 +47,7 @@ package body QtAda6.QtCore.QPluginLoader is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function errorString (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "errorString");
       Args   := Tuple_New (0);
@@ -56,7 +56,7 @@ package body QtAda6.QtCore.QPluginLoader is
       return As_String (Result);
    end errorString;
    function fileName (self : access Inst) return str is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fileName");
       Args   := Tuple_New (0);
@@ -65,8 +65,8 @@ package body QtAda6.QtCore.QPluginLoader is
       return As_String (Result);
    end fileName;
    function instance (self : access Inst) return access QtAda6.QtCore.QObject.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QObject.Class := new QtAda6.QtCore.QObject.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "instance");
       Args             := Tuple_New (0);
@@ -76,7 +76,7 @@ package body QtAda6.QtCore.QPluginLoader is
       return Ret;
    end instance;
    function isLoaded (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isLoaded");
       Args   := Tuple_New (0);
@@ -85,7 +85,7 @@ package body QtAda6.QtCore.QPluginLoader is
       return To_Ada (Result);
    end isLoaded;
    function load (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "load");
       Args   := Tuple_New (0);
@@ -94,7 +94,7 @@ package body QtAda6.QtCore.QPluginLoader is
       return To_Ada (Result);
    end load;
    function loadHints (self : access Inst) return access QtAda6.QtCore.QLibrary.LoadHint.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QLibrary.LoadHint.Class := new QtAda6.QtCore.QLibrary.LoadHint.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "loadHints");
@@ -105,7 +105,7 @@ package body QtAda6.QtCore.QPluginLoader is
       return Ret;
    end loadHints;
    function metaData (self : access Inst) return DICT_str_QtAda6_QtCore_QJsonValue is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "metaData");
       Args   := Tuple_New (0);
@@ -117,7 +117,7 @@ package body QtAda6.QtCore.QPluginLoader is
       end return;
    end metaData;
    procedure setFileName (self : access Inst; fileName_P : str) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setFileName");
       Args   := Tuple_New (1);
@@ -126,7 +126,7 @@ package body QtAda6.QtCore.QPluginLoader is
       Result := Object_Call (Method, Args, Dict, True);
    end setFileName;
    procedure setLoadHints (self : access Inst; loadHints_P : access QtAda6.QtCore.QLibrary.LoadHint.Inst'Class) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setLoadHints");
       Args   := Tuple_New (1);
@@ -135,17 +135,21 @@ package body QtAda6.QtCore.QPluginLoader is
       Result := Object_Call (Method, Args, Dict, True);
    end setLoadHints;
    function staticInstances return LIST_QtAda6_QtCore_QObject is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QPluginLoader");
       Method := Object_GetAttrString (Class, "staticInstances");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return (2 .. 1 => <>);
+      return Ret : LIST_QtAda6_QtCore_QObject (1 .. Natural (List_Size (Result))) do
+         for Ind in Ret'Range loop
+            Ret (Ind).Python_Proxy := List_GetItem (Result, ssize_t (Ind - Ret'First));
+         end loop;
+      end return;
    end staticInstances;
    function unload (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "unload");
       Args   := Tuple_New (0);

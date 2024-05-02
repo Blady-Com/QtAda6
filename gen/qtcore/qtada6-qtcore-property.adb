@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Property;
 package body QtAda6.QtCore.Property is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -27,7 +26,7 @@ package body QtAda6.QtCore.Property is
       scriptable_P : bool     := False; stored_P : bool := False; user_P : bool := False; constant_K_P : bool := False;
       final_P      : bool     := False) return Class
    is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Property");
       Args  := Tuple_New (1);
@@ -72,7 +71,7 @@ package body QtAda6.QtCore.Property is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function deleter (self : access Inst; fdel_P : CALLABLE) return access QtAda6.QtCore.Property.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Property.Class := new QtAda6.QtCore.Property.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "deleter");
@@ -84,7 +83,7 @@ package body QtAda6.QtCore.Property is
       return Ret;
    end deleter;
    function getter (self : access Inst; fget_P : CALLABLE) return access QtAda6.QtCore.Property.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Property.Class := new QtAda6.QtCore.Property.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "getter");
@@ -96,7 +95,7 @@ package body QtAda6.QtCore.Property is
       return Ret;
    end getter;
    function read (self : access Inst; fget_P : CALLABLE) return access QtAda6.QtCore.Property.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Property.Class := new QtAda6.QtCore.Property.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "read");
@@ -108,7 +107,7 @@ package body QtAda6.QtCore.Property is
       return Ret;
    end read;
    function setter (self : access Inst; fset_P : CALLABLE) return access QtAda6.QtCore.Property.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Property.Class := new QtAda6.QtCore.Property.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setter");
@@ -120,7 +119,7 @@ package body QtAda6.QtCore.Property is
       return Ret;
    end setter;
    function write (self : access Inst; fset_P : CALLABLE) return access QtAda6.QtCore.Property.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.Property.Class := new QtAda6.QtCore.Property.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "write");

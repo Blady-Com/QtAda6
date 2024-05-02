@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QEvent;
 with QtAda6.QtCore.QEvent.Type_K;
 package body QtAda6.QtCore.QEvent is
    use type QtAda6.int;
@@ -23,7 +22,7 @@ package body QtAda6.QtCore.QEvent is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (arg_1_P : access QtAda6.QtCore.QEvent.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QEvent");
       Args  := Tuple_New (1);
@@ -32,7 +31,7 @@ package body QtAda6.QtCore.QEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (type_K_P : access QtAda6.QtCore.QEvent.Type_K.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QEvent");
       Args  := Tuple_New (1);
@@ -41,7 +40,7 @@ package body QtAda6.QtCore.QEvent is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function U_repr_U (self : access Inst) return access Object'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__repr__");
       Args   := Tuple_New (0);
@@ -50,7 +49,7 @@ package body QtAda6.QtCore.QEvent is
       return null;
    end U_repr_U;
    procedure accept_K (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "accept");
       Args   := Tuple_New (0);
@@ -58,8 +57,8 @@ package body QtAda6.QtCore.QEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end accept_K;
    function clone (self : access Inst) return access QtAda6.QtCore.QEvent.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.QEvent.Class := new QtAda6.QtCore.QEvent.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QEvent.Class := new QtAda6.QtCore.QEvent.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "clone");
       Args             := Tuple_New (0);
@@ -69,7 +68,7 @@ package body QtAda6.QtCore.QEvent is
       return Ret;
    end clone;
    procedure ignore (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "ignore");
       Args   := Tuple_New (0);
@@ -77,7 +76,7 @@ package body QtAda6.QtCore.QEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end ignore;
    function isAccepted (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isAccepted");
       Args   := Tuple_New (0);
@@ -86,7 +85,7 @@ package body QtAda6.QtCore.QEvent is
       return To_Ada (Result);
    end isAccepted;
    function isInputEvent (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isInputEvent");
       Args   := Tuple_New (0);
@@ -95,7 +94,7 @@ package body QtAda6.QtCore.QEvent is
       return To_Ada (Result);
    end isInputEvent;
    function isPointerEvent (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isPointerEvent");
       Args   := Tuple_New (0);
@@ -104,7 +103,7 @@ package body QtAda6.QtCore.QEvent is
       return To_Ada (Result);
    end isPointerEvent;
    function isSinglePointEvent (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isSinglePointEvent");
       Args   := Tuple_New (0);
@@ -113,7 +112,7 @@ package body QtAda6.QtCore.QEvent is
       return To_Ada (Result);
    end isSinglePointEvent;
    function registerEventType (hint_P : int := 0) return int is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QEvent");
       Method := Object_GetAttrString (Class, "registerEventType");
@@ -126,7 +125,7 @@ package body QtAda6.QtCore.QEvent is
       return Long_AsLong (Result);
    end registerEventType;
    procedure setAccepted (self : access Inst; accepted_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setAccepted");
       Args   := Tuple_New (1);
@@ -135,7 +134,7 @@ package body QtAda6.QtCore.QEvent is
       Result := Object_Call (Method, Args, Dict, True);
    end setAccepted;
    function spontaneous (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "spontaneous");
       Args   := Tuple_New (0);
@@ -144,7 +143,7 @@ package body QtAda6.QtCore.QEvent is
       return To_Ada (Result);
    end spontaneous;
    function type_K_F (self : access Inst) return access QtAda6.QtCore.QEvent.Type_K.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QEvent.Type_K.Class := new QtAda6.QtCore.QEvent.Type_K.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "type");

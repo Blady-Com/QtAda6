@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QBitArray;
 with QtAda6.QtCore.QSysInfo.Endian;
 package body QtAda6.QtCore.QBitArray is
    use type QtAda6.int;
@@ -23,15 +22,15 @@ package body QtAda6.QtCore.QBitArray is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QBitArray");
       Args  := Tuple_New (0);
       Dict  := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (other_P : UNION_QtAda6_QtCore_QBitArray_int) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (other_P : access QtAda6.QtCore.QBitArray.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QBitArray");
       Args  := Tuple_New (1);
@@ -39,8 +38,17 @@ package body QtAda6.QtCore.QBitArray is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
+   function Create (other_P : int) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QBitArray");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (other_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
    function Create (size_P : int; val_P : bool := False) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QBitArray");
       Args  := Tuple_New (1);
@@ -52,9 +60,10 @@ package body QtAda6.QtCore.QBitArray is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function U_and_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QBitArray_int) return access QtAda6.QtCore.QBitArray.Inst'Class
+     (self : access Inst; arg_2_P : access QtAda6.QtCore.QBitArray.Inst'Class)
+      return access QtAda6.QtCore.QBitArray.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QBitArray.Class := new QtAda6.QtCore.QBitArray.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__and__");
@@ -65,8 +74,20 @@ package body QtAda6.QtCore.QBitArray is
       Ret.Python_Proxy := Result;
       return Ret;
    end U_and_U;
+   function U_and_U (self : access Inst; arg_2_P : int) return access QtAda6.QtCore.QBitArray.Inst'Class is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QBitArray.Class := new QtAda6.QtCore.QBitArray.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "__and__");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (arg_2_P));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end U_and_U;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QBitArray");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -75,9 +96,10 @@ package body QtAda6.QtCore.QBitArray is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function U_iand_U
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtCore_QBitArray_int) return access QtAda6.QtCore.QBitArray.Inst'Class
+     (self : access Inst; arg_1_P : access QtAda6.QtCore.QBitArray.Inst'Class)
+      return access QtAda6.QtCore.QBitArray.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QBitArray.Class := new QtAda6.QtCore.QBitArray.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__iand__");
@@ -88,8 +110,20 @@ package body QtAda6.QtCore.QBitArray is
       Ret.Python_Proxy := Result;
       return Ret;
    end U_iand_U;
+   function U_iand_U (self : access Inst; arg_1_P : int) return access QtAda6.QtCore.QBitArray.Inst'Class is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QBitArray.Class := new QtAda6.QtCore.QBitArray.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "__iand__");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (arg_1_P));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end U_iand_U;
    function U_invert_U (self : access Inst) return access QtAda6.QtCore.QBitArray.Inst'Class is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QBitArray.Class := new QtAda6.QtCore.QBitArray.Inst;
    begin
       Method           := Object_GetAttrString (self.Python_Proxy, "__invert__");
@@ -100,9 +134,10 @@ package body QtAda6.QtCore.QBitArray is
       return Ret;
    end U_invert_U;
    function U_ior_U
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtCore_QBitArray_int) return access QtAda6.QtCore.QBitArray.Inst'Class
+     (self : access Inst; arg_1_P : access QtAda6.QtCore.QBitArray.Inst'Class)
+      return access QtAda6.QtCore.QBitArray.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QBitArray.Class := new QtAda6.QtCore.QBitArray.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__ior__");
@@ -113,10 +148,23 @@ package body QtAda6.QtCore.QBitArray is
       Ret.Python_Proxy := Result;
       return Ret;
    end U_ior_U;
+   function U_ior_U (self : access Inst; arg_1_P : int) return access QtAda6.QtCore.QBitArray.Inst'Class is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QBitArray.Class := new QtAda6.QtCore.QBitArray.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "__ior__");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (arg_1_P));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end U_ior_U;
    function U_ixor_U
-     (self : access Inst; arg_1_P : UNION_QtAda6_QtCore_QBitArray_int) return access QtAda6.QtCore.QBitArray.Inst'Class
+     (self : access Inst; arg_1_P : access QtAda6.QtCore.QBitArray.Inst'Class)
+      return access QtAda6.QtCore.QBitArray.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QBitArray.Class := new QtAda6.QtCore.QBitArray.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__ixor__");
@@ -127,10 +175,23 @@ package body QtAda6.QtCore.QBitArray is
       Ret.Python_Proxy := Result;
       return Ret;
    end U_ixor_U;
+   function U_ixor_U (self : access Inst; arg_1_P : int) return access QtAda6.QtCore.QBitArray.Inst'Class is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QBitArray.Class := new QtAda6.QtCore.QBitArray.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "__ixor__");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (arg_1_P));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end U_ixor_U;
    function U_or_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QBitArray_int) return access QtAda6.QtCore.QBitArray.Inst'Class
+     (self : access Inst; arg_2_P : access QtAda6.QtCore.QBitArray.Inst'Class)
+      return access QtAda6.QtCore.QBitArray.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QBitArray.Class := new QtAda6.QtCore.QBitArray.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__or__");
@@ -141,10 +202,23 @@ package body QtAda6.QtCore.QBitArray is
       Ret.Python_Proxy := Result;
       return Ret;
    end U_or_U;
+   function U_or_U (self : access Inst; arg_2_P : int) return access QtAda6.QtCore.QBitArray.Inst'Class is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QBitArray.Class := new QtAda6.QtCore.QBitArray.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "__or__");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (arg_2_P));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end U_or_U;
    function U_xor_U
-     (self : access Inst; arg_2_P : UNION_QtAda6_QtCore_QBitArray_int) return access QtAda6.QtCore.QBitArray.Inst'Class
+     (self : access Inst; arg_2_P : access QtAda6.QtCore.QBitArray.Inst'Class)
+      return access QtAda6.QtCore.QBitArray.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QBitArray.Class := new QtAda6.QtCore.QBitArray.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__xor__");
@@ -155,8 +229,20 @@ package body QtAda6.QtCore.QBitArray is
       Ret.Python_Proxy := Result;
       return Ret;
    end U_xor_U;
+   function U_xor_U (self : access Inst; arg_2_P : int) return access QtAda6.QtCore.QBitArray.Inst'Class is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.QBitArray.Class := new QtAda6.QtCore.QBitArray.Inst;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "__xor__");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (arg_2_P));
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
+      return Ret;
+   end U_xor_U;
    function at_K (self : access Inst; i_P : int) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "at");
       Args   := Tuple_New (1);
@@ -166,16 +252,16 @@ package body QtAda6.QtCore.QBitArray is
       return To_Ada (Result);
    end at_K;
    function bits (self : access Inst) return bytes is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "bits");
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return bytes (String'(Bytes_AsString (Result)));
+      return new Standard.String'(Bytes_AsString (Result));
    end bits;
    procedure clear (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clear");
       Args   := Tuple_New (0);
@@ -183,7 +269,7 @@ package body QtAda6.QtCore.QBitArray is
       Result := Object_Call (Method, Args, Dict, True);
    end clear;
    procedure clearBit (self : access Inst; i_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clearBit");
       Args   := Tuple_New (1);
@@ -192,7 +278,7 @@ package body QtAda6.QtCore.QBitArray is
       Result := Object_Call (Method, Args, Dict, True);
    end clearBit;
    function count (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "count");
       Args   := Tuple_New (0);
@@ -201,7 +287,7 @@ package body QtAda6.QtCore.QBitArray is
       return Long_AsLong (Result);
    end count;
    function count (self : access Inst; on_P : bool) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "count");
       Args   := Tuple_New (1);
@@ -211,7 +297,7 @@ package body QtAda6.QtCore.QBitArray is
       return Long_AsLong (Result);
    end count;
    procedure fill (self : access Inst; val_P : bool; first_P : int; last_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fill");
       Args   := Tuple_New (3);
@@ -222,7 +308,7 @@ package body QtAda6.QtCore.QBitArray is
       Result := Object_Call (Method, Args, Dict, True);
    end fill;
    function fill (self : access Inst; val_P : bool; size_P : int := 0) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "fill");
       Args   := Tuple_New (1);
@@ -235,13 +321,13 @@ package body QtAda6.QtCore.QBitArray is
       return To_Ada (Result);
    end fill;
    function fromBits (data_P : bytes; len_P : int) return access QtAda6.QtCore.QBitArray.Inst'Class is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.QBitArray.Class := new QtAda6.QtCore.QBitArray.Inst;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QBitArray");
       Method := Object_GetAttrString (Class, "fromBits");
       Args   := Tuple_New (2);
-      Tuple_SetItem (Args, 0, Bytes_FromString (String (data_P)));
+      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (data_P.all)));
       Tuple_SetItem (Args, 1, Long_FromLong (len_P));
       Dict             := Dict_New;
       Result           := Object_Call (Method, Args, Dict, True);
@@ -249,7 +335,7 @@ package body QtAda6.QtCore.QBitArray is
       return Ret;
    end fromBits;
    function isEmpty (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isEmpty");
       Args   := Tuple_New (0);
@@ -258,7 +344,7 @@ package body QtAda6.QtCore.QBitArray is
       return To_Ada (Result);
    end isEmpty;
    function isNull (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isNull");
       Args   := Tuple_New (0);
@@ -267,7 +353,7 @@ package body QtAda6.QtCore.QBitArray is
       return To_Ada (Result);
    end isNull;
    procedure resize (self : access Inst; size_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "resize");
       Args   := Tuple_New (1);
@@ -276,7 +362,7 @@ package body QtAda6.QtCore.QBitArray is
       Result := Object_Call (Method, Args, Dict, True);
    end resize;
    procedure setBit (self : access Inst; i_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBit");
       Args   := Tuple_New (1);
@@ -285,7 +371,7 @@ package body QtAda6.QtCore.QBitArray is
       Result := Object_Call (Method, Args, Dict, True);
    end setBit;
    procedure setBit (self : access Inst; i_P : int; val_P : bool) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "setBit");
       Args   := Tuple_New (2);
@@ -295,7 +381,7 @@ package body QtAda6.QtCore.QBitArray is
       Result := Object_Call (Method, Args, Dict, True);
    end setBit;
    function size (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "size");
       Args   := Tuple_New (0);
@@ -303,8 +389,8 @@ package body QtAda6.QtCore.QBitArray is
       Result := Object_Call (Method, Args, Dict, True);
       return Long_AsLong (Result);
    end size;
-   procedure swap (self : access Inst; other_P : UNION_QtAda6_QtCore_QBitArray_int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+   procedure swap (self : access Inst; other_P : access QtAda6.QtCore.QBitArray.Inst'Class) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "swap");
       Args   := Tuple_New (1);
@@ -312,8 +398,17 @@ package body QtAda6.QtCore.QBitArray is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end swap;
+   procedure swap (self : access Inst; other_P : int) is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+   begin
+      Method := Object_GetAttrString (self.Python_Proxy, "swap");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (other_P));
+      Dict   := Dict_New;
+      Result := Object_Call (Method, Args, Dict, True);
+   end swap;
    function testBit (self : access Inst; i_P : int) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "testBit");
       Args   := Tuple_New (1);
@@ -325,7 +420,7 @@ package body QtAda6.QtCore.QBitArray is
    function toUInt32
      (self : access Inst; endianness_P : access QtAda6.QtCore.QSysInfo.Endian.Inst'Class) return TUPLE_int_bool
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toUInt32");
       Args   := Tuple_New (1);
@@ -338,7 +433,7 @@ package body QtAda6.QtCore.QBitArray is
       end return;
    end toUInt32;
    function toggleBit (self : access Inst; i_P : int) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "toggleBit");
       Args   := Tuple_New (1);
@@ -348,7 +443,7 @@ package body QtAda6.QtCore.QBitArray is
       return To_Ada (Result);
    end toggleBit;
    procedure truncate (self : access Inst; pos_P : int) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "truncate");
       Args   := Tuple_New (1);

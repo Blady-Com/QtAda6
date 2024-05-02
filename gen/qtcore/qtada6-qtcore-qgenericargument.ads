@@ -16,7 +16,7 @@ package QtAda6.QtCore.QGenericArgument is
    type Inst is new Shiboken.Object with null record;
    procedure Finalize (Self : in out Class);
    function Create (QGenericArgument_P : access QtAda6.QtCore.QGenericArgument.Inst'Class) return Class;
-   function Create (aName_P : bytes := ""; aData_P : int := 0) return Class;
+   function Create (aName_P : bytes := null; aData_P : int := 0) return Class;
    procedure U_copy_U;
    function data (self : access Inst) return int;
    function name (self : access Inst) return bytes;

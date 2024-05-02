@@ -21,15 +21,15 @@ package body QtAda6.QtCore.QCalendar.YearMonthDay is
       Free (Inst_Access (Self));
    end Finalize;
    function Create return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "YearMonthDay");
       Args  := Tuple_New (0);
       Dict  := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
-   function Create (YearMonthDay_P : UNION_QtAda6_QtCore_QCalendar_YearMonthDay_int) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+   function Create (YearMonthDay_P : access QtAda6.QtCore.QCalendar.YearMonthDay.Inst'Class) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "YearMonthDay");
       Args  := Tuple_New (1);
@@ -37,8 +37,17 @@ package body QtAda6.QtCore.QCalendar.YearMonthDay is
       Dict := Dict_New;
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
+   function Create (YearMonthDay_P : int) return Class is
+      Class, Args, Dict, List, Tuple, Set : Handle;
+   begin
+      Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "YearMonthDay");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (YearMonthDay_P));
+      Dict := Dict_New;
+      return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
+   end Create;
    function Create (y_P : int; m_P : int := 0; d_P : int := 0) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "YearMonthDay");
       Args  := Tuple_New (1);
@@ -53,7 +62,7 @@ package body QtAda6.QtCore.QCalendar.YearMonthDay is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "YearMonthDay");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -62,7 +71,7 @@ package body QtAda6.QtCore.QCalendar.YearMonthDay is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    function isValid (self : access Inst) return bool is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "isValid");
       Args   := Tuple_New (0);

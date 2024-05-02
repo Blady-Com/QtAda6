@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.Signal;
 with QtAda6.QtCore.QObject;
 with QtAda6.QtCore.SignalInstance;
 package body QtAda6.QtCore.Signal is
@@ -24,7 +23,7 @@ package body QtAda6.QtCore.Signal is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (types_P : Type_K_T; name_P : str := ""; arguments_P : str := "") return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "Signal");
       Args  := Tuple_New (1);
@@ -41,8 +40,8 @@ package body QtAda6.QtCore.Signal is
    function U_get_U
      (self : access Inst; instance_P : None; owner_P : Any := null) return access QtAda6.QtCore.Signal.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
-      Ret                                     : constant QtAda6.QtCore.Signal.Class := new QtAda6.QtCore.Signal.Inst;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
+      Ret : constant QtAda6.QtCore.Signal.Class := new QtAda6.QtCore.Signal.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__get__");
       Args   := Tuple_New (1);
@@ -59,7 +58,7 @@ package body QtAda6.QtCore.Signal is
      (self : access Inst; instance_P : access QtAda6.QtCore.QObject.Inst'Class; owner_P : Any := null)
       return access QtAda6.QtCore.SignalInstance.Inst'Class
    is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.SignalInstance.Class := new QtAda6.QtCore.SignalInstance.Inst;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "__get__");
@@ -74,9 +73,14 @@ package body QtAda6.QtCore.Signal is
       return Ret;
    end U_get_U;
    function U_get_U (self : access Inst) return access QtAda6.QtCore.SignalInstance.Inst'Class is
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
       Ret : constant QtAda6.QtCore.SignalInstance.Class := new QtAda6.QtCore.SignalInstance.Inst;
    begin
-      Ret.Python_Proxy := self.Python_Proxy;
+      Method           := Object_GetAttrString (self.Python_Proxy, "__get__");
+      Args             := Tuple_New (0);
+      Dict             := Dict_New;
+      Result           := Object_Call (Method, Args, Dict, True);
+      Ret.Python_Proxy := Result;
       return Ret;
    end U_get_U;
 end QtAda6.QtCore.Signal;

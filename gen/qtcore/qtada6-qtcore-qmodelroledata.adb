@@ -10,7 +10,6 @@
 -------------------------------------------------------------------------------
 with Py; use Py;
 with Ada.Unchecked_Deallocation;
-with QtAda6.QtCore.QModelRoleData;
 package body QtAda6.QtCore.QModelRoleData is
    use type QtAda6.int;
    use type QtAda6.float;
@@ -22,7 +21,7 @@ package body QtAda6.QtCore.QModelRoleData is
       Free (Inst_Access (Self));
    end Finalize;
    function Create (QModelRoleData_P : access QtAda6.QtCore.QModelRoleData.Inst'Class) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QModelRoleData");
       Args  := Tuple_New (1);
@@ -31,7 +30,7 @@ package body QtAda6.QtCore.QModelRoleData is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    function Create (role_P : int) return Class is
-      Class, Args, Dict, List, Tuple : Handle;
+      Class, Args, Dict, List, Tuple, Set : Handle;
    begin
       Class := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QModelRoleData");
       Args  := Tuple_New (1);
@@ -40,7 +39,7 @@ package body QtAda6.QtCore.QModelRoleData is
       return new Inst'(Python_Proxy => Object_Call (Class, Args, Dict, True));
    end Create;
    procedure U_copy_U is
-      Class, Method, Args, Dict, List, Tuple, Result : Handle;
+      Class, Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Class  := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "QModelRoleData");
       Method := Object_GetAttrString (Class, "__copy__");
@@ -49,7 +48,7 @@ package body QtAda6.QtCore.QModelRoleData is
       Result := Object_Call (Method, Args, Dict, True);
    end U_copy_U;
    procedure clearData (self : access Inst) is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "clearData");
       Args   := Tuple_New (0);
@@ -57,7 +56,7 @@ package body QtAda6.QtCore.QModelRoleData is
       Result := Object_Call (Method, Args, Dict, True);
    end clearData;
    function data (self : access Inst) return Any is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "data");
       Args   := Tuple_New (0);
@@ -66,7 +65,7 @@ package body QtAda6.QtCore.QModelRoleData is
       return null;
    end data;
    function role (self : access Inst) return int is
-      Method, Args, Dict, List, Tuple, Result : Handle;
+      Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (self.Python_Proxy, "role");
       Args   := Tuple_New (0);
