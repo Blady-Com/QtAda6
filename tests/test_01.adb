@@ -15,6 +15,8 @@ with Interfaces.C;           use Interfaces.C;
 
 with Py.Load_Python_Library;
 
+with Py.Class_Extras.Test_01_Class;
+
 procedure Test_01 is
 
    function Python_Version return String is
@@ -81,6 +83,19 @@ procedure Test_01 is
       Result := Object_CallObject (Code, Args, True);
    end Python_Type;
 
+   procedure Python_Class (V : long) is
+      use Py.Class_Extras.Test_01_Class;
+      A : Class_A := Create (V);
+      C : Class_C := Create (V + 3);
+   begin
+      Put_Line ("PCA.GA: " & A.GA'Image);
+      Put_Line ("PCA.SQR: " & A.SQR'Image);
+      Finalize (A);
+      Put_Line ("PCC.GA: " & C.GA'Image);
+      Put_Line ("PCC.SQR: " & C.SQR'Image);
+      Finalize (C);
+   end Python_Class;
+
 begin
    Put_Line (Py.Load_Python_Library.Get_Python_Path);
    Put_Line (Py.Load_Python_Library.Get_Default_Name);
@@ -98,6 +113,10 @@ begin
       Put_Line (Python_Enum ("ColorF", "RED"));
       Put_Line (Python_Enum ("ColorIF", "GREEN"));
       Python_Type;
+      Py.Class_Extras.Test_01_Class.Initialize;
+      Python_Class (5);
+--        Python_Class (9);
+      Py.Class_Extras.Test_01_Class.Finalize;
    end;
    if Py.FinalizeEx < 0 then
       Put_Line ("Python finalization error");
