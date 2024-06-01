@@ -3,7 +3,7 @@
 --  Implementation                                 Luebeck            --
 --                                                 Winter, 2018       --
 --                                                                    --
---                                Last revision :  12:51 09 Sep 2023  --
+--                                Last revision :  13:35 10 Sep 2023  --
 --                                                                    --
 --  This  library  is  free software; you can redistribute it and/or  --
 --  modify it under the terms of the GNU General Public  License  as  --
@@ -894,6 +894,20 @@ package body Py is
             (  Source    : String;
                File_Name : String
             )  return Handle is
+
+      Module : Handle;
+      Func   : Handle;
+   begin
+      Compile (Source, File_Name, Module, Func);
+      return Func;
+   end Compile;
+
+   procedure Compile
+             (  Source      : String;
+                File_Name   : String;
+                Module      : out Handle;
+                Entry_Point : out Handle
+             )  is
       function Get_Name return String is
          Line_Start : Boolean := True;
          Pointer    : Integer := Source'First;
@@ -939,11 +953,11 @@ package body Py is
          return "";
       end Get_Name;
 
-      Name   : constant String := Get_Name;
-      Code   : Handle;
-      Module : Handle;
-      Func   : Handle;
+      Name : constant String := Get_Name;
+      Code : Handle;
    begin
+      Invalidate (Module);
+      Invalidate (Entry_Point);
       if Name'Length = 0 then
          Raise_Exception
          (  Data_Error'Identity,
@@ -967,12 +981,96 @@ package body Py is
       if Module.Ptr = Null_Object then
          Check_Error;
       end if;
-      Func.Ptr := Links.Object_GetAttrString (Module.Ptr, To_C (Name));
-      if Func.Ptr = Null_Object then
+      Entry_Point.Ptr :=
+         Links.Object_GetAttrString (Module.Ptr, To_C (Name));
+      if Entry_Point.Ptr = Null_Object then
          Check_Error;
       end if;
-      return Func;
    end Compile;
+
+   --  function Compile
+   --           (  Source    : String;
+   --              File_Name : String
+   --           )  return Handle is
+   --     function Get_Name return String is
+   --        Line_Start : Boolean := True;
+   --        Pointer    : Integer := Source'First;
+   --        Start      : Integer;
+   --     begin
+   --        while Pointer <= Source'Last loop
+   --           case Source (Pointer) is
+   --              when 'd' =>
+   --                 Pointer := Pointer + 1;
+   --                 if Line_Start then
+   --                    if Is_Prefix ("ef", Source, Pointer) then
+   --                       Pointer := Pointer + 2;
+   --                       Start   := Pointer;
+   --                       Get (Source, Pointer);
+   --                       if Start /= Pointer then
+   --                          Start := Pointer;
+   --                          while Pointer <= Source'Last loop
+   --                             case Source (Pointer) is
+   --                                when Character'Val (9)  |
+   --                                     Character'Val (13) |
+   --                                     ' '                |
+   --                                     '('                =>
+   --                                   return Source (Start..Pointer - 1);
+   --                                when others =>
+   --                                   Pointer := Pointer + 1;
+   --                             end case;
+   --                          end loop;
+   --                          return Source (Start..Pointer - 1);
+   --                       end if;
+   --                    end if;
+   --                 end if;
+   --                 Line_Start := False;
+   --              when Character'Val (10) =>
+   --                 Line_Start := True;
+   --                 Pointer    := Pointer + 1;
+   --              when Character'Val (9) | Character'Val (13) | ' ' =>
+   --                 Pointer := Pointer + 1;
+   --              when others =>
+   --                 Line_Start := False;
+   --                 Pointer := Pointer + 1;
+   --           end case;
+   --        end loop;
+   --        return "";
+   --     end Get_Name;
+   --
+   --     Name   : constant String := Get_Name;
+   --     Code   : Handle;
+   --     Module : Handle;
+   --     Func   : Handle;
+   --  begin
+   --     if Name'Length = 0 then
+   --        Raise_Exception
+   --        (  Data_Error'Identity,
+   --           "No function definition found"
+   --        );
+   --     end if;
+   --     Code.Ptr :=
+   --        Links.CompileString
+   --        (  To_C (Source),
+   --           To_C (File_Name),
+   --           File_Input
+   --        );
+   --     if Code.Ptr = Null_Object then
+   --        Check_Error;
+   --     end if;
+   --     Module.Ptr :=
+   --        Links.Import_ExecCodeModuleEx
+   --        (  To_C (File_Name & '.' & Name),
+   --           Code.Ptr
+   --        );
+   --     if Module.Ptr = Null_Object then
+   --        Check_Error;
+   --     end if;
+   --     Func.Ptr := Links.Object_GetAttrString (Module.Ptr, To_C (Name));
+   --     if Func.Ptr = Null_Object then
+   --        Check_Error;
+   --     end if;
+   --     return Func;
+   --  end Compile;
 
    procedure Dict_DelItem (Dictionary : Handle; Key : Handle) is
    begin
@@ -2389,6 +2487,30 @@ package body Py is
       end if;
       return Result;
    end Object_Type;
+
+   function Object_Super (Object : Handle; Name : String)
+      return Handle is
+      Builtins   : Handle;
+      Arguments  : Handle;
+      Super_Type : Handle;
+      Result     : Handle;
+   begin
+      Builtins   := Import_AddModule ("builtins");
+      Super_Type := Object_GetAttrString (Builtins, "super");
+      Arguments  := Tuple_New (2);
+      Tuple_SetItem (Arguments, 0, Object_Type (Object));
+      Tuple_SetItem (Arguments, 1, Object);
+      Result :=
+         Object_GetAttrString
+         (  Object_CallObject (Super_Type, Arguments, True),
+            Name
+         );
+       if 0 /= Callable_Check (Result) then
+          return Result;
+       else
+          Throw_NameError ('"' & Name & """ is not callable");
+       end if;
+   end Object_Super;
 
    function Parse
             (  Args     : Object;

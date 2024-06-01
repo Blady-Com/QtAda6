@@ -3,7 +3,7 @@
 --  Interface                                      Luebeck            --
 --                                                 Winter, 2018       --
 --                                                                    --
---                                Last revision :  12:51 09 Sep 2023  --
+--                                Last revision :  13:35 10 Sep 2023  --
 --                                                                    --
 --  This  library  is  free software; you can redistribute it and/or  --
 --  modify it under the terms of the GNU General Public  License  as  --
@@ -101,6 +101,12 @@ package Py is
             (  Source    : String;
                File_Name : String
             )  return Handle;
+   procedure Compile
+             (  Source      : String;
+                File_Name   : String;
+                Module      : out Handle;
+                Entry_Point : out Handle
+            );
 --
 -- Import - High-level compile function
 --
@@ -552,7 +558,7 @@ package Py is
                Name   : String
             )  return Boolean;
 --
--- Object_HeadSize -- The equivalent of PyObject_HEAD macro
+-- Object_HeadSize -- An equivalent of PyObject_HEAD macro
 --
 -- Returns :
 --
@@ -599,6 +605,14 @@ package Py is
             );
    function Object_Size (Object : Handle) return ssize_t;
    function Object_Str  (Object : Handle) return String;
+--
+-- Object_Super -- An equivalent of Object.super().Name
+--
+-- Returns :
+--
+--     A handle to the parent's method
+--
+   function Object_Super (Object : Handle; Name : String) return Handle;
    function Object_Type (Object : Handle) return Handle;
    function Type_IsSubtype (Sub, Super : Handle) return Boolean;
    function Type_Type return Handle;
