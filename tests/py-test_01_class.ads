@@ -1,4 +1,4 @@
-package Py.Class_Extras.Test_01_Class is
+package Py.Test_01_Class is
 
    procedure Initialize;
    procedure Finalize;
@@ -13,6 +13,16 @@ package Py.Class_Extras.Test_01_Class is
    function Create (V : long) return Class_A;
    function GA (Self : Inst_A) return long;
    function SQR (Self : Inst_A) return long;
+   function VC (Self : Inst_A; Height : long) return long;
+
+   type Inst_B is new Inst_A with null record;
+   type Inst_B_Access is access all Inst_B;
+   type Class_B is access all Inst_B'Class;
+
+   procedure Finalize (Self : in out Class_B);
+   function Create (V : long) return Class_B;
+   function Super_GA (Self : Inst_B) return long;
+   function Super_VC (Self : Inst_B; Height : long) return long;
 
    type Inst_C is new Inst_A with null record;
    type Inst_C_Access is access all Inst_C;
@@ -21,5 +31,6 @@ package Py.Class_Extras.Test_01_Class is
    procedure Finalize (Self : in out Class_C);
    function Create (V : long) return Class_C;
    function GA (Self : Inst_C) return long;
+   function VC (Self : Inst_C; Height : long) return long;
 
-end Py.Class_Extras.Test_01_Class;
+end Py.Test_01_Class;

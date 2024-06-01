@@ -15,7 +15,7 @@ with Interfaces.C;           use Interfaces.C;
 
 with Py.Load_Python_Library;
 
-with Py.Class_Extras.Test_01_Class;
+with Py.Test_01_Class;
 
 procedure Test_01 is
 
@@ -84,15 +84,23 @@ procedure Test_01 is
    end Python_Type;
 
    procedure Python_Class (V : long) is
-      use Py.Class_Extras.Test_01_Class;
+      use Py.Test_01_Class;
       A : Class_A := Create (V);
+      B : Class_B := Create (V + 5);
       C : Class_C := Create (V + 3);
    begin
       Put_Line ("PCA.GA: " & A.GA'Image);
       Put_Line ("PCA.SQR: " & A.SQR'Image);
+      Put_Line ("PCA.VC: " & A.VC (6)'Image);
       Finalize (A);
+      Put_Line ("PCB.GA: " & B.GA'Image);
+      Put_Line ("PCB.SQR: " & B.SQR'Image);
+      Put_Line ("PCB.Super.GA: " & B.Super_GA'Image);
+      Put_Line ("PCB.Super.VC: " & B.Super_VC (6)'Image);
+      Finalize (B);
       Put_Line ("PCC.GA: " & C.GA'Image);
       Put_Line ("PCC.SQR: " & C.SQR'Image);
+      Put_Line ("PCC.VC: " & C.VC (6)'Image);
       Finalize (C);
    end Python_Class;
 
@@ -113,10 +121,10 @@ begin
       Put_Line (Python_Enum ("ColorF", "RED"));
       Put_Line (Python_Enum ("ColorIF", "GREEN"));
       Python_Type;
-      Py.Class_Extras.Test_01_Class.Initialize;
+      Py.Test_01_Class.Initialize;
       Python_Class (5);
 --        Python_Class (9);
-      Py.Class_Extras.Test_01_Class.Finalize;
+      Py.Test_01_Class.Finalize;
    end;
    if Py.FinalizeEx < 0 then
       Put_Line ("Python finalization error");

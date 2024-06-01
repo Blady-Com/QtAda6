@@ -1,6 +1,6 @@
 with Ada.Unchecked_Deallocation;
 
-package body Py.Class_Extras.Test_01_Class is
+package body Py.Test_01_Class is
 
    test_01_class_Python_Proxy : Handle;
 
@@ -55,6 +55,69 @@ package body Py.Class_Extras.Test_01_Class is
       return Long_AsLong (Object_CallObject (Method, Args, True));
    end SQR;
 
+   --------
+   -- VC --
+   --------
+
+   function VC (Self : Inst_A; Height : long) return long is
+      Method, Args : Handle;
+   begin
+      Method := Object_GetAttrString (Self.Python_Proxy, "VC");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (Height));
+      return Long_AsLong (Object_CallObject (Method, Args, True));
+   end VC;
+
+   --------------
+   -- Finalize --
+   --------------
+
+   procedure Finalize (Self : in out Class_B) is
+      procedure Free is new Ada.Unchecked_Deallocation (Inst_B, Inst_B_Access);
+   begin
+      Py.Invalidate (Self.Python_Proxy);
+      Free (Inst_B_Access (Self));
+   end Finalize;
+
+   ------------
+   -- Create --
+   ------------
+
+   function Create (V : long) return Class_B is
+      Args  : Handle;
+      Class : Handle;
+      Inst  : Handle;
+   begin
+      Class := Object_GetAttrString (test_01_class_Python_Proxy, "PCB");
+      Args  := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (V));
+      Inst := Object_CallObject (Class, Args, True);
+      return new Inst_B'(Python_Proxy => Inst);
+   end Create;
+
+   --------
+   -- GA --
+   --------
+
+   function Super_GA (Self : Inst_B) return long is
+      Method, Args : Handle;
+   begin
+      Method := Object_Super (Self.Python_Proxy, "GA");
+      Args   := Tuple_New (0);
+      return Long_AsLong (Object_CallObject (Method, Args, True));
+   end Super_GA;
+   --------
+   -- VC --
+   --------
+
+   function Super_VC (Self : Inst_B; Height : long) return long is
+      Method, Args : Handle;
+   begin
+      Method := Object_Super (Self.Python_Proxy, "VC");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (Height));
+      return Long_AsLong (Object_CallObject (Method, Args, True));
+   end Super_VC;
    --------------
    -- Finalize --
    --------------
@@ -74,9 +137,14 @@ package body Py.Class_Extras.Test_01_Class is
    pragma Convention (C, Internal_GA);
 
    function Internal_GA (Self : Object; Arg : Object) return Object is
-      Val : long;
+      Val         : long;
+      Method      : Handle;
+      Handle_Self : Handle;
    begin
-      Val := Links.Long_AsLong (Super_CallObject (Self, "GA", Arg)) + 5;
+      Handle_Self.Ptr := Self;
+      Links.IncRef (Handle_Self.Ptr); -- Borrowed reference
+      Method := Object_Super (Handle_Self, "GA");
+      Val    := Links.Long_AsLong (Links.Object_CallObject (Method.Ptr, Arg)) + 5;
       return Links.Long_FromLong (Val);
    exception
       when Python_Error =>
@@ -86,15 +154,44 @@ package body Py.Class_Extras.Test_01_Class is
          return Null_Object;
    end Internal_GA;
 
+   -----------------
+   -- Internal_VC --
+   -----------------
+
+   function Internal_VC (Self : Object; Arg : Object) return Object;
+   pragma Convention (C, Internal_VC);
+
+   function Internal_VC (Self : Object; Arg : Object) return Object is
+      Val         : long;
+      Method      : Handle;
+      Handle_Self : Handle;
+   begin
+      Handle_Self.Ptr := Self;
+      Links.IncRef (Handle_Self.Ptr); -- Borrowed reference
+      Method := Object_Super (Handle_Self, "VC");
+      Val    := Links.Long_AsLong (Links.Object_CallObject (Method.Ptr, Arg)) + 5;
+      return Links.Long_FromLong (Val);
+   exception
+      when Python_Error =>
+         return Null_Object;
+      when others =>
+         Throw_ValueError ("Error in Internal_VC");
+         return Null_Object;
+   end Internal_VC;
+
    ------------
    -- Create --
    ------------
 
-   PCC_Methods : array (1 .. 2) of aliased MethodDef :=
+   PCC_Methods : array (1 .. 3) of aliased MethodDef :=
      ((Name => New_String ("GA"),
        Meth => (False, Internal_GA'Access),
        Flags => METH_NOARGS,
        Doc  => New_String ("Redefined GA")),
+      (Name => New_String ("VC"),
+       Meth => (False, Internal_VC'Access),
+       Flags => METH_VARARGS,
+       Doc  => New_String ("Redefined VC")),
       End_Method);
    Doc   : aliased char_array                  := "Class PCC derived from Class PCA" & nul;
    Slots : array (1 .. 5) of aliased Type_Slot :=
@@ -147,6 +244,19 @@ package body Py.Class_Extras.Test_01_Class is
       return Long_AsLong (Object_CallObject (Method, Args, True));
    end GA;
 
+   --------
+   -- VC --
+   --------
+
+   function VC (Self : Inst_C; Height : long) return long is
+      Method, Args : Handle;
+   begin
+      Method := Object_GetAttrString (Self.Python_Proxy, "VC");
+      Args   := Tuple_New (1);
+      Tuple_SetItem (Args, 0, Long_FromLong (Height));
+      return Long_AsLong (Object_CallObject (Method, Args, True));
+   end VC;
+
    ----------------
    -- Initialize --
    ----------------
@@ -165,4 +275,4 @@ package body Py.Class_Extras.Test_01_Class is
       Py.Invalidate (test_01_class_Python_Proxy);
    end Finalize;
 
-end Py.Class_Extras.Test_01_Class;
+end Py.Test_01_Class;
