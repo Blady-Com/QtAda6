@@ -7,9 +7,9 @@ We should have installed first:
 - GNAT Ada compiler version GPL 2021 or FSF 12.1
 - Python version 3.7 or newer
 
-## Install Qt for Python
+## Install [Qt](https://www.qt.io/product/qt6?hsLang=en) for Python
 
-We install PySide 6 the official Python bindings for Qt under a user Python environment:
+We install [PySide 6](https://www.qt.io/qt-for-python?hsLang=en) the official Python bindings for Qt under a user Python environment:
 
 ```
 % cd $HOME
@@ -19,7 +19,7 @@ We install PySide 6 the official Python bindings for Qt under a user Python envi
 % deactivate
 ```
 
-## Get QtAda6
+## Get [QtAda6](https://github.com/Blady-Com/QtAda6)
 
 ```
 % cd $HOME
@@ -37,19 +37,28 @@ It tests if PySide is correctly installed:
 % cd QtAda6
 % gprbuild -P qtada6_tests.gpr -XTarget_OS=OSX test_01
 % PYTHONPATH=$HOME/env/lib/python3.9/site-packages:$PWD/tests bin/test_01
-/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/Current/lib/
+/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/Current/lib/python3.9/config-3.9-darwin/
 libpython3.9.dylib
-.dylib
+*.dylib
 Python version: 3.9.6 (default, May  7 2023, 23:32:45) 
 [Clang 14.0.3 (clang-1403.0.22.14.1)]
 Python CWD: /Users/me/Documents/Programmation/Qt/QtAda6
-Python Enum:  2
-PySide6 version: 6.5.2
+PySide6 version: 6.7.0
 Python Enum:  3
 Python Enum:  2
 Python Enum:  1
 Python Enum:  2
 <class 'NoneType'>
+PCA.GA:  5
+PCA.SQR:  25
+PCA.VC:  150
+PCB.GA:  12
+PCB.SQR:  144
+PCB.Super.GA:  10
+PCB.Super.VC:  864
+PCC.GA:  13
+PCC.SQR:  169
+PCC.VC:  1019
 Exiting
 ```
 
@@ -132,7 +141,7 @@ This is the very first release whose goal is mostly to get feedbacks on how it i
 Known limitations are :
 
 - Only QtCore, QtGui and QtWidgets are provided
-- Signal, composed types and so on are not or partially translated
+- Signal, composed types, multi-inheritance and so on are not or partially translated
 - Class inheritance is not available on Ada side
 - No memory management
 

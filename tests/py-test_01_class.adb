@@ -106,6 +106,7 @@ package body Py.Test_01_Class is
       Args   := Tuple_New (0);
       return Long_AsLong (Object_CallObject (Method, Args, True));
    end Super_GA;
+
    --------
    -- VC --
    --------
@@ -118,6 +119,7 @@ package body Py.Test_01_Class is
       Tuple_SetItem (Args, 0, Long_FromLong (Height));
       return Long_AsLong (Object_CallObject (Method, Args, True));
    end Super_VC;
+
    --------------
    -- Finalize --
    --------------
