@@ -15,6 +15,11 @@ package QtAda6.QtCore.Qt.Orientation is
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Enum.Flag with null record;
    procedure Finalize (Self : in out Class);
+   function Value (V : access Inst) return int;
+   function Image (V : access Inst) return str;
+   function "or" (L, R : Class) return Class;
    function Horizontal return Class;-- 0x1
+   Horizontal_Value : constant := 16#1#;
    function Vertical return Class;-- 0x2
+   Vertical_Value : constant := 16#2#;
 end QtAda6.QtCore.Qt.Orientation;

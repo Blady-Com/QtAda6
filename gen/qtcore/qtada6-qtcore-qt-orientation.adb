@@ -20,6 +20,22 @@ package body QtAda6.QtCore.Qt.Orientation is
       Py.Invalidate (Self.Python_Proxy);
       Free (Inst_Access (Self));
    end Finalize;
+
+   function Value (V : access Inst) return int is
+   begin
+      return Long_AsLong (Object_GetAttrString (V.Python_Proxy, "value"));
+   end;
+
+   function Image (V : access Inst) return str is
+   begin
+      return "Python Enum: " & As_String (Object_GetAttrString (V.Python_Proxy, "name"));
+   end;
+
+   function "or" (L, R : Class) return Class is
+   begin
+      return new Inst'(Python_Proxy => Number_Or (L.Python_Proxy, R.Python_Proxy));
+   end;
+
    function Horizontal return Class is
       Parent_Class : Handle;
    begin

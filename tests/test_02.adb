@@ -4,7 +4,7 @@
 -- ROLE                         : Test program for QtAda6
 -- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2024
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
@@ -13,6 +13,7 @@ with QtAda6.QtCore.QDir;
 with QtAda6.QtCore.QSysInfo;
 with QtAda6.QtCore.QProcessEnvironment;
 with QtAda6.QtCore.Qt.PenStyle;
+with QtAda6.QtCore.Qt.Orientation;
 
 with Ada.Exceptions; use Ada.Exceptions;
 with Interfaces.C;   use Interfaces.C;
@@ -39,6 +40,7 @@ begin
       Put_Line ("QtCore version: " & QtAda6.QtCore.qVersion);
 
       declare
+         use type QtAda6.QtCore.Qt.Orientation.Class;
          --  4. declare QTAda6 objects and initialize them
          MD : QtAda6.QtCore.QDate.Class               := QtAda6.QtCore.QDate.currentDate;
          CF : QtAda6.QtCore.QDir.Class                := QtAda6.QtCore.QDir.current;
@@ -52,7 +54,18 @@ begin
          if ME.contains ("HOME") then
             Put_Line ("HOME: " & ME.value ("HOME", "none"));
          end if;
-         Put_Line ("DashDotLine:" & QtAda6.Image (Py.Long_AsLong (Py.Object_GetAttrString (PS.Python_Proxy, "value"))));
+         Put_Line
+           ("DashDotLine: " & QtAda6.Image (Py.Long_AsLong (Py.Object_GetAttrString (PS.Python_Proxy, "value"))));
+         Put_Line
+           ("Horizontal value: " &
+            QtAda6.image (QtAda6.QtCore.Qt.Orientation.Value (QtAda6.QtCore.Qt.Orientation.Horizontal)));
+         Put_Line
+           ("Horizontal name: " & (QtAda6.QtCore.Qt.Orientation.Image (QtAda6.QtCore.Qt.Orientation.Horizontal)));
+         Put_Line
+           ("Horizontal or Vertical value: " &
+            QtAda6.image
+              (QtAda6.QtCore.Qt.Orientation.Value
+                 (QtAda6.QtCore.Qt.Orientation.Horizontal or QtAda6.QtCore.Qt.Orientation.Vertical)));
          --  6. finalize QtAda6 objects
          QtAda6.QtCore.QDate.Finalize (MD);
          QtAda6.QtCore.QDir.Finalize (CF);
