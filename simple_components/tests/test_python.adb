@@ -3,7 +3,7 @@
 --  test                                           Luebeck            --
 --                                                 Winter, 2022       --
 --                                                                    --
---                                Last revision :  11:44 11 Sep 2023  --
+--                                Last revision :  14:35 02 Jul 2024  --
 --                                                                    --
 --  This  library  is  free software; you can redistribute it and/or  --
 --  modify it under the terms of the GNU General Public  License  as  --
@@ -255,6 +255,22 @@ begin
          Raise_Exception
          (  Data_Error'Identity,
             "Expected 124 got" & long'Image (Value));
+      end if;
+   end;
+   declare
+      use Py;
+      GIL     : Py.Global_Interpreter_Lock;
+      X, Y, Z : Handle;
+      Value   : long;
+   begin
+      X := Long_FromLong (1);
+      Y := Long_FromLong (2);
+      Z := Number_Add (X, Y);
+      Value := Long_AsLong (Z);
+      if Value /= 3 then
+         Raise_Exception
+         (  Data_Error'Identity,
+            "Expected 3 got" & long'Image (Value));
       end if;
    end;
    if Py.FinalizeEx < 0 then

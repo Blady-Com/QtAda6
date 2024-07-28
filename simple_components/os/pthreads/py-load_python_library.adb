@@ -3,7 +3,7 @@
 --  Implementation                                 Luebeck            --
 --                                                 Winter, 2018       --
 --                                                                    --
---                                Last revision :  11:44 11 Sep 2023  --
+--                                Last revision :  14:35 02 Jul 2024  --
 --                                                                    --
 --  This  library  is  free software; you can redistribute it and/or  --
 --  modify it under the terms of the GNU General Public  License  as  --
@@ -329,6 +329,10 @@ package body Py.Load_Python_Library is
             )  return Import_ImportModule_Ptr;
    function dlsym
             (  Module : Address;
+               Name   : char_array := "PyIndex_Check" & Nul
+            )  return Index_Check_Ptr;
+   function dlsym
+            (  Module : Address;
                Name   : char_array := "PyIter_Check" & Nul
             )  return Iter_Check_Ptr;
    function dlsym
@@ -440,6 +444,154 @@ package body Py.Load_Python_Library is
             (  Module : Address;
                Name   : char_array := "Py_NewInterpreter" & Nul
             )  return NewInterpreter_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Absolute" & Nul
+            )  return Number_Absolute_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Add" & Nul
+            )  return Number_Add_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_And" & Nul
+            )  return Number_And_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_AsSsize_t" & Nul
+            )  return Number_AsSsize_t_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Check" & Nul
+            )  return Number_Check_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Divmod" & Nul
+            )  return Number_Divmod_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Float" & Nul
+            )  return Number_Float_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_FloorDivide" & Nul
+            )  return Number_FloorDivide_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Index" & Nul
+            )  return Number_Index_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_InPlaceAdd" & Nul
+            )  return Number_InPlaceAdd_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_InPlaceAnd" & Nul
+            )  return Number_InPlaceAnd_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_InPlaceFloorDivide" & Nul
+            )  return Number_InPlaceFloorDivide_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_InPlaceLshift" & Nul
+            )  return Number_InPlaceLshift_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_InPlaceMatrixMultiply" & Nul
+            )  return Number_InPlaceMatrixMultiply_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_InPlaceMultiply" & Nul
+            )  return Number_InPlaceMultiply_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_InPlaceOr" & Nul
+            )  return Number_InPlaceOr_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_InPlacePower" & Nul
+            )  return Number_InPlacePower_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_InPlaceRemainder" & Nul
+            )  return Number_InPlaceRemainder_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_InPlaceRshift" & Nul
+            )  return Number_InPlaceRshift_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_InPlaceSubtract" & Nul
+            )  return Number_InPlaceSubtract_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_InPlaceTrueDivide" & Nul
+            )  return Number_InPlaceTrueDivide_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_InPlaceXor" & Nul
+            )  return Number_InPlaceXor_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Invert" & Nul
+            )  return Number_Invert_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Long" & Nul
+            )  return Number_Long_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Lshift" & Nul
+            )  return Number_Lshift_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_MatrixMultiply" & Nul
+            )  return Number_MatrixMultiply_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Multiply" & Nul
+            )  return Number_Multiply_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Negative" & Nul
+            )  return Number_Negative_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Or" & Nul
+            )  return Number_Or_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Positive" & Nul
+            )  return Number_Positive_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Power" & Nul
+            )  return Number_Power_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Remainder" & Nul
+            )  return Number_Remainder_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Rshift" & Nul
+            )  return Number_Rshift_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Subtract" & Nul
+            )  return Number_Subtract_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_ToBase" & Nul
+            )  return Number_ToBase_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_TrueDivide" & Nul
+            )  return Number_TrueDivide_Ptr;
+   function dlsym
+            (  Module : Address;
+               Name   : char_array :="PyNumber_Xor" & Nul
+            )  return Number_Xor_Ptr;
    function dlsym
             (  Module : Address;
                Name   : char_array := "PyObject_Bytes" & Nul
@@ -701,7 +853,6 @@ package body Py.Load_Python_Library is
             (  Module : Address;
                Name   : char_array := "PyUnicode_ReadChar" & Nul
             )  return Unicode_ReadChar_Ptr;
-
    function dlsym
             (  Module : Address;
                Name   : char_array
@@ -818,9 +969,15 @@ package body Py.Load_Python_Library is
    begin
       if not Searched then
          Searched := True;
+         -- Search in Python install
          Scan ("/Library/Frameworks/Python.framework/Versions", True);
          -- Search in Command Line Tools install
-         Scan ("/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions", True);
+         Scan
+         (  (  "/Library/Developer/CommandLineTools/Library/"
+            &  "Frameworks/Python3.framework/Versions"
+            ),
+            True
+         );
          -- Search in Xcode install
          Scan
          (  (  "/Applications/Xcode.app/Contents/Developer/"
@@ -1036,6 +1193,7 @@ package body Py.Load_Python_Library is
          Links.Import_ImportModule       := dlsym (Library);
          Links.IncRef                    := dlsym (Library);
          Links.InitializeEx              := dlsym (Library);
+         Links.Index_Check               := dlsym (Library);
          Links.Iter_Check                := dlsym (Library);
          Links.Iter_Next                 := dlsym (Library);
          Links.List_Append               := dlsym (Library);
@@ -1068,6 +1226,43 @@ package body Py.Load_Python_Library is
                                             (  Library,
                                                "_Py_NoneStruct" & Nul
                                             );
+         Links.Number_Absolute           := dlsym (Library);
+         Links.Number_Add                := dlsym (Library);
+         Links.Number_And                := dlsym (Library);
+         Links.Number_AsSsize_t          := dlsym (Library);
+         Links.Number_Check              := dlsym (Library);
+         Links.Number_Divmod             := dlsym (Library);
+         Links.Number_Float              := dlsym (Library);
+         Links.Number_FloorDivide        := dlsym (Library);
+         Links.Number_Index              := dlsym (Library);
+         Links.Number_InPlaceAdd         := dlsym (Library);
+         Links.Number_InPlaceAnd         := dlsym (Library);
+         Links.Number_InPlaceFloorDivide := dlsym (Library);
+         Links.Number_InPlaceLshift         := dlsym (Library);
+         Links.Number_InPlaceMatrixMultiply := dlsym (Library);
+         Links.Number_InPlaceMultiply       := dlsym (Library);
+         Links.Number_InPlaceOr          := dlsym (Library);
+         Links.Number_InPlacePower       := dlsym (Library);
+         Links.Number_InPlaceRemainder   := dlsym (Library);
+         Links.Number_InPlaceRshift      := dlsym (Library);
+         Links.Number_InPlaceSubtract    := dlsym (Library);
+         Links.Number_InPlaceTrueDivide  := dlsym (Library);
+         Links.Number_InPlaceXor         := dlsym (Library);
+         Links.Number_Invert             := dlsym (Library);
+         Links.Number_Long               := dlsym (Library);
+         Links.Number_Lshift             := dlsym (Library);
+         Links.Number_MatrixMultiply     := dlsym (Library);
+         Links.Number_Multiply           := dlsym (Library);
+         Links.Number_Negative           := dlsym (Library);
+         Links.Number_Or                 := dlsym (Library);
+         Links.Number_Positive           := dlsym (Library);
+         Links.Number_Power              := dlsym (Library);
+         Links.Number_Remainder          := dlsym (Library);
+         Links.Number_Rshift             := dlsym (Library);
+         Links.Number_Subtract           := dlsym (Library);
+         Links.Number_ToBase             := dlsym (Library);
+         Links.Number_TrueDivide         := dlsym (Library);
+         Links.Number_Xor                := dlsym (Library);
          Links.Object_Bytes              := dlsym (Library);
          Links.Object_Call               := dlsym (Library);
          Links.Object_CallNoArgs         := dlsym (Library);

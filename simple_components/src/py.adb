@@ -3,7 +3,7 @@
 --  Implementation                                 Luebeck            --
 --                                                 Winter, 2018       --
 --                                                                    --
---                                Last revision :  13:35 10 Sep 2023  --
+--                                Last revision :  14:35 02 Jul 2024  --
 --                                                                    --
 --  This  library  is  free software; you can redistribute it and/or  --
 --  modify it under the terms of the GNU General Public  License  as  --
@@ -324,6 +324,8 @@ package body Py is
          Error ("PyList_AsTuple");
 --    elsif Links.List_Check = null then
 --       Error ("PyList_Check");
+      elsif Links.Index_Check = null then
+         Error ("PyIndex_Check");
       elsif Links.List_Insert = null then
          Error ("PyList_Insert");
       elsif Links.List_GetItem = null then
@@ -375,6 +377,78 @@ package body Py is
          Error ("Py_NewInterpreter");
       elsif Links.None = Null_Object then
          Error ("_PyNone_Struct");
+      elsif Links.Number_Absolute = null then
+         Error ("PyNumber_Absolute");
+      elsif Links.Number_Add = null then
+         Error ("PyNumber_Add");
+      elsif Links.Number_And = null then
+         Error ("PyNumber_And");
+      elsif Links.Number_AsSsize_t = null then
+         Error ("PyNumber_AsSsize_t");
+      elsif Links.Number_Check = null then
+         Error ("PyNumber_Check");
+      elsif Links.Number_Divmod = null then
+         Error ("PyNumber_Divmod");
+      elsif Links.Number_Float = null then
+         Error ("PyNumber_Float");
+      elsif Links.Number_FloorDivide = null then
+         Error ("PyNumber_FloorDivide");
+      elsif Links.Number_Index = null then
+         Error ("PyNumber_Index");
+      elsif Links.Number_InPlaceAdd = null then
+         Error ("PyNumber_InPlaceAdd");
+      elsif Links.Number_InPlaceAnd = null then
+         Error ("PyNumber_InPlaceAnd");
+      elsif Links.Number_InPlaceFloorDivide = null then
+         Error ("PyNumber_InPlaceFloorDivide");
+      elsif Links.Number_InPlaceLshift = null then
+         Error ("PyNumber_InPlaceLshift");
+      elsif Links.Number_InPlaceMatrixMultiply = null then
+         Error ("PyNumber_InPlaceMatrixMultiply");
+      elsif Links.Number_InPlaceMultiply = null then
+         Error ("PyNumber_InPlaceMultiply");
+      elsif Links.Number_InPlaceOr = null then
+         Error ("PyNumber_InPlaceOr");
+      elsif Links.Number_InPlacePower = null then
+         Error ("PyNumber_InPlacePower");
+      elsif Links.Number_InPlaceRemainder = null then
+         Error ("PyNumber_InPlaceRemainder");
+      elsif Links.Number_InPlaceRshift = null then
+         Error ("PyNumber_InPlaceRshift");
+      elsif Links.Number_InPlaceSubtract = null then
+         Error ("PyNumber_InPlaceSubtract");
+      elsif Links.Number_InPlaceTrueDivide = null then
+         Error ("PyNumber_InPlaceTrueDivide");
+      elsif Links.Number_InPlaceXor = null then
+         Error ("PyNumber_InPlaceXor");
+      elsif Links.Number_Invert = null then
+         Error ("PyNumber_Invert");
+      elsif Links.Number_Long = null then
+         Error ("PyNumber_Long");
+      elsif Links.Number_Lshift = null then
+         Error ("PyNumber_Lshift");
+      elsif Links.Number_MatrixMultiply = null then
+         Error ("PyNumber_MatrixMultiply");
+      elsif Links.Number_Multiply = null then
+         Error ("PyNumber_Multiply");
+      elsif Links.Number_Negative = null then
+         Error ("PyNumber_Negative");
+      elsif Links.Number_Or = null then
+         Error ("PyNumber_Or");
+      elsif Links.Number_Positive = null then
+         Error ("PyNumber_Positive");
+      elsif Links.Number_Power = null then
+         Error ("PyNumber_Power");
+      elsif Links.Number_Remainder = null then
+         Error ("PyNumber_Remainder");
+      elsif Links.Number_Rshift = null then
+         Error ("PyNumber_Rshift");
+      elsif Links.Number_Subtract = null then
+         Error ("PyNumber_Subtract");
+      elsif Links.Number_ToBase = null then
+         Error ("PyNumber_ToBase");
+      elsif Links.Number_TrueDivide = null then
+         Error ("PyNumber_TrueDivide");
       elsif Links.Object_Bytes = null then
          Error ("PyObject_Bytes");
 --    elsif Links.Object_CallNoArgs = null then
@@ -1603,6 +1677,12 @@ package body Py is
       return Result;
    end Import_ImportModule;
 
+   function Index_Check (Value : Handle) return Boolean is
+   begin
+      Check_Handle (Value);
+      return Links.Index_Check (Value.Ptr) = 1;
+   end Index_Check;
+
    procedure Initialize (Lock : in out Global_Interpreter_Lock) is
    begin
       Lock.State := Links.GILState_Ensure.all;
@@ -2057,6 +2137,512 @@ package body Py is
       Links.IncRef (Result.Ptr);
       return Result;
    end No_Value;
+
+   function Number_Absolute (Value : Handle) return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Value);
+      Result.Ptr := Links.Number_Absolute (Value.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Absolute;
+
+   function Number_Add (Left : Handle; Right : Handle) return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_Add (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Add;
+
+   function Number_And (Left : Handle;  Right : Handle) return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_And (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      else
+         Links.IncRef (Result.Ptr);
+      end if;
+      return Result;
+   end Number_And;
+
+   function Number_AsSsize_t (Value : Handle; Error : Handle)
+      return size_t is
+      Result : size_t;
+   begin
+      Check_Handle (Value);
+      Check_Handle (Error);
+      Result := Links.Number_AsSsize_t (Value.Ptr, Error.Ptr);
+      return Result;
+   end Number_AsSsize_t;
+
+   function Number_Check (Value : Handle) return Boolean is
+   begin
+      Check_Handle (Value);
+      return Links.Number_Check (Value.Ptr) = 1;
+   end Number_Check;
+
+   function Number_Divmod (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_Divmod (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Divmod;
+
+   function Number_Float (Value : Handle) return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Value);
+      Result.Ptr := Links.Number_Float (Value.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Float;
+
+   function Number_FloorDivide (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_FloorDivide (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_FloorDivide;
+
+   function Number_Index (Value : Handle) return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Value);
+      Result.Ptr := Links.Number_Index (Value.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Index;
+
+   function Number_InPlaceAdd (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_InPlaceAdd (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_InPlaceAdd;
+
+   function Number_InPlaceAnd (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_InPlaceAnd (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_InPlaceAnd;
+
+   function Number_InPlaceFloorDivide (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr :=
+         Links.Number_InPlaceFloorDivide (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_InPlaceFloorDivide;
+
+   function Number_InPlaceLshift (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_InPlaceAnd (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end ;
+
+   function Number_InPlaceMatrixMultiply
+            (  Left  : Handle;
+               Right : Handle
+            )  return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_InPlaceAnd (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end ;
+
+   function Number_InPlaceMultiply (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_InPlaceAnd (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end ;
+
+   function Number_InPlaceOr (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_InPlaceAnd (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end ;
+
+   function Number_InPlacePower
+            (  Left     : Handle;
+               Right    : Handle;
+               Optional : Handle
+            )  return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Check_Handle (Optional);
+      Result.Ptr :=
+         Links.Number_InPlacePower (Left.Ptr, Right.Ptr, Optional.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_InPlacePower;
+
+   function Number_InPlacePower (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr :=
+         Links.Number_InPlacePower (Left.Ptr, Right.Ptr, Links.None);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_InPlacePower;
+
+   function Number_InPlaceRemainder (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr :=
+         Links.Number_InPlaceRemainder (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_InPlaceRemainder;
+
+   function Number_InPlaceRshift (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_InPlaceAnd (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end ;
+
+   function Number_InPlaceSubtract (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_InPlaceAnd (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end ;
+
+   function Number_InPlaceTrueDivide (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr :=
+         Links.Number_InPlaceTrueDivide (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_InPlaceTrueDivide;
+
+   function Number_InPlaceXor (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_InPlaceXor (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_InPlaceXor;
+
+   function Number_Invert (Value : Handle) return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Value);
+      Result.Ptr := Links.Number_Invert (Value.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Invert;
+
+   function Number_Long (Value : Handle)  return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Value);
+      Result.Ptr := Links.Number_Long (Value.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Long;
+
+   function Number_Lshift (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_Lshift (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Lshift;
+
+   function Number_MatrixMultiply (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_MatrixMultiply (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_MatrixMultiply;
+
+   function Number_Multiply (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_Multiply (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Multiply;
+
+   function Number_Negative (Value : Handle) return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Value);
+      Result.Ptr := Links.Number_Negative (Value.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Negative;
+
+   function Number_Or (Left : Handle; Right : Handle) return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_Or (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Or;
+
+   function Number_Positive (Value : Handle) return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Value);
+      Result.Ptr := Links.Number_Positive (Value.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Positive;
+
+   function Number_Power
+        (  Left     : Handle;
+           Right    : Handle;
+           Optional : Handle
+        )  return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Check_Handle (Optional);
+      Result.Ptr :=
+         Links.Number_Power (Left.Ptr, Right.Ptr, Optional.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Power;
+
+   function Number_Power (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr :=
+         Links.Number_Power (Left.Ptr, Right.Ptr, Links.None);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Power;
+
+   function Number_Remainder (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_Remainder (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Remainder;
+
+   function Number_Rshift (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_Rshift (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Rshift;
+
+   function Number_Subtract (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_Subtract (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Subtract;
+
+   function Number_ToBase (Value : Handle; Base : Base_Type)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Value);
+      case Base is
+         when Binary =>
+            Result.Ptr := Links.Number_ToBase (Value.Ptr, 2);
+         when Octal =>
+            Result.Ptr := Links.Number_ToBase (Value.Ptr, 8);
+         when Decimal =>
+            Result.Ptr := Links.Number_ToBase (Value.Ptr, 10);
+         when Hexadecimal =>
+            Result.Ptr := Links.Number_ToBase (Value.Ptr, 16);
+      end case;
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_ToBase;
+
+   function Number_TrueDivide (Left : Handle; Right : Handle)
+      return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_TrueDivide (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_TrueDivide;
+
+   function Number_Xor (Left : Handle; Right : Handle) return Handle is
+      Result : Handle;
+   begin
+      Check_Handle (Left);
+      Check_Handle (Right);
+      Result.Ptr := Links.Number_Xor (Left.Ptr, Right.Ptr);
+      if Result.Ptr = Null_Object then
+         Check_Error;
+      end if;
+      return Result;
+   end Number_Xor;
 
    function Object_Bytes (Object : Handle) return Handle is
       Result : Handle;

@@ -3,7 +3,7 @@
 --  Interface                                      Luebeck            --
 --                                                 Winter, 2018       --
 --                                                                    --
---                                Last revision :  13:35 10 Sep 2023  --
+--                                Last revision :  14:35 02 Jul 2024  --
 --                                                                    --
 --  This  library  is  free software; you can redistribute it and/or  --
 --  modify it under the terms of the GNU General Public  License  as  --
@@ -86,7 +86,7 @@ package Py is
 --    File_Name - The name of the source
 --
 -- The function identifies the entry point in  the source and returns it
--- as a callable object. An example is
+-- as an object. An example is
 --
 --    def add(n1, n2 ) :
 --       return n1+n2
@@ -95,12 +95,20 @@ package Py is
 --
 -- Returns :
 --
---    The executable object
+--    The module entry point
 --
    function Compile
             (  Source    : String;
                File_Name : String
             )  return Handle;
+--
+-- Compile -- High-level complie function
+--
+--    Source      - The Python source containing function
+--    File_Name   - The name of the source
+--    Module      - The compiled module
+--    Entry_Point - The module entry point
+--
    procedure Compile
              (  Source      : String;
                 File_Name   : String;
@@ -486,6 +494,85 @@ package Py is
       return Handle;
    function Long_Type return Handle;
 ------------------------------------------------------------------------
+-- Numbers
+--
+   function Index_Check (Value : Handle) return Boolean;
+   function Number_Absolute (Value : Handle) return Handle;
+   function Number_Add (Left : Handle;  Right : Handle) return Handle;
+   function Number_And (Left : Handle;  Right : Handle) return Handle;
+   function Number_AsSsize_t (Value : Handle; Error : Handle)
+      return size_t;
+   function Number_Check (Value : Handle) return Boolean;
+   function Number_Divmod (Left : Handle; Right : Handle) return Handle;
+   function Number_Float (Value : Handle) return Handle;
+   function Number_FloorDivide (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_Index (Value : Handle) return Handle;
+   function Number_InPlaceAdd (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_InPlaceAnd (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_InPlaceFloorDivide (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_InPlaceLshift (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_InPlaceMatrixMultiply
+            (  Left  : Handle;
+               Right : Handle
+            )  return Handle;
+   function Number_InPlaceMultiply (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_InPlaceOr (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_InPlacePower
+            (  Left     : Handle;
+               Right    : Handle;
+               Optional : Handle
+            )  return Handle;
+   function Number_InPlacePower
+            (  Left : Handle; Right : Handle) return Handle;
+   function Number_InPlaceRemainder (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_InPlaceRshift (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_InPlaceSubtract (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_InPlaceTrueDivide (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_InPlaceXor (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_Invert (Value : Handle) return Handle;
+   function Number_Long (Value : Handle)  return Handle;
+   function Number_Lshift (Left  : Handle; Right : Handle)
+      return Handle;
+   function Number_MatrixMultiply (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_Multiply (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_Negative (Value : Handle) return Handle;
+   function Number_Or (Left : Handle; Right : Handle) return Handle;
+   function Number_Positive (Value : Handle) return Handle;
+   function Number_Power
+        (  Left     : Handle;
+           Right    : Handle;
+           Optional : Handle
+        )  return Handle;
+   function Number_Power (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_Remainder (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_Rshift (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_Subtract (Left : Handle; Right : Handle)
+      return Handle;
+   type Base_Type is (Binary, Octal, Decimal, Hexadecimal);
+   function Number_ToBase (Value : Handle; Base : Base_Type)
+      return Handle;
+   function Number_TrueDivide (Left : Handle; Right : Handle)
+      return Handle;
+   function Number_Xor (Left : Handle; Right : Handle) return Handle;
+
+------------------------------------------------------------------------
 -- Objects
 --
    procedure Module_AddObject
@@ -532,10 +619,10 @@ package Py is
                Name   : Handle
             )  return Handle;
    procedure Object_GenericSetAttr
-            (  Object : Handle;
-               Name   : Handle;
-               Value  : Handle
-            );
+             (  Object : Handle;
+                Name   : Handle;
+                Value  : Handle
+             );
    function Object_GetAttr
             (  Object    : Handle;
                Attribute : Handle
@@ -1792,6 +1879,11 @@ private
         )  return Object;
    pragma Convention (C, Import_ImportModule_Ptr);
 
+   type Index_Check_Ptr is access function
+        (  Value : Object
+        )  return int;
+   pragma Convention (C,  Index_Check_Ptr);
+
    type Iter_Check_Ptr is access function
         (  Iterator : Object
         )  return int;
@@ -1922,6 +2014,222 @@ private
    type NewInterpreter_Ptr is access
       function return System.Address;
    pragma Convention (C, NewInterpreter_Ptr);
+
+   type Number_Absolute_Ptr is access function
+        (  Value : Object
+        )  return Object;
+   pragma Convention (C,  Number_Absolute_Ptr);
+
+   type Number_Add_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_Add_Ptr);
+
+   type Number_And_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_And_Ptr);
+
+   type Number_AsSsize_t_Ptr is access function
+        (  Value : Object;
+           Error : Object
+        )  return size_t;
+   pragma Convention (C,  Number_AsSsize_t_Ptr);
+
+   type Number_Check_Ptr is access function
+        (  Value : Object
+        )  return int;
+   pragma Convention (C,  Number_Check_Ptr);
+
+   type Number_Divmod_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_Divmod_Ptr);
+
+   type Number_Float_Ptr is access function
+        (  Value : Object
+        )  return Object;
+   pragma Convention (C,  Number_Float_Ptr);
+
+   type Number_FloorDivide_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_FloorDivide_Ptr);
+
+   type Number_Index_Ptr is access function
+        (  Value : Object
+        )  return Object;
+   pragma Convention (C,  Number_Index_Ptr);
+
+   type Number_InPlaceAdd_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_InPlaceAdd_Ptr);
+
+   type Number_InPlaceAnd_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_InPlaceAnd_Ptr);
+
+   type Number_InPlaceFloorDivide_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_InPlaceFloorDivide_Ptr);
+
+   type Number_InPlaceLshift_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_InPlaceLshift_Ptr);
+
+   type Number_InPlaceMatrixMultiply_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_InPlaceMatrixMultiply_Ptr);
+
+   type Number_InPlaceMultiply_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_InPlaceMultiply_Ptr);
+
+   type Number_InPlaceOr_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_InPlaceOr_Ptr);
+
+   type Number_InPlacePower_Ptr is access function
+        (  Left     : Object;
+           Right    : Object;
+           Optional : Object
+        )  return Object;
+   pragma Convention (C,  Number_InPlacePower_Ptr);
+
+   type Number_InPlaceRemainder_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_InPlaceRemainder_Ptr);
+
+   type Number_InPlaceRshift_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_InPlaceRshift_Ptr);
+
+   type Number_InPlaceSubtract_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_InPlaceSubtract_Ptr);
+
+   type Number_InPlaceTrueDivide_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_InPlaceTrueDivide_Ptr);
+
+   type Number_InPlaceXor_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_InPlaceXor_Ptr);
+
+   type Number_Invert_Ptr is access function
+        (  Value : Object
+        )  return Object;
+   pragma Convention (C,  Number_Invert_Ptr);
+
+   type Number_Long_Ptr is access function
+        (  Value : Object
+        )  return Object;
+   pragma Convention (C,  Number_Long_Ptr);
+
+   type Number_Lshift_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_Lshift_Ptr);
+
+   type Number_MatrixMultiply_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_MatrixMultiply_Ptr);
+
+   type Number_Multiply_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_Multiply_Ptr);
+
+   type Number_Negative_Ptr is access function
+        (  Value : Object
+        )  return Object;
+   pragma Convention (C,  Number_Negative_Ptr);
+
+   type Number_Or_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_Or_Ptr);
+
+   type Number_Positive_Ptr is access function
+        (  Value : Object
+        )  return Object;
+   pragma Convention (C,  Number_Positive_Ptr);
+
+   type Number_Power_Ptr is access function
+        (  Left     : Object;
+           Right    : Object;
+           Optional : Object
+        )  return Object;
+   pragma Convention (C,  Number_Power_Ptr);
+
+   type Number_Remainder_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_Remainder_Ptr);
+
+   type Number_Rshift_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_Rshift_Ptr);
+
+   type Number_Subtract_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_Subtract_Ptr);
+
+   type Number_ToBase_Ptr is access function
+        (  Value : Object;
+           Base  : int
+        )  return Object;
+   pragma Convention (C,  Number_ToBase_Ptr);
+
+   type Number_TrueDivide_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_TrueDivide_Ptr);
+
+   type Number_Xor_Ptr is access function
+        (  Left  : Object;
+           Right : Object
+        )  return Object;
+   pragma Convention (C,  Number_Xor_Ptr);
 
    type Object_Bytes_Ptr is access function
         (  Thing : Object
@@ -2463,189 +2771,227 @@ private
    pragma Convention (C, DateTime_CAPI_Ptr);
 
    package Links is
-      AddPendingCall              : AddPendingCall_Ptr;
-      Bool_FromLong               : Bool_FromLLong_Ptr;
-      ByteArray_AsString          : ByteArray_AsString_Ptr;
-      ByteArray_FromStringAndSize : ByteArray_FromStringAndSize_Ptr;
-      ByteArray_Size              : ByteArray_Size_Ptr;
-      ByteArray_Type              : Object := Null_Object;
-      Bytes_AsStringAndSize       : Bytes_AsStringAndSize_Ptr;
-      Bytes_FromStringAndSize     : Bytes_FromStringAndSize_Ptr;
-      Bytes_Size                  : Bytes_Size_Ptr;
-      Bytes_Type                  : Object := Null_Object;
-      Callable_Check              : Callable_Check_Ptr;
-      Capsule_GetContext          : Capsule_GetContext_Ptr;
-      Capsule_GetDestructor       : Capsule_GetDestructor_Ptr;
-      Capsule_GetName             : Capsule_GetName_Ptr;
-      Capsule_GetPointer          : Capsule_GetPointer_Ptr;
-      Capsule_Import              : Capsule_Import_Ptr;
-      Capsule_IsValid             : Capsule_IsValid_Ptr;
-      Capsule_New                 : Capsule_New_Ptr;
-      Capsule_SetContext          : Capsule_SetContext_Ptr;
-      Capsule_SetDestructor       : Capsule_SetDestructor_Ptr;
-      Capsule_SetName             : Capsule_SetName_Ptr;
-      Capsule_SetPointer          : Capsule_SetPointer_Ptr;
-      CompileString               : CompileString_Ptr;
-      DateTime_CAPI               : DateTime_CAPI_Ptr;
-      DecRef                      : DecRef_Ptr;
---    Dict_Check                  : Dict_Check_Ptr;
---    Dict_CheckExact             : Dict_CheckExact_Ptr;
-      Dict_Clear                  : Dict_Clear_Ptr;
-      Dict_Contains               : Dict_Contains_Ptr;
-      Dict_Copy                   : Dict_Copy_Ptr;
-      Dict_DelItem                : Dict_DelItem_Ptr;
-      Dict_DelItemString          : Dict_DelItemString_Ptr;
-      Dict_GetItemString          : Dict_GetItemString_Ptr;
-      Dict_Items                  : Dict_Items_Ptr;
-      Dict_Keys                   : Dict_Keys_Ptr;
-      Dict_New                    : Dict_New_Ptr;
-      Dict_Merge                  : Dict_Merge_Ptr;
-      Dict_Next                   : Dict_Next_Ptr;
---    Dict_SetDefault             : Dict_Setdefault_Ptr;
-      Dict_SetItem                : Dict_SetItem_Ptr;
-      Dict_SetItemString          : Dict_SetItemString_Ptr;
-      Dict_Size                   : Dict_Size_Ptr;
-      Dict_Type                   : Object := Null_Object;
-      EndInterpreter              : EndInterpreter_Ptr;
-      Err_BadArgument             : Err_BadArgument_Ptr;
-      Err_BadInternalCall         : Err_BadInternalCall_Ptr;
-      Err_Clear                   : Err_Clear_Ptr;
-      Err_Fetch                   : Err_Fetch_Ptr;
-      Err_NewException            : Err_NewException_Ptr;
-      Err_NormalizeException      : Err_NormalizeException_Ptr;
-      Err_Occurred                : Err_Occurred_Ptr;
-      Err_Restore                 : Err_Restore_Ptr;
-      Err_SetString               : Err_SetString_Ptr;
-      Eval_InitThreads            : Eval_InitThreads_Ptr;
-      Eval_RestoreThread          : Eval_RestoreThread_Ptr;
-      Eval_SaveThread             : Eval_SaveThread_Ptr;
-      Exc_KeyError                : Object_Ptr;
-      Exc_LookupError             : Object_Ptr;
-      Exc_NameError               : Object_Ptr;
-      Exc_PermissionError         : Object_Ptr;
-      Exc_RuntimeError            : Object_Ptr;
-      Exc_ValueError              : Object_Ptr;
-      Exc_SyntaxError             : Object_Ptr;
-      Exc_SystemError             : Object_Ptr;
-      Exc_TimeoutError            : Object_Ptr;
-      Exc_TypeError               : Object_Ptr;
-      False                       : Object := Null_Object;
-      FinalizeEx                  : FinalizeEx_Ptr;
-      Float_AsDouble              : Float_AsDouble_Ptr;
-      Float_FromDouble            : Float_FromDouble_Ptr;
-      Float_Type                  : Object := Null_Object;
---    GILState_Check              : GILState_Check_Ptr;
-      GILState_Ensure             : GILState_Ensure_Ptr;
-      GILState_Release            : GILState_Release_Ptr;
-      IncRef                      : IncRef_Ptr;
-      Import_AddModule            : Import_AddModule_Ptr;
-      Import_AppendInittab        : Import_AppendInittab_Ptr;
-      Import_ExecCodeModuleEx     : Import_ExecCodeModuleEx_Ptr;
-      Import_GetModule            : Import_GetModule_Ptr;
-      Import_Import               : Import_Import_Ptr;
-      Import_ImportModule         : Import_ImportModule_Ptr;
-      InitializeEx                : InitializeEx_Ptr;
-      Iter_Check                  : Iter_Check_Ptr;
-      Iter_Next                   : Iter_Next_Ptr;
---    List_Check                  : List_Check_Ptr;
---    List_CheckExact             : List_CheckExact_Ptr;
-      List_Append                 : List_Append_Ptr;
-      List_AsTuple                : List_AsTuple_Ptr;
-      List_GetItem                : List_GetItem_Ptr;
-      List_GetSlice               : List_GetSlice_Ptr;
-      List_Insert                 : List_Insert_Ptr;
-      List_New                    : List_New_Ptr;
-      List_Reverse                : List_Reverse_Ptr;
-      List_SetItem                : List_SetItem_Ptr;
-      List_SetSlice               : List_SetSlice_Ptr;
-      List_Size                   : List_Size_Ptr;
-      List_Sort                   : List_Sort_Ptr;
-      List_Type                   : Object := Null_Object;
-      Long_AsLong                 : Long_AsLong_Ptr;
-      Long_AsLongLong             : Long_AsLongLong_Ptr;
-      Long_AsUnsignedLong         : Long_AsUnsignedLong_Ptr;
-      Long_AsUnsignedLongLong     : Long_AsUnsignedLongLong_Ptr;
-      Long_FromLong               : Long_FromLong_Ptr;
-      Long_FromLongLong           : Long_FromLongLong_Ptr;
-      Long_FromUnsignedLong       : Long_FromUnsignedLong_Ptr;
-      Long_FromUnsignedLongLong   : Long_FromUnsignedLongLong_Ptr;
-      Long_Type                   : Object := Null_Object;
-      Module_AddObject            : Module_AddObject_Ptr;
-      Module_Create               : Module_Create_Ptr;
-      Module_GetDict              : Module_GetDict_Ptr;
-      Module_GetName              : Module_GetName_Ptr;
-      NewInterpreter              : NewInterpreter_Ptr;
-      None                        : Object := Null_Object;
-      Object_Bytes                : Object_Bytes_Ptr;
-      Object_Call                 : Object_Call_Ptr;
-      Object_CallNoArgs           : Object_CallNoArgs_Ptr;
-      Object_CallObject           : Object_CallObject_Ptr;
-      Object_DelItem              : Object_DelItem_Ptr;
-      Object_Dir                  : Object_Dir_Ptr;
-      Object_HasAttr              : Object_HasAttr_Ptr;
-      Object_HasAttrString        : Object_HasAttrString_Ptr;
-      Object_IsInstance           : Object_IsInstance_Ptr;
-      Object_IsSubclass           : Object_IsSubclass_Ptr;
-      Object_GenericGetAttr       : Object_GenericGetAttr_Ptr;
-      Object_GenericSetAttr       : Object_GenericSetAttr_Ptr;
-      Object_GetAttr              : Object_GetAttr_Ptr;
-      Object_GetAttrString        : Object_GetAttrString_Ptr;
-      Object_GetItem              : Object_GetItem_Ptr;
-      Object_GetIter              : Object_GetIter_Ptr;
-      Object_RichCompareBool      : Object_RichCompareBool_Ptr;
-      Object_SetAttr              : Object_SetAttr_Ptr;
-      Object_SetAttrString        : Object_SetAttrString_Ptr;
-      Object_SetItem              : Object_SetItem_Ptr;
-      Object_Size                 : Object_Size_Ptr;
-      Object_Str                  : Object_Str_Ptr;
-      Object_Type                 : Object_Type_Ptr;
-      Sequence_Check              : Sequence_Check_Ptr;
-      Sequence_Concat             : Sequence_Concat_Ptr;
-      Sequence_Contains           : Sequence_Contains_Ptr;
-      Sequence_Count              : Sequence_Count_Ptr;
-      Sequence_DelItem            : Sequence_DelItem_Ptr;
-      Sequence_DelSlice           : Sequence_DelSlice_Ptr;
-      Sequence_GetItem            : Sequence_GetItem_Ptr;
-      Sequence_GetSlice           : Sequence_GetSlice_Ptr;
-      Sequence_Index              : Sequence_Index_Ptr;
-      Sequence_List               : Sequence_List_Ptr;
-      Sequence_Repeat             : Sequence_Repeat_Ptr;
-      Sequence_SetItem            : Sequence_SetItem_Ptr;
-      Sequence_SetSlice           : Sequence_SetSlice_Ptr;
-      Sequence_Size               : Sequence_Size_Ptr;
-      Sequence_Tuple              : Sequence_Tuple_Ptr;
-      Set_Add                     : Set_Add_Ptr;
-      Set_Clear                   : Set_Clear_Ptr;
-      Set_Contains                : Set_Contains_Ptr;
-      Set_Discard                 : Set_Discard_Ptr;
-      Frozenset_New               : Frozenset_New_Ptr;
-      Set_New                     : Set_New_Ptr;
-      Set_Pop                     : Set_Pop_Ptr;
-      Set_Size                    : Set_Size_Ptr;
-      Set_Type                    : Object := Null_Object;
-      Sys_GetObject               : Sys_GetObject_Ptr;
---    Sys_GetSizeOf               : Sys_GetSizeOf_Ptr;
-      ThreadState_Get             : ThreadState_Get_Ptr;
-      ThreadState_Swap            : ThreadState_Swap_Ptr;
-      True                        : Object := Null_Object;
-      Tuple_GetItem               : Tuple_GetItem_Ptr;
-      Tuple_GetSlice              : Tuple_GetSlice_Ptr;
-      Tuple_New                   : Tuple_New_Ptr;
-      Tuple_SetItem               : Tuple_SetItem_Ptr;
-      Tuple_Size                  : Tuple_Size_Ptr;
-      Tuple_Type                  : Object := Null_Object;
-      Type_FromSpec               : Type_FromSpec_Ptr;
-      Type_FromSpecWithBases      : Type_FromSpecWithBases_Ptr;
-      Type_GetSlot                : Type_GetSlot_Ptr;
-      Type_IsSubtype              : Type_IsSubtype_Ptr;
-      Type_Type                   : Object := Null_Object;
-      Unicode_AsEncodedString     : Unicode_AsEncodedString_Ptr;
-      Unicode_DecodeFSDefault     : Unicode_DecodeFSDefault_Ptr;
-      Unicode_FromString          : Unicode_FromString_Ptr;
-      Unicode_FromStringAndSize   : Unicode_FromStringAndSize_Ptr;
-      Unicode_GetLength           : Unicode_GetLength_Ptr;
-      Unicode_ReadChar            : Unicode_ReadChar_Ptr;
-      Unicode_Type                : Object := Null_Object;
+      AddPendingCall               : AddPendingCall_Ptr;
+      Bool_FromLong                : Bool_FromLLong_Ptr;
+      ByteArray_AsString           : ByteArray_AsString_Ptr;
+      ByteArray_FromStringAndSize  : ByteArray_FromStringAndSize_Ptr;
+      ByteArray_Size               : ByteArray_Size_Ptr;
+      ByteArray_Type               : Object := Null_Object;
+      Bytes_AsStringAndSize        : Bytes_AsStringAndSize_Ptr;
+      Bytes_FromStringAndSize      : Bytes_FromStringAndSize_Ptr;
+      Bytes_Size                   : Bytes_Size_Ptr;
+      Bytes_Type                   : Object := Null_Object;
+      Callable_Check               : Callable_Check_Ptr;
+      Capsule_GetContext           : Capsule_GetContext_Ptr;
+      Capsule_GetDestructor        : Capsule_GetDestructor_Ptr;
+      Capsule_GetName              : Capsule_GetName_Ptr;
+      Capsule_GetPointer           : Capsule_GetPointer_Ptr;
+      Capsule_Import               : Capsule_Import_Ptr;
+      Capsule_IsValid              : Capsule_IsValid_Ptr;
+      Capsule_New                  : Capsule_New_Ptr;
+      Capsule_SetContext           : Capsule_SetContext_Ptr;
+      Capsule_SetDestructor        : Capsule_SetDestructor_Ptr;
+      Capsule_SetName              : Capsule_SetName_Ptr;
+      Capsule_SetPointer           : Capsule_SetPointer_Ptr;
+      CompileString                : CompileString_Ptr;
+      DateTime_CAPI                : DateTime_CAPI_Ptr;
+      DecRef                       : DecRef_Ptr;
+--    Dict_Check                   : Dict_Check_Ptr;
+--    Dict_CheckExact              : Dict_CheckExact_Ptr;
+      Dict_Clear                   : Dict_Clear_Ptr;
+      Dict_Contains                : Dict_Contains_Ptr;
+      Dict_Copy                    : Dict_Copy_Ptr;
+      Dict_DelItem                 : Dict_DelItem_Ptr;
+      Dict_DelItemString           : Dict_DelItemString_Ptr;
+      Dict_GetItemString           : Dict_GetItemString_Ptr;
+      Dict_Items                   : Dict_Items_Ptr;
+      Dict_Keys                    : Dict_Keys_Ptr;
+      Dict_New                     : Dict_New_Ptr;
+      Dict_Merge                   : Dict_Merge_Ptr;
+      Dict_Next                    : Dict_Next_Ptr;
+--    Dict_SetDefault              : Dict_Setdefault_Ptr;
+      Dict_SetItem                 : Dict_SetItem_Ptr;
+      Dict_SetItemString           : Dict_SetItemString_Ptr;
+      Dict_Size                    : Dict_Size_Ptr;
+      Dict_Type                    : Object := Null_Object;
+      EndInterpreter               : EndInterpreter_Ptr;
+      Err_BadArgument              : Err_BadArgument_Ptr;
+      Err_BadInternalCall          : Err_BadInternalCall_Ptr;
+      Err_Clear                    : Err_Clear_Ptr;
+      Err_Fetch                    : Err_Fetch_Ptr;
+      Err_NewException             : Err_NewException_Ptr;
+      Err_NormalizeException       : Err_NormalizeException_Ptr;
+      Err_Occurred                 : Err_Occurred_Ptr;
+      Err_Restore                  : Err_Restore_Ptr;
+      Err_SetString                : Err_SetString_Ptr;
+      Eval_InitThreads             : Eval_InitThreads_Ptr;
+      Eval_RestoreThread           : Eval_RestoreThread_Ptr;
+      Eval_SaveThread              : Eval_SaveThread_Ptr;
+      Exc_KeyError                 : Object_Ptr;
+      Exc_LookupError              : Object_Ptr;
+      Exc_NameError                : Object_Ptr;
+      Exc_PermissionError          : Object_Ptr;
+      Exc_RuntimeError             : Object_Ptr;
+      Exc_ValueError               : Object_Ptr;
+      Exc_SyntaxError              : Object_Ptr;
+      Exc_SystemError              : Object_Ptr;
+      Exc_TimeoutError             : Object_Ptr;
+      Exc_TypeError                : Object_Ptr;
+      False                        : Object := Null_Object;
+      FinalizeEx                   : FinalizeEx_Ptr;
+      Float_AsDouble               : Float_AsDouble_Ptr;
+      Float_FromDouble             : Float_FromDouble_Ptr;
+      Float_Type                   : Object := Null_Object;
+--    GILState_Check               : GILState_Check_Ptr;
+      GILState_Ensure              : GILState_Ensure_Ptr;
+      GILState_Release             : GILState_Release_Ptr;
+      IncRef                       : IncRef_Ptr;
+      Import_AddModule             : Import_AddModule_Ptr;
+      Import_AppendInittab         : Import_AppendInittab_Ptr;
+      Import_ExecCodeModuleEx      : Import_ExecCodeModuleEx_Ptr;
+      Import_GetModule             : Import_GetModule_Ptr;
+      Import_Import                : Import_Import_Ptr;
+      Import_ImportModule          : Import_ImportModule_Ptr;
+      Index_Check                  : Index_Check_Ptr;
+      InitializeEx                 : InitializeEx_Ptr;
+      Iter_Check                   : Iter_Check_Ptr;
+      Iter_Next                    : Iter_Next_Ptr;
+--    List_Check                   : List_Check_Ptr;
+--    List_CheckExact              : List_CheckExact_Ptr;
+      List_Append                  : List_Append_Ptr;
+      List_AsTuple                 : List_AsTuple_Ptr;
+      List_GetItem                 : List_GetItem_Ptr;
+      List_GetSlice                : List_GetSlice_Ptr;
+      List_Insert                  : List_Insert_Ptr;
+      List_New                     : List_New_Ptr;
+      List_Reverse                 : List_Reverse_Ptr;
+      List_SetItem                 : List_SetItem_Ptr;
+      List_SetSlice                : List_SetSlice_Ptr;
+      List_Size                    : List_Size_Ptr;
+      List_Sort                    : List_Sort_Ptr;
+      List_Type                    : Object := Null_Object;
+      Long_AsLong                  : Long_AsLong_Ptr;
+      Long_AsLongLong              : Long_AsLongLong_Ptr;
+      Long_AsUnsignedLong          : Long_AsUnsignedLong_Ptr;
+      Long_AsUnsignedLongLong      : Long_AsUnsignedLongLong_Ptr;
+      Long_FromLong                : Long_FromLong_Ptr;
+      Long_FromLongLong            : Long_FromLongLong_Ptr;
+      Long_FromUnsignedLong        : Long_FromUnsignedLong_Ptr;
+      Long_FromUnsignedLongLong    : Long_FromUnsignedLongLong_Ptr;
+      Long_Type                    : Object := Null_Object;
+      Module_AddObject             : Module_AddObject_Ptr;
+      Module_Create                : Module_Create_Ptr;
+      Module_GetDict               : Module_GetDict_Ptr;
+      Module_GetName               : Module_GetName_Ptr;
+      NewInterpreter               : NewInterpreter_Ptr;
+      None                         : Object := Null_Object;
+      Number_Absolute              : Number_Absolute_Ptr;
+      Number_Add                   : Number_Add_Ptr;
+      Number_And                   : Number_And_Ptr;
+      Number_AsSsize_t             : Number_AsSsize_t_Ptr;
+      Number_Check                 : Number_Check_Ptr;
+      Number_Divmod                : Number_Divmod_Ptr;
+      Number_Float                 : Number_Float_Ptr;
+      Number_FloorDivide           : Number_FloorDivide_Ptr;
+      Number_Index                 : Number_Index_Ptr;
+      Number_InPlaceAdd            : Number_InPlaceAdd_Ptr;
+      Number_InPlaceAnd            : Number_InPlaceAnd_Ptr;
+      Number_InPlaceFloorDivide    : Number_InPlaceFloorDivide_Ptr;
+      Number_InPlaceLshift         : Number_InPlaceLshift_Ptr;
+      Number_InPlaceMatrixMultiply : Number_InPlaceMatrixMultiply_Ptr;
+      Number_InPlaceMultiply       : Number_InPlaceMultiply_Ptr;
+      Number_InPlaceOr             : Number_InPlaceOr_Ptr;
+      Number_InPlacePower          : Number_InPlacePower_Ptr;
+      Number_InPlaceRemainder      : Number_InPlaceRemainder_Ptr;
+      Number_InPlaceRshift         : Number_InPlaceRshift_Ptr;
+      Number_InPlaceSubtract       : Number_InPlaceSubtract_Ptr;
+      Number_InPlaceTrueDivide     : Number_InPlaceTrueDivide_Ptr;
+      Number_InPlaceXor            : Number_InPlaceXor_Ptr;
+      Number_Invert                : Number_Invert_Ptr;
+      Number_Long                  : Number_Long_Ptr;
+      Number_Lshift                : Number_Lshift_Ptr;
+      Number_MatrixMultiply        : Number_MatrixMultiply_Ptr;
+      Number_Multiply              : Number_Multiply_Ptr;
+      Number_Negative              : Number_Negative_Ptr;
+      Number_Or                    : Number_Or_Ptr;
+      Number_Positive              : Number_Positive_Ptr;
+      Number_Power                 : Number_Power_Ptr;
+      Number_Remainder             : Number_Remainder_Ptr;
+      Number_Rshift                : Number_Rshift_Ptr;
+      Number_Subtract              : Number_Subtract_Ptr;
+      Number_ToBase                : Number_ToBase_Ptr;
+      Number_TrueDivide            : Number_TrueDivide_Ptr;
+      Number_Xor                   : Number_Xor_Ptr;
+      Object_Bytes                 : Object_Bytes_Ptr;
+      Object_Call                  : Object_Call_Ptr;
+      Object_CallNoArgs            : Object_CallNoArgs_Ptr;
+      Object_CallObject            : Object_CallObject_Ptr;
+      Object_DelItem               : Object_DelItem_Ptr;
+      Object_Dir                   : Object_Dir_Ptr;
+      Object_HasAttr               : Object_HasAttr_Ptr;
+      Object_HasAttrString         : Object_HasAttrString_Ptr;
+      Object_IsInstance            : Object_IsInstance_Ptr;
+      Object_IsSubclass            : Object_IsSubclass_Ptr;
+      Object_GenericGetAttr        : Object_GenericGetAttr_Ptr;
+      Object_GenericSetAttr        : Object_GenericSetAttr_Ptr;
+      Object_GetAttr               : Object_GetAttr_Ptr;
+      Object_GetAttrString         : Object_GetAttrString_Ptr;
+      Object_GetItem               : Object_GetItem_Ptr;
+      Object_GetIter               : Object_GetIter_Ptr;
+      Object_RichCompareBool       : Object_RichCompareBool_Ptr;
+      Object_SetAttr               : Object_SetAttr_Ptr;
+      Object_SetAttrString         : Object_SetAttrString_Ptr;
+      Object_SetItem               : Object_SetItem_Ptr;
+      Object_Size                  : Object_Size_Ptr;
+      Object_Str                   : Object_Str_Ptr;
+      Object_Type                  : Object_Type_Ptr;
+      Sequence_Check               : Sequence_Check_Ptr;
+      Sequence_Concat              : Sequence_Concat_Ptr;
+      Sequence_Contains            : Sequence_Contains_Ptr;
+      Sequence_Count               : Sequence_Count_Ptr;
+      Sequence_DelItem             : Sequence_DelItem_Ptr;
+      Sequence_DelSlice            : Sequence_DelSlice_Ptr;
+      Sequence_GetItem             : Sequence_GetItem_Ptr;
+      Sequence_GetSlice            : Sequence_GetSlice_Ptr;
+      Sequence_Index               : Sequence_Index_Ptr;
+      Sequence_List                : Sequence_List_Ptr;
+      Sequence_Repeat              : Sequence_Repeat_Ptr;
+      Sequence_SetItem             : Sequence_SetItem_Ptr;
+      Sequence_SetSlice            : Sequence_SetSlice_Ptr;
+      Sequence_Size                : Sequence_Size_Ptr;
+      Sequence_Tuple               : Sequence_Tuple_Ptr;
+      Set_Add                      : Set_Add_Ptr;
+      Set_Clear                    : Set_Clear_Ptr;
+      Set_Contains                 : Set_Contains_Ptr;
+      Set_Discard                  : Set_Discard_Ptr;
+      Frozenset_New                : Frozenset_New_Ptr;
+      Set_New                      : Set_New_Ptr;
+      Set_Pop                      : Set_Pop_Ptr;
+      Set_Size                     : Set_Size_Ptr;
+      Set_Type                     : Object := Null_Object;
+      Sys_GetObject                : Sys_GetObject_Ptr;
+--    Sys_GetSizeOf                : Sys_GetSizeOf_Ptr;
+      ThreadState_Get              : ThreadState_Get_Ptr;
+      ThreadState_Swap             : ThreadState_Swap_Ptr;
+      True                         : Object := Null_Object;
+      Tuple_GetItem                : Tuple_GetItem_Ptr;
+      Tuple_GetSlice               : Tuple_GetSlice_Ptr;
+      Tuple_New                    : Tuple_New_Ptr;
+      Tuple_SetItem                : Tuple_SetItem_Ptr;
+      Tuple_Size                   : Tuple_Size_Ptr;
+      Tuple_Type                   : Object := Null_Object;
+      Type_FromSpec                : Type_FromSpec_Ptr;
+      Type_FromSpecWithBases       : Type_FromSpecWithBases_Ptr;
+      Type_GetSlot                 : Type_GetSlot_Ptr;
+      Type_IsSubtype               : Type_IsSubtype_Ptr;
+      Type_Type                    : Object := Null_Object;
+      Unicode_AsEncodedString      : Unicode_AsEncodedString_Ptr;
+      Unicode_DecodeFSDefault      : Unicode_DecodeFSDefault_Ptr;
+      Unicode_FromString           : Unicode_FromString_Ptr;
+      Unicode_FromStringAndSize    : Unicode_FromStringAndSize_Ptr;
+      Unicode_GetLength            : Unicode_GetLength_Ptr;
+      Unicode_ReadChar             : Unicode_ReadChar_Ptr;
+      Unicode_Type                 : Object := Null_Object;
    end Links;
    procedure Check_Links (Library_Name : String);
 
