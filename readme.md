@@ -76,13 +76,16 @@ It tests few QtCore API:
 % cd QtAda6
 % gprbuild -P qtada6_tests.gpr -XTarget_OS=OSX test_02
 % PYTHONPATH=$HOME/env/lib/python3.9/site-packages bin/test_02
-PySide version: 6.5.2
-QtCore version: 6.5.2
-Today: 10
+PySide version: 6.7.0
+QtCore version: 6.7.0
+Today: 29
 Current folder: /Users/me/Documents/Programmation/Qt/QtAda6
 Current machine: MicMac
 HOME: /Users/me
-DashDotLine:4
+DashDotLine: 4
+Horizontal value: 1
+Horizontal name: Python Enum: Horizontal
+Horizontal or Vertical value: 3
 Exiting
 ```
 
@@ -159,4 +162,4 @@ Post your feedbacks on [QtAda6](https://github.com/Blady-Com/QtAda6) GitHub issu
 
 QtAda6 is free software released under [CeCILL-C](http://www.cecill.info) V2.1.
 
-Pascal Pignard, September-November 2023, January-May 2024.
+Pascal Pignard, September-November 2023, January-July 2024.
