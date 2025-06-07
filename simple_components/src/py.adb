@@ -1935,6 +1935,8 @@ package body Py is
       Check_Handle (Item);
       if Links.List_SetItem (List.Ptr, Index, Item.Ptr) = -1 then
          Check_Error;
+      else
+         Links.IncRef (Item.Ptr); -- Success, reference stolen
       end if;
    end List_SetItem;
 
@@ -3725,6 +3727,7 @@ package body Py is
               )  is
    begin
       Check_Handle (Tuple);
+      Check_Handle (Item);
       if Links.Tuple_SetItem (Tuple.Ptr, Position, Item.Ptr) = 0  then
          Links.IncRef (Item.Ptr); -- Success, reference stolen
       else

@@ -836,6 +836,8 @@ package Py is
       type Capsule_Name is tagged null record;
    end Generic_Capsule;
 
+   type Object is new Address;
+   Null_Object : constant Object := Object (Null_Address);
 private
    procedure Adjust (Object : in out Handle);
    procedure Finalize (Object : in out Handle);
@@ -844,8 +846,8 @@ private
    type ThreadState is new System.Address;
    Null_State : constant ThreadState := ThreadState (Null_Address);
 
-   type Object is new Address;
-   Null_Object : constant Object := Object (Null_Address);
+--     type Object is new Address;
+--     Null_Object : constant Object := Object (Null_Address);
 
    type Object_Ptr is access all Object;
    pragma Convention (C, Object_Ptr);
