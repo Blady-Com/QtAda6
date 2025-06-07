@@ -127,9 +127,9 @@ package body QtAda6.QtCore.QProcessEnvironment is
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+      return Ret : LIST_str (0 .. unsigned (List_Size (Result))-1) do
          for Ind in Ret'Range loop
-            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind)));
          end loop;
       end return;
    end keys;
@@ -179,9 +179,9 @@ package body QtAda6.QtCore.QProcessEnvironment is
       Args   := Tuple_New (0);
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
-      return Ret : LIST_str (1 .. Natural (List_Size (Result))) do
+      return Ret : LIST_str (0 ..  unsigned(List_Size (Result))-1) do
          for Ind in Ret'Range loop
-            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind - Ret'First)));
+            Ret (Ind) := As_String (List_GetItem (Result, ssize_t (Ind)));
          end loop;
       end return;
    end toStringList;

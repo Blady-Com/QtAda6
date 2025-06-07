@@ -15,7 +15,7 @@ package QtAda6.QtCore.QProcessEnvironment is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Shiboken.Object with null record;
-   type LIST_str is array (Positive range <>) of str;
+   type LIST_str is array (unsigned range <>) of str;
    procedure Finalize (Self : in out Class);
    function Create return Class;
    function Create (arg_1_P : access QtAda6.QtCore.QProcessEnvironment.Initialization.Inst'Class) return Class;

@@ -27,7 +27,7 @@ package QtAda6.QtWidgets.QApplication is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new QtAda6.QtGui.QGuiApplication.Inst with null record;
-   type SEQUENCE_str is array (Positive range <>) of str;
+   type SEQUENCE_str is array (unsigned range <>) of str;
    subtype LIST_QtAda6_QtWidgets_QWidget is QtAda6.QtWidgets.QWidget.Class_Array;
    procedure Finalize (Self : in out Class);
    function focusChanged

@@ -9,10 +9,10 @@
 -- CONTACT                      : http://blady.pagesperso-orange.fr
 -------------------------------------------------------------------------------
 limited with QtAda6.QtWidgets.QWidget;
-limited with QtAda6.QtCore.QModelIndex;
+with QtAda6.QtCore.QModelIndex;
 limited with QtAda6.QtCore.QPersistentModelIndex;
 limited with QtAda6.QtCore.Qt.PenStyle;
-limited with QtAda6.QtWidgets.QHeaderView;
+with QtAda6.QtWidgets.QHeaderView;
 limited with QtAda6.QtCore.QPoint;
 limited with QtAda6.QtWidgets.QStyleOptionViewItem;
 limited with QtAda6.QtWidgets.QAbstractItemView.CursorAction;

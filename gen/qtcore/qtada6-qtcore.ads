@@ -57,10 +57,10 @@ package QtAda6.QtCore is
    function qCompress
      (data_P : bytes; nbytes_P : int; compressionLevel_P : int := 0) return access QtAda6.QtCore.QByteArray.Inst'Class;
    procedure qCritical (arg_1_P : bytes);
-   procedure qDebug (arg_1_P : bytes);
+   procedure qDebug (arg_1_P : str);
    function qFastCos (x_P : float) return float;
    function qFastSin (x_P : float) return float;
-   procedure qFatal (arg_1_P : bytes);
+   procedure qFatal (arg_1_P : str);
    function qFormatLogMessage
      (type_K_P  : access QtAda6.QtCore.QtMsgType.Inst'Class;
       context_P : access QtAda6.QtCore.QMessageLogContext.Inst'Class; buf_P : str) return str;
@@ -79,7 +79,7 @@ package QtAda6.QtCore is
    function qUncompress (data_P : bytes; nbytes_P : int) return access QtAda6.QtCore.QByteArray.Inst'Class;
    function qUnregisterResourceData (arg_1_P : int; arg_2_P : bytes; arg_3_P : bytes; arg_4_P : bytes) return bool;
    function qVersion return str;
-   procedure qWarning (arg_1_P : bytes);
+   procedure qWarning (arg_1_P : str);
    function qtTrId (id_P : bytes; n_P : int := 0) return str;
 -- eof
 end QtAda6.QtCore;

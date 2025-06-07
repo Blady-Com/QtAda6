@@ -283,12 +283,12 @@ package body QtAda6.QtCore is
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end qCritical;
-   procedure qDebug (arg_1_P : bytes) is
+   procedure qDebug (arg_1_P : str) is
       Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "qDebug");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (arg_1_P.all)));
+      Tuple_SetItem (Args, 0, Unicode_FromString ("Debug: " & arg_1_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end qDebug;
@@ -312,12 +312,12 @@ package body QtAda6.QtCore is
       Result := Object_Call (Method, Args, Dict, True);
       return Float_AsDouble (Result);
    end qFastSin;
-   procedure qFatal (arg_1_P : bytes) is
+   procedure qFatal (arg_1_P : str) is
       Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "qFatal");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (arg_1_P.all)));
+      Tuple_SetItem (Args, 0, Unicode_FromString ("Fatal: " & arg_1_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end qFatal;
@@ -490,12 +490,12 @@ package body QtAda6.QtCore is
       Result := Object_Call (Method, Args, Dict, True);
       return As_String (Result);
    end qVersion;
-   procedure qWarning (arg_1_P : bytes) is
+   procedure qWarning (arg_1_P : str) is
       Method, Args, Dict, List, Tuple, Set, Result : Handle;
    begin
       Method := Object_GetAttrString (QtAda6.QtCore_Python_Proxy, "qWarning");
       Args   := Tuple_New (1);
-      Tuple_SetItem (Args, 0, Bytes_FromString (Standard.String (arg_1_P.all)));
+      Tuple_SetItem (Args, 0, Unicode_FromString ("Warning: " & arg_1_P));
       Dict   := Dict_New;
       Result := Object_Call (Method, Args, Dict, True);
    end qWarning;

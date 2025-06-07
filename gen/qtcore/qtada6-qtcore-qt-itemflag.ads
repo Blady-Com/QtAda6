@@ -14,6 +14,9 @@ package QtAda6.QtCore.Qt.ItemFlag is
    type Class is access all Inst'Class;
    type Class_Array is array (Positive range <>) of access Inst'Class;
    type Inst is new Enum.Flag with null record;
+   function "or" (L, R : Class) return Class;
+   function Value (V : access Inst) return int;
+   function Image (V : access Inst) return str;
    procedure Finalize (Self : in out Class);
    function NoItemFlags return Class;-- 0x0
    function ItemIsSelectable return Class;-- 0x1

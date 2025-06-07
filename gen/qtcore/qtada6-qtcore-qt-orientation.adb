@@ -28,7 +28,7 @@ package body QtAda6.QtCore.Qt.Orientation is
 
    function Image (V : access Inst) return str is
    begin
-      return "Python Enum: " & As_String (Object_GetAttrString (V.Python_Proxy, "name"));
+      return As_String (Object_GetAttrString (V.Python_Proxy, "name"));
    end;
 
    function "or" (L, R : Class) return Class is

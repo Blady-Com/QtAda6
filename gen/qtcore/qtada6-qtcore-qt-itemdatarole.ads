@@ -16,8 +16,10 @@ package QtAda6.QtCore.Qt.ItemDataRole is
    type Inst is new Enum.IntEnum with null record;
    procedure Finalize (Self : in out Class);
    function DisplayRole return Class;-- 0x0
+   DisplayRole_Value : constant := 16#0#;
    function DecorationRole return Class;-- 0x1
    function EditRole return Class;-- 0x2
+   EditRole_Value : constant := 16#2#;
    function ToolTipRole return Class;-- 0x3
    function StatusTipRole return Class;-- 0x4
    function WhatsThisRole return Class;-- 0x5
