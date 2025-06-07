@@ -2,14 +2,15 @@
 -- NAME (body)                  : qtada6.adb
 -- AUTHOR                       : Pascal Pignard
 -- ROLE                         : QtAda6 glue for the generated files
--- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
+-- NOTES                        : Ada 2022, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2025
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
--- CONTACT                      : http://blady.pagesperso-orange.fr
+-- CONTACT                      : http://blady.chez.com
 -------------------------------------------------------------------------------
 
 with Ada.Unchecked_Deallocation;
+with Ada.Command_Line;
 
 package body QtAda6 is
    use Py;
@@ -55,6 +56,20 @@ package body QtAda6 is
       return As_String (Object_GetAttrString (QtAda6_PySide_Python_Proxy, "__version__"));
    end Version;
 
+   ----------
+   -- argv --
+   ----------
+
+   function argv return SEQUENCE_str is
+      use type unsigned;
+      Args : SEQUENCE_str (0 .. unsigned (Ada.Command_Line.Argument_Count) - 1);
+   begin
+      for I in Args'Range loop
+         Args (I) := UXStrings.From_UTF_8 (Ada.Command_Line.Argument (Positive (I + 1)));
+      end loop;
+      return Args;
+   end argv;
+
    ----------------
    -- Initialize --
    ----------------
@@ -89,5 +104,19 @@ package body QtAda6 is
       Py.Invalidate (Self.Python_Proxy);
       Free (Object_Access (Self));
    end Finalize;
+
+   --------------
+   -- setValue --
+   --------------
+
+   procedure setValue (Self : access Object; Value : Object_Class) is
+   begin
+      Self.Python_Proxy := Value.Python_Proxy;
+   end setValue;
+
+   procedure setValue (Self : access Object; Value : str) is
+   begin
+      Self.Python_Proxy := Unicode_FromString (Value);
+   end setValue;
 
 end QtAda6;

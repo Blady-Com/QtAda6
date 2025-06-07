@@ -6,7 +6,7 @@
 --
 -- COPYRIGHT                    : (c) Pascal Pignard 2023
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
--- CONTACT                      : http://blady.pagesperso-orange.fr
+-- CONTACT                      : http://blady.chez.com
 -------------------------------------------------------------------------------
 package OS.PathLike is
 

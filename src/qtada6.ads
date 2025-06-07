@@ -2,12 +2,13 @@
 -- NAME (spec)                  : qtada6.ads
 -- AUTHOR                       : Pascal Pignard
 -- ROLE                         : QtAda6 glue for the generated files
--- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
+-- NOTES                        : Ada 2022, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2025
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
--- CONTACT                      : http://blady.pagesperso-orange.fr
+-- CONTACT                      : http://blady.chez.com
 -------------------------------------------------------------------------------
+
 with Py;
 with Interfaces.C;
 with UXStrings;
@@ -19,13 +20,16 @@ package QtAda6 is
    function Image is new UXStrings.Conversions.Scalar_Image (bool);
    subtype int is Interfaces.C.long;
    function Image is new UXStrings.Conversions.Integer_Image (int);
+   subtype unsigned is int range 0 .. int'Last;
    subtype float is Interfaces.C.double;
    function Image is new UXStrings.Conversions.Floating_Point_Image (float);
    subtype str is UXStrings.UXString;
+   type SEQUENCE_str is array (unsigned range <>) of str;
    type bytes is access UXStrings.UTF_8_Character_Array;
    type bytearray is access UXStrings.UTF_8_Character_Array;
 
    function From_bytes (Item : bytes) return UXStrings.UXString is (UXStrings.From_UTF_8 (Item.all));
+   function To_bytes (Item : str) return bytes is (new UXStrings.UTF_8_Character_Array'(UXStrings.To_UTF_8 (Item)));
 
    function As_String (Object : Py.Handle) return UXStrings.UXString is (UXStrings.From_UTF_8 (Py.As_String (Object)));
    function Unicode_FromString (Value : UXStrings.UXString) return Py.Handle is
@@ -41,14 +45,18 @@ package QtAda6 is
    type Object is new Shiboken.Object with null record;
    type Object_Access is access all Object;
    type Object_Class is access all Object'Class;
+   procedure setValue (Self : access Object; Value : Object_Class);
+   procedure setValue (Self : access Object; Value : str);
    procedure Finalize (Self : in out Object_Class);
 
-   type Any is new Object_Class;
+   subtype Any is Object_Class;
    type Type_K_T is new Object_Class;
    type Iterable is new Object_Class;
    type Property is new Object_Class;
    type None is new Object_Class;
    type NoneType is new Object_Class;
+
+   subtype QVariant is Any;
 
    package Enum is
       type Enum is new Shiboken.Object with null record;
@@ -80,6 +88,7 @@ package QtAda6 is
    function QtWidgets_Python_Proxy return Py.Handle;
 
    function Version return UXStrings.UXString;
+   function argv return SEQUENCE_str;
 
    procedure Initialize;
    procedure Finalize;
