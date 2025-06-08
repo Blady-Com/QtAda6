@@ -7,7 +7,28 @@ with QtAda6.QtGui.QPainter.RenderHint;
 
 with Interfaces.C; use Interfaces.C;
 
+with Py; use Py;
+with Py.Proxy_Module;
+with Proxy_Class;
+
 package body Test_03_AnalogClockWindow is
+
+   package Test_03_Proxy_Class is new Proxy_Class ("AnalogClockWindow", Inst, Inst_Access);
+
+   function Test_03_paint_Event (Self : Object; Args : Object; Keywords : Object) return Object;
+   pragma Convention (C, Test_03_paint_Event);
+
+   function Test_03_paint_Event (Self : Object; Args : Object; Keywords : Object) return Object is
+   begin
+      Test_03_Proxy_Class.Get_Ada_Self (Keywords).paintEvent (null);
+      return py.Proxy_Module.No_Value;
+   exception
+      when Python_Error =>
+         return Null_Object;
+      when Error : others =>
+         Throw_SystemError (Error);
+         return Null_Object;
+   end Test_03_paint_Event;
 
    procedure Finalize (Self : in out Class) is
    begin
@@ -15,21 +36,30 @@ package body Test_03_AnalogClockWindow is
       QtAda6.QtGui.QPolygon.Finalize (Self.a_minute_hand);
       QtAda6.QtGui.QColor.Finalize (Self.a_hour_color);
       QtAda6.QtGui.QColor.Finalize (Self.a_minute_color);
---        QtAda6.QtGui.QRasterWindow.Finalize (QtAda6.QtGui.QRasterWindow.Class (Self));
+      QtAda6.QtCore.QTimer.Finalize (Self.a_timer);
+      QtAda6.QtGui.QRasterWindow.Finalize (QtAda6.QtGui.QRasterWindow.Class (Self));
    end Finalize;
 
    function Create return Class is
+      Python_Class : constant Handle :=
+        Test_03_Proxy_Class.Derive_Class ("PySide6.QtGui", "QRasterWindow", ["paintEvent"]);
+      Python_update : Handle;
+      CB            : QtAda6.Any;
    begin
-         --          super().__init__()
-      return Self : constant Class :=
---            new Inst'(QtAda6.QtGui.QRasterWindow.Inst_Access (QtAda6.QtGui.QRasterWindow.Create).all with others => <>) do
-         new Inst do
---           Self.setTitle ("Analog Clock");
---           Self.resize (200, 200);
+      Test_03_Proxy_Class.Set (Test_03_paint_Event'Access);
 
---              self.a_timer := QtAda6.QtCore.QTimer.Create(self);
---              self.a_timer.timeout.connect(self.update);
---              self.a_timer.start(1000);
+      return Self : constant Class := new Inst do
+         Test_03_Proxy_Class.Init (Inst_Access (Self), Python_Class, True);
+
+         Self.setTitle ("Analog Clock");
+         Self.resize (200, 200);
+
+         Python_update := Object_GetAttrString (Self.Python_Proxy, "update");
+         CB            := new qtada6.Object'(Python_Proxy => Python_update);
+         Self.a_timer  := QtAda6.QtCore.QTimer.Create (Self);
+         Self.a_timer.timeout.U_get_U.connect (CB);
+         Self.a_timer.start (1_000);
+         QtAda6.Finalize (CB);
 
          Self.a_hour_hand :=
            QtAda6.QtGui.QPolygon.Create
@@ -48,12 +78,12 @@ package body Test_03_AnalogClockWindow is
    end Create;
 
    procedure paintEvent (self : access Inst; e : access QtAda6.QtGui.QPaintEvent.Inst'Class) is
---           p : QtAda6.QtGui.QPainter.Class := QtAda6.QtGui.QPainter.Create (QtAda6.QtGui.QWindow.Inst_Access(self));
---           p : QtAda6.QtGui.QPainter.Class := QtAda6.QtGui.QPainter.Create(new QtAda6.QtGui.QWindow.Inst'(python_proxy => self.Python_Proxy));
-      p : QtAda6.QtGui.QPainter.Class :=
-        QtAda6.QtGui.QPainter.Create (new QtAda6.QtGui.QWindow.Inst'(Python_Proxy => self.Python_Proxy));
+      w : QtAda6.QtGui.QWindow.Class  := new QtAda6.QtGui.QWindow.Inst'(Python_Proxy => self.Python_Proxy);
+      p : QtAda6.QtGui.QPainter.Class := QtAda6.QtGui.QPainter.Create (w);
    begin
       self.render (p);
+      QtAda6.QtGui.QPainter.Finalize (p);
+      QtAda6.QtGui.QWindow.Finalize (w);
    end paintEvent;
 
    procedure render (Self : access Inst; p : access QtAda6.QtGui.QPainter.Inst'Class) is
@@ -61,10 +91,8 @@ package body Test_03_AnalogClockWindow is
       l_side            : QtAda6.float;
       l_time            : QtAda6.QtCore.QTime.Class;
    begin
---        l_width  := Self.width;
---        l_heigth := Self.height;
-      l_width  := 200;
-      l_heigth := 200;
+      l_width  := Self.width;
+      l_heigth := Self.height;
       p.fillRect (0, 0, l_width, l_heigth, QtAda6.QtGui.QGradient.Preset.NightFade);
 
       p.setRenderHint (QtAda6.QtGui.QPainter.RenderHint.Antialiasing);
