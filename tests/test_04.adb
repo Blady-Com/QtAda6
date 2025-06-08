@@ -2,11 +2,11 @@
 -- NAME (main)                  : test_04.adb
 -- AUTHOR                       : Pascal Pignard
 -- ROLE                         : Test program for QtAda6
--- NOTES                        : Ada 2012, Simple Components, UXStrings, PySide
+-- NOTES                        : Ada 2022, Simple Components, UXStrings, PySide
 --
--- COPYRIGHT                    : (c) Pascal Pignard 2023
+-- COPYRIGHT                    : (c) Pascal Pignard 2025
 -- LICENCE                      : CeCILL V2.1 (https://cecill.info)
--- CONTACT                      : http://blady.pagesperso-orange.fr
+-- CONTACT                      : http://blady.chez.com
 -------------------------------------------------------------------------------
 
 with QtAda6.QtWidgets.QApplication;
@@ -15,7 +15,7 @@ with Ada.Exceptions; use Ada.Exceptions;
 with Interfaces.C;   use Interfaces.C;
 
 with Py;
-with Py.Test_04_Module;
+with Py.Proxy_Module;
 
 with UXStrings;         use UXStrings;
 with UXStrings.Text_IO; use UXStrings.Text_IO;
@@ -31,7 +31,7 @@ procedure Test_04 is
 begin
    --  1. initialize Python interpreter and create external modules
    Py.Load;
-   Py.Test_04_Module.Create;
+   Py.Proxy_Module.Create;
    Py.Initialize;
    declare
       --  2. take the global interpreter lock
@@ -43,24 +43,12 @@ begin
       Put_Line ("PySide version: " & QtAda6.Version);
 
       declare
-         use Py;
          --  4. declare QTAda6 objects and initialize them
-         app     : QtAda6.QtWidgets.QApplication.Class := QtAda6.QtWidgets.QApplication.Create ((1 => ""));
-         ModuleA : constant Handle                     := Import_ImportModule ("test_04_module");
-         MethodA : constant Handle                     := Object_GetAttrString (ModuleA, "test_04_magic");
-         widget  : Test_04_MyWidget.Class              := Test_04_MyWidget.Create (MethodA);
-
-          -- Local magic subprogram for callback usage
-         procedure L_Magic is
-         begin
-            widget.Magic;
-         end L_Magic;
+         app    : QtAda6.QtWidgets.QApplication.Class := QtAda6.QtWidgets.QApplication.Create ((1 => ""));
+         widget : Test_04_MyWidget.Class              := Test_04_MyWidget.Create;
 
       begin
          --  5. call QtAda6 API
-
-         -- Set callback which will be called by test_04_module
-         Py.Test_04_Module.Set (L_Magic'Unrestricted_Access);
 
          widget.resize (200, 100);
          widget.show;

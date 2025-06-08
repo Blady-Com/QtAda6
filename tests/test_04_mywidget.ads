@@ -20,7 +20,7 @@ package Test_04_MyWidget is
 
    procedure Finalize (Self : in out Class);
 
-   function Create (Callback : Py.Handle) return Class;
+   function Create return Class;
 
    procedure Magic (Self : access Inst);
 
