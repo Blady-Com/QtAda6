@@ -1,112 +1,97 @@
+-------------------------------------------------------------------------------
+-- NAME (body)                  : mainwindow.adb
+-- AUTHOR                       : Pascal Pignard
+-- ROLE                         : Main window management
+-- NOTES                        : Ada 2022, QtAda6
+--
+-- COPYRIGHT                    : (c) Pascal Pignard 2025
+-- LICENCE                      : CeCILL V2.1 (https://cecill.info)
+-- CONTACT                      : http://blady.chez.com
+-------------------------------------------------------------------------------
 
 with Ada.Directories;
-with Ada.Text_IO;
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-with Ada.Containers.Vectors;
-with Ada.Strings.Fixed;
+with Ada.Unchecked_Deallocation;
+
+with EnvironmentVariableTableModel;
+with ArgumentListModel;
+
+with UXStrings;
+
+with QtAda6.QtGui.QTextCursor;
+
+with Proxy_Class;
+with Py;
 
 package body MainWindow is
 
-   type EnvironmentVariableTableModel is new Ada.Finalization.Controlled with record
-      Variables : Ada.Containers.Vectors.Vector;
-   end record;
+   package MainWindow_Proxy_Class is new Proxy_Class ("MainWindow_Type", MainWindow_Type, MainWindow_Access);
 
-   overriding procedure Initialize (Model : in out EnvironmentVariableTableModel) is
+   function Create (Parent : access QtAda6.QtWidgets.QWidget.Inst'Class := null) return Class is
+      use Py;
+      Python_Class : constant Handle := MainWindow_Proxy_Class.Derive_Class ("PySide6.QtWidgets", "QMainWindow");
+      Args         : Handle;
    begin
-      Model.Variables.Clear;
-      for Var of Ada.Directories.Environment_Variables loop
-         Model.Variables.Append (To_Unbounded_String (Var));
-      end loop;
-   end Initialize;
+      return This : constant Class := new MainWindow_Type do
+         if Parent = null then
+            Args := Tuple_New (0);
+         else
+            Args := Tuple_New (1);
+            Tuple_SetItem (Args, 0, Parent.Python_Proxy);
+         end if;
+         MainWindow_Proxy_Class.Init (MainWindow_Access (This), Python_Class, Args, True);
 
-   overriding procedure Finalize (Model : in out EnvironmentVariableTableModel) is
+         This.ui.Setup_UI (QtAda6.QtWidgets.QMainWindow.Class (This));
+
+         This.Display_Environment_Variables;
+         This.Display_Launch_Directory;
+         This.Display_Arguments;
+      end return;
+   end Create;
+
+   procedure Finalize (This : in out Class) is
+      procedure Free is new Ada.Unchecked_Deallocation (MainWindow_Type, MainWindow_Access);
    begin
-      Model.Variables.Clear;
+      Py.Invalidate (This.Python_Proxy);
+      Free (MainWindow_Access (This));
    end Finalize;
 
-   function Get_Row_Count (Model : EnvironmentVariableTableModel) return Natural is
+   procedure Display_Environment_Variables (This : in out MainWindow_Type) is
    begin
-      return Model.Variables.Length;
-   end Get_Row_Count;
-
-   function Get_Column_Count (Model : EnvironmentVariableTableModel) return Natural is
-   begin
-      return 1;
-   end Get_Column_Count;
-
-   function Get_Data (Model : EnvironmentVariableTableModel; Row, Column : Natural) return String is
-   begin
-      return To_String (Model.Variables (Row));
-   end Get_Data;
-
-   type ArgumentListModel is new Ada.Finalization.Controlled with record
-      Arguments : Ada.Containers.Vectors.Vector;
-   end record;
-
-   overriding procedure Initialize (Model : in out ArgumentListModel) is
-   begin
-      Model.Arguments.Clear;
-      for Arg of Ada.Command_Line.Command_Name_Of (0 .. Ada.Command_Line.Argument_Count) loop
-         Model.Arguments.Append (To_Unbounded_String (Arg));
-      end loop;
-   end Initialize;
-
-   overriding procedure Finalize (Model : in out ArgumentListModel) is
-   begin
-      Model.Arguments.Clear;
-   end Finalize;
-
-   function Get_Row_Count (Model : ArgumentListModel) return Natural is
-   begin
-      return Model.Arguments.Length;
-   end Get_Row_Count;
-
-   function Get_Column_Count (Model : ArgumentListModel) return Natural is
-   begin
-      return 1;
-   end Get_Column_Count;
-
-   function Get_Data (Model : ArgumentListModel; Row, Column : Natural) return String is
-   begin
-      return To_String (Model.Arguments (Row));
-   end Get_Data;
-
-   procedure Display_Environment_Variables (This : in out MainWindow) is
-      Model : EnvironmentVariableTableModel;
-   begin
-      This.ui.Environment_Variable_Table_View.Set_Model (Model'Unchecked_Access);
-      This.ui.Environment_Variable_Table_View.Resize_Columns_To_Contents;
+      This.ui.Environment_Variable_Table_View.setModel (EnvironmentVariableTableModel.Create);
+      This.ui.Environment_Variable_Table_View.resizeColumnsToContents;
    end Display_Environment_Variables;
 
-   procedure Display_Launch_Directory (This : in out MainWindow) is
-      Current_Path : constant String := Ada.Directories.Get_Current_Dir;
+   procedure Display_Launch_Directory (This : in out MainWindow_Type) is
+      Current_Path : constant QtAda6.str := UXStrings.From_UTF_8 (Ada.Directories.Current_Directory);
+      cursor       : QtAda6.QtGui.QTextCursor.Class;
    begin
-      This.ui.Launch_Directory_Text_Browser.Set_Text (Current_Path);
-      This.ui.Launch_Directory_Text_Browser.Set_Cursor_Position (1);
+      This.ui.Launch_Directory_Text_Browser.setText (Current_Path);
+      cursor := This.ui.Launch_Directory_Text_Browser.textCursor;
+      cursor.setPosition (0);
+      This.ui.Launch_Directory_Text_Browser.setTextCursor (cursor);
    end Display_Launch_Directory;
 
-   procedure Display_Arguments (This : in out MainWindow) is
-      Model : ArgumentListModel;
+   procedure Display_Arguments (This : in out MainWindow_Type) is
    begin
-      This.ui.Argument_List_View.Set_Model (Model'Unchecked_Access);
+      This.ui.Argument_List_View.setModel (ArgumentListModel.Create);
    end Display_Arguments;
 
-   procedure On_Environment_Variables_Triggered (This : in out MainWindow; Checked : Boolean) is
+   procedure On_Action_Environment_Variables_Triggered (This : in out MainWindow_Type; Checked : Boolean) is
    begin
-      This.ui.Environment_Variable_Label.Set_Visible (Checked);
-      This.ui.Environment_Variable_Table_View.Set_Visible (Checked);
-   end On_Environment_Variables_Triggered;
+      This.ui.Environment_Variable_Label.setVisible (Checked);
+      This.ui.Environment_Variable_Table_View.setVisible (Checked);
+   end On_Action_Environment_Variables_Triggered;
 
-   procedure On_Launch_Directory_Triggered (This : in out MainWindow; Checked : Boolean) is
+   procedure On_Action_Launch_Directory_Triggered (This : in out MainWindow_Type; Checked : Boolean) is
    begin
-      This.ui.Launch_Directory_Label.Set_Visible (Checked);
-      This.ui.Launch_Directory_Text_Browser.Set_Visible (Checked);
-   end On_Launch_Directory_Triggered;
+      This.ui.Launch_Directory_Label.setVisible (Checked);
+      This.ui.Launch_Directory_Text_Browser.setVisible (Checked);
+   end On_Action_Launch_Directory_Triggered;
 
-   procedure On_Arguments_Triggered (This : in out MainWindow; Checked : Boolean) is
+   procedure On_Action_Arguments_Triggered (This : in out MainWindow_Type; Checked : Boolean) is
    begin
-      This.ui.Argument_Label.Set_Visible (Checked);
-      This.ui.Argument_List_View.Set_Visible (Checked);
-   end On_Arguments_Triggered;
+      This.ui.Argument_Label.setVisible (Checked);
+      This.ui.Argument_List_View.setVisible (Checked);
+   end On_Action_Arguments_Triggered;
 
 end MainWindow;
