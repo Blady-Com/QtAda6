@@ -4,7 +4,7 @@
 
 We should have installed first:
 
-- GNAT Ada compiler version GPL 2021 or FSF 12.1
+- GNAT Ada compiler version FSF 12.1 or 14.2.
 - Python version 3.7 or newer
 
 ## Install [Qt](https://www.qt.io/product/qt6?hsLang=en) for Python
@@ -15,7 +15,7 @@ We install [PySide 6](https://www.qt.io/qt-for-python?hsLang=en) the official Py
 % cd $HOME
 % python3 -m venv env
 % source env/bin/activate
-% pip install pyside6
+% pip3 install pyside6
 % deactivate
 ```
 
@@ -108,7 +108,7 @@ It tests few QtGui API:
 % cd $HOME
 % cd QtAda6
 % gprbuild -P qtada6_tests.gpr -XTarget_OS=OSX test_03
-% PYTHONPATH=$HOME/env/lib/python3.9/site-packages:$PWD/tests bin/test_03
+% PYTHONPATH=$HOME/env/lib/python3.9/site-packages bin/test_03
 PySide version: 6.5.2
 QtCore version: 6.5.2
 0
@@ -137,6 +137,30 @@ A GUI app with widgets label and button is launched:
 
 ![](https://github.com/Blady-Com/QtAda6/blob/master/media/hello_world.png)
 
+## Run the demos
+
+### EnvDisplay: Full Qt app
+
+It displays environnement variables, current directory and command line arguments:
+
+```
+% cd $HOME
+% cd QtAda6
+% gprbuild -P qtada6_tests.gpr -XTarget_OS=OSX envdisplay
+% PYTHONPATH=$HOME/env/lib/python3.9/site-packages bin/envdisplay
+PySide version: 6.5.2
+Warning: Not-supported role (13)
+Warning: Not-supported role (6)
+Warning: Not-supported role (7)
+...
+0
+Exiting
+```
+
+A GUI app with several widgets is launched:
+
+![](https://github.com/Blady-Com/QtAda6/blob/master/media/envdisplay.png)
+
 ## Limitations
 
 This is the very first release whose goal is mostly to get feedbacks on how it is usable or if the class hierarchy is as user friendly as C++ version.
@@ -145,7 +169,7 @@ Known limitations are :
 
 - Only QtCore, QtGui and QtWidgets are provided
 - Signal, composed types, multi-inheritance and so on are not or partially translated
-- Class inheritance is not available on Ada side
+- Class inheritance is not fully available on Ada side (a workaround call Python code)
 - No memory management
 
 ## Get involved
@@ -162,4 +186,4 @@ Post your feedbacks on [QtAda6](https://github.com/Blady-Com/QtAda6) GitHub issu
 
 QtAda6 is free software released under [CeCILL-C](http://www.cecill.info) V2.1.
 
-Pascal Pignard, September-November 2023, January-July 2024.
+Pascal Pignard, September-November 2023, January-July 2024, June 2025.
